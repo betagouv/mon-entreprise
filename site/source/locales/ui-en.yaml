@@ -220,7 +220,7 @@ checklist:
 code {{ code }}: code {{ code }}
 codeApe:
   catégorie-guichet: <0>Guichet unique categories<1><0>The <2>Guichet électronique
-    des formalités d'entreprises&lt;/2> (Guichet unique) is a secure internet
+    des formalités d'entreprises</2> (Guichet unique) is a secure internet
     portal, through which all companies are required to declare their creation,
     as of January 1, 2023.</0><1>It uses a different activity classification
     from that used by INSEE for the APE code.</1></1></0>
@@ -525,29 +525,29 @@ pages:
     message: This page does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of compliance with <2></3> RGAA&lt;/2<3>>
-    4</3><3>.1, which aims to define the general level of accessibility observed
-    on the site in accordance with regulations. This page is mandatory to comply
-    with RGAA 4.1.</3><4>What is digital accessibility?</4><5>An accessible
-    website is one that enables all Internet users to access its content without
-    difficulty, including people with disabilities who use specialized software
-    or hardware.</5><6>An accessible site enables, for example
-    :</6><7><0>Navigate with voice synthesizers or Braille displays (used in
-    particular by blind or partially-sighted Internet users).</0><1>Customize
-    the site's display according to your needs (enlarging characters, changing
-    colors, etc.).</1><2>Navigate without using the mouse, with the keyboard
-    only or via a touch screen.</2></7><8>Accessibility</8><9>statementAcoss is
-    committed to making its internet, extranet and intranet sites accessible, in
-    accordance with article 47 of law no. 2005-102 of February 11, 2005,
-    and</9><10>has drawn up a <2>strategy and action plan for</2> this
-    purpose.</10><11>This accessibility statement applies to
+    page, but a declaration of compliance with <2></3> RGAA</2<3>> 4</3><3>.1,
+    which aims to define the general level of accessibility observed on the site
+    in accordance with regulations. This page is mandatory to comply with RGAA
+    4.1.</3><4>What is digital accessibility?</4><5>An accessible website is one
+    that enables all Internet users to access its content without difficulty,
+    including people with disabilities who use specialized software or
+    hardware.</5><6>An accessible site enables, for example :</6><7><0>Navigate
+    with voice synthesizers or Braille displays (used in particular by blind or
+    partially-sighted Internet users).</0><1>Customize the site's display
+    according to your needs (enlarging characters, changing colors,
+    etc.).</1><2>Navigate without using the mouse, with the keyboard only or via
+    a touch screen.</2></7><8>Accessibility</8><9>statementAcoss is committed to
+    making its internet, extranet and intranet sites accessible, in accordance
+    with article 47 of law no. 2005-102 of February 11, 2005, and</9><10>has
+    drawn up a <2>strategy and action plan for</2> this purpose.</10><11>This
+    accessibility statement applies to
     <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance statusMy
     company</12><13>- <1>https://mon-entreprise.urssaf.fr/</1> is partially
     compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
-    carried out by <2></15> boscop&lt;/2<15>> reveals that :</15><16><0>93.65%
-    of RGAA criteria are met.</0><1>The site's average compliance rate is
+    carried out by <2></15> boscop</2<15>> reveals that :</15><16><0>93.65% of
+    RGAA criteria are met.</0><1>The site's average compliance rate is
     98%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
     rate of 100%.</2></16><17>Number of applicable criteria: 63; Number of
     compliant criteria: 59; Number of non-compliant
@@ -559,7 +559,7 @@ pages:
     fields of the same nature are not relevant.</3></1></19><20>Derogation
     for</20><21>disproportionate</21><20>burdenNothingContents</20><22>not
     subject to the accessibility</22><23>obligationNothing</23><24>Establishment
-    of this accessibility declaration&lt;/24> <26>This accessibility declaration
+    of this accessibility declaration</24> <26>This accessibility declaration
     was established on May 15, 2025. It has been updated on January 13, 2026.
     </26><27>Technologies used to create the site</27><28><0>HTML
     5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Test
@@ -1069,7 +1069,7 @@ pages:
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
         the legislation in force at an earlier date. To do so, simply enter the
-        parameter <2><0>date&lt;/2</0>> in the
+        parameter <2><0>date</2</0>> in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
@@ -1350,8 +1350,8 @@ pages:
           titre: Your contributions
         institutions:
           urssaf: Urssaf collects contributions used to finance social security (health
-            insurance, family allowances, long-term care and retirement &lt;2>
-            </2> ).
+            insurance, family allowances, long-term care and retirement <2> </2>
+            ).
       externalLinks:
         "1":
           title: The Artist-Author online service
@@ -1375,7 +1375,7 @@ pages:
       explications:
         institutions:
           urssaf: Urssaf collects social security contributions (health insurance, family
-            allowances, dependence&lt;1> and retirement</1>).
+            allowances, dependence<1> and retirement</1>).
         retraite:
           droits: "<0>Rights acquired over the year</0><1><0>The calculation of pension
             rights has not yet been implemented for cases including disability
@@ -1773,7 +1773,7 @@ pages:
         the case of an individual beneficiary and dividends decided by the
         company.</2><3>How are dividend withholdings calculated?</3><4>Dividends
         may be subject to a flat-rate withholding tax of 30%, including tax and
-        social security contributions (also known as&lt;1> flat tax</1>).
+        social security contributions (also known as<1> flat tax</1>).
         Alternatively, you can opt for the tax scale. This simulator can be used
         to compare the two systems.</4><5>A 12.8% advance payment is made at the
         time of dividend payment, unless the beneficiary meets <2>certain
@@ -1787,8 +1787,8 @@ pages:
       warning:
         "1": This simulation applies only to French companies subject to corporate
           income tax (IS), and <2>does not apply to self-employed
-          individuals&lt;/2> such as <5>majority managers of SARLs</5>, sole
-          partners of<7>EURLs&lt;/7> , or <10>partners in SNCs</10>.
+          individuals</2> such as <5>majority managers of SARLs</5>, sole
+          partners of <7>EURLs</7> , or <10>partners in SNCs</10>.
         "2": Tax on dividends is calculated in addition to tax on other taxable income.
     ei:
       meta:
@@ -1805,8 +1805,8 @@ pages:
         trader must pay social security contributions to the authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance vocational training.</1><2><0></2> &lt;/0<2>> <2>See details
-        of how contributions are calculatedDon</2></2><3>'t forget to deduct all
+        to finance vocational training.</1><2><0></2> </0<2>> <2>See details of
+        how contributions are calculatedDon</2></2><3>'t forget to deduct all
         expenses incurred in the course of your business (equipment, raw
         materials, premises, transport). These are deductible from the company's
         income, which means you won't pay tax or social security contributions
@@ -1820,8 +1820,8 @@ pages:
         or her <6>revenu professionnel</6> if he or she has opted for
         corporation tax. Their amount also varies according to the type of
         activity (liberal profession, craftsman, shopkeeper, etc.), or any
-        exemptions granted (Acre, ZFU, RSA, etc.).</7>&lt;8> As a company's
-        income is only known at the end of the accounting year, the manager pays
+        exemptions granted (Acre, ZFU, RSA, etc.).</7><8> As a company's income
+        is only known at the end of the accounting year, the manager pays
         provisional contributions which will then be regularized once the actual
         income has been declared, the following year.</8><9>This simulator
         calculates the exact amount of social security contributions based on a
@@ -1831,7 +1831,7 @@ pages:
       title: Simulator for sole proprietorships
     eirl:
       avertissement: <0>It has no longer been possible to create an EIRL since May
-        2022. The status of<1>Sole Proprietorship</1> replaces it.</0><1>Be
+        2022. The status of <1>Sole Proprietorship</1> replaces it.</0><1>Be
         careful not to confuse EIRL (Entreprise Individuelle à Responsabilité
         Limitée) with <2>EURL (Entreprise Unipersonnelle à Responsabilité
         Limitée)</2>.</1>
@@ -1918,7 +1918,7 @@ pages:
           cpam: As an approved healthcare professional, part of your contributions are
             reimbursed by the Assurance Maladie.
           urssaf: Urssaf collects social security contributions (health insurance, family
-            allowances, dependence&lt;1> and retirement</1>).
+            allowances, dependence<1> and retirement</1>).
         retraite:
           droits: "<0>Rights acquired over the year</0><1><0>The calculation of pension
             entitlements has not yet been implemented for cases involving a
@@ -1957,9 +1957,8 @@ pages:
       warning:
         année-courante: The amount calculated corresponds to <2>contributions for the
           year {{year}} </2> (for an income of {{year}}).
-        auto-entrepreneur: <0>&lt;/0> This simulator <3>does not apply to male&lt;/3>
-          and female auto-entrepreneurs, who have their own <6>income
-          simulator&lt;/6> .
+        auto-entrepreneur: This simulator <1>does not apply to auto-entrepreneurs</1>
+          , who have their own dedicated <4>income simulator</4> .
         double-régime: This simulator does not take into account the situation of users
           who have <2>two different tax regimes</2> (actual and micro-tax
           regimes) in the same year.
@@ -2094,7 +2093,7 @@ pages:
           rémunération-primes: Remuneration not affected by the incomplete month
         rémunération-etp:
           popover: Enter here the compensation that would have been paid for a full month,
-            <2>excluding&lt;/2> :<4><0>bonuses and other compensation components
+            <2>excluding</2> :<4><0>bonuses and other compensation components
             not affected by the absence;</0><1>overtime or additional hours
             pay.</1></4>
         rémunération-primes:

@@ -2080,9 +2080,9 @@ pages:
       warning:
         année-courante: Le montant calculé correspond aux <2>cotisations de l’année
           {{year}}</2> (pour un revenu {{year}}).
-        auto-entrepreneur: <0></0> Ce simulateur <3>ne concerne pas les
-          auto-entrepreneurs</3> et auto-entrepreneuses, qui ont leur
-          <6>simulateur de revenus</6> dédié.
+        auto-entrepreneur: Ce simulateur <1>ne concerne pas les auto-entrepreneurs</1>
+          et auto-entrepreneuses, qui ont leur <4>simulateur de revenus</4>
+          dédié.
         double-régime: Ce simulateur ne prend pas en compte la situation des usagers
           ayant <2>deux régimes d’imposition différents</2> (régime réel et
           micro-fiscal) sur une même année.
