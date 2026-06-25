@@ -7441,7 +7441,7 @@ impôt . foyer fiscal . situation de famille:
   titre.en: '[automatic] marital status'
   titre.fr: situation de famille
 impôt . foyer fiscal . situation de famille . couple:
-  titre.en: '[automatic] Married / Pacsé(e)s'
+  titre.en: 'Married / In a civil partnership'
   titre.fr: Marié(e)s / Pacsé(e)s
 impôt . foyer fiscal . situation de famille . célibataire:
   titre.en: '[automatic] Single / Divorced / Common-law union'
