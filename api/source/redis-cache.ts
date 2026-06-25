@@ -5,6 +5,8 @@ import IORedis from 'ioredis'
 import IORedisMock from 'ioredis-mock'
 import { koaBody } from 'koa-body'
 
+import { superviserRedis } from './redis-supervision.js'
+
 const Redis = IORedis.default
 const RedisMock = IORedisMock.default
 
@@ -18,6 +20,8 @@ const redis =
 				keyPrefix: 'cache',
 		  })
 		: new RedisMock()
+
+superviserRedis(redis, 'cache')
 
 export const redisCacheMiddleware = () => {
 	const router = new Router()

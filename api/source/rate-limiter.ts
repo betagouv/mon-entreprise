@@ -6,29 +6,35 @@ import {
 	RateLimiterRes,
 } from 'rate-limiter-flexible'
 
+import { superviserRedis } from './redis-supervision.js'
+
 const Redis = IORedis.default
 
-const rateLimiter =
-	process.env.NODE_ENV === 'production' && process.env.SCALINGO_REDIS_URL
-		? new RateLimiterRedis({
-				storeClient: new Redis(process.env.SCALINGO_REDIS_URL, {
-					enableOfflineQueue: false,
-					keyPrefix: 'rate-limiter',
-				}),
-				keyPrefix: 'rate-limiter',
-				points: 5, // 5 requests for ctx.ip
-				duration: 1, // per 1 second
-				// Compteur de secours en mémoire : si Redis est indisponible, le
-				// rate-limiting continue (par conteneur) plutôt que d'échouer.
-				insuranceLimiter: new RateLimiterMemory({
-					points: 5,
-					duration: 1,
-				}),
-		  })
-		: new RateLimiterMemory({
-				points: 5, // 5 requests for ctx.ip
-				duration: 1, // per 1 seconds
-		  })
+const créerRateLimiter = () => {
+	const { NODE_ENV, SCALINGO_REDIS_URL } = process.env
+
+	if (NODE_ENV !== 'production' || !SCALINGO_REDIS_URL) {
+		return new RateLimiterMemory({ points: 5, duration: 1 })
+	}
+
+	const storeClient = new Redis(SCALINGO_REDIS_URL, {
+		enableOfflineQueue: false,
+		keyPrefix: 'rate-limiter',
+	})
+	superviserRedis(storeClient, 'rate-limiter')
+
+	return new RateLimiterRedis({
+		storeClient,
+		keyPrefix: 'rate-limiter',
+		points: 5, // 5 requests for ctx.ip
+		duration: 1, // per 1 second
+		// Compteur de secours en mémoire : si Redis est indisponible, le
+		// rate-limiting continue (par conteneur) plutôt que d'échouer.
+		insuranceLimiter: new RateLimiterMemory({ points: 5, duration: 1 }),
+	})
+}
+
+const rateLimiter = créerRateLimiter()
 
 export const rateLimiterMiddleware = async (
 	ctx: BaseContext,
