@@ -8,9 +8,9 @@ export function AvertissementAutoEntrepreneur() {
 
 	return (
 		<Body>
+			<Emoji emoji="⚠️" />{' '}
 			<Trans i18nKey="pages.simulateurs.indépendant.warning.auto-entrepreneur">
-				<Emoji emoji="⚠️" /> Ce simulateur{' '}
-				<Strong>ne concerne pas les auto-entrepreneurs</Strong> et
+				Ce simulateur <Strong>ne concerne pas les auto-entrepreneurs</Strong> et
 				auto-entrepreneuses, qui ont leur{' '}
 				<Link to={absoluteSitePaths.simulateurs['auto-entrepreneur']}>
 					simulateur de revenus
