@@ -21,6 +21,7 @@
               nodejs_24
               yarn
               cypress
+              scalingo
             ];
 
             shellHook = ''
