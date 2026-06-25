@@ -15,16 +15,11 @@ import { CardContainer } from './Card'
 export type Status = 'applicable' | 'sousConditions' | 'nonApplicable'
 
 type StatusCardProps = {
-	isBestOption?: boolean
 	status?: Status
 	children: ReactNode
 }
 
-export const StatusCard = ({
-	children,
-	isBestOption,
-	status,
-}: StatusCardProps) => {
+export const StatusCard = ({ children, status }: StatusCardProps) => {
 	const { t } = useTranslation()
 
 	const étiquettes = findChildrenByType(children, StatusCard.Étiquette)
@@ -53,16 +48,6 @@ export const StatusCard = ({
 					</StyledContentWrapper>
 				)}
 			</CardBody>
-			{isBestOption && (
-				<AbsoluteSpanTop
-					title={t(
-						'pages.simulateurs.comparaison-statuts.meilleure-option',
-						'Option la plus avantageuse.'
-					)}
-				>
-					<StyledEmoji emoji="🥇" />
-				</AbsoluteSpanTop>
-			)}
 			{status === 'applicable' && (
 				<AbsoluteSpanWithMargin
 					title={t(
@@ -196,20 +181,10 @@ const StyledCardContainer = styled(CardContainer)<{
 	`}
 `
 
-const AbsoluteSpanTop = styled.span`
-	position: absolute;
-	top: 0;
-	right: 1.5rem;
-`
-
 const AbsoluteSpanWithMargin = styled.span`
 	position: absolute;
 	top: 0.5rem;
 	right: 1.5rem;
-`
-
-const StyledEmoji = styled(Emoji)`
-	font-size: ${({ theme }) => theme.fontSizes.xxl};
 `
 
 const StyledStatusEmoji = styled(Emoji)`
