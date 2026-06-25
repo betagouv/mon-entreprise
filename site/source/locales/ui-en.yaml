@@ -525,7 +525,7 @@ pages:
     message: This page does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
-    page, but a declaration of compliance with <2></3> RGAA</2<3>> 4</3><3>.1,
+    page, but a declaration of compliance with <2>RGAA</2> 4.1,
     which aims to define the general level of accessibility observed on the site
     in accordance with regulations. This page is mandatory to comply with RGAA
     4.1.</3><4>What is digital accessibility?</4><5>An accessible website is one
@@ -546,7 +546,7 @@ pages:
     compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
     derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
-    carried out by <2></15> boscop</2<15>> reveals that :</15><16><0>93.65% of
+    carried out by <2>boscop</2> reveals that :</15><16><0>93.65% of
     RGAA criteria are met.</0><1>The site's average compliance rate is
     98%.</1><2>The \"Simulateur de revenus pour salarié\" page has a compliance
     rate of 100%.</2></16><17>Number of applicable criteria: 63; Number of
@@ -1069,7 +1069,7 @@ pages:
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
         the legislation in force at an earlier date. To do so, simply enter the
-        parameter <2><0>date</2</0>> in the
+        parameter <2><0>date</2></0> in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
@@ -1805,7 +1805,7 @@ pages:
         trader must pay social security contributions to the authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance vocational training.</1><2><0></2> </0<2>> <2>See details of
+        to finance vocational training.</1><2><0></0> <2>See details of
         how contributions are calculatedDon</2></2><3>'t forget to deduct all
         expenses incurred in the course of your business (equipment, raw
         materials, premises, transport). These are deductible from the company's
