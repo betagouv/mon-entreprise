@@ -14,7 +14,6 @@ import { useSitePaths } from '@/sitePaths'
 
 import { EngineComparison } from '../EngineComparison'
 import { Comparaison } from './Comparaison'
-import ModifierOptions from './ModifierOptions'
 import StatutChoice from './StatutChoice'
 
 type Props = {
@@ -52,14 +51,6 @@ export const DétailSimulation = ({ namedEngines }: Props) => {
 			<Condition expression="entreprise . activité . nature . libérale . réglementée = non">
 				<ConteneurBleu>
 					<StatutChoice namedEngines={namedEngines} hideCTA />
-					<div
-						style={{
-							textAlign: 'right',
-							paddingTop: '1rem',
-						}}
-					>
-						<ModifierOptions />
-					</div>
 				</ConteneurBleu>
 
 				<Comparaison namedEngines={namedEngines} expandRevenuSection />

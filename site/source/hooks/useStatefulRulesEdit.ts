@@ -2,7 +2,7 @@ import { pipe, Record } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 import { EvaluatedNode, PublicodesExpression } from 'publicodes'
-import { useMemo, useState } from 'react'
+import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
 
 import {
@@ -15,7 +15,7 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export const useStatefulRulesEdit = (
 	rules: ReadonlyArray<DottedName>,
-	contexte?: PublicodesExpression
+	contexte: PublicodesExpression = {}
 ) => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -38,35 +38,39 @@ export const useStatefulRulesEdit = (
 		[rules, contexte, engine]
 	)
 
-	const [dirtyValues, setValues] = useState(engineValues)
-
-	const values = pipe<
-		Record<DottedName, O.Option<ValeurPublicodes>>,
-		Record<DottedName, ValeurPublicodes | undefined>
-	>(
-		dirtyValues,
-		R.map<DottedName, O.Option<ValeurPublicodes>, ValeurPublicodes | undefined>(
-			O.getOrUndefined
-		)
+	const values = useMemo(
+		() =>
+			pipe<
+				Record<DottedName, O.Option<ValeurPublicodes>>,
+				Record<DottedName, ValeurPublicodes | undefined>
+			>(
+				engineValues,
+				R.map<
+					DottedName,
+					O.Option<ValeurPublicodes>,
+					ValeurPublicodes | undefined
+				>(O.getOrUndefined)
+			),
+		[engineValues]
 	)
 
-	const set = R.map(dirtyValues, (_, rule) => (newValue: ValeurPublicodes) => {
-		setValues({
-			...dirtyValues,
-			[rule]: O.some(newValue),
-		})
+	const set = R.map(engineValues, (_, rule) => (newValue: ValeurPublicodes) => {
+		const newValues = pipe(
+			{
+				...engineValues,
+				[rule]: O.some(newValue),
+			},
+			R.map<
+				DottedName,
+				O.Option<ValeurPublicodes>,
+				ValeurPublicodes | undefined
+			>(O.getOrUndefined)
+		)
+		dispatch(ajusteLaSituation(newValues))
 	}) as Record<DottedName, (newValue: string | boolean | undefined) => void>
-
-	const cancel = () => setValues(engineValues)
-
-	const confirm = () => {
-		dispatch(ajusteLaSituation(values))
-	}
 
 	return {
 		values,
 		set,
-		cancel,
-		confirm,
 	}
 }

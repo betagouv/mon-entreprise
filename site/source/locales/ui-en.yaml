@@ -114,7 +114,6 @@ Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
-Période de calcul: Calculation period
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
@@ -1690,6 +1689,18 @@ pages:
           label: Activate final payment in simulation
       montants:
         CA: Estimated sales
+        imposition:
+          IR: Income Tax
+          IS: Corporate Income Tax
+          disclaimer: As of now, this comparison tool does not take into account the
+            calculation of income tax for SAS(U)s.
+          info-bulle: You can <2>choose between corporate and income tax&lt;/2> during the
+            first 5 years.
+          titre: Taxation Method (excluding AE)
+        versement-libératoire:
+          info-bulle: As a sole proprietorship (AE), the<1>income tax&lt;/1> is
+            automatically applied.
+          titre: Final Payment (for AE)
       notif: <0><0>Find out which business structure is the <2>best fit for your
         business</2> with the help of the <5>new business structure selection
         wizard</5> !</0></0>
@@ -2367,8 +2378,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand

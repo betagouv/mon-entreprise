@@ -63,7 +63,6 @@ export function ObjectifSaisissableDeSimulation({
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
-							noWrap={false}
 						>
 							{titre}
 						</TitreObjectifSaisissable>

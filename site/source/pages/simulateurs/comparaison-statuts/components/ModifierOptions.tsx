@@ -31,7 +31,7 @@ const DOTTEDNAME_ACRE = 'dirigeant . exonérations . ACRE'
 type IRouIS = "'IR'" | "'IS'"
 
 export default function ModifierOptions() {
-	const { set, cancel, confirm, values } = useStatefulRulesEdit(
+	const { set, values } = useStatefulRulesEdit(
 		[
 			DOTTEDNAME_ACRE,
 			DOTTEDNAME_ENTREPRISE_IMPOSITION,
@@ -57,12 +57,6 @@ export default function ModifierOptions() {
 					<StyledArrowRightIcon />
 				</Button>
 			)}
-			confirmLabel={t(
-				'pages.simulateurs.comparaison-statuts.modifier-options.confirm-label',
-				'Enregistrer les options'
-			)}
-			onConfirm={confirm}
-			onCancel={cancel}
 		>
 			<>
 				<H2>

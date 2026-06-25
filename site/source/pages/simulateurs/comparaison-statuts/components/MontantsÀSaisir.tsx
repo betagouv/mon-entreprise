@@ -1,8 +1,11 @@
 import { useTranslation } from 'react-i18next'
-import styled from 'styled-components'
+import { styled } from 'styled-components'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import { SimulationGoal } from '@/components/Simulation'
+
+import { ChoixImposition } from './ChoixImposition'
+import { ChoixVersementLibératoire } from './ChoixVersementLibératoire'
 
 export const MontantsÀSaisir = () => {
 	const { t } = useTranslation()
@@ -10,6 +13,7 @@ export const MontantsÀSaisir = () => {
 	return (
 		<Conteneur>
 			<PeriodSwitch />
+
 			<SimulationGoal
 				dottedName="entreprise . chiffre d'affaires"
 				isInfoMode
@@ -19,6 +23,10 @@ export const MontantsÀSaisir = () => {
 				)}
 			/>
 			<SimulationGoal dottedName="entreprise . charges" isInfoMode />
+
+			<ChoixImposition />
+
+			<ChoixVersementLibératoire />
 		</Conteneur>
 	)
 }
