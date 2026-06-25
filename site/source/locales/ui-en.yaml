@@ -1707,14 +1707,14 @@ pages:
           titre: Activity
           type: Type of activity
         autres-revenus: Other taxable income
+        foyer-fiscal:
+          enfants: Dependent children
+          parent-isolé: Single parent
+          situation: Marital Status
+          titre: Tax Household
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates
-        situation-familiale:
-          enfants: Dependent children
-          parent-isolé: Single parent
-          situation: Marital status
-          titre: Marital status
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
@@ -2367,8 +2367,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand

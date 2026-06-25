@@ -3,6 +3,7 @@ import * as A from 'effect/Array'
 import { isUndefined, Predicate } from 'effect/Predicate'
 import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
+import Engine from 'publicodes'
 import { FunctionComponent, useMemo, useState } from 'react'
 
 import {
@@ -65,6 +66,7 @@ export type Question<S extends Situation> =
 
 export type GroupeDeQuestions<S extends Situation> = {
 	titre: (t: TFunction) => string
+	réponse?: (engine: Engine) => string
 	liste: Array<Question<S>>
 }
 
