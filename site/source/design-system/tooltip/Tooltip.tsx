@@ -97,6 +97,7 @@ const StyledTooltip = styled.span.withConfig({
 			theme.darkMode ? theme.colors.extended.dark[500] : 'transparent'};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	pointer-events: none;
+	text-align: initial;
 	* {
 		color: ${({ theme }) => theme.colors.extended.grey[100]};
 	}
