@@ -56,5 +56,5 @@ export const quantité = <U extends UnitéQuantité>(
 	}) as Quantité<U>
 
 export const quantitéToString = (quantité: Quantité): string => {
-	return `${quantité.valeur} ${quantité.unité}`
+	return `${quantité.valeur}&nbsp;${quantité.unité}`
 }

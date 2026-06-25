@@ -52,7 +52,7 @@ export const ListeQuestions = ({
 
 									<ValueContainer>
 										{groupe.réponse ? (
-											groupe.réponse(engine)
+											groupe.réponse(engine, t)
 										) : (
 											<Value
 												expression={premièreQuestion.id}

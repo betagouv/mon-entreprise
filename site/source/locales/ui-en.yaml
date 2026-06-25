@@ -1518,6 +1518,7 @@ pages:
       title: Cipav income simulator for self-employed professionals
     commun:
       date: Date of regulations used for calculations
+      pas-défini: Not yet defined
       periode-calcul: Calculation period
       previousSimulationBanner:
         bouton:
@@ -1719,6 +1720,26 @@ pages:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
           each status
+      réponses:
+        activité:
+          artisanale: Artisanal
+          commerciale: Commercial
+          libérale: Liberal
+          libérale-non-réglementée: Unregulated private practice
+          libérale-réglementée: Regulated liberal profession
+          service: service delivery
+          vente: sale of goods
+        foyer-fiscal:
+          couple: Married or in a civil partnership
+          célibataire: Single
+          enfant_many: "{{ count }} children"
+          enfant_one: "{{ count }} child"
+          enfant_other: "{{ count }} children"
+          parent-isolé: single parent
+          veuf: Widower/Widow
+        impôt:
+          barème: Standard scale
+          taux: Custom rate
       shortname: Status comparison
       title: Legal status comparator
       warning:

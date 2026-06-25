@@ -1612,6 +1612,7 @@ pages:
       title: Simulateur de revenus pour professions libérales Cipav
     commun:
       date: Date de la réglementation utilisée pour les calculs
+      pas-défini: Pas encore défini
       periode-calcul: Période de calcul
       previousSimulationBanner:
         bouton:
@@ -1819,6 +1820,26 @@ pages:
         net: Tableau affichant le détail du calcul du revenu net pour chaque statut
         net-après-impôt: Tableau affichant le détail du calcul du revenu net après impôt
           pour chaque statut
+      réponses:
+        activité:
+          artisanale: Artisanale
+          commerciale: Commerciale
+          libérale: Libérale
+          libérale-non-réglementée: Libérale non réglementée
+          libérale-réglementée: Libérale réglementée
+          service: prestation de service
+          vente: vente
+        foyer-fiscal:
+          couple: Marié/Mariée ou pacsé/pacsée
+          célibataire: Célibataire
+          enfant_many: "{{ count }} enfants"
+          enfant_one: "{{ count }} enfant"
+          enfant_other: "{{ count }} enfants"
+          parent-isolé: parent isolé
+          veuf: Veuf/Veuve
+        impôt:
+          barème: Barème standard
+          taux: Taux personnalisé
       shortname: Comparaison des statuts
       title: Comparateur de statut juridique
       warning:
