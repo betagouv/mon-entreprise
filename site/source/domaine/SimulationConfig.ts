@@ -62,7 +62,7 @@ export type QuestionsÉditorialisées = {
 		string,
 		{
 			titre: (t: TFunction) => string
-			réponse?: (engine: Engine) => string
+			réponse?: (engine: Engine, t: TFunction) => string
 			liste: Question[]
 		}
 	>
