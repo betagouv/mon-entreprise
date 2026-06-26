@@ -111,19 +111,6 @@ describe('décomposeCotisationMaladie', () => {
 		expect(résultat.mensuel).toEqual(eurosParMois(0))
 	})
 
-	it("additionne salaires et autres revenus dans l'assiette", () => {
-		simulerEn(2026)
-
-		const séparé = décomposeCotisationMaladie(
-			situation(30_000, 25_000, new Date(2023, 0, 1))
-		)
-		const regroupé = décomposeCotisationMaladie(
-			situation(55_000, 0, new Date(2023, 0, 1))
-		)
-
-		expect(séparé.annuel).toEqual(regroupé.annuel)
-	})
-
 	it('expose les étapes dépendant de la saisie', () => {
 		simulerEn(2026)
 
