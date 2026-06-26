@@ -111,6 +111,20 @@ describe('décomposeCotisationMaladie', () => {
 		expect(résultat.mensuel).toEqual(eurosParMois(0))
 	})
 
+	it("traite l'absence d'autres revenus comme zéro", () => {
+		simulerEn(2026)
+
+		const sansAutresRevenus = {
+			...situation(45_000, 0, new Date(2023, 0, 1)),
+			autresRevenus: O.none(),
+		} as SituationFrontalierSuisseValide
+
+		const détail = décomposeCotisationMaladie(sansAutresRevenus)
+
+		expect(détail.autresRevenus).toEqual(eurosParAn(0))
+		expect(détail.assiette).toEqual(eurosParAn(45_000))
+	})
+
 	it('expose les étapes dépendant de la saisie', () => {
 		simulerEn(2026)
 
