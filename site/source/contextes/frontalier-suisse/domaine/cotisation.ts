@@ -14,7 +14,7 @@ import {
 } from '@/domaine/Montant'
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
-import { annéeDeCotisation } from './annee-de-simulation'
+import { annéeDesRevenus } from './annee-de-simulation'
 import { joursDansAnnée, nombreDeJoursAffiliation } from './jours-affiliation'
 import { SituationFrontalierSuisseValide } from './situation'
 
@@ -45,22 +45,23 @@ export const décomposeCotisationMaladie = (
 	situation: SituationFrontalierSuisseValide
 ): DécompositionCotisationMaladie => {
 	const dateAffiliation = situation.dateAffiliation.value
-	const année = annéeDeCotisation(dateAffiliation)
+	const annéeRevenus = annéeDesRevenus(dateAffiliation)
 
 	const salaires = situation.salaires.value
 	const autresRevenus = situation.autresRevenus.value
 	const assiette = plus(salaires, autresRevenus)
 
-	const baseBrute = moins(assiette, abattementSécuritéSociale(année))
+	const baseBrute = moins(assiette, abattementSécuritéSociale(annéeRevenus))
 	const base = estNégatif(baseBrute) ? eurosParAn(0) : baseBrute
 
 	const annuel = arrondirÀLEuro(fois(base, TAUX_COTISATION_MALADIE))
 	const mensuel = arrondirÀLEuro(toEurosParMois(annuel))
 
 	const joursAffiliation = nombreDeJoursAffiliation(dateAffiliation)
-	const joursAnnée = joursDansAnnée(année)
+	const joursAnnée = joursDansAnnée(annéeRevenus)
 	const affiliéEnCoursDAnnée =
-		dateAffiliation.getFullYear() === année && joursAffiliation < joursAnnée
+		dateAffiliation.getFullYear() === annéeRevenus &&
+		joursAffiliation < joursAnnée
 	const prorataPremièreAnnée = affiliéEnCoursDAnnée
 		? O.some(
 				arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))

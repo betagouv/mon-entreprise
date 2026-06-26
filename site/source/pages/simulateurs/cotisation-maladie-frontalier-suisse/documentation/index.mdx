@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 
 import {
 	abattementSécuritéSociale,
-	annéeDeCotisation,
+	annéeDesRevenus,
 	décomposeCotisationMaladie,
 	estSituationValide,
 	joursDansAnnée,
@@ -30,11 +30,11 @@ export const Décomposition = () => {
     	)
     }
 
-    const année = annéeDeCotisation(situation.dateAffiliation.value)
+    const annéeRevenus = annéeDesRevenus(situation.dateAffiliation.value)
     const détail = décomposeCotisationMaladie(situation)
-    const plafond = plafondSécuritéSociale(année)
-    const abattement = abattementSécuritéSociale(année)
-    const joursAnnée = joursDansAnnée(année)
+    const plafond = plafondSécuritéSociale(annéeRevenus)
+    const abattement = abattementSécuritéSociale(annéeRevenus)
+    const joursAnnée = joursDansAnnée(annéeRevenus)
     const euro = (m) => montantToString(arrondirÀLEuro(m))
 
     return (
@@ -62,7 +62,7 @@ export const Décomposition = () => {
     			<tr>
     				<td>Abattement</td>
     				<td>
-    					25 % × PASS {année} ({euro(plafond)})
+    					25 % × PASS {annéeRevenus} ({euro(plafond)})
     				</td>
     				<td>
     					<Valeur couleur="primary">
@@ -100,7 +100,7 @@ export const Décomposition = () => {
     			</tr>
     			{O.isSome(détail.prorataPremièreAnnée) && (
     				<tr>
-    					<td>Cotisation {année} au prorata</td>
+    					<td>Cotisation {annéeRevenus} au prorata</td>
     					<td>
     						{euro(détail.annuel)} × {détail.joursAffiliation} ÷{' '}
     						{joursAnnée}

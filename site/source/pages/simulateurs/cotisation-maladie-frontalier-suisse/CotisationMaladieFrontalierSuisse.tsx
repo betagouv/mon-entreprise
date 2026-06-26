@@ -5,8 +5,8 @@ import { Route, Routes } from 'react-router-dom'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
 import {
-	annéeDeCotisation,
 	annéeDeSimulation,
+	annéeDesRevenus,
 	estSituationValide,
 	FrontalierSuisseProvider,
 	situationEstCommencée,
@@ -29,10 +29,9 @@ const Simulateur = () => {
 	const { situation, set } = useFrontalierSuisse()
 	const { t } = useTranslation()
 
-	const annéeRevenus =
-		(O.isSome(situation.dateAffiliation)
-			? annéeDeCotisation(situation.dateAffiliation.value)
-			: annéeDeSimulation()) - 2
+	const annéeRevenus = O.isSome(situation.dateAffiliation)
+		? annéeDesRevenus(situation.dateAffiliation.value)
+		: annéeDeSimulation()
 
 	const externalLinks = [
 		{
