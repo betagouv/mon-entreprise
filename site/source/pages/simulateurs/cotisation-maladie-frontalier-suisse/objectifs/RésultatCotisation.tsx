@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
 import {
-	annéeDeCotisation,
+	annéeDesRevenus,
 	calculeCotisationMaladie,
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
@@ -20,7 +20,7 @@ export const RésultatCotisation = ({
 	const { absoluteSitePaths } = useSitePaths()
 
 	const dateAffiliation = situation.dateAffiliation.value
-	const année = annéeDeCotisation(dateAffiliation)
+	const annéeRevenus = annéeDesRevenus(dateAffiliation)
 	const cotisation = calculeCotisationMaladie(situation)
 
 	const documentationUrl =
@@ -65,7 +65,7 @@ export const RésultatCotisation = ({
 							{t(
 								'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.titre',
 								'Cotisation {{année}} au prorata',
-								{ année }
+								{ année: annéeRevenus }
 							)}
 						</Link>
 					}
