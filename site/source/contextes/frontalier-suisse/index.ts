@@ -1,6 +1,6 @@
 export {
-	annéeDeCotisation,
 	annéeDeSimulation,
+	annéeDesRevenus,
 } from './domaine/annee-de-simulation'
 export { joursDansAnnée } from './domaine/jours-affiliation'
 export { FrontalierSuisseProvider } from './hooks/FrontalierSuisseContext'
