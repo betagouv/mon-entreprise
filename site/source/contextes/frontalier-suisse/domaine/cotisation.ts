@@ -14,6 +14,7 @@ import {
 } from '@/domaine/Montant'
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
+import { annéeDeCotisation } from './annee-de-simulation'
 import { joursDansAnnée, nombreDeJoursAffiliation } from './jours-affiliation'
 import { SituationFrontalierSuisseValide } from './situation'
 
@@ -41,28 +42,25 @@ export interface DécompositionCotisationMaladie extends CotisationMaladie {
 }
 
 export const décomposeCotisationMaladie = (
-	situation: SituationFrontalierSuisseValide,
-	annéeDeCotisation: number
+	situation: SituationFrontalierSuisseValide
 ): DécompositionCotisationMaladie => {
+	const dateAffiliation = situation.dateAffiliation.value
+	const année = annéeDeCotisation(dateAffiliation)
+
 	const salaires = situation.salaires.value
 	const autresRevenus = situation.autresRevenus.value
 	const assiette = plus(salaires, autresRevenus)
 
-	const baseBrute = moins(
-		assiette,
-		abattementSécuritéSociale(annéeDeCotisation)
-	)
+	const baseBrute = moins(assiette, abattementSécuritéSociale(année))
 	const base = estNégatif(baseBrute) ? eurosParAn(0) : baseBrute
 
 	const annuel = arrondirÀLEuro(fois(base, TAUX_COTISATION_MALADIE))
 	const mensuel = arrondirÀLEuro(toEurosParMois(annuel))
 
-	const dateAffiliation = situation.dateAffiliation.value
 	const joursAffiliation = nombreDeJoursAffiliation(dateAffiliation)
-	const joursAnnée = joursDansAnnée(annéeDeCotisation)
+	const joursAnnée = joursDansAnnée(année)
 	const affiliéEnCoursDAnnée =
-		dateAffiliation.getFullYear() === annéeDeCotisation &&
-		joursAffiliation < joursAnnée
+		dateAffiliation.getFullYear() === année && joursAffiliation < joursAnnée
 	const prorataPremièreAnnée = affiliéEnCoursDAnnée
 		? O.some(
 				arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))
@@ -82,13 +80,10 @@ export const décomposeCotisationMaladie = (
 }
 
 export const calculeCotisationMaladie = (
-	situation: SituationFrontalierSuisseValide,
-	annéeDeCotisation: number
+	situation: SituationFrontalierSuisseValide
 ): CotisationMaladie => {
-	const { annuel, mensuel, prorataPremièreAnnée } = décomposeCotisationMaladie(
-		situation,
-		annéeDeCotisation
-	)
+	const { annuel, mensuel, prorataPremièreAnnée } =
+		décomposeCotisationMaladie(situation)
 
 	return { annuel, mensuel, prorataPremièreAnnée }
 }

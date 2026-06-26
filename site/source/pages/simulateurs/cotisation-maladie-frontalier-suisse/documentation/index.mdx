@@ -31,7 +31,7 @@ export const Décomposition = () => {
     }
 
     const année = annéeDeCotisation(situation.dateAffiliation.value)
-    const détail = décomposeCotisationMaladie(situation, année)
+    const détail = décomposeCotisationMaladie(situation)
     const plafond = plafondSécuritéSociale(année)
     const abattement = abattementSécuritéSociale(année)
     const joursAnnée = joursDansAnnée(année)
