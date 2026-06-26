@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
 export interface SituationFrontalierSuisse extends Situation {
@@ -14,7 +14,6 @@ export interface SituationFrontalierSuisseValide
 	extends SituationFrontalierSuisse {
 	dateAffiliation: O.Some<Date>
 	salaires: O.Some<Montant<'€/an'>>
-	autresRevenus: O.Some<Montant<'€/an'>>
 }
 
 export const initialSituationFrontalierSuisse: SituationFrontalierSuisse = {
@@ -22,7 +21,7 @@ export const initialSituationFrontalierSuisse: SituationFrontalierSuisse = {
 	_type: 'frontalier-suisse',
 	dateAffiliation: O.none(),
 	salaires: O.none(),
-	autresRevenus: O.some(eurosParAn(0)),
+	autresRevenus: O.none(),
 }
 
 export const situationEstCommencée = (
@@ -33,6 +32,4 @@ export const situationEstCommencée = (
 export const estSituationValide = (
 	situation: SituationFrontalierSuisse
 ): situation is SituationFrontalierSuisseValide =>
-	O.isSome(situation.dateAffiliation) &&
-	O.isSome(situation.salaires) &&
-	O.isSome(situation.autresRevenus)
+	O.isSome(situation.dateAffiliation) && O.isSome(situation.salaires)
