@@ -2,6 +2,7 @@ import * as O from 'effect/Option'
 
 import { PLAFOND_ANNUEL_SECURITE_SOCIALE } from '@/domaine/ConstantesSociales'
 import {
+	arrondirÀLEuro,
 	estNégatif,
 	euros,
 	eurosParAn,
@@ -53,8 +54,8 @@ export const décomposeCotisationMaladie = (
 	)
 	const base = estNégatif(baseBrute) ? eurosParAn(0) : baseBrute
 
-	const annuel = fois(base, TAUX_COTISATION_MALADIE)
-	const mensuel = toEurosParMois(annuel)
+	const annuel = arrondirÀLEuro(fois(base, TAUX_COTISATION_MALADIE))
+	const mensuel = arrondirÀLEuro(toEurosParMois(annuel))
 
 	const dateAffiliation = situation.dateAffiliation.value
 	const joursAffiliation = nombreDeJoursAffiliation(dateAffiliation)
@@ -63,7 +64,9 @@ export const décomposeCotisationMaladie = (
 		dateAffiliation.getFullYear() === annéeDeCotisation &&
 		joursAffiliation < joursAnnée
 	const prorataPremièreAnnée = affiliéEnCoursDAnnée
-		? O.some(euros((annuel.valeur * joursAffiliation) / joursAnnée))
+		? O.some(
+				arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))
+		  )
 		: O.none()
 
 	return {
