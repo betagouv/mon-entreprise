@@ -48,7 +48,9 @@ export const décomposeCotisationMaladie = (
 	const annéeRevenus = annéeDesRevenus(dateAffiliation)
 
 	const salaires = situation.salaires.value
-	const autresRevenus = situation.autresRevenus.value
+	const autresRevenus = O.getOrElse(situation.autresRevenus, () =>
+		eurosParAn(0)
+	)
 	const assiette = plus(salaires, autresRevenus)
 
 	const baseBrute = moins(assiette, abattementSécuritéSociale(annéeRevenus))
