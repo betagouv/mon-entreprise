@@ -29,8 +29,8 @@ describe('calculeCotisationMaladie', () => {
 			2018
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3605.36))
-		expect(résultat.mensuel).toEqual(eurosParMois(300.45))
+		expect(résultat.annuel).toEqual(eurosParAn(3605))
+		expect(résultat.mensuel).toEqual(eurosParMois(300))
 		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
 	})
 
@@ -40,8 +40,8 @@ describe('calculeCotisationMaladie', () => {
 			2026
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3438.8))
-		expect(résultat.mensuel).toEqual(eurosParMois(286.57))
+		expect(résultat.annuel).toEqual(eurosParAn(3439))
+		expect(résultat.mensuel).toEqual(eurosParMois(287))
 		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
 	})
 
@@ -51,7 +51,9 @@ describe('calculeCotisationMaladie', () => {
 			2026
 		)
 
-		expect(résultat.mensuel).toEqual(eurosParMois(résultat.annuel.valeur / 12))
+		expect(résultat.mensuel).toEqual(
+			eurosParMois(Math.round(résultat.annuel.valeur / 12))
+		)
 	})
 
 	it("expose une cotisation proratisée pour une affiliation en cours d'année", () => {
@@ -60,9 +62,9 @@ describe('calculeCotisationMaladie', () => {
 			2026
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3438.8))
-		expect(résultat.mensuel).toEqual(eurosParMois(286.57))
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308.24)))
+		expect(résultat.annuel).toEqual(eurosParAn(3439))
+		expect(résultat.mensuel).toEqual(eurosParMois(287))
+		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308)))
 	})
 
 	it("ne proratise pas une affiliation d'une année antérieure à l'année de cotisation", () => {
@@ -80,7 +82,7 @@ describe('calculeCotisationMaladie', () => {
 			2030
 		)
 
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308.24)))
+		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308)))
 	})
 
 	it('renvoie une cotisation nulle quand les revenus sont inférieurs à l’abattement', () => {
@@ -116,7 +118,7 @@ describe('décomposeCotisationMaladie', () => {
 
 		expect(détail.assiette).toEqual(eurosParAn(55_000))
 		expect(détail.base).toEqual(eurosParAn(42_985))
-		expect(détail.annuel).toEqual(eurosParAn(3438.8))
+		expect(détail.annuel).toEqual(eurosParAn(3439))
 		expect(détail.joursAffiliation).toBe(365)
 	})
 })
