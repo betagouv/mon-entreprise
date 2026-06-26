@@ -1,5 +1,5 @@
 import * as O from 'effect/Option'
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 
 import { euros, eurosParAn, eurosParMois } from '@/domaine/Montant'
 
@@ -22,11 +22,21 @@ const situation = (
 		autresRevenus: O.some(eurosParAn(autresRevenus)),
 	}) as SituationFrontalierSuisseValide
 
-describe('calculeCotisationMaladie', () => {
+const simulerEn = (année: number): void => {
+	vi.useFakeTimers()
+	vi.setSystemTime(new Date(année, 5, 15))
+}
+
+afterEach(() => {
+	vi.useRealTimers()
+})
+
+describe('décomposeCotisationMaladie', () => {
 	it("reproduit l'exemple du simulateur Urssaf (PASS 2018, année pleine)", () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2017, 0, 1)),
-			2018
+		simulerEn(2018)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2017, 0, 1))
 		)
 
 		expect(résultat.annuel).toEqual(eurosParAn(3605))
@@ -35,9 +45,10 @@ describe('calculeCotisationMaladie', () => {
 	})
 
 	it('calcule la cotisation 2026 pour une année pleine, sans prorata', () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2023, 0, 1)),
-			2026
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2023, 0, 1))
 		)
 
 		expect(résultat.annuel).toEqual(eurosParAn(3439))
@@ -46,9 +57,10 @@ describe('calculeCotisationMaladie', () => {
 	})
 
 	it('mensualise toujours sur 12 mois (coût récurrent)', () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2023, 0, 1)),
-			2026
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2023, 0, 1))
 		)
 
 		expect(résultat.mensuel).toEqual(
@@ -57,9 +69,10 @@ describe('calculeCotisationMaladie', () => {
 	})
 
 	it("expose une cotisation proratisée pour une affiliation en cours d'année", () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2026, 4, 1)),
-			2026
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2026, 4, 1))
 		)
 
 		expect(résultat.annuel).toEqual(eurosParAn(3439))
@@ -68,27 +81,30 @@ describe('calculeCotisationMaladie', () => {
 	})
 
 	it("ne proratise pas une affiliation d'une année antérieure à l'année de cotisation", () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2024, 4, 1)),
-			2026
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2024, 4, 1))
 		)
 
 		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
 	})
 
-	it('proratise l’année d’affiliation lorsque la simulation porte sur cette année', () => {
-		const résultat = calculeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2030, 4, 1)),
-			2030
+	it("suit l'année d'affiliation lorsqu'elle est dans le futur et la proratise", () => {
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2030, 4, 1))
 		)
 
 		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308)))
 	})
 
 	it('renvoie une cotisation nulle quand les revenus sont inférieurs à l’abattement', () => {
-		const résultat = calculeCotisationMaladie(
-			situation(5_000, 0, new Date(2023, 0, 1)),
-			2026
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(5_000, 0, new Date(2023, 0, 1))
 		)
 
 		expect(résultat.annuel).toEqual(eurosParAn(0))
@@ -96,29 +112,44 @@ describe('calculeCotisationMaladie', () => {
 	})
 
 	it("additionne salaires et autres revenus dans l'assiette", () => {
-		const séparé = calculeCotisationMaladie(
-			situation(30_000, 25_000, new Date(2023, 0, 1)),
-			2026
+		simulerEn(2026)
+
+		const séparé = décomposeCotisationMaladie(
+			situation(30_000, 25_000, new Date(2023, 0, 1))
 		)
-		const regroupé = calculeCotisationMaladie(
-			situation(55_000, 0, new Date(2023, 0, 1)),
-			2026
+		const regroupé = décomposeCotisationMaladie(
+			situation(55_000, 0, new Date(2023, 0, 1))
 		)
 
 		expect(séparé.annuel).toEqual(regroupé.annuel)
 	})
-})
 
-describe('décomposeCotisationMaladie', () => {
 	it('expose les étapes dépendant de la saisie', () => {
+		simulerEn(2026)
+
 		const détail = décomposeCotisationMaladie(
-			situation(45_000, 10_000, new Date(2023, 0, 1)),
-			2026
+			situation(45_000, 10_000, new Date(2023, 0, 1))
 		)
 
 		expect(détail.assiette).toEqual(eurosParAn(55_000))
 		expect(détail.base).toEqual(eurosParAn(42_985))
 		expect(détail.annuel).toEqual(eurosParAn(3439))
 		expect(détail.joursAffiliation).toBe(365)
+	})
+})
+
+describe('calculeCotisationMaladie', () => {
+	it('expose le sous-ensemble annuel / mensuel / prorata de la décomposition', () => {
+		simulerEn(2026)
+
+		const situationProratisée = situation(45_000, 10_000, new Date(2026, 4, 1))
+		const { annuel, mensuel, prorataPremièreAnnée } =
+			décomposeCotisationMaladie(situationProratisée)
+
+		expect(calculeCotisationMaladie(situationProratisée)).toEqual({
+			annuel,
+			mensuel,
+			prorataPremièreAnnée,
+		})
 	})
 })

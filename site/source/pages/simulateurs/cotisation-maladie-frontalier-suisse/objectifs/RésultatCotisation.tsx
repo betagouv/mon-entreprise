@@ -21,7 +21,7 @@ export const RésultatCotisation = ({
 
 	const dateAffiliation = situation.dateAffiliation.value
 	const année = annéeDeCotisation(dateAffiliation)
-	const cotisation = calculeCotisationMaladie(situation, année)
+	const cotisation = calculeCotisationMaladie(situation)
 
 	const documentationUrl =
 		absoluteSitePaths.simulateurs['cotisation-maladie-frontalier-suisse'] +
