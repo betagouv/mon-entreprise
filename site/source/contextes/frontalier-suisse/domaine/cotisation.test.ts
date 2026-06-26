@@ -39,7 +39,7 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2017, 0, 1))
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3605))
+		expect(résultat.annuel).toEqual(eurosParAn(3_605))
 		expect(résultat.mensuel).toEqual(eurosParMois(300))
 		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
 	})
@@ -51,7 +51,7 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2023, 0, 1))
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3439))
+		expect(résultat.annuel).toEqual(eurosParAn(3_439))
 		expect(résultat.mensuel).toEqual(eurosParMois(287))
 		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
 	})
@@ -75,9 +75,9 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2026, 4, 1))
 		)
 
-		expect(résultat.annuel).toEqual(eurosParAn(3439))
+		expect(résultat.annuel).toEqual(eurosParAn(3_439))
 		expect(résultat.mensuel).toEqual(eurosParMois(287))
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308)))
+		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2_308)))
 	})
 
 	it("ne proratise pas une affiliation d'une année antérieure à l'année de cotisation", () => {
@@ -97,7 +97,7 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2030, 4, 1))
 		)
 
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2308)))
+		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2_308)))
 	})
 
 	it('renvoie une cotisation nulle quand les revenus sont inférieurs à l’abattement', () => {
@@ -133,7 +133,7 @@ describe('décomposeCotisationMaladie', () => {
 
 		expect(détail.assiette).toEqual(eurosParAn(55_000))
 		expect(détail.base).toEqual(eurosParAn(42_985))
-		expect(détail.annuel).toEqual(eurosParAn(3439))
+		expect(détail.annuel).toEqual(eurosParAn(3_439))
 		expect(détail.joursAffiliation).toBe(365)
 	})
 })
