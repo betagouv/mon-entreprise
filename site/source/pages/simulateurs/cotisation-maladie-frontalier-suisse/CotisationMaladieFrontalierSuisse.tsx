@@ -1,12 +1,9 @@
-import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
 import {
-	annéeDeSimulation,
-	annéeDesRevenus,
 	estSituationValide,
 	FrontalierSuisseProvider,
 	situationEstCommencée,
@@ -18,20 +15,17 @@ import { URSSAF } from '@/utils/logos'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
+import { ObjectifAutresRevenus } from './objectifs/ObjectifAutresRevenus'
 import { ObjectifDateAffiliation } from './objectifs/ObjectifDateAffiliation'
-import { ObjectifRevenuAnnuel } from './objectifs/ObjectifRevenuAnnuel'
+import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
 
 const Simulateur = () => {
 	const simulateurConfig = useSimulatorData(
 		'cotisation-maladie-frontalier-suisse'
 	)
-	const { situation, set } = useFrontalierSuisse()
+	const { situation } = useFrontalierSuisse()
 	const { t } = useTranslation()
-
-	const annéeRevenus = O.isSome(situation.dateAffiliation)
-		? annéeDesRevenus(situation.dateAffiliation.value)
-		: annéeDeSimulation()
 
 	const externalLinks = [
 		{
@@ -68,26 +62,8 @@ const Simulateur = () => {
 				<SimulateurWarning simulateur="cotisation-maladie-frontalier-suisse" />
 				<SimulationGoals>
 					<ObjectifDateAffiliation />
-					<ObjectifRevenuAnnuel
-						id="frontalier-suisse-salaires"
-						titre={t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.objectifs.salaires',
-							'Salaires perçus en {{annéeRevenus}}',
-							{ annéeRevenus }
-						)}
-						valeur={situation.salaires}
-						onChange={set.salaires}
-					/>
-					<ObjectifRevenuAnnuel
-						id="frontalier-suisse-autres-revenus"
-						titre={t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.objectifs.autres-revenus',
-							'Autres revenus perçus en {{annéeRevenus}}',
-							{ annéeRevenus }
-						)}
-						valeur={situation.autresRevenus}
-						onChange={set.autresRevenus}
-					/>
+					<ObjectifSalaires />
+					<ObjectifAutresRevenus />
 					{estSituationValide(situation) && (
 						<RésultatCotisation situation={situation} />
 					)}

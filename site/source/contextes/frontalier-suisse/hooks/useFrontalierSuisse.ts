@@ -3,6 +3,10 @@ import { Option } from 'effect'
 import { Montant } from '@/domaine/Montant'
 
 import {
+	annéeDeSimulation,
+	annéeDesRevenus,
+} from '../domaine/annee-de-simulation'
+import {
 	initialSituationFrontalierSuisse,
 	SituationFrontalierSuisse,
 } from '../domaine/situation'
@@ -10,6 +14,10 @@ import { useSituationContext } from './FrontalierSuisseContext'
 
 export const useFrontalierSuisse = () => {
 	const { situation, updateSituation } = useSituationContext()
+
+	const annéeRevenus = Option.isSome(situation.dateAffiliation)
+		? annéeDesRevenus(situation.dateAffiliation.value)
+		: annéeDeSimulation()
 
 	const set = {
 		dateAffiliation: (dateAffiliation: Option.Option<Date>) => {
@@ -36,5 +44,6 @@ export const useFrontalierSuisse = () => {
 	return {
 		situation,
 		set,
+		annéeRevenus,
 	}
 }
