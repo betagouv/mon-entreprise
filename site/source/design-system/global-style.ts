@@ -19,7 +19,6 @@ export const FocusStyle = css`
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	outline-offset: 2px;
-	box-shadow: 0 0 0 2px #ffffff;
 `
 
 export const FlexCenter = css`
