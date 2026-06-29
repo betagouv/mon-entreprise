@@ -1518,6 +1518,7 @@ pages:
       title: Cipav income simulator for self-employed professionals
     commun:
       date: Date of regulations used for calculations
+      pas-défini: Not yet defined
       periode-calcul: Calculation period
       previousSimulationBanner:
         bouton:
@@ -1658,7 +1659,6 @@ pages:
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
-      meilleure-option: Most advantageous option.
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
@@ -1707,18 +1707,38 @@ pages:
           titre: Activity
           type: Type of activity
         autres-revenus: Other taxable income
+        foyer-fiscal:
+          enfants: Dependent children
+          parent-isolé: Single parent
+          situation: Marital Status
+          titre: Tax Household
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates
-        situation-familiale:
-          enfants: Dependent children
-          parent-isolé: Single parent
-          situation: Marital status
-          titre: Marital status
       revenu-table:
         net: Table showing net income calculation details for each status
         net-après-impôt: Table showing detailed calculation of net income after tax for
           each status
+      réponses:
+        activité:
+          artisanale: Artisanal
+          commerciale: Commercial
+          libérale: Liberal
+          libérale-non-réglementée: Unregulated private practice
+          libérale-réglementée: Regulated liberal profession
+          service: service delivery
+          vente: sale of goods
+        foyer-fiscal:
+          couple: Married or in a civil partnership
+          célibataire: Single
+          enfant_many: "{{ count }} children"
+          enfant_one: "{{ count }} child"
+          enfant_other: "{{ count }} children"
+          parent-isolé: single parent
+          veuf: Widower/Widow
+        impôt:
+          barème: Standard scale
+          taux: Custom rate
       shortname: Status comparison
       title: Legal status comparator
       warning:
@@ -2367,8 +2387,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand

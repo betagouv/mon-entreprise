@@ -54,3 +54,8 @@ export const quantité = <U extends UnitéQuantité>(
 		valeur,
 		unité,
 	}) as Quantité<U>
+
+export const quantitéToString = (quantité: Quantité): string => {
+	// eslint-disable-next-line no-irregular-whitespace
+	return `${quantité.valeur} ${quantité.unité}`
+}

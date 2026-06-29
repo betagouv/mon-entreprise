@@ -1,4 +1,5 @@
 import { TFunction } from 'i18next'
+import Engine from 'publicodes'
 
 import { DottedName } from './publicodes/DottedName'
 import { RaccourciPublicodes } from './RaccourciPublicodes'
@@ -61,6 +62,7 @@ export type QuestionsÉditorialisées = {
 		string,
 		{
 			titre: (t: TFunction) => string
+			réponse?: (engine: Engine, t: TFunction) => string
 			liste: Question[]
 		}
 	>
