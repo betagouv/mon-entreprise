@@ -9,7 +9,7 @@ import {
 	QuestionPublicodes,
 } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
-import ScrollToElement from '../utils/Scroll/ScrollToElement'
+import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { ListeQuestions } from './ListeQuestions'
 import { QuestionCourante } from './QuestionCourante'
 import { QuestionsPrincipales } from './QuestionsPrincipales'
@@ -34,6 +34,8 @@ export const BlocSituation = ({
 		groupesDeQuestionsPublicodes,
 	})
 
+	const { setAutoScrollToQuestions } = useAutoScrollToQuestions()
+
 	const [afficherQuestionsPrincipales, setAfficherQuestionsPrincipales] =
 		useState(questionsPrincipales.length > 0)
 
@@ -46,23 +48,31 @@ export const BlocSituation = ({
 			{afficherQuestionsPrincipales ? (
 				<QuestionsPrincipales
 					questions={questionsPrincipales}
-					onClose={() => setAfficherQuestionsPrincipales(false)}
+					onClose={() => {
+						setAfficherQuestionsPrincipales(false)
+						setAutoScrollToQuestions(true)
+					}}
 				/>
 			) : questionCourante ? (
-				<ScrollToElement>
-					<QuestionCourante
-						questions={questionCourante.liste}
-						retour={() => setQuestionCouranteId(undefined)}
-					/>
-				</ScrollToElement>
+				<QuestionCourante
+					questions={questionCourante.liste}
+					retour={() => {
+						setQuestionCouranteId(undefined)
+						setAutoScrollToQuestions(true)
+					}}
+				/>
 			) : (
-				<ScrollToElement>
-					<ListeQuestions
-						groupesDeQuestions={groupesDeQuestions}
-						onSélection={setQuestionCouranteId}
-						retour={() => setAfficherQuestionsPrincipales(true)}
-					/>
-				</ScrollToElement>
+				<ListeQuestions
+					groupesDeQuestions={groupesDeQuestions}
+					onSélection={(questionId: string) => {
+						setQuestionCouranteId(questionId)
+						setAutoScrollToQuestions(true)
+					}}
+					retour={() => {
+						setAfficherQuestionsPrincipales(true)
+						setAutoScrollToQuestions(true)
+					}}
+				/>
 			)}
 		</Section>
 	)

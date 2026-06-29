@@ -7,6 +7,7 @@ import {
 	QuestionPublicodes,
 } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
+import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { BlocMontants } from './BlocMontants'
 import { BlocSituation } from './BlocSituation'
 
@@ -22,6 +23,7 @@ export const ZoneDeSaisie = ({
 	groupesDeQuestionsPublicodes,
 }: Props) => {
 	const { t } = useTranslation()
+	const { setAutoScrollToQuestions } = useAutoScrollToQuestions()
 
 	return (
 		<>
@@ -33,13 +35,13 @@ export const ZoneDeSaisie = ({
 			</BodyWithoutMargin>
 
 			<Container>
-				<LeftColumn>
+				<LeftColumn onFocus={() => setAutoScrollToQuestions(true)}>
 					<BlocSituation
 						questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 						groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
 					/>
 				</LeftColumn>
-				<RightColumn>
+				<RightColumn onFocus={() => setAutoScrollToQuestions(false)}>
 					<BlocMontants>{montants}</BlocMontants>
 				</RightColumn>
 			</Container>

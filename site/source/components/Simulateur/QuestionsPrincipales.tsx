@@ -5,7 +5,6 @@ import { ArrowRightIcon, Body, Button } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
 
-import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { QuestionCourante } from './QuestionCourante'
 
 type Props<S extends Situation = Situation> = {
@@ -18,9 +17,7 @@ export const QuestionsPrincipales = ({ questions, onClose }: Props) => {
 
 	return (
 		<>
-			<ScrollToElement>
-				<QuestionCourante questions={questions} />
-			</ScrollToElement>
+			<QuestionCourante questions={questions} />
 
 			<StyledDiv>
 				<Body>

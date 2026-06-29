@@ -10,6 +10,8 @@ import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
 import Value from '../EngineValue/Value'
+import ScrollToElement from '../utils/Scroll/ScrollToElement'
+import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { BoutonReset } from './BoutonReset'
 import { BoutonRetour } from './BoutonRetour'
 
@@ -25,9 +27,10 @@ export const ListeQuestions = ({
 	retour,
 }: Props) => {
 	const { t } = useTranslation()
+	const { autoScrollToQuestions } = useAutoScrollToQuestions()
 
 	return (
-		<>
+		<ScrollToElement when={autoScrollToQuestions}>
 			<BoutonsContainer>
 				<BoutonRetour onPress={retour} />
 				<BoutonReset />
@@ -71,7 +74,7 @@ export const ListeQuestions = ({
 					)}
 				</UlWithoutMargin>
 			)}
-		</>
+		</ScrollToElement>
 	)
 }
 
