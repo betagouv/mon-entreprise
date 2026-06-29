@@ -1,4 +1,5 @@
 import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
 import { TestProvider } from '@/test/TestProvider'
@@ -30,5 +31,24 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		expect(
 			screen.queryByText(/Cotisation maladie annuelle/i)
 		).not.toBeInTheDocument()
+	})
+
+	it('affiche la cotisation une fois la saisie complète', async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await user.type(
+			await screen.findByLabelText(/Date d'affiliation/i),
+			'15/01/2026'
+		)
+		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
+
+		expect(
+			await screen.findByText(/Cotisation maladie annuelle/i)
+		).toBeInTheDocument()
 	})
 })
