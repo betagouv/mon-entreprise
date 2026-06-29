@@ -30,7 +30,10 @@ export const Décomposition = () => {
     	)
     }
 
-    const annéeRevenus = annéeDesRevenus(situation.dateAffiliation.value)
+    const annéeRevenus = annéeDesRevenus(
+    	situation.dateAffiliation.value,
+    	O.getOrUndefined(situation.dateFinAffiliation)
+    )
     const détail = décomposeCotisationMaladie(situation)
     const plafond = plafondSécuritéSociale(annéeRevenus)
     const abattement = abattementSécuritéSociale(annéeRevenus)
@@ -98,7 +101,7 @@ export const Décomposition = () => {
     					</ValeurImportante>
     				</td>
     			</tr>
-    			{O.isSome(détail.prorataPremièreAnnée) && (
+    			{O.isSome(détail.prorataAnnéePartielle) && (
     				<tr>
     					<td>Cotisation {annéeRevenus} au prorata</td>
     					<td>
@@ -107,7 +110,7 @@ export const Décomposition = () => {
     					</td>
     					<td>
     						<ValeurImportante>
-    							{euro(détail.prorataPremièreAnnée.value)}
+    							{euro(détail.prorataAnnéePartielle.value)}
     						</ValeurImportante>
     					</td>
     				</tr>
@@ -130,9 +133,9 @@ En tant que **travailleur·euse frontalier·ère en Suisse**, affilié·e à l�
 
 La cotisation estimée à partir de ces revenus s’appliquera deux ans plus tard.
 
-## La première année (prorata)
+## Les années partielles (prorata)
 
-Si vous vous affiliez en cours d’année, la cotisation de cette première année est proratisée au nombre de jours d’affiliation :
+Si votre affiliation commence ou se termine en cours d’année, la cotisation de cette année-là est proratisée au nombre de jours d’affiliation :
 
 > **Cotisation de l’année = cotisation annuelle × jours d’affiliation ÷ nombre de jours de l’année**
 

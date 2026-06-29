@@ -6,6 +6,7 @@ import { Situation } from '@/domaine/Situation'
 export interface SituationFrontalierSuisse extends Situation {
 	_type: 'frontalier-suisse'
 	dateAffiliation: O.Option<Date>
+	dateFinAffiliation: O.Option<Date>
 	salaires: O.Option<Montant<'€/an'>>
 	autresRevenus: O.Option<Montant<'€/an'>>
 }
@@ -20,6 +21,7 @@ export const initialSituationFrontalierSuisse: SituationFrontalierSuisse = {
 	_tag: 'Situation',
 	_type: 'frontalier-suisse',
 	dateAffiliation: O.none(),
+	dateFinAffiliation: O.none(),
 	salaires: O.none(),
 	autresRevenus: O.none(),
 }

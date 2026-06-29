@@ -15,7 +15,7 @@ import {
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
 import { annéeDesRevenus } from './annee-de-simulation'
-import { joursDansAnnée, nombreDeJoursAffiliation } from './jours-affiliation'
+import { joursAffiliésDansAnnée, joursDansAnnée } from './jours-affiliation'
 import { SituationFrontalierSuisseValide } from './situation'
 
 export const TAUX_COTISATION_MALADIE = 0.08
@@ -30,7 +30,7 @@ export const abattementSécuritéSociale = (année: number): Montant<'€/an'> =
 export interface CotisationMaladie {
 	annuel: Montant<'€/an'>
 	mensuel: Montant<'€/mois'>
-	prorataPremièreAnnée: O.Option<Montant<'€'>>
+	prorataAnnéePartielle: O.Option<Montant<'€'>>
 }
 
 export interface DécompositionCotisationMaladie extends CotisationMaladie {
@@ -45,7 +45,8 @@ export const décomposeCotisationMaladie = (
 	situation: SituationFrontalierSuisseValide
 ): DécompositionCotisationMaladie => {
 	const dateAffiliation = situation.dateAffiliation.value
-	const annéeRevenus = annéeDesRevenus(dateAffiliation)
+	const dateFinAffiliation = O.getOrUndefined(situation.dateFinAffiliation)
+	const annéeRevenus = annéeDesRevenus(dateAffiliation, dateFinAffiliation)
 
 	const salaires = situation.salaires.value
 	const autresRevenus = O.getOrElse(situation.autresRevenus, () =>
@@ -59,16 +60,17 @@ export const décomposeCotisationMaladie = (
 	const annuel = arrondirÀLEuro(fois(base, TAUX_COTISATION_MALADIE))
 	const mensuel = arrondirÀLEuro(toEurosParMois(annuel))
 
-	const joursAffiliation = nombreDeJoursAffiliation(dateAffiliation)
+	const joursAffiliation = joursAffiliésDansAnnée(
+		dateAffiliation,
+		dateFinAffiliation
+	)
 	const joursAnnée = joursDansAnnée(annéeRevenus)
-	const affiliéEnCoursDAnnée =
-		dateAffiliation.getFullYear() === annéeRevenus &&
+	const prorataAnnéePartielle =
 		joursAffiliation < joursAnnée
-	const prorataPremièreAnnée = affiliéEnCoursDAnnée
-		? O.some(
-				arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))
-		  )
-		: O.none()
+			? O.some(
+					arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))
+			  )
+			: O.none()
 
 	return {
 		salaires,
@@ -78,15 +80,15 @@ export const décomposeCotisationMaladie = (
 		joursAffiliation,
 		annuel,
 		mensuel,
-		prorataPremièreAnnée,
+		prorataAnnéePartielle,
 	}
 }
 
 export const calculeCotisationMaladie = (
 	situation: SituationFrontalierSuisseValide
 ): CotisationMaladie => {
-	const { annuel, mensuel, prorataPremièreAnnée } =
+	const { annuel, mensuel, prorataAnnéePartielle } =
 		décomposeCotisationMaladie(situation)
 
-	return { annuel, mensuel, prorataPremièreAnnée }
+	return { annuel, mensuel, prorataAnnéePartielle }
 }

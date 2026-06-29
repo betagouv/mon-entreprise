@@ -20,6 +20,7 @@ import { ObjectifAutresRevenus } from './objectifs/ObjectifAutresRevenus'
 import { ObjectifDateAffiliation } from './objectifs/ObjectifDateAffiliation'
 import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
+import { DateFinAffiliationQuestion } from './questions/DateFinAffiliationQuestion'
 
 const Simulateur = () => {
 	const simulateurConfig = useSimulatorData(
@@ -43,6 +44,7 @@ const Simulateur = () => {
 				entrepriseSelection={false}
 				situation={situation}
 				simulationEstCommencée={(s) => (s ? situationEstCommencée(s) : false)}
+				questions={[DateFinAffiliationQuestion]}
 				hideDetails
 			>
 				<SimulateurWarning simulateur="cotisation-maladie-frontalier-suisse" />

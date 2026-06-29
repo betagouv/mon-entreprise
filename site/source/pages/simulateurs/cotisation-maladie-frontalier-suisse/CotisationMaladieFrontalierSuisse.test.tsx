@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
@@ -87,6 +87,31 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		expect(
 			await screen.findByText(/cette estimation suppose que le taux/i)
 		).toBeInTheDocument()
+	})
+
+	it("prend en compte la fin d'affiliation saisie en question", async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await user.type(
+			await screen.findByLabelText(/Date d'affiliation/i),
+			'01/01/2026'
+		)
+		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
+
+		await screen.findByText(/Cotisation maladie annuelle/i)
+		expect(screen.queryByText(/au prorata/i)).not.toBeInTheDocument()
+
+		const questionFin = await screen.findByRole('group', {
+			name: /votre affiliation prend-elle fin/i,
+		})
+		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
+
+		expect(await screen.findByText(/au prorata/i)).toBeInTheDocument()
 	})
 
 	it("n'avertit pas quand l'affiliation est dans l'année courante", async () => {

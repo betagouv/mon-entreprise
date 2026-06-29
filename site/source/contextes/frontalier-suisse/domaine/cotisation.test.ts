@@ -12,12 +12,14 @@ import { SituationFrontalierSuisseValide } from './situation'
 const situation = (
 	salaires: number,
 	autresRevenus: number,
-	dateAffiliation: Date
+	dateAffiliation: Date,
+	dateFinAffiliation?: Date
 ): SituationFrontalierSuisseValide =>
 	({
 		_tag: 'Situation',
 		_type: 'frontalier-suisse',
 		dateAffiliation: O.some(dateAffiliation),
+		dateFinAffiliation: O.fromNullable(dateFinAffiliation),
 		salaires: O.some(eurosParAn(salaires)),
 		autresRevenus: O.some(eurosParAn(autresRevenus)),
 	}) as SituationFrontalierSuisseValide
@@ -41,7 +43,7 @@ describe('décomposeCotisationMaladie', () => {
 
 		expect(résultat.annuel).toEqual(eurosParAn(3_605))
 		expect(résultat.mensuel).toEqual(eurosParMois(300))
-		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
+		expect(résultat.prorataAnnéePartielle).toEqual(O.none())
 	})
 
 	it('calcule la cotisation 2026 pour une année pleine, sans prorata', () => {
@@ -53,7 +55,7 @@ describe('décomposeCotisationMaladie', () => {
 
 		expect(résultat.annuel).toEqual(eurosParAn(3_439))
 		expect(résultat.mensuel).toEqual(eurosParMois(287))
-		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
+		expect(résultat.prorataAnnéePartielle).toEqual(O.none())
 	})
 
 	it('mensualise toujours sur 12 mois (coût récurrent)', () => {
@@ -77,7 +79,7 @@ describe('décomposeCotisationMaladie', () => {
 
 		expect(résultat.annuel).toEqual(eurosParAn(3_439))
 		expect(résultat.mensuel).toEqual(eurosParMois(287))
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2_308)))
+		expect(résultat.prorataAnnéePartielle).toEqual(O.some(euros(2_308)))
 	})
 
 	it("ne proratise pas une affiliation d'une année antérieure à l'année de cotisation", () => {
@@ -87,7 +89,7 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2024, 4, 1))
 		)
 
-		expect(résultat.prorataPremièreAnnée).toEqual(O.none())
+		expect(résultat.prorataAnnéePartielle).toEqual(O.none())
 	})
 
 	it("suit l'année d'affiliation lorsqu'elle est dans le futur et la proratise", () => {
@@ -97,7 +99,29 @@ describe('décomposeCotisationMaladie', () => {
 			situation(45_000, 10_000, new Date(2030, 4, 1))
 		)
 
-		expect(résultat.prorataPremièreAnnée).toEqual(O.some(euros(2_308)))
+		expect(résultat.prorataAnnéePartielle).toEqual(O.some(euros(2_308)))
+	})
+
+	it("proratise l'année lorsque l'affiliation se termine en cours d'année", () => {
+		simulerEn(2026)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2024, 0, 1), new Date(2026, 8, 30))
+		)
+
+		expect(résultat.annuel).toEqual(eurosParAn(3_439))
+		expect(résultat.prorataAnnéePartielle).toEqual(O.some(euros(2_572)))
+	})
+
+	it("retient l'année de fin pour une affiliation déjà terminée", () => {
+		simulerEn(2029)
+
+		const résultat = décomposeCotisationMaladie(
+			situation(45_000, 10_000, new Date(2024, 0, 1), new Date(2026, 8, 30))
+		)
+
+		expect(résultat.annuel).toEqual(eurosParAn(3_439))
+		expect(résultat.prorataAnnéePartielle).toEqual(O.some(euros(2_572)))
 	})
 
 	it('renvoie une cotisation nulle quand les revenus sont inférieurs à l’abattement', () => {
@@ -144,13 +168,13 @@ describe('calculeCotisationMaladie', () => {
 		simulerEn(2026)
 
 		const situationProratisée = situation(45_000, 10_000, new Date(2026, 4, 1))
-		const { annuel, mensuel, prorataPremièreAnnée } =
+		const { annuel, mensuel, prorataAnnéePartielle } =
 			décomposeCotisationMaladie(situationProratisée)
 
 		expect(calculeCotisationMaladie(situationProratisée)).toEqual({
 			annuel,
 			mensuel,
-			prorataPremièreAnnée,
+			prorataAnnéePartielle,
 		})
 	})
 })
