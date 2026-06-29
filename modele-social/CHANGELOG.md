@@ -35,6 +35,7 @@
 - Ajout de la CET dans la réduction de cotisations salariales sur les heures supplémentaires
 - Corrige des fautes dans des questions de `salarié . rémunération`
 - Modifie la description de `artiste-auteur . cotisations . IRCEC`
+- Changement de la nature par défaut de l'activité artisanale
 
 ## 10.0.1
 
