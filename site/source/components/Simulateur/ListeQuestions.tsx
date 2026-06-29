@@ -110,7 +110,7 @@ const BodyWithoutMargin = styled(Body)`
 `
 
 const ValueContainer = styled.div`
-	white-space: nowrap;
+	text-align: right;
 	display: flex;
 	align-items: center;
 	gap: 0 ${({ theme }) => theme.spacings.xxs};
