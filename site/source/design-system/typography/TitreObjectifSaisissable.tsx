@@ -1,8 +1,6 @@
 import { ReactNode } from 'react'
 import { css, styled } from 'styled-components'
 
-import { StyledLinkHover } from './link'
-
 export type TitreObjectifSaisissableProps = {
 	id?: string
 	htmlFor: string
@@ -29,7 +27,6 @@ const StyledLabel = styled.label<{ $noWrap?: boolean }>`
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
-	text-decoration: underline dotted;
 	font-weight: 700;
 	font-family: ${({ theme }) => theme.fonts.main};
 	background-color: inherit;
@@ -45,6 +42,9 @@ const StyledLabel = styled.label<{ $noWrap?: boolean }>`
 		`}
 
 	&:hover {
-		${StyledLinkHover}
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[300]
+				: theme.colors.bases.primary[800]};
 	}
 `
