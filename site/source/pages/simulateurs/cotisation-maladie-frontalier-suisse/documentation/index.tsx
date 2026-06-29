@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next'
+
 import {
 	createMDXDocumentationFromGlob,
 	DocumentationRouter,
@@ -9,6 +11,7 @@ import { useSitePaths } from '@/sitePaths'
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
 
 export const DocumentationHub = () => {
+	const { t, i18n } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
 	const isIndex = currentPath.endsWith('/documentation')
@@ -17,8 +20,10 @@ export const DocumentationHub = () => {
 		absoluteSitePaths.simulateurs['cotisation-maladie-frontalier-suisse']
 	const docUrl = baseUrl + '/documentation'
 
-	const { documentations, indexComponent } =
-		createMDXDocumentationFromGlob(mdxModules)
+	const { documentations, indexComponent } = createMDXDocumentationFromGlob(
+		mdxModules,
+		i18n.language
+	)
 
 	if (!isIndex) {
 		return (
@@ -35,10 +40,19 @@ export const DocumentationHub = () => {
 			documentations={documentations}
 			baseUrl={baseUrl}
 			docUrl={docUrl}
-			title="Comprendre le calcul de votre cotisation maladie"
+			title={t(
+				'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.titre',
+				'Comprendre le calcul de votre cotisation maladie'
+			)}
 			trackingPageName="Documentation cotisation maladie frontalier suisse"
-			metaTitle="Documentation - Cotisation maladie frontalier suisse"
-			metaDescription="Comprendre le calcul de la cotisation maladie des travailleurs frontaliers en Suisse"
+			metaTitle={t(
+				'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.meta-titre',
+				'Documentation - Cotisation maladie frontalier suisse'
+			)}
+			metaDescription={t(
+				'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.meta-description',
+				'Comprendre le calcul de la cotisation maladie des travailleur·euses frontalier·ères en Suisse'
+			)}
 			indexComponent={indexComponent}
 		/>
 	)
