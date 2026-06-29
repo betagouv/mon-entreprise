@@ -8,7 +8,7 @@ export const joursDansAnnée = (année: number): number =>
 
 /**
  * Nombre de jours d'affiliation au cours de l'année d'affiliation :
- * du jour d'affiliation au 31 décembre de cette même année, inclus.
+ * du jour d'affiliation, inclus, au 31 décembre de cette même année, inclus.
  */
 export const nombreDeJoursAffiliation = (dateAffiliation: Date): number => {
 	const finAnnée = Date.UTC(dateAffiliation.getFullYear(), 11, 31)
