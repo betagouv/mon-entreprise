@@ -9,7 +9,6 @@ import {
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
 import { Body, Link, Message } from '@/design-system'
-import { arrondirÀLEuro } from '@/domaine/Montant'
 import { useSitePaths } from '@/sitePaths'
 
 export const RésultatCotisation = ({
@@ -44,7 +43,7 @@ export const RésultatCotisation = ({
 						)}
 					</Link>
 				}
-				valeur={Option.some(arrondirÀLEuro(cotisation.annuel))}
+				valeur={Option.some(cotisation.annuel)}
 			/>
 			<ObjectifDeSimulation
 				id="frontalier-suisse-cotisation-mensuelle"
@@ -56,7 +55,7 @@ export const RésultatCotisation = ({
 						)}
 					</Link>
 				}
-				valeur={Option.some(arrondirÀLEuro(cotisation.mensuel))}
+				valeur={Option.some(cotisation.mensuel)}
 			/>
 			{Option.isSome(cotisation.prorataPremièreAnnée) && (
 				<ObjectifDeSimulation
@@ -70,9 +69,7 @@ export const RésultatCotisation = ({
 							)}
 						</Link>
 					}
-					valeur={Option.some(
-						arrondirÀLEuro(cotisation.prorataPremièreAnnée.value)
-					)}
+					valeur={Option.some(cotisation.prorataPremièreAnnée.value)}
 					description={t(
 						'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.message',
 						'première année, à partir du {{date}}',
