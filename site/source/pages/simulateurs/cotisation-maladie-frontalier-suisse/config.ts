@@ -23,7 +23,7 @@ export function cotisationMaladieFrontalierSuisseConfig({
 		),
 		title: t(
 			'pages.simulateurs.cotisation-maladie-frontalier-suisse.title',
-			'Cotisations maladie des travailleurs frontaliers en Suisse'
+			'Cotisations maladie des travailleuses et travailleurs frontalier·e·s en Suisse'
 		),
 		meta: {
 			title: t(
