@@ -25,7 +25,7 @@ export const ChoixVersementLibératoire = () => {
 				>
 					{t(
 						'pages.simulateurs.comparaison-statuts.montants.versement-libératoire.titre',
-						'Versement libératoire (pour AE)'
+						'Versement libératoire (pour auto-entreprise)'
 					)}
 				</RuleLink>
 			}
@@ -57,8 +57,10 @@ export const ChoixVersementLibératoire = () => {
 const VersementLibératoirePopoverContent = () => (
 	<SmallBodyWithoutMargin>
 		<Trans i18nKey="pages.simulateurs.comparaison-statuts.montants.versement-libératoire.info-bulle">
-			En tant qu’auto-entreprise (AE), c’est l’
+			En tant qu’auto-entreprise, c’est l’
 			<Strong>impôt sur le revenu</Strong> qui est appliqué automatiquement.
+			Dans certaines situations, vous pouvez opter pour le{' '}
+			<Strong>versement libératoire</Strong>.
 		</Trans>
 	</SmallBodyWithoutMargin>
 )

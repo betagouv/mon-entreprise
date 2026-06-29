@@ -1797,11 +1797,12 @@ pages:
             l’impôt sur le revenu pour les SAS(U).
           info-bulle: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
             revenu</2> durant les 5 premières années.
-          titre: Mode d’imposition (hors AE)
+          titre: Mode d’imposition (hors auto-entreprise)
         versement-libératoire:
-          info-bulle: En tant qu’auto-entreprise (AE), c’est l’<1>impôt sur le revenu</1>
-            qui est appliqué automatiquement.
-          titre: Versement libératoire (pour AE)
+          info-bulle: En tant qu’auto-entreprise, c’est l’<1>impôt sur le revenu</1> qui
+            est appliqué automatiquement. Dans certaines situations, vous pouvez
+            opter pour le <4>versement libératoire</4>.
+          titre: Versement libératoire (pour auto-entreprise)
       notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
         grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
       option-applicable: Option applicable.
