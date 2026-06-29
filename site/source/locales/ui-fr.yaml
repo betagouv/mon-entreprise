@@ -1848,7 +1848,7 @@ pages:
           message: première année, à partir du {{date}}
           titre: Cotisation {{année}} au prorata
       shortname: Cotisation maladie frontalier suisse
-      title: Cotisations maladie des travailleurs frontaliers en Suisse
+      title: Cotisations maladie des travailleuses et travailleurs frontalier·e·s en Suisse
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
