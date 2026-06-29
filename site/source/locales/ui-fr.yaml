@@ -1833,7 +1833,7 @@ pages:
     cotisation-maladie-frontalier-suisse:
       meta:
         description: Estimez le coût de votre cotisation maladie française en tant que
-          travailleur frontalier en Suisse.
+          travailleur·euse frontalier·ère en Suisse.
         title: Cotisation maladie frontalier suisse
       objectifs:
         autres-revenus: Autres revenus perçus en {{annéeRevenus}}

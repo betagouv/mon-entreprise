@@ -32,7 +32,7 @@ export function cotisationMaladieFrontalierSuisseConfig({
 			),
 			description: t(
 				'pages.simulateurs.cotisation-maladie-frontalier-suisse.meta.description',
-				'Estimez le coût de votre cotisation maladie française en tant que travailleur frontalier en Suisse.'
+				'Estimez le coût de votre cotisation maladie française en tant que travailleur·euse frontalier·ère en Suisse.'
 			),
 		},
 		path: sitePaths.simulateurs['cotisation-maladie-frontalier-suisse'],
