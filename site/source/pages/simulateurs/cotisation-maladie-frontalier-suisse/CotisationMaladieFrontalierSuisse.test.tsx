@@ -6,6 +6,16 @@ import { TestProvider } from '@/test/TestProvider'
 
 import CotisationMaladieFrontalierSuisse from './CotisationMaladieFrontalierSuisse'
 
+const saisirSituationComplète = async (
+	user: ReturnType<typeof userEvent.setup>
+) => {
+	await user.type(
+		await screen.findByLabelText(/Date d'affiliation/i),
+		'15/01/2026'
+	)
+	await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
+}
+
 describe('Simulateur cotisation maladie frontalier suisse', () => {
 	it('affiche les trois champs de saisie au montage', async () => {
 		render(
@@ -41,14 +51,25 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await user.type(
-			await screen.findByLabelText(/Date d'affiliation/i),
-			'15/01/2026'
-		)
-		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
+		await saisirSituationComplète(user)
 
 		expect(
 			await screen.findByText(/Cotisation maladie annuelle/i)
+		).toBeInTheDocument()
+	})
+
+	it("affiche la note d'estimation applicable deux ans plus tard", async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await saisirSituationComplète(user)
+
+		expect(
+			await screen.findByText(/applicable à votre cotisation 2028/i)
 		).toBeInTheDocument()
 	})
 })

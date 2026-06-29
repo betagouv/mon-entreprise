@@ -1831,11 +1831,6 @@ pages:
           texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
             encore implémentée sur ce comparateur.
     cotisation-maladie-frontalier-suisse:
-      externalLinks:
-        "1":
-          description: Affiliation, droit d'option et paiement de votre cotisation maladie
-            auprès de l'Urssaf.
-          title: Travailleurs frontaliers en Suisse
       meta:
         description: Estimez le coût de votre cotisation maladie française en tant que
           travailleur frontalier en Suisse.
@@ -1846,6 +1841,8 @@ pages:
         salaires: Salaires perçus en {{annéeRevenus}}
       résultat:
         annuel: Cotisation maladie annuelle
+        estimation: Estimation d’après vos revenus {{annéeRevenus}}, applicable à votre
+          cotisation {{annéeApplication}}.
         mensuel: Cotisation maladie mensuelle
         prorata:
           message: première année, à partir du {{date}}
