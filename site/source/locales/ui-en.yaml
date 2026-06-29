@@ -1732,24 +1732,50 @@ pages:
           texte: The <2>reform of the contribution base and scale</2> has not yet been
             implemented on this comparator.
     cotisation-maladie-frontalier-suisse:
+      documentation:
+        décomposition:
+          abattement: Allowance
+          annuelle: Annual contribution
+          assiette: Income base
+          base: Contribution base
+          calcul: Calculation
+          incomplet: Enter your information into the simulator (affiliation date and
+            income) to see how the calculation applies to your situation.
+          mensuelle: Monthly contribution
+          montant: Amount
+          prorata: Prorated contribution for {{année}}
+          étape: Step
+        meta-description: Understanding How Health Insurance Contributions Are Calculated
+          for Cross-Border Workers in Switzerland
+        meta-titre: Documentation - Health Insurance Contributions for Swiss
+          Cross-Border Workers
+        titre: Understanding How Your Health Insurance Contribution Is Calculated
       meta:
-        description: Estimate the cost of your French health insurance premiums as a
+        description: Estimate the cost of your French health insurance contributions as a
           cross-border worker in Switzerland.
         title: Swiss cross-border health insurance contribution
       objectifs:
         autres-revenus: Other income received in {{annéeRevenus}}
         date-affiliation: Date of affiliation
         salaires: Salaries in {{annéeRevenus}}
+      questions:
+        date-fin-affiliation:
+          libellé: When does your affiliation end?
       résultat:
         annuel: Annual health contribution
+        avertissement-futur: Since your affiliation is in the future, this estimate
+          assumes that the contribution rate and ceiling will remain unchanged
+          until then.
         estimation: Estimate based on your income {{annéeRevenus}}, applicable to your
           contribution {{annéeApplication}}.
         mensuel: Monthly health contribution
         prorata:
-          message: first year, starting on {{date}}
-          titre: "{{année}} 's pro-rata contribution"
+          depuis: starting on {{date}}
+          jusquà: until {{date}}
+          période: from {{début}} to {{fin}}
+          titre: Prorated contribution for {{année}}
       shortname: Swiss cross-border health insurance contribution
-      title: Health insurance premiums for cross-border workers in Switzerland
+      title: Health insurance contributions for cross-border workers in Switzerland
     coût-création-entreprise:
       meta:
         description: Estimate the cost of the administrative formalities involved in

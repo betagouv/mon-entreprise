@@ -1831,6 +1831,23 @@ pages:
           texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
             encore implémentée sur ce comparateur.
     cotisation-maladie-frontalier-suisse:
+      documentation:
+        décomposition:
+          abattement: Abattement
+          annuelle: Cotisation annuelle
+          assiette: Assiette retenue
+          base: Base de cotisation
+          calcul: Calcul
+          incomplet: Renseignez le simulateur (date d’affiliation et revenus) pour voir le
+            calcul appliqué à votre situation.
+          mensuelle: Cotisation mensuelle
+          montant: Montant
+          prorata: Cotisation {{année}} au prorata
+          étape: Étape
+        meta-description: Comprendre le calcul de la cotisation maladie des
+          travailleur·euses frontalier·ères en Suisse
+        meta-titre: Documentation - Cotisation maladie frontalier suisse
+        titre: Comprendre le calcul de votre cotisation maladie
       meta:
         description: Estimez le coût de votre cotisation maladie française en tant que
           travailleur·euse frontalier·ère en Suisse.
@@ -1839,16 +1856,24 @@ pages:
         autres-revenus: Autres revenus perçus en {{annéeRevenus}}
         date-affiliation: Date d'affiliation
         salaires: Salaires perçus en {{annéeRevenus}}
+      questions:
+        date-fin-affiliation:
+          libellé: À quelle date votre affiliation prend-elle fin ?
       résultat:
         annuel: Cotisation maladie annuelle
+        avertissement-futur: Votre affiliation étant à venir, cette estimation suppose
+          que le taux et le plafond de cotisation n’évoluent pas d’ici là.
         estimation: Estimation d’après vos revenus {{annéeRevenus}}, applicable à votre
           cotisation {{annéeApplication}}.
         mensuel: Cotisation maladie mensuelle
         prorata:
-          message: première année, à partir du {{date}}
+          depuis: à partir du {{date}}
+          jusquà: jusqu’au {{date}}
+          période: du {{début}} au {{fin}}
           titre: Cotisation {{année}} au prorata
       shortname: Cotisation maladie frontalier suisse
-      title: Cotisations maladie des travailleuses et travailleurs frontalier·e·s en Suisse
+      title: Cotisations maladie des travailleuses et travailleurs frontalier·e·s en
+        Suisse
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
