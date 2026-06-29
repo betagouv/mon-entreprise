@@ -7,7 +7,7 @@ import {
 	calculeCotisationMaladie,
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
-import { Link } from '@/design-system'
+import { Body, Link, Message } from '@/design-system'
 import { arrondirÀLEuro } from '@/domaine/Montant'
 import { useSitePaths } from '@/sitePaths'
 
@@ -83,6 +83,15 @@ export const RésultatCotisation = ({
 					small
 				/>
 			)}
+			<Message type="info" mini>
+				<Body>
+					{t(
+						'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.estimation',
+						'Estimation d’après vos revenus {{annéeRevenus}}, applicable à votre cotisation {{annéeApplication}}.',
+						{ annéeRevenus, annéeApplication: annéeRevenus + 2 }
+					)}
+				</Body>
+			</Message>
 		</>
 	)
 }
