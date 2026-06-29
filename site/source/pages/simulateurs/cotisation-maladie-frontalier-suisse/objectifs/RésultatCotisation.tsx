@@ -20,16 +20,48 @@ export const RésultatCotisation = ({
 	const { absoluteSitePaths } = useSitePaths()
 
 	const dateAffiliation = situation.dateAffiliation.value
-	const annéeRevenus = annéeDesRevenus(dateAffiliation)
+	const dateFinAffiliation = Option.getOrUndefined(situation.dateFinAffiliation)
+	const annéeRevenus = annéeDesRevenus(dateAffiliation, dateFinAffiliation)
 	const cotisation = calculeCotisationMaladie(situation)
 
 	const documentationUrl =
 		absoluteSitePaths.simulateurs['cotisation-maladie-frontalier-suisse'] +
 		'/documentation'
 
-	const dateAffiliationFormatée = dateAffiliation.toLocaleDateString(
-		i18n.language === 'en' ? 'en-GB' : 'fr-FR'
-	)
+	const formatDate = (date: Date) =>
+		date.toLocaleDateString(i18n.language === 'en' ? 'en-GB' : 'fr-FR')
+
+	const débuteDansLAnnée = dateAffiliation.getFullYear() === annéeRevenus
+	const finitDansLAnnée = dateFinAffiliation?.getFullYear() === annéeRevenus
+
+	const descriptionProrata =
+		débuteDansLAnnée && finitDansLAnnée
+			? t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.période',
+					'du {{début}} au {{fin}}',
+					{
+						début: formatDate(dateAffiliation),
+						fin: formatDate(dateFinAffiliation),
+						interpolation: { escapeValue: false },
+					}
+			  )
+			: finitDansLAnnée
+			? t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.jusquà',
+					'jusqu’au {{date}}',
+					{
+						date: formatDate(dateFinAffiliation),
+						interpolation: { escapeValue: false },
+					}
+			  )
+			: t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.depuis',
+					'à partir du {{date}}',
+					{
+						date: formatDate(dateAffiliation),
+						interpolation: { escapeValue: false },
+					}
+			  )
 
 	return (
 		<>
@@ -57,7 +89,7 @@ export const RésultatCotisation = ({
 				}
 				valeur={Option.some(cotisation.mensuel)}
 			/>
-			{Option.isSome(cotisation.prorataPremièreAnnée) && (
+			{Option.isSome(cotisation.prorataAnnéePartielle) && (
 				<ObjectifDeSimulation
 					id="frontalier-suisse-cotisation-prorata"
 					titre={
@@ -69,15 +101,8 @@ export const RésultatCotisation = ({
 							)}
 						</Link>
 					}
-					valeur={Option.some(cotisation.prorataPremièreAnnée.value)}
-					description={t(
-						'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.message',
-						'première année, à partir du {{date}}',
-						{
-							date: dateAffiliationFormatée,
-							interpolation: { escapeValue: false },
-						}
-					)}
+					valeur={Option.some(cotisation.prorataAnnéePartielle.value)}
+					description={descriptionProrata}
 					small
 				/>
 			)}

@@ -16,12 +16,19 @@ export const useFrontalierSuisse = () => {
 	const { situation, updateSituation } = useSituationContext()
 
 	const annéeRevenus = Option.isSome(situation.dateAffiliation)
-		? annéeDesRevenus(situation.dateAffiliation.value)
+		? annéeDesRevenus(
+				situation.dateAffiliation.value,
+				Option.getOrUndefined(situation.dateFinAffiliation)
+		  )
 		: annéeDeSimulation()
 
 	const set = {
 		dateAffiliation: (dateAffiliation: Option.Option<Date>) => {
 			updateSituation((prev) => ({ ...prev, dateAffiliation }))
+		},
+
+		dateFinAffiliation: (dateFinAffiliation: Option.Option<Date>) => {
+			updateSituation((prev) => ({ ...prev, dateFinAffiliation }))
 		},
 
 		salaires: (salaires: Option.Option<Montant<'€/an'>>) => {
