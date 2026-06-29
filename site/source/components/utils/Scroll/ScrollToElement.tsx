@@ -41,14 +41,7 @@ export default function ScrollToElement({
 	useEffect(scrollIfNeeded)
 
 	return (
-		<div
-			{...otherProps}
-			style={{
-				...style,
-				...(!children ? { position: 'absolute' } : {}),
-			}}
-			ref={ref}
-		>
+		<div {...otherProps} style={style} ref={ref}>
 			{children}
 		</div>
 	)

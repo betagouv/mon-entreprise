@@ -3,7 +3,8 @@ import { createContext, useContext } from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-export const EngineContext = createContext<Engine<DottedName> | null>(null)
+const EngineContext = createContext<Engine<DottedName> | null>(null)
+
 export const EngineProvider = EngineContext.Provider
 
 export const useOptionalEngine = () => {
