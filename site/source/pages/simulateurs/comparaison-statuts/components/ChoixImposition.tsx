@@ -22,7 +22,7 @@ export const ChoixImposition = () => {
 				<RuleLink dottedName={DOTTEDNAME_ENTREPRISE_IMPOSITION}>
 					{t(
 						'pages.simulateurs.comparaison-statuts.montants.imposition.titre',
-						'Mode d’imposition (hors AE)'
+						'Mode d’imposition (hors auto-entreprise)'
 					)}
 				</RuleLink>
 			}
