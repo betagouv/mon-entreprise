@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
 import {
+	annéeDeSimulation,
 	annéeDesRevenus,
 	calculeCotisationMaladie,
 	SituationFrontalierSuisseValide,
@@ -92,6 +93,16 @@ export const RésultatCotisation = ({
 					)}
 				</Body>
 			</Message>
+			{annéeRevenus > annéeDeSimulation() && (
+				<Message type="info" mini>
+					<Body>
+						{t(
+							'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.avertissement-futur',
+							'Votre affiliation étant à venir, cette estimation suppose que le taux et le plafond de cotisation n’évoluent pas d’ici là.'
+						)}
+					</Body>
+				</Message>
+			)}
 		</>
 	)
 }
