@@ -148,7 +148,10 @@ export const RadioButton = styled.span`
 		width: calc(var(--halo) * 2 + var(--size));
 		height: calc(var(--halo) * 2 + var(--size));
 		border-radius: 50%;
-		background: ${({ theme }) => theme.colors.bases.primary[100]};
+		background: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.primary[100]};
 		z-index: 0;
 		opacity: 0;
 		transition: all 0.15s ease;
@@ -168,7 +171,7 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 		!$inert
 			? css`
 				&:hover > ${RadioButton}::before {
-					opacity: 1;
+					opacity: ${({ theme }) => (theme.darkMode ? 0.7 : 1)};
 					transform: scale(1);
 				}
 
