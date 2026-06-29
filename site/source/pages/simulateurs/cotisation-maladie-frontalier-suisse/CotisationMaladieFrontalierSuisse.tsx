@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
@@ -10,8 +9,10 @@ import {
 	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
+import { docCotisationFrontalierSuisse } from '@/external-links/docCotisationFrontalierSuisse'
+import { docDeclarerRevenusFrontalierSuisse } from '@/external-links/docDeclarerRevenusFrontalierSuisse'
+import { docFrontalierSuisse } from '@/external-links/docFrontalierSuisse'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
-import { URSSAF } from '@/utils/logos'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
@@ -25,26 +26,11 @@ const Simulateur = () => {
 		'cotisation-maladie-frontalier-suisse'
 	)
 	const { situation } = useFrontalierSuisse()
-	const { t } = useTranslation()
 
 	const externalLinks = [
-		{
-			url: 'https://www.urssaf.fr/accueil/particulier/travailleur-frontalier-suisse.html',
-			title: t(
-				'pages.simulateurs.cotisation-maladie-frontalier-suisse.externalLinks.1.title',
-				'Travailleurs frontaliers en Suisse'
-			),
-			description: t(
-				'pages.simulateurs.cotisation-maladie-frontalier-suisse.externalLinks.1.description',
-				"Affiliation, droit d'option et paiement de votre cotisation maladie auprès de l'Urssaf."
-			),
-			logo: URSSAF,
-			ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
-			ariaLabel: t(
-				'external-links.service.ariaLabel',
-				'Accéder au service sur urssaf.fr, nouvelle fenêtre'
-			),
-		},
+		docFrontalierSuisse,
+		docCotisationFrontalierSuisse,
+		docDeclarerRevenusFrontalierSuisse,
 	]
 
 	return (
