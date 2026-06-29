@@ -221,11 +221,7 @@ entreprise . activités . service ou vente:
   une possibilité:
     - vente
     - service
-  par défaut:
-    variations:
-      - si: activité . nature . artisanale
-        alors: "'service'"
-      - sinon: "'vente'"
+  par défaut: "'vente'"
 
   avec:
     service:
