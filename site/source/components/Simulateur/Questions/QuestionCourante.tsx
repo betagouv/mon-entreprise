@@ -2,12 +2,12 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
 import { H3 } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
 
-import ScrollToElement from '../utils/Scroll/ScrollToElement'
-import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
+import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
 import { QuestionPublicodes } from './QuestionPublicodes'
 
 type Props<S extends Situation = Situation> = {
