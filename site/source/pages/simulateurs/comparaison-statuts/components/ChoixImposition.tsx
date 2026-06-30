@@ -1,20 +1,41 @@
+import { Option } from 'effect'
+import { Key, useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
 import { Message, SmallBody, Strong } from '@/design-system'
-import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { ajusteLaSituation } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
-const DOTTEDNAME_ENTREPRISE_IMPOSITION = 'entreprise . imposition'
+const DOTTED_NAME = 'entreprise . imposition'
 
 type IRouIS = "'IR'" | "'IS'"
 
 export const ChoixImposition = () => {
+	const dispatch = useDispatch()
+	const engine = useEngine()
 	const { t } = useTranslation()
-	const { set, values } = useStatefulRulesEdit([
-		DOTTEDNAME_ENTREPRISE_IMPOSITION,
-	] as const)
+
+	const value = PublicodesAdapter.decode(engine.evaluate(DOTTED_NAME))
+
+	const handleChange = useCallback(
+		(value: Key) => {
+			dispatch(
+				ajusteLaSituation({
+					[DOTTED_NAME]: value as IRouIS,
+				} as Record<DottedName, ValeurPublicodes>)
+			)
+		},
+		[dispatch]
+	)
 
 	return (
 		<SimulationGoalRadio
@@ -27,7 +48,7 @@ export const ChoixImposition = () => {
 				</RuleLink>
 			}
 			aide={<ImpositionPopoverContent />}
-			value={values[DOTTEDNAME_ENTREPRISE_IMPOSITION] as string | undefined}
+			value={Option.isSome(value) ? (value.value as string) : undefined}
 			options={[
 				{
 					key: 'IR',
@@ -46,9 +67,7 @@ export const ChoixImposition = () => {
 					),
 				},
 			]}
-			onChange={(value) => {
-				set[DOTTEDNAME_ENTREPRISE_IMPOSITION](value as IRouIS)
-			}}
+			onChange={handleChange}
 		/>
 	)
 }

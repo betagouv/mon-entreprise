@@ -1758,6 +1758,7 @@ pages:
           info-title: Bénéficier de l’Acre
           label: Activer l’Acre dans la simulation
           title: Acre
+        confirm-label: Enregistrer les options
         imposition:
           body: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
             revenu</2> durant les 5 premières années.
