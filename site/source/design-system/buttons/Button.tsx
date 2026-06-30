@@ -13,10 +13,10 @@ import {
 	useButtonOrLink,
 } from '../typography/link'
 
-type Size = 'XL' | 'MD' | 'XS' | 'XXS'
+export type Size = 'XL' | 'MD' | 'XS' | 'XXS'
 type ButtonColor = 'primary' | 'secondary' | 'tertiary' | 'error' | 'success'
 
-export type ButtonTracking = {
+type ButtonTracking = {
 	feature: string
 	action: string
 	simulateur?: string
