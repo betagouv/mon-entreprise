@@ -119,7 +119,7 @@ export const ServiceWorker = () => {
 
 					<StyledClosedButton
 						onPress={() => setNeedRefresh(false)}
-						aria-label={t('Fermer')}
+						aria-label={t('global.fermer', 'Fermer')}
 					/>
 				</StyledMessage>
 			)}

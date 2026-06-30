@@ -129,6 +129,7 @@ function Issue({ title, number, count, closedAt }: IssueProps) {
 			<Link
 				href={`https://github.com/betagouv/mon-entreprise/issues/${number}`}
 				aria-label={t(
+					'pages.statistiques.demandes.aria-label',
 					'{{title}}, voir la demande sur github.com, nouvelle fenêtre',
 					{ title }
 				)}

@@ -49,10 +49,10 @@ export default function QuestionCMGPerçu() {
 				value={valeur}
 			>
 				<StyledRadio value="oui" id="input-CMG-perçu-oui">
-					{t('Oui')}
+					{t('global.oui', 'Oui')}
 				</StyledRadio>
 				<StyledRadio value="non" id="input-CMG-perçu-non">
-					{t('Non')}
+					{t('global.non', 'Non')}
 				</StyledRadio>
 			</ToggleGroup>
 		</>

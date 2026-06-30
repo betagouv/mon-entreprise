@@ -12,7 +12,7 @@ export default {
 
 	// Default value to give to empty keys
 	defaultValue(locale, namespace, key, value) {
-		return key === value || (key && value === '') ? 'NO_TRANSLATION' : value
+		return key === value || (key && value === '') ? key : value
 	},
 
 	indentation: 2,

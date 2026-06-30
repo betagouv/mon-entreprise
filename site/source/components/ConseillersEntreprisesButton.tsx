@@ -94,8 +94,12 @@ export const ConseillersEntreprisesButton = ({
 						</Suspense>
 
 						<Body style={{ textAlign: 'right' }}>
-							<Button aria-label={t('Fermer')} size="XS" onPress={close}>
-								{t('Fermer')}
+							<Button
+								aria-label={t('global.fermer', 'Fermer')}
+								size="XS"
+								onPress={close}
+							>
+								{t('global.fermer', 'Fermer')}
 							</Button>
 						</Body>
 					</>

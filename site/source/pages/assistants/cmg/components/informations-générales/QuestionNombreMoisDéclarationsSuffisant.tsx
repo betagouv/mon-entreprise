@@ -49,10 +49,10 @@ export default function QuestionNombreMoisDéclarationsSuffisant() {
 				value={valeur}
 			>
 				<StyledRadio value="oui" id="input-mois-déclarations-oui">
-					{t('Oui')}
+					{t('global.oui', 'Oui')}
 				</StyledRadio>
 				<StyledRadio value="non" id="input-mois-déclarations-non">
-					{t('Non')}
+					{t('global.non', 'Non')}
 				</StyledRadio>
 			</ToggleGroup>
 		</>

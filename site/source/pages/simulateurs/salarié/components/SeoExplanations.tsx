@@ -12,7 +12,7 @@ export const SeoExplanations = () => {
 	const { t, i18n } = useTranslation()
 
 	return (
-		<Trans i18nKey="pages.simulateurs.salarié.seo">
+		<Trans i18nKey="pages.simulateurs.salarié.seo.text">
 			<section>
 				<H2>Comment calculer le salaire net ?</H2>
 				<Body>
@@ -85,6 +85,7 @@ export const SeoExplanations = () => {
 					<Link
 						href="http://www.aides-entreprises.fr"
 						aria-label={t(
+							'pages.simulateurs.salarié.seo.aria-label',
 							'le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre'
 						)}
 					>

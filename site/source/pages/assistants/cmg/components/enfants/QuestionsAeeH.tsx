@@ -51,10 +51,10 @@ export default function QuestionsAeeH() {
 				value={valeur}
 			>
 				<StyledRadio value="oui" id="input-perçoit-AeeH-oui">
-					{t('Oui')}
+					{t('global.oui', 'Oui')}
 				</StyledRadio>
 				<StyledRadio value="non" id="input-perçoit-AeeH-non">
-					{t('Non')}
+					{t('global.non', 'Non')}
 				</StyledRadio>
 			</ToggleGroup>
 
