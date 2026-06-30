@@ -321,7 +321,6 @@ components:
         questions-principales:
           bouton: Specify your situation
           texte: For a better simulation, you can specify your situation.
-        retour: Back
         retour-liste: Back to list
         réinitialiser: Default values
         titre: Situation
@@ -401,6 +400,7 @@ global:
   oui-non:
     non: No
     oui: Yes
+  retour: Back
 gérer:
   ressources:
     annuaire-entreprises:
@@ -1670,7 +1670,6 @@ pages:
           info-title: Benefit from Acre
           label: Activate Acre in simulation
           title: Acre
-        confirm-label: Save options
         imposition:
           body: You can <2>choose between corporate and income taxation</2> for the first
             5 years.

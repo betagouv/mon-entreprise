@@ -337,7 +337,6 @@ components:
         questions-principales:
           bouton: Préciser votre situation
           texte: Pour une meilleure simulation, vous pouvez préciser votre situation.
-        retour: Retour
         retour-liste: Revenir à la liste
         réinitialiser: Valeurs par défaut
         titre: Situation
@@ -419,6 +418,7 @@ global:
   oui-non:
     non: Non
     oui: Oui
+  retour: Retour
 gérer:
   ressources:
     annuaire-entreprises:
@@ -1771,7 +1771,6 @@ pages:
           info-title: Bénéficier de l’Acre
           label: Activer l’Acre dans la simulation
           title: Acre
-        confirm-label: Enregistrer les options
         imposition:
           body: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
             revenu</2> durant les 5 premières années.
