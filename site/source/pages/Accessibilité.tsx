@@ -6,7 +6,7 @@ import { typography } from '@/design-system'
 
 import Meta from '../components/utils/Meta'
 
-const { H1, Body, H2, H3, H4, Li, Link, SmallBody, Ul } = typography
+const { H1, Body, H2, H3, H4, Li, Link, Ul } = typography
 
 export default function Accessibilité() {
 	const { t } = useTranslation()
@@ -311,7 +311,6 @@ export default function Accessibilité() {
 					</Link>
 				</Li>
 			</Ul>
-			<SmallBody>Mis à jour le 27 mai 2025</SmallBody>
 		</Trans>
 	)
 }
