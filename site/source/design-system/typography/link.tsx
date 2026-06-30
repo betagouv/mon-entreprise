@@ -46,9 +46,7 @@ export const StyledLinkStyle = css<StyledLinkProps>`
 	font-weight: 700;
 	text-decoration: ${({ $noUnderline }) =>
 		$noUnderline ? 'none' : 'underline'};
-	padding: 0;
 	font-size: inherit;
-	background: none;
 	border: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
