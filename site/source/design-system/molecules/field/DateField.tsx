@@ -151,7 +151,7 @@ export const DateField = (props: DateFieldProps) => {
 					}}
 					errorMessage={
 						props.errorMessage ??
-						(isChangeOnce && selected === undefined
+						(isChangeOnce && selected === undefined && inputValue.trim() !== ''
 							? t(
 									'design-system.date-picker.error.invalid-date',
 									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
