@@ -1766,8 +1766,8 @@ pages:
         avertissement-futur: Since your affiliation is in the future, this estimate
           assumes that the contribution rate and ceiling will remain unchanged
           until then.
-        estimation: Estimate based on your income {{annéeRevenus}}, applicable to your
-          contribution {{annéeApplication}}.
+        estimation: "Estimate based on your income {{annéeRevenus}},\napplicable to your
+          contribution {{annéeApplication}}."
         mensuel: Monthly health contribution
         prorata:
           depuis: starting on {{date}}
