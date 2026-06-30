@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
 import { SmallBody, Strong } from '@/design-system'
 import {
@@ -44,16 +43,10 @@ export const ChoixVersementLibératoire = () => {
 
 	return (
 		<SimulationGoalRadio
-			titre={
-				<RuleLink
-					dottedName={DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE}
-				>
-					{t(
-						'pages.simulateurs.comparaison-statuts.montants.versement-libératoire.titre',
-						'Versement libératoire (pour auto-entreprise)'
-					)}
-				</RuleLink>
-			}
+			titre={t(
+				'pages.simulateurs.comparaison-statuts.montants.versement-libératoire.titre',
+				'Versement libératoire (pour auto-entreprise)'
+			)}
 			aide={<VersementLibératoirePopoverContent />}
 			value={Option.isSome(value) ? (value.value as OuiNon) : undefined}
 			options={[

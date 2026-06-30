@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
 import { Message, SmallBody, Strong } from '@/design-system'
 import {
@@ -39,14 +38,10 @@ export const ChoixImposition = () => {
 
 	return (
 		<SimulationGoalRadio
-			titre={
-				<RuleLink dottedName={DOTTEDNAME_ENTREPRISE_IMPOSITION}>
-					{t(
-						'pages.simulateurs.comparaison-statuts.montants.imposition.titre',
-						'Mode d’imposition (hors auto-entreprise)'
-					)}
-				</RuleLink>
-			}
+			titre={t(
+				'pages.simulateurs.comparaison-statuts.montants.imposition.titre',
+				'Mode d’imposition (hors auto-entreprise)'
+			)}
 			aide={<ImpositionPopoverContent />}
 			value={Option.isSome(value) ? (value.value as string) : undefined}
 			options={[
