@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, {
+	createContext,
+	useCallback,
+	useContext,
+	useMemo,
+	useState,
+} from 'react'
 
 import {
 	initialSituationFrontalierSuisse,
@@ -21,14 +27,19 @@ export const FrontalierSuisseProvider: React.FC<{
 		initialSituationFrontalierSuisse
 	)
 
-	const updateSituation = (
-		updater: (prev: SituationFrontalierSuisse) => SituationFrontalierSuisse
-	) => {
-		setSituation(updater)
-	}
+	const updateSituation = useCallback(
+		(updater: (prev: SituationFrontalierSuisse) => SituationFrontalierSuisse) =>
+			setSituation(updater),
+		[]
+	)
+
+	const value = useMemo(
+		() => ({ situation, updateSituation }),
+		[situation, updateSituation]
+	)
 
 	return (
-		<SituationContext.Provider value={{ situation, updateSituation }}>
+		<SituationContext.Provider value={value}>
 			{children}
 		</SituationContext.Provider>
 	)
