@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H2 } from '@/design-system'
+import { H2, ReturnButton } from '@/design-system'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
 import {
 	GroupeDeQuestionsPublicodes,
@@ -54,13 +54,21 @@ export const BlocSituation = ({
 					}}
 				/>
 			) : questionCourante ? (
-				<QuestionCourante
-					questions={questionCourante.liste}
-					retour={() => {
-						setQuestionCouranteId(undefined)
-						setAutoScrollToQuestions(true)
-					}}
-				/>
+				<Container>
+					<QuestionCourante questions={questionCourante.liste} />
+
+					<ReturnButton
+						size="XS"
+						onPress={() => {
+							setQuestionCouranteId(undefined)
+							setAutoScrollToQuestions(true)
+						}}
+						text={t(
+							'components.simulateur.zone-de-saisie.situation.retour-liste',
+							'Revenir à la liste'
+						)}
+					/>
+				</Container>
 			) : (
 				<ListeQuestions
 					groupesDeQuestions={groupesDeQuestions}
@@ -85,4 +93,16 @@ const Section = styled.section`
 const StyledH2 = styled(H2)`
 	margin: 0;
 	padding: ${({ theme }) => theme.spacings.md} 0;
+`
+
+const Container = styled.div`
+	height: calc(100% - 5rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	row-gap: ${({ theme }) => theme.spacings.xl};
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		padding-bottom: ${({ theme }) => theme.spacings.xl};
+		border-bottom: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
+	}
 `

@@ -39,12 +39,12 @@ export const ChoixVersementLibératoire = () => {
 				{
 					key: 'oui',
 					value: 'oui',
-					label: t('global.oui-non.oui', 'Oui'),
+					label: t('global.oui', 'Oui'),
 				},
 				{
 					key: 'non',
 					value: 'non',
-					label: t('global.oui-non.non', 'Non'),
+					label: t('global.non', 'Non'),
 				},
 			]}
 			onChange={(value) => {
