@@ -1598,6 +1598,7 @@ pages:
       title: Simulateur de revenus pour professions libérales Cipav
     commun:
       date: Date de la réglementation utilisée pour les calculs
+      documentation: Documentation
       periode-calcul: Période de calcul
       previousSimulationBanner:
         bouton:
@@ -1780,12 +1781,14 @@ pages:
         imposition:
           IR: Impôt sur le revenu
           IS: Impôt sur les sociétés
+          aria-label: Accéder à la documentation sur le mode d'imposition
           disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
             l’impôt sur le revenu pour les SAS(U).
           info-bulle: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
             revenu</2> durant les 5 premières années.
           titre: Mode d’imposition (hors auto-entreprise)
         versement-libératoire:
+          aria-label: Accéder à la documentation sur le versement libératoire
           info-bulle: En tant qu’auto-entreprise, c’est l’<1>impôt sur le revenu</1> qui
             est appliqué automatiquement. Dans certaines situations, vous pouvez
             opter pour le <4>versement libératoire</4>.

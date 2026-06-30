@@ -4,7 +4,9 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
+import { LienDocumentation } from '@/components/Simulateur/LienDocumentation'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { SmallBody, Strong } from '@/design-system'
 import {
 	PublicodesAdapter,
@@ -41,6 +43,8 @@ export const ChoixVersementLibératoire = () => {
 		[dispatch]
 	)
 
+	const documentationId = `${normalizeRuleName(DOTTED_NAME)}-documentation`
+
 	return (
 		<SimulationGoalRadio
 			titre={t(
@@ -48,6 +52,19 @@ export const ChoixVersementLibératoire = () => {
 				'Versement libératoire (pour auto-entreprise)'
 			)}
 			aide={<VersementLibératoirePopoverContent />}
+			documentation={{
+				element: (
+					<LienDocumentation
+						id={documentationId}
+						dottedName={DOTTED_NAME}
+						aria-label={t(
+							'pages.simulateurs.comparaison-statuts.montants.versement-libératoire.aria-label',
+							'Accéder à la documentation sur le versement libératoire'
+						)}
+					/>
+				),
+				id: documentationId,
+			}}
 			value={Option.isSome(value) ? (value.value as OuiNon) : undefined}
 			options={[
 				{
