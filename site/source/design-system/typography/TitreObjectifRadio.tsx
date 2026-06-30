@@ -23,6 +23,7 @@ const StyledLegend = styled.legend`
 			: theme.colors.bases.primary[700]};
 	font-weight: 700;
 	font-family: ${({ theme }) => theme.fonts.main};
+	line-height: ${({ theme }) => theme.lineHeights.base};
 	padding: 0;
 	margin-bottom: ${({ theme }) => theme.spacings.xxs};
 `

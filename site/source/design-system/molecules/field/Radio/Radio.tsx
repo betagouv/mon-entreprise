@@ -151,7 +151,7 @@ export const RadioButton = styled.span`
 		background: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
-				: theme.colors.bases.primary[100]};
+				: theme.colors.bases.primary[200]};
 		z-index: 0;
 		opacity: 0;
 		transition: all 0.15s ease;
@@ -171,7 +171,7 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 		!$inert
 			? css`
 				&:hover > ${RadioButton}::before {
-					opacity: ${({ theme }) => (theme.darkMode ? 0.7 : 1)};
+					opacity: 0.7;
 					transform: scale(1);
 				}
 
@@ -197,7 +197,7 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 const Label = styled.label<{ htmlFor?: string }>``
 
 export const SpanBody = styled(Body).attrs({ as: 'span' })`
-	margin: ${({ theme }) => theme.spacings.xs} 0px;
+	margin: ${({ theme }) => theme.spacings.xxs} 0;
 	margin-left: ${({ theme }) => theme.spacings.xxs};
 	background-color: transparent;
 	display: inline-flex;
