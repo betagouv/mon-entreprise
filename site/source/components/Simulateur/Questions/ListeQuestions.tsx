@@ -8,11 +8,11 @@ import { Body, Button, EditIcon, Li, ReturnButton, Ul } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
-import { ExplicableRule } from '../conversation/Explicable'
-import Value from '../EngineValue/Value'
-import ScrollToElement from '../utils/Scroll/ScrollToElement'
-import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
-import { BoutonReset } from './BoutonReset'
+import { ExplicableRule } from '../../conversation/Explicable'
+import Value from '../../EngineValue/Value'
+import ScrollToElement from '../../utils/Scroll/ScrollToElement'
+import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
+import { BoutonReset } from '../Boutons/BoutonReset'
 
 type Props<S extends Situation = Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>

@@ -3,7 +3,7 @@ import { Record } from 'effect'
 import { Predicate } from 'effect/Predicate'
 import { describe, expect, it } from 'vitest'
 
-import { ComposantQuestionFournie } from '@/components/Simulateur/ComposantQuestionFournie'
+import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Situation } from '@/domaine/Situation'
 
