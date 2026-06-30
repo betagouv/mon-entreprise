@@ -61,8 +61,9 @@ export default defineConfig(({ command, mode }) => ({
 	define: {
 		BRANCH_NAME: JSON.stringify(branch(mode)),
 		IS_DEVELOPMENT: mode === 'development',
-		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
-		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
+		IS_STAGING: environnementDéployé(mode) === 'staging',
+		IS_PRODUCTION: environnementDéployé(mode) === 'production',
+		ENVIRONNEMENT: JSON.stringify(environnementDéployé(mode)),
 		SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)),
 	},
 	plugins: [
@@ -204,7 +205,7 @@ export default defineConfig(({ command, mode }) => ({
  * or hide some features.
  */
 const isProductionBranch = (mode: string) => {
-	return ['master', 'next'].includes(getBranch(mode))
+	return ['master', 'main'].includes(getBranch(mode))
 }
 
 const getBranch = (mode: string) => {
@@ -217,6 +218,12 @@ const getBranch = (mode: string) => {
 	}
 
 	return branch ?? ''
+}
+
+const environnementDéployé = (mode: string) => {
+	if (mode !== 'production') return 'développement'
+
+	return isProductionBranch(mode) ? 'production' : 'staging'
 }
 
 const cleanAutomaticTag = (data: ValidYamlType): ValidYamlType => {

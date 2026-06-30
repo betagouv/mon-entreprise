@@ -30,7 +30,10 @@ export default function Home() {
 					'Migration en cours. Cette page confirme que Next.js et le design-system sont correctement configurés.'
 				)}
 			</Body>
-			<Button onPress={() => setDarkMode(!darkMode)}>
+			<Button
+				tracking={{ feature: 'démo next', action: 'bascule mode sombre' }}
+				onPress={() => setDarkMode(!darkMode)}
+			>
 				{darkMode
 					? t('app.basculerLight', 'Basculer en mode light')
 					: t('app.basculerDark', 'Basculer en mode dark')}

@@ -15,6 +15,7 @@ import {
 	Link,
 } from '@/design-system'
 import { NavigationAPI, useNavigation } from '@/lib/navigation'
+import { environnement } from '@/services/environnement/environnement'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
@@ -51,9 +52,7 @@ export default function Footer() {
 	)
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
-		(language === 'en'
-			? import.meta.env.VITE_FR_BASE_URL
-			: import.meta.env.VITE_EN_BASE_URL) +
+		(language === 'en' ? environnement.urls.fr : environnement.urls.en) +
 		(altPathname[language][path] ??
 			getAltPathnamesWithParams(language, path, matchPath, generatePath)?.[0] ??
 			'/')
