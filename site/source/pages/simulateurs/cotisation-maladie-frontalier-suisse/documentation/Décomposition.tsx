@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 
 import {
 	abattementSécuritéSociale,
-	annéeDesRevenus,
 	décomposeCotisationMaladie,
 	estSituationValide,
 	joursDansAnnée,
@@ -28,14 +27,10 @@ export const Décomposition = () => {
 		)
 	}
 
-	const annéeRevenus = annéeDesRevenus(
-		situation.dateAffiliation.value,
-		O.getOrUndefined(situation.dateFinAffiliation)
-	)
 	const détail = décomposeCotisationMaladie(situation)
-	const plafond = plafondSécuritéSociale(annéeRevenus)
-	const abattement = abattementSécuritéSociale(annéeRevenus)
-	const joursAnnée = joursDansAnnée(annéeRevenus)
+	const plafond = plafondSécuritéSociale(détail.annéeRevenus)
+	const abattement = abattementSécuritéSociale(détail.annéeRevenus)
+	const joursAnnée = joursDansAnnée(détail.annéeRevenus)
 	const euro = (montant: Montant) => montantToString(arrondirÀLEuro(montant))
 
 	return (
@@ -85,7 +80,7 @@ export const Décomposition = () => {
 						)}
 					</td>
 					<td>
-						25{'\u00A0'}% × PASS {annéeRevenus} ({euro(plafond)})
+						25{'\u00A0'}% × PASS {détail.annéeRevenus} ({euro(plafond)})
 					</td>
 					<td>
 						<Valeur couleur="primary">{euro(abattement)}</Valeur>
@@ -137,7 +132,7 @@ export const Décomposition = () => {
 							{t(
 								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.prorata',
 								'Cotisation {{année}} au prorata',
-								{ année: annéeRevenus }
+								{ année: détail.annéeRevenus }
 							)}
 						</td>
 						<td>
