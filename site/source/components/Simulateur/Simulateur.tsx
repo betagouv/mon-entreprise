@@ -13,7 +13,7 @@ import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
 import { AutoScrollToQuestionsProvider } from './AutoScrollToQuestions'
-import { ÉLÉMENT_DÉTAILS_ID } from './BoutonDétail'
+import { ÉLÉMENT_DÉTAILS_ID } from './Boutons/BoutonDétail'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props = {

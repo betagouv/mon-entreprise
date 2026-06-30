@@ -4,7 +4,7 @@ import { Button, LinkIcon, PopoverWithTrigger } from '@/design-system'
 import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
-import { ShareSimulationPopup } from '../ShareSimulationBanner/ShareSimulationPopup'
+import { ShareSimulationPopup } from '../../ShareSimulationBanner/ShareSimulationPopup'
 
 export const BoutonPartage = () => {
 	const { t } = useTranslation()

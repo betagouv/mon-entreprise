@@ -10,9 +10,9 @@ import {
 } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
 import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
-import { ListeQuestions } from './ListeQuestions'
-import { QuestionCourante } from './QuestionCourante'
-import { QuestionsPrincipales } from './QuestionsPrincipales'
+import { ListeQuestions } from './Questions/ListeQuestions'
+import { QuestionCourante } from './Questions/QuestionCourante'
+import { QuestionsPrincipales } from './Questions/QuestionsPrincipales'
 
 type Props = {
 	questionsPublicodesPrincipales: QuestionPublicodes[]

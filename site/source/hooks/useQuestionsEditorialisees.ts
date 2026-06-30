@@ -8,7 +8,7 @@ import { FunctionComponent, useMemo, useState } from 'react'
 import {
 	ComposantQuestionFournie,
 	GroupeDeQuestionsFournies,
-} from '@/components/Simulateur/ComposantQuestionFournie'
+} from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { Situation } from '@/domaine/Situation'
 
 import {
