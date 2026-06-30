@@ -6,7 +6,7 @@ import {
 	Grid,
 	InfoBulle,
 	RadioChoiceGroup,
-	TitreObjectifSaisissable,
+	TitreObjectifRadio,
 } from '@/design-system'
 
 type Props = {
@@ -29,13 +29,10 @@ export const SimulationGoalRadio = ({
 	return (
 		<GridCentered>
 			<TitleGrid item>
-				<TitreObjectifSaisissable
-					htmlFor={`${baseId}-input`}
-					id={`${baseId}-label`}
-				>
+				<TitreObjectifRadio>
 					{titre}
-				</TitreObjectifSaisissable>
-				{aide && <InfoBulle description={aide} />}
+					{aide && <InfoBulle description={aide} />}
+				</TitreObjectifRadio>
 			</TitleGrid>
 
 			<Grid item>
@@ -43,7 +40,6 @@ export const SimulationGoalRadio = ({
 					id={`${baseId}-input`}
 					value={value}
 					onChange={onChange}
-					aria={{ labelledby: `${baseId}-label` }}
 					options={options}
 				/>
 			</Grid>
