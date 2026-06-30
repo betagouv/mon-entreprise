@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
+import { BodyStyle } from './paragraphs'
+
 export type TitreObjectifRadioProps = {
 	children: ReactNode
 
@@ -17,13 +19,8 @@ export const TitreObjectifRadio = ({
 }
 
 const StyledLegend = styled.legend`
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[100]
-			: theme.colors.bases.primary[700]};
+	${BodyStyle}
 	font-weight: 700;
-	font-family: ${({ theme }) => theme.fonts.main};
-	line-height: ${({ theme }) => theme.lineHeights.base};
-	padding: 0;
+	padding: ${({ theme }) => theme.spacings.xxs} 0 0;
 	margin-bottom: ${({ theme }) => theme.spacings.xxs};
 `
