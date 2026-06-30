@@ -54,7 +54,6 @@ EntrepriseSearchField:
   placeholder: "Example: Café de la gare or 40123778000127"
 ExportSimulation:
   Banner: Print or save as PDF
-Fermer: Close
 Fiche de paie: Pay slip
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graph detailing the number of visits per simulator (alternative accessible via
@@ -70,11 +69,6 @@ Impôts: Taxes
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
-Je donne mon avis, donner mon avis sur jedonnemonavis:
-  numerique:
-    gouv:
-      fr, nouvelle fenêtre: I give my opinion, give my opinion on
-        jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
 Le montant demandé n'est <2>pas calculable…</2>: The amount requested <2>cannot be calculated...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
@@ -89,20 +83,15 @@ Message à caractère informatif: Informative message
 Modifier mes réponses: Modify my answers
 Mois: Month
 Mon entreprise: My company
-Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
-  urssaf:
-    fr: My company is recruiting! See job offers on mon-entreprise.urssaf.fr
 Montant annuel: Annual amount
 Montant mensuel: Monthly amount
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
-Non: No
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
 Nouveautés: News
 Option ACRE non activée: ACRE option not activated
 Options: Options
-Oui: Yes
 Outils pour les développeurs: Tools for developers
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
@@ -155,8 +144,6 @@ Tout réinitialiser: Reset all
 Trimestre: Quarter
 URL de votre simulation: URL of your simulation
 Un avis sur cette page ?: What do you think of this page?
-Urssaf, voir le site urssaf:
-  fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
 Version bêta: Beta version
@@ -180,7 +167,6 @@ accessibility:
     Accessibility Improvement Reference System)
   title: Accessibility
 aides différées, voir le détail du calcul pour aides différées: deferred aid, see detailed calculation for deferred aid
-août: August
 api:
   description: Tools for developers
   title: Use our REST API
@@ -204,15 +190,9 @@ aria-label:
   service-public: service-public.fr, new window
   urssaf: Urssaf, access to urssaf.fr, new window
   équipe: team, access our team presentation page, new window
-avril: April
 cards:
   simulator-resource:
     cta: Access the simulator
-certains critères, en savoir plus sur entreprendre:
-  service-public:
-    gouv:
-      fr, nouvelle fenêtre: certain criteria, find out more at
-        entreprendre.service-public.gouv.fr, new window
 checklist:
   showmore:
     closed: Read more
@@ -355,7 +335,6 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
-décembre: December
 entreprise:
   détails: Company created on <1> </1> and domiciled at <3></3>.
 error:
@@ -384,6 +363,9 @@ feedback:
       try again or contact us by e-mail at
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>An error has occurred while sending the message</0>
+  jedonnemonavis:
+    aria-label: I'm giving my opinion, give my opinion on
+      jedonnemonavis.numerique.gouv.fr, new window
   reportError: Make a suggestion
   success:
     body1: Our team will take care of your return.
@@ -393,15 +375,28 @@ feedback:
   thanks: Thank you for your feedback!
 footer:
   github:
-    new-window: View source code on Github, new window
+    aria-label: View the source code on GitHub (opens in a new window)
     text: View source code on Github
-février: February
+  urssaf:
+    aria-label: Urssaf, visit the urssaf.fr website (opens in a new window)
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 global:
   fermer: Close
-  oui-non:
-    non: No
-    oui: Yes
+  mois:
+    août: August
+    avril: April
+    décembre: December
+    février: February
+    janvier: January
+    juillet: July
+    juin: June
+    mai: May
+    mars: March
+    novembre: November
+    octobre: October
+    septembre: September
+  non: No
+  oui: Yes
 gérer:
   ressources:
     annuaire-entreprises:
@@ -423,10 +418,7 @@ iframe:
 intégration:
   description: Tools for developers
   title: Integration
-janvier: January
 jours: days
-juillet: July
-juin: June
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 landing:
   aboutUs: "<0>Who are we?</0><1>We are a small <2>team</2> autonomous and
@@ -448,8 +440,6 @@ landing:
   subtitle: Wizards and simulators for <2>personalized answers</2> to your
     questions about <5>setting up and running</5> your business.
   title: Official tools for entrepreneurs
-le portail officiel, accéder à aides-entreprises:
-  fr, nouvelle fenêtre: the official portal, access to aides-entreprises.fr, new window
 legalNotice:
   accessibility:
     content: The platform is <2>partially compliant</2> with digital accessibility
@@ -479,9 +469,7 @@ legalNotice:
 library:
   description: Tools for developers
   title: Calculation library
-mai: May
 main-menu: Main menu
-mars: March
 messages:
   loading: Loading in progress...
   masquer-message: Hide message
@@ -505,8 +493,6 @@ nextSteps:
     cta: See the documentation
     title: Integrate the web module
 nombres de votes: number of votes
-novembre: November
-octobre: October
 pages:
   "404":
     action: Back to safety
@@ -1154,6 +1140,8 @@ pages:
           aria-label: Urssaf, see integration, new window
           cta-label: See integration
     module: Which module?
+    recrutement:
+      aria-label: My company is hiring! View job openings at mon-entreprise.urssaf.fr
     spreadsheet: <0>Using a spreadsheet</0><1>Would you like to use a simulator in a
       Google Sheets or Excel spreadsheet? Our <2>REST API</2> makes it
       possible!</1><2>Integrate a simulator in Excel/Sheets</2><3>Eventually,
@@ -1763,23 +1751,30 @@ pages:
         cotisations: Contributions
         impôt: Tax
         revenu: Net dividends
-      seo: <0>Dividends and distributions</0><1>At the end of a company's financial
-        year, the previous year's earnings can be held in reserve (for future
-        investment) or paid out as dividends. From the beneficiaries' point of
-        view, this is income from movable capital, subject to specific
-        contributions and taxation.</1><2>This simulator only takes into account
-        the case of an individual beneficiary and dividends decided by the
-        company.</2><3>How are dividend withholdings calculated?</3><4>Dividends
-        may be subject to a flat-rate withholding tax of 30%, including tax and
-        social security contributions (also known as<1> flat tax</1>).
-        Alternatively, you can opt for the tax scale. This simulator can be used
-        to compare the two systems.</4><5>A 12.8% advance payment is made at the
-        time of dividend payment, unless the beneficiary meets <2>certain
-        criteria</2>.</5><6>Special case of self-employed executives</6><7>For
-        the self-employed worker, the portion of dividends exceeding 10% of the
-        share capital will be subject to contributions and levies in the same
-        way as his or her executive remuneration.</7><8>In this case, please use
-        the <2>income simulator for self-employed workers</2>.</8>
+      seo:
+        aria-label: certain criteria; learn more at entreprendre.service-public.gouv.fr
+          (opens in a new window)
+        text: <0>Dividends and Distributions</0><1>At the end of a company’s fiscal
+          year, the net income from the previous fiscal year may be retained as
+          retained earnings (for future investments) or paid out as dividends.
+          From the beneficiaries’ perspective, these are investment income,
+          subject to specific social security contributions and
+          taxation.</1><2>This simulator only takes into account scenarios
+          involving individual recipients and dividends declared by the
+          company.</2><3>How are withholding taxes on dividends
+          calculated?</3><4>Dividends may be subject to a single flat-rate
+          withholding tax of 30%, which includes both income tax and social
+          security contributions (also known as the &lt;1> flat tax</1>).
+          Alternatively, the standard tax schedule may be chosen. This simulator
+          can be used to compare the two systems.</4><5>An advance tax payment
+          (12.8%) is withheld at the time the dividends are paid, unless the
+          recipient meets <2>certain criteria</2>.</5><6>Special Case for
+          Non-Salaried Executives</6><7>For self-employed individuals, the
+          portion of dividends exceeding 10% of the share capital will be
+          subject to social security contributions and other taxes under the
+          same terms as their compensation as a director.</7><8>For this
+          scenario, please use the <2>income simulator for self-employed
+          individuals</2>.</8>
       shortName: Dividends
       title: Dividend payment simulator
       warning:
@@ -2210,38 +2205,41 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
-      seo: "<0><0>How to calculate take-home pay</0><1>During the job interview, the
-        employer generally proposes a gross salary. This amount includes
-        employee contributions, which are used to finance the employee's social
-        protection and are deducted from the \"net\" salary received by the
-        employee.</1><2>You can use our simulator to convert the <2>gross salary
-        into a net salary</2> : simply enter the advertised salary in the gross
-        salary box. The simulation can be refined by answering the various
-        questions (fixed-term contract, executive status, overtime, part-time
-        work, meal vouchers, etc.).</2><3></3><4>In addition, since
-        2019,<1>impôt sur le revenu</1> has been deducted at source. To do this,
-        the Direction Générale des Finances Publiques (DGFiP) sends the employer
-        the tax rate calculated on the basis of the employee's tax return. If
-        the employee's tax rate is unknown, for example in the first year of
-        employment, the employer uses the <4>neutral rate</4>.</4></0><1><0>How
-        do I calculate the cost of hiring?</0><1>If you're looking to hire, you
-        can calculate the total cost of remunerating your employee, as well as
-        the corresponding employer and employee contributions. This will enable
-        you to define the level of remuneration, knowing the overall cost to
-        your company.</1><2>In addition to salary, our simulator takes into
-        account the calculation of benefits in kind (telephone, company car,
-        etc.), as well as compulsory health insurance.</2><3>There are also
-        <2>aides différées</2> for new hires, not all of which are taken into
-        account by our simulator. You can find them on <6>the official
-        portal</6>.</3></1><2><0>Talk to an advisor about your recruitment
-        project</0><1>You would like to :</1><2><0>be advised on the hiring aids
-        available for your recruitment project</0><1>Find out about
-        apprenticeships, professionalization contracts, \"emplois francs\" in
-        priority neighborhoods, <1>VTE</1>, etc.</1><2>Find
-        candidates</2><3>Recruiting a disabled person</3></2><3><0>Fast, simple
-        public service: you'll be called back by the advisor who can help
-        you.</0></3><4>Partners: France Travail, Apec, Cap Emploi, local
-        missions...</4><5></5></2>"
+      seo:
+        aria-label: the official portal; visit aides-entreprises.fr (opens in a new window)
+        text: "<0><0>How do you calculate take-home pay?</0><1>During a job interview,
+          the employer generally offers a salary expressed as a “gross” amount.
+          The amount quoted includes employee contributions, which are used to
+          fund the employee’s social security benefits and are deducted from the
+          “net” pay received by the employee.</1><2>You can use our calculator
+          to convert <2>gross pay to net pay&lt;/2> : simply enter the offered
+          salary in the “gross pay” field. You can refine the calculation by
+          answering various questions (fixed-term contract, executive status,
+          overtime, part-time work, meal vouchers,
+          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax&lt;/1>
+          has been withheld at source. To facilitate this, the Directorate
+          General of Public Finances (DGFiP) provides the employer with the tax
+          rate calculated based on the employee’s tax return. If this rate is
+          unknown—for example, during an employee’s first year of employment—the
+          employer uses the <4>default rate</4>.</4></0><1><0>How do you
+          calculate the total cost of hiring?</0><1>If you’re looking to hire,
+          you can calculate the total cost of your employee’s compensation, as
+          well as the corresponding employer and employee contributions. This
+          allows you to set the compensation level while knowing the overall
+          cost to your company.</1><2>In addition to salary, our simulator
+          factors in benefits in kind (cell phone, company car, etc.), as well
+          as mandatory health insurance.</2><3>There are <2>deferred
+          incentives&lt;/2> available for hiring that are not all included in
+          our simulator; you can find them on <6>the official
+          portal</6>.</3></1><2><0>Talk to an advisor about your hiring
+          plan</0><1>You would like to:</1><2><0>Receive advice on the hiring
+          incentives available for your recruitment</0><1>Learn about
+          apprenticeships, professional training contracts, “emplois francs” in
+          priority neighborhoods, the <1>VTE program, and more…</1></1><2>Find
+          candidates</2><3>Hire a person with a disability</3></2><3><0>A simple
+          and fast public service: an advisor who can help you will call you
+          back.</0></3><4>Partner organizations involved: France Travail, APEC,
+          Cap Emploi, local employment missions…</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
       titres-restaurant: in meal vouchers
@@ -2282,6 +2280,8 @@ pages:
   statistiques:
     a11y-switch: Enable accessibility mode on this section
     anonymous: The data collected is anonymized.
+    demandes:
+      aria-label: "{{title}}, see the request on github.com (opens in a new window)"
     explanation: <0><0>The simulators and wizards on this site are designed to
       <2>answer a specific question</2> (e.g. "How much should my company pay to
       hire a new employee?" or "What is the best legal status for starting my
@@ -2313,7 +2313,6 @@ salarié, accéder au simulateur salarié: employee, access the employee simulat
 select:
   value:
     default: Choose an option
-septembre: September
 shareSimulation:
   banner: Generate a share link
   button:
@@ -2367,8 +2366,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand
@@ -2493,8 +2492,6 @@ vos retours, accéder aux statistiques d'utilisation: your feedback, access to u
 warning:
   overwrite:
     situation: Do you want to crush your situation?
-"{{title}}, voir la demande sur github":
-  com, nouvelle fenêtre: "{{title}}view request on github.com, new window"
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 "Établissement recherché :": "Establishment sought:"

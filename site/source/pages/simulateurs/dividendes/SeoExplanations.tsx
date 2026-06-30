@@ -8,7 +8,7 @@ export const SeoExplanations = () => {
 	const { t } = useTranslation()
 
 	return (
-		<Trans i18nKey="pages.simulateurs.dividendes.seo">
+		<Trans i18nKey="pages.simulateurs.dividendes.seo.text">
 			<H2>Les dividendes et distributions</H2>
 			<Body>
 				À la fin de l'exercice d'une société, le résultat de l'exercice
@@ -34,6 +34,7 @@ export const SeoExplanations = () => {
 				<Link
 					rel="noreferrer"
 					aria-label={t(
+						'pages.simulateurs.dividendes.seo.aria-label',
 						'certains critères, en savoir plus sur entreprendre.service-public.gouv.fr, nouvelle fenêtre'
 					)}
 					href="https://entreprendre.service-public.gouv.fr/vosdroits/F32963"

@@ -47,6 +47,7 @@ export default function Integration() {
 								<a
 									href={openJobOffer.link}
 									aria-label={t(
+										'pages.développeur.recrutement.aria-label',
 										"Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise.urssaf.fr"
 									)}
 								>
