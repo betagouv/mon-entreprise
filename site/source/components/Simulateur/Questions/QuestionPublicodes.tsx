@@ -7,7 +7,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { QuestionPublicodes as TypeQuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
-import { RuleField } from '../conversation/RuleField'
+import { RuleField } from '../../conversation/RuleField'
 
 type Props = {
 	question: TypeQuestionPublicodes

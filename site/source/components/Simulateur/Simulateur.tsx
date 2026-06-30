@@ -12,7 +12,8 @@ import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/Bo
 import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
-import { ÉLÉMENT_DÉTAILS_ID } from './BoutonDétail'
+import { AutoScrollToQuestionsProvider } from './AutoScrollToQuestions'
+import { ÉLÉMENT_DÉTAILS_ID } from './Boutons/BoutonDétail'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props = {
@@ -52,11 +53,13 @@ export const Simulateur = ({
 
 			{/* Année précédente */}
 
-			<ZoneDeSaisie
-				questionsPublicodesPrincipales={questionsPublicodesPrincipales}
-				groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
-				montants={montantsÀSaisir}
-			/>
+			<AutoScrollToQuestionsProvider>
+				<ZoneDeSaisie
+					questionsPublicodesPrincipales={questionsPublicodesPrincipales}
+					groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
+					montants={montantsÀSaisir}
+				/>
+			</AutoScrollToQuestionsProvider>
 
 			<Actions
 				conseillersEntreprisesVariant={conseillersEntreprisesVariant}

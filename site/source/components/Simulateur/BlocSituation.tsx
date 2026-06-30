@@ -2,17 +2,17 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H2 } from '@/design-system'
+import { H2, ReturnButton } from '@/design-system'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/hooks/useQuestionsPublicodesEditorialisees'
 
-import ScrollToElement from '../utils/Scroll/ScrollToElement'
-import { ListeQuestions } from './ListeQuestions'
-import { QuestionCourante } from './QuestionCourante'
-import { QuestionsPrincipales } from './QuestionsPrincipales'
+import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
+import { ListeQuestions } from './Questions/ListeQuestions'
+import { QuestionCourante } from './Questions/QuestionCourante'
+import { QuestionsPrincipales } from './Questions/QuestionsPrincipales'
 
 type Props = {
 	questionsPublicodesPrincipales: QuestionPublicodes[]
@@ -34,6 +34,8 @@ export const BlocSituation = ({
 		groupesDeQuestionsPublicodes,
 	})
 
+	const { setAutoScrollToQuestions } = useAutoScrollToQuestions()
+
 	const [afficherQuestionsPrincipales, setAfficherQuestionsPrincipales] =
 		useState(questionsPrincipales.length > 0)
 
@@ -46,23 +48,39 @@ export const BlocSituation = ({
 			{afficherQuestionsPrincipales ? (
 				<QuestionsPrincipales
 					questions={questionsPrincipales}
-					onClose={() => setAfficherQuestionsPrincipales(false)}
+					onClose={() => {
+						setAfficherQuestionsPrincipales(false)
+						setAutoScrollToQuestions(true)
+					}}
 				/>
 			) : questionCourante ? (
-				<ScrollToElement>
-					<QuestionCourante
-						questions={questionCourante.liste}
-						retour={() => setQuestionCouranteId(undefined)}
+				<Container>
+					<QuestionCourante questions={questionCourante.liste} />
+
+					<ReturnButton
+						size="XS"
+						onPress={() => {
+							setQuestionCouranteId(undefined)
+							setAutoScrollToQuestions(true)
+						}}
+						text={t(
+							'components.simulateur.zone-de-saisie.situation.retour-liste',
+							'Revenir à la liste'
+						)}
 					/>
-				</ScrollToElement>
+				</Container>
 			) : (
-				<ScrollToElement>
-					<ListeQuestions
-						groupesDeQuestions={groupesDeQuestions}
-						onSélection={setQuestionCouranteId}
-						retour={() => setAfficherQuestionsPrincipales(true)}
-					/>
-				</ScrollToElement>
+				<ListeQuestions
+					groupesDeQuestions={groupesDeQuestions}
+					onSélection={(questionId: string) => {
+						setQuestionCouranteId(questionId)
+						setAutoScrollToQuestions(true)
+					}}
+					retour={() => {
+						setAfficherQuestionsPrincipales(true)
+						setAutoScrollToQuestions(true)
+					}}
+				/>
 			)}
 		</Section>
 	)
@@ -75,4 +93,16 @@ const Section = styled.section`
 const StyledH2 = styled(H2)`
 	margin: 0;
 	padding: ${({ theme }) => theme.spacings.md} 0;
+`
+
+const Container = styled.div`
+	height: calc(100% - 5rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	row-gap: ${({ theme }) => theme.spacings.xl};
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		padding-bottom: ${({ theme }) => theme.spacings.xl};
+		border-bottom: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
+	}
 `

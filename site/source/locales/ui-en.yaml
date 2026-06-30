@@ -114,7 +114,6 @@ Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
-Période de calcul: Calculation period
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
@@ -322,7 +321,6 @@ components:
         questions-principales:
           bouton: Specify your situation
           texte: For a better simulation, you can specify your situation.
-        retour: Back
         retour-liste: Back to list
         réinitialiser: Default values
         titre: Situation
@@ -402,6 +400,7 @@ global:
   oui-non:
     non: No
     oui: Yes
+  retour: Back
 gérer:
   ressources:
     annuaire-entreprises:
@@ -1671,7 +1670,6 @@ pages:
           info-title: Benefit from Acre
           label: Activate Acre in simulation
           title: Acre
-        confirm-label: Save options
         imposition:
           body: You can <2>choose between corporate and income taxation</2> for the first
             5 years.
@@ -1690,6 +1688,19 @@ pages:
           label: Activate final payment in simulation
       montants:
         CA: Estimated sales
+        imposition:
+          IR: Income Tax
+          IS: Corporate Income Tax
+          disclaimer: As of now, this comparison tool does not take into account the
+            calculation of income tax for SAS(U)s.
+          info-bulle: You can <2>choose between corporate and income tax</2> during the
+            first 5 years.
+          titre: Taxation Method (excluding sole proprietorships)
+        versement-libératoire:
+          info-bulle: As a sole proprietorship, the<1>income tax</1> is automatically
+            applied. In certain situations, you may opt for the <4>withholding
+            tax</4>.
+          titre: Lump-Sum Payment (for Sole Proprietorships)
       notif: <0><0>Find out which business structure is the <2>best fit for your
         business</2> with the help of the <5>new business structure selection
         wizard</5> !</0></0>
@@ -2367,8 +2378,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand

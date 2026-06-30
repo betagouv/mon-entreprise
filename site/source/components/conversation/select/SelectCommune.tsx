@@ -196,7 +196,6 @@ const FocusedOption = css`
 
 const Container = styled.div`
 	position: relative;
-	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
 
 const OptionList = styled.ul`

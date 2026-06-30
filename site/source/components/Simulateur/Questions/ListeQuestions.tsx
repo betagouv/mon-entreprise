@@ -4,14 +4,15 @@ import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
+import { Body, Button, EditIcon, Li, ReturnButton, Ul } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
-import { ExplicableRule } from '../conversation/Explicable'
-import Value from '../EngineValue/Value'
-import { BoutonReset } from './BoutonReset'
-import { BoutonRetour } from './BoutonRetour'
+import { ExplicableRule } from '../../conversation/Explicable'
+import Value from '../../EngineValue/Value'
+import ScrollToElement from '../../utils/Scroll/ScrollToElement'
+import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
+import { BoutonReset } from '../Boutons/BoutonReset'
 
 type Props<S extends Situation = Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
@@ -25,11 +26,12 @@ export const ListeQuestions = ({
 	retour,
 }: Props) => {
 	const { t } = useTranslation()
+	const { autoScrollToQuestions } = useAutoScrollToQuestions()
 
 	return (
-		<>
+		<ScrollToElement when={autoScrollToQuestions}>
 			<BoutonsContainer>
-				<BoutonRetour onPress={retour} />
+				<ReturnButton size="XXS" onPress={retour} />
 				<BoutonReset />
 			</BoutonsContainer>
 
@@ -71,7 +73,7 @@ export const ListeQuestions = ({
 					)}
 				</UlWithoutMargin>
 			)}
-		</>
+		</ScrollToElement>
 	)
 }
 

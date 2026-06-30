@@ -119,7 +119,6 @@ Pourcentage: Pourcentage
 Prochaines questions: Prochaines questions
 Précédent: Précédent
 Prévisualisation: Prévisualisation
-Période de calcul: Période de calcul
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
@@ -338,7 +337,6 @@ components:
         questions-principales:
           bouton: Préciser votre situation
           texte: Pour une meilleure simulation, vous pouvez préciser votre situation.
-        retour: Retour
         retour-liste: Revenir à la liste
         réinitialiser: Valeurs par défaut
         titre: Situation
@@ -420,6 +418,7 @@ global:
   oui-non:
     non: Non
     oui: Oui
+  retour: Retour
 gérer:
   ressources:
     annuaire-entreprises:
@@ -1772,7 +1771,6 @@ pages:
           info-title: Bénéficier de l’Acre
           label: Activer l’Acre dans la simulation
           title: Acre
-        confirm-label: Enregistrer les options
         imposition:
           body: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
             revenu</2> durant les 5 premières années.
@@ -1791,6 +1789,19 @@ pages:
           label: Activer le versement libératoire dans la simulation
       montants:
         CA: Chiffre d’affaires estimé
+        imposition:
+          IR: Impôt sur le revenu
+          IS: Impôt sur les sociétés
+          disclaimer: À ce jour, ce comparateur ne prend pas en compte le calcul de
+            l’impôt sur le revenu pour les SAS(U).
+          info-bulle: Vous pouvez <2>choisir entre l’imposition sur les sociétés et sur le
+            revenu</2> durant les 5 premières années.
+          titre: Mode d’imposition (hors auto-entreprise)
+        versement-libératoire:
+          info-bulle: En tant qu’auto-entreprise, c’est l’<1>impôt sur le revenu</1> qui
+            est appliqué automatiquement. Dans certaines situations, vous pouvez
+            opter pour le <4>versement libératoire</4>.
+          titre: Versement libératoire (pour auto-entreprise)
       notif: <0><0>Découvrez quel statut est le <2>plus adapté pour votre activité</2>
         grâce au <5>nouvel assistant au choix du statut</5> !</0></0>
       option-applicable: Option applicable.
