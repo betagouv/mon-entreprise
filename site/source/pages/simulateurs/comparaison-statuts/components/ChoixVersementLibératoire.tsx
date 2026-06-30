@@ -1,20 +1,45 @@
+import { Option } from 'effect'
+import { Key, useCallback } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
 import { SmallBody, Strong } from '@/design-system'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
-import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { ajusteLaSituation } from '@/store/actions/actions'
+import { useEngine } from '@/utils/publicodes/EngineContext'
 
-const DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE =
+const DOTTED_NAME =
 	'dirigeant . auto-entrepreneur . impôt . versement libératoire'
 
 export const ChoixVersementLibératoire = () => {
+	const dispatch = useDispatch()
+	const engine = useEngine()
 	const { t } = useTranslation()
-	const { set, values } = useStatefulRulesEdit(
-		[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE] as const,
-		{ 'dirigeant . auto-entrepreneur': 'oui' }
+
+	const value = PublicodesAdapter.decode(
+		engine.evaluate({
+			valeur: DOTTED_NAME,
+			contexte: { 'dirigeant . auto-entrepreneur': 'oui' },
+		})
+	)
+
+	const handleChange = useCallback(
+		(value: Key) => {
+			dispatch(
+				ajusteLaSituation({
+					[DOTTED_NAME]: value as OuiNon,
+				} as Record<DottedName, ValeurPublicodes>)
+			)
+		},
+		[dispatch]
 	)
 
 	return (
@@ -30,11 +55,7 @@ export const ChoixVersementLibératoire = () => {
 				</RuleLink>
 			}
 			aide={<VersementLibératoirePopoverContent />}
-			value={
-				values[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE] as
-					| string
-					| undefined
-			}
+			value={Option.isSome(value) ? (value.value as OuiNon) : undefined}
 			options={[
 				{
 					key: 'oui',
@@ -47,9 +68,7 @@ export const ChoixVersementLibératoire = () => {
 					label: t('global.non', 'Non'),
 				},
 			]}
-			onChange={(value) => {
-				set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE](value as OuiNon)
-			}}
+			onChange={handleChange}
 		/>
 	)
 }

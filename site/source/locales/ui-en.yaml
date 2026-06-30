@@ -1658,6 +1658,7 @@ pages:
           info-title: Benefit from Acre
           label: Activate Acre in simulation
           title: Acre
+        confirm-label: Save Options
         imposition:
           body: You can <2>choose between corporate and income taxation</2> for the first
             5 years.
