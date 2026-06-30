@@ -34,6 +34,7 @@ export interface CotisationMaladie {
 }
 
 export interface DécompositionCotisationMaladie extends CotisationMaladie {
+	annéeRevenus: number
 	salaires: Montant<'€/an'>
 	autresRevenus: Montant<'€/an'>
 	assiette: Montant<'€/an'>
@@ -73,6 +74,7 @@ export const décomposeCotisationMaladie = (
 			: O.none()
 
 	return {
+		annéeRevenus,
 		salaires,
 		autresRevenus,
 		assiette,
