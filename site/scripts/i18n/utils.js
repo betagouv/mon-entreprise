@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs'
 
 import dotenv from 'dotenv'
+import { Record } from 'effect'
 import rulesAS from 'modele-as'
 import rules from 'modele-social'
 import rulesTI from 'modele-ti'
@@ -11,11 +12,11 @@ dotenv.config()
 export const localesPath = new URL('../../source/locales/', import.meta.url)
 	.pathname
 export const UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
-export const rulesTranslationFile = 'rules-en.yaml'
-export const rulesTranslationFileTI = 'rules-ti-en.yaml'
-export const rulesTranslationFileAS = 'rules-as-en.yaml'
 export const UiTranslationPath = localesPath + 'ui-en.yaml'
 export const UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
+const rulesTranslationFile = 'rules-en.yaml'
+const rulesTranslationFileTI = 'rules-ti-en.yaml'
+const rulesTranslationFileAS = 'rules-as-en.yaml'
 
 let attributesToTranslate = [
 	'titre',
@@ -133,28 +134,19 @@ export const getUiMissingTranslations = () => {
 		readFileSync(UiOriginalTranslationPath, 'utf-8')
 	)
 
-	const missingTranslations = Object.entries(staticKeys)
-		.filter(([key, valueInSource]) => {
-			if (key.match(/^\{.*\}$/) || key.includes('NO_AUTO_TRANSLATION')) {
-				return false
-			}
-			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-			const pathReducer = (currentSelection, subPath) =>
-				currentSelection?.[subPath]
-			const isNewKey = !keys.reduce(pathReducer, translatedKeys)
-			const isInvalidatedKey =
-				keys.reduce(pathReducer, originalKeys) !==
-				(valueInSource === 'NO_TRANSLATION' ? key : valueInSource)
+	const pathReducer = (currentSelection, subPath) => currentSelection?.[subPath]
 
-			return isNewKey || isInvalidatedKey
-		}, staticKeys)
-		.map(([key]) => key)
+	return Record.filter(staticKeys, (valueInSource, key) => {
+		if (key.match(/^\{.*\}$/) || key.includes('NO_AUTO_TRANSLATION')) {
+			return false
+		}
 
-	return Object.fromEntries(
-		Object.entries(staticKeys).filter(([key]) =>
-			missingTranslations.includes(key)
-		)
-	)
+		const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
+		const isNewKey = !keys.reduce(pathReducer, translatedKeys)
+		const isNewValue = keys.reduce(pathReducer, originalKeys) !== valueInSource
+
+		return isNewKey || isNewValue
+	})
 }
 
 const getInObject = (keys, object) =>
@@ -175,33 +167,35 @@ export function assocPath(path, val, obj) {
 export const filterUnusedTranslations = (original, translated) => {
 	const staticKeys = JSON.parse(readFileSync(UiStaticAnalysisPath, 'utf-8'))
 
-	const ret = Object.keys(staticKeys).reduce(
-		(obj, key) => {
+	return Object.keys(staticKeys).reduce(
+		({ originalTranslations, translatedTranslations }, key) => {
 			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
 
-			obj.originalTranslations = assocPath(
+			originalTranslations = assocPath(
 				keys,
 				getInObject(keys, original),
-				obj.originalTranslations
+				originalTranslations
 			)
-			obj.translatedTranslations = assocPath(
+			translatedTranslations = assocPath(
 				keys,
 				getInObject(keys, translated),
-				obj.translatedTranslations
+				translatedTranslations
 			)
 
-			return obj
+			return {
+				originalTranslations,
+				translatedTranslations,
+			}
 		},
 		{ originalTranslations: {}, translatedTranslations: {} }
 	)
-
-	return ret
 }
 
 export const fetchTranslation = async (text) => {
 	if (typeof text !== 'string') {
 		throw new Error("❌ Can't translate anything other than a string")
 	}
+
 	const response = await fetch(`https://api.deepl.com/v2/translate`, {
 		method: 'POST',
 		headers: {
@@ -219,11 +213,13 @@ export const fetchTranslation = async (text) => {
 			target_lang: 'EN',
 		}),
 	})
+
 	if (response.status !== 200) {
 		const msg = JSON.stringify(text, null, 2)
 		console.error(`❌ Deepl return status ${response.status} for:\n\t${msg}\n`)
 		return ''
 	}
+
 	try {
 		const { translations } = await response.json()
 		const translation = translations[0].text
