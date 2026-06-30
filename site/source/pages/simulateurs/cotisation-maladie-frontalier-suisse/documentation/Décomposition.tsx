@@ -7,6 +7,8 @@ import {
 	estSituationValide,
 	joursDansAnnée,
 	plafondSécuritéSociale,
+	TAUX_ABATTEMENT_PASS,
+	TAUX_COTISATION_MALADIE,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
 import { Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
@@ -32,6 +34,7 @@ export const Décomposition = () => {
 	const abattement = abattementSécuritéSociale(détail.annéeRevenus)
 	const joursAnnée = joursDansAnnée(détail.annéeRevenus)
 	const euro = (montant: Montant) => montantToString(arrondirÀLEuro(montant))
+	const pourcent = (taux: number) => Math.round(taux * 100)
 
 	return (
 		<Tableau>
@@ -80,7 +83,8 @@ export const Décomposition = () => {
 						)}
 					</td>
 					<td>
-						25{'\u00A0'}% × PASS {détail.annéeRevenus} ({euro(plafond)})
+						{pourcent(TAUX_ABATTEMENT_PASS)}&nbsp;% × PASS {détail.annéeRevenus}{' '}
+						({euro(plafond)})
 					</td>
 					<td>
 						<Valeur couleur="primary">{euro(abattement)}</Valeur>
@@ -108,7 +112,7 @@ export const Décomposition = () => {
 						)}
 					</td>
 					<td>
-						{euro(détail.base)} × 8{'\u00A0'}%
+						{euro(détail.base)} × {pourcent(TAUX_COTISATION_MALADIE)}&nbsp;%
 					</td>
 					<td>
 						<ValeurImportante>{euro(détail.annuel)}</ValeurImportante>

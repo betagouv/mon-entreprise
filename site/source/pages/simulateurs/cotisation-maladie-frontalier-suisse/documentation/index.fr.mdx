@@ -1,6 +1,13 @@
+import {
+	TAUX_ABATTEMENT_PASS,
+	TAUX_COTISATION_MALADIE,
+} from '@/contextes/frontalier-suisse'
 import { Info } from '@/design-system'
 
 import { Décomposition } from './Décomposition'
+
+export const tauxAbattement = Math.round(TAUX_ABATTEMENT_PASS * 100)
+export const tauxCotisation = Math.round(TAUX_COTISATION_MALADIE * 100)
 
 export const metadata = {
 	title: 'Comprendre le calcul de votre cotisation maladie',
@@ -12,11 +19,11 @@ En tant que **travailleur·euse frontalier·ère en Suisse**, affilié·e à l�
 
 ## La formule
 
-> **Cotisation annuelle = (assiette − abattement) × 8 %**
+> **Cotisation annuelle = (assiette − abattement) × {tauxCotisation} %**
 
 - **Assiette retenue** : la somme de vos **salaires** et de vos **autres revenus** de l’année.
-- **Abattement** : **25 % du plafond annuel de la Sécurité sociale (PASS)**, revalorisé chaque année.
-- **Taux** : **8 %**.
+- **Abattement** : **{tauxAbattement} % du plafond annuel de la Sécurité sociale (PASS)**, revalorisé chaque année.
+- **Taux** : **{tauxCotisation} %**.
 
 La cotisation estimée à partir de ces revenus s’appliquera deux ans plus tard.
 

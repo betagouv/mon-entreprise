@@ -1,6 +1,13 @@
+import {
+	TAUX_ABATTEMENT_PASS,
+	TAUX_COTISATION_MALADIE,
+} from '@/contextes/frontalier-suisse'
 import { Info } from '@/design-system'
 
 import { Décomposition } from './Décomposition'
+
+export const tauxAbattement = Math.round(TAUX_ABATTEMENT_PASS * 100)
+export const tauxCotisation = Math.round(TAUX_COTISATION_MALADIE * 100)
 
 export const metadata = {
 	title: 'Understanding how your health insurance contribution is calculated',
@@ -12,11 +19,11 @@ As a **cross-border worker in Switzerland** covered by the French health insuran
 
 ## The formula
 
-> **Annual contribution = (base − allowance) × 8%**
+> **Annual contribution = (base − allowance) × {tauxCotisation}%**
 
 - **Income base**: the sum of your **salaries** and your **other income** for the year.
-- **Allowance**: **25% of the annual social security ceiling (PASS)**, revalued each year.
-- **Rate**: **8%**.
+- **Allowance**: **{tauxAbattement}% of the annual social security ceiling (PASS)**, revalued each year.
+- **Rate**: **{tauxCotisation}%**.
 
 The contribution estimated from this income will apply two years later.
 
