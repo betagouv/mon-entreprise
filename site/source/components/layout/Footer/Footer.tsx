@@ -88,6 +88,7 @@ export default function Footer() {
 							<Link
 								href="https://www.urssaf.fr"
 								aria-label={t(
+									'footer.urssaf.aria-label',
 									'Urssaf, voir le site urssaf.fr, nouvelle fenêtre'
 								)}
 							>
@@ -144,7 +145,7 @@ export default function Footer() {
 											href="https://github.com/betagouv/mon-entreprise"
 											noUnderline
 											aria-label={t(
-												'footer.github.new-window',
+												'footer.github.aria-label',
 												'Voir le code source sur Github, nouvelle fenêtre'
 											)}
 										>

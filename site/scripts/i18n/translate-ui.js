@@ -19,7 +19,6 @@ let originalKeys = yaml.parse(readFileSync(UiOriginalTranslationPath, 'utf-8'))
 let translatedKeys = yaml.parse(readFileSync(UiTranslationPath, 'utf-8'))
 await Promise.all(
 	Object.entries(missingTranslations)
-		.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
 		.map(async ([key, originalTranslation], i) => {
 			try {
 				await sleep(i * 50)
