@@ -78,5 +78,4 @@ const GridCentered = styled.fieldset`
 
 const TitleGrid = styled(Grid)`
 	text-align: right;
-	padding-top: ${({ theme }) => theme.spacings.xxs} !important;
 `

@@ -1,30 +1,24 @@
 import { ReactNode } from 'react'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { Body } from './paragraphs'
 
 type Props = {
 	id?: string
 	children: ReactNode
-	noWrap?: boolean
 }
 
-export const TitreObjectif = ({ id, children, noWrap = false }: Props) => {
+export const TitreObjectif = ({ id, children }: Props) => {
 	return (
-		<StyledBody as="span" id={id} $noWrap={noWrap}>
+		<StyledBody as="span" id={id}>
 			{children}
 		</StyledBody>
 	)
 }
 
-const StyledBody = styled(Body)<{ $noWrap?: boolean }>`
+const StyledBody = styled(Body)`
 	font-weight: 700;
 	display: inline;
 	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	margin: 0;
-	${({ $noWrap }) =>
-		$noWrap &&
-		css`
-			white-space: nowrap;
-		`}
 `

@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
+import { BodyStyle } from './paragraphs'
+
 export type TitreObjectifSaisissableProps = {
 	id?: string
 	htmlFor: string
@@ -20,10 +22,6 @@ export const TitreObjectifSaisissable = ({
 }
 
 const StyledLabel = styled.label`
-	color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.grey[100]
-			: theme.colors.bases.primary[700]};
+	${BodyStyle}
 	font-weight: 700;
-	font-family: ${({ theme }) => theme.fonts.main};
 `
