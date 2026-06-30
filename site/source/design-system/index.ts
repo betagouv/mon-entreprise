@@ -14,6 +14,7 @@ export * from './tag'
 export * as typography from './typography'
 export * from './typography'
 export { TitreObjectif } from './typography/TitreObjectif'
+export { TitreObjectifRadio } from './typography/TitreObjectifRadio'
 export { TitreObjectifSaisissable } from './typography/TitreObjectifSaisissable'
 
 // Layout components (dépend du thème)
