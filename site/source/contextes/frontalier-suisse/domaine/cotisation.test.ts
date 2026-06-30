@@ -1,7 +1,8 @@
 import * as O from 'effect/Option'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { euros, eurosParAn, eurosParMois } from '@/domaine/Montant'
+import { testerEn } from '@/test/testerEn'
 
 import {
 	calculeCotisationMaladie,
@@ -24,18 +25,9 @@ const situation = (
 		autresRevenus: O.some(eurosParAn(autresRevenus)),
 	}) as SituationFrontalierSuisseValide
 
-const simulerEn = (année: number): void => {
-	vi.useFakeTimers()
-	vi.setSystemTime(new Date(année, 5, 15))
-}
-
-afterEach(() => {
-	vi.useRealTimers()
-})
-
 describe('décomposeCotisationMaladie', () => {
 	it("reproduit l'exemple du simulateur Urssaf (PASS 2018, année pleine)", () => {
-		simulerEn(2018)
+		testerEn(2018)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2017, 0, 1))
@@ -47,7 +39,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it('calcule la cotisation 2026 pour une année pleine, sans prorata', () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2023, 0, 1))
@@ -59,7 +51,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it('mensualise toujours sur 12 mois (coût récurrent)', () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2023, 0, 1))
@@ -71,7 +63,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("expose une cotisation proratisée pour une affiliation en cours d'année", () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2026, 4, 1))
@@ -83,7 +75,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("ne proratise pas une affiliation d'une année antérieure à l'année de cotisation", () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2024, 4, 1))
@@ -93,7 +85,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("suit l'année d'affiliation lorsqu'elle est dans le futur et la proratise", () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2030, 4, 1))
@@ -103,7 +95,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("proratise l'année lorsque l'affiliation se termine en cours d'année", () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2024, 0, 1), new Date(2026, 8, 30))
@@ -114,7 +106,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("retient l'année de fin pour une affiliation déjà terminée", () => {
-		simulerEn(2029)
+		testerEn(2029)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2024, 0, 1), new Date(2026, 8, 30))
@@ -125,7 +117,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it('renvoie une cotisation nulle quand les revenus sont inférieurs à l’abattement', () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const résultat = décomposeCotisationMaladie(
 			situation(5_000, 0, new Date(2023, 0, 1))
@@ -136,7 +128,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it("traite l'absence d'autres revenus comme zéro", () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const sansAutresRevenus = {
 			...situation(45_000, 0, new Date(2023, 0, 1)),
@@ -150,7 +142,7 @@ describe('décomposeCotisationMaladie', () => {
 	})
 
 	it('expose les étapes dépendant de la saisie', () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const détail = décomposeCotisationMaladie(
 			situation(45_000, 10_000, new Date(2023, 0, 1))
@@ -165,7 +157,7 @@ describe('décomposeCotisationMaladie', () => {
 
 describe('calculeCotisationMaladie', () => {
 	it('expose le sous-ensemble annuel / mensuel / prorata de la décomposition', () => {
-		simulerEn(2026)
+		testerEn(2026)
 
 		const situationProratisée = situation(45_000, 10_000, new Date(2026, 4, 1))
 		const { annuel, mensuel, prorataAnnéePartielle } =

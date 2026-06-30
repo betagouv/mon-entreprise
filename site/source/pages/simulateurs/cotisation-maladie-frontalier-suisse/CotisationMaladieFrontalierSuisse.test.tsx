@@ -1,7 +1,8 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
+import { testerEn } from '@/test/testerEn'
 import { TestProvider } from '@/test/TestProvider'
 
 import CotisationMaladieFrontalierSuisse from './CotisationMaladieFrontalierSuisse'
@@ -18,6 +19,8 @@ const saisirSituationComplète = async (
 }
 
 describe('Simulateur cotisation maladie frontalier suisse', () => {
+	beforeEach(() => testerEn(2026))
+
 	it('affiche les trois champs de saisie au montage', async () => {
 		render(
 			<TestProvider>
