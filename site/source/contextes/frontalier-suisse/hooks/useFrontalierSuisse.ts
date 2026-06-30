@@ -1,4 +1,5 @@
 import { Option } from 'effect'
+import { useMemo } from 'react'
 
 import { Montant } from '@/domaine/Montant'
 
@@ -22,31 +23,34 @@ export const useFrontalierSuisse = () => {
 		  )
 		: annéeDeSimulation()
 
-	const set = {
-		dateAffiliation: (dateAffiliation: Option.Option<Date>) => {
-			updateSituation((prev) => ({ ...prev, dateAffiliation }))
-		},
+	const set = useMemo(
+		() => ({
+			dateAffiliation: (dateAffiliation: Option.Option<Date>) => {
+				updateSituation((prev) => ({ ...prev, dateAffiliation }))
+			},
 
-		dateFinAffiliation: (dateFinAffiliation: Option.Option<Date>) => {
-			updateSituation((prev) => ({ ...prev, dateFinAffiliation }))
-		},
+			dateFinAffiliation: (dateFinAffiliation: Option.Option<Date>) => {
+				updateSituation((prev) => ({ ...prev, dateFinAffiliation }))
+			},
 
-		salaires: (salaires: Option.Option<Montant<'€/an'>>) => {
-			updateSituation((prev) => ({ ...prev, salaires }))
-		},
+			salaires: (salaires: Option.Option<Montant<'€/an'>>) => {
+				updateSituation((prev) => ({ ...prev, salaires }))
+			},
 
-		autresRevenus: (autresRevenus: Option.Option<Montant<'€/an'>>) => {
-			updateSituation((prev) => ({ ...prev, autresRevenus }))
-		},
+			autresRevenus: (autresRevenus: Option.Option<Montant<'€/an'>>) => {
+				updateSituation((prev) => ({ ...prev, autresRevenus }))
+			},
 
-		situation: (situation: SituationFrontalierSuisse) => {
-			updateSituation(() => situation)
-		},
+			situation: (situation: SituationFrontalierSuisse) => {
+				updateSituation(() => situation)
+			},
 
-		reset: () => {
-			updateSituation(() => initialSituationFrontalierSuisse)
-		},
-	}
+			reset: () => {
+				updateSituation(() => initialSituationFrontalierSuisse)
+			},
+		}),
+		[updateSituation]
+	)
 
 	return {
 		situation,
