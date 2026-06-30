@@ -15,6 +15,10 @@ type Props = {
 	options: Array<ChoiceOption>
 	onChange: (value: Key) => void
 	aide?: React.ReactNode
+	documentation?: {
+		element: React.ReactNode
+		id: string
+	}
 }
 
 export const SimulationGoalRadio = ({
@@ -23,16 +27,18 @@ export const SimulationGoalRadio = ({
 	options,
 	onChange,
 	aide,
+	documentation,
 }: Props) => {
 	const baseId = useId()
 
 	return (
 		<GridCentered>
 			<TitleGrid item>
-				<TitreObjectifRadio>
+				<TitreObjectifRadio aria-describedby={documentation?.id}>
 					{titre}
 					{aide && <InfoBulle description={aide} />}
 				</TitreObjectifRadio>
+				{documentation?.element}
 			</TitleGrid>
 
 			<Grid item>
@@ -56,7 +62,6 @@ const GridCentered = styled.fieldset`
 
 	& > div {
 		padding: 0;
-		/* text-align: right; */
 		margin-right: ${({ theme }) => theme.spacings.xxs};
 	}
 

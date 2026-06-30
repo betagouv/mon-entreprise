@@ -1505,6 +1505,7 @@ pages:
       title: Cipav income simulator for self-employed professionals
     commun:
       date: Date of regulations used for calculations
+      documentation: Documentation
       periode-calcul: Calculation period
       previousSimulationBanner:
         bouton:
@@ -1680,12 +1681,14 @@ pages:
         imposition:
           IR: Income Tax
           IS: Corporate Income Tax
+          aria-label: Access the documentation on imposition mode
           disclaimer: As of now, this comparison tool does not take into account the
             calculation of income tax for SAS(U)s.
           info-bulle: You can <2>choose between corporate and income tax</2> during the
             first 5 years.
           titre: Taxation Method (excluding sole proprietorships)
         versement-libératoire:
+          aria-label: Access documentation on withholding tax
           info-bulle: As a sole proprietorship, the<1>income tax</1> is automatically
             applied. In certain situations, you may opt for the <4>withholding
             tax</4>.
