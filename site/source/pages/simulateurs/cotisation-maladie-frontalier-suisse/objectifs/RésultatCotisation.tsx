@@ -132,7 +132,6 @@ export const RésultatCotisation = ({
 
 const NoteEstimation = styled(SmallBody)`
 	margin: 0;
-	color: ${({ theme }) => theme.colors.extended.grey[100]};
 	font-weight: normal;
 	white-space: pre-line;
 `
