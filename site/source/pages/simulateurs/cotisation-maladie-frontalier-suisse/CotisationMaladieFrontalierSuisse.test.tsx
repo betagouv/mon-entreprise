@@ -105,6 +105,31 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		).toBeInTheDocument()
 	})
 
+	it("permet de préciser la fin d'affiliation avant même la date de début", async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await screen.findByRole('group', {
+			name: /affiliation a-t-elle débuté/i,
+		})
+		await user.click(
+			screen.getByRole('button', { name: /préciser votre situation/i })
+		)
+		await user.click(
+			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
+		)
+
+		expect(
+			await screen.findByRole('group', {
+				name: /votre affiliation prend-elle fin/i,
+			})
+		).toBeInTheDocument()
+	})
+
 	it("prend en compte la fin d'affiliation saisie en question", async () => {
 		const user = userEvent.setup()
 		render(
