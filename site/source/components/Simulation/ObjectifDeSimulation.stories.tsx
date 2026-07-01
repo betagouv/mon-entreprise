@@ -2,7 +2,6 @@ import { Meta, StoryObj } from '@storybook/react'
 import { Option } from 'effect'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { SmallBody } from '@/design-system'
 import { eurosParAn } from '@/domaine/Montant'
 
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'
@@ -34,15 +33,12 @@ export const Simple: Story = {
 	},
 }
 
-export const AvecExplication: Story = {
+export const AvecSousTitre: Story = {
 	args: {
-		id: 'objectif-explication',
+		id: 'objectif-sous-titre',
 		titre: 'Cotisation maladie annuelle',
-		explication: (
-			<SmallBody style={{ margin: 0 }}>
-				Estimation d’après vos revenus 2026, applicable à votre cotisation 2028.
-			</SmallBody>
-		),
+		sousTitre:
+			'Estimation d’après vos revenus 2026,\napplicable à votre cotisation 2028.',
 		valeur: Option.some(eurosParAn(1800)),
 	},
 }
