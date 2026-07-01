@@ -56,7 +56,6 @@ EntrepriseSearchField:
   placeholder: "Exemple : Café de la gare ou 40123778000127"
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
-Fermer: Fermer
 Fiche de paie: Fiche de paie
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graphique détaillant la part des visites par simulateur (alternative
@@ -72,11 +71,6 @@ Impôts: Impôts
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
-Je donne mon avis, donner mon avis sur jedonnemonavis:
-  numerique:
-    gouv:
-      fr, nouvelle fenêtre: Je donne mon avis, donner mon avis sur
-        jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
 Jours: Jours
 Le montant demandé n'est <2>pas calculable…</2>: Le montant demandé n'est <2>pas calculable…</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
@@ -93,21 +87,15 @@ Message à caractère informatif: Message à caractère informatif
 Modifier mes réponses: Modifier mes réponses
 Mois: Mois
 Mon entreprise: Mon entreprise
-Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
-  urssaf:
-    fr: Mon entreprise recrute ! Voir les offres d'emplois de
-      mon-entreprise.urssaf.fr
 Montant annuel: Montant annuel
 Montant mensuel: Montant mensuel
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
-Non: Non
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
 Options: Options
-Oui: Oui
 Outils pour les développeurs: Outils pour les développeurs
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Page d'accueil
@@ -161,8 +149,6 @@ Tout réinitialiser: Tout réinitialiser
 Trimestre: Trimestre
 URL de votre simulation: URL de votre simulation
 Un avis sur cette page ?: Un avis sur cette page ?
-Urssaf, voir le site urssaf:
-  fr, nouvelle fenêtre: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Version bêta: Version bêta
@@ -191,7 +177,6 @@ accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
 aides différées, voir le détail du calcul pour aides différées: aides différées, voir le détail du calcul pour aides différées
-août: août
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
@@ -216,15 +201,9 @@ aria-label:
   service-public: service-public.fr, nouvelle fenêtre
   urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
   équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
-avril: avril
 cards:
   simulator-resource:
     cta: Accéder au simulateur
-certains critères, en savoir plus sur entreprendre:
-  service-public:
-    gouv:
-      fr, nouvelle fenêtre: certains critères, en savoir plus sur
-        entreprendre.service-public.gouv.fr, nouvelle fenêtre
 checklist:
   showmore:
     closed: En savoir plus
@@ -372,7 +351,6 @@ design-system:
     open-selector: Ouvrir le sélecteur de date
     prev-month: Mois précédent
     year: Année
-décembre: décembre
 entreprise:
   détails: Entreprise créée le <1></1> et domiciliée à <3></3>.
 error:
@@ -402,6 +380,9 @@ feedback:
       Veuillez réessayer ou nous contacter par mail à l’adresse
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>Une erreur est survenue pendant l’envoi du message</0>
+  jedonnemonavis:
+    aria-label: Je donne mon avis, donner mon avis sur
+      jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre
   reportError: Faire une suggestion
   success:
     body1: Notre équipe prend en charge votre retour.
@@ -411,15 +392,28 @@ feedback:
   thanks: Merci de votre retour !
 footer:
   github:
-    new-window: Voir le code source sur Github, nouvelle fenêtre
+    aria-label: Voir le code source sur Github, nouvelle fenêtre
     text: Voir le code source sur Github
-février: février
+  urssaf:
+    aria-label: Urssaf, voir le site urssaf.fr, nouvelle fenêtre
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 global:
   fermer: Fermer
-  oui-non:
-    non: Non
-    oui: Oui
+  mois:
+    août: août
+    avril: avril
+    décembre: décembre
+    février: février
+    janvier: janvier
+    juillet: juillet
+    juin: juin
+    mai: mai
+    mars: mars
+    novembre: novembre
+    octobre: octobre
+    septembre: septembre
+  non: Non
+  oui: Oui
 gérer:
   ressources:
     annuaire-entreprises:
@@ -442,10 +436,7 @@ iframe:
 intégration:
   description: Outils pour les développeurs
   title: Intégration
-janvier: janvier
 jours: jours
-juillet: juillet
-juin: juin
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
   aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
@@ -469,8 +460,6 @@ landing:
     personnalisées</2> à vos questions sur la <5>création et la gestion</5> de
     votre entreprise.
   title: L'assistant officiel des entrepreneurs
-le portail officiel, accéder à aides-entreprises:
-  fr, nouvelle fenêtre: le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
 legalNotice:
   accessibility:
     content: La plateforme est <2>partiellement conforme</2> aux normes
@@ -501,9 +490,7 @@ legalNotice:
 library:
   description: Outils pour les développeurs
   title: Librairie de calcul
-mai: mai
 main-menu: Menu principal
-mars: mars
 messages:
   loading: Chargement en cours…
   masquer-message: Cacher le message
@@ -527,8 +514,6 @@ nextSteps:
     cta: Voir la documentation
     title: Intégrer le module web
 nombres de votes: nombres de votes
-novembre: novembre
-octobre: octobre
 pages:
   "404":
     action: Revenir en lieu sûr
@@ -1225,6 +1210,9 @@ pages:
           aria-label: Urssaf, voir l’intégration, nouvelle fenêtre
           cta-label: Voir l’intégration
     module: Quel module ?
+    recrutement:
+      aria-label: Mon entreprise recrute ! Voir les offres d'emplois de
+        mon-entreprise.urssaf.fr
     spreadsheet: <0>Utiliser avec un tableur</0><1>Vous souhaitez utiliser un
       simulateur dans une feuille Google Sheets ou Excel ? C'est possible grâce
       à notre <2>API REST</2> !</1><2>Intégrer un simulateur dans
@@ -1864,26 +1852,29 @@ pages:
         cotisations: Cotisations
         impôt: Impôt
         revenu: Dividendes nets
-      seo: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
-        société, le résultat de l'exercice précédent peut être conservé en
-        réserve (pour de futurs investissements) ou bien être versé en
-        dividendes. Du point de vue des bénéficiaires, ce sont des revenus de
-        capitaux mobiliers, soumis à cotisations et à une imposition
-        spécifiques.</1><2>Ne sont pris en compte dans ce simulateur que les cas
-        de figure du bénéficiaire personne physique et des dividendes décidés
-        par la société.</2><3>Comment sont calculés les prélèvements sur les
-        dividendes ?</3><4>Les dividendes peuvent être soumis au prélèvement
-        forfaitaire unique de 30% incluant imposition et contributions sociales
-        (aussi appelé<1> flat tax</1>). Par option, le barème de l'impôt peut
-        être choisi. Ce simulateur peut être utilisé pour comparer les deux
-        régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est prélevé au
-        moment du versement des dividendes, sauf si le bénéficiaire remplit
-        <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
-        salarié</6><7>Pour le travailleur indépendant non salarié, la part des
-        dividendes dépassant 10% du capital social sera soumise aux cotisations
-        et contributions suivant les mêmes modalités que sa rémunération de
-        dirigeant.</7><8>Pour ce cas de figure veuillez utiliser le
-        <2>simulateur de revenus pour indépendant</2>.</8>
+      seo:
+        aria-label: certains critères, en savoir plus sur
+          entreprendre.service-public.gouv.fr, nouvelle fenêtre
+        text: <0>Les dividendes et distributions</0><1>À la fin de l'exercice d'une
+          société, le résultat de l'exercice précédent peut être conservé en
+          réserve (pour de futurs investissements) ou bien être versé en
+          dividendes. Du point de vue des bénéficiaires, ce sont des revenus de
+          capitaux mobiliers, soumis à cotisations et à une imposition
+          spécifiques.</1><2>Ne sont pris en compte dans ce simulateur que les
+          cas de figure du bénéficiaire personne physique et des dividendes
+          décidés par la société.</2><3>Comment sont calculés les prélèvements
+          sur les dividendes ?</3><4>Les dividendes peuvent être soumis au
+          prélèvement forfaitaire unique de 30% incluant imposition et
+          contributions sociales (aussi appelé<1> flat tax</1>). Par option, le
+          barème de l'impôt peut être choisi. Ce simulateur peut être utilisé
+          pour comparer les deux régimes.</4><5>Un acompte du montant de l'impôt
+          (12,8%) est prélevé au moment du versement des dividendes, sauf si le
+          bénéficiaire remplit <2>certains critères</2>.</5><6>Cas particulier
+          du dirigeant non salarié</6><7>Pour le travailleur indépendant non
+          salarié, la part des dividendes dépassant 10% du capital social sera
+          soumise aux cotisations et contributions suivant les mêmes modalités
+          que sa rémunération de dirigeant.</7><8>Pour ce cas de figure veuillez
+          utiliser le <2>simulateur de revenus pour indépendant</2>.</8>
       shortName: Dividendes
       title: Simulateur de versement de dividendes
       warning:
@@ -2340,41 +2331,44 @@ pages:
         ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
           tout-en-un pour salariés et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
-      seo: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
-        d'embauche l'employeur propose en général une rémunération exprimée en «
-        brut ». Le montant annoncé inclut ainsi les cotisations salariales, qui
-        servent à financer la protection sociale du salarié et qui sont
-        retranchées du salaire « net » perçu par le salarié.</1><2>Vous pouvez
-        utiliser notre simulateur pour convertir le <2>salaire brut en net</2> :
-        il vous suffit pour cela saisir la rémunération annoncée dans la case
-        salaire brut. La simulation peut-être affinée en répondant aux
-        différentes questions (CDD, statut cadre, heures supplémentaires, temps
-        partiel, titre-restaurants, etc.).</2><3></3><4>Par ailleurs depuis
-        2019, l'<1>impôt sur le revenu</1> est prélevé à la source. Pour ce
-        faire, la direction générale des finances publiques (DGFiP) transmet à
-        l'employeur le taux d'imposition calculé à partir de la déclaration de
-        revenus du salarié. Si ce taux est inconnu, par exemple lors d'une
-        première année d'activité, l'employeur utilise le <4>taux
-        neutre</4>.</4></0><1><0>Comment calculer le coût d'embauche ?</0><1>Si
-        vous cherchez à embaucher, vous pouvez calculer le coût total de la
-        rémunération de votre salarié, ainsi que les montants de cotisations
-        patronales et salariales correspondant. Cela vous permet de définir le
-        niveau de rémunération en connaissant le montant global de charge que
-        cela représente pour votre entreprise.</1><2>En plus du salaire, notre
-        simulateur prend en compte le calcul des avantages en nature (téléphone,
-        véhicule de fonction, etc.), ainsi que la mutuelle santé
-        obligatoire.</2><3>Il existe des <2>aides différées</2> à l'embauche qui
-        ne sont pas toutes prises en compte par notre simulateur, vous pouvez
-        les retrouver sur <6>le portail officiel</6>.</3></1><2><0>Échanger avec
-        un conseiller pour votre projet de recrutement</0><1>Vous souhaitez
-        :</1><2><0>Être conseillé(e) sur les aides à l'embauche mobilisables
-        pour votre recrutement</0><1>Vous informer sur l'apprentissage, le
-        contrat de professionnalisation, les emplois francs en quartiers
-        prioritaires, le <1>VTE</1>…</1><2>Trouver des candidats</2><3>Recruter
-        une personne en situation de handicap</3></2><3><0>Service public simple
-        et rapide : vous êtes rappelé(e) par le conseiller qui peut vous
-        aider.</0></3><4>Partenaires mobilisés : France Travail, Apec, Cap
-        Emploi, missions locales…</4><5></5></2>"
+      seo:
+        aria-label: le portail officiel, accéder à aides-entreprises.fr, nouvelle fenêtre
+        text: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
+          d'embauche l'employeur propose en général une rémunération exprimée en
+          « brut ». Le montant annoncé inclut ainsi les cotisations salariales,
+          qui servent à financer la protection sociale du salarié et qui sont
+          retranchées du salaire « net » perçu par le salarié.</1><2>Vous pouvez
+          utiliser notre simulateur pour convertir le <2>salaire brut en net</2>
+          : il vous suffit pour cela saisir la rémunération annoncée dans la
+          case salaire brut. La simulation peut-être affinée en répondant aux
+          différentes questions (CDD, statut cadre, heures supplémentaires,
+          temps partiel, titre-restaurants, etc.).</2><3></3><4>Par ailleurs
+          depuis 2019, l'<1>impôt sur le revenu</1> est prélevé à la source.
+          Pour ce faire, la direction générale des finances publiques (DGFiP)
+          transmet à l'employeur le taux d'imposition calculé à partir de la
+          déclaration de revenus du salarié. Si ce taux est inconnu, par exemple
+          lors d'une première année d'activité, l'employeur utilise le <4>taux
+          neutre</4>.</4></0><1><0>Comment calculer le coût d'embauche
+          ?</0><1>Si vous cherchez à embaucher, vous pouvez calculer le coût
+          total de la rémunération de votre salarié, ainsi que les montants de
+          cotisations patronales et salariales correspondant. Cela vous permet
+          de définir le niveau de rémunération en connaissant le montant global
+          de charge que cela représente pour votre entreprise.</1><2>En plus du
+          salaire, notre simulateur prend en compte le calcul des avantages en
+          nature (téléphone, véhicule de fonction, etc.), ainsi que la mutuelle
+          santé obligatoire.</2><3>Il existe des <2>aides différées</2> à
+          l'embauche qui ne sont pas toutes prises en compte par notre
+          simulateur, vous pouvez les retrouver sur <6>le portail
+          officiel</6>.</3></1><2><0>Échanger avec un conseiller pour votre
+          projet de recrutement</0><1>Vous souhaitez :</1><2><0>Être
+          conseillé(e) sur les aides à l'embauche mobilisables pour votre
+          recrutement</0><1>Vous informer sur l'apprentissage, le contrat de
+          professionnalisation, les emplois francs en quartiers prioritaires, le
+          <1>VTE</1>…</1><2>Trouver des candidats</2><3>Recruter une personne en
+          situation de handicap</3></2><3><0>Service public simple et rapide :
+          vous êtes rappelé(e) par le conseiller qui peut vous
+          aider.</0></3><4>Partenaires mobilisés : France Travail, Apec, Cap
+          Emploi, missions locales…</4><5></5></2>"
       shortname: Salarié
       title: Simulateur de revenus pour salarié
       titres-restaurant: en titres-restaurant
@@ -2419,6 +2413,8 @@ pages:
   statistiques:
     a11y-switch: Activer le mode accessibilité sur cette section
     anonymous: Les données recueillies sont anonymisées.
+    demandes:
+      aria-label: "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
     explanation: <0><0>Les simulateurs et assistants de ce site ont pour but de
       <2>répondre à une question</2> (par exemple « combien mon entreprise
       doit-elle payer pour embaucher une personne ? » ou « Quel est le meilleur
@@ -2452,7 +2448,6 @@ salarié, accéder au simulateur salarié: salarié, accéder au simulateur sala
 select:
   value:
     default: Choisissez une option
-septembre: septembre
 shareSimulation:
   banner: Générer un lien de partage
   button:
@@ -2646,8 +2641,6 @@ vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux 
 warning:
   overwrite:
     situation: Voulez-vous écraser votre situation ?
-"{{title}}, voir la demande sur github":
-  com, nouvelle fenêtre: "{{title}}, voir la demande sur github.com, nouvelle fenêtre"
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
 "Établissement recherché :": "Établissement recherché :"

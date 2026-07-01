@@ -47,18 +47,18 @@ export default function RéductionMoisParMois({
 	)
 
 	const months = [
-		t('janvier'),
-		t('février'),
-		t('mars'),
-		t('avril'),
-		t('mai'),
-		t('juin'),
-		t('juillet'),
-		t('août'),
-		t('septembre'),
-		t('octobre'),
-		t('novembre'),
-		t('décembre'),
+		t('global.mois.janvier', 'janvier'),
+		t('global.mois.février', 'février'),
+		t('global.mois.mars', 'mars'),
+		t('global.mois.avril', 'avril'),
+		t('global.mois.mai', 'mai'),
+		t('global.mois.juin', 'juin'),
+		t('global.mois.juillet', 'juillet'),
+		t('global.mois.août', 'août'),
+		t('global.mois.septembre', 'septembre'),
+		t('global.mois.octobre', 'octobre'),
+		t('global.mois.novembre', 'novembre'),
+		t('global.mois.décembre', 'décembre'),
 	]
 
 	const quarters = {

@@ -106,10 +106,10 @@ export default function Associés() {
 								value={question2}
 							>
 								<Radio id="question-2-oui" value={'oui'}>
-									{t('global.oui-non.oui', 'Oui')}
+									{t('global.oui', 'Oui')}
 								</Radio>
 								<Radio id="question-2-non" value={'non'}>
-									{t('global.oui-non.non', 'Non')}
+									{t('global.non', 'Non')}
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
@@ -188,10 +188,10 @@ export default function Associés() {
 								value={question3}
 							>
 								<Radio id="question-3-oui" value={'oui'}>
-									{t('global.oui-non.oui', 'Oui')}
+									{t('global.oui', 'Oui')}
 								</Radio>
 								<Radio id="question-3-non" value={'non'}>
-									{t('global.oui-non.non', 'Non')}
+									{t('global.non', 'Non')}
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
