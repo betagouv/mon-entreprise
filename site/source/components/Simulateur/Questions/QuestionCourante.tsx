@@ -10,11 +10,13 @@ import { Question } from '@/hooks/useQuestionsEditorialisees'
 import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
 import { QuestionPublicodes } from './QuestionPublicodes'
 
-type Props<S extends Situation = Situation> = {
+type Props<S extends Situation> = {
 	questions: Array<Question<S>>
 }
 
-export const QuestionCourante = ({ questions }: Props) => {
+export const QuestionCourante = <S extends Situation = Situation>({
+	questions,
+}: Props<S>) => {
 	const { t } = useTranslation()
 	const { autoScrollToQuestions } = useAutoScrollToQuestions()
 

@@ -7,7 +7,7 @@ import { styled } from 'styled-components'
 import { Body, Button, EditIcon, Li, ReturnButton, Ul } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from '../../conversation/Explicable'
 import Value from '../../EngineValue/Value'
@@ -15,26 +15,28 @@ import ScrollToElement from '../../utils/Scroll/ScrollToElement'
 import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
 import { BoutonReset } from '../Boutons/BoutonReset'
 
-type Props<S extends Situation = Situation> = {
+type Props<S extends Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
 	onSélection: (questionId: string) => void
 	retour: () => void
+	onReset?: () => void
 }
 
-export const ListeQuestions = ({
+export const ListeQuestions = <S extends Situation = Situation>({
 	groupesDeQuestions,
 	onSélection,
 	retour,
-}: Props) => {
+	onReset,
+}: Props<S>) => {
 	const { t } = useTranslation()
 	const { autoScrollToQuestions } = useAutoScrollToQuestions()
-	const engine = useEngine()
+	const engine = useOptionalEngine()
 
 	return (
 		<ScrollToElement when={autoScrollToQuestions}>
 			<BoutonsContainer>
 				<ReturnButton size="XXS" onPress={retour} />
-				<BoutonReset />
+				<BoutonReset onReset={onReset} />
 			</BoutonsContainer>
 
 			{Object.keys(groupesDeQuestions).length && (
@@ -44,23 +46,27 @@ export const ListeQuestions = ({
 						R.toEntries,
 						map(([id, groupe]) => {
 							const premièreQuestion = groupe.liste[0]
+							const estPublicodes =
+								premièreQuestion._tag === 'QuestionPublicodes'
 
 							return (
 								<StyledLi key={id}>
 									<div>
 										<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
-										<ExplicableRule dottedName={premièreQuestion.id} />
+										{estPublicodes && (
+											<ExplicableRule dottedName={premièreQuestion.id} />
+										)}
 									</div>
 
 									<ValueContainer>
-										{groupe.réponse ? (
+										{groupe.réponse && engine ? (
 											groupe.réponse(engine, t)
-										) : (
+										) : estPublicodes ? (
 											<Value
 												expression={premièreQuestion.id}
 												linkToRule={false}
 											/>
-										)}
+										) : null}
 										<EditButton
 											light
 											onPress={() => onSélection(id)}

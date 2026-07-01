@@ -7,22 +7,35 @@ import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/domaine/questions'
+import { Situation } from '@/domaine/Situation'
 import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
 
 import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
+import {
+	ComposantQuestionFournie,
+	GroupeDeQuestionsFournies,
+} from './Questions/ComposantQuestionFournie'
 import { ListeQuestions } from './Questions/ListeQuestions'
 import { QuestionCourante } from './Questions/QuestionCourante'
 import { QuestionsPrincipales } from './Questions/QuestionsPrincipales'
 
-type Props = {
-	questionsPublicodesPrincipales: QuestionPublicodes[]
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
+type Props<S extends Situation> = {
+	questionsPublicodesPrincipales?: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
+	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
+	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
+	situation?: S
+	onReset?: () => void
 }
 
-export const BlocSituation = ({
+export const BlocSituation = <S extends Situation = Situation>({
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
-}: Props) => {
+	questionsFourniesPrincipales,
+	groupesDeQuestionsFournies,
+	situation,
+	onReset,
+}: Props<S>) => {
 	const { t } = useTranslation()
 	const {
 		questionsPrincipales,
@@ -32,6 +45,9 @@ export const BlocSituation = ({
 	} = useQuestionsÉditorialisées({
 		questionsPublicodesPrincipales,
 		groupesDeQuestionsPublicodes,
+		questionsFourniesPrincipales,
+		groupesDeQuestionsFournies,
+		situation,
 	})
 
 	const { setAutoScrollToQuestions } = useAutoScrollToQuestions()
@@ -80,6 +96,7 @@ export const BlocSituation = ({
 						setAfficherQuestionsPrincipales(true)
 						setAutoScrollToQuestions(true)
 					}}
+					onReset={onReset}
 				/>
 			)}
 		</Section>

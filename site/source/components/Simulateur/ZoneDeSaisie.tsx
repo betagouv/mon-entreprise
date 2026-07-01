@@ -6,22 +6,35 @@ import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/domaine/questions'
+import { Situation } from '@/domaine/Situation'
 
 import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { BlocMontants } from './BlocMontants'
 import { BlocSituation } from './BlocSituation'
+import {
+	ComposantQuestionFournie,
+	GroupeDeQuestionsFournies,
+} from './Questions/ComposantQuestionFournie'
 
-type Props = {
+type Props<S extends Situation> = {
 	montants: React.ReactNode
-	questionsPublicodesPrincipales: QuestionPublicodes[]
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
+	questionsPublicodesPrincipales?: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
+	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
+	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
+	situation?: S
+	onReset?: () => void
 }
 
-export const ZoneDeSaisie = ({
+export const ZoneDeSaisie = <S extends Situation = Situation>({
 	montants,
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
-}: Props) => {
+	questionsFourniesPrincipales,
+	groupesDeQuestionsFournies,
+	situation,
+	onReset,
+}: Props<S>) => {
 	const { t } = useTranslation()
 	const { setAutoScrollToQuestions } = useAutoScrollToQuestions()
 
@@ -39,6 +52,10 @@ export const ZoneDeSaisie = ({
 					<BlocSituation
 						questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 						groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
+						questionsFourniesPrincipales={questionsFourniesPrincipales}
+						groupesDeQuestionsFournies={groupesDeQuestionsFournies}
+						situation={situation}
+						onReset={onReset}
 					/>
 				</LeftColumn>
 				<RightColumn onFocus={() => setAutoScrollToQuestions(false)}>
