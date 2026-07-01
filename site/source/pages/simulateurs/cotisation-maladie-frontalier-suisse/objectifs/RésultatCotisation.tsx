@@ -1,6 +1,5 @@
 import { Option } from 'effect'
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
 import { ObjectifDeSimulation } from '@/components/Simulation/ObjectifDeSimulation'
 import {
@@ -9,7 +8,7 @@ import {
 	calculeCotisationMaladie,
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
-import { Body, Link, Message, SmallBody } from '@/design-system'
+import { Body, Link, Message } from '@/design-system'
 import { useSitePaths } from '@/sitePaths'
 
 export const RésultatCotisation = ({
@@ -76,15 +75,11 @@ export const RésultatCotisation = ({
 						)}
 					</Link>
 				}
-				explication={
-					<NoteEstimation>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.estimation',
-							'Estimation d’après vos revenus {{annéeRevenus}},\napplicable à votre cotisation {{annéeApplication}}.',
-							{ annéeRevenus, annéeApplication: annéeRevenus + 2 }
-						)}
-					</NoteEstimation>
-				}
+				sousTitre={t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.estimation',
+					'Estimation d’après vos revenus {{annéeRevenus}},\napplicable à votre cotisation {{annéeApplication}}.',
+					{ annéeRevenus, annéeApplication: annéeRevenus + 2 }
+				)}
 				valeur={Option.some(cotisation.annuel)}
 			/>
 			<ObjectifDeSimulation
@@ -129,9 +124,3 @@ export const RésultatCotisation = ({
 		</>
 	)
 }
-
-const NoteEstimation = styled(SmallBody)`
-	margin: 0;
-	font-weight: normal;
-	white-space: pre-line;
-`
