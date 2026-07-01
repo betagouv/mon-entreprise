@@ -1,12 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 
-import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation, { SimulationGoals } from '@/components/Simulation'
+import { Simulateur } from '@/components/Simulateur/Simulateur'
 import {
 	estSituationValide,
 	FrontalierSuisseProvider,
 	situationEstCommencée,
-	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
 import { docCotisationFrontalierSuisse } from '@/external-links/docCotisationFrontalierSuisse'
@@ -17,16 +15,16 @@ import { useSimulatorData } from '@/hooks/useSimulatorData'
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
 import { ObjectifAutresRevenus } from './objectifs/ObjectifAutresRevenus'
-import { ObjectifDateAffiliation } from './objectifs/ObjectifDateAffiliation'
 import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
+import { DateAffiliationQuestion } from './questions/DateAffiliationQuestion'
 import { DateFinAffiliationQuestion } from './questions/DateFinAffiliationQuestion'
 
-const Simulateur = () => {
+const PageSimulateur = () => {
 	const simulateurConfig = useSimulatorData(
 		'cotisation-maladie-frontalier-suisse'
 	)
-	const { situation } = useFrontalierSuisse()
+	const { situation, set } = useFrontalierSuisse()
 
 	const externalLinks = [
 		docFrontalierSuisse,
@@ -40,23 +38,32 @@ const Simulateur = () => {
 			externalLinks={externalLinks}
 			showDate={false}
 		>
-			<Simulation<SituationFrontalierSuisse>
-				entrepriseSelection={false}
+			<Simulateur
+				id="cotisation-maladie-frontalier-suisse"
 				situation={situation}
-				simulationEstCommencée={(s) => (s ? situationEstCommencée(s) : false)}
-				questions={[DateFinAffiliationQuestion]}
-				hideDetails
-			>
-				<SimulateurWarning simulateur="cotisation-maladie-frontalier-suisse" />
-				<SimulationGoals>
-					<ObjectifDateAffiliation />
-					<ObjectifSalaires />
-					<ObjectifAutresRevenus />
-					{estSituationValide(situation) && (
-						<RésultatCotisation situation={situation} />
-					)}
-				</SimulationGoals>
-			</Simulation>
+				questionsFourniesPrincipales={[DateAffiliationQuestion]}
+				groupesDeQuestionsFournies={{
+					'fin-affiliation': {
+						titre: (t) =>
+							t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.groupe-fin-affiliation.titre',
+								'Fin d’affiliation'
+							),
+						liste: [DateFinAffiliationQuestion],
+					},
+				}}
+				montantsÀSaisir={
+					<>
+						<ObjectifSalaires />
+						<ObjectifAutresRevenus />
+						{estSituationValide(situation) && (
+							<RésultatCotisation situation={situation} />
+						)}
+					</>
+				}
+				simulationEstCommencée={situationEstCommencée(situation)}
+				onReset={set.reset}
+			/>
 		</SimulateurPageLayout>
 	)
 }
@@ -66,7 +73,7 @@ export default function CotisationMaladieFrontalierSuisse() {
 		<FrontalierSuisseProvider>
 			<Routes>
 				<Route path="/documentation/*" element={<DocumentationHub />} />
-				<Route path="/*" element={<Simulateur />} />
+				<Route path="/*" element={<PageSimulateur />} />
 			</Routes>
 		</FrontalierSuisseProvider>
 	)
