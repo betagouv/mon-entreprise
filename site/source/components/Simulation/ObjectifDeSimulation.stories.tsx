@@ -1,17 +1,12 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Option } from 'effect'
-import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { SmallBody } from '@/design-system'
 import { eurosParAn } from '@/domaine/Montant'
 
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'
-
-const FondObjectifs = styled.div`
-	background-color: ${({ theme }) => theme.colors.bases.primary[700]};
-	padding: ${({ theme }) => theme.spacings.lg};
-`
+import { SimulationGoalsContainer } from './SimulationGoalsContainer'
 
 const meta: Meta<typeof ObjectifDeSimulation> = {
 	component: ObjectifDeSimulation,
@@ -19,9 +14,9 @@ const meta: Meta<typeof ObjectifDeSimulation> = {
 	decorators: [
 		(Story) => (
 			<ForceThemeProvider forceTheme="dark">
-				<FondObjectifs>
+				<SimulationGoalsContainer $isEmbeded={false} $isFirstStepCompleted>
 					<Story />
-				</FondObjectifs>
+				</SimulationGoalsContainer>
 			</ForceThemeProvider>
 		),
 	],
