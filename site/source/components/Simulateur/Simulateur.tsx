@@ -5,6 +5,7 @@ import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/domaine/questions'
+import { Situation } from '@/domaine/Situation'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 
@@ -14,29 +15,41 @@ import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
 import { AutoScrollToQuestionsProvider } from './AutoScrollToQuestions'
 import { ÉLÉMENT_DÉTAILS_ID } from './Boutons/BoutonDétail'
+import {
+	ComposantQuestionFournie,
+	GroupeDeQuestionsFournies,
+} from './Questions/ComposantQuestionFournie'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
-type Props = {
+type Props<S extends Situation> = {
 	id: SimulateurId
 	montantsÀSaisir: React.ReactNode
-	questionsPublicodesPrincipales: QuestionPublicodes[]
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
+	questionsPublicodesPrincipales?: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
+	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
+	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
+	situation?: S
+	onReset?: () => void
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	simulationEstCommencée: boolean
 	détail?: React.ReactNode
 }
 
-export const Simulateur = ({
+export const Simulateur = <S extends Situation = Situation>({
 	id,
 	montantsÀSaisir,
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
+	questionsFourniesPrincipales,
+	groupesDeQuestionsFournies,
+	situation,
+	onReset,
 	avertissement,
 	conseillersEntreprisesVariant,
 	simulationEstCommencée,
 	détail,
-}: Props) => {
+}: Props<S>) => {
 	const { trackPage } = useTracking()
 
 	useLayoutEffect(() => {
@@ -57,6 +70,10 @@ export const Simulateur = ({
 				<ZoneDeSaisie
 					questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 					groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
+					questionsFourniesPrincipales={questionsFourniesPrincipales}
+					groupesDeQuestionsFournies={groupesDeQuestionsFournies}
+					situation={situation}
+					onReset={onReset}
 					montants={montantsÀSaisir}
 				/>
 			</AutoScrollToQuestionsProvider>

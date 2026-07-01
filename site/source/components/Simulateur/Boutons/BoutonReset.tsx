@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { ArrowCircleIcon, Button } from '@/design-system'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 
-export const BoutonReset = () => {
+export const BoutonReset = ({ onReset }: { onReset?: () => void }) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
@@ -13,7 +13,11 @@ export const BoutonReset = () => {
 			size="XXS"
 			light
 			onPress={() => {
-				dispatch(réinitialiseLaSimulation())
+				if (onReset) {
+					onReset()
+				} else {
+					dispatch(réinitialiseLaSimulation())
+				}
 			}}
 		>
 			<ArrowCircleIcon />
