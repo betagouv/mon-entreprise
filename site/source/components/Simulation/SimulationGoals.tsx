@@ -1,7 +1,7 @@
 import React from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Grid } from '@/design-system'
@@ -10,6 +10,7 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
 
 import { LogoWithLink } from '../Logo'
+import { SimulationGoalsContainer } from './SimulationGoalsContainer'
 
 type SimulationGoalsProps = {
 	children: React.ReactNode
@@ -53,59 +54,6 @@ export function SimulationGoals({ toggles, children }: SimulationGoalsProps) {
 		</WatchInitialRender>
 	)
 }
-
-const SimulationGoalsContainer = styled.div<{
-	$isFirstStepCompleted: boolean
-	$isEmbeded: boolean
-}>`
-	z-index: 2;
-	position: relative;
-	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	${({ $isEmbeded }) =>
-		!$isEmbeded &&
-		css`
-			border-top-right-radius: 0;
-		`}
-	${({ $isFirstStepCompleted }) =>
-		$isFirstStepCompleted &&
-		css`
-			border-bottom-right-radius: 0;
-			border-bottom-left-radius: 0;
-		`}
-	transition: border-radius 0.15s;
-	background: ${({ theme }) => theme.colors.bases.primary[600]};
-
-	#simu-update-explaining {
-		text-align: center;
-	}
-	& > div:not(.sr-only) {
-		margin-top: ${({ theme }) => theme.spacings.md};
-	}
-	& > :is(div, fieldset) {
-		max-width: 75%;
-		margin-inline: auto;
-		@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-			max-width: 100%;
-		}
-	}
-	@media print {
-		background: initial;
-		padding: 0;
-	}
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		border-start-end-radius: ${({ theme }) => theme.box.borderRadius};
-
-		#simu-update-explaining {
-			text-align: left;
-		}
-
-		& > div:not(.sr-only) {
-			margin-top: ${({ theme }) => theme.spacings.xs};
-		}
-	}
-`
 
 function TopSection({ toggles }: { toggles?: React.ReactNode }) {
 	const inIframe = useIsEmbedded()
