@@ -33,5 +33,4 @@ DateFinAffiliationQuestion.libellé = (t) =>
 		'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-fin-affiliation.libellé',
 		'À quelle date votre affiliation prend-elle fin ?'
 	)
-DateFinAffiliationQuestion.applicable = (situation) =>
-	O.isSome(situation.dateAffiliation)
+DateFinAffiliationQuestion.applicable = () => true
