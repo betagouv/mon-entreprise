@@ -7,14 +7,21 @@ import { TestProvider } from '@/test/TestProvider'
 
 import CotisationMaladieFrontalierSuisse from './CotisationMaladieFrontalierSuisse'
 
+const saisirDateAffiliation = async (
+	user: ReturnType<typeof userEvent.setup>,
+	dateAffiliation: string
+) => {
+	const question = await screen.findByRole('group', {
+		name: /affiliation a-t-elle débuté/i,
+	})
+	await user.type(within(question).getByRole('textbox'), dateAffiliation)
+}
+
 const saisirSituationComplète = async (
 	user: ReturnType<typeof userEvent.setup>,
 	dateAffiliation = '15/01/2026'
 ) => {
-	await user.type(
-		await screen.findByLabelText(/Date d'affiliation/i),
-		dateAffiliation
-	)
+	await saisirDateAffiliation(user, dateAffiliation)
 	await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
 }
 
@@ -28,7 +35,11 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		expect(await screen.findByText(/Date d'affiliation/i)).toBeInTheDocument()
+		expect(
+			await screen.findByRole('group', {
+				name: /affiliation a-t-elle débuté/i,
+			})
+		).toBeInTheDocument()
 		expect(screen.getByText(/Salaires perçus en/i)).toBeInTheDocument()
 		expect(screen.getByText(/Autres revenus perçus en/i)).toBeInTheDocument()
 	})
@@ -40,7 +51,9 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await screen.findByText(/Date d'affiliation/i)
+		await screen.findByRole('group', {
+			name: /affiliation a-t-elle débuté/i,
+		})
 
 		expect(
 			screen.queryByText(/Cotisation maladie annuelle/i)
@@ -100,15 +113,17 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await user.type(
-			await screen.findByLabelText(/Date d'affiliation/i),
-			'01/01/2026'
-		)
-		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
+		await saisirSituationComplète(user, '01/01/2026')
 
 		await screen.findByText(/Cotisation maladie annuelle/i)
 		expect(screen.queryByText(/au prorata/i)).not.toBeInTheDocument()
 
+		await user.click(
+			screen.getByRole('button', { name: /préciser votre situation/i })
+		)
+		await user.click(
+			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
+		)
 		const questionFin = await screen.findByRole('group', {
 			name: /votre affiliation prend-elle fin/i,
 		})

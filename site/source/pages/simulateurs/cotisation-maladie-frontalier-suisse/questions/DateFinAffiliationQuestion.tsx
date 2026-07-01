@@ -1,14 +1,14 @@
 import * as O from 'effect/Option'
 import { useCallback } from 'react'
 
-import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { ComposantQuestionFournie } from '@/components/Simulateur/ComposantQuestionFournie'
 import {
 	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
 import { DateField } from '@/design-system'
 
-export const DateFinAffiliationQuestion: ComposantQuestion<
+export const DateFinAffiliationQuestion: ComposantQuestionFournie<
 	SituationFrontalierSuisse
 > = () => {
 	const { situation, set } = useFrontalierSuisse()
@@ -35,5 +35,3 @@ DateFinAffiliationQuestion.libellé = (t) =>
 	)
 DateFinAffiliationQuestion.applicable = (situation) =>
 	O.isSome(situation.dateAffiliation)
-DateFinAffiliationQuestion.répondue = (situation) =>
-	O.isSome(situation.dateFinAffiliation)

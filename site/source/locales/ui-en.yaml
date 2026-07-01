@@ -1745,29 +1745,33 @@ pages:
           montant: Amount
           prorata: Prorated contribution for {{année}}
           étape: Step
-        meta-description: Understanding How Health Insurance Contributions Are Calculated
-          for Cross-Border Workers in Switzerland
+        meta-description: Understanding How Health Insurance Contributions Are
+          Calculated for Cross-Border Workers in Switzerland
         meta-titre: Documentation - Health Insurance Contributions for Swiss
           Cross-Border Workers
         titre: Understanding How Your Health Insurance Contribution Is Calculated
       meta:
-        description: Estimate the cost of your French health insurance contributions as a
-          cross-border worker in Switzerland.
+        description: Estimate the cost of your French health insurance contributions as
+          a cross-border worker in Switzerland.
         title: Swiss cross-border health insurance contribution
       objectifs:
         autres-revenus: Other income received in {{annéeRevenus}}
-        date-affiliation: Date of affiliation
         salaires: Salaries in {{annéeRevenus}}
       questions:
+        date-affiliation:
+          libellé: When did your affiliation begin?
         date-fin-affiliation:
           libellé: When does your affiliation end?
+        groupe-fin-affiliation:
+          titre: End of affiliation
       résultat:
         annuel: Annual health contribution
         avertissement-futur: Since your affiliation is in the future, this estimate
           assumes that the contribution rate and ceiling will remain unchanged
           until then.
-        estimation: "Estimate based on your income {{annéeRevenus}},\napplicable to your
-          contribution {{annéeApplication}}."
+        estimation: |-
+          Estimate based on your income {{annéeRevenus}},
+          applicable to your contribution {{annéeApplication}}.
         mensuel: Monthly health contribution
         prorata:
           depuis: starting on {{date}}
@@ -2412,8 +2416,8 @@ simulateurs:
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the
-      information and calculations, but <3>errors may still be present</3>."
+    beta: "<0>This tool is in beta</0> : We are working to validate the information
+      and calculations, but <3>errors may still be present</3>."
     fermer:
       aria-label: I get it, close the condensed message.
       texte: I understand

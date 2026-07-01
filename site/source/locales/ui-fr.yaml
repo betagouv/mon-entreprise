@@ -1854,17 +1854,21 @@ pages:
         title: Cotisation maladie frontalier suisse
       objectifs:
         autres-revenus: Autres revenus perçus en {{annéeRevenus}}
-        date-affiliation: Date d'affiliation
         salaires: Salaires perçus en {{annéeRevenus}}
       questions:
+        date-affiliation:
+          libellé: À quelle date votre affiliation a-t-elle débuté ?
         date-fin-affiliation:
           libellé: À quelle date votre affiliation prend-elle fin ?
+        groupe-fin-affiliation:
+          titre: Fin d’affiliation
       résultat:
         annuel: Cotisation maladie annuelle
         avertissement-futur: Votre affiliation étant à venir, cette estimation suppose
           que le taux et le plafond de cotisation n’évoluent pas d’ici là.
-        estimation: "Estimation d’après vos revenus {{annéeRevenus}},\napplicable à votre
-          cotisation {{annéeApplication}}."
+        estimation: |-
+          Estimation d’après vos revenus {{annéeRevenus}},
+          applicable à votre cotisation {{annéeApplication}}.
         mensuel: Cotisation maladie mensuelle
         prorata:
           depuis: à partir du {{date}}
