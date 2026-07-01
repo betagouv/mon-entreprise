@@ -1,22 +1,19 @@
 import { Meta, StoryObj } from '@storybook/react'
 import { Option } from 'effect'
 
-import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { BlocMontants } from '@/components/Simulateur/BlocMontants'
 import { eurosParAn } from '@/domaine/Montant'
 
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'
-import { SimulationGoalsContainer } from './SimulationGoalsContainer'
 
 const meta: Meta<typeof ObjectifDeSimulation> = {
 	component: ObjectifDeSimulation,
 	title: 'Simulation/ObjectifDeSimulation',
 	decorators: [
 		(Story) => (
-			<ForceThemeProvider forceTheme="dark">
-				<SimulationGoalsContainer $isEmbeded={false} $isFirstStepCompleted>
-					<Story />
-				</SimulationGoalsContainer>
-			</ForceThemeProvider>
+			<BlocMontants>
+				<Story />
+			</BlocMontants>
 		),
 	],
 }
