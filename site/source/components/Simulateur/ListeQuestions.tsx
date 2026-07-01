@@ -28,6 +28,10 @@ export const ListeQuestions = <S extends Situation = Situation>({
 }: Props<S>) => {
 	const { t } = useTranslation()
 
+	if (Object.keys(groupesDeQuestions).length === 0) {
+		return null
+	}
+
 	return (
 		<>
 			<BoutonsContainer>
@@ -35,50 +39,47 @@ export const ListeQuestions = <S extends Situation = Situation>({
 				<BoutonReset onReset={onReset} />
 			</BoutonsContainer>
 
-			{Object.keys(groupesDeQuestions).length && (
-				<UlWithoutMargin $noMarker>
-					{pipe(
-						groupesDeQuestions,
-						R.toEntries,
-						map(([id, groupe]) => {
-							const premièreQuestion = groupe.liste[0]
-							const estPublicodes =
-								premièreQuestion._tag === 'QuestionPublicodes'
+			<UlWithoutMargin $noMarker>
+				{pipe(
+					groupesDeQuestions,
+					R.toEntries,
+					map(([id, groupe]) => {
+						const premièreQuestion = groupe.liste[0]
+						const estPublicodes = premièreQuestion._tag === 'QuestionPublicodes'
 
-							return (
-								<StyledLi key={id}>
-									<div>
-										<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
-										{estPublicodes && (
-											<ExplicableRule dottedName={premièreQuestion.id} />
-										)}
-									</div>
+						return (
+							<StyledLi key={id}>
+								<div>
+									<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
+									{estPublicodes && (
+										<ExplicableRule dottedName={premièreQuestion.id} />
+									)}
+								</div>
 
-									<ValueContainer>
-										{estPublicodes && (
-											<Value
-												expression={premièreQuestion.id}
-												linkToRule={false}
-											/>
+								<ValueContainer>
+									{estPublicodes && (
+										<Value
+											expression={premièreQuestion.id}
+											linkToRule={false}
+										/>
+									)}
+									<EditButton
+										light
+										onPress={() => onSélection(id)}
+										aria-label={t(
+											'components.simulateur.questions.modifier',
+											'Modifier {{ règle }}',
+											{ règle: groupe.titre(t) }
 										)}
-										<EditButton
-											light
-											onPress={() => onSélection(id)}
-											aria-label={t(
-												'components.simulateur.questions.modifier',
-												'Modifier {{ règle }}',
-												{ règle: groupe.titre(t) }
-											)}
-										>
-											<EditIcon />
-										</EditButton>
-									</ValueContainer>
-								</StyledLi>
-							)
-						})
-					)}
-				</UlWithoutMargin>
-			)}
+									>
+										<EditIcon />
+									</EditButton>
+								</ValueContainer>
+							</StyledLi>
+						)
+					})
+				)}
+			</UlWithoutMargin>
 		</>
 	)
 }
