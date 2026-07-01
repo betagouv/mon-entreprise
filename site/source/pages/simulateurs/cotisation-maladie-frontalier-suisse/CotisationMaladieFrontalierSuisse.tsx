@@ -1,10 +1,12 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { GroupeDeQuestionsFournies } from '@/components/Simulateur/ComposantQuestionFournie'
 import { Simulateur } from '@/components/Simulateur/Simulateur'
 import {
 	estSituationValide,
 	FrontalierSuisseProvider,
 	situationEstCommencée,
+	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
 import { docCotisationFrontalierSuisse } from '@/external-links/docCotisationFrontalierSuisse'
@@ -19,6 +21,22 @@ import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
 import { DateAffiliationQuestion } from './questions/DateAffiliationQuestion'
 import { DateFinAffiliationQuestion } from './questions/DateFinAffiliationQuestion'
+
+const questionsPrincipales = [DateAffiliationQuestion]
+
+const groupesDeQuestions: Record<
+	string,
+	GroupeDeQuestionsFournies<SituationFrontalierSuisse>
+> = {
+	'fin-affiliation': {
+		titre: (t) =>
+			t(
+				'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.groupe-fin-affiliation.titre',
+				'Fin d’affiliation'
+			),
+		liste: [DateFinAffiliationQuestion],
+	},
+}
 
 const PageSimulateur = () => {
 	const simulateurConfig = useSimulatorData(
@@ -41,17 +59,8 @@ const PageSimulateur = () => {
 			<Simulateur
 				id="cotisation-maladie-frontalier-suisse"
 				situation={situation}
-				questionsFourniesPrincipales={[DateAffiliationQuestion]}
-				groupesDeQuestionsFournies={{
-					'fin-affiliation': {
-						titre: (t) =>
-							t(
-								'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.groupe-fin-affiliation.titre',
-								'Fin d’affiliation'
-							),
-						liste: [DateFinAffiliationQuestion],
-					},
-				}}
+				questionsFourniesPrincipales={questionsPrincipales}
+				groupesDeQuestionsFournies={groupesDeQuestions}
 				montantsÀSaisir={
 					<>
 						<ObjectifSalaires />
