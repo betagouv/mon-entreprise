@@ -8,12 +8,15 @@ import { Question } from '@/hooks/useQuestionsEditorialisees'
 import ScrollToElement from '../utils/Scroll/ScrollToElement'
 import { QuestionCourante } from './QuestionCourante'
 
-type Props<S extends Situation = Situation> = {
+type Props<S extends Situation> = {
 	questions: Question<S>[]
 	onClose: () => void
 }
 
-export const QuestionsPrincipales = ({ questions, onClose }: Props) => {
+export const QuestionsPrincipales = <S extends Situation = Situation>({
+	questions,
+	onClose,
+}: Props<S>) => {
 	const { t } = useTranslation()
 
 	return (
