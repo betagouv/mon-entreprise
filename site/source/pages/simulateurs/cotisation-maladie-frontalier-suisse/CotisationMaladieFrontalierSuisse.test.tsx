@@ -105,7 +105,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		).toBeInTheDocument()
 	})
 
-	it("permet de préciser la fin d'affiliation avant même la date de début", async () => {
+	it("ne propose de préciser la situation qu'une fois la situation minimale saisie", async () => {
 		const user = userEvent.setup()
 		render(
 			<TestProvider>
@@ -116,17 +116,19 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		await screen.findByRole('group', {
 			name: /affiliation a-t-elle débuté/i,
 		})
-		await user.click(
-			screen.getByRole('button', { name: /préciser votre situation/i })
-		)
-		await user.click(
-			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
-		)
+		expect(
+			screen.queryByRole('button', { name: /préciser votre situation/i })
+		).not.toBeInTheDocument()
+
+		await saisirDateAffiliation(user, '15/01/2026')
+		expect(
+			screen.queryByRole('button', { name: /préciser votre situation/i })
+		).not.toBeInTheDocument()
+
+		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
 
 		expect(
-			await screen.findByRole('group', {
-				name: /votre affiliation prend-elle fin/i,
-			})
+			await screen.findByRole('button', { name: /préciser votre situation/i })
 		).toBeInTheDocument()
 	})
 

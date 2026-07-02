@@ -59,6 +59,7 @@ const PageSimulateur = () => {
 			<Simulateur
 				id="cotisation-maladie-frontalier-suisse"
 				situation={situation}
+				situationMinimaleSaisie={estSituationValide(situation)}
 				questionsFourniesPrincipales={questionsPrincipales}
 				groupesDeQuestionsFournies={groupesDeQuestions}
 				montantsÀSaisir={

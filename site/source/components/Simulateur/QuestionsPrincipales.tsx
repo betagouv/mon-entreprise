@@ -11,11 +11,13 @@ import { QuestionCourante } from './QuestionCourante'
 type Props<S extends Situation> = {
 	questions: Question<S>[]
 	onClose: () => void
+	situationMinimaleSaisie?: boolean
 }
 
 export const QuestionsPrincipales = <S extends Situation = Situation>({
 	questions,
 	onClose,
+	situationMinimaleSaisie = true,
 }: Props<S>) => {
 	const { t } = useTranslation()
 
@@ -25,21 +27,23 @@ export const QuestionsPrincipales = <S extends Situation = Situation>({
 				<QuestionCourante questions={questions} />
 			</ScrollToElement>
 
-			<StyledDiv>
-				<Body>
-					{t(
-						'components.simulateur.zone-de-saisie.situation.questions-principales.texte',
-						'Pour une meilleure simulation, vous pouvez préciser votre situation.'
-					)}
-				</Body>
-				<Button size="XS" color="secondary" onPress={onClose}>
-					{t(
-						'components.simulateur.zone-de-saisie.situation.questions-principales.bouton',
-						'Préciser votre situation'
-					)}
-					<ArrowRightIcon />
-				</Button>
-			</StyledDiv>
+			{situationMinimaleSaisie && (
+				<StyledDiv>
+					<Body>
+						{t(
+							'components.simulateur.zone-de-saisie.situation.questions-principales.texte',
+							'Pour une meilleure simulation, vous pouvez préciser votre situation.'
+						)}
+					</Body>
+					<Button size="XS" color="secondary" onPress={onClose}>
+						{t(
+							'components.simulateur.zone-de-saisie.situation.questions-principales.bouton',
+							'Préciser votre situation'
+						)}
+						<ArrowRightIcon />
+					</Button>
+				</StyledDiv>
+			)}
 		</>
 	)
 }
