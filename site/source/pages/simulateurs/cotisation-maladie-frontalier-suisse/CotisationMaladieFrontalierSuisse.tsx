@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { GroupeDeQuestionsFournies } from '@/components/Simulateur/ComposantQuestionFournie'
+import { GroupeDeQuestionsFournies } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { Simulateur } from '@/components/Simulateur/Simulateur'
 import {
 	estSituationValide,

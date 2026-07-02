@@ -7,4 +7,5 @@ export interface QuestionPublicodes {
 	id: DottedName
 	libellé: (t: TFunction) => string
 	applicable: () => boolean
+	Valeur: React.FunctionComponent
 }

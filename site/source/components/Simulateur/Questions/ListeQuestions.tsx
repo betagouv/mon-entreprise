@@ -10,7 +10,6 @@ import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from '../../conversation/Explicable'
-import Value from '../../EngineValue/Value'
 import ScrollToElement from '../../utils/Scroll/ScrollToElement'
 import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
 import { BoutonReset } from '../Boutons/BoutonReset'
@@ -63,12 +62,9 @@ export const ListeQuestions = <S extends Situation = Situation>({
 								<ValueContainer>
 									{groupe.réponse && engine ? (
 										groupe.réponse(engine, t)
-									) : estPublicodes ? (
-										<Value
-											expression={premièreQuestion.id}
-											linkToRule={false}
-										/>
-									) : null}
+									) : (
+										<premièreQuestion.Valeur />
+									)}
 									<EditButton
 										light
 										onPress={() => onSélection(id)}
