@@ -181,6 +181,32 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		expect(await screen.findByText(/au prorata/i)).toBeInTheDocument()
 	})
 
+	it("affiche la fin d'affiliation répondue dans la liste des précisions", async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await saisirSituationComplète(user, '01/01/2026')
+		await user.click(
+			await screen.findByRole('button', { name: /préciser votre situation/i })
+		)
+		await user.click(
+			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
+		)
+		const questionFin = await screen.findByRole('group', {
+			name: /votre affiliation prend-elle fin/i,
+		})
+		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
+		await user.click(
+			screen.getByRole('button', { name: /revenir à la liste/i })
+		)
+
+		expect(await screen.findByText('30/09/2026')).toBeInTheDocument()
+	})
+
 	it("n'avertit pas quand l'affiliation est dans l'année courante", async () => {
 		const user = userEvent.setup()
 		render(

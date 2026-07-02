@@ -15,6 +15,7 @@ export * as typography from './typography'
 export * from './typography'
 export { TitreObjectif } from './typography/TitreObjectif'
 export { TitreObjectifSaisissable } from './typography/TitreObjectifSaisissable'
+export { ValeurDate } from './typography/ValeurDate'
 
 // Layout components (dépend du thème)
 export * from './layout'

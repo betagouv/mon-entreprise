@@ -2,6 +2,7 @@ import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
 import { useCallback } from 'react'
 
+import Value from '@/components/EngineValue/Value'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle, Question } from '@/domaine/SimulationConfig'
 
@@ -17,6 +18,7 @@ export interface QuestionPublicodes {
 	id: DottedName
 	libellé: (t: TFunction) => string
 	applicable: () => boolean
+	Valeur: React.FunctionComponent
 }
 
 export function useQuestionsPublicodesÉditorialisées(
@@ -43,11 +45,16 @@ export function useQuestionsPublicodesÉditorialisées(
 					'est applicable': question.dottedName,
 				}).nodeValue === true && evaluation.nodeValue !== null
 
+			const Valeur = () => (
+				<Value expression={question.dottedName} linkToRule={false} />
+			)
+
 			return {
 				_tag: 'QuestionPublicodes',
 				id: question.dottedName,
 				libellé: question.libellé,
 				applicable,
+				Valeur,
 			} satisfies QuestionPublicodes
 		},
 		[engine]

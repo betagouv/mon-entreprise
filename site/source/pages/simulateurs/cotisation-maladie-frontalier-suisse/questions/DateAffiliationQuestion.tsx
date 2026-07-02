@@ -6,7 +6,7 @@ import {
 	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
-import { DateField } from '@/design-system'
+import { DateField, ValeurDate } from '@/design-system'
 
 export const DateAffiliationQuestion: ComposantQuestionFournie<
 	SituationFrontalierSuisse
@@ -33,4 +33,11 @@ DateAffiliationQuestion.libellé = (t) =>
 		'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-affiliation.libellé',
 		'À quelle date votre affiliation a-t-elle débuté ?'
 	)
+const ValeurDateAffiliation = () => {
+	const { situation } = useFrontalierSuisse()
+
+	return <ValeurDate date={O.getOrUndefined(situation.dateAffiliation)} />
+}
+
 DateAffiliationQuestion.applicable = () => true
+DateAffiliationQuestion.Valeur = ValeurDateAffiliation

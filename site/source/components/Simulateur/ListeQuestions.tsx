@@ -9,7 +9,6 @@ import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
-import Value from '../EngineValue/Value'
 import { BoutonReset } from './BoutonReset'
 import { BoutonRetour } from './BoutonRetour'
 
@@ -57,12 +56,7 @@ export const ListeQuestions = <S extends Situation = Situation>({
 								</div>
 
 								<ValueContainer>
-									{estPublicodes && (
-										<Value
-											expression={premièreQuestion.id}
-											linkToRule={false}
-										/>
-									)}
+									<premièreQuestion.Valeur />
 									<EditButton
 										light
 										onPress={() => onSélection(id)}
