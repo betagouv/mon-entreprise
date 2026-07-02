@@ -8,12 +8,15 @@ import { Question } from '@/hooks/useQuestionsEditorialisees'
 
 import { QuestionPublicodes } from './QuestionPublicodes'
 
-type Props<S extends Situation = Situation> = {
+type Props<S extends Situation> = {
 	questions: Array<Question<S>>
 	retour?: () => void
 }
 
-export const QuestionCourante = ({ questions, retour }: Props) => {
+export const QuestionCourante = <S extends Situation = Situation>({
+	questions,
+	retour,
+}: Props<S>) => {
 	const { t } = useTranslation()
 
 	return (

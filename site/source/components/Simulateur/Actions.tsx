@@ -10,15 +10,17 @@ import { BoutonPartage } from './BoutonPartage'
 type Props = {
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	afficherBoutonVersDétail: boolean
+	situationMinimaleSaisie?: boolean
 }
 
 export const Actions = ({
 	conseillersEntreprisesVariant,
 	afficherBoutonVersDétail,
+	situationMinimaleSaisie = true,
 }: Props) => (
 	<Container>
 		<LeftColumn>
-			<BoutonPartage />
+			{situationMinimaleSaisie && <BoutonPartage />}
 			{conseillersEntreprisesVariant && (
 				<BoutonConseillersEntreprises variant={conseillersEntreprisesVariant} />
 			)}

@@ -1,0 +1,43 @@
+import {
+	TAUX_ABATTEMENT_PASS,
+	TAUX_COTISATION_MALADIE,
+} from '@/contextes/frontalier-suisse'
+import { Info } from '@/design-system'
+
+import { Décomposition } from './Décomposition'
+
+export const tauxAbattement = Math.round(TAUX_ABATTEMENT_PASS * 100)
+export const tauxCotisation = Math.round(TAUX_COTISATION_MALADIE * 100)
+
+export const metadata = {
+	title: 'Understanding how your health insurance contribution is calculated',
+	description:
+		'The detailed calculation of the health insurance contribution for cross-border workers in Switzerland',
+}
+
+As a **cross-border worker in Switzerland** covered by the French health insurance, your contribution is calculated each year by Urssaf based on your income.
+
+## The formula
+
+> **Annual contribution = (base − allowance) × {tauxCotisation}%**
+
+- **Income base**: the sum of your **salaries** and your **other income** for the year.
+- **Allowance**: **{tauxAbattement}% of the annual social security ceiling (PASS)**, revalued each year.
+- **Rate**: **{tauxCotisation}%**.
+
+The contribution estimated from this income will apply two years later.
+
+## Partial years (prorating)
+
+If your affiliation starts or ends during the year, that year’s contribution is prorated to the number of days of affiliation:
+
+> **Contribution for the year = annual contribution × days of affiliation ÷ number of days in the year**
+
+## Your calculation
+
+<Décomposition />
+
+<Info>
+	The contribution is rounded to the nearest euro. Urssaf cannot be held liable
+	for this estimate.
+</Info>

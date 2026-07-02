@@ -9,68 +9,71 @@ import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 
 import { ExplicableRule } from '../conversation/Explicable'
-import Value from '../EngineValue/Value'
 import { BoutonReset } from './BoutonReset'
 import { BoutonRetour } from './BoutonRetour'
 
-type Props<S extends Situation = Situation> = {
+type Props<S extends Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
 	onSélection: (questionId: string) => void
 	retour: () => void
+	onReset?: () => void
 }
 
-export const ListeQuestions = ({
+export const ListeQuestions = <S extends Situation = Situation>({
 	groupesDeQuestions,
 	onSélection,
 	retour,
-}: Props) => {
+	onReset,
+}: Props<S>) => {
 	const { t } = useTranslation()
+
+	if (Object.keys(groupesDeQuestions).length === 0) {
+		return null
+	}
 
 	return (
 		<>
 			<BoutonsContainer>
 				<BoutonRetour onPress={retour} />
-				<BoutonReset />
+				<BoutonReset onReset={onReset} />
 			</BoutonsContainer>
 
-			{Object.keys(groupesDeQuestions).length && (
-				<UlWithoutMargin $noMarker>
-					{pipe(
-						groupesDeQuestions,
-						R.toEntries,
-						map(([id, groupe]) => {
-							const premièreQuestion = groupe.liste[0]
+			<UlWithoutMargin $noMarker>
+				{pipe(
+					groupesDeQuestions,
+					R.toEntries,
+					map(([id, groupe]) => {
+						const premièreQuestion = groupe.liste[0]
+						const estPublicodes = premièreQuestion._tag === 'QuestionPublicodes'
 
-							return (
-								<StyledLi key={id}>
-									<div>
-										<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
+						return (
+							<StyledLi key={id}>
+								<div>
+									<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
+									{estPublicodes && (
 										<ExplicableRule dottedName={premièreQuestion.id} />
-									</div>
+									)}
+								</div>
 
-									<ValueContainer>
-										<Value
-											expression={premièreQuestion.id}
-											linkToRule={false}
-										/>
-										<EditButton
-											light
-											onPress={() => onSélection(id)}
-											aria-label={t(
-												'components.simulateur.questions.modifier',
-												'Modifier {{ règle }}',
-												{ règle: groupe.titre(t) }
-											)}
-										>
-											<EditIcon />
-										</EditButton>
-									</ValueContainer>
-								</StyledLi>
-							)
-						})
-					)}
-				</UlWithoutMargin>
-			)}
+								<ValueContainer>
+									<premièreQuestion.Valeur />
+									<EditButton
+										light
+										onPress={() => onSélection(id)}
+										aria-label={t(
+											'components.simulateur.questions.modifier',
+											'Modifier {{ règle }}',
+											{ règle: groupe.titre(t) }
+										)}
+									>
+										<EditIcon />
+									</EditButton>
+								</ValueContainer>
+							</StyledLi>
+						)
+					})
+				)}
+			</UlWithoutMargin>
 		</>
 	)
 }

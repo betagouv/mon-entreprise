@@ -6,6 +6,7 @@ import { ValeurAnnuelle } from './ValeurAnnuelle'
  * Source : https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
  */
 export const PLAFOND_ANNUEL_SECURITE_SOCIALE: ValeurAnnuelle<number> = {
+	2018: 39_732,
 	2024: 46_368,
 	2025: 47_100,
 	2026: 48_060,

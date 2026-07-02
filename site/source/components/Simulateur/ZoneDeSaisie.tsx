@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Body } from '@/design-system'
+import { Situation } from '@/domaine/Situation'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
@@ -9,18 +10,32 @@ import {
 
 import { BlocMontants } from './BlocMontants'
 import { BlocSituation } from './BlocSituation'
+import {
+	ComposantQuestionFournie,
+	GroupeDeQuestionsFournies,
+} from './ComposantQuestionFournie'
 
-type Props = {
+type Props<S extends Situation> = {
 	montants: React.ReactNode
-	questionsPublicodesPrincipales: QuestionPublicodes[]
-	groupesDeQuestionsPublicodes: Record<string, GroupeDeQuestionsPublicodes>
+	questionsPublicodesPrincipales?: QuestionPublicodes[]
+	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
+	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
+	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
+	situation?: S
+	situationMinimaleSaisie?: boolean
+	onReset?: () => void
 }
 
-export const ZoneDeSaisie = ({
+export const ZoneDeSaisie = <S extends Situation = Situation>({
 	montants,
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
-}: Props) => {
+	questionsFourniesPrincipales,
+	groupesDeQuestionsFournies,
+	situation,
+	situationMinimaleSaisie,
+	onReset,
+}: Props<S>) => {
 	const { t } = useTranslation()
 
 	return (
@@ -37,6 +52,11 @@ export const ZoneDeSaisie = ({
 					<BlocSituation
 						questionsPublicodesPrincipales={questionsPublicodesPrincipales}
 						groupesDeQuestionsPublicodes={groupesDeQuestionsPublicodes}
+						questionsFourniesPrincipales={questionsFourniesPrincipales}
+						groupesDeQuestionsFournies={groupesDeQuestionsFournies}
+						situation={situation}
+						situationMinimaleSaisie={situationMinimaleSaisie}
+						onReset={onReset}
 					/>
 				</LeftColumn>
 				<RightColumn>

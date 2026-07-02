@@ -2,8 +2,9 @@ import { render as rtlRender, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { expect } from 'vitest'
 
+import { TestProvider } from '@/test/TestProvider'
+
 import LocationDeMeubléWithProvider from '../../LocationDeMeublé'
-import { TestProvider } from './TestProvider'
 
 type RTLUser = ReturnType<typeof userEvent.setup>
 

@@ -2,7 +2,13 @@ import { Option } from 'effect'
 import React from 'react'
 import { styled } from 'styled-components'
 
-import { Body, Grid, InfoBulle, TitreObjectif } from '@/design-system'
+import {
+	Body,
+	Grid,
+	InfoBulle,
+	SmallBody,
+	TitreObjectif,
+} from '@/design-system'
 import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
@@ -12,6 +18,7 @@ import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 export type ObjectifDeSimulationProps = {
 	id: string
 	titre: React.ReactNode
+	sousTitre?: React.ReactNode
 	description?: React.ReactNode
 	valeur: Option.Option<Montant> | string
 	small?: boolean
@@ -23,6 +30,7 @@ export type ObjectifDeSimulationProps = {
 export function ObjectifDeSimulation({
 	id,
 	titre,
+	sousTitre,
 	description,
 	valeur,
 	displayedUnit,
@@ -46,13 +54,21 @@ export function ObjectifDeSimulation({
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
 						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
 
+						{sousTitre && (
+							<SousTitre id={`${id}-sous-titre`}>{sousTitre}</SousTitre>
+						)}
+
 						{description && <InfoBulle description={description} />}
 					</Grid>
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
-						<StyledValue id={`${id}-value`} aria-labelledby={`${id}-label`}>
+						<StyledValue
+							id={`${id}-value`}
+							aria-labelledby={`${id}-label`}
+							aria-describedby={sousTitre ? `${id}-sous-titre` : undefined}
+						>
 							{valeurAffichee}
 						</StyledValue>
 					</Grid>
@@ -93,6 +109,11 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	@media print {
 		padding: 0;
 	}
+`
+
+const SousTitre = styled(SmallBody)`
+	margin: 0;
+	white-space: pre-line;
 `
 
 const StyledValue = styled(Body)`

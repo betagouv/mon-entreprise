@@ -9,6 +9,7 @@ export type ComposantQuestionFournie<S extends Situation> =
 		id: string
 		libellé: (t: TFunction) => string
 		applicable: Predicate<S>
+		Valeur: React.FunctionComponent
 	}
 
 export type GroupeDeQuestionsFournies<S extends Situation> = {

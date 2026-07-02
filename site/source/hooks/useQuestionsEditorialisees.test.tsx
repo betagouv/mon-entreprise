@@ -10,6 +10,8 @@ import { Situation } from '@/domaine/Situation'
 import { useQuestionsÉditorialisées } from './useQuestionsEditorialisees'
 import { QuestionPublicodes } from './useQuestionsPublicodesEditorialisees'
 
+const ValeurVide = () => null
+
 const questionPublicodes = (
 	id: DottedName,
 	applicabilité: boolean
@@ -18,6 +20,7 @@ const questionPublicodes = (
 	id,
 	libellé: () => id,
 	applicable: () => applicabilité,
+	Valeur: ValeurVide,
 })
 
 const questionFournie = <S extends Situation>(
@@ -30,6 +33,7 @@ const questionFournie = <S extends Situation>(
 	Question.id = id
 	Question.libellé = () => id
 	Question.applicable = applicable
+	Question.Valeur = ValeurVide
 
 	return Question as ComposantQuestionFournie<S>
 }

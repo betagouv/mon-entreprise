@@ -85,6 +85,8 @@ const rawSitePathsFr = {
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-activité',
 		'location-de-logement-meublé': 'location-de-logement-meuble',
+		'cotisation-maladie-frontalier-suisse':
+			'cotisation-maladie-frontalier-suisse',
 	},
 	nouveautés: {
 		index: 'nouveautés',
@@ -192,6 +194,8 @@ const rawSitePathsEn = {
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-of-activity',
 		'location-de-logement-meublé': 'furnished-accommodation',
+		'cotisation-maladie-frontalier-suisse':
+			'health-insurance-contribution-swiss-cross-border-worker',
 	},
 	nouveautés: {
 		index: 'news',

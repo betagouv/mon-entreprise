@@ -73,19 +73,19 @@ export interface MDXDocumentationResult {
  * ```
  */
 export function createMDXDocumentationFromGlob(
-	globModules: Record<string, unknown>
+	globModules: Record<string, unknown>,
+	langue = 'fr'
 ): MDXDocumentationResult {
+	const modulesParSlug = sélectionnerModulesParLangue(globModules, langue)
+
 	const processedModules: Record<string, MDXModule | ComponentType> = {}
 	let indexComponent: ComponentType | undefined
 
-	Object.entries(globModules).forEach(([path, module]) => {
-		const filename = extractBaseFilename(path)
-
-		if (filename === 'index') {
-			const indexModule = module as MDXModule | ComponentType
-			indexComponent = getDefaultComponent(indexModule)
+	Object.entries(modulesParSlug).forEach(([slug, module]) => {
+		if (slug === 'index') {
+			indexComponent = getDefaultComponent(module)
 		} else {
-			processedModules[filename] = module as MDXModule | ComponentType
+			processedModules[slug] = module
 		}
 	})
 
@@ -93,6 +93,54 @@ export function createMDXDocumentationFromGlob(
 		documentations: createMDXDocumentation(processedModules),
 		indexComponent,
 	}
+}
+
+const LANGUES_SUPPORTÉES = ['fr', 'en']
+
+/**
+ * Sélectionne, pour chaque document, la variante de langue demandée :
+ * `slug.<langue>.mdx`, à défaut `slug.fr.mdx`, à défaut `slug.mdx` (sans suffixe).
+ */
+function sélectionnerModulesParLangue(
+	globModules: Record<string, unknown>,
+	langue: string
+): Record<string, MDXModule | ComponentType> {
+	const variantesParSlug: Record<
+		string,
+		Record<string, MDXModule | ComponentType>
+	> = {}
+
+	Object.entries(globModules).forEach(([path, module]) => {
+		const { slug, langue: langueDuFichier } = extraireSlugEtLangue(path)
+		variantesParSlug[slug] ??= {}
+		variantesParSlug[slug][langueDuFichier ?? 'défaut'] = module as
+			| MDXModule
+			| ComponentType
+	})
+
+	const modules: Record<string, MDXModule | ComponentType> = {}
+	Object.entries(variantesParSlug).forEach(([slug, variantes]) => {
+		modules[slug] = variantes[langue] ?? variantes.fr ?? variantes.défaut
+	})
+
+	return modules
+}
+
+function extraireSlugEtLangue(path: string): {
+	slug: string
+	langue: string | null
+} {
+	const filename = extractBaseFilename(path)
+	const dernierPoint = filename.lastIndexOf('.')
+
+	if (dernierPoint !== -1) {
+		const suffixe = filename.slice(dernierPoint + 1)
+		if (LANGUES_SUPPORTÉES.includes(suffixe)) {
+			return { slug: filename.slice(0, dernierPoint), langue: suffixe }
+		}
+	}
+
+	return { slug: filename, langue: null }
 }
 
 /**
