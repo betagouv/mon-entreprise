@@ -81,6 +81,7 @@ export const Simulateur = <S extends Situation = Situation>({
 			<Actions
 				conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 				afficherBoutonVersDétail={!!détail}
+				situationMinimaleSaisie={situationMinimaleSaisie}
 			/>
 
 			{détail && (

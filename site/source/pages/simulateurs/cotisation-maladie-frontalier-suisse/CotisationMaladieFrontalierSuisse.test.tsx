@@ -132,6 +132,28 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		).toBeInTheDocument()
 	})
 
+	it("ne propose de partager la simulation qu'une fois la situation minimale saisie", async () => {
+		const user = userEvent.setup()
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await screen.findByRole('group', {
+			name: /affiliation a-t-elle débuté/i,
+		})
+		expect(
+			screen.queryByRole('button', { name: /lien de partage/i })
+		).not.toBeInTheDocument()
+
+		await saisirSituationComplète(user)
+
+		expect(
+			await screen.findByRole('button', { name: /lien de partage/i })
+		).toBeInTheDocument()
+	})
+
 	it("prend en compte la fin d'affiliation saisie en question", async () => {
 		const user = userEvent.setup()
 		render(
