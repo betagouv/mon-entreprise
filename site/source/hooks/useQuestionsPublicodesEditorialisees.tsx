@@ -3,6 +3,7 @@ import { TFunction } from 'i18next'
 import Engine from 'publicodes'
 import { useCallback } from 'react'
 
+import Value from '@/components/EngineValue/Value'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
@@ -36,11 +37,16 @@ export function useQuestionsPublicodesÉditorialisées(
 					'est applicable': question.dottedName,
 				}).nodeValue === true && evaluation.nodeValue !== null
 
+			const Valeur = () => (
+				<Value expression={question.dottedName} linkToRule={false} />
+			)
+
 			return {
 				_tag: 'QuestionPublicodes',
 				id: question.dottedName,
 				libellé: question.libellé,
 				applicable,
+				Valeur,
 			} satisfies QuestionPublicodes
 		},
 		[engine]
