@@ -6,6 +6,7 @@ export { joursDansAnnée } from './domaine/jours-affiliation'
 export { FrontalierSuisseProvider } from './hooks/FrontalierSuisseContext'
 export { useFrontalierSuisse } from './hooks/useFrontalierSuisse'
 export {
+	datesAffiliationCohérentes,
 	estSituationValide,
 	initialSituationFrontalierSuisse,
 	situationEstCommencée,

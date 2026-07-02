@@ -1,8 +1,10 @@
 import * as O from 'effect/Option'
 import { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import {
+	datesAffiliationCohérentes,
 	SituationFrontalierSuisse,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
@@ -12,6 +14,7 @@ export const DateAffiliationQuestion: ComposantQuestionFournie<
 	SituationFrontalierSuisse
 > = () => {
 	const { situation, set } = useFrontalierSuisse()
+	const { t } = useTranslation()
 
 	const handleChange = useCallback(
 		(date: Date | undefined) => set.dateAffiliation(O.fromNullable(date)),
@@ -22,6 +25,19 @@ export const DateAffiliationQuestion: ComposantQuestionFournie<
 		<DateField
 			defaultSelected={O.getOrUndefined(situation.dateAffiliation)}
 			onChange={handleChange}
+			validation={(date) =>
+				datesAffiliationCohérentes({
+					...situation,
+					dateAffiliation: O.some(date),
+				})
+					? O.none()
+					: O.some(
+							t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-affiliation.erreur',
+								'La date de début d’affiliation ne peut pas être postérieure à la date de fin.'
+							)
+					  )
+			}
 		/>
 	)
 }
