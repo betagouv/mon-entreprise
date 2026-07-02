@@ -1782,8 +1782,10 @@ pages:
         salaires: Salaries in {{annéeRevenus}}
       questions:
         date-affiliation:
+          erreur: The affiliation start date cannot be later than the end date.
           libellé: When did your affiliation begin?
         date-fin-affiliation:
+          erreur: The affiliation end date cannot be earlier than the start date.
           libellé: When does your affiliation end?
         groupe-fin-affiliation:
           titre: End of affiliation

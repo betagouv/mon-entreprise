@@ -1,3 +1,4 @@
+import { pipe } from 'effect'
 import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
@@ -31,7 +32,21 @@ export const situationEstCommencée = (
 ): boolean =>
 	O.isSome(situation.dateAffiliation) || O.isSome(situation.salaires)
 
+export const datesAffiliationCohérentes = (
+	situation: SituationFrontalierSuisse
+): boolean =>
+	pipe(
+		O.zipWith(
+			situation.dateAffiliation,
+			situation.dateFinAffiliation,
+			(début, fin) => début <= fin
+		),
+		O.getOrElse(() => true)
+	)
+
 export const estSituationValide = (
 	situation: SituationFrontalierSuisse
 ): situation is SituationFrontalierSuisseValide =>
-	O.isSome(situation.dateAffiliation) && O.isSome(situation.salaires)
+	O.isSome(situation.dateAffiliation) &&
+	O.isSome(situation.salaires) &&
+	datesAffiliationCohérentes(situation)
