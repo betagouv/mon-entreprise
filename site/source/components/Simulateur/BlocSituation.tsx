@@ -112,11 +112,11 @@ const Section = styled.section`
 
 const StyledH2 = styled(H2)`
 	margin: 0;
-	padding: ${({ theme }) => theme.spacings.md} 0;
+	padding-top: ${({ theme }) => theme.spacings.md};
 `
 
 const Container = styled.div`
-	height: calc(100% - 5rem);
+	height: calc(100% - 4rem);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
