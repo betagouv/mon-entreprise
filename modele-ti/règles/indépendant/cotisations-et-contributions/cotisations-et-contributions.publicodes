@@ -108,8 +108,12 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
   avec:
     abattement:
       valeur: 26% * revenu brut
-      plancher: 1.76% * plafond sécurité sociale . annuel
-      plafond: 130% * plafond sécurité sociale . annuel
+      plancher:
+        non applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: 1.76% * plafond sécurité sociale . annuel
+      plafond:
+        non applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: 130% * plafond sécurité sociale . annuel
       arrondi: oui
 
   références:
