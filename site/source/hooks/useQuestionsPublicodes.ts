@@ -1,4 +1,3 @@
-import { Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
@@ -14,13 +13,7 @@ import { questionsRéponduesSelector } from '@/store/selectors/simulation/questi
 import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
-
-export interface QuestionPublicodes<S extends Situation> {
-	_tag: 'QuestionPublicodes'
-	id: DottedName
-	applicable: Predicate<S | undefined>
-	répondue: Predicate<S | undefined>
-}
+import { QuestionPublicodes } from './useQuestions'
 
 const fromQuestionPublicodeRépondue = <S extends Situation>(
 	q: QuestionRépondue,

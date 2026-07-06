@@ -5,10 +5,10 @@ import { describe, expect, it } from 'vitest'
 
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { QuestionPublicodes } from '@/domaine/questions'
 import { Situation } from '@/domaine/Situation'
 
 import { useQuestionsÉditorialisées } from './useQuestionsEditorialisees'
-import { QuestionPublicodes } from './useQuestionsPublicodesEditorialisees'
 
 const questionPublicodes = (
 	id: DottedName,

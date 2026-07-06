@@ -10,12 +10,11 @@ import {
 	ComposantQuestionFournie,
 	GroupeDeQuestionsFournies,
 } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
-import { Situation } from '@/domaine/Situation'
-
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
-} from './useQuestionsPublicodesEditorialisees'
+} from '@/domaine/questions'
+import { Situation } from '@/domaine/Situation'
 
 type QuestionFournie<S extends Situation> = Omit<
 	ComposantQuestionFournie<S>,

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { QuestionPublicodes as TypeQuestionPublicodes } from '@/hooks/useQuestionsPublicodesEditorialisees'
+import { QuestionPublicodes as TypeQuestionPublicodes } from '@/domaine/questions'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 
 import { RuleField } from '../../conversation/RuleField'
