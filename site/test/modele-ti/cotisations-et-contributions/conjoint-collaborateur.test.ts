@@ -514,7 +514,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . retraite complémentaire`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut le quart de la cotisation avec l’option revenu sans partage proportion 1/4', () => {
@@ -535,7 +535,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . retraite complémentaire`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut le quart de la cotisation avec l’option revenu avec partage proportion 1/4', () => {
@@ -556,7 +556,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . retraite complémentaire`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut la moitié de la cotisation avec l’option revenu sans partage proportion 1/2', () => {
@@ -577,7 +577,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . retraite complémentaire`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 2)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 2))
 				})
 
 				it('vaut la moitié de la cotisation avec l’option revenu avec partage proportion 1/2', () => {
@@ -598,7 +598,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . retraite complémentaire`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 2)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 2))
 				})
 			})
 
@@ -617,7 +617,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . invalidité et décès`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut le quart de la cotisation avec l’option revenu sans partage proportion 1/4', () => {
@@ -638,7 +638,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . invalidité et décès`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut le quart de la cotisation avec l’option revenu avec partage proportion 1/4', () => {
@@ -659,7 +659,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . invalidité et décès`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 4)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 4))
 				})
 
 				it('vaut la moitié de la cotisation avec l’option revenu sans partage proportion 1/2', () => {
@@ -680,7 +680,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . invalidité et décès`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 2)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 2))
 				})
 
 				it('vaut la moitié de la cotisation avec l’option revenu avec partage proportion 1/2', () => {
@@ -701,7 +701,7 @@ describe('Conjoint collaborateur', () => {
 						`${COTISATIONS} . invalidité et décès`
 					).nodeValue
 
-					expect(cotisationConjoint).toEqual(cotisation / 2)
+					expect(cotisationConjoint).toEqual(Math.round(cotisation / 2))
 				})
 			})
 		})
@@ -740,7 +740,7 @@ describe('Conjoint collaborateur', () => {
 				)
 				expect(e2).toEvaluate(
 					`${COTISATIONS} . invalidité et décès`,
-					ID - ID / 4
+					Math.round(ID - ID / 4)
 				)
 			})
 
