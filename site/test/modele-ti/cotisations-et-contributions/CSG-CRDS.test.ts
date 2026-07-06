@@ -84,4 +84,16 @@ describe('CSG-CRDS', () => {
 			expect(e).not.toBeApplicable(CSG_CRDS)
 		})
 	})
+
+	describe('à Mayotte', () => {
+		it('n’est pas applicable', () => {
+			const e = engine.setSituation({
+				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+					'50000 €/an',
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).not.toBeApplicable(CSG_CRDS)
+		})
+	})
 })
