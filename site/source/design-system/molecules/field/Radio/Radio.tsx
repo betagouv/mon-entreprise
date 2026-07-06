@@ -197,8 +197,8 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 const Label = styled.label<{ htmlFor?: string }>``
 
 export const SpanBody = styled(Body).attrs({ as: 'span' })`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
-	margin-left: ${({ theme }) => theme.spacings.xxs};
+	margin: ${({ theme }) => theme.spacings.xxxs} 0;
+	margin-left: ${({ theme }) => theme.spacings.xxxs};
 	background-color: transparent;
 	display: inline-flex;
 	align-items: center;
