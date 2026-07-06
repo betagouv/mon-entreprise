@@ -6671,8 +6671,153 @@ entreprise . exercice:
   titre.en: '[automatic] exercise'
   titre.fr: exercice
 entreprise . imposition:
-  question.en: '[automatic] How is your company taxed?'
-  question.fr: Quel est le type d’imposition de votre entreprise ?
+  description.en: >
+    [automatic] ## Income Tax
+
+
+    Your business’s net income is subject to income tax, just like
+
+    your household’s other income.
+
+
+    Net income is determined when you fill out the **tax return** (also
+
+    known as the income statement). Your accountant handles this.
+
+
+    If your business makes money, the profit is called **profit**. It
+
+    is added to your other taxable income (if any):
+
+    **your income tax is higher**.
+
+
+    If your business loses money, the result is called a **loss**. It
+
+    reduces your household’s taxable income:
+
+    **your income tax is lower**.
+
+
+    Note: Under the income tax system, there is no tax distinction
+
+    between your household income and your business’s income.
+
+
+    ## Corporate Income Tax
+
+
+    Your business’s **net income** is subject to **corporate income tax**.
+
+
+    If your business loses money, the result is called a **deficit**. It
+
+    will not have to pay corporate income tax.
+
+
+    If your business makes money, the result is called a **profit**.
+
+    It will be taxed at a **fixed rate**.
+
+
+    The taxable income is determined when filing the **tax return**
+
+    (also called the income statement). Your accountant handles this.
+
+
+    Note: There are **two ways to pay yourself** from a business subject to
+
+    corporate income tax:
+      - You can pay yourself a salary as a business owner during
+      the year. This salary is deducted from the net income to calculate
+      your company’s taxable profit. However, this compensation is
+      added to your household’s taxable income when calculating income tax.
+      -
+      - You can also pay yourself dividends from the profits of
+      previous years. You will have to pay a flat tax on these dividends: this is
+      known as the “flat tax.”
+
+      In all cases, you will have to pay **social security contributions** on the
+      income you receive.
+  description.fr: >
+    ## Impôt sur le revenu
+
+
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme
+    les
+
+    autres revenus de votre foyer.
+
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale**
+    (aussi
+
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+    Il
+
+    est ajouté aux autres revenus imposables (s’ils existent) :
+
+    **votre impôt sur le revenu est plus élevé**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+
+    vient réduire le montant du revenu imposable de votre ménage :
+
+    **votre impôt sur le revenu est moins élevé**.
+
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence
+    fiscale
+
+    entre les revenus de votre foyer et ceux de votre entreprise.
+
+
+    ## Impôt sur les sociétés
+
+
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les
+    sociétés**.
+
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**.
+    Elle
+
+    n’aura pas à payer d’impôt sur les sociétés.
+
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+
+    Il sera imposé à un **taux fixe**.
+
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse
+    fiscale**
+
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en
+    charge.
+
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à
+    l’impôt
+
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la « flat tax ».
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
+  question.en: '[automatic] What type of taxation does your business fall under?'
+  question.fr: Quel est le type d’imposition de votre entreprise ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
 entreprise . imposition . IR:
@@ -7441,7 +7586,7 @@ impôt . foyer fiscal . situation de famille:
   titre.en: '[automatic] marital status'
   titre.fr: situation de famille
 impôt . foyer fiscal . situation de famille . couple:
-  titre.en: 'Married / In a civil partnership'
+  titre.en: Married / In a civil partnership
   titre.fr: Marié(e)s / Pacsé(e)s
 impôt . foyer fiscal . situation de famille . célibataire:
   titre.en: '[automatic] Single / Divorced / Common-law union'
