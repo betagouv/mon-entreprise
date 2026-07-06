@@ -63,6 +63,32 @@ describe('Indépendant', () => {
 				Math.round((1.76 / 100) * Pass)
 			)
 		})
+
+		it('ne plafonne pas l’abattement à Mayotte', () => {
+			const e = engine.setSituation({
+				'entreprise . imposition': "'IS'",
+				'indépendant . rémunération . brute': '250000 €/an',
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
+				Math.round((250_000 * 26) / 100)
+			)
+		})
+
+		it('n’applique pas d’abattement plancher à Mayotte', () => {
+			const e = engine.setSituation({
+				'entreprise . imposition': "'IS'",
+				'indépendant . rémunération . brute': '1000 €/an',
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
+				Math.round((1_000 * 26) / 100)
+			)
+		})
 	})
 
 	describe('assiette sociale', () => {
