@@ -15,6 +15,7 @@ plafond sécurité sociale:
 
   avec:
     métropole:
+      titre: PSS métropole
       variations:
         - si: date < 01/2024
           alors: 3666 €/mois
@@ -25,6 +26,7 @@ plafond sécurité sociale:
         - sinon: 4005 €/mois
 
     métropole . N-1:
+      titre: PSS métropole N-1
       valeur: plafond sécurité sociale . métropole
       contexte:
         date: période . début d'année . N-1
