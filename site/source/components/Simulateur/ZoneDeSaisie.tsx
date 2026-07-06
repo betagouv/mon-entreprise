@@ -5,7 +5,7 @@ import { Body } from '@/design-system'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
-} from '@/hooks/useQuestionsPublicodesEditorialisees'
+} from '@/domaine/questions'
 
 import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { BlocMontants } from './BlocMontants'

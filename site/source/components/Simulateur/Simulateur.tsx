@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
-} from '@/hooks/useQuestionsPublicodesEditorialisees'
+} from '@/domaine/questions'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 

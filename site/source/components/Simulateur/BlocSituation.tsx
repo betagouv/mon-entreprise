@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { H2, ReturnButton } from '@/design-system'
-import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
-} from '@/hooks/useQuestionsPublicodesEditorialisees'
+} from '@/domaine/questions'
+import { useQuestionsÉditorialisées } from '@/hooks/useQuestionsEditorialisees'
 
 import { useAutoScrollToQuestions } from './AutoScrollToQuestions'
 import { ListeQuestions } from './Questions/ListeQuestions'

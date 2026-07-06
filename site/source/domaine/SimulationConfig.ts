@@ -56,6 +56,9 @@ export type Question = {
 	dottedName: DottedName
 }
 
+// TODO: quand QuestionsAutoGénérées ne sera plus utilisé,
+// supprimer l'export de QuestionsÉditorialisées et le
+// remplacer ailleurs par le type de SimulationConfig['questions']
 export type QuestionsÉditorialisées = {
 	'questions principales': Question[]
 	'groupes de questions': Record<

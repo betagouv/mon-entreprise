@@ -3,23 +3,13 @@ import { TFunction } from 'i18next'
 import Engine from 'publicodes'
 import { useCallback } from 'react'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
+import {
+	GroupeDeQuestionsPublicodes,
+	QuestionPublicodes,
+} from '@/domaine/questions'
 import { NomModèle, Question } from '@/domaine/SimulationConfig'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
-
-export type GroupeDeQuestionsPublicodes = {
-	titre: (t: TFunction) => string
-	réponse?: (engine: Engine, t: TFunction) => string
-	liste: QuestionPublicodes[]
-}
-
-export interface QuestionPublicodes {
-	_tag: 'QuestionPublicodes'
-	id: DottedName
-	libellé: (t: TFunction) => string
-	applicable: () => boolean
-}
 
 export function useQuestionsPublicodesÉditorialisées(
 	nomModèle: NomModèle,
