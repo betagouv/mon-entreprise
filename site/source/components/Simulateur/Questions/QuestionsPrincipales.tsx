@@ -21,7 +21,7 @@ export const QuestionsPrincipales = <S extends Situation = Situation>({
 	const { t } = useTranslation()
 
 	return (
-		<>
+		<Container>
 			<QuestionCourante questions={questions} />
 
 			{questionsPrincipalesRépondues && (
@@ -41,11 +41,18 @@ export const QuestionsPrincipales = <S extends Situation = Situation>({
 					</Button>
 				</StyledDiv>
 			)}
-		</>
+		</Container>
 	)
 }
 
+const Container = styled.div`
+	height: calc(100% - 4rem);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+`
+
 const StyledDiv = styled.div`
 	border-top: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
-	margin: ${({ theme }) => theme.spacings.xl} 0;
+	margin-top: ${({ theme }) => theme.spacings.lg};
 `

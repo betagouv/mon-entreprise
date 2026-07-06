@@ -3,7 +3,7 @@ import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { H3 } from '@/design-system'
+import { H3, H3Style } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -104,11 +104,11 @@ export function RuleField({
 	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
 		return (
 			<fieldset>
-				<H3 as="legend">
+				<Legend>
 					{labelOrLegend}
 
 					<ExplicableRule dottedName={dottedName} />
-				</H3>
+				</Legend>
 
 				<RuleInput
 					dottedName={dottedName}
@@ -139,6 +139,12 @@ export function RuleField({
 	)
 }
 
+const Legend = styled.legend`
+	${H3Style}
+	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xxs}`};
+`
+
 const LabelWithMargin = styled(H3)`
+	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xs}`};
 	display: inline-block;
 `

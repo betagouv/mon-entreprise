@@ -40,6 +40,7 @@ const Container = styled.div`
 	align-items: center;
 	gap: ${({ theme }) => theme.spacings.lg};
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		margin: ${({ theme }) => theme.spacings.xs} 0;
 		flex-direction: row;
 		align-items: start;
 	}
@@ -62,7 +63,6 @@ const LeftColumn = styled.div`
 	}
 `
 const RightColumn = styled.div`
-	/* width: 100%; */
 	display: flex;
 	justify-content: center;
 	align-items: start;

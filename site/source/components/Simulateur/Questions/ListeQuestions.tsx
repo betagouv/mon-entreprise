@@ -89,8 +89,8 @@ export const ListeQuestions = <S extends Situation = Situation>({
 }
 
 const BoutonsContainer = styled.div`
-	padding: ${({ theme }) => theme.spacings.xs} 0
-		${({ theme }) => theme.spacings.md} 0;
+	padding: ${({ theme }) => theme.spacings.lg} 0
+		${({ theme }) => theme.spacings.xs} 0;
 	display: flex;
 	justify-content: space-between;
 `
