@@ -5753,11 +5753,11 @@ plafond sécurité sociale:
       titre.en: '[automatic] daily'
       titre.fr: journalier
     métropole:
-      titre.en: '[automatic] metropolis'
-      titre.fr: métropole
+      titre.en: '[automatic] PSS Metropolitan Area'
+      titre.fr: PSS métropole
     métropole . N-1:
-      titre.en: '[automatic] N-1'
-      titre.fr: N-1
+      titre.en: '[automatic] PSS Metropolitan Division N-1'
+      titre.fr: PSS métropole N-1
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account when calculating certain
     contributions.'
