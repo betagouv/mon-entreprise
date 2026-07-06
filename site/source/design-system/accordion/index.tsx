@@ -22,6 +22,7 @@ export const Accordion = <T extends object>(
 		title?: ReactNode
 		isFoldable?: boolean
 		shouldSaveState?: boolean
+		banner?: ReactNode
 	}
 ) => {
 	const { title, isFoldable, shouldSaveState } = props
@@ -116,6 +117,9 @@ export const Accordion = <T extends object>(
 					)}
 				</StyledGrid>
 			)}
+
+			{props.banner}
+
 			<StyledAccordionGroup
 				{...accordionProps}
 				$variant={props.variant}

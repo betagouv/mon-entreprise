@@ -4,16 +4,7 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
-import {
-	Button,
-	Grid,
-	H4,
-	Li,
-	Spacing,
-	StatusCard,
-	Strong,
-	Ul,
-} from '@/design-system'
+import { Button, Grid, H4, Li, StatusCard, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
@@ -31,7 +22,6 @@ const StatutChoice = ({
 
 	return (
 		<div>
-			<Spacing lg />
 			<Grid container spacing={4} as={Ul}>
 				{namedEngines.map((namedEngine, index) => (
 					<Grid item {...gridSizes} as="li" key={index}>

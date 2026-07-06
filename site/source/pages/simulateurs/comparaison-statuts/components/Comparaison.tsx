@@ -27,14 +27,17 @@ import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/Engine
 import DetailsRowCards from './DetailsRowCards'
 import ItemTitle from './ItemTitle'
 import RevenuTable from './RevenuTable'
+import StatutChoice from './StatutChoice'
 import WarningTooltip from './WarningTooltip'
 
 export const Comparaison = ({
 	namedEngines,
 	expandRevenuSection = false,
+	withStatusCards = false,
 }: {
 	namedEngines: EngineComparison
 	expandRevenuSection?: boolean
+	withStatusCards?: boolean
 }) => {
 	const régimeTIComparé = namedEngines.some(
 		(namedEngine) => namedEngine.name === 'EI' || namedEngine.name === 'EURL'
@@ -84,6 +87,11 @@ export const Comparaison = ({
 					</H2>
 				}
 				isFoldable
+				banner={
+					withStatusCards && (
+						<StatutChoice namedEngines={namedEngines} hideCTA />
+					)
+				}
 			>
 				<Item
 					title={
