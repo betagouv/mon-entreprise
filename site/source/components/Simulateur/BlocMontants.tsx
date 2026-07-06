@@ -18,7 +18,9 @@ export const BlocMontants = ({ children }: Props) => {
 				{t('components.simulateur.zone-de-saisie.montants.titre', 'Montants')}
 			</StyledH2>
 
-			<ForceThemeProvider forceTheme="dark">{children}</ForceThemeProvider>
+			<ForceThemeProvider forceTheme="dark">
+				<Conteneur>{children}</Conteneur>
+			</ForceThemeProvider>
 		</Section>
 	)
 }
@@ -44,4 +46,10 @@ const StyledH2 = styled(H2)`
 			border-color: ${({ theme }) => theme.colors.extended.grey[100]};
 		}
 	}
+`
+
+const Conteneur = styled.div`
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.md};
 `
