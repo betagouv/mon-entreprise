@@ -58,6 +58,7 @@ indépendant . cotisations et contributions . cotisations . conjoint collaborate
               - si: conjoint collaborateur . choix assiette . proportion . moitié
                 alors: 50%
               - sinon: 25%
+        arrondi: oui
     - sinon:
         valeur: cotisations . retraite complémentaire
         contexte:
@@ -95,6 +96,7 @@ indépendant . cotisations et contributions . cotisations . conjoint collaborate
               - si: conjoint collaborateur . choix assiette . proportion . moitié
                 alors: 50%
               - sinon: 25%
+        arrondi: oui
     - sinon:
         valeur: cotisations . invalidité et décès
         contexte:
