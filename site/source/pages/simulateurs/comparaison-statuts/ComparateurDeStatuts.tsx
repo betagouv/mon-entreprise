@@ -15,7 +15,7 @@ import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DétailSimulation'
-import { MontantsÀSaisir } from './components/MontantsÀSaisir'
+import { MontantsÀSaisir } from './components/MontantsASaisir'
 import { EngineComparison } from './EngineComparison'
 
 export const ComparateurDeStatuts = () => {
