@@ -1,5 +1,51 @@
 entreprise . imposition:
-  question: Quel est le type d’imposition de votre entreprise ?
+  question: Quel est le type d’imposition de votre entreprise ?
+  description: |
+    ## Impôt sur le revenu
+
+    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme les
+    autres revenus de votre foyer.
+
+    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
+    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
+    est ajouté aux autres revenus imposables (s’ils existent) :
+    **votre impôt sur le revenu est plus élevé**.
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
+    vient réduire le montant du revenu imposable de votre ménage :
+    **votre impôt sur le revenu est moins élevé**.
+
+    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
+    entre les revenus de votre foyer et ceux de votre entreprise.
+
+    ## Impôt sur les sociétés
+
+    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
+
+    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
+    n’aura pas à payer d’impôt sur les sociétés.
+
+    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
+    Il sera imposé à un **taux fixe**.
+
+    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
+    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+
+    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
+    sur les sociétés :
+      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
+      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
+      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
+      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
+      revenu.
+      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
+      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
+      ce que l’on appelle la « flat tax ».
+
+      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
+      revenus que vous touchez.
   une possibilité:
     - IR
     - IS
