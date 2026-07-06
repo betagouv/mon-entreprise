@@ -33,17 +33,11 @@ const StatutChoice = ({
 		<div>
 			<Spacing lg />
 			<Grid container spacing={4} as={Ul}>
-				<Grid item {...gridSizes} as="li">
-					<StatutBloc {...namedEngines[0]} hideCTA={hideCTA} />
-				</Grid>
-				<Grid item {...gridSizes} as="li">
-					<StatutBloc {...namedEngines[1]} hideCTA={hideCTA} />
-				</Grid>
-				<Grid item {...gridSizes} as="li">
-					{namedEngines[2] && (
-						<StatutBloc {...namedEngines[2]} hideCTA={hideCTA} />
-					)}
-				</Grid>
+				{namedEngines.map((namedEngine, index) => (
+					<Grid item {...gridSizes} as="li" key={index}>
+						<StatutBloc {...namedEngine} hideCTA={hideCTA} />
+					</Grid>
+				))}
 			</Grid>
 		</div>
 	)
