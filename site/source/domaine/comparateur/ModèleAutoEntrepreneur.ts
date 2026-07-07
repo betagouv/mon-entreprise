@@ -39,6 +39,8 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 		},
 
 		charges: () => {},
+
+		réponse: () => {},
 	},
 
 	get: {
@@ -49,6 +51,7 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				const calcul = engine.evaluate(
 					'auto-entrepreneur . revenu . net . après impôt'
 				)
+				console.log('eval', PublicodesAdapter.decode(calcul))
 				montant = O.getOrElse(PublicodesAdapter.decode(calcul), () =>
 					eurosParAn(0)
 				) as MontantDocumenté
