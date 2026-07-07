@@ -1941,25 +1941,24 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
       titre.en: '[automatic] allowance'
       titre.fr: abattement
   description.en: >
-    [automatic] With the reform of the calculation basis for social security
+    [automatic] With the reform of how the contribution base for social security
     contributions
 
-    contributions for self-employed workers, as set out in the Loi de
-    Financement de la
+    for self-employed workers is calculated, as provided for in the 2024 Social
+    Security
 
-    Sécurité Sociale 2024, **the CSG-CRDS base is equal** :
+    Funding Act, **the CSG-CRDS contribution base is equal to**:
 
-    - gross" income (sales less expenses other than social security
-    contributions)
+    - “gross” income (revenue minus expenses other than
 
     social security contributions)
 
     - reduced by a flat rate of 26%.
 
 
-    The amount of the 26% deduction is subject to a floor and a ceiling.
+    The amount of the 26% deduction is subject to a minimum and
 
-    and a ceiling.
+    a maximum (except in Mayotte).
   description.fr: >
     Avec la réforme du calcul de l’assiette de cotisations et contributions
 
@@ -1977,7 +1976,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
 
     Le montant de l’abattement de 26 % est encadré par un plancher et
 
-    un plafond.
+    un plafond (sauf à Mayotte).
   note.en:
     '[automatic] Before the reform, only the taxable portion of replacement
     income was deducted from the CSG base, since the non-taxable portion had

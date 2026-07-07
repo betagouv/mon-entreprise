@@ -82,7 +82,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
     - abattu d’un taux forfaitaire de 26 %.
 
     Le montant de l’abattement de 26 % est encadré par un plancher et
-    un plafond.
+    un plafond (sauf à Mayotte).
 
   variations:
     - si: après réforme
