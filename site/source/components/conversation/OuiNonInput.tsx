@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Radio, ToggleGroup } from '@/design-system'
+import { Radio, ToggleGroup } from '@/design-system/index'
 import { OuiNon } from '@/domaine/OuiNon'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'

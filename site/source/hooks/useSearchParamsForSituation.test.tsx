@@ -13,7 +13,7 @@ vi.mock('react-redux', () => ({
 vi.mock('@/domaine/searchParams', () => ({
 	getSearchParamsFromSituation: vi.fn().mockReturnValue(
 		new URLSearchParams({
-			'salarié . contrat': 'CDD',
+			'salarie . contrat': 'CDD',
 			unité: '€/an',
 		})
 	),
@@ -26,7 +26,7 @@ describe('useSearchParamsForSituation hook', () => {
 	it('retourne les search params de la situation actuelle lorsqu’il est appelé sans paramètres', () => {
 		vi.mocked(useSelector)
 			.mockReturnValueOnce({
-				'salarié . contrat': 'CDD',
+				'salarie . contrat': 'CDD',
 			})
 			.mockReturnValueOnce({})
 			.mockReturnValueOnce('€/an')
@@ -35,7 +35,7 @@ describe('useSearchParamsForSituation hook', () => {
 
 		expect(getSearchParamsFromSituation).toHaveBeenCalledWith(
 			{
-				'salarié . contrat': 'CDD',
+				'salarie . contrat': 'CDD',
 			},
 			'€/an'
 		)
@@ -46,20 +46,20 @@ describe('useSearchParamsForSituation hook', () => {
 	it('retourne les search params de la situation actuelle lorsqu’il est appelé avec une situation', () => {
 		vi.mocked(useSelector)
 			.mockReturnValueOnce({
-				'salarié . contrat': 'CDI',
+				'salarie . contrat': 'CDI',
 			})
 			.mockReturnValueOnce({})
 			.mockReturnValueOnce('€/an')
 
 		const { result } = renderHook(() =>
 			useSearchParamsForSituation({
-				'salarié . contrat': 'CDD',
+				'salarie . contrat': 'CDD',
 			})
 		)
 
 		expect(getSearchParamsFromSituation).toHaveBeenCalledWith(
 			{
-				'salarié . contrat': 'CDD',
+				'salarie . contrat': 'CDD',
 			},
 			'€/an'
 		)

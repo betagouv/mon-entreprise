@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body } from '@/design-system'
+import { Body } from '@/design-system/index'
 
 type ProgressProps = {
 	progress: number

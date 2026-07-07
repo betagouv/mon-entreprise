@@ -9,9 +9,9 @@ import {
 	Popover,
 	Spacing,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useTracking } from '@/hooks/useTracking'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
@@ -37,7 +37,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 
 	const { absoluteSitePaths } = useSitePaths()
 	const isSimulateurSalaire =
-		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
+		currentPath.includes(absoluteSitePaths.simulateurs.salarie) ||
 		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
 
 	const { shouldShowRater, customTitle } = useFeedback()
@@ -76,7 +76,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 					{/* TODO : reactivate when we need new beta-testeurs
 					<SmallBody>
 						<Trans i18nKey="feedback.beta-testeur">
-							Pour continuer à donner votre avis et accéder aux nouveautés en
+							Pour continuer à donner votre avis et accéder aux nouveautes en
 							avant-première,{' '}
 							<StyledLink
 								href={INSCRIPTION_LINK}

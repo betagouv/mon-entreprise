@@ -1,4 +1,4 @@
-import { Emoji } from '@/design-system'
+import { Emoji } from '@/design-system/index'
 
 type Props = {
 	children: string

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system'
+import { Grid, Radio, TitreObjectif, ToggleGroup } from '@/design-system/index'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 

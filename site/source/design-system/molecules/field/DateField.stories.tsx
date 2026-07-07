@@ -1,7 +1,7 @@
 import { action } from '@storybook/addon-actions'
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Spacing } from '../../layout'
+import { Spacing } from '../../layout/index'
 import { DateField } from './DateField'
 
 export default {

@@ -1,4 +1,4 @@
-import { Switch } from '@/design-system'
+import { Switch } from '@/design-system/index'
 import { OuiNon } from '@/domaine/OuiNon'
 import { NoOp } from '@/utils/NoOp'
 

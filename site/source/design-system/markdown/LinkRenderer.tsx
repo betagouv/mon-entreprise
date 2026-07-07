@@ -1,4 +1,4 @@
-import { Link } from '@/design-system'
+import { Link } from '@/design-system/index'
 
 type Props = {
 	href?: string

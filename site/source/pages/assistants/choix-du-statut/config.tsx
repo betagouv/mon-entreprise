@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { Body, H2, Li, Strong, Ul } from '@/design-system'
+import { Body, H2, Li, Strong, Ul } from '@/design-system/index'
 
 import ChoixDuStatut from '.'
 import { config } from '../../simulateurs/_configs/config'

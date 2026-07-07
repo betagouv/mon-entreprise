@@ -3,7 +3,7 @@ import { css, styled } from 'styled-components'
 
 import { Palette } from '@/types/styled'
 
-import { Emoji } from '../emoji'
+import { Emoji } from '../emoji/index'
 import { getColorPalette } from '../theme'
 import { ComponentType } from '../types'
 import { getIconFromType } from '../utils'

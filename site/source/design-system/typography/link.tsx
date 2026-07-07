@@ -8,8 +8,8 @@ import React, {
 import { AriaButtonOptions, AriaButtonProps, useButton } from 'react-aria'
 import { css, styled } from 'styled-components'
 
-import { NavLink } from '@/lib/navigation'
-import { omit } from '@/utils'
+import { NavLink } from '@/lib/navigation/index'
+import { omit } from '@/utils/index'
 
 export const StyledLinkHover = css`
 	text-decoration: underline;

@@ -6,7 +6,7 @@ import {
 	Message,
 	PopoverWithTrigger,
 	StyledLink,
-} from '@/design-system'
+} from '@/design-system/index'
 
 export default function Contact() {
 	const { t } = useTranslation()

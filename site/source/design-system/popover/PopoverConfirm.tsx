@@ -2,8 +2,8 @@ import { ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button } from '../buttons'
-import { Grid } from '../layout'
+import { Button } from '../buttons/index'
+import { Grid } from '../layout/index'
 import { H3 } from '../typography/heading'
 import {
 	PopoverWithTrigger,

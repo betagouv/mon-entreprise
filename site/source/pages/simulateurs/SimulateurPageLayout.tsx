@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import BêtaChip from '@/components/BêtaChip'
+import BêtaChip from '@/components/BetaChip'
 import {
 	TrackingChapters,
 	TrackingChaptersProvider,
@@ -9,7 +9,7 @@ import {
 import { PublicodesDateChip } from '@/components/PublicodesDateChip'
 import Loader from '@/components/utils/Loader'
 import Meta from '@/components/utils/Meta'
-import { H1, Intro } from '@/design-system'
+import { H1, Intro } from '@/design-system/index'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { SimulateurId } from '@/hooks/useSimulatorsData'

@@ -2,9 +2,9 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button } from '../buttons'
-import { InfoIcon } from '../icons'
-import { Markdown } from '../markdown'
+import { Button } from '../buttons/index'
+import { InfoIcon } from '../icons/index'
+import { Markdown } from '../markdown/index'
 import { PopoverWithTrigger } from '../popover/PopoverWithTrigger'
 
 export interface Props {

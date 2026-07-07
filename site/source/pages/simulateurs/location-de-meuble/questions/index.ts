@@ -1,0 +1,5 @@
+export { TypeDuréeQuestion } from './TypeDureeQuestion'
+export { ClassementQuestion } from './ClassementQuestion'
+export { RecettesCourteDuréeQuestion } from './RecettesCourteDureeQuestion'
+export { AlsaceMoselleQuestion } from './AlsaceMoselleQuestion'
+export { PremiereAnneeQuestion } from './PremiereAnneeQuestion'

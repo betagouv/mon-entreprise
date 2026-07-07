@@ -2,7 +2,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button, H3, ReturnLeftIcon } from '@/design-system'
+import { Button, H3, ReturnLeftIcon } from '@/design-system/index'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
 

@@ -1,6 +1,6 @@
 import { isPublicodesError, PublicodesExpression } from 'publicodes'
 
-import { omit } from '@/utils'
+import { omit } from '@/utils/index'
 
 export const safeSetSituation = <Names extends string>(
 	setSituation: (

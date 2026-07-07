@@ -1,6 +1,6 @@
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-import { configIndépendant } from '../indépendant/simulationConfig'
+import { configIndépendant } from '../independant/simulationConfig'
 
 export const configEntrepriseIndividuelle: SimulationConfig = {
 	...configIndépendant,

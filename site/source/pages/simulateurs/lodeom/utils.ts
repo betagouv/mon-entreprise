@@ -12,14 +12,14 @@ import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const lodeomDottedName =
-	'salarié . cotisations . exonérations . lodeom . montant'
+	'salarie . cotisations . exonérations . lodeom . montant'
 
-export const rémunérationBruteDottedName = 'salarié . rémunération . brut'
+export const rémunérationBruteDottedName = 'salarie . rémunération . brut'
 
 const heuresSupplémentairesDottedName =
-	'salarié . temps de travail . heures supplémentaires'
+	'salarie . temps de travail . heures supplémentaires'
 const heuresComplémentairesDottedName =
-	'salarié . temps de travail . heures complémentaires'
+	'salarie . temps de travail . heures complémentaires'
 
 export type MonthState = {
 	rémunérationBrute: number
@@ -468,7 +468,7 @@ const getMonthlyRéduction = (
 		contexte: {
 			date,
 			[rémunérationBruteDottedName]: rémunérationBrute,
-			'salarié . temps de travail . SMIC': SMIC,
+			'salarie . temps de travail . SMIC': SMIC,
 		},
 	})
 
@@ -554,8 +554,8 @@ const getRéduction =
 			arrondi: 'non',
 			contexte: {
 				[rémunérationBruteDottedName]: paramètresRéduction.rémunérationBrute,
-				'salarié . temps de travail . SMIC': paramètresRéduction.SMIC.value,
-				'salarié . cotisations . exonérations . T':
+				'salarie . temps de travail . SMIC': paramètresRéduction.SMIC.value,
+				'salarie . cotisations . exonérations . T':
 					paramètresRéduction.coefT.value,
 			},
 		}).nodeValue as number
@@ -599,7 +599,7 @@ const getRépartition = (
 /**
  * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
  * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#710)
- * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
+ * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariee
  * (heures supplémentaires, temps partiel, mois incomplet...).
  */
 const getSMICMensuelAvecOptions = (
@@ -617,7 +617,7 @@ const getSMICMensuelAvecOptions = (
 	} as SituationPublicodes
 
 	const SMICMensuel = engine.evaluate({
-		valeur: 'salarié . temps de travail . SMIC',
+		valeur: 'salarie . temps de travail . SMIC',
 		unité: '€/mois',
 		contexte,
 	}).nodeValue as number
@@ -627,15 +627,15 @@ const getSMICMensuelAvecOptions = (
 		return SMICMensuel
 	}
 
-	contexte['salarié . mois incomplet . rémunération équivalente mois complet'] =
+	contexte['salarie . mois incomplet . rémunération équivalente mois complet'] =
 		options.rémunérationETP
 	if (options.rémunérationPrimes) {
 		contexte[
-			"salarié . mois incomplet . rémunération non impactée par l'absence"
+			"salarie . mois incomplet . rémunération non impactée par l'absence"
 		] = options.rémunérationPrimes
 	}
 	const SMIC = engine.evaluate({
-		valeur: 'salarié . mois incomplet . SMIC équivalent',
+		valeur: 'salarie . mois incomplet . SMIC équivalent',
 		contexte,
 	}).nodeValue as number
 
@@ -693,7 +693,7 @@ const getCoefT = (
 	} as SituationPublicodes
 
 	return engine.evaluate({
-		valeur: 'salarié . cotisations . exonérations . T',
+		valeur: 'salarie . cotisations . exonérations . T',
 		contexte,
 	}).nodeValue as number
 }

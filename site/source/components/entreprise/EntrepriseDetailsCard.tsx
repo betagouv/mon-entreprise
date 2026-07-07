@@ -2,7 +2,7 @@ import { ComponentType } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Grid, Message, Spacing } from '@/design-system'
+import { Grid, Message, Spacing } from '@/design-system/index'
 
 import SeeAnswersButton from '../conversation/SeeAnswersButton'
 import EntrepriseDetails from './EntrepriseDetails'

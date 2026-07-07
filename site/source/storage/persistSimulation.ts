@@ -4,7 +4,7 @@ import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulation.selector'
 
-import { debounce } from '../utils'
+import { debounce } from '../utils/index'
 import * as safeLocalStorage from './safeLocalStorage'
 import { deserialize, serialize } from './serializeSimulation'
 

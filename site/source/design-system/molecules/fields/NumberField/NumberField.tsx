@@ -11,10 +11,10 @@ import {
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ErrorIcon } from '@/design-system/icons'
-import { Body } from '@/design-system/typography'
+import { ErrorIcon } from '@/design-system/icons/index'
+import { Body } from '@/design-system/typography/index'
 
-import { InputSuggestions, InputSuggestionsRecord } from '../../../suggestions'
+import { InputSuggestions, InputSuggestionsRecord } from '../../../suggestions/index'
 import {
 	errorMessageStyle,
 	fieldContainerStyles,

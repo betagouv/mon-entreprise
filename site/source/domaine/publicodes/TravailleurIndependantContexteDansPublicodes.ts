@@ -1,10 +1,10 @@
 import { Montant, montantToNumber } from '@/domaine/Montant'
 
 export const TravailleurIndependantContexteDansPublicodes = {
-	'dirigeant . régime social': "'indépendant'",
+	'dirigeant . régime social': "'independant'",
 	'entreprise . imposition': "'IR'",
 	'entreprise . catégorie juridique': "''",
-	salarié: 'non',
+	salarie: 'non',
 }
 
 export const TravailleurIndependantChiffreAffaireDansPublicodes = {
@@ -14,5 +14,5 @@ export const TravailleurIndependantChiffreAffaireDansPublicodes = {
 }
 
 export const TravailleurIndependantCotisationsEtContributionsDansPublicodes = {
-	enEurosParAn: 'dirigeant . indépendant . cotisations et contributions',
+	enEurosParAn: 'dirigeant . independant . cotisations et contributions',
 }

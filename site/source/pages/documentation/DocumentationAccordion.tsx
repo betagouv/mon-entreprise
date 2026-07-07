@@ -2,7 +2,7 @@ import { RulePage } from '@publicodes/react-ui'
 import { ComponentProps } from 'react'
 import { styled } from 'styled-components'
 
-import { Accordion, Item } from '@/design-system'
+import { Accordion, Item } from '@/design-system/index'
 
 type Renderers = ComponentProps<typeof RulePage>['renderers']
 type AccordionProps = ComponentProps<NonNullable<Renderers['Accordion']>>

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ArrowRightIcon, Body, Button } from '@/design-system'
+import { ArrowRightIcon, Body, Button } from '@/design-system/index'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
 

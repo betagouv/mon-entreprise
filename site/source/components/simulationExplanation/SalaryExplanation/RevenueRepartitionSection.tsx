@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
-import { Emoji, H2, Link } from '@/design-system'
+import { Emoji, H2, Link } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { BarType } from '../StackedRulesChart/InnerStackedBarChart'

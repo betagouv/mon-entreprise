@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { AriaButtonOptions, useButton } from 'react-aria'
 import { styled } from 'styled-components'
 
-import { Link } from '@/lib/navigation'
+import { Link } from '@/lib/navigation/index'
 
 import { H6 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'

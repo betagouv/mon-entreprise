@@ -7,7 +7,7 @@ import {
 	Grid,
 	PopoverWithTrigger,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 

@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import Meta from '@/components/utils/Meta'
 import {
@@ -14,7 +14,7 @@ import {
 	Link,
 	Strong,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -58,9 +58,9 @@ export default function SimulateursEtAssistants() {
 					spacing={3}
 					aria-labelledby="salarie-employeurs"
 				>
-					<SimulateurCard {...simulators.salarié} role="listitem" />
+					<SimulateurCard {...simulators.salarie} role="listitem" />
 					<SimulateurCard
-						{...simulators['activité-partielle']}
+						{...simulators['activite-partielle']}
 						role="listitem"
 					/>
 				</Grid>
@@ -109,10 +109,10 @@ export default function SimulateursEtAssistants() {
 					role="list"
 					aria-labelledby="travailleurs-ns"
 				>
-					<SimulateurCard {...simulators.indépendant} role="listitem" />
+					<SimulateurCard {...simulators.independant} role="listitem" />
 					<SimulateurCard {...simulators['artiste-auteur']} role="listitem" />
 					<SimulateurCard
-						{...simulators['profession-libérale']}
+						{...simulators['profession-liberale']}
 						role="listitem"
 					/>
 				</Grid>
@@ -128,7 +128,7 @@ export default function SimulateursEtAssistants() {
 					>
 						<SimulateurCard
 							small
-							{...simulators['auxiliaire-médical']}
+							{...simulators['auxiliaire-medical']}
 							role="listitem"
 						/>
 						<SimulateurCard
@@ -136,7 +136,7 @@ export default function SimulateursEtAssistants() {
 							{...simulators['chirurgien-dentiste']}
 							role="listitem"
 						/>
-						<SimulateurCard small {...simulators.médecin} role="listitem" />
+						<SimulateurCard small {...simulators.medecin} role="listitem" />
 						<SimulateurCard
 							small
 							{...simulators['sage-femme']}
@@ -174,7 +174,7 @@ export default function SimulateursEtAssistants() {
 						role="listitem"
 					/>
 					<SimulateurCard
-						{...simulators['cessation-activité']}
+						{...simulators['cessation-activite']}
 						role="listitem"
 					/>
 				</Grid>

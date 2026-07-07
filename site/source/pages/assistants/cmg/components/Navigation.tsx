@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { useCMG } from '@/contextes/cmg'
-import { Button, FlexCenter } from '@/design-system'
+import { useCMG } from '@/contextes/cmg/index'
+import { Button, FlexCenter } from '@/design-system/index'
 import { useGetPath } from '@/hooks/useGetPath'
 import { RelativeSitePaths } from '@/sitePaths'
 

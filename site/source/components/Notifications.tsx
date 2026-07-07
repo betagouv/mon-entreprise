@@ -2,7 +2,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Emoji, Markdown, Message, typography } from '@/design-system'
+import { Emoji, Markdown, Message, typography } from '@/design-system/index'
 import { getNotifications } from '@/domaine/publicodes/Notification'
 import { useInversionFail } from '@/hooks/useInversionFail'
 import { hideNotification } from '@/store/actions/actions'

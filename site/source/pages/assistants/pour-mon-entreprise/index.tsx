@@ -11,7 +11,7 @@ import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -27,7 +27,7 @@ import {
 	Message,
 	Popover,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 import { Entreprise } from '@/domaine/Entreprise'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { useQuestionList } from '@/hooks/useQuestionList'
@@ -35,7 +35,7 @@ import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
@@ -204,10 +204,10 @@ function PourMonEntreprise() {
 								)}
 							</H2>
 							<Grid container spacing={3}>
-								<SimulateurCard fromGérer {...simulateurs['salarié']} />
+								<SimulateurCard fromGérer {...simulateurs['salarie']} />
 								<SimulateurCard
 									fromGérer
-									{...simulateurs['activité-partielle']}
+									{...simulateurs['activite-partielle']}
 								/>
 							</Grid>
 						</FromTop>

@@ -3,7 +3,7 @@ import FlipMove from 'react-flip-move'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
-import { H5, Li, Message, Ul } from '@/design-system'
+import { H5, Li, Message, Ul } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 

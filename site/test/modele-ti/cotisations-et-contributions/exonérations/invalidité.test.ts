@@ -2,14 +2,14 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
+const COTISATIONS = 'independant . cotisations et contributions . cotisations'
 
 const defaultSituation = {
-	'indépendant . cotisations et contributions . assiette sociale': '50000 €/an',
+	'independant . cotisations et contributions . assiette sociale': '50000 €/an',
 }
 const defaultSituationInvalidité = {
 	...defaultSituation,
-	'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+	'independant . cotisations et contributions . cotisations . exonérations . invalidité':
 		'oui',
 }
 
@@ -58,7 +58,7 @@ describe('L’exonération invalidité', () => {
 		const situationPLRNonCipav = {
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . profession libérale . réglementée . métier':
+			'independant . profession libérale . réglementée . métier':
 				"'expert-comptable'",
 		}
 
@@ -90,7 +90,7 @@ describe('L’exonération invalidité', () => {
 	it('est proratisée en fonction de la durée d’invalidité', () => {
 		const e = engine.setSituation({
 			...defaultSituationInvalidité,
-			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
+			'independant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
 				'9 mois',
 		})
 

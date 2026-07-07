@@ -51,7 +51,7 @@ export const PlusieursAccordeons: Story = {
 				<summary>Comment déclarer mes revenus ?</summary>
 				<p>
 					Vous devez déclarer vos recettes brutes dans la catégorie des BIC
-					(Bénéfices Industriels et Commerciaux) sur votre déclaration de
+					(Bénéfices Industriels et Commerciaux) sur votre declaration de
 					revenus.
 				</p>
 			</AccordeonDocumentation>

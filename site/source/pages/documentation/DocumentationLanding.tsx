@@ -1,10 +1,10 @@
 import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import Loader from '@/components/utils/Loader'
 import Meta from '@/components/utils/Meta'
-import { Body, H1 } from '@/design-system'
+import { Body, H1 } from '@/design-system/index'
 
 const LazySearchRules = lazy(() => import('@/components/search/SearchRules'))
 

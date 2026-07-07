@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Avertissement } from '../profession-libérale/Avertissement'
+import { Avertissement } from '../profession-liberale/Avertissement'
 
 export const AvertissementAvocat = () => {
 	const { t } = useTranslation()

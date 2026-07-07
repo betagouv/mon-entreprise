@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux'
 
-import fetchBénéfice from '@/api/activité-vers-bénéfice'
+import fetchBénéfice from '@/api/activite-vers-benefice/index'
 import { fetchCommuneDetails } from '@/api/commune'
 import { Entreprise } from '@/domaine/Entreprise'
 import {

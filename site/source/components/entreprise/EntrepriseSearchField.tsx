@@ -2,7 +2,7 @@ import { ReactNode, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSearchFieldState } from 'react-stately'
 
-import { Grid, SearchableSelectField } from '@/design-system'
+import { Grid, SearchableSelectField } from '@/design-system/index'
 import { Entreprise } from '@/domaine/Entreprise'
 import useSearchCompany from '@/hooks/useSearchCompany'
 

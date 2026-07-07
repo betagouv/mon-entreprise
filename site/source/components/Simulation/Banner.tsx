@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Emoji, Message, SmallBody } from '@/design-system'
+import { Emoji, Message, SmallBody } from '@/design-system/index'
 
 import { FadeIn } from '../ui/animate'
 

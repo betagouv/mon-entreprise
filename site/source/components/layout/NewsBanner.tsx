@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Body, Emoji, Link, Message } from '@/design-system'
+import { Body, Emoji, Link, Message } from '@/design-system/index'
 import { useFetchData } from '@/hooks/useFetchData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -9,7 +9,7 @@ import { getItem, setItem } from '../../storage/safeLocalStorage'
 
 const localStorageKey = 'last-viewed-release'
 
-type LastRelease = typeof import('@/public/data/last-release.json')
+type LastRelease = typeof import('@/public/data/last-release')
 
 export const useHideNewsBanner = () => {
 	const { data: lastReleaseData } = useFetchData<LastRelease>(
@@ -67,11 +67,11 @@ function NewsBanner({ lastRelease }: { lastRelease: LastRelease }) {
 				}}
 			>
 				<Body>
-					Découvrez les nouveautés {determinant(lastRelease.name)}
+					Découvrez les nouveautes {determinant(lastRelease.name)}
 					<Link
-						to={absoluteSitePaths.nouveautés.index}
+						to={absoluteSitePaths.nouveautes.index}
 						aria-label={t(
-							'Voir les nouveautés apportées par la version {{release}}',
+							'Voir les nouveautes apportées par la version {{release}}',
 							{ release: lastRelease.name.toLowerCase() }
 						)}
 					>

@@ -16,7 +16,7 @@ export const SalaireNet = () => {
 		<SectionSalaireNet
 			montantNetSocial={
 				<SalaireLine
-					rule="assimilé salarié . rémunération . montant net social"
+					rule="assimilé salarie . rémunération . montant net social"
 					title={t(
 						'components.fiche-de-paie.salaire-net.mns',
 						'Montant net social'
@@ -25,7 +25,7 @@ export const SalaireNet = () => {
 			}
 			remboursementsEtRéductions={
 				<Condition
-					expression={'assimilé salarié . rémunération . avantages en nature'}
+					expression={'assimilé salarie . rémunération . avantages en nature'}
 				>
 					<li>
 						<Titre>
@@ -38,7 +38,7 @@ export const SalaireNet = () => {
 						<Liste>
 							<Line
 								negative
-								rule="assimilé salarié . rémunération . avantages en nature . montant"
+								rule="assimilé salarie . rémunération . avantages en nature . montant"
 							/>
 						</Liste>
 					</li>
@@ -46,7 +46,7 @@ export const SalaireNet = () => {
 			}
 			netAvantImpôt={
 				<SalaireLine
-					rule="assimilé salarié . rémunération . nette . à payer avant impôt"
+					rule="assimilé salarie . rémunération . nette . à payer avant impôt"
 					title={t(
 						'components.fiche-de-paie.salaire-net.net-avant-impôt',
 						'Montant net à payer avant impôt sur le revenu'
@@ -56,7 +56,7 @@ export const SalaireNet = () => {
 			impôt={
 				<>
 					<Line
-						rule="assimilé salarié . rémunération . nette . imposable"
+						rule="assimilé salarie . rémunération . nette . imposable"
 						title={t(
 							'components.fiche-de-paie.salaire-net.impôt.net-imposable',
 							'Montant net imposable'
@@ -64,7 +64,7 @@ export const SalaireNet = () => {
 					/>
 					<Line
 						negative
-						rule="assimilé salarié . rémunération . impôt"
+						rule="assimilé salarie . rémunération . impôt"
 						title={t(
 							'components.fiche-de-paie.salaire-net.impôt.PAS',
 							'Impôt sur le revenu prélevé à la source'
@@ -74,7 +74,7 @@ export const SalaireNet = () => {
 			}
 			netAprèsImpôt={
 				<SalaireLine
-					rule="assimilé salarié . rémunération . nette . après impôt"
+					rule="assimilé salarie . rémunération . nette . après impôt"
 					title={t(
 						'components.fiche-de-paie.salaire-net.net-après-impôt',
 						'Montant net à payer'

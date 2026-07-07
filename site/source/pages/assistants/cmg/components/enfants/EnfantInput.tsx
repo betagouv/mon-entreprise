@@ -1,12 +1,12 @@
 import { styled } from 'styled-components'
 
-import { Enfant } from '@/contextes/cmg'
-import { FlexCenter } from '@/design-system'
+import { Enfant } from '@/contextes/cmg/index'
+import { FlexCenter } from '@/design-system/index'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
 import DateDeNaissanceInput from './DateDeNaissanceInput'
-import PrénomInput from './PrénomInput'
+import PrénomInput from './PrenomInput'
 
 type Props = {
 	idSuffix: string

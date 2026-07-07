@@ -6,19 +6,19 @@ const rawSitePathsFr = {
 	index: '',
 	assistants: {
 		index: 'assistants',
-		formulaireMobilité: 'demande-mobilité',
+		formulaireMobilité: 'demande-mobilite',
 		'recherche-code-ape': 'recherche-code-ape',
-		'déclaration-charges-sociales-indépendant':
+		'declaration-charges-sociales-independant':
 			'declaration-charges-sociales-independant',
-		'déclaration-revenus-pamc': 'declaration-revenus-pam',
+		'declaration-revenus-pamc': 'declaration-revenus-pam',
 		économieCollaborative: {
-			index: 'économie-collaborative',
+			index: 'economie-collaborative',
 		},
 		'pour-mon-entreprise': {
 			index: 'pour-mon-entreprise',
 			entreprise: ':entreprise',
 		},
-		déclarationIndépendant: {
+		declarationIndépendant: {
 			index: 'aide-declaration-independants-v2',
 		},
 		'choix-du-statut': {
@@ -47,9 +47,9 @@ const rawSitePathsFr = {
 		},
 		cmg: {
 			index: 'cmg',
-			informations: 'informations-générales',
+			informations: 'informations-generales',
 			enfants: 'enfants',
-			déclarations: 'déclarations',
+			declarations: 'declarations',
 			inéligibilité: 'inéligible',
 			résultat: 'résultat',
 		},
@@ -62,14 +62,14 @@ const rawSitePathsFr = {
 		eirl: 'eirl',
 		sasu: 'sasu',
 		eurl: 'eurl',
-		indépendant: 'indépendant',
+		independant: 'independant',
 		comparaison: 'comparaison-régimes-sociaux',
 		pamc: 'pamc',
-		salarié: 'salaire-brut-net',
+		salarie: 'salaire-brut-net',
 		'artiste-auteur': 'artiste-auteur',
-		'profession-libérale': {
+		'profession-liberale': {
 			index: 'profession-liberale',
-			médecin: 'medecin',
+			medecin: 'medecin',
 			pharmacien: 'pharmacien',
 			auxiliaire: 'auxiliaire-medical',
 			'chirurgien-dentiste': 'chirurgien-dentiste',
@@ -78,16 +78,16 @@ const rawSitePathsFr = {
 			'expert-comptable': 'expert-comptable',
 			cipav: 'cipav',
 		},
-		'activité-partielle': 'chômage-partiel',
+		'activite-partielle': 'chômage-partiel',
 		is: 'impot-societe',
 		dividendes: 'dividendes',
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
-		'cessation-activité': 'cessation-activité',
+		'cessation-activite': 'cessation-activite',
 		'location-de-logement-meublé': 'location-de-logement-meuble',
 	},
-	nouveautés: {
-		index: 'nouveautés',
+	nouveautes: {
+		index: 'nouveautes',
 		date: ':date',
 	},
 	stats: 'statistiques',
@@ -113,9 +113,9 @@ const rawSitePathsEn = {
 		index: 'assistants',
 		formulaireMobilité: 'posting-demand',
 		'recherche-code-ape': 'search-code-ape',
-		'déclaration-charges-sociales-indépendant':
+		'declaration-charges-sociales-independant':
 			'declaration-social-charges-independent',
-		'déclaration-revenus-pamc': 'income-declaration-pam',
+		'declaration-revenus-pamc': 'income-declaration-pam',
 		économieCollaborative: {
 			index: 'sharing-economy',
 			votreSituation: 'your-situation',
@@ -124,7 +124,7 @@ const rawSitePathsEn = {
 			index: 'for-my-business',
 			entreprise: ':entreprise',
 		},
-		déclarationIndépendant: {
+		declarationIndépendant: {
 			index: 'declaration-aid-independent-v2',
 		},
 		'choix-du-statut': {
@@ -156,7 +156,7 @@ const rawSitePathsEn = {
 			index: 'cmg',
 			informations: 'general-information',
 			enfants: 'children',
-			déclarations: 'declarations',
+			declarations: 'declarations',
 			inéligibilité: 'ineligible',
 			résultat: 'result',
 		},
@@ -164,7 +164,7 @@ const rawSitePathsEn = {
 	simulateurs: {
 		index: 'calculators',
 		'coût-création-entreprise': 'coût-création-entreprise',
-		indépendant: 'independant',
+		independant: 'independant',
 		'entreprise-individuelle': 'sole-proprietorship',
 		'auto-entrepreneur': 'auto-entrepreneur',
 		eirl: 'eirl',
@@ -172,12 +172,12 @@ const rawSitePathsEn = {
 		eurl: 'eurl',
 		pamc: 'pamc',
 		comparaison: 'social-scheme-comparaison',
-		salarié: 'salary',
+		salarie: 'salary',
 		'artiste-auteur': 'artist-author',
-		'activité-partielle': 'partial-unemployement',
-		'profession-libérale': {
+		'activite-partielle': 'partial-unemployement',
+		'profession-liberale': {
 			index: 'liberal-profession',
-			médecin: 'doctor',
+			medecin: 'doctor',
 			pharmacien: 'pharmacist',
 			auxiliaire: 'medical-auxiliary',
 			'chirurgien-dentiste': 'dental-surgeon',
@@ -190,10 +190,10 @@ const rawSitePathsEn = {
 		dividendes: 'dividends',
 		'réduction-générale': 'réduction-générale',
 		lodeom: 'lodeom',
-		'cessation-activité': 'cessation-of-activity',
+		'cessation-activite': 'cessation-of-activity',
 		'location-de-logement-meublé': 'furnished-accommodation',
 	},
-	nouveautés: {
+	nouveautes: {
 		index: 'news',
 		date: ':date',
 	},

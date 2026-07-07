@@ -5,8 +5,8 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
-} from '@/components/Simulation'
-import { DarkLi, Grid, H3, Ul } from '@/design-system'
+} from '@/components/Simulation/index'
+import { DarkLi, Grid, H3, Ul } from '@/design-system/index'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
@@ -67,7 +67,7 @@ export default function CoutCreationEntreprise() {
 									<SimulationGoal
 										displayedUnit="€ HT"
 										dottedName="entreprise . coût formalités . bénéficiaires effectifs . création"
-										label="Frais de déclaration des bénéficiaires effectifs"
+										label="Frais de declaration des bénéficiaires effectifs"
 										editable={false}
 										small
 										round={false}

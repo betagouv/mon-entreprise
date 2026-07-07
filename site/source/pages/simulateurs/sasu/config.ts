@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
+import RémunérationSASUPreview from '../_images/RemunerationSASUPreview.png'
 import { SASUSimulation, SeoExplanations } from './SASU'
 import { configSASU } from './simulationConfig'
 
@@ -21,7 +21,7 @@ export function sasuConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 			ogDescription: t(
 				'pages.simulateurs.sasu.meta.ogDescription',
-				'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
+				'En tant que dirigeant assimilé-salarie, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
 			),
 			ogTitle: t(
 				'pages.simulateurs.sasu.meta.ogTitle',

@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { Body, Emoji, H2, Message } from '@/design-system'
+import { Body, Emoji, H2, Message } from '@/design-system/index'
 
 export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.ei.seo explanation">
@@ -18,7 +18,7 @@ export const SeoExplanations = () => (
 		</Body>
 		<Body>
 			<Emoji emoji="👉" />{' '}
-			<RuleLink dottedName="indépendant . cotisations et contributions">
+			<RuleLink dottedName="independant . cotisations et contributions">
 				Voir le détail du calcul des cotisations
 			</RuleLink>
 		</Body>
@@ -52,7 +52,7 @@ export const SeoExplanations = () => (
 				résultat fiscal
 			</RuleLink>{' '}
 			de l'entreprise s'il a opté pour l'impôt sur le revenu, ou à son{' '}
-			<RuleLink dottedName="indépendant . revenu professionnel">
+			<RuleLink dottedName="independant . revenu professionnel">
 				revenu professionnel
 			</RuleLink>{' '}
 			s'il a opté pour l'impôt sur les sociétés. Leur montant varie également en

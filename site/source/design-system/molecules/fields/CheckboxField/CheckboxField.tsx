@@ -1,7 +1,7 @@
 import { Checkbox as RACheckbox } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { InfoButton } from '@/design-system'
+import { InfoButton } from '@/design-system/index'
 
 import { fieldTransition, outlineOnFocus } from '../fieldsStyles'
 

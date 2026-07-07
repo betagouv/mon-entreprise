@@ -1634,7 +1634,7 @@
       "niv1": "Industrie et artisanat de fabrication ",
       "niv2": "Edition, informatique et télécommunication",
       "niv3": "Programmation, conseil et autres activités informatiques ",
-      "niv4": "A titre indépendant"
+      "niv4": "A titre independant"
     }
   },
   "03010100": {
@@ -2977,7 +2977,7 @@
     "label": {
       "niv1": "Commerce et artisanat de détail",
       "niv2": "Vente à domicile",
-      "niv3": "vendeur à domicile indépendant inscrit au RCS",
+      "niv3": "vendeur à domicile independant inscrit au RCS",
       "niv4": ""
     }
   },
@@ -2991,7 +2991,7 @@
     "label": {
       "niv1": "Commerce et artisanat de détail",
       "niv2": "Vente à domicile",
-      "niv3": "vendeur à domicile indépendant inscrit au RSAC",
+      "niv3": "vendeur à domicile independant inscrit au RSAC",
       "niv4": ""
     }
   },
@@ -3005,7 +3005,7 @@
     "label": {
       "niv1": "Commerce et artisanat de détail",
       "niv2": "Vente à domicile",
-      "niv3": "Vendeur à domicile indépendant non immatriculé au RCS ou au RSAC",
+      "niv3": "Vendeur à domicile independant non immatriculé au RCS ou au RSAC",
       "niv4": ""
     }
   },
@@ -3244,7 +3244,7 @@
       "niv1": "Activités de services",
       "niv2": "Transport, Fret, Entreposage",
       "niv3": "Entreposage et stockage",
-      "niv4": "A titre indépendant"
+      "niv4": "A titre independant"
     }
   },
   "07011300": {
@@ -4252,7 +4252,7 @@
       "niv1": "Activités de services",
       "niv2": "Activités spécialisées, scientifiques et techniques",
       "niv3": "Activités d'architecture et d'ingénierie",
-      "niv4": "Ingénierie, études techniques à titre indépendant"
+      "niv4": "Ingénierie, études techniques à titre independant"
     }
   },
   "07050107": {
@@ -4490,7 +4490,7 @@
       "niv1": "Activités de services",
       "niv2": "Activités spécialisées, scientifiques et techniques",
       "niv3": "Activités photographiques",
-      "niv4": "Photojournaliste indépendant"
+      "niv4": "Photojournaliste independant"
     }
   },
   "07051307": {
@@ -6100,7 +6100,7 @@
       "niv1": "Activités de services",
       "niv2": "Social et santé",
       "niv3": "Santé humaine",
-      "niv4": "laboratoire d'analyse médicale dirigé par un médecin"
+      "niv4": "laboratoire d'analyse médicale dirigé par un medecin"
     }
   },
   "07140125": {

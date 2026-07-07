@@ -1,4 +1,4 @@
-import { Li, Ul } from '@/design-system'
+import { Li, Ul } from '@/design-system/index'
 
 import Reference from './Reference'
 

@@ -1,15 +1,15 @@
 import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
-import { configSalarié } from '@/pages/simulateurs/salarié/simulationConfig'
+import { configSalarié } from '@/pages/simulateurs/salarie/simulationConfig'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
-import employeeSituations from './salarié.yaml'
+import employeeSituations from './salarie.yaml'
 import { getMissingVariables, runSimulations } from './utils'
 
 const engine = engineFactory(rules)
 
-it('calculate simulations-salarié', () => {
+it('calculate simulations-salarie', () => {
 	runSimulations(
 		engine,
 		employeeSituations,
@@ -25,31 +25,31 @@ it('calculate simulations-salarié', () => {
 			engine
 				.setSituation({
 					...configSalarié.situation,
-					'salarié . contrat . salaire brut': '3000 €/mois',
+					'salarie . contrat . salaire brut': '3000 €/mois',
 				})
-				.evaluate('salarié . rémunération . net . payé après impôt')
+				.evaluate('salarie . rémunération . net . payé après impôt')
 		)
 	).toMatchInlineSnapshot(`
 		[
 		  "impôt . méthode de calcul",
-		  "salarié . contrat",
-		  "salarié . contrat . statut cadre",
-		  "salarié . contrat . temps de travail . temps partiel",
-		  "salarié . convention collective",
-		  "salarié . cotisations . prévoyances . santé . montant",
-		  "salarié . cotisations . prévoyances . santé . taux employeur",
-		  "salarié . régimes spécifiques . DFS",
-		  "salarié . régimes spécifiques . alsace moselle",
-		  "salarié . régimes spécifiques . impatriés",
-		  "salarié . régimes spécifiques . taux réduits",
-		  "salarié . rémunération . avantages en nature",
-		  "salarié . rémunération . frais professionnels . titres-restaurant",
-		  "salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant",
-		  "salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant",
-		  "salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant",
-		  "salarié . rémunération . primes . activité . base",
-		  "salarié . rémunération . primes . fin d'année",
-		  "salarié . temps de travail . heures supplémentaires",
+		  "salarie . contrat",
+		  "salarie . contrat . statut cadre",
+		  "salarie . contrat . temps de travail . temps partiel",
+		  "salarie . convention collective",
+		  "salarie . cotisations . prévoyances . santé . montant",
+		  "salarie . cotisations . prévoyances . santé . taux employeur",
+		  "salarie . régimes spécifiques . DFS",
+		  "salarie . régimes spécifiques . alsace moselle",
+		  "salarie . régimes spécifiques . impatriés",
+		  "salarie . régimes spécifiques . taux réduits",
+		  "salarie . rémunération . avantages en nature",
+		  "salarie . rémunération . frais professionnels . titres-restaurant",
+		  "salarie . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant",
+		  "salarie . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant",
+		  "salarie . rémunération . frais professionnels . trajets domicile travail . transports publics . montant",
+		  "salarie . rémunération . primes . activité . base",
+		  "salarie . rémunération . primes . fin d'année",
+		  "salarie . temps de travail . heures supplémentaires",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
 		  "établissement . commune . département",
 		  "établissement . commune . département . outre-mer",

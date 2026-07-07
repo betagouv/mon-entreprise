@@ -4,7 +4,7 @@ import { css, styled } from 'styled-components'
 
 import { useTracking } from '@/hooks/useTracking'
 import { Palette } from '@/types/styled'
-import { omit, wrapperDebounceEvents } from '@/utils'
+import { omit, wrapperDebounceEvents } from '@/utils/index'
 
 import { FocusStyle } from '../global-style'
 import { getColorPalette } from '../theme'

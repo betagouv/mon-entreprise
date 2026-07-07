@@ -1,15 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
+import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActiviteMixte'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import PeriodSwitch from '@/components/PeriodSwitch'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
-} from '@/components/Simulation'
+} from '@/components/Simulation/index'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DarkLi, Link, Ul } from '@/design-system'
+import { DarkLi, Link, Ul } from '@/design-system/index'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceAutoEntrepreneur } from '@/external-links/serviceAutoEntrepreneur'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
@@ -22,7 +22,7 @@ import { EngineProvider } from '@/utils/publicodes/EngineContext'
 import SimulateurPageLayout from '../SimulateurPageLayout'
 
 const nextSteps = [
-	'indépendant',
+	'independant',
 	'comparaison-statuts',
 ] satisfies SimulateurId[]
 
@@ -43,7 +43,7 @@ export function AutoEntrepreneur() {
 			),
 			description: t(
 				'pages.simulateurs.auto-entrepreneur.externalLinks.1.description',
-				'Vous pourrez effectuer votre déclaration de chiffre d’affaires, payer vos cotisations, et plus largement trouver toutes les informations relatives au statut d’auto-entrepreneur.'
+				'Vous pourrez effectuer votre declaration de chiffre d’affaires, payer vos cotisations, et plus largement trouver toutes les informations relatives au statut d’auto-entrepreneur.'
 			),
 			ctaLabel: t(
 				'pages.simulateurs.auto-entrepreneur.externalLinks.1.ctaLabel',

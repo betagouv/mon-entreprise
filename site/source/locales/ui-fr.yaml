@@ -167,7 +167,7 @@ Utiliser avec un tableur: Utiliser avec un tableur
 Utiliser les calculs des simulateurs dans votre application: Utiliser les calculs des simulateurs dans votre application
 Version bêta: Version bêta
 Voir les autres simulateurs: Voir les autres simulateurs
-Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
+Voir les nouveautes apportées par la version {{release}}: Voir les nouveautes apportées par la version {{release}}
 Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise:
   Voir les simulateurs personnalisés, accéder à la page de gestion de mon
@@ -517,7 +517,7 @@ navbar:
   logo: Urssaf Mon entreprise
 news:
   description: Nous améliorons le site en continu à partir de vos retours.
-    Découvrez les dernières nouveautés
+    Découvrez les dernières nouveautes
   title: Nouveautés
 nextSteps:
   integration-iframe:
@@ -536,7 +536,7 @@ pages:
     message: Cette page n'existe pas ou n'existe plus
     title: Page introuvable
   accessibilité: "<0>Accessibilité</0><1></1><2></2><3>Cette page n'est pas une
-    page d'aide, mais une déclaration de conformité au <2>RGAA</2> 4.1 qui vise
+    page d'aide, mais une declaration de conformité au <2>RGAA</2> 4.1 qui vise
     à définir le niveau d'accessibilité général constaté sur le site
     conformément à la réglementation. Cette page est obligatoire pour être
     conforme au RGAA 4.1.</3><4>Qu’est-ce que l’accessibilité numérique
@@ -553,7 +553,7 @@ pages:
     s’engage à rendre ses sites internet, extranet, intranet accessibles
     conformément à l’article 47 de la loi n° 2005-102 du 11 février
     2005.</9><10>À cette fin, elle rédige <2>la stratégie et le plan d’action à
-    mettre en œuvre</2>.</10><11>Cette déclaration d’accessibilité s’applique à
+    mettre en œuvre</2>.</10><11>Cette declaration d’accessibilité s’applique à
     <2>https://mon-entreprise.urssaf.fr</2>.</11><12>État de
     conformité</12><13>Mon-entreprise - <1>https://mon-entreprise.urssaf.fr/</1>
     est partiellement conforme avec le <5>référentiel général d’amélioration de
@@ -562,7 +562,7 @@ pages:
     tests</14><15>L’audit de conformité réalisé par la société <2>boscop</2>
     révèle que :</15><16><0>93,65% des critères RGAA sont respectés.</0><1>Le
     taux moyen de conformité du site s’élève à 98%.</1><2>La page \"Simulateur
-    de revenus pour salarié\" a un taux de conformité de
+    de revenus pour salarie\" a un taux de conformité de
     100%.</2></16><17>Nombre de critères applicables : 63 ; Nombre de critères
     conformes : 59 ; Nombre de critères non conformes : 4</17><18>Contenus non
     accessibles</18><19>Liste des critères non conformes :<1><0>Certains liens
@@ -573,8 +573,8 @@ pages:
     regroupement de champs de même nature ne sont pas
     pertinentes.</3></1></19><20>Dérogation pour charge
     disproportionnée</20><21>Néant</21><22>Contenus non-soumis à l'obligation
-    d'accessibilité</22><23>Néant</23><24>Établissement de cette déclaration
-    d'accessibilité</24> <26>Cette déclaration d'accessibilité a été établie le
+    d'accessibilité</22><23>Néant</23><24>Établissement de cette declaration
+    d'accessibilité</24> <26>Cette declaration d'accessibilité a été établie le
     15 mai 2025. Elle a été mise à jour le 13 janvier 2026 lors d'un audit de
     contrôle, après correction de non-conformités par l'équipe de
     développement.</26><27>Technologies utilisées pour la réalisation du
@@ -594,10 +594,10 @@ pages:
     </0><1>Page accessibilité</1><2><0>Page plan du site</0></2><3><0>Page
     statistique</0> </3><4><0>Page \"Documentation\"</0></4><5><0>Page
     \"Simulateurs\"</0></5><6><0>Page \"Simulateur de revenus pour
-    salarié\"</0></6><7><0>Page \"Assistant à la détermination des charges
+    salarie\"</0></6><7><0>Page \"Assistant à la détermination des charges
     sociales déductibles\"</0></7><8><0>Page \"Simulateur de revenus
     auto-entrepreneur\"</0></8><9><0>Page \"Choix du statut\"</0></9><10><0>Page
-    \"Les nouveautés\"</0></10><11><0>Page \"Outils pour les
+    \"Les nouveautes\"</0></10><11><0>Page \"Outils pour les
     développeurs\"</0></11><12><0>Page \"Bibliothèque de
     calcul\"</0></12><13><0>Page \"Budget\"</0> </13></35><36>Droit à la
     compensation</36><37>Dans l’attente d’une mise en conformité totale, vous
@@ -704,13 +704,13 @@ pages:
           ZFU, etc).</1></1>
       détails-activité:
         aide-bnc-bic: <0>Le choix entre exercer une activité à titre <2>commercial</2>
-          (avec des revenus de type BIC) ou à titre <4>indépendant</4> (avec des
+          (avec des revenus de type BIC) ou à titre <4>independant</4> (avec des
           revenus de type BNC) dépend principalement de la nature de votre
           travail :</0><1><0>Si vous vendez des biens ou des services de manière
           régulière et que vous agissez comme un commerçant, il est probable que
           vous releviez du <1>régime BIC.</1></0><1>En revanche, si votre
           activité est basée sur des compétences professionnelles,
-          intellectuelles ou artistiques, comme la médecine, la consultation ou
+          intellectuelles ou artistiques, comme la medecine, la consultation ou
           l'écriture, vous serez probablement sous le <1>régime
           BNC.</1></1></1><2>Pour en savoir plus, vous pouvez consulter le site
           de <2>l'URSSAF</2>.</2>
@@ -801,7 +801,7 @@ pages:
       shortname: Choix du statut
       title: Choisir votre statut
     cmg:
-      déclarations:
+      declarations:
         AMA:
           h2: Assistantes maternelles agréées
           h3_many: Assistante maternelle {{ count }} - Déclaration(s) sur la période de
@@ -820,7 +820,7 @@ pages:
             référence
           h3_other: Garde à domicile {{ count }} - Déclaration(s) sur la période de
             référence
-        add-button-label: Déclarer une salariée
+        add-button-label: Déclarer une salariee
         aise-saisie:
           CMG:
             contenu: <0>Où trouver l’information ?</0><1></1>sur le relevé
@@ -843,12 +843,12 @@ pages:
         enfants-gardés:
           legend: Enfant(s) gardé(s)
         erreurs:
-          aucune-déclaration: Chaque salariée doit avoir au moins une déclaration.
-          aucune-salariée: Il doit y avoir au moins une salariée.
-          déclarations-AMA-invalides: Chaque déclaration d’assistante maternelle doit
+          aucune-declaration: Chaque salariee doit avoir au moins une declaration.
+          aucune-salariee: Il doit y avoir au moins une salariee.
+          declarations-AMA-invalides: Chaque declaration d’assistante maternelle doit
             avoir au moins un enfant gardé, un nombre d’heures de garde et une
             rémunération.
-          déclarations-GED-invalides: Chaque déclaration de garde d’enfants à domicile
+          declarations-GED-invalides: Chaque declaration de garde d’enfants à domicile
             doit avoir un nombre d’heures de garde et une rémunération.
         heures-de-garde:
           label: Nombre d’heures de garde
@@ -881,12 +881,12 @@ pages:
           label: Prénom
         question: Quels étaient vos enfants à charge sur la période de mars, avril et
           mai 2025 ?
-      informations-générales:
+      informations-generales:
         CMG-perçu:
-          label: Avez-vous perçu un CMG au titre des déclarations réalisées entre mars et
+          label: Avez-vous perçu un CMG au titre des declarations réalisées entre mars et
             mai 2025 ?
         erreurs: Toutes les questions sont obligatoires.
-        mois-déclarations:
+        mois-declarations:
           label: Avez-vous déclaré au moins 2 mois entre mars et mai 2025 ?
         ressources:
           description: Renseignez le revenu fiscal de référence figurant sur le ou les
@@ -913,7 +913,7 @@ pages:
           label: Nombre d’enfants concernés
       raisons-inéligibilité:
         CMG-perçu: Vous n’avez pas été éligible au CMG entre mars et mai 2025.
-        déclarations: Vous n’avez pas saisi suffisamment de déclarations entre mars et
+        declarations: Vous n’avez pas saisi suffisamment de declarations entre mars et
           mai 2025.
         enfants-gardés: Aucun de vos enfants gardés n’ouvre droit au complément transitoire.
         enfants-à-charge: Aucun de vos enfants à charge n’ouvre droit au complément transitoire.
@@ -928,7 +928,7 @@ pages:
         variation importante des dépenses restant à votre charge.</0><1><0>Le
         résultat de cette simulation est communiqué à titre
         indicatif.<1></1>Aucun élément saisi au cours de cette simulation ne
-        vaut pour déclaration de changement de situation ou pour demande de
+        vaut pour declaration de changement de situation ou pour demande de
         prestation.<3></3>Aucun élément de cette simulation ne sera
         conservé.</0></1>"
       shortname: Complément transitoire au CMG
@@ -942,15 +942,15 @@ pages:
         conservé.</1><2><0>De quoi avez-vous besoin ?</0> De votre revenu fiscal
         2023, ainsi que du nombre d’heures de garde, du montant des
         rémunérations et du CMG perçu pour les mois de mars, avril et mai 2025,
-        pour chacune de vos salariées.</2>
+        pour chacune de vos salariees.</2>
     declaration-charges-sociales-independant:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
       header: L’assistant à la détermination des charges sociales déductibles, c’est
         terminé
     declaration-revenus-pamc:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
-      header: L’assistant à la déclaration de revenus des PAMC, c’est terminé
-    déclaration-indépendant: Ce dernier n’a pas rencontré le succès escompté. Nous
+      header: L’assistant à la declaration de revenus des PAMC, c’est terminé
+    declaration-independant: Ce dernier n’a pas rencontré le succès escompté. Nous
       avons donc décidé de le retirer du site. En effet, il était trop difficile
       de maintenir à jour les informations et les calculs.
     pour-mon-entreprise:
@@ -1018,7 +1018,7 @@ pages:
         de l'INSEE, qui est disponible sur <2>cette page</2>.</4>"
       shortname: Recherche de code APE
       title: "Quel code APE pour mon activité ? "
-    économie-collaborative:
+    economie-collaborative:
       aria-label: Activités relevant de l’économie collaborative, voir la page
       texte: <0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc
         décidé de le retirer du site. En effet, il était trop difficile de
@@ -1151,7 +1151,7 @@ pages:
         ainsi récuperer leur valeur par vous-même pour la saisir dans la
         situation donnée en entrée.</1><2>Le versement
         mobilité</2><3><0><0>établissement . commune . taux versement
-        mobilité</0></0></3><4>Dans le simulateur <2>salarié</2>, il suffit de
+        mobilité</0></0></3><4>Dans le simulateur <2>salarie</2>, il suffit de
         renseigner la commune et le taux versement mobilité correspondant est
         automatiquement déterminé.</4><5><0>Il vous faudra préciser le taux
         vous-même pour refaire le calcul. Vous pouvez le retrouver
@@ -1166,7 +1166,7 @@ pages:
         Officiel</0></0><1><0>La documentation <2>Cotisations AT/MP</2> de
         l’Assurance Maladie</0></1></9></4>"
       StepByStep: <0><0><0>Choisir le simulateur en fonction du calcul qui nous
-        intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
+        intéresse</0><1></1>Par exemple le <4>simulateur salarie</4> pour
         calculer un net à partir du brut.</0></0><1><0><0>Effectuer une
         simulation avec les données que l'on souhaite réutiliser</0><1></1>Par
         exemple <4>un cadre à 3400 € brut avec des
@@ -1246,7 +1246,7 @@ pages:
         lors des simulations sont automatiquement sauvegardées dans votre
         navigateur. <1></1><2></2>Toutefois, si un utilisateur ou une
         utilisatrice souhaite devenir « beta-testeur » ou « beta-testeuse » pour
-        recevoir des informations sur les nouveautés, donner son avis, et
+        recevoir des informations sur les nouveautes, donner son avis, et
         participer à des ateliers pour améliorer nos services, il ou elle peut
         s'inscrire via le lien en pied de page « Devenir beta-testeur ». Dès
         lors, sont traitées les données suivantes : adresse e-mail, type
@@ -1350,10 +1350,10 @@ pages:
         compte</1><2><0>Intégrables facilement et gratuitement</0> sur n'importe
         quel site internet. <3>En savoir plus</3>.</2></1>
       titre: Simulateurs et Assistants
-    activité-partielle:
+    activite-partielle:
       aria-label-urssaf: le site de l'Urssaf, accéder au site de l'Urssaf, nouvelle fenêtre
       comparaison:
-        activité-partielle: Avec activité partielle
+        activite-partielle: Avec activité partielle
         caption: Tableau indiquant le salaire net et le coût pour l'employeur avec ou
           sans activité partielle.
         habituellement: Habituellement
@@ -1369,13 +1369,13 @@ pages:
           partiel, convention, etc). Prends en compte la totalité des
           cotisations, y compris celles spécifiques à l'indemnité (CSG-CRDS).
         ogTitle: "Simulateur activité partielle : découvrez l'impact sur le revenu net
-          salarié et le coût total employeur."
+          salarie et le coût total employeur."
         titre: "Calcul de l'indemnité activité partielle : le simulateur Urssaf"
       salaire-brut: Salaire brut mensuel
       seo: "<0>Comment calculer l’indemnité d’activité partielle légale
         ?</0><1>L’indemnité d’activité partielle de base est fixée par la loi à
         <2><0></0> du brut</2>. Elle est proratisée en fonction du nombre
-        d’heures chômées. Pour un salarié à 2 300 € brut mensuel, qui travaille
+        d’heures chômées. Pour un salarie à 2 300 € brut mensuel, qui travaille
         à 50 % de son temps usuel, cela donne <5>2 300 € × 50 % × 60 % = 805
         €</5></1><2>A cette indemnité de base s’ajoute l’indemnité
         complémentaire pour les salaires proches du SMIC. Ce complément
@@ -1392,7 +1392,7 @@ pages:
         l’allocation perçue, le reste à charge</0><1>connaître la procédure de
         consultation du <2>CSE</2>, la demande d’autorisation
         préalable</1><2>vous informer sur l’activité partielle longue
-        durée</2><3>former vos salariés en activité partielle à de nouvelles
+        durée</2><3>former vos salaries en activité partielle à de nouvelles
         compétences (coûts pédagogique pris en charge)</3></1><2>Service public
         simple et rapide : le conseiller qui peut vous aider vous rappelle.
         Partenaires mobilisés : les directions départementales de l’emploi, du
@@ -1434,7 +1434,7 @@ pages:
       title: Simulateur de cotisations d’artiste-auteur
       warning: Ce simulateur permet d’estimer le montant de vos cotisations à partir
         de votre revenu projeté.
-    assimilé-salarié:
+    assimilé-salarie:
       explications:
         répartition:
           cotisations: Cotisations
@@ -1471,7 +1471,7 @@ pages:
         "1":
           ariaLabel: Visiter le site auto-entrepreneur.urssaf.fr, nouvelle fenêtre.
           ctaLabel: Visiter le site
-          description: Vous pourrez effectuer votre déclaration de chiffre d’affaires,
+          description: Vous pourrez effectuer votre declaration de chiffre d’affaires,
             payer vos cotisations, et plus largement trouver toutes les
             informations relatives au statut d’auto-entrepreneur.
           title: Site officiel des auto-entrepreneurs
@@ -1547,7 +1547,7 @@ pages:
           de déduire des charges réelles en plus. Votre revenu net est donc le
           chiffre d’affaires moins toutes les charges engagées pour
           l’entreprise.
-    auxiliaire-médical:
+    auxiliaire-medical:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des
           recettes. Prise en compte des revenus non conventionnés.
@@ -1564,7 +1564,7 @@ pages:
       professionnelles: avocates/avocats
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
-    cessation-activité:
+    cessation-activite:
       date-modifiée: L’année de simulation a été changée pour {{ année }}.
       externalLinks:
         "1":
@@ -1577,16 +1577,16 @@ pages:
         rémunération: Rémunération brute pour l'année de cessation
       meta:
         description: Estimez vos cotisations de l’année de cessation de votre activité
-          en tant qu’indépendant.
+          en tant qu’independant.
         ogDescription: Estimez vos cotisations de l’année de cessation de votre activité
-          en tant qu’indépendant.
+          en tant qu’independant.
         ogTitle: Simulateur de cessation d’activité
         titre: Simulateur de cessation d’activité
       régime-imposition:
         question: Quel est votre régime d'imposition ?
       shortname: Cessation d’activité
       title: Simulateur de cessation d’activité
-      warning: <0>Vous êtes travailleur indépendant ou travailleuse indépendante et
+      warning: <0>Vous êtes travailleur independant ou travailleuse independante et
         vous souhaitez estimer <2>les cotisations dues avant de cesser votre
         activité</2>. Ce simulateur est là pour vous aider. À noter que le
         montant indiqué par ce simulateur est une estimation. Seul le « décompte
@@ -1643,7 +1643,7 @@ pages:
             body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
               statuts possibles</1> pour votre conjoint/conjointe
               (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
-              <9>salarié/salariée</9>)."
+              <9>salarie/salariee</9>)."
             h4: Statut du conjoint / de la conjointe
           création:
             body: Les formalités de création d’une entreprise diffèrent selon les statuts et
@@ -1848,7 +1848,7 @@ pages:
         pas-reprise: Ce simulateur calcule les frais de création pour les nouvelles
           entreprises. Il ne prend pas en compte le cas des reprises
           d’entreprises existantes.
-    demande-mobilité:
+    demande-mobilite:
       aria-label: service Mobilité internationale, nouvelle fenêtre
       href: https://www.urssaf.fr/accueil/services/travail-etranger-mobilite.html
       intro: Désormais, pour toutes vos demandes de mobilité internationale, les
@@ -1879,17 +1879,17 @@ pages:
         régimes.</4><5>Un acompte du montant de l'impôt (12,8%) est prélevé au
         moment du versement des dividendes, sauf si le bénéficiaire remplit
         <2>certains critères</2>.</5><6>Cas particulier du dirigeant non
-        salarié</6><7>Pour le travailleur indépendant non salarié, la part des
+        salarie</6><7>Pour le travailleur independant non salarie, la part des
         dividendes dépassant 10% du capital social sera soumise aux cotisations
         et contributions suivant les mêmes modalités que sa rémunération de
         dirigeant.</7><8>Pour ce cas de figure veuillez utiliser le
-        <2>simulateur de revenus pour indépendant</2>.</8>
+        <2>simulateur de revenus pour independant</2>.</8>
       shortName: Dividendes
       title: Simulateur de versement de dividendes
       warning:
         "1": Cette simulation ne concerne que les sociétés françaises à l’impôt sur les
-          sociétés (IS), et <2>ne concerne pas les travailleurs indépendants non
-          salariés</2> comme les <5>gérants majoritaires de SARL</5>, les
+          sociétés (IS), et <2>ne concerne pas les travailleurs independants non
+          salaries</2> comme les <5>gérants majoritaires de SARL</5>, les
           associés uniques d’<7>EURL</7> ou les <10>associés de SNC</10>.
         "2": Le montant de l’impôt sur les dividendes est calculé en plus de l’impôt sur
           les autres revenus imposables.
@@ -1959,7 +1959,7 @@ pages:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
           inversement
-        ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
+        ogDescription: En tant que dirigeant assimilé-salarie, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.
         ogTitle: "Rémunération du dirigeant d'EURL : un simulateur pour connaître votre
@@ -2006,7 +2006,7 @@ pages:
         plus-values (cession de titres, cession de brevets). Ces régimes ne sont
         pas intégrés dans le simulateur.</5>
       title: Simulateur d’impôt sur les sociétés
-    indépendant:
+    independant:
       explications:
         cotisations:
           fiche: Voir la fiche Urssaf
@@ -2072,7 +2072,7 @@ pages:
         simulateur-cnav:
           aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
       shortname: Indépendant
-      title: Simulateur de revenus pour indépendant
+      title: Simulateur de revenus pour independant
       warning:
         année-courante: Le montant calculé correspond aux <2>cotisations de l’année
           {{year}}</2> (pour un revenu {{year}}).
@@ -2119,7 +2119,7 @@ pages:
       externalLinks:
         "1":
           description: Vous louez des logements meublés ou des biens ? Le service Économie
-            collaborative vous facilite la déclaration et le paiement de vos
+            collaborative vous facilite la declaration et le paiement de vos
             cotisations.
           title: Le service Économie collaborative
       meta:
@@ -2181,8 +2181,8 @@ pages:
           libellé: Régime général simplifié
           lien: En savoir plus sur Urssaf.fr
         titre: Régimes de sécurité sociale
-        travailleur-indépendant:
-          libellé: Travailleur indépendant (hors auto-entrepreneur)
+        travailleur-independant:
+          libellé: Travailleur independant (hors auto-entrepreneur)
           lien: En savoir plus sur urssaf.fr
       shortname: "Location de meublé : Choix du régime social"
       title: "Location de meublé : Choix du régime social"
@@ -2192,11 +2192,11 @@ pages:
         meublé-tourisme: Meublé de tourisme
     lodeom:
       effectif:
-        moins-de-50: Moins de 50 salariés
-        plus-de-50: Plus de 50 salariés
+        moins-de-50: Moins de 50 salaries
+        plus-de-50: Plus de 50 salaries
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
-          est applicable, sous conditions, aux salariés d'Outre-mer.
+          est applicable, sous conditions, aux salaries d'Outre-mer.
         title: Exonération Lodeom
       mois-incomplet:
         court: Mois incomplet
@@ -2204,7 +2204,7 @@ pages:
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       options:
-        description: Ajoute des champs pour moduler l'activité du salarié
+        description: Ajoute des champs pour moduler l'activité du salarie
         heures-sup:
           popover: "Le nombre d'heures supplémentaires et complémentaires est utilisé dans
             le calcul de la réduction : la rémunération brute est comparée au
@@ -2251,19 +2251,19 @@ pages:
           Smic. C'est-à-dire, pour {{year}}, une rémunération totale qui ne
           dépasse pas <8>{{plafond}}</8> bruts par an.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
-    médecin:
+    medecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
           total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
           pris en compte
         title: "Médecin : simulateur de revenus"
-      professionnelles: médecins
+      professionnelles: medecins
       shortname: Médecin
-      title: Simulateur de revenus pour médecin en libéral
+      title: Simulateur de revenus pour medecin en libéral
     pamc:
       meta:
         description: Calcul du revenu net pour les professions libérales du régime PAMC
-          (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
+          (medecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: Simulateur de cotisations et de revenu pour les PAMC
@@ -2276,9 +2276,9 @@ pages:
       professionnelles: pharmaciennes/pharmaciens
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
-    profession-libérale:
+    profession-liberale:
       meta:
-        description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur
+        description: Calcul du revenu net pour les independants en libéral à l'impôt sur
           le revenu (IR, BNC)
         title: "Professions libérale : le simulateur Urssaf"
       shortname: Profession libérale
@@ -2309,11 +2309,11 @@ pages:
       professionnelles: sages-femmes
       shortname: Sage-femme
       title: Simulateur de revenus pour sage-femme en libéral
-    salarié:
+    salarie:
       SASU: Vous êtes dirigeant d'une SAS(U) ? <2>Accédez au simulateur de revenu
         dédié</2>
       aides: en incluant <2></2> d'aides
-      alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
+      alt-image1: Salaire net (perçu par le salarie) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
       explications:
@@ -2332,19 +2332,19 @@ pages:
           options de rémunération : cadres, stages, apprentissages, heures
           supplémentaires, et bien plus !"
         ogDescription: Optimisez vos finances en un clic ! Calculez instantanément votre
-          revenu net en tant que salarié et évaluez le coût total d'une embauche
+          revenu net en tant que salarie et évaluez le coût total d'une embauche
           en tant qu'employeur. Notre simulateur, élaboré avec les experts de
           l'Urssaf, s'ajuste à votre situation (cadre, stage, apprentissage,
           heures supplémentaires, avantages, temps partiel, convention
           collective, etc.) pour des décisions éclairées
         ogTitle: "Salaire brut, net, net après impôt, coût total : le simulateur
-          tout-en-un pour salariés et employeurs"
+          tout-en-un pour salaries et employeurs"
         titre: "Salaire brut / net : le convertisseur Urssaf"
       seo: "<0><0>Comment calculer le salaire net ?</0><1>Lors de l'entretien
         d'embauche l'employeur propose en général une rémunération exprimée en «
         brut ». Le montant annoncé inclut ainsi les cotisations salariales, qui
-        servent à financer la protection sociale du salarié et qui sont
-        retranchées du salaire « net » perçu par le salarié.</1><2>Vous pouvez
+        servent à financer la protection sociale du salarie et qui sont
+        retranchées du salaire « net » perçu par le salarie.</1><2>Vous pouvez
         utiliser notre simulateur pour convertir le <2>salaire brut en net</2> :
         il vous suffit pour cela saisir la rémunération annoncée dans la case
         salaire brut. La simulation peut-être affinée en répondant aux
@@ -2352,12 +2352,12 @@ pages:
         partiel, titre-restaurants, etc.).</2><3></3><4>Par ailleurs depuis
         2019, l'<1>impôt sur le revenu</1> est prélevé à la source. Pour ce
         faire, la direction générale des finances publiques (DGFiP) transmet à
-        l'employeur le taux d'imposition calculé à partir de la déclaration de
-        revenus du salarié. Si ce taux est inconnu, par exemple lors d'une
+        l'employeur le taux d'imposition calculé à partir de la declaration de
+        revenus du salarie. Si ce taux est inconnu, par exemple lors d'une
         première année d'activité, l'employeur utilise le <4>taux
         neutre</4>.</4></0><1><0>Comment calculer le coût d'embauche ?</0><1>Si
         vous cherchez à embaucher, vous pouvez calculer le coût total de la
-        rémunération de votre salarié, ainsi que les montants de cotisations
+        rémunération de votre salarie, ainsi que les montants de cotisations
         patronales et salariales correspondant. Cela vous permet de définir le
         niveau de rémunération en connaissant le montant global de charge que
         cela représente pour votre entreprise.</1><2>En plus du salaire, notre
@@ -2376,7 +2376,7 @@ pages:
         aider.</0></3><4>Partenaires mobilisés : France Travail, Apec, Cap
         Emploi, missions locales…</4><5></5></2>"
       shortname: Salarié
-      title: Simulateur de revenus pour salarié
+      title: Simulateur de revenus pour salarie
       titres-restaurant: en titres-restaurant
       warning:
         général: Le simulateur ne prend pour l’instant pas en compte les accords et
@@ -2389,19 +2389,19 @@ pages:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
           inversement
-        ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
+        ogDescription: En tant que dirigeant assimilé-salarie, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.
         ogTitle: "Rémunération du dirigeant de SAS(U) : un simulateur pour connaître
           votre salaire net"
         titre: "SASU : simulateur de revenus pour dirigeant"
       seo-explanation: "<0>Comment calculer le salaire d'un dirigeant de SAS ou SASU ?
-        </0><1>Comme pour un salarié classique, le <1>dirigeant de SAS(U)</1>
+        </0><1>Comme pour un salarie classique, le <1>dirigeant de SAS(U)</1>
         paye des cotisations sociales sur la rémunération qu'il se verse. Les
-        cotisations sont calculées de la même manière que pour le salarié :
-        elles sont décomposées en partie employeur et partie salarié et sont
+        cotisations sont calculées de la même manière que pour le salarie :
+        elles sont décomposées en partie employeur et partie salarie et sont
         exprimées comme un pourcentage du salaire brut.</1><2>Le dirigeant
-        assimilé-salarié ne paye pas de <2>cotisations chômage</2>. Par
+        assimilé-salarie ne paye pas de <2>cotisations chômage</2>. Par
         ailleurs, il ne bénéficie pas de la <5>réduction générale dégressive
         unique de cotisations</5> ni des dispositifs encadrés par le code du
         travail comme les <9>heures supplémentaires</9> ou les primes.</2><3>Il
@@ -2448,7 +2448,7 @@ pourcentage: pourcentage
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   recherche lancée automatiquement après l'entrée de caractères, les résultats
   s'afficheront à la suite de cet élément.
-salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
+salarie, accéder au simulateur salarie: salarie, accéder au simulateur salarie
 select:
   value:
     default: Choisissez une option
@@ -2478,7 +2478,7 @@ simulateurs:
         description: La CARCDSF est la caisse de retraite des chirurgiennes et
           chirurgiens dentistes et des sages-femmes.
       CARMF:
-        description: La CARMF est la caisse de retraite autonome des médecins de France.
+        description: La CARMF est la caisse de retraite autonome des medecins de France.
       CARPIMKO:
         description: La CARPIMKO est la caisse de retraite autonome des auxiliaires
           médicales/médicaux.

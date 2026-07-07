@@ -3,9 +3,9 @@ import { Route, Routes } from 'react-router-dom'
 
 import { TrackingChaptersProvider } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
+import { Banner, Emoji, InnerBanner, Link } from '@/design-system/index'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 import API from './API'

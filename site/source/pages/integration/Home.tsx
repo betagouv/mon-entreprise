@@ -9,7 +9,7 @@ import {
 	Grid,
 	Intro,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../../components/utils/Meta'

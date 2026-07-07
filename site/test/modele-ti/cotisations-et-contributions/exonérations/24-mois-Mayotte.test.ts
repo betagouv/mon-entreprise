@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 const defaultSituation = {
 	'établissement . commune . département': "'Mayotte'",
 	'entreprise . imposition': "'IS'",
-	'indépendant . rémunération . brute': '50000 €/an',
+	'independant . rémunération . brute': '50000 €/an',
 }
 
 describe('l’exonération 24 mois Mayotte', () => {
@@ -22,7 +22,7 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
+			'independant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
 			true
 		)
 	})
@@ -34,7 +34,7 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
+			'independant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
 			false
 		)
 	})
@@ -46,14 +46,14 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
+			'independant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
 			false
 		)
 	})
 
 	it('n’est pas applicable pour les établissements non mahorais créés il y a plus de 2 ans', () => {
 		expect(engine).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
+			'independant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois',
 			false
 		)
 	})
@@ -62,19 +62,19 @@ describe('l’exonération 24 mois Mayotte', () => {
 		const e1 = engine.setSituation(defaultSituation)
 
 		const cotisationsEtContributions = e1.evaluate(
-			'indépendant . cotisations et contributions'
+			'independant . cotisations et contributions'
 		).nodeValue as number
 		const maladie1 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
 		).nodeValue as number
 		const maladie2 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
 		).nodeValue as number
 		const AF = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales'
+			'independant . cotisations et contributions . cotisations . allocations familiales'
 		).nodeValue as number
 		const RB = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base'
+			'independant . cotisations et contributions . cotisations . retraite de base'
 		).nodeValue as number
 
 		const e2 = engine.setSituation({
@@ -83,23 +83,23 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales',
+			'independant . cotisations et contributions . cotisations . allocations familiales',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base',
+			'independant . cotisations et contributions . cotisations . retraite de base',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions',
+			'independant . cotisations et contributions',
 			cotisationsEtContributions - maladie1 - maladie2 - AF - RB
 		)
 	})
@@ -114,19 +114,19 @@ describe('l’exonération 24 mois Mayotte', () => {
 		const e1 = engine.setSituation(situation)
 
 		const cotisationsEtContributions = e1.evaluate(
-			'indépendant . cotisations et contributions'
+			'independant . cotisations et contributions'
 		).nodeValue as number
 		const maladie1 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
 		).nodeValue as number
 		const maladie2 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
 		).nodeValue as number
 		const AF = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales'
+			'independant . cotisations et contributions . cotisations . allocations familiales'
 		).nodeValue as number
 		const RB = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base'
+			'independant . cotisations et contributions . cotisations . retraite de base'
 		).nodeValue as number
 
 		const e2 = engine.setSituation({
@@ -135,23 +135,23 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales',
+			'independant . cotisations et contributions . cotisations . allocations familiales',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base',
+			'independant . cotisations et contributions . cotisations . retraite de base',
 			RB
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions',
+			'independant . cotisations et contributions',
 			cotisationsEtContributions - maladie1 - maladie2 - AF
 		)
 	})
@@ -161,26 +161,26 @@ describe('l’exonération 24 mois Mayotte', () => {
 			...defaultSituation,
 			'entreprise . activité': "'libérale'",
 			'entreprise . activité . libérale . réglementée': 'oui',
-			'indépendant . profession libérale . réglementée . métier':
+			'independant . profession libérale . réglementée . métier':
 				"'expert-comptable'",
 		}
 
 		const e1 = engine.setSituation(situation)
 
 		const cotisationsEtContributions = e1.evaluate(
-			'indépendant . cotisations et contributions'
+			'independant . cotisations et contributions'
 		).nodeValue as number
 		const maladie1 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
 		).nodeValue as number
 		const maladie2 = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
 		).nodeValue as number
 		const AF = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales'
+			'independant . cotisations et contributions . cotisations . allocations familiales'
 		).nodeValue as number
 		const RB = e1.evaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base'
+			'independant . cotisations et contributions . cotisations . retraite de base'
 		).nodeValue as number
 
 		const e2 = engine.setSituation({
@@ -189,23 +189,23 @@ describe('l’exonération 24 mois Mayotte', () => {
 		})
 
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
+			'independant . cotisations et contributions . cotisations . maladie-maternité et autonomie',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . allocations familiales',
+			'independant . cotisations et contributions . cotisations . allocations familiales',
 			0
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions . cotisations . retraite de base',
+			'independant . cotisations et contributions . cotisations . retraite de base',
 			RB
 		)
 		expect(e2).toEvaluate(
-			'indépendant . cotisations et contributions',
+			'independant . cotisations et contributions',
 			cotisationsEtContributions - maladie1 - maladie2 - AF
 		)
 	})

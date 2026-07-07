@@ -5910,7 +5910,7 @@
         "La fabrication d'appareils de nettoyage par ultrasons destinés à un usage en laboratoire",
         "La fabrication de stérilisateurs de laboratoires",
         "La fabrication d'équipements de distillation de laboratoire, de centrifugeuses de laboratoire",
-        "La fabrication de mobilier pour la médecine, la chirurgie, l'art dentaire ou l'art vétérinaire, tel que :\ntables d'opération\ntables d'examen\nlits à mécanismes pour usages cliniques\nfauteuils de dentistes",
+        "La fabrication de mobilier pour la medecine, la chirurgie, l'art dentaire ou l'art vétérinaire, tel que :\ntables d'opération\ntables d'examen\nlits à mécanismes pour usages cliniques\nfauteuils de dentistes",
         "La fabrication de plaques et de vis pour la fixation des os, de seringues, d'aiguilles, de cathéters, de canules, etc.",
         "La fabrication d'instruments nécessaires à l'exercice de l'art dentaire",
         "La fabrication de dents artificielles, bridges etc. fabriqués en laboratoires dentaires",
@@ -7133,7 +7133,7 @@
       "contenuAnnexe": [
         "L'installation de faux planchers sur structure métallique pour les installations informatiques",
         "Travaux de ferronnerie d'art (43.39.11)",
-        "Assemblage de meubles indépendants (95.24.10)"
+        "Assemblage de meubles independants (95.24.10)"
       ],
       "contenuExclu": [],
       "contenuCentral": [
@@ -9767,7 +9767,7 @@
       "contenuAnnexe": [],
       "contenuExclu": [],
       "contenuCentral": [
-        "La mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des",
+        "La mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments independants à plusieurs niveaux ou dans des",
         "Les refuges et cabanes de montagne"
       ],
       "codeApe": "55.20Z",
@@ -10421,8 +10421,8 @@
     {
       "contenuAnnexe": [],
       "contenuExclu": [
-        "Les activités des photojournalistes indépendants (cf. 74.20Z)",
-        "Les activités des journalistes indépendants (cf. 90.03B)"
+        "Les activités des photojournalistes independants (cf. 74.20Z)",
+        "Les activités des journalistes independants (cf. 90.03B)"
       ],
       "contenuCentral": [
         "Les activités des agences de presse, c'est-à-dire la collecte, la synthèse et la communication aux médias d'informations écrites, photographiques et audiovisuelles",
@@ -10627,8 +10627,8 @@
         "Les régimes de sécurité sociale obligatoire, y compris les caisses de retraite complémentaire obligatoires (cf. 84.30B)"
       ],
       "contenuCentral": [
-        "Les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salariés ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
-        "Les régimes de prestations aux salariés",
+        "Les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salaries ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
+        "Les régimes de prestations aux salaries",
         "Les fonds et régimes de pension",
         "Les caisses de retraite"
       ],
@@ -10916,7 +10916,7 @@
         "L'enregistrement d'opérations commerciales pour les entreprises ou autres",
         "L'établissement ou la vérification de comptes financiers",
         "L'examen des comptes et la certification de leur exactitude",
-        "L'établissement de déclarations fiscales pour les particuliers et les entreprises",
+        "L'établissement de declarations fiscales pour les particuliers et les entreprises",
         "Les activités de conseil et de représentation (autre que la représentation juridique), pour le compte de clients, devant l'administration fiscale",
         "Les activités de tenue de livres"
       ],
@@ -11235,7 +11235,7 @@
         "La production photographique réalisée à titre commercial ou privé :\nphotographies d'identité, photographies de classe, de mariage, etc.\nphotographies publicitaires, d'édition, de mode, à des fins immobilières ou touristiques\nphotographie aérienne\nréalisation de vidéos pour des événements : mariages, réunions, etc.",
         "Le traitement des films :\ndéveloppement, tirage et agrandissement de photos ou de films réalisés par les clients\nlaboratoires de développement et tirage de photos et de films\nboutiques photos avec développement en une heure",
         "Le développement de films non destinés à l'industrie cinématographique",
-        "Les activités des photojournalistes indépendants",
+        "Les activités des photojournalistes independants",
         "La photographie aérienne",
         "La photographie publicitaire"
       ],
@@ -11520,7 +11520,7 @@
         "Les activités des imprésarios et des agents ou agences similaires (cf. 74.90B)"
       ],
       "contenuCentral": [
-        "Les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement.",
+        "Les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salaries des agences de placement.",
         "La recherche, la sélection, l'orientation et le placement de personnel, y compris les activités de recherche et de placement de cadres",
         "Les activités des psychologues pour le recrutement de personnel",
         "Les activités des agences et bureaux de sélection d'acteurs et de figurants, telles que les agences de distribution de rôles",
@@ -11537,7 +11537,7 @@
       "contenuAnnexe": [],
       "contenuExclu": [],
       "contenuCentral": [
-        "Les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariées par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salariés sur les lieux de travail du client.",
+        "Les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariees par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salaries sur les lieux de travail du client.",
         "La fourniture de travailleurs en vue de remplacer temporairement ou de compléter la main-d'œuvre du client"
       ],
       "codeApe": "78.20Z",
@@ -11555,13 +11555,13 @@
       ],
       "contenuCentral": [
         "Les activités consistant à fournir des ressources humaines au client.",
-        "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
+        "Les unités classées ici sont l'employeur officiel des salaries pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salaries.",
         "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines."
       ],
       "codeApe": "78.30Z",
       "title": "Autre mise à disposition de ressources humaines",
       "data": [
-        "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
+        "Les unités classées ici sont l'employeur officiel des salaries pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salaries.",
         "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines.",
         "Produits associés : 78.30.11, 78.30.12, 78.30.13, 78.30.14, 78.30.15, 78.30.16,",
         "78.30.19"
@@ -12277,7 +12277,7 @@
         "Les cours de gymnastique",
         "Les cours d'équitation donnés dans des académies ou écoles",
         "Les cours de natation",
-        "Les instructeurs de sports, professeurs et entraîneurs professionnels indépendants",
+        "Les instructeurs de sports, professeurs et entraîneurs professionnels independants",
         "Les cours d'arts martiaux",
         "Les cours de jeux de cartes (comme le bridge)",
         "Les cours de yoga",
@@ -12285,7 +12285,7 @@
         "Moniteur (enseignement sportif)",
         "Enseignement sportif (Athlétisme, Aviron, Badminton, Baseball, Softball, Basketball, Biathlon, Bobsleigh, Boxe, Breaking, Canoë, Curling, Cyclisme, Escalade, Escrime, Football, Futsal, Golf, Gymnastique, Haltérophilie, Handball, Hockey sur Gazon , Hockey sur glace, Judo, Karaté, Luge, Lutte, Natation, Natation, Marathon, Patinage, Pentathlon, Plongeon, Rugby, Skateboard, Skeleton, Ski, Alpinisme, Snowboard, Sports Équestres, Surf, Taekwondo, Tennis, Tennis de Table, Ping-pong, Tir, Tir à L'Arc, Trampoline, Triathlon, Ultimate, Voile, Volleyball, Beach-Volley, Water-Polo, Pilates, Stretching, Trail, Fitness, etc.)",
         "Activité physique",
-        "Les cours de sports donnés par des professeurs indépendants, des entraîneurs",
+        "Les cours de sports donnés par des professeurs independants, des entraîneurs",
         "Les activités des établissements d'enseignement de disciplines sportives et d'activités ludiques",
         "Les activités des instructeurs de sports, professeurs et entraîneurs professionnels"
       ],
@@ -12297,7 +12297,7 @@
     },
     {
       "contenuAnnexe": [
-        "Les activités des écoles et des professeurs de danse indépendants"
+        "Les activités des écoles et des professeurs de danse independants"
       ],
       "contenuExclu": [
         "Les cours de langues étrangères (cf. 85.59B)",
@@ -12363,7 +12363,7 @@
         "Le tutorat universitaire",
         "Les centres de formation offrant des cours de rattrapage",
         "Les cours de révision en vue d'examens professionnels",
-        "Les activités de soutien scolaire, généralement à domicile, dispensées par des organismes ou des professeurs indépendants (leçon, aide aux devoirs, etc.)",
+        "Les activités de soutien scolaire, généralement à domicile, dispensées par des organismes ou des professeurs independants (leçon, aide aux devoirs, etc.)",
         "Les cours de langues et de compétences conversationnelles, hors formation professionnelle continue",
         "La formation informatique, hors formation professionnelle continue",
         "L'instruction religieuse",
@@ -12402,13 +12402,13 @@
         "Les activités de laboratoire et inspections de tous les types de matériaux et produits, à l'exclusion des produits médicaux (cf. 71.20B)",
         "Les activités vétérinaires (cf. 75.00Z)",
         "Les soins médicaux dispensés au personnel militaire en campagne (cf. 84.22Z)",
-        "L'exercice de la médecine ambulatoire en milieu hospitalier ou en clinique et les services des médecins consultants privés à des personnes hospitalisées (cf. 86.2)",
+        "L'exercice de la medecine ambulatoire en milieu hospitalier ou en clinique et les services des medecins consultants privés à des personnes hospitalisées (cf. 86.2)",
         "Les activités de pratique dentaire de nature générale ou spécifique (dentisterie, endodontie et dentisterie pédiatrique, pathologie orale, activités d'orthodontie) (cf. 86.23Z)",
         "Les activités de transport en ambulance (cf. 86.90A)",
         "Les services des laboratoires d'analyses médicales (cf. 86.90B)"
       ],
       "contenuCentral": [
-        "Les activités d'hospitalisation de court ou long séjour, c'est-à-dire les activités médicales de diagnostic et de soins des établissements hospitaliers et des cliniques, publics ou privés, dans des établissements généraux (hôpitaux locaux, régionaux, universitaires, hôpitaux militaires, thermaux ou pénitentiaires) et des établissements spécialisés (hôpitaux psychiatriques et de désintoxication, hôpitaux traitant des maladies infectieuses, maternités, sanatoriums spécialisés). Ces activités concernent principalement des patients hospitalisés. Elles sont exercées sous la responsabilité de médecins et comprennent :\nles services du personnel médical et paramédical\nles services des laboratoires et installations techniques, y compris les services de radiologie et d'anesthésie,\nles services d'urgences\nles services des salles d'opération, les services de pharmacie, d'hébergement, de restauration et les autres services hospitaliers\nles services des centres de planning familial assurant des actes médicaux tels que la stérilisation ou l'interruption de grossesse, avec hébergement",
+        "Les activités d'hospitalisation de court ou long séjour, c'est-à-dire les activités médicales de diagnostic et de soins des établissements hospitaliers et des cliniques, publics ou privés, dans des établissements généraux (hôpitaux locaux, régionaux, universitaires, hôpitaux militaires, thermaux ou pénitentiaires) et des établissements spécialisés (hôpitaux psychiatriques et de désintoxication, hôpitaux traitant des maladies infectieuses, maternités, sanatoriums spécialisés). Ces activités concernent principalement des patients hospitalisés. Elles sont exercées sous la responsabilité de medecins et comprennent :\nles services du personnel médical et paramédical\nles services des laboratoires et installations techniques, y compris les services de radiologie et d'anesthésie,\nles services d'urgences\nles services des salles d'opération, les services de pharmacie, d'hébergement, de restauration et les autres services hospitaliers\nles services des centres de planning familial assurant des actes médicaux tels que la stérilisation ou l'interruption de grossesse, avec hébergement",
         "Les activités des hôpitaux pénitentiaires",
         "Les activités de soins hospitaliers",
         "L'activité des blocs opératoires mobiles",
@@ -12423,17 +12423,17 @@
     },
     {
       "contenuAnnexe": [
-        "La médecine systématique et de dépistage (bilans de santé et analyses systématiques)"
+        "La medecine systématique et de dépistage (bilans de santé et analyses systématiques)"
       ],
       "contenuExclu": [
         "Les activités de soins hospitaliers (cf. 86.10Z)",
         "Les activités des sages-femmes et les activités paramédicales comme celles des infirmières et des physiothérapeutes (cf. 86.90)"
       ],
       "contenuCentral": [
-        "Les consultations données et les soins dispensés dans le domaine de la médecine générale par les médecins généralistes"
+        "Les consultations données et les soins dispensés dans le domaine de la medecine générale par les medecins généralistes"
       ],
       "codeApe": "86.21Z",
-      "title": "Activité des médecins généralistes",
+      "title": "Activité des medecins généralistes",
       "data": [
         "Produits associés : 86.21.10"
       ]
@@ -12471,7 +12471,7 @@
       "contenuExclu": [],
       "contenuCentral": [],
       "codeApe": "86.22C",
-      "title": "Autres activités des médecins spécialistes",
+      "title": "Autres activités des medecins spécialistes",
       "data": []
     },
     {
@@ -12609,7 +12609,7 @@
         "Les activités des résidences pour personnes âgées sans soins médicaux ou dispensant des soins médicaux limités (cf. 87.30A)"
       ],
       "contenuCentral": [
-        "L'accueil et l'hébergement, assortis de soins médicaux, sans médecin à demeure, de personnes âgées dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : établissement d'hébergement pour personnes âgées dépendantes (EHPAD), maison de retraite"
+        "L'accueil et l'hébergement, assortis de soins médicaux, sans medecin à demeure, de personnes âgées dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : établissement d'hébergement pour personnes âgées dépendantes (EHPAD), maison de retraite"
       ],
       "codeApe": "87.10A",
       "title": "Hébergement médicalisé pour personnes âgées",
@@ -12626,7 +12626,7 @@
         "Les activités d'action sociale avec hébergement, telles que les orphelinats, les foyers et maisons maternelles pour enfants (cf. 87.90A)"
       ],
       "contenuCentral": [
-        "L'accueil, l'hébergement et la rééducation, assortis de soins médicaux, sans médecin à demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : instituts médico-éducatif (IME), médico-pédagogique (IMP), thérapeutique éducatif et pédagogique (ITEP)"
+        "L'accueil, l'hébergement et la rééducation, assortis de soins médicaux, sans medecin à demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : instituts médico-éducatif (IME), médico-pédagogique (IMP), thérapeutique éducatif et pédagogique (ITEP)"
       ],
       "codeApe": "87.10B",
       "title": "Hébergement médicalisé pour enfants handicapés",
@@ -12643,7 +12643,7 @@
         "Les activités d'action sociale avec hébergement, telles que les foyers d'accueil temporaire pour sans-abri (cf. 87.90B)"
       ],
       "contenuCentral": [
-        "L'accueil, l'hébergement et la réadaptation, assortis de soins médicaux, sans médecin à demeure, d'adultes handicapés et d'autres personnes en difficulté dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : maison d'accueil spécialisé (MAS), foyer d'accueil médicalisé (FAM)"
+        "L'accueil, l'hébergement et la réadaptation, assortis de soins médicaux, sans medecin à demeure, d'adultes handicapés et d'autres personnes en difficulté dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.\npar exemple, services fournis par les établissements suivants : maison d'accueil spécialisé (MAS), foyer d'accueil médicalisé (FAM)"
       ],
       "codeApe": "87.10C",
       "title": "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé",
@@ -12656,7 +12656,7 @@
         "Les activités des établissements pour handicapés physiques sans soins médicaux ou dispensant des soins médicaux limités (cf. 87.30B)"
       ],
       "contenuCentral": [
-        "L'accueil, l'hébergement et la réadaptation de personnes souffrant d'une déficience mentale ou d'une maladie mentale. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure.\npar exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie",
+        "L'accueil, l'hébergement et la réadaptation de personnes souffrant d'une déficience mentale ou d'une maladie mentale. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure.\npar exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie",
         "Les activités d'hébergement social pour handicapés mentaux et malades mentaux"
       ],
       "codeApe": "87.20A",
@@ -12672,12 +12672,12 @@
       ],
       "contenuCentral": [
         "L'accueil, l'hébergement et la réadaptation de personnes souffrant d'alcoolisme ou de toxicomanie.",
-        "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure."
+        "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure."
       ],
       "codeApe": "87.20B",
       "title": "Hébergement social pour toxicomanes",
       "data": [
-        "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure.",
+        "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure.",
         "Produits associés : 87.20.11p, 87.20.12p"
       ]
     },
@@ -12698,7 +12698,7 @@
         "Les activités des établissements pour handicapés dispensant des soins médicaux (cf. 87.10B, C)"
       ],
       "contenuCentral": [
-        "L'accueil, l'hébergement et la réadaptation de personnes handicapées physiques qui ne sont pas autonomes ou qui ne désirent pas vivre de manière autonome. Les établissements concernés (établissements de moyen et long séjour, maisons de repos, etc.) procurent hébergement, nourriture, surveillance et une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans médecin à demeure.\npar exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie",
+        "L'accueil, l'hébergement et la réadaptation de personnes handicapées physiques qui ne sont pas autonomes ou qui ne désirent pas vivre de manière autonome. Les établissements concernés (établissements de moyen et long séjour, maisons de repos, etc.) procurent hébergement, nourriture, surveillance et une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans medecin à demeure.\npar exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie",
         "Les activités des établissements pour handicapés physiques sans soins médicaux ou dispensant des soins médicaux limités"
       ],
       "codeApe": "87.30B",
@@ -12790,11 +12790,11 @@
     },
     {
       "contenuAnnexe": [
-        "Les services de garde d'enfants à domicile assurés par des prestataires de services indépendants"
+        "Les services de garde d'enfants à domicile assurés par des prestataires de services independants"
       ],
       "contenuExclu": [
         "L'accueil ou l'accompagnement sans hébergement d'enfants handicapés (cf. 88.91B)",
-        "Les services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages utilisateurs (cf. 97.00Z)"
+        "Les services de garde d'enfants à domicile assurés par du personnel domestique salarie des ménages utilisateurs (cf. 97.00Z)"
       ],
       "contenuCentral": [
         "L'accueil de jour des enfants d'age pré-scolaire :\nles activités des crèches\nles activités des assistantes maternelles à leur domicile\nles activités des haltes-garderies",
@@ -12856,7 +12856,7 @@
         "Les activités de sélection d'acteurs et de figurants (cf. 78.10Z)"
       ],
       "contenuCentral": [
-        "La production de spectacles, de productions théâtrales, de concerts, de spectacles d'opéra, de spectacles de danse et d'autres productions analogues :\nactivités de groupes, de cirques ou de compagnies, d'orchestres ou d'autres formations\nactivités exercées par des artistes indépendants tels que des acteurs, danseurs, musiciens, conteurs",
+        "La production de spectacles, de productions théâtrales, de concerts, de spectacles d'opéra, de spectacles de danse et d'autres productions analogues :\nactivités de groupes, de cirques ou de compagnies, d'orchestres ou d'autres formations\nactivités exercées par des artistes independants tels que des acteurs, danseurs, musiciens, conteurs",
         "L'organisation de tournées et la diffusion de spectacles lorsqu'elles comprennent la responsabilité artistique du spectacle",
         "Les troupes de théâtre et de cirque"
       ],
@@ -12885,7 +12885,7 @@
         "La fabrication de statues autres que des œuvres originales d'artistes (cf. 23.70Z)"
       ],
       "contenuCentral": [
-        "Les activités exercées par des artistes indépendants tels que des sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
+        "Les activités exercées par des artistes independants tels que des sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
         "La restauration d'œuvres d'art telles que les peintures, etc.",
         "La restauration d'œuvres d'art et d'objets de collection des musées"
       ],
@@ -12899,9 +12899,9 @@
       "contenuAnnexe": [],
       "contenuExclu": [],
       "contenuCentral": [
-        "Les activités des écrivains indépendants, pour tous les sujets, y compris la fiction, les ouvrages techniques, etc.",
+        "Les activités des écrivains independants, pour tous les sujets, y compris la fiction, les ouvrages techniques, etc.",
         "Les activités des compositeurs de musique",
-        "Les activités des journalistes indépendants",
+        "Les activités des journalistes independants",
         "Écrivain / écrivaine",
         "Rédaction de livre"
       ],
@@ -13046,7 +13046,7 @@
     {
       "contenuAnnexe": [],
       "contenuExclu": [
-        "Les cours de sports donnés par des professeurs indépendants, des entraîneurs (cf. 85.51Z)"
+        "Les cours de sports donnés par des professeurs independants, des entraîneurs (cf. 85.51Z)"
       ],
       "contenuCentral": [
         "Les clubs et centres de culture physique et de musculation",
@@ -13140,7 +13140,7 @@
     {
       "contenuAnnexe": [],
       "contenuExclu": [
-        "Les activités des syndicats de salariés (cf. 94.20Z)"
+        "Les activités des syndicats de salaries (cf. 94.20Z)"
       ],
       "contenuCentral": [
         "Les activités des organisations dont les membres ont pour intérêt essentiel le développement et la prospérité des entreprises relevant d'une certaine activité ou profession, ou la croissance économique et la vie d'une région géographique ou d'une subdivision politique déterminée, indépendamment du type d'activité",
@@ -13162,7 +13162,7 @@
         "Les activités éducatives assurées par ces organisations (cf. 85)"
       ],
       "contenuCentral": [
-        "Les activités des organisations dont les membres s'intéressent principalement à une discipline, à une profession ou à un domaine technique particulier, telles que les associations de médecins, de juristes, de comptables, d'ingénieurs, d'architectes, etc.",
+        "Les activités des organisations dont les membres s'intéressent principalement à une discipline, à une profession ou à un domaine technique particulier, telles que les associations de medecins, de juristes, de comptables, d'ingénieurs, d'architectes, etc.",
         "Les activités des associations de spécialistes qui exercent des activités à caractère scientifique, intellectuel ou culturel, telles que les associations d'écrivains, de peintres, d'artistes, de journalistes, etc.",
         "La diffusion d'informations, l'élaboration de normes déontologiques et le contrôle de leur respect, la représentation auprès des organismes publics et les relations publiques des organisations professionnelles",
         "Les activités des associations professionnelles"
@@ -13173,8 +13173,8 @@
     },
     {
       "contenuAnnexe": [
-        "Les activités des associations dont les membres sont des salariés ayant pour objectif essentiel de faire connaître leurs vues sur les conditions salariales et les conditions de travail et de s'organiser en vue d'une action concertée",
-        "Les activités des syndicats de salariés d'une entreprise, des fédérations et confédérations syndicales organisées selon des critères professionnels, régionaux, structurels ou autres",
+        "Les activités des associations dont les membres sont des salaries ayant pour objectif essentiel de faire connaître leurs vues sur les conditions salariales et les conditions de travail et de s'organiser en vue d'une action concertée",
+        "Les activités des syndicats de salaries d'une entreprise, des fédérations et confédérations syndicales organisées selon des critères professionnels, régionaux, structurels ou autres",
         "Les activités de représentation des comités d'entreprises"
       ],
       "contenuExclu": [
@@ -13182,11 +13182,11 @@
         "Les activités sociales et culturelles organisées ou proposées par les comités d'entreprise (cf. les sous-classes concernées : santé, action sociale, activités culturelles et récréatives, etc.)"
       ],
       "contenuCentral": [
-        "La promotion des intérêts des salariés organisés en syndicats",
-        "Les activités des syndicats de salariés"
+        "La promotion des intérêts des salaries organisés en syndicats",
+        "Les activités des syndicats de salaries"
       ],
       "codeApe": "94.20Z",
-      "title": "Activités des syndicats de salariés",
+      "title": "Activités des syndicats de salaries",
       "data": [
         "Produits associés : 94.20.10"
       ]
@@ -13509,13 +13509,13 @@
     {
       "contenuAnnexe": [],
       "contenuExclu": [
-        "La prestation de services de cuisine, jardinage, etc., par des prestataires de services indépendants (entreprises ou particuliers), voir selon le type de service",
+        "La prestation de services de cuisine, jardinage, etc., par des prestataires de services independants (entreprises ou particuliers), voir selon le type de service",
         "La fourniture de personnel de maison par des entreprises (cf. 78)",
         "L'aide à domicile dans le cadre de l'action sociale, y compris les services de baby-sitting (cf. 88)"
       ],
       "contenuCentral": [
-        "Les activités des ménages employant du personnel domestique : femmes de ménage, bonnes, cuisiniers ou cuisinières, serveurs, valets de chambre, maîtres d'hôtel, blanchisseuses, jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux domestiques salariés d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par le ménage employeur",
-        "Les services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages utilisateurs"
+        "Les activités des ménages employant du personnel domestique : femmes de ménage, bonnes, cuisiniers ou cuisinières, serveurs, valets de chambre, maîtres d'hôtel, blanchisseuses, jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux domestiques salaries d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par le ménage employeur",
+        "Les services de garde d'enfants à domicile assurés par du personnel domestique salarie des ménages utilisateurs"
       ],
       "codeApe": "97.00Z",
       "title": "Activités des ménages en tant qu'employeurs de personnel domestique",

@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button, PopoverWithTrigger, SearchIcon } from '@/design-system'
+import { Button, PopoverWithTrigger, SearchIcon } from '@/design-system/index'
 
 import Loader from './utils/Loader'
 

@@ -1,4 +1,4 @@
-import { TextField } from '@/design-system'
+import { TextField } from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'

@@ -1,591 +1,591 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`calculate simulations-indépendant > Année incomplète 1`] = `
+exports[`calculate simulations-independant > Année incomplète 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: undefined
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: undefined
+independant . rémunération . brute: undefined
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > Année incomplète 2`] = `
+exports[`calculate simulations-independant > Année incomplète 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 3749
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1360
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: 2080
-indépendant . rémunération . brute: 3749
-indépendant . rémunération . nette: 2000
-indépendant . rémunération . nette . après impôt: 2000"
+independant . cotisations et contributions . cotisations: 1360
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: 2080
+independant . rémunération . brute: 3749
+independant . rémunération . nette: 2000
+independant . rémunération . nette . après impôt: 2000"
 `;
 
-exports[`calculate simulations-indépendant > Année incomplète 3`] = `
+exports[`calculate simulations-independant > Année incomplète 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 7205
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1567
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: 5155
-indépendant . rémunération . brute: 7205
-indépendant . rémunération . nette: 5000
-indépendant . rémunération . nette . après impôt: 5000"
+independant . cotisations et contributions . cotisations: 1567
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: 5155
+independant . rémunération . brute: 7205
+independant . rémunération . nette: 5000
+independant . rémunération . nette . après impôt: 5000"
 `;
 
-exports[`calculate simulations-indépendant > Année incomplète 4`] = `
+exports[`calculate simulations-independant > Année incomplète 4`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: 10302
-indépendant . rémunération . brute: 14082
-indépendant . rémunération . nette: 10000
-indépendant . rémunération . nette . après impôt: 10000"
+independant . cotisations et contributions . cotisations: 2951
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: 10302
+independant . rémunération . brute: 14082
+independant . rémunération . nette: 10000
+independant . rémunération . nette . après impôt: 10000"
 `;
 
-exports[`calculate simulations-indépendant > Année incomplète 5`] = `
+exports[`calculate simulations-independant > Année incomplète 5`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 140741
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 30519
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: 103020
-indépendant . rémunération . brute: 140741
-indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73961"
+independant . cotisations et contributions . cotisations: 30519
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: 103020
+independant . rémunération . brute: 140741
+independant . rémunération . nette: 100000
+independant . rémunération . nette . après impôt: 73961"
 `;
 
-exports[`calculate simulations-indépendant > Année incomplète 6`] = `
+exports[`calculate simulations-independant > Année incomplète 6`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 1272290
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 154818
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: 1035085
-indépendant . rémunération . brute: 1272290
-indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528785"
+independant . cotisations et contributions . cotisations: 154818
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: 1035085
+independant . rémunération . brute: 1272290
+independant . rémunération . nette: 1000000
+independant . rémunération . nette . après impôt: 528785"
 `;
 
-exports[`calculate simulations-indépendant > DROM 1`] = `
+exports[`calculate simulations-independant > DROM 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 20000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 20000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > acre 1`] = `
+exports[`calculate simulations-independant > acre 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 72973
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 17615
-indépendant . cotisations et contributions . début activité: 3131
-indépendant . revenu professionnel: 51566
-indépendant . rémunération . brute: 72973
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 41426"
+independant . cotisations et contributions . cotisations: 17615
+independant . cotisations et contributions . début activité: 3131
+independant . revenu professionnel: 51566
+independant . rémunération . brute: 72973
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 41426"
 `;
 
-exports[`calculate simulations-indépendant > activité 1`] = `
+exports[`calculate simulations-independant > activité 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 28412
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 6252
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 20610
-indépendant . rémunération . brute: 28412
-indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19457"
+independant . cotisations et contributions . cotisations: 6252
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 20610
+independant . rémunération . brute: 28412
+independant . rémunération . nette: 20000
+independant . rémunération . nette . après impôt: 19457"
 `;
 
-exports[`calculate simulations-indépendant > activité 2`] = `
+exports[`calculate simulations-independant > activité 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 28440
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 6260
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 20610
-indépendant . rémunération . brute: 28440
-indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19457"
+independant . cotisations et contributions . cotisations: 6260
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 20610
+independant . rémunération . brute: 28440
+independant . rémunération . nette: 20000
+independant . rémunération . nette . après impôt: 19457"
 `;
 
-exports[`calculate simulations-indépendant > années précédentes 1`] = `
+exports[`calculate simulations-independant > années précédentes 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 87629
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 21221
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 61881
-indépendant . rémunération . brute: 87629
-indépendant . rémunération . nette: 60000
-indépendant . rémunération . nette . après impôt: 48270"
+independant . cotisations et contributions . cotisations: 21221
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 61881
+independant . rémunération . brute: 87629
+independant . rémunération . nette: 60000
+independant . rémunération . nette . après impôt: 48270"
 `;
 
-exports[`calculate simulations-indépendant > années précédentes 2`] = `
+exports[`calculate simulations-independant > années précédentes 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 73208
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 16453
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51985
-indépendant . rémunération . brute: 73208
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 41118"
+independant . cotisations et contributions . cotisations: 16453
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51985
+independant . rémunération . brute: 73208
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 41118"
 `;
 
-exports[`calculate simulations-indépendant > années précédentes 3`] = `
+exports[`calculate simulations-independant > années précédentes 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 59110
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 13641
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 41602
-indépendant . rémunération . brute: 59110
-indépendant . rémunération . nette: 40000
-indépendant . rémunération . nette . après impôt: 33926"
+independant . cotisations et contributions . cotisations: 13641
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 41602
+independant . rémunération . brute: 59110
+independant . rémunération . nette: 40000
+independant . rémunération . nette . après impôt: 33926"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 1`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 79448
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 19117
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51705
-indépendant . rémunération . brute: 79448
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 46929"
+independant . cotisations et contributions . cotisations: 19117
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51705
+independant . rémunération . brute: 79448
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 46929"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 2`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 81038
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 19511
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51739
-indépendant . rémunération . brute: 81038
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 46923"
+independant . cotisations et contributions . cotisations: 19511
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51739
+independant . rémunération . brute: 81038
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 46923"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 3`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 85757
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 20691
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51840
-indépendant . rémunération . brute: 85757
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 46907"
+independant . cotisations et contributions . cotisations: 20691
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51840
+independant . rémunération . brute: 85757
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 46907"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 4`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 4`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 75026
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 14335
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51610
-indépendant . rémunération . brute: 75026
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 46944"
+independant . cotisations et contributions . cotisations: 14335
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51610
+independant . rémunération . brute: 75026
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 46944"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 5`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 5`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 75028
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 11813
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 51610
-indépendant . rémunération . brute: 75028
-indépendant . rémunération . nette: 50000
-indépendant . rémunération . nette . après impôt: 46944"
+independant . cotisations et contributions . cotisations: 11813
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 51610
+independant . rémunération . brute: 75028
+independant . rémunération . nette: 50000
+independant . rémunération . nette . après impôt: 46944"
 `;
 
-exports[`calculate simulations-indépendant > conjoint collaborateur 6`] = `
+exports[`calculate simulations-independant > conjoint collaborateur 6`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 681523
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 93851
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 517952
-indépendant . rémunération . brute: 681523
-indépendant . rémunération . nette: 500000
-indépendant . rémunération . nette . après impôt: 313335"
+independant . cotisations et contributions . cotisations: 93851
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 517952
+independant . rémunération . brute: 681523
+independant . rémunération . nette: 500000
+independant . rémunération . nette . après impôt: 313335"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 1`] = `
+exports[`calculate simulations-independant > cotisations facultatives 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 30000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 30000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 2`] = `
+exports[`calculate simulations-independant > cotisations facultatives 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 30000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 30000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 3`] = `
+exports[`calculate simulations-independant > cotisations facultatives 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 30000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 30000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 4`] = `
+exports[`calculate simulations-independant > cotisations facultatives 4`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 20000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 20000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 5`] = `
+exports[`calculate simulations-independant > cotisations facultatives 5`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 300000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 300000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations facultatives 6`] = `
+exports[`calculate simulations-independant > cotisations facultatives 6`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 300000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 300000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations forfaitaires début d'activité 1`] = `
+exports[`calculate simulations-independant > cotisations forfaitaires début d'activité 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: 3593
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 50000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: 3593
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 50000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > cotisations minimales 1`] = `
+exports[`calculate simulations-independant > cotisations minimales 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 1465
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1185
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 118
-indépendant . rémunération . brute: 1465
-indépendant . rémunération . nette: 100
-indépendant . rémunération . nette . après impôt: 100"
+independant . cotisations et contributions . cotisations: 1185
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 118
+independant . rémunération . brute: 1465
+independant . rémunération . nette: 100
+independant . rémunération . nette . après impôt: 100"
 `;
 
-exports[`calculate simulations-indépendant > cotisations minimales 2`] = `
+exports[`calculate simulations-independant > cotisations minimales 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 220
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 0
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 100
-indépendant . rémunération . brute: 220
-indépendant . rémunération . nette: 100
-indépendant . rémunération . nette . après impôt: 100"
+independant . cotisations et contributions . cotisations: 0
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 100
+independant . rémunération . brute: 220
+independant . rémunération . nette: 100
+independant . rémunération . nette . après impôt: 100"
 `;
 
-exports[`calculate simulations-indépendant > cotisations minimales 3`] = `
+exports[`calculate simulations-independant > cotisations minimales 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 967
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 35
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 804
-indépendant . rémunération . brute: 967
-indépendant . rémunération . nette: 800
-indépendant . rémunération . nette . après impôt: 800"
+independant . cotisations et contributions . cotisations: 35
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 804
+independant . rémunération . brute: 967
+independant . rémunération . nette: 800
+independant . rémunération . nette . après impôt: 800"
 `;
 
-exports[`calculate simulations-indépendant > exonération invalidité 1`] = `
+exports[`calculate simulations-independant > exonération invalidité 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 45000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 45000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > exonération invalidité 2`] = `
+exports[`calculate simulations-independant > exonération invalidité 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 9000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 9000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > exonération invalidité 3`] = `
+exports[`calculate simulations-independant > exonération invalidité 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 10000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 10000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined
 
-Notifications affichées : indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité"
+Notifications affichées : independant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité"
 `;
 
-exports[`calculate simulations-indépendant > exonération invalidité 4`] = `
+exports[`calculate simulations-independant > exonération invalidité 4`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 15000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 15000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > exonération âge 1`] = `
+exports[`calculate simulations-independant > exonération âge 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: undefined
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: undefined
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: undefined
-indépendant . rémunération . brute: 55000
-indépendant . rémunération . nette: undefined
-indépendant . rémunération . nette . après impôt: undefined"
+independant . cotisations et contributions . cotisations: undefined
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: undefined
+independant . rémunération . brute: 55000
+independant . rémunération . nette: undefined
+independant . rémunération . nette . après impôt: undefined"
 `;
 
-exports[`calculate simulations-indépendant > imposition à l'IR 1`] = `
+exports[`calculate simulations-independant > imposition à l'IR 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 100000
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 23564
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 71284
-indépendant . rémunération . brute: 100000
-indépendant . rémunération . nette: 69138
-indépendant . rémunération . nette . après impôt: 54649"
+independant . cotisations et contributions . cotisations: 23564
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 71284
+independant . rémunération . brute: 100000
+independant . rémunération . nette: 69138
+independant . rémunération . nette . après impôt: 54649"
 `;
 
-exports[`calculate simulations-indépendant > impôt sur le revenu 1`] = `
+exports[`calculate simulations-independant > impôt sur le revenu 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 28412
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 6252
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 20610
-indépendant . rémunération . brute: 28412
-indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 17939"
+independant . cotisations et contributions . cotisations: 6252
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 20610
+independant . rémunération . brute: 28412
+independant . rémunération . nette: 20000
+independant . rémunération . nette . après impôt: 17939"
 `;
 
-exports[`calculate simulations-indépendant > inversions IR 1`] = `
+exports[`calculate simulations-independant > inversions IR 1`] = `
 "entreprise . charges: 1000
 entreprise . chiffre d'affaires: 20000
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 4028
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 13896
-indépendant . rémunération . brute: 19000
-indépendant . rémunération . nette: 13488
-indépendant . rémunération . nette . après impôt: 13488"
+independant . cotisations et contributions . cotisations: 4028
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 13896
+independant . rémunération . brute: 19000
+independant . rémunération . nette: 13488
+independant . rémunération . nette . après impôt: 13488"
 `;
 
-exports[`calculate simulations-indépendant > inversions IR 2`] = `
+exports[`calculate simulations-independant > inversions IR 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 10302
-indépendant . rémunération . brute: 14082
-indépendant . rémunération . nette: 10000
-indépendant . rémunération . nette . après impôt: 10000"
+independant . cotisations et contributions . cotisations: 2951
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 10302
+independant . rémunération . brute: 14082
+independant . rémunération . nette: 10000
+independant . rémunération . nette . après impôt: 10000"
 `;
 
-exports[`calculate simulations-indépendant > inversions IR 3`] = `
+exports[`calculate simulations-independant > inversions IR 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 62171
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 15440
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 43483
-indépendant . rémunération . brute: 62171
-indépendant . rémunération . nette: 42149
-indépendant . rémunération . nette . après impôt: 36000"
+independant . cotisations et contributions . cotisations: 15440
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 43483
+independant . rémunération . brute: 62171
+independant . rémunération . nette: 42149
+independant . rémunération . nette . après impôt: 36000"
 `;
 
-exports[`calculate simulations-indépendant > inversions IS 1`] = `
+exports[`calculate simulations-independant > inversions IS 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 10302
-indépendant . rémunération . brute: 14082
-indépendant . rémunération . nette: 10000
-indépendant . rémunération . nette . après impôt: 10000"
+independant . cotisations et contributions . cotisations: 2951
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 10302
+independant . rémunération . brute: 14082
+independant . rémunération . nette: 10000
+independant . rémunération . nette . après impôt: 10000"
 `;
 
-exports[`calculate simulations-indépendant > inversions IS 2`] = `
+exports[`calculate simulations-independant > inversions IS 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 10302
-indépendant . rémunération . brute: 14082
-indépendant . rémunération . nette: 10000
-indépendant . rémunération . nette . après impôt: 10000"
+independant . cotisations et contributions . cotisations: 2951
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 10302
+independant . rémunération . brute: 14082
+independant . rémunération . nette: 10000
+independant . rémunération . nette . après impôt: 10000"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 1`] = `
+exports[`calculate simulations-independant > échelle de revenus 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 1952
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1225
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 532
-indépendant . rémunération . brute: 1952
-indépendant . rémunération . nette: 500
-indépendant . rémunération . nette . après impôt: 500"
+independant . cotisations et contributions . cotisations: 1225
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 532
+independant . rémunération . brute: 1952
+independant . rémunération . nette: 500
+independant . rémunération . nette . après impôt: 500"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 2`] = `
+exports[`calculate simulations-independant > échelle de revenus 2`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 2561
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1274
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 1050
-indépendant . rémunération . brute: 2561
-indépendant . rémunération . nette: 1000
-indépendant . rémunération . nette . après impôt: 1000"
+independant . cotisations et contributions . cotisations: 1274
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 1050
+independant . rémunération . brute: 2561
+independant . rémunération . nette: 1000
+independant . rémunération . nette . après impôt: 1000"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 3`] = `
+exports[`calculate simulations-independant > échelle de revenus 3`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 3168
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1323
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 1567
-indépendant . rémunération . brute: 3168
-indépendant . rémunération . nette: 1500
-indépendant . rémunération . nette . après impôt: 1500"
+independant . cotisations et contributions . cotisations: 1323
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 1567
+independant . rémunération . brute: 3168
+independant . rémunération . nette: 1500
+independant . rémunération . nette . après impôt: 1500"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 4`] = `
+exports[`calculate simulations-independant > échelle de revenus 4`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 3749
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1360
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 2080
-indépendant . rémunération . brute: 3749
-indépendant . rémunération . nette: 2000
-indépendant . rémunération . nette . après impôt: 2000"
+independant . cotisations et contributions . cotisations: 1360
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 2080
+independant . rémunération . brute: 3749
+independant . rémunération . nette: 2000
+independant . rémunération . nette . après impôt: 2000"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 5`] = `
+exports[`calculate simulations-independant > échelle de revenus 5`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 7205
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 1567
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 5155
-indépendant . rémunération . brute: 7205
-indépendant . rémunération . nette: 5000
-indépendant . rémunération . nette . après impôt: 5000"
+independant . cotisations et contributions . cotisations: 1567
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 5155
+independant . rémunération . brute: 7205
+independant . rémunération . nette: 5000
+independant . rémunération . nette . après impôt: 5000"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 6`] = `
+exports[`calculate simulations-independant > échelle de revenus 6`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 14082
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 2951
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 10302
-indépendant . rémunération . brute: 14082
-indépendant . rémunération . nette: 10000
-indépendant . rémunération . nette . après impôt: 10000"
+independant . cotisations et contributions . cotisations: 2951
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 10302
+independant . rémunération . brute: 14082
+independant . rémunération . nette: 10000
+independant . rémunération . nette . après impôt: 10000"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 7`] = `
+exports[`calculate simulations-independant > échelle de revenus 7`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 140741
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 30519
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 103020
-indépendant . rémunération . brute: 140741
-indépendant . rémunération . nette: 100000
-indépendant . rémunération . nette . après impôt: 73961"
+independant . cotisations et contributions . cotisations: 30519
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 103020
+independant . rémunération . brute: 140741
+independant . rémunération . nette: 100000
+independant . rémunération . nette . après impôt: 73961"
 `;
 
-exports[`calculate simulations-indépendant > échelle de revenus 8`] = `
+exports[`calculate simulations-independant > échelle de revenus 8`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 1272290
 impôt . montant: undefined
-indépendant . cotisations et contributions . cotisations: 154818
-indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 1035085
-indépendant . rémunération . brute: 1272290
-indépendant . rémunération . nette: 1000000
-indépendant . rémunération . nette . après impôt: 528785"
+independant . cotisations et contributions . cotisations: 154818
+independant . cotisations et contributions . début activité: null
+independant . revenu professionnel: 1035085
+independant . rémunération . brute: 1272290
+independant . rémunération . nette: 1000000
+independant . rémunération . nette . après impôt: 528785"
 `;

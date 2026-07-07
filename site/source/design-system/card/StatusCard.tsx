@@ -7,8 +7,8 @@ import {
 	findChildrenByType,
 } from '@/utils/react-compound-components'
 
-import { Emoji } from '../emoji'
-import { Grid } from '../layout'
+import { Emoji } from '../emoji/index'
+import { Grid } from '../layout/index'
 import { Body } from '../typography/paragraphs'
 import { CardContainer } from './Card'
 

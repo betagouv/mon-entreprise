@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 
 import urssafSrc from '@/assets/images/Urssaf.svg'
 import Value from '@/components/EngineValue/Value'
-import { Body, SmallBody } from '@/design-system'
+import { Body, SmallBody } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 

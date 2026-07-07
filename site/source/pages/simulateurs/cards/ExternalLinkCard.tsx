@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Article } from '@/design-system'
+import { Article } from '@/design-system/index'
 import { getUrlDomain } from '@/utils/URLs'
 
 import { ExternalLink } from '../_configs/types'

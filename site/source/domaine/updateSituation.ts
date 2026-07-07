@@ -6,7 +6,7 @@ import {
 } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ImmutableType } from '@/types/utils'
-import { objectTransform } from '@/utils'
+import { objectTransform } from '@/utils/index'
 
 import { SimulationConfig } from './SimulationConfig'
 import { SituationPublicodes } from './SituationPublicodes'

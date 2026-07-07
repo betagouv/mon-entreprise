@@ -8,7 +8,7 @@
 import { renderHook } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
 
-import SalariéSimulation from '@/pages/simulateurs/salarié/Salarié'
+import SalariéSimulation from '@/pages/simulateurs/salarie/Salarie'
 
 import { useCurrentSimulatorData } from './useCurrentSimulatorData'
 import { useSearchParamsForSituation } from './useSearchParamsForSituation'
@@ -24,7 +24,7 @@ vi.mock('@/hooks/useCurrentSimulatorData', () => ({
 vi.mock('@/hooks/useSearchParamsForSituation', () => ({
 	useSearchParamsForSituation: vi.fn(),
 }))
-vi.mock('@/pages/simulateurs/salarié/Salarié', () => ({
+vi.mock('@/pages/simulateurs/salarie/Salarié', () => ({
 	default: () => null,
 }))
 
@@ -33,19 +33,19 @@ describe('useUrl hook', () => {
 		vi.mocked(useSiteUrl).mockReturnValue('https://mon-entreprise.urssaf.fr')
 
 		vi.mocked(useCurrentSimulatorData).mockReturnValue({
-			key: 'salarié',
+			key: 'salarie',
 			currentSimulatorData: {
-				id: 'salarié',
-				tracking: 'salarié',
+				id: 'salarie',
+				tracking: 'salarie',
 				icône: '🤝',
-				title: 'Simulateur salarié',
+				title: 'Simulateur salarie',
 				iframePath: 'simulateur-embauche',
 				meta: {
 					title: 'meta title',
 					description: 'meta description',
 				},
-				pathId: 'simulateurs.salarié',
-				shortName: 'salarié',
+				pathId: 'simulateurs.salarie',
+				shortName: 'salarie',
 				path: '/simulateurs/salaire-brut-net',
 				component: vi.mocked(SalariéSimulation),
 			},
@@ -67,19 +67,19 @@ describe('useUrl hook', () => {
 		vi.mocked(useSiteUrl).mockReturnValue('https://mon-entreprise.urssaf.fr')
 
 		vi.mocked(useCurrentSimulatorData).mockReturnValue({
-			key: 'salarié',
+			key: 'salarie',
 			currentSimulatorData: {
-				id: 'salarié',
-				tracking: 'salarié',
+				id: 'salarie',
+				tracking: 'salarie',
 				icône: '🤝',
-				title: 'Simulateur salarié',
+				title: 'Simulateur salarie',
 				iframePath: 'simulateur-embauche',
 				meta: {
 					title: 'meta title',
 					description: 'meta description',
 				},
-				pathId: 'simulateurs.salarié',
-				shortName: 'salarié',
+				pathId: 'simulateurs.salarie',
+				shortName: 'salarie',
 				path: '/simulateurs/salaire-brut-net',
 				component: vi.mocked(SalariéSimulation),
 			},
@@ -105,19 +105,19 @@ describe('useUrl hook', () => {
 		vi.mocked(useSiteUrl).mockReturnValue('https://mon-entreprise.urssaf.fr')
 
 		vi.mocked(useCurrentSimulatorData).mockReturnValue({
-			key: 'salarié',
+			key: 'salarie',
 			currentSimulatorData: {
-				id: 'salarié',
-				tracking: 'salarié',
+				id: 'salarie',
+				tracking: 'salarie',
 				icône: '🤝',
-				title: 'Simulateur salarié',
+				title: 'Simulateur salarie',
 				iframePath: 'simulateur-embauche',
 				meta: {
 					title: 'meta title',
 					description: 'meta description',
 				},
-				pathId: 'simulateurs.salarié',
-				shortName: 'salarié',
+				pathId: 'simulateurs.salarie',
+				shortName: 'salarie',
 				path: '/simulateurs/salaire-brut-net',
 				component: vi.mocked(SalariéSimulation),
 			},
@@ -129,13 +129,13 @@ describe('useUrl hook', () => {
 		const { result } = renderHook(() =>
 			useUrl({
 				situation: {
-					'salarié . contrat': 'CDD',
+					'salarie . contrat': 'CDD',
 				},
 			})
 		)
 
 		expect(useSearchParamsForSituation).toHaveBeenCalledWith({
-			'salarié . contrat': 'CDD',
+			'salarie . contrat': 'CDD',
 		})
 
 		expect(result.current).toEqual(
@@ -147,19 +147,19 @@ describe('useUrl hook', () => {
 		vi.mocked(useSiteUrl).mockReturnValue('https://mon-entreprise.urssaf.fr')
 
 		vi.mocked(useCurrentSimulatorData).mockReturnValue({
-			key: 'salarié',
+			key: 'salarie',
 			currentSimulatorData: {
-				id: 'salarié',
-				tracking: 'salarié',
+				id: 'salarie',
+				tracking: 'salarie',
 				icône: '🤝',
-				title: 'Simulateur salarié',
+				title: 'Simulateur salarie',
 				iframePath: 'simulateur-embauche',
 				meta: {
 					title: 'meta title',
 					description: 'meta description',
 				},
-				pathId: 'simulateurs.salarié',
-				shortName: 'salarié',
+				pathId: 'simulateurs.salarie',
+				shortName: 'salarie',
 				path: '/simulateurs/salaire-brut-net',
 				component: vi.mocked(SalariéSimulation),
 			},
@@ -172,13 +172,13 @@ describe('useUrl hook', () => {
 			useUrl({
 				path: '/simulateurs/auto-entrepreneur',
 				situation: {
-					'salarié . contrat': 'CDD',
+					'salarie . contrat': 'CDD',
 				},
 			})
 		)
 
 		expect(useSearchParamsForSituation).toHaveBeenCalledWith({
-			'salarié . contrat': 'CDD',
+			'salarie . contrat': 'CDD',
 		})
 
 		expect(result.current).toEqual(

@@ -4,7 +4,7 @@ import { SearchFieldState, useSearchFieldState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../global-style'
-import { SearchIcon, Spinner } from '../../icons'
+import { SearchIcon, Spinner } from '../../icons/index'
 import {
 	StyledContainer,
 	StyledDescription,

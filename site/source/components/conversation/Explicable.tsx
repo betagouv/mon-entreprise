@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next'
 
 import { References } from '@/components/documentation/References/References'
 import RuleLink from '@/components/RuleLink'
-import { H3, InfoButton, Spacing } from '@/design-system'
+import { H3, InfoButton, Spacing } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
+import { useReferences } from '@/pages/assistants/choix-du-statut/resultat'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function ExplicableRule<Names extends string = DottedName>({

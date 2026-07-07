@@ -17,7 +17,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Emoji } from '@/design-system/emoji'
+import { Emoji } from '@/design-system/emoji/index'
 
 import {
 	fieldInputStyles,

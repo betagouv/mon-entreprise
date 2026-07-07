@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Body, H2, Li, Link, PopoverWithTrigger, Ul } from '@/design-system'
+import { Body, H2, Li, Link, PopoverWithTrigger, Ul } from '@/design-system/index'
 
 export default function TermsOfUse() {
 	const { t } = useTranslation()

@@ -3,11 +3,11 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
+	'independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie'
 
 const defaultSituation = {
 	'établissement . commune . département': "'Mayotte'",
-	'indépendant . cotisations et contributions . assiette sociale': '60000 €/an',
+	'independant . cotisations et contributions . assiette sociale': '60000 €/an',
 }
 
 describe('Contribution maladie, maternité, invalidité, décès et autonomie', () => {

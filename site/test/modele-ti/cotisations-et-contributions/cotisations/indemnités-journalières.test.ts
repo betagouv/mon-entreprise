@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . cotisations . indemnités journalières'
+	'independant . cotisations et contributions . cotisations . indemnités journalières'
 
 describe('Cotisation indemnités journalières', () => {
 	let engine: Engine
@@ -23,12 +23,12 @@ describe('Cotisation indemnités journalières', () => {
 
 		it('applique une assiette minimale égale à 40% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'1000 €/an',
 			})
 
 			const assietteMinimale = e.evaluate(
-				'indépendant . assiette minimale . indemnités journalières'
+				'independant . assiette minimale . indemnités journalières'
 			).nodeValue as number
 			expect(assietteMinimale).toEqual(Math.round(0.4 * PASS))
 
@@ -39,7 +39,7 @@ describe('Cotisation indemnités journalières', () => {
 
 		it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 5 PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -50,7 +50,7 @@ describe('Cotisation indemnités journalières', () => {
 
 		it('applique une assiette maximale égale à 5 PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'300000 €/an',
 			})
 
@@ -62,7 +62,7 @@ describe('Cotisation indemnités journalières', () => {
 		describe('n’applique pas d’assiette minimale', () => {
 			it('en cas de RSA ou de prime d’activité', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'situation personnelle . RSA': 'oui',
 				})
@@ -72,7 +72,7 @@ describe('Cotisation indemnités journalières', () => {
 
 			it('en cas d’activité saisonnière', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'entreprise . activité . saisonnière': 'oui',
 				})
@@ -90,12 +90,12 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique une assiette minimale égale à 40% du PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . indemnités journalières'
+					'independant . assiette minimale . indemnités journalières'
 				).nodeValue
 				expect(assietteMinimale).toEqual(Math.round(0.4 * PASS))
 
@@ -105,7 +105,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 5 PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -115,7 +115,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique une assiette maximale égale à 5 PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'300000 €/an',
 				})
 
@@ -142,7 +142,7 @@ describe('Cotisation indemnités journalières', () => {
 		it('applique un taux de 0,3%', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'10000 €/an',
 			})
 
@@ -152,12 +152,12 @@ describe('Cotisation indemnités journalières', () => {
 		it('applique une assiette minimale égale à 40% du PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'1000 €/an',
 			})
 
 			const assietteMinimale = e.evaluate(
-				'indépendant . assiette minimale . indemnités journalières'
+				'independant . assiette minimale . indemnités journalières'
 			).nodeValue as number
 			expect(assietteMinimale).toEqual(Math.round(0.4 * PASS))
 
@@ -169,7 +169,7 @@ describe('Cotisation indemnités journalières', () => {
 		it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 3 PASS non proratisé', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -181,7 +181,7 @@ describe('Cotisation indemnités journalières', () => {
 		it('applique une assiette maximale égale à 3 PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'150000 €/an',
 			})
 
@@ -200,12 +200,12 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique une assiette minimale égale à 40% du PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . indemnités journalières'
+					'independant . assiette minimale . indemnités journalières'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(Math.round(0.4 * PASS))
 
@@ -215,7 +215,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique l’assiette sociale lorsqu’elle est comprise entre 40% et 3 PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -225,7 +225,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('applique une assiette maximale égale à 3 PASS non proratisé', () => {
 				const e = engine.setSituation({
 					...defaultSituationCessation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'300000 €/an',
 				})
 
@@ -237,7 +237,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('en cas de RSA ou de prime d’activité', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'situation personnelle . RSA': 'oui',
 				})
@@ -248,7 +248,7 @@ describe('Cotisation indemnités journalières', () => {
 			it('en cas d’activité saisonnière', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'entreprise . activité . saisonnière': 'oui',
 				})

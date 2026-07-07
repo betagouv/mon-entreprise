@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components'
 
 import { Palette } from '@/types/styled'
 
-import { CrossIcon } from '../icons'
+import { CrossIcon } from '../icons/index'
 import { getColorPalette } from '../theme'
 import { GenericButtonOrNavLinkProps } from '../typography/link'
 import { Button } from './Button'

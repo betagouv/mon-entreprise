@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
-import { Button, Emoji, Message, PopoverWithTrigger } from '@/design-system'
+import { Button, Emoji, Message, PopoverWithTrigger } from '@/design-system/index'
 
 export default function ActivityNotFound({ job }: { job: string }) {
 	const [hide, setHide] = useState(false)

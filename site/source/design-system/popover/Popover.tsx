@@ -14,12 +14,12 @@ import { useTranslation } from 'react-i18next'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'
-import { wrapperDebounceEvents } from '@/utils'
+import { wrapperDebounceEvents } from '@/utils/index'
 
 import { FocusStyle } from '../global-style'
 import { useIFrameOffset } from '../hooks'
-import { CrossIcon } from '../icons'
-import { Container, Grid } from '../layout'
+import { CrossIcon } from '../icons/index'
+import { Container, Grid } from '../layout/index'
 import { H1 } from '../typography/heading'
 
 export function Popover(

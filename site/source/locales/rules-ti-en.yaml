@@ -91,7 +91,7 @@ entreprise . activité:
 
         l’artisanat ou de la liste officielle des métiers d’artisanat d’art
 
-        - Votre entreprise doit compter moins de 11 salariés à sa création
+        - Votre entreprise doit compter moins de 11 salaries à sa création
 
         - Vous devez détenir un savoir-faire spécifique et le prouver par un
         diplôme
@@ -212,7 +212,7 @@ entreprise . activité:
 
         > Exemples de professions règlementées : architecte, avocat, infirmier,
 
-        > médecin…
+        > medecin…
 
 
         Il s’agit des autres personnes qui pratiquent, une science ou un art et
@@ -501,7 +501,7 @@ entreprise . charges:
 
     >
 
-    > Les cotisations sociales au régime des travailleurs indépendants
+    > Les cotisations sociales au régime des travailleurs independants
 
     > et la part de CSG déductible font partie des charges
 
@@ -812,7 +812,7 @@ entreprise . date de création:
     approximation.
   description.fr: |
     La date de début d’activité (ou date de création) est fixée lors de la
-    déclaration de votre entreprise.
+    declaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/), pour préremplir
     automatiquement cette information.
@@ -903,7 +903,7 @@ entreprise . imposition . IR:
     Le résultat est déterminé lors du remplissage de la **liasse fiscale**
     (aussi
 
-    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+    appelée declaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
     Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
@@ -1102,7 +1102,7 @@ entreprise . imposition . IS:
     Le résultat imposable est déterminé lors du remplissage de la **liasse
     fiscale**
 
-    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en
+    (aussi appelée declaration de résultat). C’est l’expert-comptable qui s’en
     charge.
 
 
@@ -1282,7 +1282,7 @@ impôt . barème standard . revenu d'activité abattu:
     *actual expenses*, which will replace the default flat rate.
   description.fr: |
     Dans le cas général, l’impôt est calculé après l’application d’un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    forfaitaire fixe. Chacun peut néanmoins opter pour la declaration de ses
     *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: '[automatic] reduced business income'
   titre.fr: revenu d'activité abattu
@@ -1552,7 +1552,7 @@ impôt . taux neutre:
     substantial income from assets).
   description.fr: >
     C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    l’impôt à payer mensuellement pour les salaries qui ne veulent pas révéler à
     leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
   note.en:
@@ -1589,10 +1589,10 @@ impôt . taux personnalisé:
   question.fr: Quel est votre taux d’imposition ?
   titre.en: '[automatic] personalized rate'
   titre.fr: taux personnalisé
-indépendant:
+independant:
   titre.en: '[automatic] independent'
-  titre.fr: indépendant
-indépendant . PASS proratisé:
+  titre.fr: independant
+independant . PASS proratisé:
   description.en: >
     [automatic] The social security ceiling, prorated according to the length of
     activity during the year
@@ -1611,7 +1611,7 @@ indépendant . PASS proratisé:
     cotisations forfaitaires de début d’activité ou le montant de l’Acre.
   titre.en: '[automatic] prorated social security ceiling'
   titre.fr: plafond de la sécurité sociale proratisé
-indépendant . PASS proratisé . métropole:
+independant . PASS proratisé . métropole:
   description.en: >
     [automatic] Version métropole of the social security ceiling, prorated by
     the length of time
@@ -1646,7 +1646,7 @@ indépendant . PASS proratisé . métropole:
     métropole du plafond de sécurité sociale qui est utilisé.
   titre.en: '[automatic] prorated social security ceiling (metropolitan France)'
   titre.fr: plafond de la sécurité sociale proratisé (métropole)
-indépendant . assiette minimale:
+independant . assiette minimale:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
     calculation bases, certain
@@ -1689,12 +1689,12 @@ indépendant . assiette minimale:
     prime d’activité.
   titre.en: '[automatic] minimum base'
   titre.fr: assiette minimale
-indépendant . assiette minimale . indemnités journalières:
+independant . assiette minimale . indemnités journalières:
   description.en: '[automatic] Daily allowance contributions are not prorated.'
   description.fr: La cotisation indemnités journalières n’est pas proratisée.
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
-indépendant . assiette minimale . invalidité et décès:
+independant . assiette minimale . invalidité et décès:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
     calculation bases, certain
@@ -1705,7 +1705,7 @@ indépendant . assiette minimale . invalidité et décès:
     calcul, certaines cotisations seront portées à un montant minimum.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . assiette minimale . invalidité et décès Cipav:
+independant . assiette minimale . invalidité et décès Cipav:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
     calculation bases, certain
@@ -1716,7 +1716,7 @@ indépendant . assiette minimale . invalidité et décès Cipav:
     calcul, certaines cotisations seront portées à un montant minimum.
   titre.en: '[automatic] disability and death Cipav'
   titre.fr: invalidité et décès Cipav
-indépendant . assiette minimale . maladie:
+independant . assiette minimale . maladie:
   description.en: >
     [automatic] If the entrepreneur's income is in deficit or below the
     calculation bases, certain
@@ -1727,7 +1727,7 @@ indépendant . assiette minimale . maladie:
     calcul, certaines cotisations seront portées à un montant minimum.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-indépendant . assiette minimale . retraite:
+independant . assiette minimale . retraite:
   description.en:
     '[automatic] The minimum basic pension contribution entitles you
     to 3 quarters of pension, regardless of your income.'
@@ -1735,7 +1735,7 @@ indépendant . assiette minimale . retraite:
     trimestres de retraite, quel que soit le revenu.
   titre.en: '[automatic] retirement'
   titre.fr: retraite
-indépendant . conjoint collaborateur:
+independant . conjoint collaborateur:
   description.en: >
     [automatic] As an employee, the spouse of a self-employed person
 
@@ -1790,7 +1790,7 @@ indépendant . conjoint collaborateur:
     En tant que collaborateur ou collaboratrice, le conjoint ou la conjointe
     d’un
 
-    indépendante ou d’une indépendante verse des cotisations de retraite et
+    independante ou d’une independante verse des cotisations de retraite et
 
     d’invalidité-décès et bénéficie en contrepartie de droits propres. Elle ou
     Il
@@ -1814,7 +1814,7 @@ indépendant . conjoint collaborateur:
 
     gérance majoritaire) d’une entreprise en SARL ou EURL sans limitation de
 
-    l’effectif salarié.
+    l’effectif salarie.
 
 
     La conjointe ou le conjoint doit :
@@ -1842,14 +1842,14 @@ indépendant . conjoint collaborateur:
   question.fr: Avez-vous un conjoint collaborateur ?
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-indépendant . conjoint collaborateur . assiette retraite et invalidité-décès:
+independant . conjoint collaborateur . assiette retraite et invalidité-décès:
   avec:
     assiette chef d'entreprise:
       titre.en: "[automatic] business manager's base"
       titre.fr: assiette chef d'entreprise
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
-indépendant . conjoint collaborateur . choix assiette:
+independant . conjoint collaborateur . choix assiette:
   avec:
     proportion:
       question.en: '[automatic] What proportion of income does the spouse contribute?'
@@ -1892,7 +1892,7 @@ indépendant . conjoint collaborateur . choix assiette:
   question.fr: Sur quelle base le conjoint cotise-t-il ?
   titre.en: '[automatic] plate selection'
   titre.fr: choix assiette
-indépendant . cotisations et contributions:
+independant . cotisations et contributions:
   avec:
     Urssaf:
       titre.en: '[automatic] contributions collected by Urssaf'
@@ -1905,12 +1905,12 @@ indépendant . cotisations et contributions:
 
     such as Madelin contracts.
   description.fr: |
-    C’est le montant total dû par l’indépendant au titre des cotisations et
+    C’est le montant total dû par l’independant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
   titre.en: '[automatic] contributions and dues'
   titre.fr: cotisations et contributions
-indépendant . cotisations et contributions . CSG-CRDS:
+independant . cotisations et contributions . CSG-CRDS:
   avec:
     déductible:
       titre.en: '[automatic] deductible'
@@ -1932,10 +1932,10 @@ indépendant . cotisations et contributions . CSG-CRDS:
       titre.fr: taux
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
-indépendant . cotisations et contributions . après réforme:
+independant . cotisations et contributions . après réforme:
   titre.en: '[automatic] after reform'
   titre.fr: après réforme
-indépendant . cotisations et contributions . assiette CSG-CRDS:
+independant . cotisations et contributions . assiette CSG-CRDS:
   avec:
     abattement:
       titre.en: '[automatic] allowance'
@@ -1963,7 +1963,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
   description.fr: >
     Avec la réforme du calcul de l’assiette de cotisations et contributions
 
-    sociales des travailleurs indépendants portée par la Loi de Financement de
+    sociales des travailleurs independants portée par la Loi de Financement de
     la
 
     Sécurité Sociale 2024, **l’assiette de la CSG-CRDS est égale** :
@@ -1988,7 +1988,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
     déjà été retranchée du revenu net fiscal fourni.
   titre.en: '[automatic] CSG-CRDS tax base'
   titre.fr: assiette de la CSG-CRDS
-indépendant . cotisations et contributions . assiette sociale:
+independant . cotisations et contributions . assiette sociale:
   description.en: >
     [automatic] With the reform of the calculation basis for social security
     contributions
@@ -2012,7 +2012,7 @@ indépendant . cotisations et contributions . assiette sociale:
   description.fr: >
     Avec la réforme du calcul de l’assiette de cotisations et contributions
 
-    sociales des travailleurs indépendants portée par la Loi de Financement de
+    sociales des travailleurs independants portée par la Loi de Financement de
     la
 
     Sécurité Sociale 2024,
@@ -2030,10 +2030,10 @@ indépendant . cotisations et contributions . assiette sociale:
     - et en soustraire la participation, l’intéressement et l’abondement au PER.
   titre.en: '[automatic] social base'
   titre.fr: assiette sociale
-indépendant . cotisations et contributions . assiette sociale après déduction tabac:
+independant . cotisations et contributions . assiette sociale après déduction tabac:
   titre.en: '[automatic] social base after tobacco deduction'
   titre.fr: assiette sociale après déduction tabac
-indépendant . cotisations et contributions . avec dividendes:
+independant . cotisations et contributions . avec dividendes:
   description.en: >
     [automatic] This is the total amount owed by the self-employed person for
     compulsory contributions and
@@ -2045,7 +2045,7 @@ indépendant . cotisations et contributions . avec dividendes:
 
     We include here the amount of social security contributions on dividends.
   description.fr: |
-    C’est le montant total dû par l’indépendant au titre des cotisations et
+    C’est le montant total dû par l’independant au titre des cotisations et
     contributions obligatoires ainsi qu’au titre de ses cotisations facultatives
     telles que les contrats Madelin.
 
@@ -2054,7 +2054,7 @@ indépendant . cotisations et contributions . avec dividendes:
   résumé.fr: Inclue les prélèvements sociaux sur les dividendes
   titre.en: '[automatic] Dues and contributions'
   titre.fr: Cotisations et contributions
-indépendant . cotisations et contributions . contributions spéciales:
+independant . cotisations et contributions . contributions spéciales:
   description.en: |
     [automatic] Some special schemes may add additional contributions
     (e.g. CURPS for CPAMs)
@@ -2063,10 +2063,10 @@ indépendant . cotisations et contributions . contributions spéciales:
     (par exemple, la CURPS pour les CPAM)
   titre.en: '[automatic] special contributions'
   titre.fr: contributions spéciales
-indépendant . cotisations et contributions . cotisations:
+independant . cotisations et contributions . cotisations:
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-indépendant . cotisations et contributions . cotisations . PCV:
+independant . cotisations et contributions . cotisations . PCV:
   description.en: >
     [automatic] Certain professional categories benefit from
 
@@ -2088,7 +2088,7 @@ indépendant . cotisations et contributions . cotisations . PCV:
   description.fr: |
     Certaines catégories professionnelles bénéficient de
     prestations complémentaires vieillesse (PCV), auparavant nommées « avantage
-    social vieillesse » (ASV). Cela concerne les médecins généralistes, les
+    social vieillesse » (ASV). Cela concerne les medecins généralistes, les
     chirurgiens-dentistes, les sages-femmes, les auxiliaires médicaux et les
     directeurs de laboratoires. Ce régime résulte de la prise en charge
     partielle par l’Assurance maladie de leurs cotisations d’assurance
@@ -2096,7 +2096,7 @@ indépendant . cotisations et contributions . cotisations . PCV:
     conventionnel.
   titre.en: '[automatic] Supplementary old-age benefits'
   titre.fr: Prestations complémentaires vieillesse
-indépendant . cotisations et contributions . cotisations . allocations familiales:
+independant . cotisations et contributions . cotisations . allocations familiales:
   description.en: >
     [automatic] This contribution entitles employees to family allowances paid
     by the
@@ -2123,7 +2123,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     Cette cotisation permet de bénéficier des allocations familiales versées par
     la
 
-    caisse d’allocations familiales dans les mêmes conditions que les salariés :
+    caisse d’allocations familiales dans les mêmes conditions que les salaries :
 
 
     - compensation des charges familiales (naissance, enfant à charge, garde,
@@ -2143,7 +2143,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
-indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
+independant . cotisations et contributions . cotisations . allocations familiales avant abattements:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -2156,16 +2156,16 @@ indépendant . cotisations et contributions . cotisations . allocations familial
       titre.fr: taux
   titre.en: '[automatic] family allowances before allowances'
   titre.fr: allocations familiales avant abattements
-indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
+independant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
-indépendant . cotisations et contributions . cotisations . conjoint collaborateur:
+independant . cotisations et contributions . cotisations . conjoint collaborateur:
   titre.en: '[automatic] collaborating spouse'
   titre.fr: conjoint collaborateur
-indépendant . cotisations et contributions . cotisations . conjoint collaborateur . indemnités journalières:
+independant . cotisations et contributions . cotisations . conjoint collaborateur . indemnités journalières:
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
-indépendant . cotisations et contributions . cotisations . conjoint collaborateur . invalidité et décès:
+independant . cotisations et contributions . cotisations . conjoint collaborateur . invalidité et décès:
   description.en: >
     [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
     professionals
@@ -2226,7 +2226,7 @@ indépendant . cotisations et contributions . cotisations . conjoint collaborate
     (quart du revenu professionnel ou assiette forfaitaire).
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite complémentaire:
+independant . cotisations et contributions . cotisations . conjoint collaborateur . retraite complémentaire:
   description.en: >
     [automatic] ### For craftsmen, shopkeepers and unregulated self-employed
     professionals
@@ -2287,13 +2287,13 @@ indépendant . cotisations et contributions . cotisations . conjoint collaborate
     (quart du revenu professionnel ou assiette forfaitaire).
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . cotisations et contributions . cotisations . conjoint collaborateur . retraite de base:
+independant . cotisations et contributions . cotisations . conjoint collaborateur . retraite de base:
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-indépendant . cotisations et contributions . cotisations . exonérations:
+independant . cotisations et contributions . cotisations . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
-indépendant . cotisations et contributions . cotisations . exonérations . Acre:
+independant . cotisations et contributions . cotisations . exonérations . Acre:
   description.en: >
     [automatic] Assistance with setting up or taking over a business (Acre)
     consists of a
@@ -2432,7 +2432,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     - personne de moins de 30 ans reconnue handicapée ;
 
-    - personne salariée ou licenciée d’une entreprise en sauvegarde, en
+    - personne salariee ou licenciée d’une entreprise en sauvegarde, en
     redressement
 
     ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
@@ -2495,7 +2495,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
   titre.fr: Acre
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
+independant . cotisations et contributions . cotisations . exonérations . Acre . exonération:
   avec:
     montant maladie-maternité:
       titre.en: '[automatic] sickness and maternity amount'
@@ -2705,10 +2705,10 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     calculons le montant de l’exonération en utilisant la formule officielle.
   titre.en: '[automatic] exemption'
   titre.fr: exonération
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération maximale:
+independant . cotisations et contributions . cotisations . exonérations . Acre . exonération maximale:
   titre.en: '[automatic] maximum exemption'
   titre.fr: exonération maximale
-indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
+independant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
     [automatic] As self-employed contributions are calculated on a full-year
     basis,
@@ -2727,7 +2727,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
     > 31 days of Acre remaining in 2026 / 365 days = 8.5%`.
   description.fr: >
-    Comme le calcul des cotisations indépendants s’effectue sur l’année entière,
+    Comme le calcul des cotisations independants s’effectue sur l’année entière,
 
     l’exonération est proratisée en fonction de la durée effective de l’Acre sur
 
@@ -2744,7 +2744,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     > `31 jours d’Acre restant en 2026 / 365 jours = 8,5 %`
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
-indépendant . cotisations et contributions . cotisations . exonérations . DROM:
+independant . cotisations et contributions . cotisations . exonérations . DROM:
   description.en: >
     [automatic] At the start of their activity, for a period of 24 months,
     self-employed people whose businesses are located in the French overseas
@@ -2758,7 +2758,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
 
     This simulator does not take these exemptions into account at present.
   description.fr: >
-    En début d’activité pendant 24 mois, les indépendants dont l'entreprise est
+    En début d’activité pendant 24 mois, les independants dont l'entreprise est
     localisée dans les DOM bénéficient, sous conditions de revenus, d’une
     exonération de certaines cotisations et de contributions sociales.
 
@@ -2774,7 +2774,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
-indépendant . cotisations et contributions . cotisations . exonérations . Mayotte:
+independant . cotisations et contributions . cotisations . exonérations . Mayotte:
   description.en: |
     [automatic] As of January 1, 2025, Urssaf has taken over the collection of
     social security contributions from self-employed workers
@@ -2789,7 +2789,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
   description.fr: |
     Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des
     cotisations et contributions sociales des travailleurs et
-    travailleuses indépendantes qui exercent leur activité à Mayotte.
+    travailleuses independantes qui exercent leur activité à Mayotte.
 
     Ce simulateur applique bien les assiettes et taux de cotisations et
     contributions spécifiques à Mayotte, y compris l’abattement de 50 %
@@ -2807,7 +2807,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
     contributions et les exonérations **spécifiques à Mayotte**.
   titre.en: '[automatic] Mayotte collection'
   titre.fr: Recouvrement Mayotte
-indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois:
+independant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois:
   description.en: >
     [automatic] Mahoran contributors who are just starting their business are
     eligible for a
@@ -2824,7 +2824,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
     création de l’activité.
   titre.en: '[automatic] 24-Month Tax Exemption in Mayotte'
   titre.fr: Exonération 24 mois Mayotte
-indépendant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
+independant . cotisations et contributions . cotisations . exonérations . cumul Acre et invalidité:
   description.en: >
     [automatic] This simulator does not handle cases where the exemption is
     combined in the same year with
@@ -2837,7 +2837,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . cumu
     **Acre** avec une **pension d’invalidité**.
   titre.en: '[automatic] accumulation of Acre and disability'
   titre.fr: cumul Acre et invalidité
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité:
+independant . cotisations et contributions . cotisations . exonérations . invalidité:
   description.en: >-
     [automatic] If you are receiving a disability pension from a pension scheme
     for the self-employed
@@ -2887,7 +2887,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
   description.fr: >-
     En cas de versement d’une pension d’invalidité par un régime de retraite des
 
-    travailleurs indépendants les artisans, commerçants et professions
+    travailleurs independants les artisans, commerçants et professions
 
     libérales sont **exonérés des cotisations** :
 
@@ -2905,11 +2905,11 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
 
 
     La reconnaissance d’une pension d’invalidité versée par un autre régime
-    (salarié,
+    (salarie,
 
     agricole…) n’ouvre pas droit à exonération au titre de leur activité de
 
-    travailleur indépendant.
+    travailleur independant.
 
 
     Cette exonération est applicable en outre-mer.
@@ -2937,14 +2937,14 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
           texte:
             Êtes-vous titulaire d’une pension d’invalidité versée par votre caisse
             retraite ?
-        si: indépendant . profession libérale . réglementée . PAMC
+        si: independant . profession libérale . réglementée . PAMC
       - sinon:
           texte:
             Êtes-vous titulaire d’une pension d’invalidité à titre de travailleur
-            indépendant ?
+            independant ?
   titre.en: '[automatic] disability exemption'
   titre.fr: exonération invalidité
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée:
+independant . cotisations et contributions . cotisations . exonérations . invalidité . durée:
   question.en: '[automatic] For how many months of the year do you receive a
     disability pension?'
   question.fr:
@@ -2952,7 +2952,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
     d’invalidité ?
   titre.en: '[automatic] duration'
   titre.fr: durée
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
+independant . cotisations et contributions . cotisations . exonérations . invalidité . exonération:
   avec:
     taux maladie-maternité et indemnités journalières:
       titre.en: '[automatic] sickness-maternity rates and daily allowances'
@@ -2965,10 +2965,10 @@ indépendant . cotisations et contributions . cotisations . exonérations . inva
       titre.fr: taux retraite de base
   titre.en: '[automatic] exemption'
   titre.fr: exonération
-indépendant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année:
+independant . cotisations et contributions . cotisations . exonérations . invalidité . prorata sur l'année:
   titre.en: '[automatic] pro rata over the year'
   titre.fr: prorata sur l'année
-indépendant . cotisations et contributions . cotisations . exonérations . âge:
+independant . cotisations et contributions . cotisations . exonérations . âge:
   description.en: >
     [automatic] ### Craftsmen, shopkeepers and self-employed professionals
     outside Cipav
@@ -3017,7 +3017,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . âge
     retraite » de la cotisation invalidité-décès ?
   titre.en: '[automatic] age'
   titre.fr: âge
-indépendant . cotisations et contributions . cotisations . indemnités journalières:
+independant . cotisations et contributions . cotisations . indemnités journalières:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3060,7 +3060,7 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
     une caisse spécifique pour les indemnités journalières maladie (AON ou LPA).
   titre.en: '[automatic] daily allowances'
   titre.fr: indemnités journalières
-indépendant . cotisations et contributions . cotisations . invalidité et décès:
+independant . cotisations et contributions . cotisations . invalidité et décès:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3089,7 +3089,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . cotisations et contributions . cotisations . maladie-maternité:
+independant . cotisations et contributions . cotisations . maladie-maternité:
   description.en: >
     [automatic] This contribution entitles the member to all benefits
 
@@ -3117,7 +3117,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     - une couverture maladie pour l’assuré/assurée et les membres de sa famille,
     identique
 
-    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    à celle des salaries (mêmes taux et mêmes conditions de remboursement) ;
 
     - une assurance maternité complète en cas de grossesse ou d’adoption ;
 
@@ -3127,7 +3127,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] illness-maternity'
   titre.fr: maladie-maternité
-indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
+independant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   avec:
     taux:
       titre.en: '[automatic] rate'
@@ -3149,7 +3149,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     fonction du revenu déclaré.
   titre.en: '[automatic] tax domicile abroad'
   titre.fr: domiciliation fiscale étranger
-indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
+independant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3168,7 +3168,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité a
       titre.fr: taux 2
   titre.en: '[automatic] sickness-maternity before deductions'
   titre.fr: maladie-maternité avant abattements
-indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie:
+independant . cotisations et contributions . cotisations . maladie-maternité et autonomie:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3178,17 +3178,17 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité e
   titre.en: '[automatic] Additional sickness, maternity and autonomy insurance
     contribution'
   titre.fr: Cotisation additionnelle d’assurance maladie-maternité et autonomie
-indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie:
+independant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie:
   description.en: '[automatic] Specific contribution to Mayotte.'
   description.fr: Contribution spécifique à Mayotte.
   titre.en: '[automatic] Sickness, maternity, disability, death and autonomy
     contributions'
   titre.fr: Contribution maladie, maternité, invalidité, décès et autonomie
-indépendant . cotisations et contributions . cotisations . retraite complémentaire:
+independant . cotisations et contributions . cotisations . retraite complémentaire:
   avec:
     PRCI:
       titre.en: '[automatic] supplementary pension ceiling for self-employed workers'
-      titre.fr: plafond retraite complémentaire des indépendants
+      titre.fr: plafond retraite complémentaire des independants
     taux tranche 1:
       titre.en: '[automatic] rate tranche 1'
       titre.fr: taux tranche 1
@@ -3228,10 +3228,10 @@ indépendant . cotisations et contributions . cotisations . retraite complément
 
     Il fonctionne selon les mêmes principes que les régimes de retraite
 
-    complémentaire des salariés.
+    complémentaire des salaries.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . cotisations et contributions . cotisations . retraite de base:
+independant . cotisations et contributions . cotisations . retraite de base:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3304,7 +3304,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     permet aux artisans et commerçants de bénéficier d’une retraite de base
     calculée
 
-    de la même manière que les salariés.
+    de la même manière que les salaries.
 
 
     Le régime est géré depuis 2020 par l’assurance retraite et les Carsat et se
@@ -3312,7 +3312,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     fonde sur la solidarité nationale.
 
 
-    Il garantit des pensions égales à celles des salariés non cadres du secteur
+    Il garantit des pensions égales à celles des salaries non cadres du secteur
 
     privé pour une durée et un niveau de cotisation identique.
 
@@ -3342,7 +3342,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
     ces différentes caisses.
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-indépendant . cotisations et contributions . cotisations facultatives:
+independant . cotisations et contributions . cotisations facultatives:
   description.en: |
     [automatic] The self-employed can also take out private contracts
     "Madelin" for health insurance, or a retirement savings plan.
@@ -3351,7 +3351,7 @@ indépendant . cotisations et contributions . cotisations facultatives:
     ceiling), but are not deductible from social security contributions.
     contributions.
   description.fr: >
-    Il est possible pour l’indépendant de souscrire à des contrats privés
+    Il est possible pour l’independant de souscrire à des contrats privés
 
     « Madelin » pour la prévoyance santé, ou un plan d’épargne retraite.
 
@@ -3370,16 +3370,16 @@ indépendant . cotisations et contributions . cotisations facultatives:
     complémentaire privés (contrats Madelin, plans d’épargne retraite) ?
   titre.en: '[automatic] optional contributions'
   titre.fr: cotisations facultatives
-indépendant . cotisations et contributions . cotisations facultatives . déductibles:
+independant . cotisations et contributions . cotisations facultatives . déductibles:
   titre.en: '[automatic] Tax-deductible portion'
   titre.fr: Part déductible fiscalement
-indépendant . cotisations et contributions . cotisations facultatives . montant:
+independant . cotisations et contributions . cotisations facultatives . montant:
   titre.en: '[automatic] amount'
   titre.fr: montant
-indépendant . cotisations et contributions . cotisations facultatives . non déductibles:
+independant . cotisations et contributions . cotisations facultatives . non déductibles:
   titre.en: '[automatic] Non-deductible portion'
   titre.fr: Part non déductible fiscalement
-indépendant . cotisations et contributions . cotisations facultatives . prévoyance:
+independant . cotisations et contributions . cotisations facultatives . prévoyance:
   description.en: >
     [automatic] You can take out a Madelin provident contract to supplement your
     social protection
@@ -3413,7 +3413,7 @@ indépendant . cotisations et contributions . cotisations facultatives . prévoy
     subie) ?
   titre.en: '[automatic] Madelin provident contract'
   titre.fr: Contrat Madelin prévoyance
-indépendant . cotisations et contributions . cotisations facultatives . prévoyance . plafond déductible:
+independant . cotisations et contributions . cotisations facultatives . prévoyance . plafond déductible:
   description.en: >
     [automatic] Contributions paid into a Madelin provident savings contract are
     deductible
@@ -3445,7 +3445,7 @@ indépendant . cotisations et contributions . cotisations facultatives . prévoy
     - 7 % du PASS.
   titre.en: '[automatic] deductible ceiling'
   titre.fr: plafond déductible
-indépendant . cotisations et contributions . cotisations facultatives . retraite:
+independant . cotisations et contributions . cotisations facultatives . retraite:
   description.en: >
     [automatic] The Plan d'Epargne Retraite (PER) is a retirement savings
     product for individuals.
@@ -3484,7 +3484,7 @@ indépendant . cotisations et contributions . cotisations facultatives . retrait
     d’un PER ou d’un contrat Madelin retraite ?
   titre.en: '[automatic] PER / Madelin retirement contract'
   titre.fr: PER / contrat Madelin retraite
-indépendant . cotisations et contributions . cotisations facultatives . retraite . plafond déductible:
+independant . cotisations et contributions . cotisations facultatives . retraite . plafond déductible:
   description.en: >
     [automatic] Contributions paid into a PER or a Madelin retirement contract
     are
@@ -3516,7 +3516,7 @@ indépendant . cotisations et contributions . cotisations facultatives . retrait
     - 10 % du plafond annuel de la sécurité sociale.
   titre.en: '[automatic] deductible ceiling'
   titre.fr: plafond déductible
-indépendant . cotisations et contributions . début activité:
+independant . cotisations et contributions . début activité:
   avec:
     assiette forfaitaire:
       titre.en: '[automatic] lump-sum basis'
@@ -3598,7 +3598,7 @@ indépendant . cotisations et contributions . début activité:
     sociale).
   titre.en: '[automatic] Flat-rate start-up contributions'
   titre.fr: Cotisations forfaitaires de début d’activité
-indépendant . cotisations et contributions . déduction tabac:
+independant . cotisations et contributions . déduction tabac:
   description.en: >
     [automatic] If you operate a tobacconist's simultaneously with a commercial
     activity, you have the option of
@@ -3648,7 +3648,7 @@ indépendant . cotisations et contributions . déduction tabac:
     souhaitez exonérer de cotisations vieillesse et invalidité-décès ?
   titre.en: '[automatic] tobacco deduction'
   titre.fr: déduction tabac
-indépendant . cotisations et contributions . formation professionnelle:
+independant . cotisations et contributions . formation professionnelle:
   avec:
     taux:
       titre.en: '[automatic] rate'
@@ -3658,7 +3658,7 @@ indépendant . cotisations et contributions . formation professionnelle:
   note.fr: Le taux n’est pas majoré pour les artisans avec conjoint collaborateur
   titre.en: '[automatic] contribution to professional training'
   titre.fr: contribution à la formation professionnelle
-indépendant . dividendes:
+independant . dividendes:
   description.en: >
     [automatic] This is the gross amount, **before the PFNL** (prélèvement
     forfaitaire non
@@ -3673,7 +3673,7 @@ indépendant . dividendes:
     perçus, y compris la part inférieure à 10 % du capital social.
   titre.en: '[automatic] dividends'
   titre.fr: dividendes
-indépendant . dividendes . PFU:
+independant . dividendes . PFU:
   description.en: >
     [automatic] The income tax portion of the PFU (prélèvement forfaitaire
     unique) is
@@ -3686,7 +3686,7 @@ indépendant . dividendes . PFU:
     revenu est égale à **12,8 %**.
   titre.en: '[automatic] Single flat-rate withholding tax (PFU)'
   titre.fr: Prélèvement forfaitaire unique (PFU)
-indépendant . dividendes . imposables:
+independant . dividendes . imposables:
   description.en: >
     [automatic] When dividends are subject to the progressive income tax scale,
     a
@@ -3697,12 +3697,12 @@ indépendant . dividendes . imposables:
     revenu, un **abattement de 40%** leur est d’abord appliqué.
   titre.en: '[automatic] taxable'
   titre.fr: imposables
-indépendant . dividendes . imposition:
+independant . dividendes . imposition:
   question.en: '[automatic] How are your dividends taxed?'
   question.fr: Quel est le mode d’imposition de vos dividendes ?
   titre.en: '[automatic] taxation'
   titre.fr: imposition
-indépendant . dividendes . prélèvements sociaux:
+independant . dividendes . prélèvements sociaux:
   avec:
     CRDS:
       titre.en: '[automatic] CRDS'
@@ -3745,7 +3745,7 @@ indépendant . dividendes . prélèvements sociaux:
     pas déductible.
   titre.en: '[automatic] social security contributions'
   titre.fr: prélèvements sociaux
-indépendant . dividendes . soumis à cotisations sociales:
+independant . dividendes . soumis à cotisations sociales:
   description.en: >
     [automatic] Dividends
 
@@ -3767,15 +3767,15 @@ indépendant . dividendes . soumis à cotisations sociales:
   description.fr: >
     La part des dividendes
 
-    **supérieure à 10 % du capital social détenu par le travailleur indépendant
-    ou la travailleuse indépendante**
+    **supérieure à 10 % du capital social détenu par le travailleur independant
+    ou la travailleuse independante**
 
     et sa famille (ou du bénéfice net de l’exercice précédent pour les
     entreprises
 
     individuelles) est soumise aux **cotisations sociales** et contributions du
 
-    régime indépendant.
+    régime independant.
 
 
     Les membres de la famille à prebdre en compte sont :
@@ -3787,7 +3787,7 @@ indépendant . dividendes . soumis à cotisations sociales:
   résumé.fr: Soumis à cotisations sociales
   titre.en: '[automatic] Dividends exceeding 10% of share capital'
   titre.fr: Part des dividendes supérieure à 10 % du capital social
-indépendant . dividendes . soumis à prélèvements sociaux:
+independant . dividendes . soumis à prélèvements sociaux:
   description.en: >
     [automatic] The portion of dividends **in excess of 10% of share capital**
     (or of the previous year's net profit
@@ -3807,10 +3807,10 @@ indépendant . dividendes . soumis à prélèvements sociaux:
   résumé.fr: Soumis à prélèvements sociaux
   titre.en: '[automatic] Dividends less than 10% of share capital'
   titre.fr: Part des dividendes inférieure à 10 % du capital social
-indépendant . profession libérale:
+independant . profession libérale:
   titre.en: '[automatic] Liberal profession'
   titre.fr: Profession libérale
-indépendant . profession libérale . CNAVPL:
+independant . profession libérale . CNAVPL:
   description.en: >
     [automatic] The Caisse Nationale d'Assurance Vieillesse des Professions
     Libérales is
@@ -3824,7 +3824,7 @@ indépendant . profession libérale . CNAVPL:
     CARCDSF, CAVEC etc..)
   titre.en: '[automatic] CNAVPL'
   titre.fr: CNAVPL
-indépendant . profession libérale . CNAVPL . exonération incapacité:
+independant . profession libérale . CNAVPL . exonération incapacité:
   description.en: >
     [automatic] If you have been incapacitated for work for at least six months
 
@@ -3847,13 +3847,13 @@ indépendant . profession libérale . CNAVPL . exonération incapacité:
     pendant au moins six mois consécutifs cette année ?
   titre.en: '[automatic] disability waiver'
   titre.fr: exonération incapacité
-indépendant . profession libérale . CNAVPL . hors Urssaf:
+independant . profession libérale . CNAVPL . hors Urssaf:
   titre.en: '[automatic] excluding Urssaf'
   titre.fr: hors Urssaf
-indépendant . profession libérale . CNAVPL . invalidité et décès:
+independant . profession libérale . CNAVPL . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . CNAVPL . maladie:
+independant . profession libérale . CNAVPL . maladie:
   avec:
     taux:
       titre.en: '[automatic] rate'
@@ -3868,10 +3868,10 @@ indépendant . profession libérale . CNAVPL . maladie:
     cotisation maladie est la même pour tous les publics.
   titre.en: '[automatic] disease'
   titre.fr: maladie
-indépendant . profession libérale . CNAVPL . retraite complémentaire:
+independant . profession libérale . CNAVPL . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . CNAVPL . retraite de base:
+independant . profession libérale . CNAVPL . retraite de base:
   avec:
     assiette:
       titre.en: '[automatic] plate'
@@ -3892,7 +3892,7 @@ indépendant . profession libérale . CNAVPL . retraite de base:
       titre.fr: tranche 2
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-indépendant . profession libérale . Cipav:
+independant . profession libérale . Cipav:
   description.en: >
     [automatic] Cipav is the independent pension fund for the liberal
     professions
@@ -3903,17 +3903,17 @@ indépendant . profession libérale . Cipav:
     réglementées.
   titre.en: '[automatic] Cipav'
   titre.fr: Cipav
-indépendant . profession libérale . Cipav . invalidité et décès:
+independant . profession libérale . Cipav . invalidité et décès:
   avec:
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . Cipav . retraite complémentaire:
+independant . profession libérale . Cipav . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . cotisations caisse de retraite:
+independant . profession libérale . cotisations caisse de retraite:
   description.en: >
     [automatic] The contributions collected by the independent pension fund
     specific to the
@@ -3934,19 +3934,19 @@ indépendant . profession libérale . cotisations caisse de retraite:
     recouvrées par l'Urssaf.
   titre.en: '[automatic] pension fund contributions'
   titre.fr: cotisations caisse de retraite
-indépendant . profession libérale . non réglementée:
+independant . profession libérale . non réglementée:
   titre.en: '[automatic] unregulated'
   titre.fr: non réglementée
-indépendant . profession libérale . non réglementée . Cipav:
+independant . profession libérale . non réglementée . Cipav:
   titre.en: '[automatic] Cipav'
   titre.fr: Cipav
-indépendant . profession libérale . non réglementée . option régime général:
+independant . profession libérale . non réglementée . option régime général:
   description.en: >
     [automatic] People already working in an unregulated liberal profession
     before
 
     2019, could opt between 2019 and 2023 for the Sécurité sociale des
-    indépendants
+    independants
 
     integrated into the general Social Security system.
 
@@ -3962,7 +3962,7 @@ indépendant . profession libérale . non réglementée . option régime génér
 
     2019, pouvaient opter entre 2019 et 2023 pour la Sécurité sociale des
 
-    indépendants, elle-même intégrée au régime général de la Sécurité sociale.
+    independants, elle-même intégrée au régime général de la Sécurité sociale.
 
 
     Depuis le 1er janvier 2024, les professions libérales non réglementées qui
@@ -3973,10 +3973,10 @@ indépendant . profession libérale . non réglementée . option régime génér
 
     la gestion de leur retraite et de leur invalidité-décès.
   question.en: '[automatic] Have you opted to join the general self-employed scheme?'
-  question.fr: Avez-vous opté pour le rattachement au régime général des indépendants ?
+  question.fr: Avez-vous opté pour le rattachement au régime général des independants ?
   titre.en: '[automatic] general scheme option'
   titre.fr: option régime général
-indépendant . profession libérale . non réglementée . taux spécifique retraite complémentaire:
+independant . profession libérale . non réglementée . taux spécifique retraite complémentaire:
   description.en: >
     [automatic] Unregulated liberal professions covered by the general
     self-employment
@@ -3999,7 +3999,7 @@ indépendant . profession libérale . non réglementée . taux spécifique retra
     you applied for it before this date.
   description.fr: |
     Les professions libérales non règlementées dépendant du régime général des
-    travailleurs indépendants (ou Sécurité Sociale des Indépendants) avaient la
+    travailleurs independants (ou Sécurité Sociale des Indépendants) avaient la
     possibilité d’opter pour des taux spécifiques de cotisation retraite
     complémentaire avant 2024.
 
@@ -4013,10 +4013,10 @@ indépendant . profession libérale . non réglementée . taux spécifique retra
     complémentaire ?
   titre.en: '[automatic] specific supplementary pension rate'
   titre.fr: taux spécifique retraite complémentaire
-indépendant . profession libérale . réglementée:
+independant . profession libérale . réglementée:
   titre.en: '[automatic] regulated'
   titre.fr: réglementée
-indépendant . profession libérale . réglementée . CARCDSF:
+independant . profession libérale . réglementée . CARCDSF:
   description.en: |
     [automatic] CARCDSF is the pension fund for dental surgeons and midwives.
     and midwives.
@@ -4027,13 +4027,13 @@ indépendant . profession libérale . réglementée . CARCDSF:
     et des sages-femmes.
   titre.en: '[automatic] CARCDSF'
   titre.fr: CARCDSF
-indépendant . profession libérale . réglementée . CARCDSF . PCV:
+independant . profession libérale . réglementée . CARCDSF . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste:
+independant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste:
   titre.en: '[automatic] dental surgeon'
   titre.fr: chirurgien-dentiste
-indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
+independant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . PCV:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4060,7 +4060,7 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     inférieurs ou égaux à 500 C (valeur au 1er janvier de l’année considérée),
     soit 11 500 €.
 
-    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    La demande doit être accompagnée d’une photocopie de la declaration d’impôt
     n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
     A) de l’année 2019.
 
@@ -4068,10 +4068,10 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     non cotisés ne sont pas rachetables.
   titre.en: '[automatic] Supplementary old-age benefits (PCV)'
   titre.fr: Prestations complémentaires vieillesse (PCV)
-indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
+independant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . RID:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . exonération PCV:
+independant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . exonération PCV:
   description.en:
     "[automatic] You can apply for full exemption from contributions
     to the supplementary old-age benefit (PCV). [Read
@@ -4084,13 +4084,13 @@ indépendant . profession libérale . réglementée . CARCDSF . chirurgien-denti
     plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   titre.en: '[automatic] PCV exemption'
   titre.fr: exonération PCV
-indépendant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . prix d'une consultation:
+independant . profession libérale . réglementée . CARCDSF . chirurgien-dentiste . prix d'une consultation:
   titre.en: '[automatic] price of a consultation'
   titre.fr: prix d'une consultation
-indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès:
+independant . profession libérale . réglementée . CARCDSF . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
+independant . profession libérale . réglementée . CARCDSF . retraite complémentaire:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4100,18 +4100,18 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
       titre.fr: cotisation proportionnelle
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
+independant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . réduction applicable:
   description.en: |
     [automatic] You can benefit from a reduction in contributions
     for your supplementary pension if you so request. [To find out more
-    more](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
+    more](/documentation/modele-ti/independant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   description.fr: |
     Vous avez la possibilité de bénéficier d'une réduction de cotisation
     pour la retraite complémentaire si vous en faites la demande. [En savoir
-    plus](/documentation/modele-ti/indépendant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
+    plus](/documentation/modele-ti/independant/PL/CARCDSF/retraite-complémentaire/cotisation-forfaitaire/taux-réduction)
   titre.en: '[automatic] applicable reduction'
   titre.fr: réduction applicable
-indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
+independant . profession libérale . réglementée . CARCDSF . retraite complémentaire . cotisation forfaitaire . taux réduction:
   description.en: >
     [automatic] Members whose net professional income for year N-1 is less than
     85
@@ -4142,20 +4142,20 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
 
     Le coefficient de réduction appliqué est égal au rapport des revenus
 
-    professionnels non-salariés sur le seuil mentionné ci-dessus.
+    professionnels non-salaries sur le seuil mentionné ci-dessus.
 
 
     La demande doit être adressée à la CARCDSF et être accompagnée d’une
 
-    photocopie de la déclaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
+    photocopie de la declaration d’impôt n° 2042 C ou 2035 ou 2065 et de leurs
 
     annexes (2033 B et D ou 2053 et 2058 A) de l’année 2019.
   titre.en: '[automatic] reduction rate'
   titre.fr: taux réduction
-indépendant . profession libérale . réglementée . CARCDSF . sage-femme:
+independant . profession libérale . réglementée . CARCDSF . sage-femme:
   titre.en: '[automatic] midwife'
   titre.fr: sage-femme
-indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
+independant . profession libérale . réglementée . CARCDSF . sage-femme . PCV:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4196,7 +4196,7 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV
     Une dispense peut être accordée lorsque les revenus professionnels sont
     inférieurs ou égaux à 3120 €.
 
-    La demande doit être accompagnée d’une photocopie de la déclaration d’impôt
+    La demande doit être accompagnée d’une photocopie de la declaration d’impôt
     n° 2042 C ou 2035 ou 2065 et de leurs annexes (2033 B et D ou 2053 et 2058
     A).
 
@@ -4204,10 +4204,10 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV
     non cotisés ne sont pas rachetables.
   titre.en: '[automatic] Supplementary old-age benefits (PCV)'
   titre.fr: Prestations complémentaires vieillesse (PCV)
-indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
+independant . profession libérale . réglementée . CARCDSF . sage-femme . RID:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV:
+independant . profession libérale . réglementée . CARCDSF . sage-femme . exonération PCV:
   description.en:
     "[automatic] You can apply for full exemption from contributions
     to the supplementary old-age benefit (PCV). [Read
@@ -4220,11 +4220,11 @@ indépendant . profession libérale . réglementée . CARCDSF . sage-femme . exo
     plus](https://www.carcdsf.fr/cotisations-du-praticien/montant-des-cotisations)
   titre.en: '[automatic] PCV exemption'
   titre.fr: exonération PCV
-indépendant . profession libérale . réglementée . CARMF:
+independant . profession libérale . réglementée . CARMF:
   description.en: |
     [automatic] CARMF is the independent pension fund for French doctors.
   description.fr: |
-    La CARMF est la caisse de retraite autonome des médecins de France.
+    La CARMF est la caisse de retraite autonome des medecins de France.
   note.en: >
     [automatic] Membership is compulsory for doctors who hold the diploma of
 
@@ -4243,16 +4243,16 @@ indépendant . profession libérale . réglementée . CARMF:
 
     France, the French overseas departments or Monaco.
   note.fr: |
-    L’affiliation est obligatoire pour les médecins titulaires du diplôme de
-    docteur en médecine, inscrits au conseil de l’Ordre et exerçant une activité
+    L’affiliation est obligatoire pour les medecins titulaires du diplôme de
+    docteur en medecine, inscrits au conseil de l’Ordre et exerçant une activité
     libérale (installation, remplacements, expertises pour les compagnies
     d’assurance ou les laboratoires privés, secteur privé à l’hôpital, en
     société d’exercice libéral ou toute autre activité rémunérée sous forme
-    d’honoraires, même s’il ne s’agit pas de la médecine de soins) en France
+    d’honoraires, même s’il ne s’agit pas de la medecine de soins) en France
     métropolitaine et dans les départements d’Outre-Mer ou à Monaco.
   titre.en: '[automatic] CARMF'
   titre.fr: CARMF
-indépendant . profession libérale . réglementée . CARMF . PCV:
+independant . profession libérale . réglementée . CARMF . PCV:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4274,16 +4274,16 @@ indépendant . profession libérale . réglementée . CARMF . PCV:
     health insurance funds.
   description.fr: >-
     Les prestations complémentaires vieillesse (PCV) s'appliquent pour les
-    médecins conventionnés.
+    medecins conventionnés.
 
     Ce régime fonctionne en points et comprend une part forfaitaire et une part
     d’ajustement calculée sur le revenu conventionnel de N-2.
 
-    Les deux tiers de la cotisation des médecins en secteur 1 sont financés par
+    Les deux tiers de la cotisation des medecins en secteur 1 sont financés par
     les caisses d’assurance maladie.
   titre.en: '[automatic] Supplementary old-age benefits (PCV)'
   titre.fr: Prestations complémentaires vieillesse (PCV)
-indépendant . profession libérale . réglementée . CARMF . en retraite:
+independant . profession libérale . réglementée . CARMF . en retraite:
   description.en: >
     [automatic] If you combine retirement and self-employment, you no longer
     contribute to the disability-death scheme.
@@ -4304,7 +4304,7 @@ indépendant . profession libérale . réglementée . CARMF . en retraite:
   question.fr: Êtes-vous à la retraite ?
   titre.en: '[automatic] retired'
   titre.fr: en retraite
-indépendant . profession libérale . réglementée . CARMF . invalidité et décès:
+independant . profession libérale . réglementée . CARMF . invalidité et décès:
   avec:
     part forfaitaire:
       titre.en: '[automatic] lump-sum portion'
@@ -4334,16 +4334,16 @@ indépendant . profession libérale . réglementée . CARMF . invalidité et dé
     conjoints et enfants survivants en cas de décès de l'assuré.
 
     La cotisation comporte trois classes forfaitaires dont le montant est
-    déterminé en fonction de vos revenus nets d'activité indépendante de
+    déterminé en fonction de vos revenus nets d'activité independante de
     l’avant-dernière année.
 
-    Sans communication des revenus professionnels non salariés et de l’avis
+    Sans communication des revenus professionnels non salaries et de l’avis
     d’imposition de l’avant dernière année, le taux d’indemnisation ne peut être
     fixé. Dans l’attente de la réception de ce document l’indemnisation sera
     basée sur le taux prévu pour la classe A.
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CARMF . participation CPAM retraite:
+independant . profession libérale . réglementée . CARMF . participation CPAM retraite:
   description.en: >
     [automatic] To compensate for the rise in the CSG, sector 1 physicians
     benefit from a
@@ -4353,7 +4353,7 @@ indépendant . profession libérale . réglementée . CARMF . participation CPAM
 
     their basic health insurance contributions.
   description.fr: >
-    Pour compenser la hausse de la CSG, les médecins de secteur 1 bénéficient
+    Pour compenser la hausse de la CSG, les medecins de secteur 1 bénéficient
     d'une
 
     participation de l'assurance maladie (avenant n°5 de la convention médicale)
@@ -4362,7 +4362,7 @@ indépendant . profession libérale . réglementée . CARMF . participation CPAM
     financement de leurs cotisations du régime de base.
   titre.en: '[automatic] participation CPAM retraite'
   titre.fr: participation CPAM retraite
-indépendant . profession libérale . réglementée . CARMF . retraite complémentaire:
+independant . profession libérale . réglementée . CARMF . retraite complémentaire:
   description.en: >
     [automatic] CARMF manages the supplementary pension scheme.
 
@@ -4389,7 +4389,7 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
     Le montant des cotisations est déterminé en fonction des revenus nets
     d’activité
 
-    indépendante de l’avant-dernière année.
+    independante de l’avant-dernière année.
 
 
     Les cotisations des deux premières années d’affiliation ne sont pas dues,
@@ -4398,7 +4398,7 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
     si vous avez plus de 40 ans au début de votre activité libérale. Dans ce
     cas,
 
-    la cotisation est proportionnelle aux revenus nets d'activité indépendante
+    la cotisation est proportionnelle aux revenus nets d'activité independante
     de
 
     2024 plafonnés, sans régularisation ultérieure, avec une cotisation maximale
@@ -4406,7 +4406,7 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
     de 19 849 €.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CARPIMKO:
+independant . profession libérale . réglementée . CARPIMKO:
   description.en: |
     [automatic] CARPIMKO is the autonomous pension fund for auxiliary medical
     auxiliaries.
@@ -4415,7 +4415,7 @@ indépendant . profession libérale . réglementée . CARPIMKO:
     médicales/médicaux.
   titre.en: '[automatic] CARPIMKO'
   titre.fr: CARPIMKO
-indépendant . profession libérale . réglementée . CARPIMKO . PCV:
+independant . profession libérale . réglementée . CARPIMKO . PCV:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4428,13 +4428,13 @@ indépendant . profession libérale . réglementée . CARPIMKO . PCV:
       titre.fr: participation CPAM
   titre.en: '[automatic] Supplementary old-age benefits (PCV)'
   titre.fr: Prestations complémentaires vieillesse (PCV)
-indépendant . profession libérale . réglementée . CARPIMKO . invalidité et décès:
+independant . profession libérale . réglementée . CARPIMKO . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CARPIMKO . retraite complémentaire:
+independant . profession libérale . réglementée . CARPIMKO . retraite complémentaire:
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CAVEC:
+independant . profession libérale . réglementée . CAVEC:
   description.en: >
     [automatic] CAVEC is the social security organization for chartered
     accountants and auditors.
@@ -4445,10 +4445,10 @@ indépendant . profession libérale . réglementée . CAVEC:
     commissaires aux comptes.
   titre.en: '[automatic] CAVEC'
   titre.fr: CAVEC
-indépendant . profession libérale . réglementée . CAVEC . invalidité et décès:
+independant . profession libérale . réglementée . CAVEC . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CAVEC . retraite complémentaire:
+independant . profession libérale . réglementée . CAVEC . retraite complémentaire:
   description.en: >
     [automatic] Your contribution for year N is set according to a scale based
     on your net non-salaried professional income for year N-1.
@@ -4463,7 +4463,7 @@ indépendant . profession libérale . réglementée . CAVEC . retraite compléme
     February 28 of each year.
   description.fr: >
     Votre cotisation de l'année N est fixée selon un barème, en fonction des
-    revenus professionnels nets non salariés de l’année N-1.
+    revenus professionnels nets non salaries de l’année N-1.
 
 
     Pour améliorer vos droits, vous pouvez opter pour la classe immédiatement
@@ -4475,12 +4475,12 @@ indépendant . profession libérale . réglementée . CAVEC . retraite compléme
     le 28 février de chaque année.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CAVP:
+independant . profession libérale . réglementée . CAVP:
   description.en: '[automatic] CAVP is the pension fund for pharmacists.'
   description.fr: La CAVP est la caisse de retraite des pharmaciennes et pharmaciens.
   titre.en: '[automatic] CAVP'
   titre.fr: CAVP
-indépendant . profession libérale . réglementée . CAVP . PCV:
+independant . profession libérale . réglementée . CAVP . PCV:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4493,10 +4493,10 @@ indépendant . profession libérale . réglementée . CAVP . PCV:
       titre.fr: participation CPAM
   titre.en: '[automatic] Supplementary old-age benefits (PCV)'
   titre.fr: Prestations complémentaires vieillesse (PCV)
-indépendant . profession libérale . réglementée . CAVP . cotisation de référence:
+independant . profession libérale . réglementée . CAVP . cotisation de référence:
   titre.en: '[automatic] reference contribution'
   titre.fr: cotisation de référence
-indépendant . profession libérale . réglementée . CAVP . demande reduction:
+independant . profession libérale . réglementée . CAVP . demande reduction:
   résumé.en: >
     [automatic] A reduction in contributions may be requested for the first 2
     years, or
@@ -4529,15 +4529,15 @@ indépendant . profession libérale . réglementée . CAVP . demande reduction:
     plus basse).
   titre.en: '[automatic] request reduction'
   titre.fr: demande reduction
-indépendant . profession libérale . réglementée . CAVP . directeur non médecin:
+independant . profession libérale . réglementée . CAVP . directeur non medecin:
   question.en: '[automatic] Are you a registered medical biologist?'
   question.fr: Êtes-vous biologiste médical conventionné ?
   titre.en: '[automatic] non-medical director'
-  titre.fr: directeur non médecin
-indépendant . profession libérale . réglementée . CAVP . invalidité et décès:
+  titre.fr: directeur non medecin
+independant . profession libérale . réglementée . CAVP . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CAVP . retraite complémentaire:
+independant . profession libérale . réglementée . CAVP . retraite complémentaire:
   avec:
     part gérée par capitalisation:
       titre.en: '[automatic] share managed by capitalization'
@@ -4562,11 +4562,11 @@ indépendant . profession libérale . réglementée . CAVP . retraite complémen
     - une part gérée par capitalisation dont le montant varie de 2 à 12 fois la
     cotisation de référence
 
-    selon le montant de votre revenu de référence (revenu d’activité non salarié
+    selon le montant de votre revenu de référence (revenu d’activité non salarie
     N-2).
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CNBF:
+independant . profession libérale . réglementée . CNBF:
   description.en: >
     [automatic] The Caisse Nationale des Barreaux Français (CNBF) is the social
     security body
@@ -4577,10 +4577,10 @@ indépendant . profession libérale . réglementée . CNBF:
     sociale des avocates et avocats.
   titre.en: '[automatic] CNBF'
   titre.fr: CNBF
-indépendant . profession libérale . réglementée . CNBF . invalidité et décès:
+independant . profession libérale . réglementée . CNBF . invalidité et décès:
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
-indépendant . profession libérale . réglementée . CNBF . retraite complémentaire:
+independant . profession libérale . réglementée . CNBF . retraite complémentaire:
   avec:
     classe:
       avec:
@@ -4621,7 +4621,7 @@ indépendant . profession libérale . réglementée . CNBF . retraite complémen
     La classe 3+ n'est pas implémentée.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-indépendant . profession libérale . réglementée . CNBF . retraite de base:
+independant . profession libérale . réglementée . CNBF . retraite de base:
   avec:
     cotisation forfaitaire:
       titre.en: '[automatic] flat-rate contribution'
@@ -4631,10 +4631,10 @@ indépendant . profession libérale . réglementée . CNBF . retraite de base:
       titre.fr: cotisation proportionnelle
   titre.en: '[automatic] basic retirement'
   titre.fr: retraite de base
-indépendant . profession libérale . réglementée . PAMC:
+independant . profession libérale . réglementée . PAMC:
   titre.en: '[automatic] PAMC'
   titre.fr: PAMC
-indépendant . profession libérale . réglementée . PAMC . CURPS:
+independant . profession libérale . réglementée . PAMC . CURPS:
   description.en: >
     [automatic] The self-employed healthcare professions are represented by
     regional
@@ -4674,13 +4674,13 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
     régularisé. Un nouvel échéancier de cotisations sera ensuite adressé.
   titre.en: '[automatic] Contribution to regional unions of healthcare professionals'
   titre.fr: Contribution aux unions régionales des professionnels de santé
-indépendant . profession libérale . réglementée . PAMC . PCV:
+independant . profession libérale . réglementée . PAMC . PCV:
   titre.en: '[automatic] PCV'
   titre.fr: PCV
-indépendant . profession libérale . réglementée . PAMC . assiette autres revenus:
+independant . profession libérale . réglementée . PAMC . assiette autres revenus:
   titre.en: '[automatic] other income base'
   titre.fr: assiette autres revenus
-indépendant . profession libérale . réglementée . PAMC . assiette participation CPAM:
+independant . profession libérale . réglementée . PAMC . assiette participation CPAM:
   avec:
     taux dentiste:
       description.en: >
@@ -4719,7 +4719,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
         maladie-maternité prise en charge par la CPAM.
 
 
-        Ce taux est pré-rempli sur votre déclaration de revenus professionnels.
+        Ce taux est pré-rempli sur votre declaration de revenus professionnels.
         Il
 
         est issu des données de votre Relevé individuel d’activité et de
@@ -4780,10 +4780,10 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     Pour les chirurgiennes et chirurgiens-dentistes, l’assiette se calcule avec
     le
 
-    « taux dentiste » (indiqué sur votre déclaration de revenus professionnels).
+    « taux dentiste » (indiqué sur votre declaration de revenus professionnels).
   titre.en: '[automatic] CPAM contribution base'
   titre.fr: assiette participation CPAM
-indépendant . profession libérale . réglementée . PAMC . assiette sociale conventionnée:
+independant . profession libérale . réglementée . PAMC . assiette sociale conventionnée:
   description.en: >
     [automatic] The "assiette sociale conventionnée" is the portion of the
     social security base corresponding to
@@ -4825,15 +4825,15 @@ indépendant . profession libérale . réglementée . PAMC . assiette sociale co
     provenant des actes conventionnés.
   titre.en: '[automatic] agreed social base'
   titre.fr: assiette sociale conventionnée
-indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
+independant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
   titre.en: '[automatic] additional health contribution'
   titre.fr: contribution maladie additionnelle
-indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
+independant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
   question.en: '[automatic] How much are your extra fees?'
   question.fr: Quel est le montant de vos dépassements d'honoraires ?
   titre.en: '[automatic] excess fees'
   titre.fr: dépassements d'honoraire
-indépendant . profession libérale . réglementée . PAMC . participation CPAM:
+independant . profession libérale . réglementée . PAMC . participation CPAM:
   description.en: >
     [automatic] Health professionals who are members of a health insurance
     agreement
@@ -4844,17 +4844,17 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM:
     d’une partie de leur cotisations par l’Assurance Maladie.
   titre.en: '[automatic] Health insurance contribution'
   titre.fr: Participation assurance maladie
-indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
+independant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
-indépendant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
+independant . profession libérale . réglementée . PAMC . participation CPAM . maladie:
   avec:
     taux maladie:
       titre.en: '[automatic] sickness rate'
       titre.fr: taux maladie
   titre.en: '[automatic] disease'
   titre.fr: maladie
-indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée:
+independant . profession libérale . réglementée . PAMC . recettes activité conventionnée:
   description.en: >
     [automatic] Conventional income includes all income falling into the
     following categories
@@ -4904,19 +4904,19 @@ indépendant . profession libérale . réglementée . PAMC . recettes activité 
   question.fr: Quel est le montant de vos recettes conventionnées ?
   titre.en: '[automatic] revenues from conventional activities'
   titre.fr: recettes activité conventionnée
-indépendant . profession libérale . réglementée . PAMC . remplaçant:
+independant . profession libérale . réglementée . PAMC . remplaçant:
   avec:
-    offre simplifiée médecins:
+    offre simplifiée medecins:
       description.en:
         '[automatic] Do you work exclusively as a locum or dispatcher?
         You can subscribe to the simplified offer. [Learn
         more](https://www.medecins-remplacants.urssaf.fr/accueil)'
       description.fr:
-        Vous exercez une activité de médecin exclusivement en tant que
+        Vous exercez une activité de medecin exclusivement en tant que
         remplaçant ou de régulateur ? Vous pouvez adhérer à l’offre simplifiée.
         [En savoir plus](https://www.medecins-remplacants.urssaf.fr/accueil)
       titre.en: '[automatic] simplified offer doctors'
-      titre.fr: offre simplifiée médecins
+      titre.fr: offre simplifiée medecins
   description.en: >
     [automatic] Practitioners and medical auxiliaries working as replacements
     are not liable for
@@ -4938,12 +4938,12 @@ indépendant . profession libérale . réglementée . PAMC . remplaçant:
       exclusivement en tant que remplaçant ?
   titre.en: '[automatic] replacement'
   titre.fr: remplaçant
-indépendant . profession libérale . réglementée . métier:
+independant . profession libérale . réglementée . métier:
   question.en: '[automatic] To which category does your profession belong?'
   question.fr: A quelle catégorie appartient votre profession ?
   titre.en: '[automatic] business'
   titre.fr: métier
-indépendant . profession libérale . réglementée . métier . expert-comptable:
+independant . profession libérale . réglementée . métier . expert-comptable:
   description.en: >
     [automatic] Chartered accountants and statutory auditors contribute to
     CAVEC's pension and provident fund.
@@ -4952,7 +4952,7 @@ indépendant . profession libérale . réglementée . métier . expert-comptable
     CAVEC pour la retraite et la prévoyance.
   titre.en: '[automatic] certified public accountant'
   titre.fr: expert-comptable
-indépendant . profession libérale . réglementée . métier . juridique:
+independant . profession libérale . réglementée . métier . juridique:
   avec:
     avocat:
       description.en: |
@@ -5039,7 +5039,7 @@ indépendant . profession libérale . réglementée . métier . juridique:
       titre.fr: Officier ministériel, officier public, compagnie judicaire
   titre.en: '[automatic] Legal and judicial professions'
   titre.fr: Professions juridiques et judicaires
-indépendant . profession libérale . réglementée . métier . rattaché Cipav:
+independant . profession libérale . réglementée . métier . rattaché Cipav:
   description.en: >
     [automatic] You work in a regulated profession covered by Cipav. The list of
     these trades is :
@@ -5114,7 +5114,7 @@ indépendant . profession libérale . réglementée . métier . rattaché Cipav:
     - Mandataires judiciaires à la protection des majeurs
   titre.en: '[automatic] Other Cipav professions'
   titre.fr: Autre métier rattaché à la Cipav
-indépendant . profession libérale . réglementée . métier . santé:
+independant . profession libérale . réglementée . métier . santé:
   avec:
     auxiliaire médical:
       description.en: >
@@ -5129,10 +5129,10 @@ indépendant . profession libérale . réglementée . métier . santé:
     chirurgien-dentiste:
       titre.en: '[automatic] dental surgeon'
       titre.fr: chirurgien-dentiste
-    médecin:
+    medecin:
       titre.en: '[automatic] doctor'
-      titre.fr: médecin
-    médecin . secteur:
+      titre.fr: medecin
+    medecin . secteur:
       avec:
         S1:
           titre.en: '[automatic] Sector 1'
@@ -5184,7 +5184,7 @@ indépendant . profession libérale . réglementée . métier . santé:
   question.fr: Quel métier exercez-vous en tant que professionnel de santé ?
   titre.en: '[automatic] Health professions'
   titre.fr: Professions de santé
-indépendant . revenu brut:
+independant . revenu brut:
   description.en: >
     [automatic] Gross or "super-gross" income corresponds to the cost of labor
     or sales
@@ -5262,7 +5262,7 @@ indépendant . revenu brut:
     cotisations sociales.
   titre.en: '[automatic] gross income'
   titre.fr: revenu brut
-indépendant . revenu professionnel:
+independant . revenu professionnel:
   description.en: >
     [automatic] The **professional income** is the remuneration paid to the
     executive
@@ -5288,7 +5288,7 @@ indépendant . revenu professionnel:
     Le **revenu professionnel** est la rémunération du dirigeant / de la
     dirigeante
 
-    au régime des indépendants.
+    au régime des independants.
 
 
     Pour les entreprises qui ont opté pour l’**impôt sur le revenu**, il s’agit
@@ -5308,10 +5308,10 @@ indépendant . revenu professionnel:
 
     facultatives (plan d’épargne retraite, contrats Madelin…).
   résumé.en: "[automatic] executive compensation under the self-employed workers' scheme"
-  résumé.fr: rémunération du dirigeant au régime des indépendants
+  résumé.fr: rémunération du dirigeant au régime des independants
   titre.en: '[automatic] professional income'
   titre.fr: revenu professionnel
-indépendant . revenus de remplacement:
+independant . revenus de remplacement:
   description.en: >
     [automatic] Replacement income** is subject to social security
     contributions, including under the
@@ -5360,7 +5360,7 @@ indépendant . revenus de remplacement:
   résumé.fr: Indemnités jouranlières, AJPA…
   titre.en: '[automatic] Replacement income'
   titre.fr: Revenus de remplacement
-indépendant . revenus de remplacement . bruts:
+independant . revenus de remplacement . bruts:
   description.en: >
     [automatic] This is the gross amount (before CSG-CRDS) of :
 
@@ -5432,7 +5432,7 @@ indépendant . revenus de remplacement . bruts:
   question.fr: Quel est le montant brut total de vos revenus de remplacement ?
   titre.en: '[automatic] Gross replacement income'
   titre.fr: Montant brut des revenus de remplacement
-indépendant . revenus de remplacement . imposables:
+independant . revenus de remplacement . imposables:
   description.en: >
     [automatic] Indicate only the **taxable amount** of the daily allowances and
     benefits
@@ -5504,7 +5504,7 @@ indépendant . revenus de remplacement . imposables:
     journalières de sécurité sociale ?
   titre.en: '[automatic] Taxable portion of replacement income'
   titre.fr: Part imposable des revenus de remplacement
-indépendant . revenus étrangers:
+independant . revenus étrangers:
   description.en: >
     [automatic] If you are self-employed outside France, in one of the following
     countries
@@ -5544,7 +5544,7 @@ indépendant . revenus étrangers:
 
     \** EEA states: Iceland, Liechtenstein, Norway.
   description.fr: >
-    Si vous exercez une activité non salariée hors de France, dans un État de
+    Si vous exercez une activité non salariee hors de France, dans un État de
 
     l’Union Européenne (UE)\*, de l’Espace Économique Européen (EEE)\**, au
 
@@ -5552,10 +5552,10 @@ indépendant . revenus étrangers:
 
     lequel des dispositions de coordination des régimes de protection sociale
 
-    s’appliquent, et que l’exercice de votre activité non salariée hors de
+    s’appliquent, et que l’exercice de votre activité non salariee hors de
     France
 
-    a donné lieu à affiliation au régime général des travailleurs indépendants :
+    a donné lieu à affiliation au régime général des travailleurs independants :
 
     indiquez le montant de votre revenu établi hors de France.
 
@@ -5582,18 +5582,18 @@ indépendant . revenus étrangers:
     \** États de l’EEE : Islande, Liechtenstein, Norvège.
   question.en: '[automatic] Have you received any income from self-employment abroad?'
   question.fr: Avez-vous perçu des revenus au titre de l’exercice d’une activité
-    non salariée à l’étranger ?
+    non salariee à l’étranger ?
   titre.en: '[automatic] foreign income'
   titre.fr: revenus étrangers
-indépendant . revenus étrangers . montant:
+independant . revenus étrangers . montant:
   question.en: '[automatic] How much are they?'
   question.fr: Quel est leur montant ?
   titre.en: '[automatic] foreign income'
   titre.fr: revenus perçu à l’étranger
-indépendant . rémunération:
+independant . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
-indépendant . rémunération . brute:
+independant . rémunération . brute:
   description.en: >
     [automatic] This is the amount of gross remuneration received, including
     personal benefits
@@ -5637,7 +5637,7 @@ indépendant . rémunération . brute:
     contributions incluses
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
-indépendant . rémunération . impôt:
+independant . rémunération . impôt:
   description.en: |
     [automatic] Amount of income tax on :
     - executive remuneration for companies subject to corporate income tax,
@@ -5648,17 +5648,17 @@ indépendant . rémunération . impôt:
     - les bénéfices des entreprises individuelles à l’impôt sur le revenu.
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
-indépendant . rémunération . impôt . avec dividendes:
+independant . rémunération . impôt . avec dividendes:
   résumé.en: '[automatic] Includes dividend tax'
   résumé.fr: Inclue l'impôt sur les dividendes
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
-indépendant . rémunération . nette:
+independant . rémunération . nette:
   résumé.en: '[automatic] After deduction of expenses, including contributions'
   résumé.fr: Après déduction des charges, y compris les cotisations et contributions
   titre.en: '[automatic] Net remuneration'
   titre.fr: Rémunération nette
-indépendant . rémunération . nette . après impôt:
+independant . rémunération . nette . après impôt:
   description.en:
     '[automatic] Net income after deduction of income tax and social
     security contributions.'
@@ -5668,7 +5668,7 @@ indépendant . rémunération . nette . après impôt:
   résumé.fr: Ce que vous rapporte cette activité
   titre.en: '[automatic] After-tax income'
   titre.fr: Revenu après impôt
-indépendant . rémunération . nette . avec dividendes:
+independant . rémunération . nette . avec dividendes:
   résumé.en:
     '[automatic] After deduction of social security levies, contributions
     and charges'
@@ -5677,7 +5677,7 @@ indépendant . rémunération . nette . avec dividendes:
     et charges
   titre.en: '[automatic] Net remuneration'
   titre.fr: Rémunération nette
-indépendant . rémunération . nette . imposable:
+independant . rémunération . nette . imposable:
   titre.en: '[automatic] Taxable income'
   titre.fr: Revenu imposable
 paramètres:
@@ -5718,7 +5718,7 @@ paramètres . impôt . revenu d'activité:
     frais professionnels.
 
 
-    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
+    Il est à renseigner pour les salaries, assimilés salaries et dirigeants à
     l'IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
@@ -5904,10 +5904,10 @@ protection sociale . invalidité et décès:
         your salaried activity or your self-employed activity.
       description.fr: |
         Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
-        pension d’invalidité : soit au titre de votre activité salariée, soit au
+        pension d’invalidité : soit au titre de votre activité salariee, soit au
         titre de votre activité d’artisan/commerçant. Toutefois, le montant de
         la pension tient compte de tous vos revenus perçus qu’ils proviennent de
-        votre activité salariée ou de votre activité comme indépendant.
+        votre activité salariee ou de votre activité comme independant.
       titre.en: '[automatic] Average annual income'
       titre.fr: Revenu d’activité annuel moyen
   description.en: >
@@ -5978,7 +5978,7 @@ protection sociale . invalidité et décès . capital décès . orphelin:
 
     disabled persons.
   description.fr: >
-    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
+    Un capital « orphelin » est versé aux enfants des travailleurs independants
 
     décédés. Il concerne :
 
@@ -6022,9 +6022,9 @@ protection sociale . invalidité et décès . pension de reversion:
 
     Le versement de la pension est possible, sous certaines conditions, lorsque
 
-    le défunt exerçait une activité salariée ou non salariée (travailleur
+    le défunt exerçait une activité salariee ou non salariee (travailleur
 
-    indépendant, professionnel libéral, agriculteur).
+    independant, professionnel libéral, agriculteur).
 
 
     La pension est égale à 54 % de la retraite que votre époux/épouse ou
@@ -6220,9 +6220,9 @@ protection sociale . maladie . arrêt maladie:
     travail.
 
 
-    En cas de revenu d’activité indépendante faible, le montant de
+    En cas de revenu d’activité independante faible, le montant de
 
-    l’indemnité journalière (IJ) perçu par le travailleur indépendant peut
+    l’indemnité journalière (IJ) perçu par le travailleur independant peut
 
     être nul. De même en début d’activité, il faut attendre un certain
 
@@ -6468,7 +6468,7 @@ protection sociale . retraite . base:
 
     > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
 
-    > travailleur indépendant pendant les 25 années les plus avantageuses de
+    > travailleur independant pendant les 25 années les plus avantageuses de
     votre
 
     > carrière ;
@@ -6605,11 +6605,11 @@ protection sociale . retraite . base . revenu cotisé:
     [automatic] The income contributed for the basic pension is equal to :
 
 
-    [Basic pension contributions](/documentation/modele-ti/indépendant/
+    [Basic pension contributions](/documentation/modele-ti/independant/
 
     cotisations-et-contributions/cotisations/retraite-de-base) / [taux de la
 
-    basic pension contribution](/documentation/modele-ti/indépendant/
+    basic pension contribution](/documentation/modele-ti/independant/
 
     cotisations-et-contributions/cotisations/retraite-de-base/taux-T1)
 
@@ -6624,9 +6624,9 @@ protection sociale . retraite . base . revenu cotisé:
   description.fr: |
     Le revenu cotisé pour la retraite de base est égal à :
 
-    [Cotisations à la retraite de base](/documentation/modele-ti/indépendant/
+    [Cotisations à la retraite de base](/documentation/modele-ti/independant/
     cotisations-et-contributions/cotisations/retraite-de-base) / [taux de la
-    cotisation à la retraite de base](/documentation/modele-ti/indépendant/
+    cotisation à la retraite de base](/documentation/modele-ti/independant/
     cotisations-et-contributions/cotisations/retraite-de-base/taux-T1)
 
     En cas d’exonération de cotisations, un montant plancher est utilisé pour le
@@ -6637,9 +6637,9 @@ protection sociale . retraite . base . revenu cotisé:
   titre.fr: revenu cotisé pour la retraite de base
 protection sociale . retraite . base . trimestres:
   avec:
-    exonération invalidité indépendant:
+    exonération invalidité independant:
       titre.en: '[automatic] self-employed disability exemption'
-      titre.fr: exonération invalidité indépendant
+      titre.fr: exonération invalidité independant
   titre.en: '[automatic] validated quarters'
   titre.fr: trimestres validés
 protection sociale . retraite . complémentaire:
@@ -6712,7 +6712,7 @@ protection sociale . retraite . complémentaire . RCI:
       titre.en: '[automatic] point value'
       titre.fr: valeur du point
   titre.en: '[automatic] supplementary pension for self-employed workers'
-  titre.fr: retraite complémentaire des indépendants
+  titre.fr: retraite complémentaire des independants
 période:
   titre.en: '[automatic] period'
   titre.fr: période

@@ -23,7 +23,7 @@ export function lodeomConfig({ t, sitePaths }: SimulatorsDataParams) {
 			title: t('pages.simulateurs.lodeom.meta.title', 'Exonération Lodeom'),
 			description: t(
 				'pages.simulateurs.lodeom.meta.description',
-				"Estimation du montant de l'exonération Lodeom. Cette exonération est applicable, sous conditions, aux salariés d'Outre-mer."
+				"Estimation du montant de l'exonération Lodeom. Cette exonération est applicable, sous conditions, aux salaries d'Outre-mer."
 			),
 		},
 		path: sitePaths.simulateurs.lodeom,

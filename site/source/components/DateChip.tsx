@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Chip, Emoji } from '@/design-system'
+import { Chip, Emoji } from '@/design-system/index'
 
 type Props = {
 	date: string

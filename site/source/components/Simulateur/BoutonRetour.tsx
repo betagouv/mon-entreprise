@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Button, ReturnLeftIcon } from '@/design-system'
+import { Button, ReturnLeftIcon } from '@/design-system/index'
 
 type Props = {
 	onPress: () => void

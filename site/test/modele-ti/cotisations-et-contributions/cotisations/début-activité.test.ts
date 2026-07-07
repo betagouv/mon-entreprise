@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const DÉBUT_ACTIVITÉ =
-	'indépendant . cotisations et contributions . début activité'
+	'independant . cotisations et contributions . début activité'
 
 const defaultSituation = {
 	"entreprise . chiffre d'affaires": '10000 €/an',
@@ -22,7 +22,7 @@ describe('Cotisations de début d’activité', () => {
 	describe('Pour les A/C/PLNR', () => {
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituation)
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -43,7 +43,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituation)
 
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -112,7 +112,7 @@ describe('Cotisations de début d’activité', () => {
 
 		it('applique une assiette forfaitaire égale à 19% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -132,7 +132,7 @@ describe('Cotisations de début d’activité', () => {
 
 		it('applique une assiette forfaitaire invalidité décès égale à 37% du PASS proratisé', () => {
 			const e = engine.setSituation(defaultSituationPLR)
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 
 			expect(e).toEvaluate(
@@ -144,7 +144,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires au calcul des cotisations et contributions', () => {
 			const e = engine.setSituation(defaultSituationPLR)
 
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -217,12 +217,12 @@ describe('Cotisations de début d’activité', () => {
 		it('applique les assiettes forfaitaires, la dispense de CSG-CRDS et le taux maladie spécifique', () => {
 			const e = engine.setSituation(defaultSituationDFE)
 
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
 			expect(e).toBeApplicable(
-				'indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger'
+				'independant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger'
 			)
 
 			/** Cotisation maladie:
@@ -286,11 +286,11 @@ describe('Cotisations de début d’activité', () => {
 				...defaultSituationDFE,
 				'entreprise . activité': "'libérale'",
 				'entreprise . activité . libérale . réglementée': 'oui',
-				'indépendant . profession libérale . réglementée . métier':
+				'independant . profession libérale . réglementée . métier':
 					"'santé . sage-femme'",
 			})
 
-			const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+			const PASSProratisé = e.evaluate('independant . PASS proratisé')
 				.nodeValue as number
 			const assietteForfaitaire = Math.round((PASSProratisé * 19) / 100)
 
@@ -331,19 +331,19 @@ describe('Cotisations de début d’activité', () => {
 
 			const RC = e.evaluate({
 				valeur:
-					'indépendant . profession libérale . réglementée . CARCDSF . retraite complémentaire',
+					'independant . profession libérale . réglementée . CARCDSF . retraite complémentaire',
 				contexte: {
-					'indépendant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
+					'independant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				},
 			}).nodeValue as number
 			const ID = e.evaluate(
-				'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . RID'
+				'independant . profession libérale . réglementée . CARCDSF . sage-femme . RID'
 			).nodeValue as number
 			const PCV = e.evaluate({
 				valeur:
-					'indépendant . profession libérale . réglementée . CARCDSF . sage-femme . PCV',
+					'independant . profession libérale . réglementée . CARCDSF . sage-femme . PCV',
 				contexte: {
-					'indépendant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
+					'independant . cotisations et contributions . assiette sociale': `${DÉBUT_ACTIVITÉ} . assiette forfaitaire`,
 				},
 			}).nodeValue as number
 

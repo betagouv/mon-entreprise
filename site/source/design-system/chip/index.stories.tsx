@@ -1,7 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Emoji } from '../emoji'
-import { Chip } from './'
+import { Emoji } from '../emoji/index'
+import { Chip } from './index'
 
 const meta: Meta<typeof Chip> = {
 	component: Chip,

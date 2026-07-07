@@ -4,6 +4,7 @@ import i18next, { langue } from '@/locales/i18n-server'
 
 import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
+import Header from '@/components/layout/Header'
 
 export const metadata = {
 	title: i18next.t('metadata.titre', 'Mon entreprise'),
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<script dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }} />
 			</head>
 			<body>
-				<Providers>{children}</Providers>
+				<Providers>
+					<Header />
+					{children}</Providers>
 			</body>
 		</html>
 	)

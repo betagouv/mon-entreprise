@@ -2,7 +2,7 @@ import { ComponentType, lazy, Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body, Button, Emoji, PopoverWithTrigger } from '@/design-system'
+import { Body, Button, Emoji, PopoverWithTrigger } from '@/design-system/index'
 
 import { type ConseillersEntreprisesVariant } from './ConseillersEntreprises/BoutonConseillersEntreprises'
 import Loader from './utils/Loader'

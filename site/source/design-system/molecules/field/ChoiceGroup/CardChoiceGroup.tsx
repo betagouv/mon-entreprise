@@ -1,6 +1,6 @@
 import { Key } from 'react'
 
-import { RadioCard, RadioCardGroup } from '../Radio'
+import { RadioCard, RadioCardGroup } from '../Radio/index'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 interface CardChoiceGroupProps {

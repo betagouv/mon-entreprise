@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { DocumentationPage } from '@/design-system'
+import { DocumentationPage } from '@/design-system/index'
 
 import { MDXDocumentation } from './createMDXDocumentation'
 

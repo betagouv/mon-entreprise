@@ -5,7 +5,7 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { CheckboxField, type CheckboxOption } from '../CheckboxField'
+import { CheckboxField, type CheckboxOption } from '../CheckboxField/index'
 import { fieldContainerStyles } from '../fieldsStyles'
 
 type CheckboxGroupProps = Pick<

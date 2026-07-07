@@ -21,7 +21,7 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 	const partSalariale = engine.evaluate(
 		findReferenceInNode(
 			dottedName,
-			engine.getRule(`${namespace} . cotisations . salarié`)
+			engine.getRule(`${namespace} . cotisations . salarie`)
 		) ?? '0'
 	)
 	const partPatronale = engine.evaluate(

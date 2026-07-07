@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import illustration from '@/assets/images/illustration.svg'
 import PageHeader from '@/components/PageHeader'
-import { Body, Link } from '@/design-system'
+import { Body, Link } from '@/design-system/index'
 
 export default function ChargesSocialesIndépendant() {
 	const { t } = useTranslation()

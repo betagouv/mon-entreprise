@@ -1,35 +1,35 @@
 échelle de rémunération:
-  - assimilé salarié . rémunération . totale: 500 €/an
-  - assimilé salarié . rémunération . totale: 1000 €/an
-  - assimilé salarié . rémunération . totale: 2000 €/an
-  - assimilé salarié . rémunération . totale: 5000 €/an
-  - assimilé salarié . rémunération . totale: 10000 €/an
-  - assimilé salarié . rémunération . totale: 20000 €/an
-  - assimilé salarié . rémunération . totale: 50000 €/an
-  - assimilé salarié . rémunération . totale: 100000 €/an
+  - assimilé salarie . rémunération . totale: 500 €/an
+  - assimilé salarie . rémunération . totale: 1000 €/an
+  - assimilé salarie . rémunération . totale: 2000 €/an
+  - assimilé salarie . rémunération . totale: 5000 €/an
+  - assimilé salarie . rémunération . totale: 10000 €/an
+  - assimilé salarie . rémunération . totale: 20000 €/an
+  - assimilé salarie . rémunération . totale: 50000 €/an
+  - assimilé salarie . rémunération . totale: 100000 €/an
 
 Acre:
   # Acre applicable avec exonération totale car rém. brute < 75% PASS
-  - assimilé salarié . rémunération . totale: 25000 €/an
+  - assimilé salarie . rémunération . totale: 25000 €/an
     entreprise . date de création: période . début d'année
-    assimilé salarié . exonérations . Acre: oui
+    assimilé salarie . exonérations . Acre: oui
   # Acre applicable avec coefficient car 75% PASS < rém. brute < PASS
-  - assimilé salarié . rémunération . totale: 50000 €/an
+  - assimilé salarie . rémunération . totale: 50000 €/an
     entreprise . date de création: période . début d'année
-    assimilé salarié . exonérations . Acre: oui
+    assimilé salarie . exonérations . Acre: oui
   # Acre non applicable car rém. brute > PASS
-  - assimilé salarié . rémunération . totale: 100000 €/an
+  - assimilé salarie . rémunération . totale: 100000 €/an
     entreprise . date de création: période . début d'année
-    assimilé salarié . exonérations . Acre: oui
+    assimilé salarie . exonérations . Acre: oui
   # Acre non applicable car date de création > 1 an
-  - assimilé salarié . rémunération . totale: 30000 €/an
+  - assimilé salarie . rémunération . totale: 30000 €/an
     entreprise . date de création: 01/06/2024
-    assimilé salarié . exonérations . Acre: oui
+    assimilé salarie . exonérations . Acre: oui
   # Acre applicable avec date de création < 1 an mais l'année dernière
-  - assimilé salarié . rémunération . totale: 25000 €/an
+  - assimilé salarie . rémunération . totale: 25000 €/an
     entreprise . date de création: 01/12/2025
-    assimilé salarié . exonérations . Acre: oui
+    assimilé salarie . exonérations . Acre: oui
 
 JEI:
-  - assimilé salarié . rémunération . totale: 4000 €/mois
-    assimilé salarié . exonérations . JEI: oui
+  - assimilé salarie . rémunération . totale: 4000 €/mois
+    assimilé salarie . exonérations . JEI: oui

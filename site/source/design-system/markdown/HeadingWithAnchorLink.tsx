@@ -2,9 +2,9 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
-import { H1, H2, H3, H4, H5, H6, Link } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
-import { isIterable } from '@/utils'
+import { H1, H2, H3, H4, H5, H6, Link } from '@/design-system/index'
+import { useNavigation } from '@/lib/navigation/index'
+import { isIterable } from '@/utils/index'
 
 type Props = {
 	level: number

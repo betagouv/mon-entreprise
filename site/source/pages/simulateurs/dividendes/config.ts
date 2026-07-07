@@ -27,7 +27,7 @@ export function dividendesConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.dividendes.title',
 			'Simulateur de versement de dividendes'
 		),
-		nextSteps: ['salarié', 'is', 'comparaison-statuts'],
+		nextSteps: ['salarie', 'is', 'comparaison-statuts'],
 		path: sitePaths.simulateurs.dividendes,
 		simulation: configDividendes,
 		component: DividendesSimulation,

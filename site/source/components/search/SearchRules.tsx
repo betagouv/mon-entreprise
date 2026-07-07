@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { H2 } from '@/design-system'
+import { H2 } from '@/design-system/index'
 
 import { algoliaIndexPrefix, searchClient } from './Algolia'
-import { RulesInfiniteHits } from './RulesInfiniteHits'
+import { RulesInfiniteHits } from './RulesInfiniteHits/index'
 import { SearchBox } from './SearchBox'
 import { SearchRoot } from './SearchRoot'
 

@@ -11,16 +11,16 @@ import {
 	ACCUEIL,
 	SIMULATION_TERMINEE,
 	TrackPage,
-} from '@/components/PianoAnalytics'
-import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
+} from '@/components/PianoAnalytics/index'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner/index'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import {
 	SimulationContainer,
 	SimulationGoal,
 	SimulationGoals,
-} from '@/components/Simulation'
+} from '@/components/Simulation/index'
 import { FromTop } from '@/components/ui/animate'
-import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
+import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
@@ -36,7 +36,7 @@ import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 
-const nextSteps = ['salarié', 'comparaison-statuts'] satisfies SimulateurId[]
+const nextSteps = ['salarie', 'comparaison-statuts'] satisfies SimulateurId[]
 
 export default function ISSimulation() {
 	const id = 'is'

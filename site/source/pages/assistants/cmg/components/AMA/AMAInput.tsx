@@ -5,18 +5,18 @@ import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { DéclarationDeGardeAMA, Mois, SalariéeAMA } from '@/contextes/cmg'
+import { DéclarationDeGardeAMA, Mois, SalariéeAMA } from '@/contextes/cmg/index'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
 import { Titre3 } from '../styled-components'
 import AideSaisieAMA from './AideSaisieAMA'
-import DéclarationAMAInput from './DéclarationAMAInput'
+import DéclarationAMAInput from './DeclarationAMAInput'
 
 type Props = {
 	idSuffix: string
 	number: number
-	salariée: SalariéeAMA<string>
+	salariee: SalariéeAMA<string>
 	moisIdentiques: boolean
 	onSalariéeChange: ChangeHandler<SalariéeAMA<string>>
 	onSalariéeDelete: () => void
@@ -26,7 +26,7 @@ type Props = {
 export default function AMAInput({
 	idSuffix,
 	number,
-	salariée,
+	salariee,
 	moisIdentiques,
 	onSalariéeChange,
 	onSalariéeDelete,
@@ -36,15 +36,15 @@ export default function AMAInput({
 
 	const onDéclarationChange = (
 		month: Mois,
-		déclaration: O.Option<DéclarationDeGardeAMA<string>>
+		declaration: O.Option<DéclarationDeGardeAMA<string>>
 	) => {
 		const newSalariée = {
-			...salariée,
-			[month]: déclaration,
+			...salariee,
+			[month]: declaration,
 		}
 		if (moisIdentiques) {
 			if (month === 'mars') {
-				newSalariée.avril = newSalariée.mai = déclaration
+				newSalariée.avril = newSalariée.mai = declaration
 			} else {
 				onMoisIdentiquesChange(false)
 			}
@@ -57,7 +57,7 @@ export default function AMAInput({
 			<TitreContainer>
 				<Titre3>
 					{t(
-						'pages.assistants.cmg.déclarations.AMA.h3',
+						'pages.assistants.cmg.declarations.AMA.h3',
 						'Assistante maternelle {{ count }} - Déclaration(s) sur la période de référence',
 						{ count: number }
 					)}
@@ -67,14 +67,14 @@ export default function AMAInput({
 			<InputsContainer>
 				<AideSaisieAMA />
 				{pipe(
-					salariée,
+					salariee,
 					R.keys,
 					A.map((month) => (
 						<DéclarationAMAInput
 							key={month}
 							idSuffix={`${idSuffix}-${month}`}
 							month={month}
-							déclaration={salariée[month]}
+							declaration={salariee[month]}
 							onDéclarationChange={(value) => onDéclarationChange(month, value)}
 							onMoisIdentiquesChange={onMoisIdentiquesChange}
 							moisIdentiques={

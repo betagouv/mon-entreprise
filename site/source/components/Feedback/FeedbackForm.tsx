@@ -16,9 +16,9 @@ import {
 	Strong,
 	TextAreaField,
 	TextField,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useUrl } from '@/hooks/useUrl'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 type SubmitError = {
 	message?: string

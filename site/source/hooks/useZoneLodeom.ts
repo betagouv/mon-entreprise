@@ -6,7 +6,7 @@ export const zones = ['zone un', 'zone deux']
 export type ZoneLodeom = (typeof zones)[number]
 
 export const zonesLodeomDottedName =
-	'salarié . cotisations . exonérations . zones lodeom' as DottedName
+	'salarie . cotisations . exonérations . zones lodeom' as DottedName
 
 export const useZoneLodeom = (): ZoneLodeom | undefined => {
 	const engine = useEngine()

@@ -11,7 +11,7 @@ const situationsVides = {
 
 describe('décideActionRègleInvalide', () => {
 	it('demande de retirer la règle et de la marquer obsolète si elle vient de la situation du simulateur', () => {
-		const règle = 'salarié . contrat' as DottedName
+		const règle = 'salarie . contrat' as DottedName
 
 		const action = décideActionRègleInvalide(règle, {
 			...situationsVides,

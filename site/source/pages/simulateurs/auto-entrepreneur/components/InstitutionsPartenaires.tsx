@@ -1,4 +1,4 @@
-import ImpôtsDGFIP from '@/components/simulationExplanation/InstitutionsPartenaires/ImpôtsDGFIP'
+import ImpôtsDGFIP from '@/components/simulationExplanation/InstitutionsPartenaires/ImpotsDGFIP'
 import InstitutionsPartenaires from '@/components/simulationExplanation/InstitutionsPartenaires/InstitutionsPartenaires'
 
 import CotisationsUrssaf from './CotisationsUrssaf'

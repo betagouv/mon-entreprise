@@ -13,12 +13,12 @@ import {
 	FooterContainer,
 	GithubIcon,
 	Link,
-} from '@/design-system'
-import { NavigationAPI, useNavigation } from '@/lib/navigation'
+} from '@/design-system/index'
+import { NavigationAPI, useNavigation } from '@/lib/navigation/index'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
-import { isNotNull } from '@/utils'
+import { isNotNull } from '@/utils/index'
 
-import InscriptionBetaTesteur from './InscriptionBetaTesteur'
+import InscriptionBetaTesteur from './InscriptionBetaTesteur/index'
 import LegalNotice from './LegalNotice'
 import PrivacyPolicy from './PrivacyPolicy'
 import TermsOfUse from './TermsOfUse'
@@ -110,7 +110,7 @@ export default function Footer() {
 											</Link>
 										</StyledLi>
 										<StyledLi>
-											<Link to={absoluteSitePaths.nouveautés.index} noUnderline>
+											<Link to={absoluteSitePaths.nouveautes.index} noUnderline>
 												Nouveautés
 											</Link>
 										</StyledLi>

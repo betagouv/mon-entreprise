@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
-import { Grid, InfoBulle, TitreObjectifSaisissable } from '@/design-system'
+import { Grid, InfoBulle, TitreObjectifSaisissable } from '@/design-system/index'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 

@@ -10,13 +10,13 @@ describe('modele-social', function () {
 	it("ne change pas le montant de l'IR ni des cotisations lorsqu'on verse un forfait mobilités durables", function () {
 		expect(
 			engine
-				.setSituation({ 'salarié . contrat . salaire brut': 2300 })
+				.setSituation({ 'salarie . contrat . salaire brut': 2300 })
 				.evaluate('impôt . montant').nodeValue
 		).toEqual(
 			engine
 				.setSituation(
 					{
-						'salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant': 500,
+						'salarie . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant': 500,
 					},
 					{ keepPreviousSituation: true }
 				)

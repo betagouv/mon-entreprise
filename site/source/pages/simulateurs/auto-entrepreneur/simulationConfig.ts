@@ -47,7 +47,7 @@ export const configAutoEntrepreneur: SimulationConfig = {
 	},
 	'unité par défaut': '€/an',
 	situation: {
-		salarié: 'non',
+		salarie: 'non',
 		'entreprise . catégorie juridique': "'EI'",
 		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'oui',
 		'dirigeant . auto-entrepreneur': 'oui',

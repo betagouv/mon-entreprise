@@ -21,7 +21,7 @@ describe('General navigation', function () {
 	})
 
 	it('should go back to home when clicking on logo', function () {
-		cy.visit(encodeURI('/documentation/contrat-salarié'))
+		cy.visit(encodeURI('/documentation/contrat-salarie'))
 		cy.get('[data-test-id="logo img"]').click()
 		cy.url().should('match', new RegExp(`${Cypress.config().baseUrl}/?`))
 	})

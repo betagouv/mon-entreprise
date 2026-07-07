@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Emoji, Grid, H2, Intro, Message, Strong, Ul } from '@/design-system'
+import { Emoji, Grid, H2, Intro, Message, Strong, Ul } from '@/design-system/index'
 
 import { QuestionRépondues, Satisfaction, Visites } from '../types'
 import {

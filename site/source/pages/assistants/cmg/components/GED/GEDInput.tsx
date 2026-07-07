@@ -5,18 +5,18 @@ import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { DéclarationDeGardeGED, Mois, SalariéeGED } from '@/contextes/cmg'
+import { DéclarationDeGardeGED, Mois, SalariéeGED } from '@/contextes/cmg/index'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import DeleteButton from '../DeleteButton'
 import { Titre3 } from '../styled-components'
 import AideSaisieGED from './AideSaisieGED'
-import DéclarationGEDInput from './DéclarationGEDInput'
+import DéclarationGEDInput from './DeclarationGEDInput'
 
 type Props = {
 	idSuffix: string
 	number: number
-	salariée: SalariéeGED
+	salariee: SalariéeGED
 	moisIdentiques: boolean
 	onSalariéeChange: ChangeHandler<SalariéeGED>
 	onSalariéeDelete: () => void
@@ -26,7 +26,7 @@ type Props = {
 export default function GEDInput({
 	idSuffix,
 	number,
-	salariée,
+	salariee,
 	moisIdentiques,
 	onSalariéeChange,
 	onSalariéeDelete,
@@ -36,15 +36,15 @@ export default function GEDInput({
 
 	const onDéclarationChange = (
 		month: Mois,
-		déclaration: O.Option<DéclarationDeGardeGED>
+		declaration: O.Option<DéclarationDeGardeGED>
 	) => {
 		const newSalariée = {
-			...salariée,
-			[month]: déclaration,
+			...salariee,
+			[month]: declaration,
 		}
 		if (moisIdentiques) {
 			if (month === 'mars') {
-				newSalariée.avril = newSalariée.mai = déclaration
+				newSalariée.avril = newSalariée.mai = declaration
 			} else {
 				onMoisIdentiquesChange(false)
 			}
@@ -57,7 +57,7 @@ export default function GEDInput({
 			<TitreContainer>
 				<Titre3>
 					{t(
-						'pages.assistants.cmg.déclarations.GED.h3',
+						'pages.assistants.cmg.declarations.GED.h3',
 						'Garde à domicile {{ count }} - Déclaration(s) sur la période de référence',
 						{ count: number }
 					)}
@@ -67,14 +67,14 @@ export default function GEDInput({
 			<InputsContainer>
 				<AideSaisieGED />
 				{pipe(
-					salariée,
+					salariee,
 					R.keys,
 					A.map((month) => (
 						<DéclarationGEDInput
 							key={month}
 							idSuffix={`${idSuffix}-${month}`}
 							month={month}
-							déclaration={salariée[month]}
+							declaration={salariee[month]}
 							onDéclarationChange={(value) => onDéclarationChange(month, value)}
 							onMoisIdentiquesChange={onMoisIdentiquesChange}
 							moisIdentiques={

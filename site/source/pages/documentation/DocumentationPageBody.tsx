@@ -19,10 +19,10 @@ import {
 	StyledLinkProps,
 	StyledLinkStyle,
 	UlStyle,
-} from '@/design-system'
+} from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/SimulationConfig'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'

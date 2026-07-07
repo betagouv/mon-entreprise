@@ -7,7 +7,7 @@ import Value from '@/components/EngineValue/Value'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
 import RuleLink from '@/components/RuleLink'
 import { StatutTag } from '@/components/StatutTag'
-import { Grid, HelpIcon, StatusCard, Strong, Ul } from '@/design-system'
+import { Grid, HelpIcon, StatusCard, Strong, Ul } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 

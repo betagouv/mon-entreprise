@@ -1,4 +1,4 @@
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { Merge, ToOptional } from '@/types/utils'
 

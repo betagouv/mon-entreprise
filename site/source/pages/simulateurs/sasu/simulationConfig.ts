@@ -3,20 +3,20 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 export const configSASU: SimulationConfig = {
 	nomModèle: 'modele-as',
 	'objectifs exclusifs': [
-		'assimilé salarié . rémunération . totale',
-		'assimilé salarié . rémunération . brute',
-		'assimilé salarié . rémunération . nette . à payer avant impôt',
-		'assimilé salarié . rémunération . nette . après impôt',
+		'assimilé salarie . rémunération . totale',
+		'assimilé salarie . rémunération . brute',
+		'assimilé salarie . rémunération . nette . à payer avant impôt',
+		'assimilé salarie . rémunération . nette . après impôt',
 	],
 	objectifs: [
-		'assimilé salarié . rémunération . impôt',
-		'assimilé salarié . cotisations',
+		'assimilé salarie . rémunération . impôt',
+		'assimilé salarie . cotisations',
 	],
 	questions: {
 		raccourcis: [
 			{
 				label: 'Acre',
-				dottedName: 'assimilé salarié . exonérations . Acre',
+				dottedName: 'assimilé salarie . exonérations . Acre',
 			},
 			{
 				label: 'Commune',
@@ -24,7 +24,7 @@ export const configSASU: SimulationConfig = {
 			},
 			{
 				label: 'Avantages en nature',
-				dottedName: 'assimilé salarié . rémunération . avantages en nature',
+				dottedName: 'assimilé salarie . rémunération . avantages en nature',
 			},
 			{
 				label: 'Impôt sur le revenu',

@@ -10,10 +10,10 @@ import { useTranslation } from 'react-i18next'
 import { useSelectState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
-import { omit } from '@/utils'
+import { omit } from '@/utils/index'
 
 import { FocusStyle } from '../../../global-style'
-import { CarretDownIcon } from '../../../icons'
+import { CarretDownIcon } from '../../../icons/index'
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
 

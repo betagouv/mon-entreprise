@@ -3,9 +3,9 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { Simulateur } from '@/components/Simulateur/Simulateur'
-import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
-import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { IndépendantContexte } from '@/domaine/IndépendantContexte'
+import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system/index'
+import { AssimiléSalariéContexte } from '@/domaine/AssimileSalarieContexte'
+import { IndépendantContexte } from '@/domaine/IndependantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import useSimulationPublicodesÉditorialisées from '@/hooks/useSimulationPublicodesEditorialisee'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
@@ -14,8 +14,8 @@ import { completeSituationSelector } from '@/store/selectors/completeSituation.s
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
-import { DétailSimulation } from './components/DétailSimulation'
-import { MontantsÀSaisir } from './components/MontantsÀSaisir'
+import { DétailSimulation } from './components/DetailSimulation'
+import { MontantsÀSaisir } from './components/MontantsASaisir'
 import { EngineComparison } from './EngineComparison'
 
 export const ComparateurDeStatuts = () => {
@@ -49,7 +49,7 @@ export const ComparateurDeStatuts = () => {
 		[situation, engine]
 	)
 
-	const indépendantEngine = useMemo(
+	const independantEngine = useMemo(
 		() =>
 			engine.shallowCopy().setSituation({
 				...situation,
@@ -60,7 +60,7 @@ export const ComparateurDeStatuts = () => {
 
 	const engines = [
 		{ engine: assimiléEngine, name: 'SASU' },
-		{ engine: indépendantEngine, name: 'EI' },
+		{ engine: independantEngine, name: 'EI' },
 		{ engine: autoEntrepreneurEngine, name: 'AE' },
 	] as EngineComparison
 

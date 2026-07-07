@@ -175796,7 +175796,7 @@
       {
         "date": "2025-07-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -177036,7 +177036,7 @@
       {
         "date": "2025-08-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -178276,7 +178276,7 @@
       {
         "date": "2025-09-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -179516,7 +179516,7 @@
       {
         "date": "2025-10-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -180756,7 +180756,7 @@
       {
         "date": "2025-11-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -181996,7 +181996,7 @@
       {
         "date": "2025-12-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -183236,7 +183236,7 @@
       {
         "date": "2026-01-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -184476,7 +184476,7 @@
       {
         "date": "2026-02-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -185716,7 +185716,7 @@
       {
         "date": "2026-03-01",
         "nombre": 1,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -186956,7 +186956,7 @@
       {
         "date": "2026-04-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -188196,7 +188196,7 @@
       {
         "date": "2026-05-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -189436,7 +189436,7 @@
       {
         "date": "2026-06-01",
         "nombre": 0,
-        "page": "indépendant",
+        "page": "independant",
         "page_chapter1": "simulateurs",
         "page_chapter2": "independant",
         "page_chapter3": "N/A"
@@ -258104,7 +258104,7 @@
         "count": 14
       },
       {
-        "title": "🏓 Récapitulatif sur le simu indépendant",
+        "title": "🏓 Récapitulatif sur le simu independant",
         "closedAt": null,
         "number": 2501,
         "stateReason": null,
@@ -258154,7 +258154,7 @@
         "count": 7
       },
       {
-        "title": "Dividendes indépendant",
+        "title": "Dividendes independant",
         "closedAt": null,
         "number": 1666,
         "stateReason": null,
@@ -258274,7 +258274,7 @@
         "count": 3
       },
       {
-        "title": "[Dividendes] Mieux alerter sur la non-conformité du simulateur dividendes pour les travailleurs indépendants non-salariés (TNS)",
+        "title": "[Dividendes] Mieux alerter sur la non-conformité du simulateur dividendes pour les travailleurs independants non-salaries (TNS)",
         "closedAt": null,
         "number": 4029,
         "stateReason": null,
@@ -258344,7 +258344,7 @@
         "count": 2
       },
       {
-        "title": "Améliorer l'intégration des heures supplémentaires et complémentaires dans le simulateur pour salarié",
+        "title": "Améliorer l'intégration des heures supplémentaires et complémentaires dans le simulateur pour salarie",
         "closedAt": null,
         "number": 3409,
         "stateReason": null,
@@ -258474,7 +258474,7 @@
         "count": 2
       },
       {
-        "title": "[Assistant déclaration revenu] Ajouter les SARL à l'IR",
+        "title": "[Assistant declaration revenu] Ajouter les SARL à l'IR",
         "closedAt": null,
         "number": 3109,
         "stateReason": null,
@@ -258624,7 +258624,7 @@
         "count": 1
       },
       {
-        "title": "Dans le simulateur pour salarié.e, il manque un message d'alerte quand on choisit comme entreprise une administration publique",
+        "title": "Dans le simulateur pour salarie.e, il manque un message d'alerte quand on choisit comme entreprise une administration publique",
         "closedAt": null,
         "number": 3558,
         "stateReason": null,
@@ -258654,7 +258654,7 @@
         "count": 1
       },
       {
-        "title": "[Simulateur salarié] Ajouter les salariés agricoles (cotisations MSA)",
+        "title": "[Simulateur salarie] Ajouter les salaries agricoles (cotisations MSA)",
         "closedAt": null,
         "number": 1426,
         "stateReason": null,
@@ -258744,7 +258744,7 @@
         "count": 1
       },
       {
-        "title": "[Indépendant.e] Informer que les simulateur pour indépendant.e, professions libérale et entreprise individuelle ne sont pas pour les auto-entrepreneurs.euses",
+        "title": "[Indépendant.e] Informer que les simulateur pour independant.e, professions libérale et entreprise individuelle ne sont pas pour les auto-entrepreneurs.euses",
         "closedAt": null,
         "number": 4044,
         "stateReason": null,
@@ -258834,7 +258834,7 @@
         "count": 1
       },
       {
-        "title": "[Indépendant.e] Informer que le simulateur pour indépendant.e n'est pas pour les artistes-auteurs",
+        "title": "[Indépendant.e] Informer que le simulateur pour independant.e n'est pas pour les artistes-auteurs",
         "closedAt": null,
         "number": 3697,
         "stateReason": null,
@@ -258884,7 +258884,7 @@
         "count": 1
       },
       {
-        "title": "Harmoniser les textes d'explication sur la pension de retraite des indépendants",
+        "title": "Harmoniser les textes d'explication sur la pension de retraite des independants",
         "closedAt": null,
         "number": 3514,
         "stateReason": null,
@@ -258944,7 +258944,7 @@
         "count": 1
       },
       {
-        "title": "Pour les indépendants en profession libérale, harmoniser les éléments demandés avec ceux de la déclaration 2035",
+        "title": "Pour les independants en profession libérale, harmoniser les éléments demandés avec ceux de la declaration 2035",
         "closedAt": null,
         "number": 3441,
         "stateReason": null,
@@ -258964,7 +258964,7 @@
         "count": 1
       },
       {
-        "title": "Le montant total de cotisations n'inclut pas les cotisations pour les indemnités journalières pour les indépendants",
+        "title": "Le montant total de cotisations n'inclut pas les cotisations pour les indemnités journalières pour les independants",
         "closedAt": null,
         "number": 3390,
         "stateReason": null,
@@ -259134,7 +259134,7 @@
         "count": 1
       },
       {
-        "title": "[Assimilé salarié / salarié] Ajouter les droits ouverts à la retraite",
+        "title": "[Assimilé salarie / salarie] Ajouter les droits ouverts à la retraite",
         "closedAt": null,
         "number": 1963,
         "stateReason": null,
@@ -259184,7 +259184,7 @@
         "count": 1
       },
       {
-        "title": "[Simulateurs indépendants] Ajouter un avertissement si imposition micro-fiscal",
+        "title": "[Simulateurs independants] Ajouter un avertissement si imposition micro-fiscal",
         "closedAt": null,
         "number": 2159,
         "stateReason": null,
@@ -259286,7 +259286,7 @@
         "count": 4
       },
       {
-        "title": "[indépendants] Réforme de l'assiette de cotisation sociale",
+        "title": "[independants] Réforme de l'assiette de cotisation sociale",
         "closedAt": "2026-04-03T11:00:37Z",
         "number": 3199,
         "stateReason": "COMPLETED",
@@ -259406,7 +259406,7 @@
         "count": 3
       },
       {
-        "title": "[salarié - RGCP] Avertissement que la réforme RGDU n'est pas implémentée",
+        "title": "[salarie - RGCP] Avertissement que la réforme RGDU n'est pas implémentée",
         "closedAt": "2026-01-15T11:55:07Z",
         "number": 4207,
         "stateReason": "COMPLETED",
@@ -259496,7 +259496,7 @@
         "count": 1
       },
       {
-        "title": "[Médecin] Erreur dans le taux de cotisation maladie sur les revenus non conventionnés d'un médecin en secteur 2",
+        "title": "[Médecin] Erreur dans le taux de cotisation maladie sur les revenus non conventionnés d'un medecin en secteur 2",
         "closedAt": "2025-10-20T07:57:43Z",
         "number": 4007,
         "stateReason": "COMPLETED",
@@ -259666,7 +259666,7 @@
         "count": 3
       },
       {
-        "title": "Parcours erratique du formulaire du simulateur salarié",
+        "title": "Parcours erratique du formulaire du simulateur salarie",
         "closedAt": "2025-07-04T08:27:46Z",
         "number": 3726,
         "stateReason": "COMPLETED",
@@ -259716,7 +259716,7 @@
         "count": 24
       },
       {
-        "title": "[Assistant PAM] Rajouter des ressources pour aider à remplir sa déclaration fiscale et sociale",
+        "title": "[Assistant PAM] Rajouter des ressources pour aider à remplir sa declaration fiscale et sociale",
         "closedAt": "2025-05-17T21:13:08Z",
         "number": 3594,
         "stateReason": "COMPLETED",
@@ -259726,7 +259726,7 @@
         "count": 2
       },
       {
-        "title": "[Assistant PAM] Mieux prévenir l'usager que l'assistant n'est pas l'interface permettant d'effectuer sa déclaration de revenus",
+        "title": "[Assistant PAM] Mieux prévenir l'usager que l'assistant n'est pas l'interface permettant d'effectuer sa declaration de revenus",
         "closedAt": "2025-05-13T18:27:55Z",
         "number": 3598,
         "stateReason": "COMPLETED",
@@ -260016,7 +260016,7 @@
         "count": 1
       },
       {
-        "title": "[Non-salariés] Pertinence de proposer un taux neutre pour l'impôt sur le revenu ?",
+        "title": "[Non-salaries] Pertinence de proposer un taux neutre pour l'impôt sur le revenu ?",
         "closedAt": "2024-09-30T14:10:06Z",
         "number": 2976,
         "stateReason": "COMPLETED",
@@ -260106,7 +260106,7 @@
         "count": 1
       },
       {
-        "title": "[salarié] Fiche de paie: double affichage réduction et absence affichage cotisations régimes spécifiques",
+        "title": "[salarie] Fiche de paie: double affichage réduction et absence affichage cotisations régimes spécifiques",
         "closedAt": "2024-08-15T08:03:48Z",
         "number": 3031,
         "stateReason": "COMPLETED",
@@ -260186,7 +260186,7 @@
         "count": 1
       },
       {
-        "title": "🏓 [indépendant] Expliquer le calcul du revenu professionnel dans la documentation",
+        "title": "🏓 [independant] Expliquer le calcul du revenu professionnel dans la documentation",
         "closedAt": "2023-09-14T07:00:33Z",
         "number": 2446,
         "stateReason": "COMPLETED",
@@ -260276,7 +260276,7 @@
         "count": 1
       },
       {
-        "title": "🐛 Le calcul de la retraite complémentaire pour les assimilés salarié est faux",
+        "title": "🐛 Le calcul de la retraite complémentaire pour les assimilés salarie est faux",
         "closedAt": "2023-07-31T08:31:20Z",
         "number": 2753,
         "stateReason": "COMPLETED",
@@ -260316,7 +260316,7 @@
         "count": 1
       },
       {
-        "title": "🐛 [simulateur salarié] rien ne se passe lorsque l'on modifie le brut équivalent temps plein",
+        "title": "🐛 [simulateur salarie] rien ne se passe lorsque l'on modifie le brut équivalent temps plein",
         "closedAt": "2023-04-21T13:45:37Z",
         "number": 2565,
         "stateReason": "COMPLETED",
@@ -260386,7 +260386,7 @@
         "count": 1
       },
       {
-        "title": "🐛 [indépendant à l'IS] Lors d'un calcul à partir du net, le revenu professionnel ne tombe pas juste",
+        "title": "🐛 [independant à l'IS] Lors d'un calcul à partir du net, le revenu professionnel ne tombe pas juste",
         "closedAt": "2022-11-30T16:42:25Z",
         "number": 2405,
         "stateReason": "COMPLETED",

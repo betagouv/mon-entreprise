@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Button, typography } from '@/design-system'
+import { Button, typography } from '@/design-system/index'
 
 import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './components/CasParticuliers'

@@ -17,7 +17,7 @@ import {
 	PopoverWithTrigger,
 	Spacing,
 	typography,
-} from '@/design-system'
+} from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { estPasQuestionEnListeNoire } from '@/domaine/estPasQuestionEnListeNoire'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -32,7 +32,7 @@ import { resetCompany } from '@/store/actions/companyActions'
 import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
-import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
+import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsReponduesEncoreApplicablesNoms.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { NoOp } from '@/utils/NoOp'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -147,7 +147,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 				</>
 			)}
 
-			{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
+			{currentSimulatorData?.pathId === 'simulateurs.salarie' && (
 				<div
 					className="print-hidden"
 					style={{

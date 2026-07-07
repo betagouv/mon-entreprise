@@ -9,7 +9,7 @@ import { completeSituationSelector } from '@/store/selectors/completeSituation.s
 import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { règleObsolèteDétectée } from '@/store/slices/simulationSource.slice'
-import { décideActionRègleInvalide } from '@/utils/publicodes/décideActionRègleInvalide'
+import { décideActionRègleInvalide } from '@/utils/publicodes/decideActionRegleInvalide'
 import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 export const useSetupSafeSituation = (nomModèle?: NomModèle) => {

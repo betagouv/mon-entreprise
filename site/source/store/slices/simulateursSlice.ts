@@ -5,8 +5,8 @@ import { RootState } from '@/store/reducers/rootReducer'
 
 export type SimulateurType =
 	| 'location-de-meuble'
-	| 'salarié'
-	| 'indépendant'
+	| 'salarie'
+	| 'independant'
 	| 'auto-entrepreneur'
 // ...
 

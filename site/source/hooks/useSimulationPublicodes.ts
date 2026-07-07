@@ -4,7 +4,7 @@ import { NomModèle, SimulationConfig } from '@/domaine/SimulationConfig'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 
 import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 import { useQuestionsPublicodes } from './useQuestionsPublicodes'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'

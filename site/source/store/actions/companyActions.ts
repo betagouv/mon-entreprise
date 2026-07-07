@@ -1,4 +1,4 @@
-import { Bénéfice } from '@/api/activité-vers-bénéfice'
+import { Bénéfice } from '@/api/activite-vers-benefice/index'
 import { Commune } from '@/api/commune'
 import { Entreprise } from '@/domaine/Entreprise'
 

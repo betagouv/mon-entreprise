@@ -6,11 +6,11 @@ import { css, styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 import { useOnKeyDown } from '@/hooks/useOnKeyDown'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
-import { Button } from '../buttons'
-import { CrossIcon } from '../icons'
-import { Grid } from '../layout'
+import { Button } from '../buttons/index'
+import { CrossIcon } from '../icons/index'
+import { Grid } from '../layout/index'
 import { CloseButton, CloseButtonContainer } from '../popover/Popover'
 
 export type DrawerButtonProps = {

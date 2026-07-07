@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { Grid } from '../layout'
+import { Grid } from '../layout/index'
 
 const StyledGrid = styled(Grid)`
 	padding: 2rem 0;

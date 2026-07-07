@@ -4,7 +4,7 @@ import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { WhenNotApplicable } from '@/components/EngineValue/WhenNotApplicable'
-import { Body, Emoji, H2, H3, Li, Link, Message, Ul } from '@/design-system'
+import { Body, Emoji, H2, H3, Li, Link, Message, Ul } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 export default function DroitsRetraite() {
@@ -12,9 +12,9 @@ export default function DroitsRetraite() {
 
 	const exonérationRetraiteActive = {
 		'une de ces conditions': [
-			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
-			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
-			'dirigeant . indépendant . PL . CIPAV . exonération incapacité',
+			'dirigeant . independant . cotisations et contributions . exonérations . pension invalidité',
+			'dirigeant . independant . PL . CNAVPL . exonération incapacité',
+			'dirigeant . independant . PL . CIPAV . exonération incapacité',
 		] as Array<DottedName>,
 	}
 
@@ -104,7 +104,7 @@ export default function DroitsRetraite() {
 						<Link
 							href="https://www.lassuranceretraite.fr/portail-info/hors-menu/annexe/services-en-ligne/estimation-montant-retraite.html"
 							aria-label={t(
-								'pages.simulateurs.indépendant.retraite.simulateur-cnav.aria-label',
+								'pages.simulateurs.independant.retraite.simulateur-cnav.aria-label',
 								"Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre"
 							)}
 						>

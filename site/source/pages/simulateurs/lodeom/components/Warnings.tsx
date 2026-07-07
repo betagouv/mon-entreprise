@@ -1,12 +1,12 @@
 import { Trans } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Body, Message } from '@/design-system'
+import { Body, Message } from '@/design-system/index'
 
 export default function Warnings() {
 	return (
 		<>
-			<Condition expression="salarié . cotisations . exonérations . JEI = oui">
+			<Condition expression="salarie . cotisations . exonérations . JEI = oui">
 				<Message type="info">
 					<Body>
 						<Trans i18nKey="pages.simulateurs.lodeom.warnings.JEI">
@@ -17,7 +17,7 @@ export default function Warnings() {
 				</Message>
 			</Condition>
 
-			<Condition expression="salarié . contrat = 'stage'">
+			<Condition expression="salarie . contrat = 'stage'">
 				<Message type="info">
 					<Body>
 						<Trans i18nKey="pages.simulateurs.lodeom.warnings.stage">

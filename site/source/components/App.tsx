@@ -5,29 +5,29 @@ import { css, styled } from 'styled-components'
 
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
-import { Container } from '@/design-system'
+import { Container } from '@/design-system/index'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModele'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
 import Page404 from '@/pages/404'
-import Accessibilité from '@/pages/Accessibilité'
+import Accessibilité from '@/pages/Accessibilite'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
 import Documentation from '@/pages/documentation/Documentation'
-import Iframes from '@/pages/iframes'
+import Iframes from '@/pages/iframes/index'
 import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
-import Nouveautés from '@/pages/nouveautés/index'
+import Nouveautés from '@/pages/nouveautes/index'
 import { CatchOffline } from '@/pages/Offline'
 import Plan from '@/pages/Plan'
-import Simulateurs from '@/pages/simulateurs'
-import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants'
-import Stats from '@/pages/statistiques'
+import Simulateurs from '@/pages/simulateurs/index'
+import SimulateursEtAssistants from '@/pages/simulateurs-et-assistants/index'
+import Stats from '@/pages/statistiques/index'
 import { useSitePaths } from '@/sitePaths'
 
 import Provider, { ProviderProps } from './Provider'
@@ -143,7 +143,7 @@ const App = () => {
 							element={<Integration />}
 						/>
 						<Route
-							path={relativeSitePaths.nouveautés.index + '/*'}
+							path={relativeSitePaths.nouveautes.index + '/*'}
 							element={<Nouveautés />}
 						/>
 						<Route path={relativeSitePaths.stats} element={<Stats />} />

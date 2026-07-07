@@ -3,7 +3,7 @@ import { AriaRadioProps } from 'react-aria'
 import { styled } from 'styled-components'
 
 import { CardContainer } from '../../../card/Card'
-import { Emoji } from '../../../emoji'
+import { Emoji } from '../../../emoji/index'
 import { Body, SmallBody } from '../../../typography/paragraphs'
 import { RadioPoint, RadioSkeleton, VisibleRadio } from './Radio'
 

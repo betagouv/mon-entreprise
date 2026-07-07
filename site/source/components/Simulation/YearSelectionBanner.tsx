@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
 import SimulationBanner from '@/components/Simulation/Banner'
-import { Link } from '@/design-system'
+import { Link } from '@/design-system/index'
 import useYear from '@/hooks/useYear'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { getCurrentYear, getYearsBetween } from '@/utils/dates'

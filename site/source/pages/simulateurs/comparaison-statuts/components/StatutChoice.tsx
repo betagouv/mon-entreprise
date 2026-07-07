@@ -13,7 +13,7 @@ import {
 	StatusCard,
 	Strong,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'

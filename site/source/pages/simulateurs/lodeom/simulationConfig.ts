@@ -2,46 +2,46 @@ import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 export const configLodeom: SimulationConfig = {
 	nomModèle: 'modele-social',
-	objectifs: ['salarié . cotisations . exonérations . lodeom . montant'],
+	objectifs: ['salarie . cotisations . exonérations . lodeom . montant'],
 	questions: {
 		raccourcis: [
 			{
 				label: 'Temps partiel',
-				dottedName: 'salarié . contrat . temps de travail . temps partiel',
+				dottedName: 'salarie . contrat . temps de travail . temps partiel',
 			},
 			{
 				label: 'Heures supplémentaires',
-				dottedName: 'salarié . temps de travail . heures supplémentaires',
+				dottedName: 'salarie . temps de travail . heures supplémentaires',
 			},
 			{
 				label: 'Heures complémentaires',
-				dottedName: 'salarié . temps de travail . heures complémentaires',
+				dottedName: 'salarie . temps de travail . heures complémentaires',
 			},
 			{
 				label: 'DFS',
-				dottedName: 'salarié . régimes spécifiques . DFS',
+				dottedName: 'salarie . régimes spécifiques . DFS',
 			},
 			{
 				label: 'JEI',
-				dottedName: 'salarié . cotisations . exonérations . JEI',
+				dottedName: 'salarie . cotisations . exonérations . JEI',
 			},
 		],
 		'liste noire': [
 			'établissement . commune',
-			'salarié . cotisations . exonérations . zones lodeom',
-			'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
-			"salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles",
-			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
-			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
-			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
-			'entreprise . salariés . effectif . seuil',
-			'salarié . contrat . CDD . motif',
-			'salarié . rémunération . primes . activité . base',
-			'salarié . rémunération . avantages en nature',
+			'salarie . cotisations . exonérations . zones lodeom',
+			'salarie . cotisations . exonérations . lodeom . zone un . barèmes',
+			"salarie . cotisations . exonérations . lodeom . secteurs d'activité éligibles",
+			'salarie . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
+			'salarie . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
+			'salarie . cotisations . exonérations . lodeom . zone deux . barème renforcé',
+			'entreprise . salaries . effectif . seuil',
+			'salarie . contrat . CDD . motif',
+			'salarie . rémunération . primes . activité . base',
+			'salarie . rémunération . avantages en nature',
 			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
 		],
-		'non prioritaires': ['salarié . convention collective'],
+		'non prioritaires': ['salarie . convention collective'],
 	},
 	'unité par défaut': '€',
 	situation: {
@@ -50,9 +50,9 @@ export const configLodeom: SimulationConfig = {
 		'entreprise . imposition': 'non',
 	},
 	'règles à ignorer pour déclencher les questions': [
-		'entreprise . salariés . effectif',
-		'salarié . cotisations . exonérations . zones lodeom',
-		'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
-		'salarié . cotisations . exonérations . lodeom . zone deux . barèmes',
+		'entreprise . salaries . effectif',
+		'salarie . cotisations . exonérations . zones lodeom',
+		'salarie . cotisations . exonérations . lodeom . zone un . barèmes',
+		'salarie . cotisations . exonérations . lodeom . zone deux . barèmes',
 	],
 }

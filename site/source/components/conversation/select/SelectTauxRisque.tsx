@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Card, Spacing, TextField } from '@/design-system'
-
-import Worker from './SelectTauxRisque.worker?worker'
+import { Card, Spacing, TextField } from '@/design-system/index'
 
 let worker: Worker | null = null
 
 const getWorker = () => {
-	if (!worker && !import.meta.env.SSR) {
-		worker = new Worker()
+	if (!worker && typeof window !== 'undefined') {
+		worker = new Worker(new URL('./SelectTauxRisque.worker.ts', import.meta.url), {
+			type: 'module',
+		})
 	}
 
 	return worker

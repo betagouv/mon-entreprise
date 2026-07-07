@@ -16,7 +16,7 @@ import {
 import {
 	DéclarationsDeGardeAMAFactory,
 	DéclarationsDeGardeGEDFactory,
-} from './déclarationDeGardeFactory'
+} from './declarationDeGardeFactory'
 import { EnfantFactory } from './enfantFactory'
 
 describe('CMG', () => {
@@ -36,7 +36,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				salariées: {
+				salariees: {
 					GED: [
 						{
 							mars: O.none(),
@@ -96,7 +96,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				salariées: {
+				salariees: {
 					GED: [
 						{
 							mars: O.none(),
@@ -258,7 +258,7 @@ describe('CMG', () => {
 					perçoitAeeH: O.some(false),
 					AeeH: O.none(),
 				},
-				salariées: {
+				salariees: {
 					GED: [
 						{
 							mars: O.none(),

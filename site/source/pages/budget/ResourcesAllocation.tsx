@@ -2,7 +2,7 @@ import { sumAll } from 'effect/Number'
 import { formatValue } from 'publicodes'
 import { styled } from 'styled-components'
 
-import { Body } from '@/design-system'
+import { Body } from '@/design-system/index'
 
 const quarters = [
 	{ label: 'T1', 'aria-label': 'Trimestre 1' },

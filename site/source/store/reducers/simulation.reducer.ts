@@ -8,7 +8,7 @@ import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
-import { omit, reject } from '@/utils'
+import { omit, reject } from '@/utils/index'
 
 export type QuestionRépondue = {
 	règle: DottedName

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 interface Props {
@@ -27,7 +27,7 @@ export default function Redirections({ children }: Props) {
 					'/gérer/aide-declaration-independants/beta',
 					'/manage/declaration-aid-independent/beta',
 				],
-				to: absoluteSitePaths.assistants.déclarationIndépendant.index,
+				to: absoluteSitePaths.assistants.declarationIndépendant.index,
 			},
 			{
 				paths: [
@@ -35,7 +35,7 @@ export default function Redirections({ children }: Props) {
 					'/manage/declaration-aid-independent',
 				],
 				to: absoluteSitePaths.assistants[
-					'déclaration-charges-sociales-indépendant'
+					'declaration-charges-sociales-independant'
 				],
 			},
 			{
@@ -54,7 +54,7 @@ export default function Redirections({ children }: Props) {
 			},
 			{
 				paths: [
-					'/simulateurs/économie-collaborative/*',
+					'/simulateurs/economie-collaborative/*',
 					'/calculators/sharing-economy/*',
 				],
 				to: decodeURI(currentPath).replace(

@@ -1,6 +1,6 @@
 import { CodeActivite } from '@/domaine/CodeActivite'
-import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
-import { Établissement } from '@/domaine/Établissement'
+import { CodeCatégorieJuridique } from '@/domaine/CodeCategorieJuridique'
+import { Établissement } from '@/domaine/Etablissement'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Siren } from '@/domaine/Siren'
 

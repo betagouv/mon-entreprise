@@ -3,8 +3,8 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { useCMG } from '@/contextes/cmg'
-import { NumberField, Radio, Spacing, ToggleGroup } from '@/design-system'
+import { useCMG } from '@/contextes/cmg/index'
+import { NumberField, Radio, Spacing, ToggleGroup } from '@/design-system/index'
 
 import { Label, Question } from '../styled-components'
 

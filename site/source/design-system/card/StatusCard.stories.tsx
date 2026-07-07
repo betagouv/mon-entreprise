@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { I18nextProvider } from 'react-i18next'
 
-import { Button, Li, Tag, Ul } from '@/design-system'
+import { Button, Li, Tag, Ul } from '@/design-system/index'
 import i18n from '@/locales/i18n'
 
 import { DesignSystemThemeProvider } from '../root'

@@ -6,15 +6,15 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 import { PageConfig } from '../simulateurs/_configs/types'
-import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
-import AideDéclarationIndépendant from './declaration-revenu-independants'
-import DéclarationRevenusPAMC from './declaration-revenus-pamc'
-import DemandeMobilité from './demande-mobilité'
-import ÉconomieCollaborative from './économie-collaborative'
+import ChargesSocialesIndépendant from './declaration-charges-sociales-independant/index'
+import AideDéclarationIndépendant from './declaration-revenu-independants/index'
+import DéclarationRevenusPAMC from './declaration-revenus-pamc/index'
+import DemandeMobilité from './demande-mobilite/index'
+import ÉconomieCollaborative from './economie-collaborative/index'
 
 export default function Assistants() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
@@ -41,17 +41,17 @@ export default function Assistants() {
 				<Route
 					path={
 						relativeSitePaths.assistants[
-							'déclaration-charges-sociales-indépendant'
+							'declaration-charges-sociales-independant'
 						]
 					}
 					element={<ChargesSocialesIndépendant />}
 				/>
 				<Route
-					path={relativeSitePaths.assistants['déclaration-revenus-pamc']}
+					path={relativeSitePaths.assistants['declaration-revenus-pamc']}
 					element={<DéclarationRevenusPAMC />}
 				/>
 				<Route
-					path={relativeSitePaths.assistants.déclarationIndépendant.index}
+					path={relativeSitePaths.assistants.declarationIndépendant.index}
 					element={<AideDéclarationIndépendant />}
 				/>
 				<Route

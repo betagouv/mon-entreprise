@@ -1,5 +1,5 @@
 import { SimulateurCard } from '@/components/SimulateurCard'
-import { Emoji, Item, Select } from '@/design-system'
+import { Emoji, Item, Select } from '@/design-system/index'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 import { getFilter } from '../StatsPage'

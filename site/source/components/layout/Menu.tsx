@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button, Drawer, Li, Ul } from '@/design-system'
+import { Button, Drawer, Li, Ul } from '@/design-system/index'
 import { PlanContent } from '@/pages/Plan'
 
 export const Menu = () => {

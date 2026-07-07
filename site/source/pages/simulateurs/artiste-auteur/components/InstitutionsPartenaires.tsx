@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { Grid, H3, Message, Spacing } from '@/design-system'
+import { Grid, H3, Message, Spacing } from '@/design-system/index'
 
 import CotisationsIrcec from './CotisationsIrcec'
 import CotisationsUrssaf from './CotisationsUrssaf'

@@ -9,10 +9,10 @@ import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useTracking } from '@/hooks/useTracking'
 
 import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
-import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics'
+import { ACCUEIL, SIMULATION_COMMENCEE } from '../PianoAnalytics/index'
 import SimulateurWarning from '../SimulateurWarning'
 import { Actions } from './Actions'
-import { ÉLÉMENT_DÉTAILS_ID } from './BoutonDétail'
+import { ÉLÉMENT_DÉTAILS_ID } from './BoutonDetail'
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props = {

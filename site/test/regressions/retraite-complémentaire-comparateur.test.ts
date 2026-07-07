@@ -19,13 +19,13 @@ describe('Retraite complémentaire dans le comparateur de statuts (#4146)', () =
 		)
 
 		// Avec 4000 €/mois de CA et 1000 €/mois de charges, les cotisations
-		// retraite complémentaire salarié sont d'environ 169 €/mois soit ~2028 €/an.
+		// retraite complémentaire salarie sont d'environ 169 €/mois soit ~2028 €/an.
 		// Points annuels = (2028 / 1.27) / 20.1877 ≈ 79 points/an
 		expect(pointsAcquis.nodeValue).toBeCloseTo(79, 0)
 		expect(pointsAcquis.unit?.denominators).toContain('an')
 	})
 
-	it('la SASU ne comptabilise pas de retraite complémentaire indépendant (RCI)', () => {
+	it('la SASU ne comptabilise pas de retraite complémentaire independant (RCI)', () => {
 		const engine = engineFactory(rules)
 		engine.setSituation({
 			...configComparateurStatuts.situation,
@@ -38,7 +38,7 @@ describe('Retraite complémentaire dans le comparateur de statuts (#4146)', () =
 		expect(rci.nodeValue).toBeNull()
 	})
 
-	it("l'EI ne comptabilise pas de retraite complémentaire salarié (AGIRC-ARRCO)", () => {
+	it("l'EI ne comptabilise pas de retraite complémentaire salarie (AGIRC-ARRCO)", () => {
 		const engine = engineFactory(rules)
 		engine.setSituation({
 			...configComparateurStatuts.situation,

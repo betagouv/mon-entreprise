@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H4, Spacing, Strong } from '@/design-system'
+import { H4, Spacing, Strong } from '@/design-system/index'
 import {
 	Entreprise,
 	établissementEstDifférentDuSiège,

@@ -1,22 +1,22 @@
 import * as A from 'effect/Array'
 import { useTranslation } from 'react-i18next'
 
-import { SalariéeGED, useCMG } from '@/contextes/cmg'
-import { Button } from '@/design-system'
+import { SalariéeGED, useCMG } from '@/contextes/cmg/index'
+import { Button } from '@/design-system/index'
 
 import { Titre2 } from '../styled-components'
 import GEDInput from './GEDInput'
 
 export default function GED() {
 	const { t } = useTranslation()
-	const { salariéesGED, moisIdentiques, set } = useCMG()
+	const { salarieesGED, moisIdentiques, set } = useCMG()
 
-	const onSalariéeChange = (index: number) => (salariéeGED: SalariéeGED) => {
-		set.salariéesGED(A.replace(salariéesGED, index, salariéeGED))
+	const onSalariéeChange = (index: number) => (salarieeGED: SalariéeGED) => {
+		set.salarieesGED(A.replace(salarieesGED, index, salarieeGED))
 	}
 
 	const onSalariéeDelete = (index: number) => () => {
-		set.salariéesGED(A.remove(salariéesGED, index))
+		set.salarieesGED(A.remove(salarieesGED, index))
 		set.moisIdentiques({
 			AMA: moisIdentiques.AMA,
 			GED: A.remove(moisIdentiques.GED, index),
@@ -29,12 +29,12 @@ export default function GED() {
 			GED: A.replace(moisIdentiques.GED, index, value),
 		})
 		if (value) {
-			const déclarationMars = salariéesGED[index].mars
-			set.salariéesGED(
-				A.replace(salariéesGED, index, {
-					mars: déclarationMars,
-					avril: déclarationMars,
-					mai: déclarationMars,
+			const declarationMars = salarieesGED[index].mars
+			set.salarieesGED(
+				A.replace(salarieesGED, index, {
+					mars: declarationMars,
+					avril: declarationMars,
+					mai: declarationMars,
 				})
 			)
 		}
@@ -44,17 +44,17 @@ export default function GED() {
 		<>
 			<Titre2>
 				{t(
-					'pages.assistants.cmg.déclarations.GED.h2',
+					'pages.assistants.cmg.declarations.GED.h2',
 					'Gardes d’enfants à domicile'
 				)}
 			</Titre2>
 
-			{salariéesGED.map((salariéeGED, index) => (
+			{salarieesGED.map((salarieeGED, index) => (
 				<GEDInput
 					key={index}
 					number={index + 1}
 					idSuffix={`GED-${index}`}
-					salariée={salariéeGED}
+					salariee={salarieeGED}
 					moisIdentiques={moisIdentiques.GED[index]}
 					onSalariéeChange={onSalariéeChange(index)}
 					onSalariéeDelete={onSalariéeDelete(index)}
@@ -64,8 +64,8 @@ export default function GED() {
 
 			<Button size="XXS" color="secondary" light onPress={set.nouvelleGED}>
 				{t(
-					'pages.assistants.cmg.déclarations.add-button-label',
-					'Déclarer une salariée'
+					'pages.assistants.cmg.declarations.add-button-label',
+					'Déclarer une salariee'
 				)}
 			</Button>
 		</>

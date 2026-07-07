@@ -3,7 +3,7 @@ import { AriaButtonProps, useProgressBar } from 'react-aria'
 import { Trans } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { Link as RouterLink, useNavigation } from '@/lib/navigation'
+import { Link as RouterLink, useNavigation } from '@/lib/navigation/index'
 
 import { Link } from '../typography/link'
 

@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { Body, Link } from '@/design-system'
+import { Body, Link } from '@/design-system/index'
 import { useSitePaths } from '@/sitePaths'
 
 export const AvertissementEIRL = () => {

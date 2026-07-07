@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react'
 
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 const BPIContext = createContext(false)
 

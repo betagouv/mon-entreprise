@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import { EntrepriseSearchField } from '@/components/entreprise/EntrepriseSearchField'
-import { Spacing } from '@/design-system'
+import { Spacing } from '@/design-system/index'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSetEntrepriseFromUrssafConnection from '@/hooks/useSetEntrepriseFromUrssafConnection'

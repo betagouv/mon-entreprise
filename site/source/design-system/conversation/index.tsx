@@ -2,8 +2,8 @@ import { ReactNode, useCallback, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Button } from '../buttons'
-import { Grid } from '../layout'
+import { Button } from '../buttons/index'
+import { Grid } from '../layout/index'
 
 const Container = styled.div`
 	width: 100%;

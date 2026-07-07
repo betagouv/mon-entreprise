@@ -8,8 +8,8 @@ import {
 	SmallCard,
 	Spacing,
 	Ul,
-} from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
+} from '@/design-system/index'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
@@ -25,12 +25,12 @@ export default function MoreInfosOnUs() {
 		<>
 			<H2>Plus d'informations sur mon-entreprise</H2>
 			<Grid as={Ul} container spacing={2}>
-				{!currentPath.startsWith(absoluteSitePaths.nouveautés.index) && (
+				{!currentPath.startsWith(absoluteSitePaths.nouveautes.index) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
-							title={<h3>Les nouveautés</h3>}
-							to={absoluteSitePaths.nouveautés.index}
+							title={<h3>Les nouveautes</h3>}
+							to={absoluteSitePaths.nouveautes.index}
 						>
 							Qu'avons-nous mis en production ces derniers mois ?
 						</SmallCard>

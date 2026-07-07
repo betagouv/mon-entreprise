@@ -93,7 +93,7 @@ from = ":SITE_FR/cr%C3%A9er/*"
 to = ":SITE_FR/assistants/choix-du-statut/:splat"
 status = 301
 
-# FR | /simulateurs/économie-collaborative -> /assistants/économie-collaborative
+# FR | /simulateurs/economie-collaborative -> /assistants/economie-collaborative
 [[redirects]]
 from = ":SITE_FR/simulateurs/%C3%A9conomie-collaborative/*"
 to = ":SITE_FR/assistants/%C3%A9conomie-collaborative/:splat"
@@ -112,13 +112,13 @@ from = ":SITE_FR/%C3%A9conomie-collaborative"
 to = ":SITE_FR/simulateurs/%C3%A9conomie-collaborative"
 status = 301
 
-# FR | salarié -> salaire-brut-net
+# FR | salarie -> salaire-brut-net
 [[redirects]]
 from = ":SITE_FR/simulateurs/salari%C3%A9"
 to = ":SITE_FR/simulateurs/salaire-brut-net"
 status = 301
 
-# FR | assimilé-salarié -> sasu
+# FR | assimilé-salarie -> sasu
 [[redirects]]
 from = ":SITE_FR/simulateurs/assimil%C3%A9-salari%C3%A9"
 to = ":SITE_FR/simulateurs/sasu"
@@ -136,19 +136,19 @@ from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/auto-entrepreneur"
 to = ":SITE_FR/simulateurs/auto-entrepreneur"
 status = 301
 
-# FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
+# FR | sécurité-social/salarie -> simulateurs/salaire-brut-net
 [[redirects]]
 from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
 to = ":SITE_FR/simulateurs/salaire-brut-net"
 statys = 301
 
-# FR | sécurité-social/salarié -> simulateurs/salaire-brut-net
+# FR | sécurité-social/salarie -> simulateurs/salaire-brut-net
 [[redirects]]
 from = ":SITE_FR/s%C3%A9curit%C3%A9-sociale/salari%C3%A9"
 to = ":SITE_FR/simulateurs/salaire-brut-net"
 status = 301
 
-# FR | iframes/médecin -> iframes/medecin
+# FR | iframes/medecin -> iframes/medecin
 [[redirects]]
 from = ":SITE_FR/iframes/m%C3%A9decin"
 to = ":SITE_FR/iframes/medecin"

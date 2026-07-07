@@ -21,7 +21,7 @@ import { isMontant, Montant } from '@/domaine/Montant'
 import { isOuiNon } from '@/domaine/OuiNon'
 import { isQuantité, Quantité } from '@/domaine/Quantite'
 
-import { QuantitéAdapter } from './QuantitéAdapter'
+import { QuantitéAdapter } from './QuantiteAdapter'
 
 export type ValeurPublicodes = string | Montant | Quantité | number
 

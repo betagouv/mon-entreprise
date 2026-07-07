@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
-import { SimulationGoals } from '@/components/Simulation'
-import { Body, Message } from '@/design-system'
-import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import { SimulationGoals } from '@/components/Simulation/index'
+import { Body, Message } from '@/design-system/index'
+import { useBarèmeLodeom } from '@/hooks/useBaremeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
-import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
-import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
+import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/ReductionMoisParMois'
+import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RegularisationSwitch'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -25,7 +25,7 @@ import {
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-import BarèmeSwitch from './components/BarèmeSwitch'
+import BarèmeSwitch from './components/BaremeSwitch'
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
 import ZoneSwitch from './components/ZoneSwitch'
@@ -44,10 +44,10 @@ export default function LodeomSimulationGoals() {
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
-		'salarié . cotisations . exonérations . lodeom . code réduction'
+		'salarie . cotisations . exonérations . lodeom . code réduction'
 	).nodeValue as string
 	const codeRégularisation = engine.evaluate(
-		'salarié . cotisations . exonérations . lodeom . code régularisation'
+		'salarie . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
 	const withRépartitionAndRégularisation = currentZone === 'zone un'
@@ -138,7 +138,7 @@ export default function LodeomSimulationGoals() {
 			}
 		>
 			<Warnings />
-			<WhenApplicable dottedName="salarié . cotisations . exonérations . zones lodeom">
+			<WhenApplicable dottedName="salarie . cotisations . exonérations . zones lodeom">
 				{!currentBarème && (
 					<Message type="info">
 						<Body>

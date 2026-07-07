@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { groupBy } from '@/utils'
+import { groupBy } from '@/utils/index'
 
 import {
 	Filter,

@@ -1,9 +1,9 @@
 import { CodeActivite } from '@/domaine/CodeActivite'
-import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { CodeCatégorieJuridique } from '@/domaine/CodeCategorieJuridique'
 import { IsoDate, parseIsoDateString } from '@/domaine/Date'
 import { Entreprise } from '@/domaine/Entreprise'
 import { EntreprisesRepository } from '@/domaine/EntreprisesRepository'
-import { Établissement } from '@/domaine/Établissement'
+import { Établissement } from '@/domaine/Etablissement'
 import { Siren, Siret } from '@/domaine/Siren'
 
 /**

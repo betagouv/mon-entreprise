@@ -6,14 +6,14 @@ import { useSelector } from 'react-redux'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/SimulationConfig'
 import { Situation } from '@/domaine/Situation'
-import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
+import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRepondue'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
 import { raccourcisSelector } from '@/store/selectors/simulation/config/raccourcis.selector'
-import { questionsRéponduesSelector } from '@/store/selectors/simulation/questions/questionsRépondues.selector'
+import { questionsRéponduesSelector } from '@/store/selectors/simulation/questions/questionsRepondues.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 
 export interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'

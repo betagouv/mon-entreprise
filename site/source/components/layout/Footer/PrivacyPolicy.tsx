@@ -12,10 +12,10 @@ import {
 	SmallBody,
 	StyledLink,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useTracking } from '@/hooks/useTracking'
 
-import { TrackPage } from '../../PianoAnalytics'
+import { TrackPage } from '../../PianoAnalytics/index'
 
 const StyledTable = styled.table`
 	&,
@@ -94,7 +94,7 @@ export default function PrivacyPolicy({
 					<br />
 					Toutefois, si un utilisateur ou une utilisatrice souhaite devenir «
 					beta-testeur » ou « beta-testeuse » pour recevoir des informations sur
-					les nouveautés, donner son avis, et participer à des ateliers pour
+					les nouveautes, donner son avis, et participer à des ateliers pour
 					améliorer nos services, il ou elle peut s'inscrire via le lien en pied
 					de page « Devenir beta-testeur ». Dès lors, sont traitées les données
 					suivantes : adresse e-mail, type d'entreprise, type d'activité, type

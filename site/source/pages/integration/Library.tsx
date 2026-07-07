@@ -16,7 +16,7 @@ import {
 	Ol,
 	SmallBody,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import Meta from '../../components/utils/Meta'
 import { StyledExempleIframe } from './API'

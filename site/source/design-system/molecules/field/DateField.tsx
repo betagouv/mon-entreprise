@@ -12,8 +12,8 @@ import { styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
 
-import { Button } from '../../buttons'
-import { Emoji } from '../../emoji'
+import { Button } from '../../buttons/index'
+import { Emoji } from '../../emoji/index'
 import { splitAriaProps } from '../../splitAriaProps'
 import { Body } from '../../typography/paragraphs'
 import TextField from './TextField'

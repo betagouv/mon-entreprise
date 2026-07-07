@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
-import { Grid, Link } from '@/design-system'
-import { capitalise0 } from '@/utils'
+import { Grid, Link } from '@/design-system/index'
+import { capitalise0 } from '@/utils/index'
 import {
 	AGIRC_ARRCO,
 	AMELI,

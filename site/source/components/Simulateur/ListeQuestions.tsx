@@ -4,7 +4,7 @@ import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body, Button, EditIcon, Li, Ul } from '@/design-system'
+import { Body, Button, EditIcon, Li, Ul } from '@/design-system/index'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 

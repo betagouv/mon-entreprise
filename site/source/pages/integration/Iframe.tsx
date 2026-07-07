@@ -6,7 +6,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import urssafLogo from '@/assets/images/Urssaf.svg'
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import {
 	Article,
 	Body,
@@ -24,9 +24,9 @@ import {
 	Spacing,
 	TextField,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 import Meta from '../../components/utils/Meta'
 
@@ -71,7 +71,7 @@ function IntegrationCustomizer() {
 		simulateurFromUrl
 	)
 		? simulateurFromUrl
-		: ('salarié' as SimulateurValideId)
+		: ('salarie' as SimulateurValideId)
 
 	const [currentSimulateur, setCurrentSimulateur] =
 		useState<SimulateurValideId>(defaultSimulateur)

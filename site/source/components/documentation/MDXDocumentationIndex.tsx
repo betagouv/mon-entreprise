@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import Meta from '@/components/utils/Meta'
 import {
 	Card,
@@ -10,7 +10,7 @@ import {
 	MDXContent,
 	NavigationContainer,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import { MDXDocumentation } from './createMDXDocumentation'
 

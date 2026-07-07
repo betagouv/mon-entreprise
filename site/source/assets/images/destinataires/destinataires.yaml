@@ -4,9 +4,9 @@ OPCO:
 Urssaf:
   image: Urssaf.svg
   lien: https://fr.wikipedia.org/wiki/Urssaf
-salarié:
-  nom: Le salarié
-  image: salarié.png
+salarie:
+  nom: Le salarie
+  image: salarie.png
 AGIRC:
   image: agirc.png
   lien: https://fr.wikipedia.org/wiki/Agirc_et_Arrco

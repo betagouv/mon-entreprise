@@ -18,7 +18,7 @@ import { AriaNumberFieldProps, useLocale, useNumberField } from 'react-aria'
 import { NumberFieldState } from 'react-stately'
 import { styled } from 'styled-components'
 
-import { omit } from '@/utils'
+import { omit } from '@/utils/index'
 
 import {
 	StyledContainer,
@@ -28,7 +28,7 @@ import {
 	StyledInputContainer,
 	StyledLabel,
 } from '../molecules/field/TextField'
-import { InputSuggestions, InputSuggestionsRecord } from '../suggestions'
+import { InputSuggestions, InputSuggestionsRecord } from '../suggestions/index'
 
 /**
  * @internal

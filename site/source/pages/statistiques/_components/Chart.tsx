@@ -20,8 +20,8 @@ import {
 	ACCUEIL,
 	SIMULATION_COMMENCEE,
 	SIMULATION_TERMINEE,
-} from '@/components/PianoAnalytics'
-import { Body, Li, Strong, Ul } from '@/design-system'
+} from '@/components/PianoAnalytics/index'
+import { Body, Li, Strong, Ul } from '@/design-system/index'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
 
@@ -285,7 +285,7 @@ export const formatLegend = (key: string) =>
 		: key === SIMULATION_TERMINEE
 		? 'simulation terminée'
 		: key === 'declaration_resultat'
-		? 'déclaration résultat'
+		? 'declaration résultat'
 		: key === 'declaration_revenu'
-		? 'déclaration revenu'
+		? 'declaration revenu'
 		: key.replace(/_/g, ' ')

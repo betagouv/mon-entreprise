@@ -42,7 +42,7 @@ export {
 	RhombusIcon,
 	TriangleIcon,
 	WarningIcon,
-} from './'
+} from './index'
 
 const RotatingChevronExample = (
 	args: ComponentProps<typeof RotatingChevronIcon>

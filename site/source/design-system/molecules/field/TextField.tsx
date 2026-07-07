@@ -2,7 +2,7 @@ import { HTMLAttributes, InputHTMLAttributes, RefObject, useRef } from 'react'
 import { AriaTextFieldOptions, useTextField } from 'react-aria'
 import { css, styled } from 'styled-components'
 
-import { omit } from '@/utils'
+import { omit } from '@/utils/index'
 
 import { ExtraSmallBody } from '../../typography/paragraphs'
 

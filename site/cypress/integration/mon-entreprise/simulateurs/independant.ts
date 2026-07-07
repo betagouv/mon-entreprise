@@ -1,6 +1,6 @@
 import { fr } from '../../../support/utils'
 
-describe('Simulateur indépendant', { testIsolation: false }, function () {
+describe('Simulateur independant', { testIsolation: false }, function () {
 	if (!fr) {
 		return
 	}
@@ -8,7 +8,7 @@ describe('Simulateur indépendant', { testIsolation: false }, function () {
 	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 
 	before(function () {
-		return cy.visit('/simulateurs/indépendant')
+		return cy.visit('/simulateurs/independant')
 	})
 
 	it('should not display info about cotisations forfaitaires début activité by default', function () {

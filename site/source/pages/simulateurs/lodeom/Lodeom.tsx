@@ -1,10 +1,10 @@
 import { Trans } from 'react-i18next'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation from '@/components/Simulation/index'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Body, Emoji } from '@/design-system'
-import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
+import { Body, Emoji } from '@/design-system/index'
+import { embaucherGérerSalariés } from '@/external-links/embaucherGererSalaries'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
@@ -15,7 +15,7 @@ import { EngineProvider } from '@/utils/publicodes/EngineContext'
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import LodeomSimulationGoals from './Goals'
 
-const nextSteps = ['salarié'] satisfies SimulateurId[]
+const nextSteps = ['salarie'] satisfies SimulateurId[]
 
 const externalLinks = [
 	serviceEmployeur,

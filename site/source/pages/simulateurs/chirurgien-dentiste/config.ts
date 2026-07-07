@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import { configDentiste } from '../profession-libérale/simulationConfig'
+import { configDentiste } from '../profession-liberale/simulationConfig'
 import { AvertissementChirurgienDentiste } from './AvertissementChirurgienDentiste'
 import { ChirurgienDentiste } from './ChirurgienDentiste'
 
@@ -28,7 +28,7 @@ export function chirurgienDentisteConfig({
 			chapter3: 'chirurgien_dentiste',
 		},
 		iframePath: 'chirurgien-dentiste',
-		pathId: 'simulateurs.profession-libérale.chirurgien-dentiste',
+		pathId: 'simulateurs.profession-liberale.chirurgien-dentiste',
 		shortName: t(
 			'pages.simulateurs.chirurgien-dentiste.shortname',
 			'Chirurgien-dentiste'
@@ -37,7 +37,7 @@ export function chirurgienDentisteConfig({
 			'pages.simulateurs.chirurgien-dentiste.title',
 			'Simulateur de revenus pour chirurgien-dentiste en libéral'
 		),
-		path: sitePaths.simulateurs['profession-libérale']['chirurgien-dentiste'],
+		path: sitePaths.simulateurs['profession-liberale']['chirurgien-dentiste'],
 		simulation: configDentiste,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: ChirurgienDentiste,

@@ -1,157 +1,157 @@
 échelle de revenus:
-  - indépendant . rémunération . nette: 500 €/an
-  - indépendant . rémunération . nette: 1000 €/an
-  - indépendant . rémunération . nette: 1500 €/an
-  - indépendant . rémunération . nette: 2000 €/an
-  - indépendant . rémunération . nette: 5000 €/an
-  - indépendant . rémunération . nette: 10000 €/an
-  - indépendant . rémunération . nette: 100000 €/an
-  - indépendant . rémunération . nette: 1000000 €/an
+  - independant . rémunération . nette: 500 €/an
+  - independant . rémunération . nette: 1000 €/an
+  - independant . rémunération . nette: 1500 €/an
+  - independant . rémunération . nette: 2000 €/an
+  - independant . rémunération . nette: 5000 €/an
+  - independant . rémunération . nette: 10000 €/an
+  - independant . rémunération . nette: 100000 €/an
+  - independant . rémunération . nette: 1000000 €/an
 
 années précédentes:
-  - indépendant . rémunération . nette: 60000 €/an
+  - independant . rémunération . nette: 60000 €/an
     date: 01/2025
-  - indépendant . rémunération . nette: 50000 €/an
+  - independant . rémunération . nette: 50000 €/an
     date: 01/2024
-  - indépendant . rémunération . nette: 40000 €/an
+  - independant . rémunération . nette: 40000 €/an
     date: 01/2023
 
 inversions IS:
-  - indépendant . rémunération . nette: 10000 €/an
-  - indépendant . rémunération . nette . après impôt: 10000 €/an
+  - independant . rémunération . nette: 10000 €/an
+  - independant . rémunération . nette . après impôt: 10000 €/an
 
 inversions IR:
   - entreprise . imposition: "'IR'"
     entreprise . chiffre d'affaires: 20000 €/an
     entreprise . charges: 1000 €/an
   - entreprise . imposition: "'IR'"
-    indépendant . rémunération . nette: 10000 €/an
+    independant . rémunération . nette: 10000 €/an
   - entreprise . imposition: "'IR'"
-    indépendant . rémunération . nette . après impôt: 3000 €/mois
+    independant . rémunération . nette . après impôt: 3000 €/mois
 
 cotisations minimales:
-  - indépendant . rémunération . nette: 100 €/an
-  - indépendant . rémunération . nette: 100 €/an
+  - independant . rémunération . nette: 100 €/an
+  - independant . rémunération . nette: 100 €/an
     situation personnelle . RSA: oui
-  - indépendant . rémunération . nette: 800 €/an
+  - independant . rémunération . nette: 800 €/an
     entreprise . activité . saisonnière: oui
 
 activité:
-  - indépendant . rémunération . nette: 20000 €/an
+  - independant . rémunération . nette: 20000 €/an
     entreprise . activité . libérale: oui
-  - indépendant . rémunération . nette: 20000 €/an
+  - independant . rémunération . nette: 20000 €/an
     entreprise . activité . artisanale: oui
 
 acre:
-  - indépendant . rémunération . nette: 50000 €/an
+  - independant . rémunération . nette: 50000 €/an
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
+    independant . cotisations et contributions . cotisations . exonérations . Acre: oui
 
 impôt sur le revenu:
-  - indépendant . rémunération . nette: 20000 €/an
+  - independant . rémunération . nette: 20000 €/an
     impôt . méthode de calcul: "'taux personnalisé'"
     impôt . taux personnalisé: 10%
 
 conjoint collaborateur:
   - &conjoint-collab
-    indépendant . rémunération . nette: 50000 €/an
-    indépendant . conjoint collaborateur: oui
+    independant . rémunération . nette: 50000 €/an
+    independant . conjoint collaborateur: oui
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
-    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
+    independant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    independant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *conjoint-collab
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
-    indépendant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
+    independant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    independant . conjoint collaborateur . choix assiette . proportion: "'moitié'"
   - <<: *conjoint-collab
-    indépendant . rémunération . nette: 500000 €/an
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    independant . rémunération . nette: 500000 €/an
+    independant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
 
 cotisations facultatives:
   # Cas retraite: la cotisation Madelin est inferieure au plafond => le revenu net de
   # cotisations (résultat comptable) n'est pas affecté car l'assiette des
   # cotisations ne change pas:
-  - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
-    indépendant . cotisations et contributions . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PASS donc environ 4100
+  - independant . rémunération . brute: 30000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
+    independant . cotisations et contributions . cotisations facultatives . retraite: 3800 €/an # plafond: 10% PASS donc environ 4100
   # Cas retraite: la cotisation retraite est supérieure au plafond => le revenu net de
   # cotisations est affecté car l'assiette des cotisations est plus élevée
-  - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
-    indépendant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PASS donc environ 4100
+  - independant . rémunération . brute: 30000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 0 €/an
+    independant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an # plafond: 10% PASS donc environ 4100
   # Cas prévoyance
-  - indépendant . rémunération . brute: 30000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1000 €/an
+  - independant . rémunération . brute: 30000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 1000 €/an
   # Cas global faible
-  - indépendant . rémunération . brute: 20000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 200 €/an
-    indépendant . cotisations et contributions . cotisations facultatives . retraite: 300 €/an
+  - independant . rémunération . brute: 20000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 200 €/an
+    independant . cotisations et contributions . cotisations facultatives . retraite: 300 €/an
   # Cas global grand (plafonds calculés différemment)
-  - indépendant . rémunération . brute: 300000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
-    indépendant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an
+  - independant . rémunération . brute: 300000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
+    independant . cotisations et contributions . cotisations facultatives . retraite: 5000 €/an
   # Cas retraite grand
-  - indépendant . rémunération . brute: 300000 €/an
-    indépendant . cotisations et contributions . cotisations facultatives: oui
-    indépendant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
-    indépendant . cotisations et contributions . cotisations facultatives . retraite: 8500 €/an
+  - independant . rémunération . brute: 300000 €/an
+    independant . cotisations et contributions . cotisations facultatives: oui
+    independant . cotisations et contributions . cotisations facultatives . prévoyance: 1500 €/an
+    independant . cotisations et contributions . cotisations facultatives . retraite: 8500 €/an
 
 imposition à l'IR:
   - entreprise . chiffre d'affaires: 100000 €/an
     entreprise . imposition: "'IR'"
 
 exonération invalidité:
-  - indépendant . rémunération . brute: 45000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+  - independant . rémunération . brute: 45000 €/an
+    independant . cotisations et contributions . cotisations . exonérations . invalidité: oui
   # Partielle
-  - indépendant . rémunération . brute: 9000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 4 mois
+  - independant . rémunération . brute: 9000 €/an
+    independant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    independant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 4 mois
   # Cumul Acre
-  - indépendant . rémunération . brute: 10000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+  - independant . rémunération . brute: 10000 €/an
+    independant . cotisations et contributions . cotisations . exonérations . invalidité: oui
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
+    independant . cotisations et contributions . cotisations . exonérations . Acre: oui
   # Cumul âge
-  - indépendant . rémunération . brute: 15000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité: oui
-    indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 10 mois
+  - independant . rémunération . brute: 15000 €/an
+    independant . cotisations et contributions . cotisations . exonérations . invalidité: oui
+    independant . cotisations et contributions . cotisations . exonérations . invalidité . durée: 10 mois
     entreprise . date de création: 01/01/2010
-    indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
+    independant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 exonération âge:
-  - indépendant . rémunération . brute: 55000 €/an
+  - independant . rémunération . brute: 55000 €/an
     entreprise . date de création: 01/01/2010
-    indépendant . cotisations et contributions . cotisations . exonérations . âge: oui
+    independant . cotisations et contributions . cotisations . exonérations . âge: oui
 
 DROM:
-  - indépendant . rémunération . brute: 20000 €/an
+  - independant . rémunération . brute: 20000 €/an
     établissement . commune . département . outre-mer: oui
 
 cotisations forfaitaires début d'activité:
-  - indépendant . rémunération . brute: 50000 €/an
+  - independant . rémunération . brute: 50000 €/an
     entreprise . date de création: période . début d'année
-    indépendant . cotisations et contributions . cotisations . exonérations . Acre: non
+    independant . cotisations et contributions . cotisations . exonérations . Acre: non
 
 Année incomplète:
   - &AnnéeIncomplete
     entreprise . date de création: 01/05/2025
     entreprise . date de cessation: 31/08/2025
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 2000 €/an
+    independant . rémunération . nette: 2000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 5000 €/an
+    independant . rémunération . nette: 5000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 10000 €/an
+    independant . rémunération . nette: 10000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 100000 €/an
+    independant . rémunération . nette: 100000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 1000000 €/an
+    independant . rémunération . nette: 1000000 €/an

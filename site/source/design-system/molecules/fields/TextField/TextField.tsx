@@ -8,7 +8,7 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { ErrorIcon } from '@/design-system/icons'
+import { ErrorIcon } from '@/design-system/icons/index'
 
 import {
 	errorMessageStyle,

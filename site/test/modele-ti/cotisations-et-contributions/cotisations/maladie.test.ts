@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { round } from '@/utils/number'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . cotisations . maladie-maternité'
+	'independant . cotisations et contributions . cotisations . maladie-maternité'
 
 const TAUX1_T1 = 1.5 / 100
 const TAUX1_T2 = 4 / 100
@@ -27,7 +27,7 @@ describe('Cotisation maladie', () => {
 		it('applique un taux nul en cas d’assiette sociale inférieure à 20% du PASS', () => {
 			const plancherTaux1 = Math.round(0.2 * PASS) - 1
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
+				'independant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
 			})
 
 			expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 0)
@@ -36,7 +36,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux progressif compris entre 0% et 1,5% en cas d’assiette sociale comprise entre 20% et 40% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'10000 €/an',
 			})
 			const taux =
@@ -51,7 +51,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux progressif compris entre 1,5% et 4% en cas d’assiette sociale comprise entre 40% et 60% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'23000 €/an',
 			})
 			const taux =
@@ -71,7 +71,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux progressif compris entre 4% et 6,5% en cas d’assiette sociale comprise entre 60% et 110% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 			const taux =
@@ -91,7 +91,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux progressif compris entre 6,5% et 7,7% en cas d’assiette sociale comprise entre 110% et 200% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 			const taux =
@@ -111,7 +111,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux progressif compris entre 7,7% et 8,5% en cas d’assiette sociale comprise entre 200% et 300% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'100000 €/an',
 			})
 			const taux =
@@ -131,7 +131,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux 1 de 8,5% à 3 PASS et un taux 2 de 6,5% au reste de l’assiette sociale en cas d’assiette sociale supérieure à 300% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'150000 €/an',
 			})
 
@@ -147,7 +147,7 @@ describe('Cotisation maladie', () => {
 			it('applique un taux nul en cas d’assiette sociale annualisée inférieure à 20% du PASS', () => {
 				const e = engine.setSituation({
 					'plafond sécurité sociale': '47100 €/an',
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '355 jour',
 				})
@@ -158,11 +158,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux progressif compris entre 0% et 1,5% en cas d’assiette sociale annualisée comprise entre 20% et 40% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '181 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -180,11 +180,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux progressif compris entre 1,5% et 4% en cas d’assiette sociale annualisée comprise entre 40% et 60% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '90 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -204,11 +204,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux progressif compris entre 4% et 6,5% en cas d’assiette sociale annualisée comprise entre 60% et 110% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '60 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -228,11 +228,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux progressif compris entre 6,5% et 7,7% en cas d’assiette sociale annualisée comprise entre 110% et 200% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '31 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -252,11 +252,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux progressif compris entre 7,7% et 8,5% en cas d’assiette sociale annualisée comprise entre 200% et 300% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '19 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -276,11 +276,11 @@ describe('Cotisation maladie', () => {
 
 			it('applique un taux 1 de 8,5% à 3 PASS et un taux 2 de 6,5% au reste de l’assiette sociale en cas d’assiette sociale annualisée supérieure à 300% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'5000 €/an',
 					"entreprise . durée d'activité cette année": '10 jour',
 				})
-				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = engine.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 
 				expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 8.5)
@@ -297,7 +297,7 @@ describe('Cotisation maladie', () => {
 			it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS', () => {
 				const e = engine.setSituation({
 					'établissement . commune . département': "'La Réunion'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -313,7 +313,7 @@ describe('Cotisation maladie', () => {
 			it('applique un taux de 14,5%', () => {
 				const e = engine.setSituation({
 					"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -340,7 +340,7 @@ describe('Cotisation maladie', () => {
 			const plancherTaux1 = Math.round(0.2 * PASS) - 1
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
+				'independant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
 			})
 
 			expect(e1).toEvaluate(`${COTISATION} avant abattements . taux 1`, 0)
@@ -348,7 +348,7 @@ describe('Cotisation maladie', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'10000 €/an',
 			})
 			const taux2 =
@@ -362,7 +362,7 @@ describe('Cotisation maladie', () => {
 
 			const e3 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'23000 €/an',
 			})
 			const taux3 =
@@ -381,7 +381,7 @@ describe('Cotisation maladie', () => {
 
 			const e4 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 			const taux4 =
@@ -400,7 +400,7 @@ describe('Cotisation maladie', () => {
 
 			const e5 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 			const taux5 =
@@ -419,7 +419,7 @@ describe('Cotisation maladie', () => {
 
 			const e6 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'100000 €/an',
 			})
 			const taux6 =
@@ -438,7 +438,7 @@ describe('Cotisation maladie', () => {
 
 			const e7 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'150000 €/an',
 			})
 
@@ -456,7 +456,7 @@ describe('Cotisation maladie', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
 				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 
@@ -478,15 +478,15 @@ describe('Cotisation maladie', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
 				date: '01/01/2024',
-				'indépendant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
+				'independant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
 			})
 
 			expect(e1).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				'independant . profession libérale . CNAVPL . maladie . taux',
 				0
 			)
 			expect(e1).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie',
+				'independant . profession libérale . CNAVPL . maladie',
 				0
 			)
 			expect(e1).toEvaluate(COTISATION, 0)
@@ -494,7 +494,7 @@ describe('Cotisation maladie', () => {
 			const e2 = engine.setSituation({
 				...defaultSituation,
 				date: '01/01/2024',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'25000 €/an',
 			})
 			const taux2 =
@@ -505,11 +505,11 @@ describe('Cotisation maladie', () => {
 			const cotisation2 = Math.round(25_000 * taux2)
 
 			expect(e2).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				'independant . profession libérale . CNAVPL . maladie . taux',
 				100 * taux2
 			)
 			expect(e2).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie',
+				'independant . profession libérale . CNAVPL . maladie',
 				cotisation2
 			)
 			expect(e2).toEvaluate(COTISATION, cotisation2)
@@ -517,7 +517,7 @@ describe('Cotisation maladie', () => {
 			const e3 = engine.setSituation({
 				...defaultSituation,
 				date: '01/01/2024',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 			const taux3 =
@@ -531,11 +531,11 @@ describe('Cotisation maladie', () => {
 			const cotisation3 = Math.round(50_000 * taux3)
 
 			expect(e3).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				'independant . profession libérale . CNAVPL . maladie . taux',
 				100 * taux3
 			)
 			expect(e3).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie',
+				'independant . profession libérale . CNAVPL . maladie',
 				cotisation3
 			)
 			expect(e3).toEvaluate(COTISATION, cotisation3)
@@ -543,17 +543,17 @@ describe('Cotisation maladie', () => {
 			const e4 = engine.setSituation({
 				...defaultSituation,
 				date: '01/01/2024',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'100000 €/an',
 			})
 			const cotisation4 = Math.round(100_000 * TAUX_T2)
 
 			expect(e4).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie . taux',
+				'independant . profession libérale . CNAVPL . maladie . taux',
 				100 * TAUX_T2
 			)
 			expect(e4).toEvaluate(
-				'indépendant . profession libérale . CNAVPL . maladie',
+				'independant . profession libérale . CNAVPL . maladie',
 				cotisation4
 			)
 			expect(e4).toEvaluate(COTISATION, cotisation4)
@@ -562,7 +562,7 @@ describe('Cotisation maladie', () => {
 		it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS pour les DROM', () => {
 			const e = engine.setSituation({
 				'établissement . commune . département': "'La Réunion'",
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 

@@ -13,8 +13,8 @@ import {
 	Message,
 	Strong,
 	Ul,
-} from '@/design-system'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+} from '@/design-system/index'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModele'
 import { useSitePaths } from '@/sitePaths'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
@@ -129,10 +129,10 @@ export function CasParticuliers() {
 					<Body>
 						Dans le simulateur{' '}
 						<Link
-							to={useSitePaths().absoluteSitePaths.simulateurs.salarié}
-							aria-label={t('salarié, accéder au simulateur salarié')}
+							to={useSitePaths().absoluteSitePaths.simulateurs.salarie}
+							aria-label={t('salarie, accéder au simulateur salarie')}
 						>
-							salarié
+							salarie
 						</Link>
 						, il suffit de renseigner la commune et le taux versement mobilité
 						correspondant est automatiquement déterminé.

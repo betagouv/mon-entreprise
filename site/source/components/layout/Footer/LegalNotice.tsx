@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Body, H2, Link, PopoverWithTrigger, StyledLink } from '@/design-system'
+import { Body, H2, Link, PopoverWithTrigger, StyledLink } from '@/design-system/index'
 import { useSitePaths } from '@/sitePaths'
 
 export default function LegalNotice() {

@@ -6,7 +6,7 @@ import {
 	RadioChoiceGroup,
 	SelectChoiceGroup,
 	ToggleChoiceGroup,
-} from '../ChoiceGroup'
+} from '../ChoiceGroup/index'
 import { ChoiceOptionWithValue } from '../ChoiceGroup/ChoiceOption'
 
 export type SimpleChoiceOptionWithValue = {

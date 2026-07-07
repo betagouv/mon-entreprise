@@ -1,7 +1,7 @@
 import { ReactNode, useRef } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
+import { AQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/AQuoiServentMesCotisations/AQuoiServentMesCotisationsSection'
 import { FromTop } from '@/components/ui/animate'
 import {
 	Body,
@@ -11,7 +11,7 @@ import {
 	Link,
 	Message,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInversionFail } from '@/hooks/useInversionFail'
 
@@ -52,7 +52,7 @@ export default function SalaryExplanation({
 			/>
 			<Spacing lg />
 
-			<ÀQuoiServentMesCotisationsSection regroupement={cotisationsSection} />
+			<AQuoiServentMesCotisationsSection regroupement={cotisationsSection} />
 
 			<Container
 				backgroundColor={(theme) =>

@@ -4,7 +4,7 @@ import * as M from '@/domaine/Montant'
 import { Situation } from '@/domaine/Situation'
 
 import { EnfantsÀCharge, estEnfantsÀChargeValide } from './enfant'
-import { estSalariéesValide, SalariéeAMA, SalariéeGED } from './salariée'
+import { estSalariéesValide, SalariéeAMA, SalariéeGED } from './salariee'
 
 export interface SituationCMG<PrénomsEnfants extends string = string>
 	extends Situation {
@@ -13,7 +13,7 @@ export interface SituationCMG<PrénomsEnfants extends string = string>
 	parentIsolé: O.Option<boolean>
 	ressources: O.Option<M.Montant<'€/an'>>
 	enfantsÀCharge: EnfantsÀCharge<PrénomsEnfants>
-	salariées: {
+	salariees: {
 		GED: Array<SalariéeGED>
 		AMA: Array<SalariéeAMA<PrénomsEnfants>>
 	}
@@ -31,7 +31,7 @@ export const estSituationCMGValide = (
 ): situation is SituationCMGValide =>
 	estInformationsValides(situation) &&
 	estEnfantsÀChargeValide(situation.enfantsÀCharge) &&
-	estSalariéesValide(situation.salariées)
+	estSalariéesValide(situation.salariees)
 
 export const initialSituationCMG: SituationCMG = {
 	_tag: 'Situation',
@@ -44,7 +44,7 @@ export const initialSituationCMG: SituationCMG = {
 		perçoitAeeH: O.none(),
 		AeeH: O.none(),
 	},
-	salariées: {
+	salariees: {
 		GED: [],
 		AMA: [],
 	},

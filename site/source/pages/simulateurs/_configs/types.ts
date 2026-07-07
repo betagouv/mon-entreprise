@@ -23,7 +23,7 @@ export interface PageConfig {
 	iframePath: string
 
 	/** Le chemin dans l'objet `absoluteSitePath`
-	 * @example 'simulateurs.salarié'
+	 * @example 'simulateurs.salarie'
 	 */
 	pathId: string
 

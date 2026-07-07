@@ -5,10 +5,10 @@ import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
-import { Body, Button, H3, SmallBody } from '@/design-system'
+import { Body, Button, H3, SmallBody } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/SimulationConfig'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModele'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 type THit = AlgoliaHit<{

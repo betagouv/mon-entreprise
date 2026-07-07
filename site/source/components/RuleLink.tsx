@@ -3,10 +3,10 @@ import Engine from 'publicodes'
 import { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Link } from '@/design-system'
+import { Link } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModèle.selector'
+import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModele.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {

@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { Popover } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
+import { Popover } from '@/design-system/index'
+import { useNavigation } from '@/lib/navigation/index'
 import Documentation from '@/pages/documentation/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 

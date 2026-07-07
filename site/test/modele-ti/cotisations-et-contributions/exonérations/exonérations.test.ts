@@ -2,15 +2,15 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
+const COTISATIONS = 'independant . cotisations et contributions . cotisations'
 const EXONÉRATIONS =
-	'indépendant . cotisations et contributions . cotisations . exonérations'
+	'independant . cotisations et contributions . cotisations . exonérations'
 
 const defaultSituation = {
 	'entreprise . activité': "'libérale'",
 	'entreprise . activité . libérale . réglementée': 'oui',
 	'entreprise . date de création': '18/02/2025',
-	'indépendant . cotisations et contributions . assiette sociale': '36000 €/an',
+	'independant . cotisations et contributions . assiette sociale': '36000 €/an',
 }
 
 describe('L’exonération appliquée', () => {
@@ -218,7 +218,7 @@ describe('L’exonération appliquée', () => {
 				...defaultSituation,
 				[`${EXONÉRATIONS} . invalidité`]: 'oui',
 				[`${EXONÉRATIONS} . Acre`]: 'oui',
-				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+				'independant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
 			})
 
@@ -254,7 +254,7 @@ describe('L’exonération appliquée', () => {
 				{
 					[`${EXONÉRATIONS} . invalidité`]: 'oui',
 					[`${EXONÉRATIONS} . Acre`]: 'oui',
-					'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'independant . profession libérale . CNAVPL . exonération incapacité':
 						'oui',
 				},
 			],
@@ -301,7 +301,7 @@ describe('L’exonération appliquée', () => {
 				[`${EXONÉRATIONS} . invalidité`]: 'oui',
 				[`${EXONÉRATIONS} . invalidité . exonération . taux retraite complémentaire`]:
 					'50%',
-				'indépendant . profession libérale . CNAVPL . exonération incapacité':
+				'independant . profession libérale . CNAVPL . exonération incapacité':
 					'oui',
 			})
 
@@ -321,7 +321,7 @@ describe('L’exonération appliquée', () => {
 				'd’exonération incapacité',
 				{
 					[`${EXONÉRATIONS} . invalidité`]: 'oui',
-					'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'independant . profession libérale . CNAVPL . exonération incapacité':
 						'oui',
 				},
 			],

@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 import { useRegisterSW } from 'virtual:pwa-register/react'
 
-import { Body, Button, CloseButton, Message } from '@/design-system'
+import { Body, Button, CloseButton, Message } from '@/design-system/index'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getItem, removeItem, setItem } from '@/storage/safeLocalStorage'
 

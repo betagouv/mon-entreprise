@@ -2,7 +2,7 @@ import React, { ComponentPropsWithRef, JSX, useRef } from 'react'
 import { AriaButtonProps } from 'react-aria'
 import { css, IStyledComponent, styled } from 'styled-components'
 
-import { Link as BaseLink } from '@/lib/navigation'
+import { Link as BaseLink } from '@/lib/navigation/index'
 
 import { StyledButton } from '../buttons/Button'
 import { H3, H4, HeadingUnderline } from '../typography/heading'

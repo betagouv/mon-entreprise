@@ -1,7 +1,7 @@
 import { Condition } from '@/components/EngineValue/Condition'
-import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
+import { SimulationGoal, SimulationGoals } from '@/components/Simulation/index'
 
-import { OptionBarèmeSwitch } from './components/OptionBarèmeSwitch'
+import { OptionBarèmeSwitch } from './components/OptionBaremeSwitch'
 
 export const DividendesSimulationGoals = () => (
 	<SimulationGoals toggles={<OptionBarèmeSwitch />}>

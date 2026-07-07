@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 import { styled } from 'styled-components'
 
-import { Emoji } from '../../../emoji'
+import { Emoji } from '../../../emoji/index'
 import { InfoButton } from '../../InfoButton'
 import { Checkbox } from '../Checkbox'
 

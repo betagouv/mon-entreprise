@@ -2,7 +2,7 @@ import { ASTNode, ParsedRules, reduceAST, Rule, RuleNode } from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-export type Namespace = 'salarié' | 'assimilé salarié'
+export type Namespace = 'salarie' | 'assimilé salarie'
 
 export function getCotisationsBySection(
 	namespace: Namespace,
@@ -42,14 +42,14 @@ export function getCotisationsBySection(
 			...findCotisations(
 				`${namespace} . cotisations . employeur` as DottedName
 			),
-			...findCotisations(`${namespace} . cotisations . salarié` as DottedName),
+			...findCotisations(`${namespace} . cotisations . salarie` as DottedName),
 		] as Array<ASTNode & { dottedName: DottedName } & { nodeKind: 'reference' }>
 	)
 		.map((cotisation) => cotisation.dottedName)
 		.filter(Boolean)
 		.map(
 			(dottedName) =>
-				dottedName.replace(/ . (salarié|employeur)$/, '') as DottedName
+				dottedName.replace(/ . (salarie|employeur)$/, '') as DottedName
 		)
 		.reduce(
 			(acc, cotisation: DottedName) => {

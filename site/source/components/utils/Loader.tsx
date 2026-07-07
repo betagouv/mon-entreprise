@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { FlexCenter, Spinner } from '@/design-system'
+import { FlexCenter, Spinner } from '@/design-system/index'
 
 export default function Loader() {
 	return (

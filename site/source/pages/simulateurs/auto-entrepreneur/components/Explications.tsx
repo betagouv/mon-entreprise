@@ -1,10 +1,10 @@
 import { Condition } from '@/components/EngineValue/Condition'
-import { ÀQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/ÀQuoiServentMesCotisationsSection'
+import { AQuoiServentMesCotisationsSection } from '@/components/simulationExplanation/AQuoiServentMesCotisations/AQuoiServentMesCotisationsSection'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import DroitsRetraite from '@/pages/simulateurs/auto-entrepreneur/components/DroitsRetraite'
 
 import InstitutionsPartenaires from './InstitutionsPartenaires'
-import RépartitionRevenu from './RépartitionRevenu'
+import RépartitionRevenu from './RepartitionRevenu'
 
 export default function Explications() {
 	return (
@@ -13,7 +13,7 @@ export default function Explications() {
 				<RépartitionRevenu />
 				<InstitutionsPartenaires />
 				<DroitsRetraite />
-				<ÀQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
+				<AQuoiServentMesCotisationsSection regroupement={CotisationsSection} />
 			</Condition>
 		</>
 	)

@@ -1,14 +1,14 @@
-export { AccordeonDocumentation } from './AccordeonDocumentation'
+export { AccordeonDocumentation } from './AccordeonDocumentation/index'
 export { Alert } from './Alert'
 export { Attention, Callout, Conseil, Info, Note } from './Callout'
-export { Liseré } from './Liseré'
+export { Lisere } from './Lisere/index'
 export { DocumentationMDXContainer } from './DocumentationMDXContainer'
 export {
 	DocumentationPage,
 	MDXContent,
 	NavigationContainer,
 } from './DocumentationPage'
-export { ExemplePratique } from './ExemplePratique'
-export { ValeurImportante } from './ValeurImportante'
-export { Tableau } from './Tableau'
-export { Valeur } from './Valeur'
+export { ExemplePratique } from './ExemplePratique/index'
+export { ValeurImportante } from './ValeurImportante/index'
+export { Tableau } from './Tableau/index'
+export { Valeur } from './Valeur/index'

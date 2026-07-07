@@ -3,26 +3,26 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATIONS =
-	'indépendant . cotisations et contributions . cotisations . conjoint collaborateur'
+	'independant . cotisations et contributions . cotisations . conjoint collaborateur'
 
 const defaultSituation = {
-	'indépendant . conjoint collaborateur': 'oui',
+	'independant . conjoint collaborateur': 'oui',
 }
 const situationRevenuAvecPartage = {
-	'indépendant . conjoint collaborateur . choix assiette':
+	'independant . conjoint collaborateur . choix assiette':
 		"'revenu avec partage'",
-	'indépendant . conjoint collaborateur . choix assiette . proportion':
+	'independant . conjoint collaborateur . choix assiette . proportion':
 		"'moitié'",
 }
 const situationRevenuSansPartage = {
-	'indépendant . conjoint collaborateur . choix assiette':
+	'independant . conjoint collaborateur . choix assiette':
 		"'revenu sans partage'",
-	'indépendant . conjoint collaborateur . choix assiette . proportion':
+	'independant . conjoint collaborateur . choix assiette . proportion':
 		"'moitié'",
 }
 const situationAcre = {
 	'entreprise . date de création': '01/01/2026',
-	'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+	'independant . cotisations et contributions . cotisations . exonérations . Acre':
 		'oui',
 }
 
@@ -41,12 +41,12 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers du PASS avec l’option assiette forfaitaire', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'forfaitaire'",
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					Math.round(PASS / 3)
 				)
 			})
@@ -54,16 +54,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu sans partage proportion 1/3', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu sans partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'tiers'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					20_000
 				)
 			})
@@ -71,16 +71,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu sans partage proportion 1/2', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu sans partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'moitié'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					30_000
 				)
 			})
@@ -88,16 +88,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu avec partage proportion 1/3', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu avec partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'tiers'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					20_000
 				)
 			})
@@ -105,16 +105,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu avec partage proportion 1/2', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu avec partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'moitié'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					30_000
 				)
 			})
@@ -129,7 +129,7 @@ describe('Conjoint collaborateur', () => {
 					.nodeValue as number
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					Math.round(450 * Smic)
 				)
 			})
@@ -140,7 +140,7 @@ describe('Conjoint collaborateur', () => {
 				const e = engine.setSituation(defaultSituation)
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . indemnités journalières'
+					'independant . assiette minimale . indemnités journalières'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(Math.round((PASS * 40) / 100))
 
@@ -153,7 +153,7 @@ describe('Conjoint collaborateur', () => {
 			it('utilise le même barème pour la retraite de base', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'30000 €/an',
 				})
 
@@ -169,7 +169,7 @@ describe('Conjoint collaborateur', () => {
 			it('utilise le même barème pour la retraite complémentaire', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 				})
 
@@ -185,7 +185,7 @@ describe('Conjoint collaborateur', () => {
 			it('utilise le même barème pour l’invalidité-décès', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'30000 €/an',
 				})
 
@@ -204,7 +204,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -219,7 +219,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituation,
 					...situationAcre,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -244,7 +244,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
 
@@ -259,7 +259,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituation,
 					...situationAcre,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
 
@@ -275,7 +275,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -284,10 +284,10 @@ describe('Conjoint collaborateur', () => {
 				const e2 = engine.setSituation({
 					...defaultSituation,
 					'entreprise . date de création': '01/01/2026',
-					'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'independant . cotisations et contributions . cotisations . exonérations . Acre':
 						'non',
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -298,7 +298,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
 					...situationRevenuSansPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
@@ -307,7 +307,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituation,
 					...situationAcre,
 					...situationRevenuSansPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -317,7 +317,7 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’Acre en cas d’assiette forfaitaire', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
@@ -325,7 +325,7 @@ describe('Conjoint collaborateur', () => {
 				const e2 = engine.setSituation({
 					...defaultSituation,
 					...situationAcre,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -335,18 +335,18 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’exonération invalidité', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
 
 				const e2 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
-					'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'independant . cotisations et contributions . cotisations . exonérations . invalidité':
 						'oui',
-					'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
+					'independant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
 						'9 mois',
 				})
 
@@ -356,7 +356,7 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’exonération âge', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 					'entreprise . date de création': '01/01/2006',
 				})
@@ -364,9 +364,9 @@ describe('Conjoint collaborateur', () => {
 
 				const e2 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
-					'indépendant . cotisations et contributions . cotisations . exonérations . âge':
+					'independant . cotisations et contributions . cotisations . exonérations . âge':
 						'oui',
 					'entreprise . date de création': '01/01/2006',
 				})
@@ -387,12 +387,12 @@ describe('Conjoint collaborateur', () => {
 			it('est égale à la moitié du PASS avec l’option assiette forfaitaire', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'forfaitaire'",
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					Math.round(PASS / 2)
 				)
 			})
@@ -400,16 +400,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu sans partage proportion 1/4', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu sans partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'quart'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					15_000
 				)
 			})
@@ -417,16 +417,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au quart de l’assiette sociale avec l’option revenu sans partage proportion 1/2', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu sans partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'moitié'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					30_000
 				)
 			})
@@ -434,16 +434,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu avec partage proportion 1/4', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu avec partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'quart'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					15_000
 				)
 			})
@@ -451,16 +451,16 @@ describe('Conjoint collaborateur', () => {
 			it('est égale au tiers de l’assiette sociale avec l’option revenu avec partage proportion 1/2', () => {
 				const e = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . choix assiette':
+					'independant . conjoint collaborateur . choix assiette':
 						"'revenu avec partage'",
-					'indépendant . conjoint collaborateur . choix assiette . proportion':
+					'independant . conjoint collaborateur . choix assiette . proportion':
 						"'moitié'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès',
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès',
 					30_000
 				)
 			})
@@ -471,7 +471,7 @@ describe('Conjoint collaborateur', () => {
 				const e = engine.setSituation(defaultSituationPLR)
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . indemnités journalières'
+					'independant . assiette minimale . indemnités journalières'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(Math.round((40 / 100) * PASS))
 
@@ -485,7 +485,7 @@ describe('Conjoint collaborateur', () => {
 				it('utilise le même barème', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+						'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 							'30000 €/an',
 					})
 
@@ -503,12 +503,12 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option assiette forfaitaire', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
+						'independant . cotisations et contributions . cotisations . retraite complémentaire'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . retraite complémentaire`
@@ -520,16 +520,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option revenu sans partage proportion 1/4', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu sans partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'quart'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
+						'independant . cotisations et contributions . cotisations . retraite complémentaire'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . retraite complémentaire`
@@ -541,16 +541,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option revenu avec partage proportion 1/4', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu avec partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'quart'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
+						'independant . cotisations et contributions . cotisations . retraite complémentaire'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . retraite complémentaire`
@@ -562,16 +562,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut la moitié de la cotisation avec l’option revenu sans partage proportion 1/2', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu sans partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'moitié'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
+						'independant . cotisations et contributions . cotisations . retraite complémentaire'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . retraite complémentaire`
@@ -583,16 +583,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut la moitié de la cotisation avec l’option revenu avec partage proportion 1/2', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu avec partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'moitié'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . retraite complémentaire'
+						'independant . cotisations et contributions . cotisations . retraite complémentaire'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . retraite complémentaire`
@@ -606,12 +606,12 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option assiette forfaitaire', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+						'independant . cotisations et contributions . cotisations . invalidité et décès'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . invalidité et décès`
@@ -623,16 +623,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option revenu sans partage proportion 1/4', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu sans partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'quart'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+						'independant . cotisations et contributions . cotisations . invalidité et décès'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . invalidité et décès`
@@ -644,16 +644,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut le quart de la cotisation avec l’option revenu avec partage proportion 1/4', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu avec partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'quart'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+						'independant . cotisations et contributions . cotisations . invalidité et décès'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . invalidité et décès`
@@ -665,16 +665,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut la moitié de la cotisation avec l’option revenu sans partage proportion 1/2', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu sans partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'moitié'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+						'independant . cotisations et contributions . cotisations . invalidité et décès'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . invalidité et décès`
@@ -686,16 +686,16 @@ describe('Conjoint collaborateur', () => {
 				it('vaut la moitié de la cotisation avec l’option revenu avec partage proportion 1/2', () => {
 					const e = engine.setSituation({
 						...defaultSituationPLR,
-						'indépendant . conjoint collaborateur . choix assiette':
+						'independant . conjoint collaborateur . choix assiette':
 							"'revenu avec partage'",
-						'indépendant . conjoint collaborateur . choix assiette . proportion':
+						'independant . conjoint collaborateur . choix assiette . proportion':
 							"'moitié'",
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					const cotisation = e.evaluate(
-						'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+						'independant . cotisations et contributions . cotisations . invalidité et décès'
 					).nodeValue as number
 					const cotisationConjoint = e.evaluate(
 						`${COTISATIONS} . invalidité et décès`
@@ -711,7 +711,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -726,7 +726,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituationPLR,
 					...situationAcre,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -748,7 +748,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
 
@@ -763,7 +763,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituationPLR,
 					...situationAcre,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
 
@@ -779,7 +779,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -788,10 +788,10 @@ describe('Conjoint collaborateur', () => {
 				const e2 = engine.setSituation({
 					...defaultSituationPLR,
 					'entreprise . date de création': '01/01/2026',
-					'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					'independant . cotisations et contributions . cotisations . exonérations . Acre':
 						'non',
 					...situationRevenuAvecPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -802,7 +802,7 @@ describe('Conjoint collaborateur', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
 					...situationRevenuSansPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
@@ -811,7 +811,7 @@ describe('Conjoint collaborateur', () => {
 					...defaultSituationPLR,
 					...situationAcre,
 					...situationRevenuSansPartage,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -821,7 +821,7 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’Acre en cas d’assiette forfaitaire', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
@@ -829,7 +829,7 @@ describe('Conjoint collaborateur', () => {
 				const e2 = engine.setSituation({
 					...defaultSituationPLR,
 					...situationAcre,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'30000 €/an',
 				})
 
@@ -839,18 +839,18 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’exonération invalidité', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
 
 				const e2 = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
-					'indépendant . cotisations et contributions . cotisations . exonérations . invalidité':
+					'independant . cotisations et contributions . cotisations . exonérations . invalidité':
 						'oui',
-					'indépendant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
+					'independant . cotisations et contributions . cotisations . exonérations . invalidité . durée':
 						'9 mois',
 				})
 
@@ -860,16 +860,16 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’exonération âge', () => {
 				const e1 = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
 
 				const e2 = engine.setSituation({
 					...defaultSituationPLR,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
-					'indépendant . cotisations et contributions . cotisations . exonérations . âge':
+					'independant . cotisations et contributions . cotisations . exonérations . âge':
 						'oui',
 				})
 
@@ -879,16 +879,16 @@ describe('Conjoint collaborateur', () => {
 			it('n’applique pas l’exonération incapacité CNAVPL', () => {
 				const e1 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
 				})
 				const cotisations = e1.evaluate(COTISATIONS).nodeValue as number
 
 				const e2 = engine.setSituation({
 					...defaultSituation,
-					'indépendant . conjoint collaborateur . assiette retraite et invalidité-décès':
+					'independant . conjoint collaborateur . assiette retraite et invalidité-décès':
 						'100000 €/an',
-					'indépendant . profession libérale . CNAVPL . exonération incapacité':
+					'independant . profession libérale . CNAVPL . exonération incapacité':
 						'oui',
 				})
 

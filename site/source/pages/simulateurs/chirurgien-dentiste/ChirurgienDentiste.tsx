@@ -1,4 +1,4 @@
-import IndépendantBase from '../indépendant/IndépendantBase'
+import IndépendantBase from '../independant/IndependantBase'
 
 export function ChirurgienDentiste() {
 	return <IndépendantBase id="chirurgien-dentiste" />

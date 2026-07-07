@@ -1,7 +1,7 @@
 import { Decorator, Meta, StoryObj } from '@storybook/react'
 import { MemoryRouter } from 'react-router-dom'
 
-import { Li, SmallBody, Strong, Ul } from '../typography'
+import { Li, SmallBody, Strong, Ul } from '../typography/index'
 import { InfoBulle } from './InfoBulle'
 
 const RouterDecorator: Decorator = (Story) => (

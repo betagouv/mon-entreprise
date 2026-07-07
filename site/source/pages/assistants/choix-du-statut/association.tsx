@@ -12,7 +12,7 @@ import {
 	RadioCardGroup,
 	SmallBody,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'

@@ -1,8 +1,8 @@
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import Meta from '@/components/utils/Meta'
-import { Link } from '@/design-system'
+import { Link } from '@/design-system/index'
 
 import { DocumentationMDXContainer } from './DocumentationMDXContainer'
 

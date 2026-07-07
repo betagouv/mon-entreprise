@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Grid } from '@/design-system'
+import { Grid } from '@/design-system/index'
 
 export default function LectureGuide() {
 	return (

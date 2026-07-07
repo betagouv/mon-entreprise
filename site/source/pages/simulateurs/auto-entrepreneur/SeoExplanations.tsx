@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
-import { Body, Emoji, H2, Message } from '@/design-system'
+import { Body, Emoji, H2, Message } from '@/design-system/index'
 
 export const SeoExplanations = () => (
 	<Trans i18nKey="pages.simulateurs.auto-entrepreneur.seo explanation">

@@ -7,8 +7,8 @@ import {
 	LinkIcon,
 	PhoneIcon,
 	ReturnLeftIcon,
-} from '../icons'
-import { Button } from './'
+} from '../icons/index'
+import { Button } from './index'
 
 const meta: Meta<typeof Button> = {
 	component: Button,

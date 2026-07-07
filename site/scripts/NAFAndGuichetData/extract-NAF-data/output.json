@@ -37647,7 +37647,7 @@
   {
     "type": "sousCatégorie",
     "code": "26.60.12",
-    "title": "Appareils d'électrodiagnostic utilisés en médecine",
+    "title": "Appareils d'électrodiagnostic utilisés en medecine",
     "data": [],
     "contenuCentral": [
       "électrocardiographes, électroencéphalographes, audiomètres",
@@ -37662,10 +37662,10 @@
   {
     "type": "sousCatégorie",
     "code": "26.60.13",
-    "title": "Appareils à rayonnements ultraviolets ou infrarouges, utilisés en médecine, chirurgie, art dentaire et vétérinaire",
+    "title": "Appareils à rayonnements ultraviolets ou infrarouges, utilisés en medecine, chirurgie, art dentaire et vétérinaire",
     "data": [],
     "contenuCentral": [
-      "appareils à rayonnements ultraviolets ou infrarouges, utilisés en médecine, chirurgie, art dentaire et vétérinaire"
+      "appareils à rayonnements ultraviolets ou infrarouges, utilisés en medecine, chirurgie, art dentaire et vétérinaire"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -48844,7 +48844,7 @@
       "la fabrication de sièges de voitures (cf. 29.32Z)",
       "la fabrication de sièges de wagons (cf. 30.20Z)",
       "la fabrication de sièges d'avions (cf. 30.30Z)",
-      "la fabrication de mobilier pour la médecine, la chirurgie, l'art dentaire ou l'art vétérinaire (cf. 32.50A)",
+      "la fabrication de mobilier pour la medecine, la chirurgie, l'art dentaire ou l'art vétérinaire (cf. 32.50A)",
       "la fixation et l'installation de mobilier modulaire, l'installation de cloisons, l'installation de meubles de laboratoire (cf. 43.32A, 43.32B)"
     ],
     "parent": 3774
@@ -50338,7 +50338,7 @@
       "la fabrication d'appareils de laboratoire, d'instruments chirurgicaux et médicaux, d'instruments et d'appareils nécessaires à l'exercice de l'art dentaire, de dentiers, d'articles et d'appareils nécessaires à la pratique de l'orthodontie"
     ],
     "contenuAnnexe": [
-      "la fabrication de mobilier pour la médecine, l'art dentaire ou les activités similaires, dont les fonctions spécifiques déterminent la finalité du produit, tels que les fauteuils de dentiste avec fonctions hydrauliques intégrées"
+      "la fabrication de mobilier pour la medecine, l'art dentaire ou les activités similaires, dont les fonctions spécifiques déterminent la finalité du produit, tels que les fauteuils de dentiste avec fonctions hydrauliques intégrées"
     ],
     "contenuExclu": [],
     "parent": 3885
@@ -50359,7 +50359,7 @@
       "la fabrication d'appareils de nettoyage par ultrasons destinés à un usage en laboratoire",
       "la fabrication de stérilisateurs de laboratoires",
       "la fabrication d'équipements de distillation de laboratoire, de centrifugeuses de laboratoire",
-      "la fabrication de mobilier pour la médecine, la chirurgie, l'art dentaire ou l'art vétérinaire, tel que :",
+      "la fabrication de mobilier pour la medecine, la chirurgie, l'art dentaire ou l'art vétérinaire, tel que :",
       "• tables d'opération",
       "• tables d'examen",
       "• lits à mécanismes pour usages cliniques",
@@ -57338,7 +57338,7 @@
     ],
     "contenuAnnexe": [
       "le rabattement de nappes et autres techniques de lutte contre l'infiltration d'eau en fondation",
-      "les prestations indépendantes d'artificiers, pour toutes applications"
+      "les prestations independantes d'artificiers, pour toutes applications"
     ],
     "contenuExclu": [
       "le forage de puits d'extraction de pétrole ou de gaz (cf. 06.10Z et 06.20Z)",
@@ -58031,7 +58031,7 @@
     "contenuAnnexe": [
       "l'installation de faux planchers sur structure métallique pour les installations informatiques",
       "travaux de ferronnerie d'art (43.39.11)",
-      "assemblage de meubles indépendants (95.24.10)"
+      "assemblage de meubles independants (95.24.10)"
     ],
     "contenuExclu": [],
     "parent": 4439
@@ -67178,7 +67178,7 @@
     "title": "Autres transports routiers réguliers spéciaux de voyageurs",
     "data": [],
     "contenuCentral": [
-      "transport routier urbain et suburbain régulier spécial de passagers, sur des lignes déterminées, conformément à un horaire préétabli, pour une catégorie spécifique d'utilisateurs (étudiants, salariés, etc.)",
+      "transport routier urbain et suburbain régulier spécial de passagers, sur des lignes déterminées, conformément à un horaire préétabli, pour une catégorie spécifique d'utilisateurs (étudiants, salaries, etc.)",
       "transports assurés par les autocars scolaires qui conduisent les élèves de leur domicile vers leur école, d'une école à l'autre, etc.",
       "navettes régulières d'aéroports urbaines et suburbaines"
     ],
@@ -67233,7 +67233,7 @@
     "title": "Location d'autocars avec conducteur",
     "data": [],
     "contenuCentral": [
-      "location d'autobus ou d'autocars avec conducteur à la durée, généralement indépendante de la distance et sur la base de spécifications (horaires, itinéraire, etc.) définies par le client"
+      "location d'autobus ou d'autocars avec conducteur à la durée, généralement independante de la distance et sur la base de spécifications (horaires, itinéraire, etc.) définies par le client"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -70153,7 +70153,7 @@
     "contenuAnnexe": [],
     "contenuExclu": [
       "la mise à disposition de lieux d'hébergement pour des séjours de longue durée à titre de résidence principale, classée dans les activités immobilières (cf. section L).",
-      "non plus la préparation de repas et de boissons qui ne sont pas destinés à une consommation immédiate ou qui sont vendus par l'intermédiaire de canaux de distribution indépendants, c'est-à-dire par l'intermédiaire d'activités de commerce de gros ou de détail. La préparation de ces repas est comprise dans la section C « Industrie manufacturière »."
+      "non plus la préparation de repas et de boissons qui ne sont pas destinés à une consommation immédiate ou qui sont vendus par l'intermédiaire de canaux de distribution independants, c'est-à-dire par l'intermédiaire d'activités de commerce de gros ou de détail. La préparation de ces repas est comprise dans la section C « Industrie manufacturière »."
     ]
   },
   {
@@ -70234,7 +70234,7 @@
     "title": "Hébergement touristique et autre hébergement de courte durée",
     "data": [],
     "contenuCentral": [
-      "la mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des"
+      "la mise à disposition d'un lieu d'hébergement, généralement sur une base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, dans un espace limité, des pièces complètement meublées ou des espaces de vie, de repas et de repos et disposant d'installations pour cuisiner ou de cuisines intégrées. Il peut s'agir d'appartements situés dans de petits bâtiments independants à plusieurs niveaux ou dans des"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -71231,7 +71231,7 @@
       "la production de globes (cf. 32.99Z)",
       "l'édition de matériel publicitaire (cf. 58.19Z)",
       "l'édition de livres musicaux et de partitions (cf. 59.20Z)",
-      "les activités des auteurs indépendants, notamment la production d'œuvres originales (cf. 90.03B)"
+      "les activités des auteurs independants, notamment la production d'œuvres originales (cf. 90.03B)"
     ],
     "parent": 5465
   },
@@ -71253,9 +71253,9 @@
     "title": "Livres professionnels, techniques et savants, imprimés",
     "data": [],
     "contenuCentral": [
-      "livres professionnels, techniques et savants, contenant des informations ou des travaux de recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels spécialisés (avocats, médecins, électriciens, comptables, managers, informaticiens, etc.) :",
+      "livres professionnels, techniques et savants, contenant des informations ou des travaux de recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels spécialisés (avocats, medecins, électriciens, comptables, managers, informaticiens, etc.) :",
       "• livres de sciences sociales ou humaines, de gestion, de management, de linguistique, de droit, de philosophie",
-      "• livres de sciences exactes, de sciences naturelles, de médecine, de technologie, livres traitants des techniques de l'ingénieur, etc."
+      "• livres de sciences exactes, de sciences naturelles, de medecine, de technologie, livres traitants des techniques de l'ingénieur, etc."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -71824,9 +71824,9 @@
     "title": "Revues et journaux d'affaires, professionnels et universitaires imprimés",
     "data": [],
     "contenuCentral": [
-      "revues périodiques professionnelles, techniques et universitaires, contenant des informations ou des travaux de recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels spécialisés (avocats, médecins, électriciens, comptables, managers, informaticiens, etc.) :",
+      "revues périodiques professionnelles, techniques et universitaires, contenant des informations ou des travaux de recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels spécialisés (avocats, medecins, électriciens, comptables, managers, informaticiens, etc.) :",
       "• revues périodiques de sciences sociales ou humaines, de gestion, de management, de linguistique, de droit, de philosophie",
-      "• revues périodiques de sciences exactes, de sciences naturelles, de médecine, de technologie, livres traitants des techniques de l'ingénieur, etc."
+      "• revues périodiques de sciences exactes, de sciences naturelles, de medecine, de technologie, livres traitants des techniques de l'ingénieur, etc."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -75214,8 +75214,8 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "les activités des photojournalistes indépendants (cf. 74.20Z)",
-      "les activités des journalistes indépendants (cf. 90.03B)"
+      "les activités des photojournalistes independants (cf. 74.20Z)",
+      "les activités des journalistes independants (cf. 90.03B)"
     ],
     "parent": 5779
   },
@@ -75333,8 +75333,8 @@
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services des photojournalistes indépendants (74.20.2)",
-      "services des journalistes indépendants (90.03.11)"
+      "services des photojournalistes independants (74.20.2)",
+      "services des journalistes independants (90.03.11)"
     ],
     "parent": 5782
   },
@@ -77019,8 +77019,8 @@
       "Produits associés : 65.30.11, 65.30.12"
     ],
     "contenuCentral": [
-      "les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salariés ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
-      "les régimes de prestations aux salariés",
+      "les entités juridiques (fonds, régimes et/ou programmes) organisées pour assurer le paiement des prestations de retraite exclusivement pour les salaries ou membres du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par la cotisation de l'affilié.",
+      "les régimes de prestations aux salaries",
       "les fonds et régimes de pension"
     ],
     "contenuAnnexe": [],
@@ -77458,7 +77458,7 @@
     "title": "ACTIVITÉS AUXILIAIRES D'ASSURANCE ET DE CAISSES DE RETRAITE",
     "data": [],
     "contenuCentral": [
-      "l'activité exercée par des agents (courtiers) consistant à vendre des contrats d'assurance de rente et d'autres formes de contrat d'assurance ou à fournir d'autres services liés aux prestations pour salariés ou aux caisses d'assurance et de retraite, tels que le règlement des demandes d'indemnisation ou l'administration de tiers."
+      "l'activité exercée par des agents (courtiers) consistant à vendre des contrats d'assurance de rente et d'autres formes de contrat d'assurance ou à fournir d'autres services liés aux prestations pour salaries ou aux caisses d'assurance et de retraite, tels que le règlement des demandes d'indemnisation ou l'administration de tiers."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -78688,7 +78688,7 @@
     "title": "Services d'arbitrage et de conciliation",
     "data": [],
     "contenuCentral": [
-      "services d'assistance, sous la forme d'arbitrage ou de médiation, en vue de régler les différends entre employeurs et salariés, entre entreprises ou entre particuliers"
+      "services d'assistance, sous la forme d'arbitrage ou de médiation, en vue de régler les différends entre employeurs et salaries, entre entreprises ou entre particuliers"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -78754,7 +78754,7 @@
       "l'enregistrement d'opérations commerciales pour les entreprises ou autres",
       "l'établissement ou la vérification de comptes financiers",
       "l'examen des comptes et la certification de leur exactitude",
-      "l'établissement de déclarations fiscales pour les particuliers et les entreprises",
+      "l'établissement de declarations fiscales pour les particuliers et les entreprises",
       "les activités de conseil et de représentation (autre que la représentation juridique), pour le compte de clients, devant l'administration fiscale"
     ],
     "contenuAnnexe": [
@@ -78845,12 +78845,12 @@
     "data": [],
     "contenuCentral": [
       "services d'établissement d'états financiers à partir des informations fournies par le client. Aucune garantie n'est offerte quant à l'exactitude des états ainsi établis.",
-      "services d'établissement de déclarations fiscales, pour autant que ce service soit fourni, pour un forfait unique, dans le cadre d'un service global d'établissement d'états financiers",
+      "services d'établissement de declarations fiscales, pour autant que ce service soit fourni, pour un forfait unique, dans le cadre d'un service global d'établissement d'états financiers",
       "établissement de comptes de résultats, bilans, etc."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services d'établissement de déclarations d'impôts sur les personnes morales, fournis en tant que service distinct (69.20.3)"
+      "services d'établissement de declarations d'impôts sur les personnes morales, fournis en tant que service distinct (69.20.3)"
     ],
     "parent": 6066
   },
@@ -78865,7 +78865,7 @@
     "contenuAnnexe": [],
     "contenuExclu": [
       "services de paie, y compris l'établissement des fiches et livres de paie (69.20.24)",
-      "services comptables liés à l'établissement de déclarations fiscales (69.20.3)",
+      "services comptables liés à l'établissement de declarations fiscales (69.20.3)",
       "services de recouvrement de factures (82.91.12)"
     ],
     "parent": 6066
@@ -78888,7 +78888,7 @@
     "title": "Autres services comptables",
     "data": [],
     "contenuCentral": [
-      "autres services comptables : établissement d'attestations, expertises, déclarations pro forma, etc."
+      "autres services comptables : établissement d'attestations, expertises, declarations pro forma, etc."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -78910,7 +78910,7 @@
     "title": "Services de conseil fiscal aux entreprises",
     "data": [],
     "contenuCentral": [
-      "conseil fiscal aux entreprises et préparation de déclarations pour tous types de taxes (TVA, par exemple)"
+      "conseil fiscal aux entreprises et préparation de declarations pour tous types de taxes (TVA, par exemple)"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -79273,11 +79273,11 @@
       "services de conseil et d'assistance opérationnelle concernant les stratégies, politiques, pratiques et procédures en matière de ressources humaines au sein d'une organisation. Ces services peuvent porter sur un ou plusieurs des aspects suivants :",
       "• recrutement, rémunération, prestations, mesure et évaluation de la performance",
       "• développement organisationnel (amélioration du fonctionnement au sein des groupes et entre ceux-ci)",
-      "• formation des salariés et besoins de perfectionnement",
-      "• procédures et plans de replacement externe en vue d'aider les salariés",
+      "• formation des salaries et besoins de perfectionnement",
+      "• procédures et plans de replacement externe en vue d'aider les salaries",
       "• planification des remplacements",
       "• conformité aux réglementations dans des domaines telles que la santé, la sécurité, la rémunération et l'équité en matière d'emploi",
-      "• relations employeurs-salariés",
+      "• relations employeurs-salaries",
       "• audits des ressources humaines"
     ],
     "contenuAnnexe": [],
@@ -80781,7 +80781,7 @@
   {
     "type": "catégorie",
     "code": "72.19.4",
-    "title": "Recherche et développement expérimental en médecine et pharmacie",
+    "title": "Recherche et développement expérimental en medecine et pharmacie",
     "data": [],
     "contenuCentral": [
       "services de recherche et développement expérimental en matière de traitement des maladies, d'hygiène prophylactique, de pharmacie, etc."
@@ -80795,7 +80795,7 @@
   {
     "type": "sousCatégorie",
     "code": "72.19.41",
-    "title": "Recherche fondamentale en médecine et pharmacie",
+    "title": "Recherche fondamentale en medecine et pharmacie",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -80805,7 +80805,7 @@
   {
     "type": "sousCatégorie",
     "code": "72.19.42",
-    "title": "Recherche appliquée en médecine et pharmacie",
+    "title": "Recherche appliquée en medecine et pharmacie",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -80815,7 +80815,7 @@
   {
     "type": "sousCatégorie",
     "code": "72.19.43",
-    "title": "Développement expérimental en médecine et pharmacie",
+    "title": "Développement expérimental en medecine et pharmacie",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -81973,7 +81973,7 @@
       "services des photojournalistes",
       "• montage de diapositives",
       "• copie, restauration et retouche de photographies",
-      "activités de photojournalistes indépendants",
+      "activités de photojournalistes independants",
       "le microfilmage de documents",
       "les activités des auteurs-photographes et des photographes d'art"
     ],
@@ -82360,7 +82360,7 @@
     ],
     "contenuAnnexe": [
       "évaluations environnementales, c'est-à-dire les études objectives entreprises dans un ou plusieurs des buts suivants : identifier si une contamination environnementale existe ou non sur un site donné et, si c'est le cas, déterminer la source, la nature et l'ampleur de la contamination; évaluer le risque pour la sécurité et la santé publique découlant d'une contamination environnementale associée à une projet prévu ou existant; évaluer l'impact sur l'écologie ou l'économie de changements environnementaux résultant d'activités humaines ou naturelles",
-      "audits environnementaux, c'est-à-dire l'évaluation indépendante de l'état actuel de conformité d'une partie aux exigences environnementales en vigueur ou des politiques, pratiques et contrôles de conformité environnementale d'une partie",
+      "audits environnementaux, c'est-à-dire l'évaluation independante de l'état actuel de conformité d'une partie aux exigences environnementales en vigueur ou des politiques, pratiques et contrôles de conformité environnementale d'une partie",
       "évaluation des études environnementales, c'est-à-dire la fourniture d'analyses expliquant les forces et faiblesses d'une étude environnementale et apportant une base pour d'autres avis. L'évaluation des études environnementales peut également inclure une analyse des réponses futures aux organismes de réglementation environnementale"
     ],
     "contenuExclu": [],
@@ -82410,7 +82410,7 @@
       "la création de stands et d'autres structures et sites d'affichage (cf. 73.11Z)",
       "les activités des économistes de la construction (cf. 74.90A)",
       "l'organisation de salons professionnels et congrès (cf. 82.30Z)",
-      "les activités des commissaires-priseurs indépendants (cf. 82.99Z)",
+      "les activités des commissaires-priseurs independants (cf. 82.99Z)",
       "l'administration des programmes de fidélisation (cf. 82.99Z)",
       "le conseil en matière de crédit à la consommation et d'endettement (cf. 82.99Z)",
       "services fournis par des agronomes et des spécialistes en économie agricole",
@@ -83834,7 +83834,7 @@
     "title": "ACTIVITÉS LIÉES À L'EMPLOI",
     "data": [],
     "contenuCentral": [
-      "les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement, à fournir des travailleurs pour des périodes limitées en vue de compléter la main-d'œuvre du client, ainsi qu'à fournir d'autres ressources humaines.",
+      "les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salaries des agences de placement, à fournir des travailleurs pour des périodes limitées en vue de compléter la main-d'œuvre du client, ainsi qu'à fournir d'autres ressources humaines.",
       "les activités de recherche et de placement de cadres",
       "les activités des agences de sélection d'acteurs et de figurants"
     ],
@@ -83872,7 +83872,7 @@
       "Produits associés : 78.10.11, 78.10.12"
     ],
     "contenuCentral": [
-      "les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement.",
+      "les activités consistant à lister les postes vacants et à orienter ou placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salaries des agences de placement.",
       "la recherche, la sélection, l'orientation et le placement de personnel, y compris les activités de recherche et de placement de cadres",
       "les activités des psychologues pour le recrutement de personnel",
       "les activités des agences et bureaux de sélection d'acteurs et de figurants, telles que les agences de distribution de rôles",
@@ -83915,7 +83915,7 @@
       "78.20.19"
     ],
     "contenuCentral": [
-      "les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariées par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salariés sur les lieux de travail du client."
+      "les activités consistant à fournir des travailleurs pour des périodes limitées en vue de remplacer temporairement ou de compléter la main-d'œuvre du client, les personnes placées étant salariees par l'agence de travail temporaire.Les agences affectées à cette sous-classe n'assurent toutefois pas la supervision directe de leurs salaries sur les lieux de travail du client."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -83985,12 +83985,12 @@
     "code": "78.10.12",
     "title": "Services de placement permanent, à l'exclusion du recrutement de cadres",
     "data": [
-      "Ces services peuvent être fournis à l'employeur potentiel ou au futur employé. Le candidat est sélectionné et embauché par l'employeur potentiel. L'entreprise de placement est payée sur une base conditionnelle, c'est-à-dire uniquement en cas de placement réussi d'un candidat. Cette sous-catégorie inclut les services de placement permanent pour un vaste éventail de professions, allant des salariés des catégories inférieures aux salariés chargés des tâches de gestion, y compris les cadres, à l'exception de ceux recrutés par des cabinets de recrutement de cadres, ainsi que pour des emplois nationaux ou internationaux."
+      "Ces services peuvent être fournis à l'employeur potentiel ou au futur employé. Le candidat est sélectionné et embauché par l'employeur potentiel. L'entreprise de placement est payée sur une base conditionnelle, c'est-à-dire uniquement en cas de placement réussi d'un candidat. Cette sous-catégorie inclut les services de placement permanent pour un vaste éventail de professions, allant des salaries des catégories inférieures aux salaries chargés des tâches de gestion, y compris les cadres, à l'exception de ceux recrutés par des cabinets de recrutement de cadres, ainsi que pour des emplois nationaux ou internationaux."
     ],
     "contenuCentral": [
-      "test, entretien, vérification des références, évaluation et conseil de salariés potentiels",
+      "test, entretien, vérification des références, évaluation et conseil de salaries potentiels",
       "recrutement, sélection et présentation de candidats au client en vue d'occuper des postes sur une base permanente (à durée indéterminée)",
-      "Ces services peuvent être fournis à l'employeur potentiel ou au futur employé. Le candidat est sélectionné et embauché par l'employeur potentiel. L'entreprise de placement est payée sur une base conditionnelle, c'est-à-dire uniquement en cas de placement réussi d'un candidat. Cette sous-catégorie inclut les services de placement permanent pour un vaste éventail de professions, allant des salariés des catégories inférieures aux salariés chargés des tâches de gestion, y compris les cadres, à l'exception de ceux recrutés par des cabinets de recrutement de cadres, ainsi que pour des emplois nationaux ou internationaux."
+      "Ces services peuvent être fournis à l'employeur potentiel ou au futur employé. Le candidat est sélectionné et embauché par l'employeur potentiel. L'entreprise de placement est payée sur une base conditionnelle, c'est-à-dire uniquement en cas de placement réussi d'un candidat. Cette sous-catégorie inclut les services de placement permanent pour un vaste éventail de professions, allant des salaries des catégories inférieures aux salaries chargés des tâches de gestion, y compris les cadres, à l'exception de ceux recrutés par des cabinets de recrutement de cadres, ainsi que pour des emplois nationaux ou internationaux."
     ],
     "contenuAnnexe": [
       "services des agences de placement permanent en ligne",
@@ -84026,11 +84026,11 @@
     "code": "78.20.1",
     "title": "Services des agences de travail temporaire",
     "data": [
-      "L'agence de travail temporaire recrute ses propres salariés et les affecte pour des missions auprès de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salariés, de pénurie temporaire de compétences, de surcroîts de travail saisonniers et de missions et projets spéciaux. Ces salariés figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarié."
+      "L'agence de travail temporaire recrute ses propres salaries et les affecte pour des missions auprès de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salaries, de pénurie temporaire de compétences, de surcroîts de travail saisonniers et de missions et projets spéciaux. Ces salaries figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarie."
     ],
     "contenuCentral": [
       "services de recrutement en vue de la mise à disposition de personnel pour des missions de travail temporaire",
-      "L'agence de travail temporaire recrute ses propres salariés et les affecte pour des missions auprès de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salariés, de pénurie temporaire de compétences, de surcroîts de travail saisonniers et de missions et projets spéciaux. Ces salariés figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarié."
+      "L'agence de travail temporaire recrute ses propres salaries et les affecte pour des missions auprès de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salaries, de pénurie temporaire de compétences, de surcroîts de travail saisonniers et de missions et projets spéciaux. Ces salaries figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarie."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -84061,14 +84061,14 @@
     "code": "78.30Z",
     "title": "Autre mise à disposition de ressources humaines",
     "data": [
-      "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
+      "Les unités classées ici sont l'employeur officiel des salaries pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salaries.",
       "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines.",
       "Produits associés : 78.30.11, 78.30.12, 78.30.13, 78.30.14, 78.30.15, 78.30.16,",
       "78.30.19"
     ],
     "contenuCentral": [
       "les activités consistant à fournir des ressources humaines au client.",
-      "Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salariés.",
+      "Les unités classées ici sont l'employeur officiel des salaries pour les questions de paie, d'impôts, ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la direction et de la supervision des salaries.",
       "La fourniture de ressources humaines a généralement lieu pour une longue durée ou sur une base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme de tâches de gestion des ressources humaines."
     ],
     "contenuAnnexe": [],
@@ -84186,11 +84186,11 @@
     "code": "78.30.1",
     "title": "Autres services de mise à disposition de ressources humaines",
     "data": [
-      "Selon ces modalités, le client peut recruter la ou les personnes engagées par la société de recrutement qui sont affectées sur son lieu de travail ou transférer une partie de son effectif existant à la société de recrutement. Ces salariés à long terme figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. Ces services incluent le louage de main-d'œuvre, le travail intérimaire, le recrutement prolongé de salariés et l'embauchage obligatoire."
+      "Selon ces modalités, le client peut recruter la ou les personnes engagées par la société de recrutement qui sont affectées sur son lieu de travail ou transférer une partie de son effectif existant à la société de recrutement. Ces salaries à long terme figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. Ces services incluent le louage de main-d'œuvre, le travail intérimaire, le recrutement prolongé de salaries et l'embauchage obligatoire."
     ],
     "contenuCentral": [
       "services de recrutement en vue de la mise à disposition de personnel pour des missions de travail prolongées.",
-      "Selon ces modalités, le client peut recruter la ou les personnes engagées par la société de recrutement qui sont affectées sur son lieu de travail ou transférer une partie de son effectif existant à la société de recrutement. Ces salariés à long terme figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. Ces services incluent le louage de main-d'œuvre, le travail intérimaire, le recrutement prolongé de salariés et l'embauchage obligatoire."
+      "Selon ces modalités, le client peut recruter la ou les personnes engagées par la société de recrutement qui sont affectées sur son lieu de travail ou transférer une partie de son effectif existant à la société de recrutement. Ces salaries à long terme figurent au livre de paie de l'agence de travail temporaire qui est juridiquement responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du client. Ces services incluent le louage de main-d'œuvre, le travail intérimaire, le recrutement prolongé de salaries et l'embauchage obligatoire."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -84609,7 +84609,7 @@
     "title": "Services des accompagnateurs de voyage",
     "data": [],
     "contenuCentral": [
-      "services des accompagnateurs de voyage indépendants"
+      "services des accompagnateurs de voyage independants"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -84688,7 +84688,7 @@
     "title": "Services des guides touristiques",
     "data": [],
     "contenuCentral": [
-      "services des guides touristiques indépendants ou fournis par des agences"
+      "services des guides touristiques independants ou fournis par des agences"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -86314,7 +86314,7 @@
       "les services de collecte de fonds, pour le compte de tiers",
       "les services de saisie",
       "les services de collecte des pièces de parcmètres",
-      "les activités des commissaires-priseurs indépendants",
+      "les activités des commissaires-priseurs independants",
       "l'administration des programmes de fidélisation",
       "les autres activités de soutien généralement fournies aux entreprises non classées ailleurs"
     ],
@@ -86485,7 +86485,7 @@
     "title": "Services exécutifs et législatifs",
     "data": [],
     "contenuCentral": [
-      "services rendus par le gouvernement central, les exécutifs régionaux ou locaux, et les organismes indépendants",
+      "services rendus par le gouvernement central, les exécutifs régionaux ou locaux, et les organismes independants",
       "services rendus par le pouvoir législatif central, les assemblées régionales ou locales, et les organismes consultatifs ou de contrôle"
     ],
     "contenuAnnexe": [],
@@ -87559,7 +87559,7 @@
   {
     "type": "sousCatégorie",
     "code": "84.30.12",
-    "title": "Services de sécurité sociale obligatoire concernant les régimes de pensions de la fonction publique et les prestations de retraite, invalidité permanente et reversion autres que pour les salariés de la fonction publique",
+    "title": "Services de sécurité sociale obligatoire concernant les régimes de pensions de la fonction publique et les prestations de retraite, invalidité permanente et reversion autres que pour les salaries de la fonction publique",
     "data": [],
     "contenuCentral": [
       "services d'administration et gestion du dispositif des prestations de retraite, y compris de réversion et d'invalidité permanente (retraites de base de la sécurité sociale, retraites complémentaires)",
@@ -88322,7 +88322,7 @@
       "les cours de gymnastique",
       "les cours d'équitation donnés dans des académies ou écoles",
       "les cours de natation",
-      "les instructeurs de sports, professeurs et entraîneurs professionnels indépendants",
+      "les instructeurs de sports, professeurs et entraîneurs professionnels independants",
       "les cours d'arts martiaux",
       "les cours de jeux de cartes (comme le bridge)",
       "les cours de yoga"
@@ -88537,7 +88537,7 @@
       "les écoles de photographie ne débouchant pas sur un diplôme professionnel"
     ],
     "contenuAnnexe": [
-      "les activités des écoles et des professeurs de danse indépendants"
+      "les activités des écoles et des professeurs de danse independants"
     ],
     "contenuExclu": [
       "les cours de langues étrangères (cf. 85.59B)",
@@ -88614,7 +88614,7 @@
       "le tutorat universitaire",
       "les centres de formation offrant des cours de rattrapage",
       "les cours de révision en vue d'examens professionnels",
-      "les activités de soutien scolaire, généralement à domicile, dispensées par des organismes ou des professeurs indépendants (leçon, aide aux devoirs, etc.)",
+      "les activités de soutien scolaire, généralement à domicile, dispensées par des organismes ou des professeurs independants (leçon, aide aux devoirs, etc.)",
       "les cours de langues et de compétences conversationnelles, hors formation professionnelle continue",
       "la formation informatique, hors formation professionnelle continue",
       "l'instruction religieuse"
@@ -88804,7 +88804,7 @@
       "Produits associés : 85.59.11p, 85.59.12p, 85.59.14, 85.59.19"
     ],
     "contenuCentral": [
-      "services de soutien scolaire à domicile, dispensées par des organismes ou des professeurs indépendants"
+      "services de soutien scolaire à domicile, dispensées par des organismes ou des professeurs independants"
     ],
     "contenuAnnexe": [
       "la formation des maîtres nageurs, des moniteurs de ski",
@@ -88872,7 +88872,7 @@
       "services de tutorat universitaire",
       "cours de rattrapage proposés par des centres de formation",
       "cours de révision en vue d'examens professionnels",
-      "services de soutien scolaire, hors domicile, dispensées par des organismes ou des professeurs indépendants",
+      "services de soutien scolaire, hors domicile, dispensées par des organismes ou des professeurs independants",
       "cours de formation à la lecture rapide",
       "cours d'instruction religieuse",
       "services de formation des maîtres nageurs",
@@ -88958,14 +88958,14 @@
     "code": "86",
     "title": "ACTIVITÉS POUR LA SANTÉ HUMAINE",
     "data": [
-      "Les activités pour la santé humaine décrites dans cette division s'exercent sous des formes variées, publiques ou privées, en pratique libérale ou en établissement, sous la responsabilité de médecins ou de personnel para médical. On ne vise pas ici les caractéristiques réglementaires des professions de santé, salariées ou libérales, mais celles des unités de production.",
+      "Les activités pour la santé humaine décrites dans cette division s'exercent sous des formes variées, publiques ou privées, en pratique libérale ou en établissement, sous la responsabilité de medecins ou de personnel para médical. On ne vise pas ici les caractéristiques réglementaires des professions de santé, salariees ou libérales, mais celles des unités de production.",
       "Elle couvre les activités de pratique médicale et de pratique dentaire de nature générale ou spécialisée, correspondant à des formules de consultation, de diagnostic, de soins et de prescriptions, au cabinet du praticien.",
-      "Cette division comprend, en outre, les activités afférentes à la santé humaine qui ne sont pas dispensées dans des hôpitaux ou par des médecins, mais généralement exercées par des praticiens paramédicaux exécutant sous leur responsabilité des actes prescrits par un médecin."
+      "Cette division comprend, en outre, les activités afférentes à la santé humaine qui ne sont pas dispensées dans des hôpitaux ou par des medecins, mais généralement exercées par des praticiens paramédicaux exécutant sous leur responsabilité des actes prescrits par un medecin."
     ],
     "contenuCentral": [
-      "les activités des établissements hospitaliers de court ou long séjour, publics ou privés, sous la responsabilité de médecins, qui offrent des services d'hébergement et qui assurent un diagnostic et un traitement médical aux patients.",
+      "les activités des établissements hospitaliers de court ou long séjour, publics ou privés, sous la responsabilité de medecins, qui offrent des services d'hébergement et qui assurent un diagnostic et un traitement médical aux patients.",
       "Elle couvre les activités de pratique médicale et de pratique dentaire de nature générale ou spécialisée, correspondant à des formules de consultation, de diagnostic, de soins et de prescriptions, au cabinet du praticien.",
-      "Cette division comprend, en outre, les activités afférentes à la santé humaine qui ne sont pas dispensées dans des hôpitaux ou par des médecins, mais généralement exercées par des praticiens paramédicaux exécutant sous leur responsabilité des actes prescrits par un médecin."
+      "Cette division comprend, en outre, les activités afférentes à la santé humaine qui ne sont pas dispensées dans des hôpitaux ou par des medecins, mais généralement exercées par des praticiens paramédicaux exécutant sous leur responsabilité des actes prescrits par un medecin."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -88999,7 +88999,7 @@
       "Produits associés : 86.10.11, 86.10.12, 86.10.13, 86.10.14, 86.10.15, 86.10.19"
     ],
     "contenuCentral": [
-      "les activités d'hospitalisation de court ou long séjour, c'est-à-dire les activités médicales de diagnostic et de soins des établissements hospitaliers et des cliniques, publics ou privés, dans des établissements généraux (hôpitaux locaux, régionaux, universitaires, hôpitaux militaires, thermaux ou pénitentiaires) et des établissements spécialisés (hôpitaux psychiatriques et de désintoxication, hôpitaux traitant des maladies infectieuses, maternités, sanatoriums spécialisés). Ces activités concernent principalement des patients hospitalisés. Elles sont exercées sous la responsabilité de médecins et comprennent :",
+      "les activités d'hospitalisation de court ou long séjour, c'est-à-dire les activités médicales de diagnostic et de soins des établissements hospitaliers et des cliniques, publics ou privés, dans des établissements généraux (hôpitaux locaux, régionaux, universitaires, hôpitaux militaires, thermaux ou pénitentiaires) et des établissements spécialisés (hôpitaux psychiatriques et de désintoxication, hôpitaux traitant des maladies infectieuses, maternités, sanatoriums spécialisés). Ces activités concernent principalement des patients hospitalisés. Elles sont exercées sous la responsabilité de medecins et comprennent :",
       "• les services du personnel médical et paramédical",
       "• les services des laboratoires et installations techniques, y compris les services de radiologie et d'anesthésie,",
       "• les services d'urgences",
@@ -89014,7 +89014,7 @@
       "les activités de laboratoire et inspections de tous les types de matériaux et produits, à l'exclusion des produits médicaux (cf. 71.20B)",
       "les activités vétérinaires (cf. 75.00Z)",
       "les soins médicaux dispensés au personnel militaire en campagne (cf. 84.22Z)",
-      "l'exercice de la médecine ambulatoire en milieu hospitalier ou en clinique et les services des médecins consultants privés à des personnes hospitalisées (cf. 86.2)",
+      "l'exercice de la medecine ambulatoire en milieu hospitalier ou en clinique et les services des medecins consultants privés à des personnes hospitalisées (cf. 86.2)",
       "les activités de pratique dentaire de nature générale ou spécifique (dentisterie, endodontie et dentisterie pédiatrique, pathologie orale, activités d'orthodontie) (cf. 86.23Z)",
       "les activités de transport en ambulance (cf. 86.90A)",
       "les services des laboratoires d'analyses médicales (cf. 86.90B)"
@@ -89068,7 +89068,7 @@
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services de médecine ambulatoire en milieu hospitalier ou en clinique (86.21.10, 86.22.1)"
+      "services de medecine ambulatoire en milieu hospitalier ou en clinique (86.21.10, 86.22.1)"
     ],
     "parent": 6818
   },
@@ -89134,7 +89134,7 @@
   {
     "type": "sousCatégorie",
     "code": "86.10.15",
-    "title": "Autres services hospitaliers fournis par des médecins",
+    "title": "Autres services hospitaliers fournis par des medecins",
     "data": [],
     "contenuCentral": [
       "services d'urgences hospitalières",
@@ -89145,9 +89145,9 @@
     "contenuAnnexe": [],
     "contenuExclu": [
       "soins médicaux dispensés au personnel militaire en campagne (84.22.11)",
-      "services des médecins consultants privés à des personnes hospitalisées (86.2)",
+      "services des medecins consultants privés à des personnes hospitalisées (86.2)",
       "soins dentaires (86.23.1)",
-      "hébergement médico-social, sans médecin à demeure (87)"
+      "hébergement médico-social, sans medecin à demeure (87)"
     ],
     "parent": 6823
   },
@@ -89159,9 +89159,9 @@
       "Ces activités peuvent être exercées dans des cabinets privés, des cabinets de groupe ou dans des établissements hospitaliers assurant des soins ambulatoires ainsi que dans des établissements similaires attachés à des entreprises, des écoles, des maisons de retraite pour personnes âgées, des organisations professionnelles, ainsi qu'au domicile des patients."
     ],
     "contenuCentral": [
-      "les consultations données et les soins dispensés par les médecins généralistes et spécialistes, y compris les chirurgiens, les dentistes, etc.",
+      "les consultations données et les soins dispensés par les medecins généralistes et spécialistes, y compris les chirurgiens, les dentistes, etc.",
       "Ces activités peuvent être exercées dans des cabinets privés, des cabinets de groupe ou dans des établissements hospitaliers assurant des soins ambulatoires ainsi que dans des établissements similaires attachés à des entreprises, des écoles, des maisons de retraite pour personnes âgées, des organisations professionnelles, ainsi qu'au domicile des patients.",
-      "également les services des médecins consultants privés à des personnes hospitalisées."
+      "également les services des medecins consultants privés à des personnes hospitalisées."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -89170,7 +89170,7 @@
   {
     "type": "classe",
     "code": "86.21",
-    "title": "Activité des médecins généralistes",
+    "title": "Activité des medecins généralistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89180,15 +89180,15 @@
   {
     "type": "sousClasse",
     "code": "86.21Z",
-    "title": "Activité des médecins généralistes",
+    "title": "Activité des medecins généralistes",
     "data": [
       "Produits associés : 86.21.10"
     ],
     "contenuCentral": [
-      "les consultations données et les soins dispensés dans le domaine de la médecine générale par les médecins généralistes"
+      "les consultations données et les soins dispensés dans le domaine de la medecine générale par les medecins généralistes"
     ],
     "contenuAnnexe": [
-      "la médecine systématique et de dépistage (bilans de santé et analyses systématiques)"
+      "la medecine systématique et de dépistage (bilans de santé et analyses systématiques)"
     ],
     "contenuExclu": [
       "les activités de soins hospitaliers (cf. 86.10Z)",
@@ -89199,7 +89199,7 @@
   {
     "type": "classe",
     "code": "86.22",
-    "title": "Activité des médecins spécialistes",
+    "title": "Activité des medecins spécialistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89243,7 +89243,7 @@
   {
     "type": "sousClasse",
     "code": "86.22C",
-    "title": "Autres activités des médecins spécialistes",
+    "title": "Autres activités des medecins spécialistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89280,7 +89280,7 @@
   {
     "type": "classe",
     "code": "86.21",
-    "title": "Services des médecins généralistes",
+    "title": "Services des medecins généralistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89290,7 +89290,7 @@
   {
     "type": "catégorie",
     "code": "86.21.1",
-    "title": "Services des médecins généralistes",
+    "title": "Services des medecins généralistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89300,13 +89300,13 @@
   {
     "type": "sousCatégorie",
     "code": "86.21.10",
-    "title": "Services des médecins généralistes",
+    "title": "Services des medecins généralistes",
     "data": [],
     "contenuCentral": [
-      "consultation (diagnostic et traitement) de médecine générale pour des maladies physiques ou mentales"
+      "consultation (diagnostic et traitement) de medecine générale pour des maladies physiques ou mentales"
     ],
     "contenuAnnexe": [
-      "examens de médecine préventive et de dépistage (médecine scolaire, médecine du travail, bilans de santé planifiés, vaccinations obligatoires, etc.)"
+      "examens de medecine préventive et de dépistage (medecine scolaire, medecine du travail, bilans de santé planifiés, vaccinations obligatoires, etc.)"
     ],
     "contenuExclu": [],
     "parent": 6839
@@ -89314,7 +89314,7 @@
   {
     "type": "classe",
     "code": "86.22",
-    "title": "Services des médecins spécialistes",
+    "title": "Services des medecins spécialistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89324,7 +89324,7 @@
   {
     "type": "catégorie",
     "code": "86.22.1",
-    "title": "Services des médecins spécialistes",
+    "title": "Services des medecins spécialistes",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -89349,7 +89349,7 @@
   {
     "type": "sousCatégorie",
     "code": "86.22.19",
-    "title": "Autres services des médecins spécialistes",
+    "title": "Autres services des medecins spécialistes",
     "data": [
       "Produits associés : 86.22.19p"
     ],
@@ -89360,7 +89360,7 @@
       "consultation et traitements antivénériens, tests de séropositivité, etc.",
       "traitements médicaux ambulatoires, en service hospitalier externe, ou dans le cadre d'une hospitalisation à domicile tels que : dialyse, chimiothérapie, insulinothérapie, assistance respiratoire, radiothérapie ambulatoire",
       "explorations fonctionnelles",
-      "les consultations et les soins dispensés par les médecins spécialistes"
+      "les consultations et les soins dispensés par les medecins spécialistes"
     ],
     "contenuAnnexe": [
       "services des centres de planning familial assurant des actes médicaux tels que la stérilisation ou l'interruption de grossesse, sans hébergement",
@@ -89425,7 +89425,7 @@
       "Ces activités peuvent être réalisées dans des dispensaires, des infirmeries ou d'autres établissements analogues attachés à des entreprises, des écoles, des maisons de retraite pour personnes âgées, des organisations professionnelles, ou encore dans des établissements de santé autres que les hôpitaux, dans des cabinets privés, au domicile des patients ou ailleurs."
     ],
     "contenuCentral": [
-      "principalement les activités pour la santé humaine non exercées dans des hôpitaux ou par des médecins ou dentistes.",
+      "principalement les activités pour la santé humaine non exercées dans des hôpitaux ou par des medecins ou dentistes.",
       "Ces activités peuvent être réalisées dans des dispensaires, des infirmeries ou d'autres établissements analogues attachés à des entreprises, des écoles, des maisons de retraite pour personnes âgées, des organisations professionnelles, ou encore dans des établissements de santé autres que les hôpitaux, dans des cabinets privés, au domicile des patients ou ailleurs.",
       "également les activités du personnel paramédical dans le domaine des soins dentaires, les activités des laboratoires d'analyses médicales, les activités des banques de sang, de sperme, d'organes et le transport par ambulance de patients."
     ],
@@ -89749,7 +89749,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services fournis par des médecins spécialistes (86.22.19)"
+      "services fournis par des medecins spécialistes (86.22.19)"
     ],
     "parent": 6856
   },
@@ -89782,7 +89782,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "hébergement, assorti de soins médicaux, avec médecin à demeure (cf. 86.10Z)"
+      "hébergement, assorti de soins médicaux, avec medecin à demeure (cf. 86.10Z)"
     ],
     "parent": 6819
   },
@@ -89814,7 +89814,7 @@
       "Produits associés : 87.10.10p"
     ],
     "contenuCentral": [
-      "l'accueil et l'hébergement, assortis de soins médicaux, sans médecin à demeure, de personnes âgées dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
+      "l'accueil et l'hébergement, assortis de soins médicaux, sans medecin à demeure, de personnes âgées dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
       "• par exemple, services fournis par les établissements suivants : établissement d'hébergement pour personnes âgées dépendantes (EHPAD), maison de retraite"
     ],
     "contenuAnnexe": [],
@@ -89832,7 +89832,7 @@
       "Produits associés : 87.10.10p"
     ],
     "contenuCentral": [
-      "l'accueil, l'hébergement et la rééducation, assortis de soins médicaux, sans médecin à demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
+      "l'accueil, l'hébergement et la rééducation, assortis de soins médicaux, sans medecin à demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
       "• par exemple, services fournis par les établissements suivants : instituts médico-éducatif (IME), médico-pédagogique (IMP), thérapeutique éducatif et pédagogique (ITEP)"
     ],
     "contenuAnnexe": [],
@@ -89850,7 +89850,7 @@
     "title": "Hébergement médicalisé pour adultes handicapés et autre hébergement médicalisé",
     "data": [],
     "contenuCentral": [
-      "l'accueil, l'hébergement et la réadaptation, assortis de soins médicaux, sans médecin à demeure, d'adultes handicapés et d'autres personnes en difficulté dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
+      "l'accueil, l'hébergement et la réadaptation, assortis de soins médicaux, sans medecin à demeure, d'adultes handicapés et d'autres personnes en difficulté dans des établissements de moyen et long séjour, des centres de convalescence, des maisons de repos, etc.",
       "• par exemple, services fournis par les établissements suivants : maison d'accueil spécialisé (MAS), foyer d'accueil médicalisé (FAM)"
     ],
     "contenuAnnexe": [],
@@ -89910,7 +89910,7 @@
       "Produits associés : 87.10.10p"
     ],
     "contenuCentral": [
-      "accueil et hébergement, assorti de soins médicaux, sans médecin à demeure dans des établissements de moyen et long séjour, des résidences pour personnes âgées dispensant des soins médicaux, des centres de convalescence, des maisons de repos, etc."
+      "accueil et hébergement, assorti de soins médicaux, sans medecin à demeure dans des établissements de moyen et long séjour, des résidences pour personnes âgées dispensant des soins médicaux, des centres de convalescence, des maisons de repos, etc."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -89951,7 +89951,7 @@
       "Produits associés : 87.20.11p, 87.20.12p"
     ],
     "contenuCentral": [
-      "l'accueil, l'hébergement et la réadaptation de personnes souffrant d'une déficience mentale ou d'une maladie mentale. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure.",
+      "l'accueil, l'hébergement et la réadaptation de personnes souffrant d'une déficience mentale ou d'une maladie mentale. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure.",
       "• par exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie"
     ],
     "contenuAnnexe": [],
@@ -89966,12 +89966,12 @@
     "code": "87.20B",
     "title": "Hébergement social pour toxicomanes",
     "data": [
-      "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure.",
+      "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure.",
       "Produits associés : 87.20.11p, 87.20.12p"
     ],
     "contenuCentral": [
       "l'accueil, l'hébergement et la réadaptation de personnes souffrant d'alcoolisme ou de toxicomanie.",
-      "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure."
+      "Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -90052,7 +90052,7 @@
     "title": "Services d'hébergement social pour enfants handicapés mentaux, malades mentaux et toxicomanes",
     "data": [],
     "contenuCentral": [
-      "accueil, hébergement et rééducation d'enfants et adolescents souffrant d'une déficience mentale, d'une maladie mentale, d'alcoolisme ou de toxicomanie. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure."
+      "accueil, hébergement et rééducation d'enfants et adolescents souffrant d'une déficience mentale, d'une maladie mentale, d'alcoolisme ou de toxicomanie. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -90064,7 +90064,7 @@
     "title": "Services d'hébergement social pour adultes handicapés mentaux, malades mentaux et toxicomanes",
     "data": [],
     "contenuCentral": [
-      "accueil, hébergement et réadaptation d'adultes souffrant d'une déficience mentale, d'une maladie mentale, d'alcoolisme ou de toxicomanie. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure."
+      "accueil, hébergement et réadaptation d'adultes souffrant d'une déficience mentale, d'une maladie mentale, d'alcoolisme ou de toxicomanie. Les établissements concernés (établissements spécialisés, centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -90098,8 +90098,8 @@
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "hébergement, assorti de soins médicaux, avec médecin à demeure (86.10.1)",
-      "hébergement, assorti de soins médicaux, sans médecin à demeure (87.10.10)",
+      "hébergement, assorti de soins médicaux, avec medecin à demeure (86.10.1)",
+      "hébergement, assorti de soins médicaux, sans medecin à demeure (87.10.10)",
       "services d'action sociale avec hébergement dispensés à d'autres personnes que les personnes âgées ou handicapées où les soins médicaux, l'enseignement ou la formation ne jouent pas de rôle important (87.90)"
     ],
     "parent": 6888
@@ -90109,12 +90109,12 @@
     "code": "87.30.11",
     "title": "Services d'assistance sociale fournis par les établissements d'hébergement social pour personnes âgées",
     "data": [
-      "une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans médecin à demeure.",
+      "une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans medecin à demeure.",
       "Produits associés : 87.30.11"
     ],
     "contenuCentral": [
       "accueil et hébergement de personnes âgées dans des établissements (établissements de moyen et long séjour, maisons de repos, etc.) sans soins médicaux ou dispensant des soins médicaux limités",
-      "une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans médecin à demeure.",
+      "une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans medecin à demeure.",
       "• par exemple, services fournis par les établissements suivants : logement-foyer"
     ],
     "contenuAnnexe": [],
@@ -90131,7 +90131,7 @@
       "Produits associés : 87.30.12, 87.30.13"
     ],
     "contenuCentral": [
-      "l'accueil, l'hébergement et la réadaptation de personnes handicapées physiques qui ne sont pas autonomes ou qui ne désirent pas vivre de manière autonome. Les établissements concernés (établissements de moyen et long séjour, maisons de repos, etc.) procurent hébergement, nourriture, surveillance et une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans médecin à demeure.",
+      "l'accueil, l'hébergement et la réadaptation de personnes handicapées physiques qui ne sont pas autonomes ou qui ne désirent pas vivre de manière autonome. Les établissements concernés (établissements de moyen et long séjour, maisons de repos, etc.) procurent hébergement, nourriture, surveillance et une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des installations distinctes, sans medecin à demeure.",
       "• par exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer de vie"
     ],
     "contenuAnnexe": [],
@@ -90559,11 +90559,11 @@
       "• les activités des haltes-garderies"
     ],
     "contenuAnnexe": [
-      "les services de garde d'enfants à domicile assurés par des prestataires de services indépendants"
+      "les services de garde d'enfants à domicile assurés par des prestataires de services independants"
     ],
     "contenuExclu": [
       "l'accueil ou l'accompagnement sans hébergement d'enfants handicapés (cf. 88.91B)",
-      "les services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages utilisateurs (cf. 97.00Z)"
+      "les services de garde d'enfants à domicile assurés par du personnel domestique salarie des ménages utilisateurs (cf. 97.00Z)"
     ],
     "parent": 6928
   },
@@ -90691,7 +90691,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages utilisateurs (97.00.11)"
+      "services de garde d'enfants à domicile assurés par du personnel domestique salarie des ménages utilisateurs (97.00.11)"
     ],
     "parent": 6935
   },
@@ -90848,7 +90848,7 @@
     "contenuCentral": [
       "la production de spectacles, de productions théâtrales, de concerts, de spectacles d'opéra, de spectacles de danse et d'autres productions analogues :",
       "• activités de groupes, de cirques ou de compagnies, d'orchestres ou d'autres formations",
-      "• activités exercées par des artistes indépendants tels que des acteurs, danseurs, musiciens, conteurs",
+      "• activités exercées par des artistes independants tels que des acteurs, danseurs, musiciens, conteurs",
       "l'organisation de tournées et la diffusion de spectacles lorsqu'elles comprennent la responsabilité artistique du spectacle"
     ],
     "contenuAnnexe": [
@@ -90942,7 +90942,7 @@
     "contenuCentral": [
       "services de production, de promotion et d'organisation de spectacles comprenant une responsabilité artistique du spectacle",
       "services des acteurs, lecteurs, chanteurs, musiciens, danseurs, cascadeurs, présentateurs de programmes télévisés, conteurs, orateurs, artistes de cirque et autres artistes du spectacle",
-      "services de modèles indépendants"
+      "services de modèles independants"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -91015,7 +91015,7 @@
       "Produits associés : 90.03.11p, 90.03.13"
     ],
     "contenuCentral": [
-      "les activités exercées par des artistes indépendants tels que des sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
+      "les activités exercées par des artistes independants tels que des sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
       "la restauration d'œuvres d'art telles que les peintures, etc."
     ],
     "contenuAnnexe": [],
@@ -91032,9 +91032,9 @@
       "Produits associés : 90.03.11p, 90.03.12"
     ],
     "contenuCentral": [
-      "les activités des écrivains indépendants, pour tous les sujets, y compris la fiction, les ouvrages techniques, etc.",
+      "les activités des écrivains independants, pour tous les sujets, y compris la fiction, les ouvrages techniques, etc.",
       "les activités des compositeurs de musique",
-      "les activités des journalistes indépendants"
+      "les activités des journalistes independants"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -91128,9 +91128,9 @@
     "title": "Services fournis par des auteurs, compositeurs, sculpteurs et autres artistes, à l'exclusion des artistes du spectacle vivant",
     "data": [],
     "contenuCentral": [
-      "services des artistes indépendants, tels que les compositeurs, sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
-      "services des écrivains indépendants, pour tous les sujets, y compris la fiction et les ouvrages techniques",
-      "services des journalistes indépendants",
+      "services des artistes independants, tels que les compositeurs, sculpteurs, peintres, dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.",
+      "services des écrivains independants, pour tous les sujets, y compris la fiction et les ouvrages techniques",
+      "services des journalistes independants",
       "services de restauration d'objets d'art"
     ],
     "contenuAnnexe": [],
@@ -91792,7 +91792,7 @@
     "title": "ACTIVITÉS LIÉES AU SPORT",
     "data": [],
     "contenuCentral": [
-      "l'exploitation d'installations sportives, les activités des équipes ou clubs sportifs participant principalement à des manifestations sportives devant un public payant, les activités des athlètes indépendants participants à des courses ou manifestations sportives devant un public payant, l'activité des propriétaires de voitures, chiens, chevaux, etc. de course consistant principalement à engager ceux ci dans des courses ou d'autres manifestations de sports-spectacles, les activités des entraîneurs sportifs fournissant des services spécialisés de soutien aux participants de manifestations ou compétitions sportives, les activités des exploitants de stades et les autres activités d'organisation, de promotion ou de gestion de manifestations sportives n.c.a."
+      "l'exploitation d'installations sportives, les activités des équipes ou clubs sportifs participant principalement à des manifestations sportives devant un public payant, les activités des athlètes independants participants à des courses ou manifestations sportives devant un public payant, l'activité des propriétaires de voitures, chiens, chevaux, etc. de course consistant principalement à engager ceux ci dans des courses ou d'autres manifestations de sports-spectacles, les activités des entraîneurs sportifs fournissant des services spécialisés de soutien aux participants de manifestations ou compétitions sportives, les activités des exploitants de stades et les autres activités d'organisation, de promotion ou de gestion de manifestations sportives n.c.a."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -91959,14 +91959,14 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "cours de sports donnés par des professeurs indépendants, des entraîneurs (85.51.10)",
+      "cours de sports donnés par des professeurs independants, des entraîneurs (85.51.10)",
       "services de gestion d'installations sportives (93.11.10)",
       "services d'organisation et de gestion d'activités sportives en salle ou en plein air pour des professionnels ou des amateurs par des organisations disposant de leurs propres installations (93.11.10)",
       "• clubs de sports d'hiver",
       "• clubs d'échecs",
       "• clubs d'athlétisme",
       "• clubs de tir, etc.",
-      "les cours de sports donnés par des professeurs indépendants, des entraîneurs (cf. 85.51Z)",
+      "les cours de sports donnés par des professeurs independants, des entraîneurs (cf. 85.51Z)",
       "l'exploitation d'installations sportives (cf. 93.11Z)",
       "l'organisation et la gestion d'activités sportives en salle ou en plein air pour des professionnels ou des amateurs par des organisations disposant de leurs propres installations (cf. 93.11Z)"
     ],
@@ -91994,7 +91994,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "les cours de sports donnés par des professeurs indépendants, des entraîneurs (cf. 85.51Z)"
+      "les cours de sports donnés par des professeurs independants, des entraîneurs (cf. 85.51Z)"
     ],
     "parent": 7034
   },
@@ -92077,7 +92077,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "cours de sports donnés par des professeurs indépendants, des entraîneurs (85.51.10)"
+      "cours de sports donnés par des professeurs independants, des entraîneurs (85.51.10)"
     ],
     "parent": 7040
   },
@@ -92400,7 +92400,7 @@
     "title": "ACTIVITÉS DES ORGANISATIONS ASSOCIATIVES",
     "data": [],
     "contenuCentral": [
-      "les activités des organisations qui représentent les intérêts de certains groupes ou qui promeuvent leurs idées auprès du grand public. Ces organisations disposent en général d'un groupe précis de membres, mais leurs activités peuvent également impliquer et bénéficier à des non-membres. La structuration primaire de cette division est déterminée par l'objet de ces organisations, à savoir les intérêts des employeurs, des travailleurs indépendants et de la communauté scientifique (groupe 94.1), les intérêts des salariés (groupe 94.2) ou la promotion d'idées et d'activités religieuses, politiques, culturelles, éducatives ou récréatives (groupe 94.9)."
+      "les activités des organisations qui représentent les intérêts de certains groupes ou qui promeuvent leurs idées auprès du grand public. Ces organisations disposent en général d'un groupe précis de membres, mais leurs activités peuvent également impliquer et bénéficier à des non-membres. La structuration primaire de cette division est déterminée par l'objet de ces organisations, à savoir les intérêts des employeurs, des travailleurs independants et de la communauté scientifique (groupe 94.1), les intérêts des salaries (groupe 94.2) ou la promotion d'idées et d'activités religieuses, politiques, culturelles, éducatives ou récréatives (groupe 94.9)."
     ],
     "contenuAnnexe": [],
     "contenuExclu": [],
@@ -92443,7 +92443,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "les activités des syndicats de salariés (cf. 94.20Z)"
+      "les activités des syndicats de salaries (cf. 94.20Z)"
     ],
     "parent": 7067
   },
@@ -92463,7 +92463,7 @@
     "title": "Activités des organisations professionnelles",
     "data": [],
     "contenuCentral": [
-      "les activités des organisations dont les membres s'intéressent principalement à une discipline, à une profession ou à un domaine technique particulier, telles que les associations de médecins, de juristes, de comptables, d'ingénieurs, d'architectes, etc.",
+      "les activités des organisations dont les membres s'intéressent principalement à une discipline, à une profession ou à un domaine technique particulier, telles que les associations de medecins, de juristes, de comptables, d'ingénieurs, d'architectes, etc.",
       "les activités des associations de spécialistes qui exercent des activités à caractère scientifique, intellectuel ou culturel, telles que les associations d'écrivains, de peintres, d'artistes, de journalistes, etc.",
       "la diffusion d'informations, l'élaboration de normes déontologiques et le contrôle de leur respect, la représentation auprès des organismes publics et les relations publiques des organisations professionnelles"
     ],
@@ -92535,7 +92535,7 @@
     "contenuAnnexe": [],
     "contenuExclu": [
       "services de relations publiques fournis par des tiers pour le compte d'une association (70.21.10)",
-      "services fournis par les syndicats de salariés (94.20.10)"
+      "services fournis par les syndicats de salaries (94.20.10)"
     ],
     "parent": 7075
   },
@@ -92590,7 +92590,7 @@
   {
     "type": "classe",
     "code": "94.20",
-    "title": "Activités des syndicats de salariés",
+    "title": "Activités des syndicats de salaries",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -92600,16 +92600,16 @@
   {
     "type": "sousClasse",
     "code": "94.20Z",
-    "title": "Activités des syndicats de salariés",
+    "title": "Activités des syndicats de salaries",
     "data": [
       "Produits associés : 94.20.10"
     ],
     "contenuCentral": [
-      "la promotion des intérêts des salariés organisés en syndicats"
+      "la promotion des intérêts des salaries organisés en syndicats"
     ],
     "contenuAnnexe": [
-      "les activités des associations dont les membres sont des salariés ayant pour objectif essentiel de faire connaître leurs vues sur les conditions salariales et les conditions de travail et de s'organiser en vue d'une action concertée",
-      "les activités des syndicats de salariés d'une entreprise, des fédérations et confédérations syndicales organisées selon des critères professionnels, régionaux, structurels ou autres",
+      "les activités des associations dont les membres sont des salaries ayant pour objectif essentiel de faire connaître leurs vues sur les conditions salariales et les conditions de travail et de s'organiser en vue d'une action concertée",
+      "les activités des syndicats de salaries d'une entreprise, des fédérations et confédérations syndicales organisées selon des critères professionnels, régionaux, structurels ou autres",
       "les activités de représentation des comités d'entreprises"
     ],
     "contenuExclu": [
@@ -92709,7 +92709,7 @@
   {
     "type": "classe",
     "code": "94.20",
-    "title": "Services fournis par des syndicats de salariés",
+    "title": "Services fournis par des syndicats de salaries",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -92719,7 +92719,7 @@
   {
     "type": "catégorie",
     "code": "94.20.1",
-    "title": "Services fournis par des syndicats de salariés",
+    "title": "Services fournis par des syndicats de salaries",
     "data": [],
     "contenuCentral": [],
     "contenuAnnexe": [],
@@ -92729,10 +92729,10 @@
   {
     "type": "sousCatégorie",
     "code": "94.20.10",
-    "title": "Services fournis par des syndicats de salariés",
+    "title": "Services fournis par des syndicats de salaries",
     "data": [],
     "contenuCentral": [
-      "services de représentation, négociation et diffusion d'informations fournis par des associations dont les membres sont principalement des salariés et qui visent à faire connaître leurs vues sur la situation des travailleurs et à s'organiser en vue d'une action concertée"
+      "services de représentation, négociation et diffusion d'informations fournis par des associations dont les membres sont principalement des salaries et qui visent à faire connaître leurs vues sur la situation des travailleurs et à s'organiser en vue d'une action concertée"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
@@ -93505,7 +93505,7 @@
       "rembourrage, remise à neuf, réparation et restauration de meubles et d'équipements du foyer"
     ],
     "contenuAnnexe": [
-      "assemblage de meubles indépendants"
+      "assemblage de meubles independants"
     ],
     "contenuExclu": [],
     "parent": 7149
@@ -94361,11 +94361,11 @@
       "Produits associés : 97.00.11, 97.00.12, 97.00.13, 97.00.14, 97.00.19"
     ],
     "contenuCentral": [
-      "les activités des ménages employant du personnel domestique : femmes de ménage, bonnes, cuisiniers ou cuisinières, serveurs, valets de chambre, maîtres d'hôtel, blanchisseuses, jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux domestiques salariés d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par le ménage employeur"
+      "les activités des ménages employant du personnel domestique : femmes de ménage, bonnes, cuisiniers ou cuisinières, serveurs, valets de chambre, maîtres d'hôtel, blanchisseuses, jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux domestiques salaries d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par le ménage employeur"
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "la prestation de services de cuisine, jardinage, etc., par des prestataires de services indépendants (entreprises ou particuliers), voir selon le type de service",
+      "la prestation de services de cuisine, jardinage, etc., par des prestataires de services independants (entreprises ou particuliers), voir selon le type de service",
       "la fourniture de personnel de maison par des entreprises (cf. 78)",
       "l'aide à domicile dans le cadre de l'action sociale, y compris les services de baby-sitting (cf. 88)"
     ],
@@ -94418,7 +94418,7 @@
     "contenuCentral": [],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "prestations similaires assurées par des prestataires de services indépendants, voir selon le type de service"
+      "prestations similaires assurées par des prestataires de services independants, voir selon le type de service"
     ],
     "parent": 7214
   },
@@ -94432,7 +94432,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services de garde d'enfants, y compris baby-sitting, par des prestataires de services indépendants, à domicile ou ailleurs (88.91)"
+      "services de garde d'enfants, y compris baby-sitting, par des prestataires de services independants, à domicile ou ailleurs (88.91)"
     ],
     "parent": 7219
   },
@@ -94451,7 +94451,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services de visite et d'assistance pour personnes âgées par des prestataires de services indépendants (88.10.11)"
+      "services de visite et d'assistance pour personnes âgées par des prestataires de services independants (88.10.11)"
     ],
     "parent": 7219
   },
@@ -94470,7 +94470,7 @@
     ],
     "contenuAnnexe": [],
     "contenuExclu": [
-      "services de visite et d'assistance pour personnes handicapées par des prestataires de services indépendants (88.10.14)"
+      "services de visite et d'assistance pour personnes handicapées par des prestataires de services independants (88.10.14)"
     ],
     "parent": 7219
   },

@@ -7,7 +7,7 @@ import { engineFactory } from '@/utils/publicodes/engineFactory'
 import rémunérationSASUSituations from './SASU.yaml'
 import { runSimulations } from './utils'
 
-it('calculate assimilé salarié', () => {
+it('calculate assimilé salarie', () => {
 	runSimulations(
 		engineFactory(rules),
 		rémunérationSASUSituations,

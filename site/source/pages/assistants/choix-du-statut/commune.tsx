@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Body, InfoButton } from '@/design-system'
+import { Body, InfoButton } from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {

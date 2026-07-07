@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 export default function useScrollToHash() {
 	const { locationHash } = useNavigation()

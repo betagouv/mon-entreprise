@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import StackedRulesChart from '@/components/simulationExplanation/StackedRulesChart/StackedRulesChart'
-import { H2 } from '@/design-system'
+import { H2 } from '@/design-system/index'
 
 export const Explications = () => {
 	const { t } = useTranslation()

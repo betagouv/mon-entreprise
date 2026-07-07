@@ -9,7 +9,7 @@ import { simulationKeySelector } from '@/store/selectors/simulation/simulationKe
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
 import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 import { useQuestionsPublicodesÉditorialisées } from './useQuestionsPublicodesEditorialisees'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'

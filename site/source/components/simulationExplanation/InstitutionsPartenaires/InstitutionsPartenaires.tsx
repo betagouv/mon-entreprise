@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { FromBottom } from '@/components/ui/animate'
-import { Grid, H2, Message } from '@/design-system'
+import { Grid, H2, Message } from '@/design-system/index'
 
 type Props = {
 	role?: string

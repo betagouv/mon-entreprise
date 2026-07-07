@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 export function useIsEmbedded(): boolean {
 	return useContext(EmbeddedContext)

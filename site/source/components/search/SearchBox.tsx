@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { SearchBoxProvided } from 'react-instantsearch-core'
 import { connectSearchBox } from 'react-instantsearch-dom'
 
-import { SearchField } from '@/design-system'
+import { SearchField } from '@/design-system/index'
 
 interface Props extends SearchBoxProvided {
 	label: string

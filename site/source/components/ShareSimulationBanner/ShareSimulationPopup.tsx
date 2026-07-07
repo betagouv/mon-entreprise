@@ -11,7 +11,7 @@ import {
 	SmallBody,
 	Strong,
 	TextField,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useTracking } from '@/hooks/useTracking'
 
 export function ShareSimulationPopup({ url }: { url: string }) {

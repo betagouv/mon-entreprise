@@ -5,7 +5,7 @@ import {
 	Link,
 	PopoverWithTrigger,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import FeedbackSvg from './feedback.svg'
 
@@ -32,7 +32,7 @@ export default function InscriptionBetaTesteur() {
 				alt=""
 			/>
 			<Intro>
-				Inscrivez-vous pour accéder aux nouveautés en avant-première et donner
+				Inscrivez-vous pour accéder aux nouveautes en avant-première et donner
 				votre avis sur les évolutions du site et des outils mon-entreprise.
 			</Intro>
 			<Spacing xl />

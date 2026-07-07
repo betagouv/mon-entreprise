@@ -1,4 +1,4 @@
-describe('Champs localisation (simulateur salarié)', function () {
+describe('Champs localisation (simulateur salarie)', function () {
 	const fr = Cypress.env('language') === 'fr'
 	if (!fr) {
 		return

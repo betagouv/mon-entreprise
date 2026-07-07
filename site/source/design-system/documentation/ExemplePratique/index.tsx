@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { ContenuInteractif } from '@/design-system'
+import { ContenuInteractif } from '@/design-system/index'
 
 export const ExemplePratique = styled(ContenuInteractif)`
 	border-left: 4px solid ${({ theme }) => theme.colors.bases.secondary[500]};

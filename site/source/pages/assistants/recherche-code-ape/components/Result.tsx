@@ -19,7 +19,7 @@ import {
 	RotatingChevronIcon,
 	SmallBody,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 
 interface ResultProps {
 	debug: string | null

@@ -6,11 +6,11 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
-} from '@/components/Simulation'
+} from '@/components/Simulation/index'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { Body, H2 } from '@/design-system'
+import { Body, H2 } from '@/design-system/index'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { useEngineFromModèle } from '@/hooks/useEngineFromModele'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
@@ -54,24 +54,24 @@ export function SASUSimulation() {
 					/>
 					<SimulationGoals>
 						<PeriodSwitch />
-						<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
+						<SimulationGoal dottedName="assimilé salarie . rémunération . totale" />
 						<SimulationGoal
 							editable
 							small
-							dottedName="assimilé salarié . rémunération . brute"
+							dottedName="assimilé salarie . rémunération . brute"
 						/>
 						<SimulationGoal
 							editable={false}
 							small
-							dottedName="assimilé salarié . cotisations"
+							dottedName="assimilé salarie . cotisations"
 						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . à payer avant impôt" />
+						<SimulationGoal dottedName="assimilé salarie . rémunération . nette . à payer avant impôt" />
 						<SimulationGoal
 							small
 							editable={false}
-							dottedName="assimilé salarié . rémunération . impôt"
+							dottedName="assimilé salarie . rémunération . impôt"
 						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt" />
+						<SimulationGoal dottedName="assimilé salarie . rémunération . nette . après impôt" />
 					</SimulationGoals>
 				</Simulation>
 			</SimulateurPageLayout>
@@ -87,18 +87,18 @@ export const SeoExplanations = () => {
 		<Trans i18nKey="pages.simulateurs.sasu.seo-explanation">
 			<H2>Comment calculer le salaire d'un dirigeant de SAS ou SASU ? </H2>
 			<Body>
-				Comme pour un salarié classique, le <strong>dirigeant de SAS(U)</strong>{' '}
+				Comme pour un salarie classique, le <strong>dirigeant de SAS(U)</strong>{' '}
 				paye des cotisations sociales sur la rémunération qu'il se verse. Les
-				cotisations sont calculées de la même manière que pour le salarié :
-				elles sont décomposées en partie employeur et partie salarié et sont
+				cotisations sont calculées de la même manière que pour le salarie :
+				elles sont décomposées en partie employeur et partie salarie et sont
 				exprimées comme un pourcentage du salaire brut.
 			</Body>
 			<Body>
-				Le dirigeant assimilé-salarié ne paye pas de{' '}
+				Le dirigeant assimilé-salarie ne paye pas de{' '}
 				<strong>cotisations chômage</strong>. Par ailleurs, il ne bénéficie pas
 				de la{' '}
 				<RuleLink
-					dottedName="salarié . cotisations . exonérations . RGDU"
+					dottedName="salarie . cotisations . exonérations . RGDU"
 					engine={engineModeleSocial}
 					documentationPath={documentationPathModèleSocial}
 				>
@@ -106,7 +106,7 @@ export const SeoExplanations = () => {
 				</RuleLink>{' '}
 				ni des dispositifs encadrés par le code du travail comme les{' '}
 				<RuleLink
-					dottedName="salarié . temps de travail . heures supplémentaires"
+					dottedName="salarie . temps de travail . heures supplémentaires"
 					engine={engineModeleSocial}
 					documentationPath={documentationPathModèleSocial}
 				>
@@ -116,7 +116,7 @@ export const SeoExplanations = () => {
 			</Body>
 			<Body>
 				Il peut en revanche prétendre à la{' '}
-				<RuleLink dottedName="assimilé salarié . exonérations . Acre">
+				<RuleLink dottedName="assimilé salarie . exonérations . Acre">
 					réduction Acre
 				</RuleLink>{' '}
 				en debut d'activité, sous certaines conditions.

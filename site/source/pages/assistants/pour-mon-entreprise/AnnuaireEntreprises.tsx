@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Article } from '@/design-system'
+import { Article } from '@/design-system/index'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 export function AnnuaireEntreprises() {

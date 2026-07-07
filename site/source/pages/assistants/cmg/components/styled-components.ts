@@ -1,6 +1,6 @@
 import { css, styled } from 'styled-components'
 
-import { Body, ExtraSmallBody, H2, H3, Intro, SmallBody } from '@/design-system'
+import { Body, ExtraSmallBody, H2, H3, Intro, SmallBody } from '@/design-system/index'
 
 export const Question = styled(Intro)`
 	margin-bottom: 0;

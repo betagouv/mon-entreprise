@@ -21,7 +21,7 @@ import {
 	Strong,
 	StyledLink,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import DetailsRowCards from './DetailsRowCards'
@@ -803,7 +803,7 @@ export const Comparaison = ({
 							existe <Strong>3 statuts possibles</Strong> pour votre
 							conjoint/conjointe (<Strong>collaborateur/collaboratrice</Strong>,{' '}
 							<Strong>associé/associée</Strong> ou{' '}
-							<Strong>salarié/salariée</Strong>).
+							<Strong>salarie/salariee</Strong>).
 						</Trans>
 					</Body>
 
@@ -817,7 +817,7 @@ export const Comparaison = ({
 								{
 									si: 'entreprise . catégorie juridique . EI',
 									alors:
-										'"Conjoint collaborateur ou salarié / Conjointe collaboratrice ou salariée"',
+										'"Conjoint collaborateur ou salarie / Conjointe collaboratrice ou salariee"',
 								},
 								{
 									si: {
@@ -827,11 +827,11 @@ export const Comparaison = ({
 										],
 									},
 									alors:
-										'"Conjoint collaborateur, associé ou salarié / Conjointe collaboratrice, associée ou salariée"',
+										'"Conjoint collaborateur, associé ou salarie / Conjointe collaboratrice, associée ou salariee"',
 								},
 								{
 									sinon:
-										'"Conjoint associé ou salarié / Conjointe associée ou salariée"',
+										'"Conjoint associé ou salarie / Conjointe associée ou salariee"',
 								},
 							],
 						}}

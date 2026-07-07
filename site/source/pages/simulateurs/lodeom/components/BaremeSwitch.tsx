@@ -1,0 +1,19 @@
+import { SimpleField } from '@/components/Simulation/SimpleField'
+import { RuleSwitchLabel, SwitchContainer } from '@/components/Switch'
+import { barèmeLodeomDottedName } from '@/hooks/useBaremeLodeom'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+
+export default function BarèmeSwitch() {
+	const currentZone = useZoneLodeom()
+
+	return (
+		currentZone && (
+			<SwitchContainer>
+				<SimpleField
+					dottedName={barèmeLodeomDottedName(currentZone)}
+					labelStyle={RuleSwitchLabel}
+				/>
+			</SwitchContainer>
+		)
+	)
+}

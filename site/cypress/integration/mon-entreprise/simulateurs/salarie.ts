@@ -1,6 +1,6 @@
 import { checkA11Y, fr } from '../../../support/utils'
 
-describe.skip('Simulateur salarié : part time contract', function () {
+describe.skip('Simulateur salarie : part time contract', function () {
 	if (!fr) {
 		return
 	}
@@ -24,7 +24,7 @@ describe.skip('Simulateur salarié : part time contract', function () {
 	})
 
 	it('should permit selecting the smic before part-time contrat', function () {
-		cy.get('#salarié___contrat___salaire_brut').should(($input) => {
+		cy.get('#salarie___contrat___salaire_brut').should(($input) => {
 			const val = $input
 				.val()
 				.toString()
@@ -45,7 +45,7 @@ describe.skip('Simulateur salarié : part time contract', function () {
 		cy.focused().type('25')
 		cy.contains('Fermer').click()
 
-		cy.get('#salarié___rémunération___net___payé_après_impôt').should(
+		cy.get('#salarie___rémunération___net___payé_après_impôt').should(
 			($input) => {
 				const val = $input
 					.val()

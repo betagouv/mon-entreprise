@@ -1,5 +1,5 @@
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 export default function SimulateurOrAssistantPage() {
 	const { currentSimulatorData } = useCurrentSimulatorData()

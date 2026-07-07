@@ -13044,15 +13044,15 @@ installations associées)
  -  matériels de thérapie radiologique (cobaltothérapie, gammathérapie, etc.)
 CA :  -  mobilier pour environnement radiologique
  -  tubes à rayons X, écrans et pupitres radiologiques, cupules et boucliers protecteurs
-26.60.12 Appareils d'électrodiagnostic utilisés en médecine
+26.60.12 Appareils d'électrodiagnostic utilisés en medecine
 CC :  -  électrocardiographes, électroencéphalographes, audiomètres
   -  matériels  d'imagerie  médicale  (appareils  d'imagerie  par  résonance  magnétique,  scanographie,  
 scintigraphie, échographie, etc.)
  -  matériels d'observation par cathétérisme
  -  moniteurs pour la surveillance continue des malades
-26.60.13 Appareils à rayonnements ultraviolets ou infrarouges, utilisés en médecine, chirurgie, art 
+26.60.13 Appareils à rayonnements ultraviolets ou infrarouges, utilisés en medecine, chirurgie, art 
 dentaire et vétérinaire
-CC :  -  appareils à rayonnements ultraviolets ou infrarouges, utilisés en médecine, chirurgie, art dentaire et 
+CC :  -  appareils à rayonnements ultraviolets ou infrarouges, utilisés en medecine, chirurgie, art dentaire et 
 vétérinaire
 26.60.14	 Stimulateurs	cardiaques	;	prothèses	auditives
 CC :  -  stimulateurs cardiaques ; prothèses ou orthèses auditives
@@ -17186,7 +17186,7 @@ Cette sous-classe ne comprend pas :
  - la fabrication de sièges de voitures (cf. 29.32Z) 
  - la fabrication de sièges de wagons (cf. 30.20Z) 
  - la fabrication de sièges d'avions (cf. 30.30Z) 
- - la  fabrication  de  mobilier  pour  la  médecine,  la  chirurgie,  l'art  dentaire  ou  l'art  vétérinaire  
+ - la  fabrication  de  mobilier  pour  la  medecine,  la  chirurgie,  l'art  dentaire  ou  l'art  vétérinaire  
 (cf. 32.50A) 
  - la  fixation  et  l'installation  de  mobilier  modulaire,  l'installation  de  cloisons,  l'installation  de 
 meubles de laboratoire (cf. 43.32A, 43.32B) 
@@ -17762,7 +17762,7 @@ Cette classe comprend :
 et  d'appareils  nécessaires  à  l'exercice  de  l'art  dentaire,  de  dentiers,  d'articles  et  d'appareils  
 nécessaires à la pratique de l'orthodontie
 Cette classe comprend aussi :
--  la  fabrication  de  mobilier  pour  la  médecine,  l'art  dentaire  ou  les  activités  similaires,  dont  les  
+-  la  fabrication  de  mobilier  pour  la  medecine,  l'art  dentaire  ou  les  activités  similaires,  dont  les  
 fonctions spécifiques déterminent la finalité du produit, tels que les fauteuils de dentiste avec 
 fonctions hydrauliques intégrées
 32.50A Fabrication de matériel médico-chirurgical et dentaire
@@ -17776,7 +17776,7 @@ préparations à base de plâtre dentaire
 -  la fabrication d'appareils de nettoyage par ultrasons destinés à un usage en laboratoire
 -  la fabrication de stérilisateurs de laboratoires
 -  la fabrication d'équipements de distillation de laboratoire, de centrifugeuses de laboratoire
--  la  fabrication  de  mobilier  pour  la  médecine,  la  chirurgie,  l'art  dentaire  ou  l'art  vétérinaire,  tel  
+-  la  fabrication  de  mobilier  pour  la  medecine,  la  chirurgie,  l'art  dentaire  ou  l'art  vétérinaire,  tel  
 que :
 •  tables d'opération
 •  tables d'examen
@@ -20643,7 +20643,7 @@ et autoroutes, voies ferrées, canaux, etc.
 des sites miniers, à l'exception des sites de pétrole ou de gaz
 Cette sous-classe comprend aussi :
 -  le rabattement de nappes et autres techniques de lutte contre l'infiltration d'eau en fondation
--  les prestations indépendantes d'artificiers, pour toutes applications
+-  les prestations independantes d'artificiers, pour toutes applications
 Cette sous-classe ne comprend pas :
  - le forage de puits d'extraction de pétrole ou de gaz (cf. 06.10Z et 06.20Z) 
  - la décontamination des sols (cf. 39.00Z) 
@@ -20976,7 +20976,7 @@ Produits associés : 43.33.10, 43.33.21, 43.33.29
 [[[NEW PAGE]]]
 
  -  travaux de ferronnerie d'art (43.39.11)
- -  assemblage de meubles indépendants (95.24.10)
+ -  assemblage de meubles independants (95.24.10)
  
 43.33 Travaux de revêtement des sols et des murs
 43.33.1 Travaux de carrelage
@@ -24038,7 +24038,7 @@ CC :  - transport routier interurbain régulier spécial de passagers sur des li
  -  navettes régulières d'aéroports interurbaines
 49.39.13 Autres transports routiers réguliers spéciaux de voyageurs
 CC  :    -   transport  routier  urbain  et  suburbain  régulier  spécial  de  passagers,  sur  des  lignes  déterminées,  
-conformément à un horaire préétabli, pour une catégorie spécifique d'utilisateurs (étudiants, salariés, 
+conformément à un horaire préétabli, pour une catégorie spécifique d'utilisateurs (étudiants, salaries, 
 etc.)
  -  transports assurés par les autocars scolaires qui conduisent les élèves de leur domicile vers leur 
 école, d'une école à l'autre, etc.
@@ -24057,7 +24057,7 @@ NC  :    -   exploitation  de  funiculaires,  de  téléphériques,  etc.,  s'in
 transport urbain et suburbain (49.31.21)
 49.39.3 Transport terrestre non régulier de voyageurs
 49.39.31 Location d'autocars avec conducteur
-CC  :    -   location  d'autobus  ou  d'autocars  avec  conducteur  à  la  durée,  généralement  indépendante  de  la  
+CC  :    -   location  d'autobus  ou  d'autocars  avec  conducteur  à  la  durée,  généralement  independante  de  la  
 distance et sur la base de spécifications (horaires, itinéraire, etc.) définies par le client
 NC :  -  services non réguliers de navettes par autocars (49.39.33)
  -  services non réguliers de navettes à longue distance par autocars (49.39.34)
@@ -25088,7 +25088,7 @@ considérablement.
 Cette section ne comprend pas la mise à disposition de lieux d'hébergement pour des séjours de longue durée 
 à titre de résidence principale, classée dans les activités immobilières (cf. section L). 
 Cette section ne comprend pas non plus la préparation de repas et de boissons qui ne sont pas destinés à 
-une consommation immédiate ou qui sont vendus par l'intermédiaire de canaux de distribution indépendants, 
+une consommation immédiate ou qui sont vendus par l'intermédiaire de canaux de distribution independants, 
 c'est-à-dire par l'intermédiaire d'activités de commerce de gros ou de détail. La préparation de ces repas est 
 comprise dans la section C « Industrie manufacturière ». 
 55 HÉBERGEMENT
@@ -25127,7 +25127,7 @@ Cette sous-classe comprend la mise à disposition d'un lieu d'hébergement, gén
 base journalière ou hebdomadaire, principalement pour un séjour de courte durée comprenant, 
 dans  un  espace  limité,  des  pièces  complètement  meublées  ou  des  espaces  de  vie,  de  repas  
 et  de  repos  et  disposant  d'installations  pour  cuisiner  ou  de  cuisines  intégrées.  Il  peut  s'agir  
-d'appartements situés dans de petits bâtiments indépendants à plusieurs niveaux ou dans des 
+d'appartements situés dans de petits bâtiments independants à plusieurs niveaux ou dans des 
 616 Nomenclature d’Activités Française NAF rév. 2
 
 [[[NEW PAGE]]]
@@ -25552,7 +25552,7 @@ Cette sous-classe ne comprend pas :
  - la production de globes (cf. 32.99Z) 
  - l'édition de matériel publicitaire (cf. 58.19Z) 
  - l'édition de livres musicaux et de partitions (cf. 59.20Z) 
- - les activités des auteurs indépendants, notamment la production d'œuvres originales 
+ - les activités des auteurs independants, notamment la production d'œuvres originales 
 (cf. 90.03B) 
 Produits associés : 58.11.11, 58.11.12, 58.11.13, 58.11.14, 58.11.15, 58.11.16, 
 58.11.19, 58.11.20, 58.11.30, 58.11.41, 58.11.42, 58.11.50, 58.11.60
@@ -25566,10 +25566,10 @@ d'exercices, manuels pour les enseignants et ouvrages interactifs
 58.11.12 Livres professionnels, techniques et savants, imprimés
 CC  :    -  livres  professionnels,  techniques  et  savants,  contenant  des  informations  ou  des  travaux  de  
 recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels spécialisés 
-(avocats, médecins, électriciens, comptables, managers, informaticiens, etc.) :
+(avocats, medecins, électriciens, comptables, managers, informaticiens, etc.) :
 •  livres de sciences sociales ou humaines, de gestion, de management, de linguistique, de droit, 
 de philosophie
-•  livres de sciences exactes, de sciences naturelles, de médecine, de technologie, livres traitants 
+•  livres de sciences exactes, de sciences naturelles, de medecine, de technologie, livres traitants 
 des techniques de l'ingénieur, etc.
 58.11.13 Livres d'enfants, imprimés
 CC :  -  livres pour la jeunesse (livres conçus spécialement pour les enfants et bandes dessinées)
@@ -25740,10 +25740,10 @@ financière, etc.
 58.14.12	 Revues	et	journaux	d'affaires,	professionnels	et	universitaires	imprimés
 CC :  - revues périodiques professionnelles, techniques et universitaires, contenant des informations ou des 
 travaux de recherches avancés destinés aux chercheurs, aux universitaires ou à des professionnels 
-spécialisés (avocats, médecins, électriciens, comptables, managers, informaticiens, etc.) :
+spécialisés (avocats, medecins, électriciens, comptables, managers, informaticiens, etc.) :
 •  revues périodiques de sciences sociales ou humaines, de gestion, de management, de linguistique, 
 de droit, de philosophie
-•  revues  périodiques  de  sciences  exactes,  de  sciences  naturelles,  de  médecine,  de  technologie,  
+•  revues  périodiques  de  sciences  exactes,  de  sciences  naturelles,  de  medecine,  de  technologie,  
 livres traitants des techniques de l'ingénieur, etc.
 58.14.19 Autres revues et périodiques imprimés
 CC :  -  autres revues et périodiques :
@@ -27079,8 +27079,8 @@ Cette sous-classe comprend :
 -  les activités des agences de presse, c'est-à-dire la collecte, la synthèse et la communication 
 aux médias d'informations écrites, photographiques et audiovisuelles
 Cette sous-classe ne comprend pas :
- - les activités des photojournalistes indépendants (cf. 74.20Z) 
- - les activités des journalistes indépendants (cf. 90.03B) 
+ - les activités des photojournalistes independants (cf. 74.20Z) 
+ - les activités des journalistes independants (cf. 90.03B) 
 Produits associés : 63.91.11, 63.91.12
 63.99 Autres services d'information n.c.a.
 63.99Z Autres services d'information n.c.a.
@@ -27109,8 +27109,8 @@ CC :  -  vente d'espaces publicitaires sur des portails Internet
 63.9 AUTRES SERVICES D'INFORMATION
 63.91 Services des agences de presse
 63.91.1 Services des agences de presse
-NC :  -  services des photojournalistes indépendants (74.20.2)
- -  services des journalistes indépendants (90.03.11)
+NC :  -  services des photojournalistes independants (74.20.2)
+ -  services des journalistes independants (90.03.11)
 63.91.11 Services des agences de presse à l'intention des journaux et périodiques
 CC  :    -   collecte,  synthèse  et  communication  d'informations  écrites  et  photographiques,  à  l'intention  de  la  
 presse écrite et d'autres médias imprimés
@@ -27737,12 +27737,12 @@ Classification des Produits Française CPF rév. 2.1  683
 65.30 Caisses de retraite
 65.30Z Caisses de retraite
 Cette sous-classe comprend les entités juridiques (fonds, régimes et/ou programmes) organisées 
-pour assurer le paiement des prestations de retraite exclusivement pour les salariés ou membres 
+pour assurer le paiement des prestations de retraite exclusivement pour les salaries ou membres 
 du répondant du régime. Elle comprend les régimes de pension avec prestations prédéterminées 
 ainsi que les régimes individuels dans lesquels les prestations sont simplement déterminées par 
 la cotisation de l'affilié.
 Cette sous-classe comprend :
--  les régimes de prestations aux salariés
+-  les régimes de prestations aux salaries
 -  les fonds et régimes de pension
 Cette sous-classe ne comprend pas :
  - la gestion des caisses de retraite (cf. 66.30Z) 
@@ -27906,7 +27906,7 @@ Produits associés : 66.19.10, 66.19.21, 66.19.22, 66.19.29, 66.19.31, 66.19.32,
 DE RETRAITE
 Ce groupe comprend l'activité exercée par des agents (courtiers) consistant à vendre des contrats 
 d'assurance de rente et d'autres formes de contrat d'assurance ou à fournir d'autres services liés 
-aux prestations pour salariés ou aux caisses d'assurance et de retraite, tels que le règlement des 
+aux prestations pour salaries ou aux caisses d'assurance et de retraite, tels que le règlement des 
 demandes d'indemnisation ou l'administration de tiers.
 66.21 Évaluation des risques et dommages
 688 Nomenclature d’Activités Française NAF rév. 2
@@ -28361,7 +28361,7 @@ services  concernent  des  domaines  tels  que  le  droit  de  la  famille  (con
 successoral et les testaments, le transfert de biens immobiliers, le droit des sociétés, etc.
 69.10.17 Services d'arbitrage et de conciliation
 CC :  -  services d'assistance, sous la forme d'arbitrage ou de médiation, en vue de régler les différends 
-entre employeurs et salariés, entre entreprises ou entre particuliers
+entre employeurs et salaries, entre entreprises ou entre particuliers
 NC :  -  services de représentation des parties au litige (69.10.11, 69.10.14)
 69.10.18 Services juridiques en matière de ventes aux enchères publiques
 CC :  -  services juridiques liés à la cession d'actifs par voie de vente aux enchères
@@ -28382,7 +28382,7 @@ Cette sous-classe comprend :
 -  l'enregistrement d'opérations commerciales pour les entreprises ou autres
 -  l'établissement ou la vérification de comptes financiers
 -  l'examen des comptes et la certification de leur exactitude
--  l'établissement de déclarations fiscales pour les particuliers et les entreprises
+-  l'établissement de declarations fiscales pour les particuliers et les entreprises
 -  les  activités  de  conseil  et  de  représentation  (autre  que  la  représentation  juridique),  pour  le  
 compte de clients, devant l'administration fiscale
 Cette sous-classe comprend aussi :
@@ -28422,24 +28422,24 @@ est lui aussi inférieur.
 69.20.22	 Services	d'établissement	d'états	financiers
 CC :  -  services d'établissement d'états financiers à partir des informations fournies par le client. Aucune 
 garantie n'est offerte quant à l'exactitude des états ainsi établis.
-  -  services d'établissement de déclarations fiscales, pour autant que ce service soit fourni, pour un 
+  -  services d'établissement de declarations fiscales, pour autant que ce service soit fourni, pour un 
 forfait unique, dans le cadre d'un service global d'établissement d'états financiers
  -  établissement de comptes de résultats, bilans, etc.
-NC  :    -   services  d'établissement  de  déclarations  d'impôts  sur  les  personnes  morales,  fournis  en  tant  que  
+NC  :    -   services  d'établissement  de  declarations  d'impôts  sur  les  personnes  morales,  fournis  en  tant  que  
 service distinct (69.20.3)
 69.20.23 Services de tenue de livres de comptes
 CC  :   - services de tenue de livres de comptes comportant le classement et l'enregistrement des transactions 
 commerciales exprimées en termes monétaires ou dans une autre unité
 NC :  -  services de paie, y compris l'établissement des fiches et livres de paie (69.20.24)
-  -  services comptables liés à l'établissement de déclarations fiscales (69.20.3)
+  -  services comptables liés à l'établissement de declarations fiscales (69.20.3)
  -  services de recouvrement de factures (82.91.12)
 69.20.24 Services de livres de paie
 CC :  -  services de paie, y compris l'établissement des fiches et livres de paie
 69.20.29 Autres services comptables
-CC :  -  autres services comptables : établissement d'attestations, expertises, déclarations pro forma, etc.
+CC :  -  autres services comptables : établissement d'attestations, expertises, declarations pro forma, etc.
 69.20.3	 Services	de	conseil	fiscal
 69.20.31	 Services	de	conseil	fiscal	aux	entreprises
-CC :  -  conseil fiscal aux entreprises et préparation de déclarations pour tous types de taxes (TVA, par 
+CC :  -  conseil fiscal aux entreprises et préparation de declarations pour tous types de taxes (TVA, par 
 exemple)
 69.20.32	 Services	de	planification	fiscale	aux	particuliers
 CC :  -  services de planification fiscale pour les entreprises sans personnalité morale
@@ -28601,12 +28601,12 @@ porter sur un ou plusieurs des aspects suivants :
 •  recrutement, rémunération, prestations, mesure et évaluation de la performance
 •  développement  organisationnel  (amélioration  du  fonctionnement  au  sein  des  groupes  et  entre  
 ceux-ci)
-•  formation des salariés et besoins de perfectionnement
-•  procédures et plans de replacement externe en vue d'aider les salariés
+•  formation des salaries et besoins de perfectionnement
+•  procédures et plans de replacement externe en vue d'aider les salaries
 •  planification des remplacements
 •  conformité aux réglementations dans des domaines telles que la santé, la sécurité, la rémunération 
 et l'équité en matière d'emploi
-•  relations employeurs-salariés
+•  relations employeurs-salaries
 •  audits des ressources humaines
 NC :  -  services de conseil en recherche et placement de cadres (78.10.1)
  -  services de conseil en éducation (85.60.10)
@@ -29320,13 +29320,13 @@ NC  :    -  recherche  et  développement  expérimental  en  biotechnologie  en
 72.19.32 Recherche appliquée en ingénierie et technologie, à l'exclusion des biotechnologies
 72.19.33 Développement expérimental en ingénierie et technologie, à l'exclusion des 
 biotechnologies
-72.19.4 Recherche et développement expérimental en médecine et pharmacie
+72.19.4 Recherche et développement expérimental en medecine et pharmacie
 CC  :    -   services  de  recherche  et  développement  expérimental  en  matière  de  traitement  des  maladies,  
 d'hygiène prophylactique, de pharmacie, etc.
 NC :  -  recherche et développement expérimental en biotechnologie de santé (72.11.1)
-72.19.41 Recherche fondamentale en médecine et pharmacie
-72.19.42 Recherche appliquée en médecine et pharmacie
-72.19.43 Développement expérimental en médecine et pharmacie
+72.19.41 Recherche fondamentale en medecine et pharmacie
+72.19.42 Recherche appliquée en medecine et pharmacie
+72.19.43 Développement expérimental en medecine et pharmacie
 72.19.5 Recherche et développement expérimental en agronomie
 Classification des Produits Française CPF rév. 2.1  723
 
@@ -29684,7 +29684,7 @@ Classification des Produits Française CPF rév. 2.1  733
 
 •  montage de diapositives
 •  copie, restauration et retouche de photographies
--  activités de photojournalistes indépendants
+-  activités de photojournalistes independants
 Cette sous-classe comprend aussi :
 -  le microfilmage de documents
 -  les activités des auteurs-photographes et des photographes d'art
@@ -29860,7 +29860,7 @@ et, si c'est le cas, déterminer la source, la nature et l'ampleur de la contami
 pour  la  sécurité  et  la  santé  publique  découlant  d'une  contamination  environnementale  associée  
 à  une  projet  prévu  ou  existant  ;  évaluer  l'impact  sur  l'écologie  ou  l'économie  de  changements  
 environnementaux résultant d'activités humaines ou naturelles
- -  audits environnementaux, c'est-à-dire l'évaluation indépendante de l'état actuel de conformité d'une 
+ -  audits environnementaux, c'est-à-dire l'évaluation independante de l'état actuel de conformité d'une 
 partie  aux  exigences  environnementales  en  vigueur  ou  des  politiques,  pratiques  et  contrôles  de  
 conformité environnementale d'une partie
  -  évaluation des études environnementales, c'est-à-dire la fourniture d'analyses expliquant les forces 
@@ -29889,7 +29889,7 @@ Classification des Produits Française CPF rév. 2.1  737
  - la création de stands et d'autres structures et sites d'affichage (cf. 73.11Z) 
  - les activités des économistes de la construction (cf. 74.90A) 
  - l'organisation de salons professionnels et congrès (cf. 82.30Z) 
- - les activités des commissaires-priseurs indépendants (cf. 82.99Z) 
+ - les activités des commissaires-priseurs independants (cf. 82.99Z) 
  - l'administration des programmes de fidélisation (cf. 82.99Z) 
  - le conseil en matière de crédit à la consommation et d'endettement (cf. 82.99Z) 
 Produits associés : 74.90.11, 74.90.12, 74.90.13, 74.90.14, 74.90.15, 74.90.19p, 
@@ -30529,7 +30529,7 @@ Classifi cation des Produits Française CPF rév. 2.1 753
 
 78 ACTIVITÉS LIÉES À L'EMPLOI
 Cette division comprend les activités consistant à lister les postes vacants et à orienter ou placer les candidats 
-à l'emploi, les personnes orientées ou placées n'étant pas des salariés des agences de placement, à fournir 
+à l'emploi, les personnes orientées ou placées n'étant pas des salaries des agences de placement, à fournir 
 des travailleurs pour des périodes limitées en vue de compléter la main-d'œuvre du client, ainsi qu'à fournir 
 d'autres ressources humaines.
 Cette division comprend :
@@ -30542,7 +30542,7 @@ D'ŒUVRE
 78.10 Activités des agences de placement de main-d'œuvre
 78.10Z Activités des agences de placement de main-d'œuvre
 Cette sous-classe comprend les activités consistant à lister les postes vacants et à orienter ou 
-placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salariés des 
+placer les candidats à l'emploi, les personnes orientées ou placées n'étant pas des salaries des 
 agences de placement.
 Cette sous-classe comprend :
 -  la recherche, la sélection, l'orientation et le placement de personnel, y compris les activités de 
@@ -30562,8 +30562,8 @@ Produits associés : 78.10.11, 78.10.12
 78.20Z Activités des agences de travail temporaire
 Cette sous-classe comprend les activités consistant à fournir des travailleurs pour des périodes 
 limitées  en  vue  de  remplacer  temporairement  ou  de  compléter  la  main-d'œuvre  du  client,  les  
-personnes placées étant salariées par l'agence de travail temporaire.Les agences affectées à 
-cette sous-classe n'assurent toutefois pas la supervision directe de leurs salariés sur les lieux de 
+personnes placées étant salariees par l'agence de travail temporaire.Les agences affectées à 
+cette sous-classe n'assurent toutefois pas la supervision directe de leurs salaries sur les lieux de 
 travail du client.
 Produits associés : 78.20.11, 78.20.12, 78.20.13, 78.20.14, 78.20.15, 78.20.16, 
 78.20.19
@@ -30590,14 +30590,14 @@ confidentielle de postulants hautement qualifiés
 frais pour les services sont facturés, que le candidat soit embauché ou non
 CA :  -  services de recherche de cadres en ligne
 78.10.12 Services de placement permanent, à l'exclusion du recrutement de cadres
-CC :  -  test, entretien, vérification des références, évaluation et conseil de salariés potentiels
+CC :  -  test, entretien, vérification des références, évaluation et conseil de salaries potentiels
  -  recrutement, sélection et présentation de candidats au client en vue d'occuper des postes sur une 
 base permanente (à durée indéterminée)
 Ces  services  peuvent  être  fournis  à  l'employeur  potentiel  ou  au  futur  employé.  Le  candidat  est  
 sélectionné  et  embauché  par  l'employeur  potentiel.  L'entreprise  de  placement  est  payée  sur  une  
 base conditionnelle, c'est-à-dire uniquement en cas de placement réussi d'un candidat. Cette sous-
 catégorie inclut les services de placement permanent pour un vaste éventail de professions, allant des 
-salariés des catégories inférieures aux salariés chargés des tâches de gestion, y compris les cadres, 
+salaries des catégories inférieures aux salaries chargés des tâches de gestion, y compris les cadres, 
 à l'exception de ceux recrutés par des cabinets de recrutement de cadres, ainsi que pour des emplois 
 nationaux ou internationaux.
 CA :  -  services des agences de placement permanent en ligne
@@ -30609,12 +30609,12 @@ NC :  -  services des imprésarios et des agents ou agences similaires (74.90.20
 78.20.1 Services des agences de travail temporaire
 CC :  -  services de recrutement en vue de la mise à disposition de personnel pour des missions de travail 
 temporaire
-L'agence de travail temporaire recrute ses propres salariés et les affecte pour des missions auprès 
-de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salariés, 
+L'agence de travail temporaire recrute ses propres salaries et les affecte pour des missions auprès 
+de clients en vue d'aider ceux ci ou de compléter leur main-d'œuvre en cas d'absences de salaries, 
 de pénurie temporaire de compétences, de surcroîts de travail saisonniers et de missions et projets 
-spéciaux. Ces salariés figurent au livre de paie de l'agence de travail temporaire qui est juridiquement 
+spéciaux. Ces salaries figurent au livre de paie de l'agence de travail temporaire qui est juridiquement 
 responsable de leurs actes, mais, lorsqu'ils travaillent, ils sont placés sous la supervision directe du 
-client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarié.
+client. L'agence de travail temporaire définit le salaire, les prestations sociales, etc. du salarie.
 Classification des Produits Française CPF rév. 2.1  755
 
 [[[NEW PAGE]]]
@@ -30626,9 +30626,9 @@ Classification des Produits Française CPF rév. 2.1  755
 78.30 Autre mise à disposition de ressources humaines
 78.30Z Autre mise à disposition de ressources humaines
 Cette sous-classe comprend les activités consistant à fournir des ressources humaines au client. 
-Les unités classées ici sont l'employeur officiel des salariés pour les questions de paie, d'impôts, 
+Les unités classées ici sont l'employeur officiel des salaries pour les questions de paie, d'impôts, 
 ainsi qu'en matière fiscale et de ressources humaines, mais ne sont pas responsables de la 
-direction et de la supervision des salariés.
+direction et de la supervision des salaries.
 La  fourniture  de  ressources  humaines  a  généralement  lieu  pour  une  longue  durée  ou  sur  une  
 base permanente et les unités classées ici sont spécialisées dans l'exécution d'une vaste gamme 
 de tâches de gestion des ressources humaines.
@@ -30682,10 +30682,10 @@ CC :  -  services de recrutement en vue de la mise à disposition de personnel p
 prolongées.
 Selon ces modalités, le client peut recruter la ou les personnes engagées par la société de recrutement 
 qui sont affectées sur son lieu de travail ou transférer une partie de son effectif existant à la société 
-de recrutement. Ces salariés à long terme figurent au livre de paie de l'agence de travail temporaire 
+de recrutement. Ces salaries à long terme figurent au livre de paie de l'agence de travail temporaire 
 qui  est  juridiquement  responsable  de  leurs  actes,  mais,  lorsqu'ils  travaillent,  ils  sont  placés  sous  la  
 supervision directe du client. Ces services incluent le louage de main-d'œuvre, le travail intérimaire, le 
-recrutement prolongé de salariés et l'embauchage obligatoire.
+recrutement prolongé de salaries et l'embauchage obligatoire.
 78.30.11 Autres services de mise à disposition de personnel dans le domaine de l'informatique et 
 des télécommunications
 CC :  - services de recrutement et de gestion en vue de la mise à disposition de personnel dans le domaine 
@@ -30851,7 +30851,7 @@ Un tel forfait comprend habituellement l'achat et la revente de services de tran
 bagages, d'hébergement, de restauration et de visites touristiques. Les voyages à forfait ainsi obtenus 
 peuvent être vendus à des particuliers ou, en gros, à des agents de voyages ou à d'autres voyagistes.
 79.12.12 Services des accompagnateurs de voyage
-CC :  -  services des accompagnateurs de voyage indépendants
+CC :  -  services des accompagnateurs de voyage independants
  
 79.9 AUTRES SERVICES DE RÉSERVATION ET SERVICES 
 CONNEXES
@@ -30866,7 +30866,7 @@ CC :  -  fourniture d'informations sur les destinations aux visiteurs et visiteu
 brochures, etc.
 79.90.2 Services des guides touristiques
 79.90.20 Services des guides touristiques
-CC :  -  services des guides touristiques indépendants ou fournis par des agences
+CC :  -  services des guides touristiques independants ou fournis par des agences
 NC :  -  services des interprètes (74.30.12)
  -  services des guides de pêche, de chasse et de montagne (93.19.13)
 79.90.3 Autres services de réservation n.c.a.
@@ -31589,7 +31589,7 @@ Classification des Produits Française CPF rév. 2.1  779
 -  les services de collecte de fonds, pour le compte de tiers
 -  les services de saisie
 -  les services de collecte des pièces de parcmètres
--  les activités des commissaires-priseurs indépendants
+-  les activités des commissaires-priseurs independants
 -  l'administration des programmes de fidélisation
 -  les autres activités de soutien généralement fournies aux entreprises non classées ailleurs
 Cette sous-classe ne comprend pas :
@@ -31693,7 +31693,7 @@ ET SOCIALE
 84.11.1 Services publics généraux
 84.11.11 Services exécutifs et législatifs
 CC :  -  services rendus par le gouvernement central, les exécutifs régionaux ou locaux, et les organismes 
-indépendants
+independants
   -   services  rendus  par  le  pouvoir  législatif  central,  les  assemblées  régionales  ou  locales,  et  les  
 organismes consultatifs ou de contrôle
 84.11.12	 Services	budgétaires	et	fiscaux
@@ -32273,7 +32273,7 @@ maternité, d'accident du travail, de maladie professionnelle, d'invalidité tem
 NC :  -  administration des soins de santé (84.12.12)
 84.30.12 Services de sécurité sociale obligatoire concernant les régimes de pensions de la 
 fonction publique et les prestations de retraite, invalidité permanente et reversion autres 
-que pour les salariés de la fonction publique
+que pour les salaries de la fonction publique
 CC :  -  services d'administration et gestion du dispositif des prestations de retraite, y compris de réversion 
 et d'invalidité permanente (retraites de base de la sécurité sociale, retraites complémentaires)
  -  services d'administration et de gestion des pensions versées par la fonction publique
@@ -32613,7 +32613,7 @@ Cette sous-classe comprend :
 -  les cours de gymnastique
 -  les cours d'équitation donnés dans des académies ou écoles
 -  les cours de natation
--  les instructeurs de sports, professeurs et entraîneurs professionnels indépendants
+-  les instructeurs de sports, professeurs et entraîneurs professionnels independants
 -  les cours d'arts martiaux
 -  les cours de jeux de cartes (comme le bridge)
 -  les cours de yoga
@@ -32681,7 +32681,7 @@ Cette sous-classe comprend :
 -  les écoles d'arts du spectacle vivant (à l'exclusion des établissements universitaires)
 -  les écoles de photographie ne débouchant pas sur un diplôme professionnel
 Cette sous-classe comprend aussi :
--  les activités des écoles et des professeurs de danse indépendants
+-  les activités des écoles et des professeurs de danse independants
 Cette sous-classe ne comprend pas :
  - les cours de langues étrangères (cf. 85.59B) 
  - les écoles de photographie débouchant sur un diplôme professionnel (cf. 85.32Z ou 85.42Z) 
@@ -32714,7 +32714,7 @@ Cette sous-classe comprend :
 -  les centres de formation offrant des cours de rattrapage
 -  les cours de révision en vue d'examens professionnels
 -  les activités de soutien scolaire, généralement à domicile, dispensées par des organismes ou 
-des professeurs indépendants (leçon, aide aux devoirs, etc.)
+des professeurs independants (leçon, aide aux devoirs, etc.)
 -  les  cours  de  langues  et  de  compétences  conversationnelles,  hors  formation  professionnelle  
 continue
 -  la formation informatique, hors formation professionnelle continue
@@ -32769,7 +32769,7 @@ sportives (85.51.10)
  -  cours de langues et de compétences conversationnelles (85.59.11)
 85.59.14 Cours de soutien scolaire à domicile
 CC :    -  services  de  soutien  scolaire  à  domicile,  dispensées  par  des  organismes  ou  des  professeurs  
-indépendants
+independants
 Classification des Produits Française CPF rév. 2.1  805
 
 [[[NEW PAGE]]]
@@ -32812,7 +32812,7 @@ CC :  -  autres services d'enseignement ne pouvant pas être classés par niveau
  -  cours de rattrapage proposés par des centres de formation
  -  cours de révision en vue d'examens professionnels
   -   services  de  soutien  scolaire,  hors  domicile,  dispensées  par  des  organismes  ou  des  professeurs  
-indépendants
+independants
  -  cours de formation à la lecture rapide
  -  cours d'instruction religieuse
   -  services de formation des maîtres nageurs
@@ -32852,18 +32852,18 @@ hospitaliers  et  d'autres  structures  médicales  à  des  activités  d'actio
 passant par des activités d'hébergement médico-social à composante sanitaire plus ou moins importante.
 86 ACTIVITÉS POUR LA SANTÉ HUMAINE
 Les activités pour la santé humaine décrites dans cette division s'exercent sous des formes variées, publiques 
-ou  privées,  en  pratique  libérale  ou  en  établissement,  sous  la  responsabilité  de  médecins  ou  de  personnel  
-para médical. On ne vise pas ici les caractéristiques réglementaires des professions de santé, salariées ou 
+ou  privées,  en  pratique  libérale  ou  en  établissement,  sous  la  responsabilité  de  medecins  ou  de  personnel  
+para médical. On ne vise pas ici les caractéristiques réglementaires des professions de santé, salariees ou 
 libérales, mais celles des unités de production.
 Cette division comprend les activités des établissements hospitaliers de court ou long séjour, publics ou privés, 
-sous la responsabilité de médecins, qui offrent des services d'hébergement et qui assurent un diagnostic et 
+sous la responsabilité de medecins, qui offrent des services d'hébergement et qui assurent un diagnostic et 
 un traitement médical aux patients.
 Elle  couvre  les  activités  de  pratique  médicale  et  de  pratique  dentaire  de  nature  générale  ou  spécialisée,  
 correspondant  à  des  formules  de  consultation,  de  diagnostic,  de  soins  et  de  prescriptions,  au  cabinet  du  
 praticien.
 Cette division comprend, en outre, les activités afférentes à la santé humaine qui ne sont pas dispensées dans 
-des hôpitaux ou par des médecins, mais généralement exercées par des praticiens paramédicaux exécutant 
-sous leur responsabilité des actes prescrits par un médecin.
+des hôpitaux ou par des medecins, mais généralement exercées par des praticiens paramédicaux exécutant 
+sous leur responsabilité des actes prescrits par un medecin.
 86.1 ACTIVITÉS HOSPITALIÈRES
  
 86.10 Activités hospitalières
@@ -32875,7 +32875,7 @@ des établissements généraux (hôpitaux locaux, régionaux, universitaires, h�
 thermaux  ou  pénitentiaires)  et  des  établissements  spécialisés  (hôpitaux  psychiatriques  et  
 de  désintoxication,  hôpitaux  traitant  des  maladies  infectieuses,  maternités,  sanatoriums  
 spécialisés).  Ces  activités  concernent  principalement  des  patients  hospitalisés.  Elles  sont  
-exercées sous la responsabilité de médecins et comprennent :
+exercées sous la responsabilité de medecins et comprennent :
 •  les services du personnel médical et paramédical
 •  les services des laboratoires et installations techniques, y compris les services de radiologie 
 et d'anesthésie,
@@ -32892,8 +32892,8 @@ Cette sous-classe ne comprend pas :
 des produits médicaux (cf. 71.20B) 
  - les activités vétérinaires (cf. 75.00Z) 
  - les soins médicaux dispensés au personnel militaire en campagne (cf. 84.22Z) 
- - l'exercice de la médecine ambulatoire en milieu hospitalier ou en clinique et les services des 
-médecins consultants privés à des personnes hospitalisées (cf. 86.2) 
+ - l'exercice de la medecine ambulatoire en milieu hospitalier ou en clinique et les services des 
+medecins consultants privés à des personnes hospitalisées (cf. 86.2) 
  - les activités de pratique dentaire de nature générale ou spécifique (dentisterie, endodontie et 
 dentisterie pédiatrique, pathologie orale, activités d'orthodontie) (cf. 86.23Z) 
  - les activités de transport en ambulance (cf. 86.90A) 
@@ -32911,7 +32911,7 @@ SOCIALE
 86.1 SERVICES HOSPITALIERS
 86.10 Services hospitaliers
 86.10.1 Services hospitaliers
-NC :  -  services de médecine ambulatoire en milieu hospitalier ou en clinique (86.21.10, 86.22.1)
+NC :  -  services de medecine ambulatoire en milieu hospitalier ou en clinique (86.21.10, 86.22.1)
 86.10.11 Services d'hospitalisation chirurgicale
 CC :  -  hospitalisation en chirurgie générale, en chirurgie infantile, orthopédique, plastique, réparatrice ou 
 en traumatologie
@@ -32932,42 +32932,42 @@ CC :  -  hospitalisation pour rééducation fonctionnelle et réadaptation pour 
 séjour en sanatorium)
 86.10.14 Services d'hospitalisation en psychiatrie
 CC :  -  services d'hospitalisation en psychiatrie, y compris psychiatrie infanto-juvénile
-86.10.15 Autres services hospitaliers fournis par des médecins
+86.10.15 Autres services hospitaliers fournis par des medecins
 CC :  -  services d'urgences hospitalières
  -  services mobiles hospitaliers d'urgence (blocs opératoires mobiles)
  -  hospitalisation de rééducation des alcooliques et traitement des toxicomanes
  -  hospitalisation de long séjour pour personnes ayant perdu leur autonomie de vie
 NC :  -  soins médicaux dispensés au personnel militaire en campagne (84.22.11)
- -  services des médecins consultants privés à des personnes hospitalisées (86.2)
+ -  services des medecins consultants privés à des personnes hospitalisées (86.2)
  -  soins dentaires (86.23.1)
- -  hébergement médico-social, sans médecin à demeure (87)
+ -  hébergement médico-social, sans medecin à demeure (87)
 Classification des Produits Française CPF rév. 2.1  809
 
 [[[NEW PAGE]]]
 
  
 86.2 ACTIVITÉ DES MÉDECINS ET DES DENTISTES
-Ce  groupe  comprend  les  consultations  données  et  les  soins  dispensés  par  les  médecins  
+Ce  groupe  comprend  les  consultations  données  et  les  soins  dispensés  par  les  medecins  
 généralistes et spécialistes, y compris les chirurgiens, les dentistes, etc.
 Ces activités peuvent être exercées dans des cabinets privés, des cabinets de groupe ou dans des 
 établissements hospitaliers assurant des soins ambulatoires ainsi que dans des établissements 
 similaires attachés à des entreprises, des écoles, des maisons de retraite pour personnes âgées, 
 des organisations professionnelles, ainsi qu'au domicile des patients.
-Ce groupe comprend également les services des médecins consultants privés à des personnes 
+Ce groupe comprend également les services des medecins consultants privés à des personnes 
 hospitalisées.
-86.21 Activité des médecins généralistes
-86.21Z Activité des médecins généralistes
+86.21 Activité des medecins généralistes
+86.21Z Activité des medecins généralistes
 Cette sous-classe comprend :
--  les consultations données et les soins dispensés dans le domaine de la médecine générale 
-par les médecins généralistes
+-  les consultations données et les soins dispensés dans le domaine de la medecine générale 
+par les medecins généralistes
 Cette sous-classe comprend aussi :
--  la médecine systématique et de dépistage (bilans de santé et analyses systématiques)
+-  la medecine systématique et de dépistage (bilans de santé et analyses systématiques)
 Cette sous-classe ne comprend pas :
  - les activités de soins hospitaliers (cf. 86.10Z) 
  - les activités des sages-femmes et les activités paramédicales comme celles des infirmières et 
 des physiothérapeutes (cf. 86.90) 
 Produits associés : 86.21.10
-86.22 Activité des médecins spécialistes
+86.22 Activité des medecins spécialistes
 Cette classe ne comprend pas :
  - les activités de soins hospitaliers (cf. 86.10Z) 
  - les activités des sages-femmes et les activités paramédicales comme celles des infirmières et 
@@ -32984,7 +32984,7 @@ Produits associés : 86.22.11, 86.22.19p
 Cette sous-classe comprend :
 -  les consultations et les soins dispensés par les chirurgiens
 Produits associés : 86.22.19p
-86.22C Autres activités des médecins spécialistes
+86.22C Autres activités des medecins spécialistes
 810 Nomenclature d’Activités Française NAF rév. 2
 
 [[[NEW PAGE]]]
@@ -33000,22 +33000,22 @@ produits médicaux (71.20.1)
  -  services des laboratoires d'analyses médicales (86.90.15)
 86.2 SERVICES DES MÉDECINS ET DES DENTISTES
  
-86.21 Services des médecins généralistes
-86.21.1 Services des médecins généralistes
-86.21.10 Services des médecins généralistes
-CC  :    -   consultation  (diagnostic  et  traitement)  de  médecine  générale  pour  des  maladies  physiques  ou  
+86.21 Services des medecins généralistes
+86.21.1 Services des medecins généralistes
+86.21.10 Services des medecins généralistes
+CC  :    -   consultation  (diagnostic  et  traitement)  de  medecine  générale  pour  des  maladies  physiques  ou  
 mentales
-CA :  -  examens de médecine préventive et de dépistage (médecine scolaire, médecine du travail, bilans 
+CA :  -  examens de medecine préventive et de dépistage (medecine scolaire, medecine du travail, bilans 
 de santé planifiés, vaccinations obligatoires, etc.)
  
-86.22 Services des médecins spécialistes
-86.22.1 Services des médecins spécialistes
+86.22 Services des medecins spécialistes
+86.22.1 Services des medecins spécialistes
 86.22.11 Analyse et interprétation de clichés médicaux
 CC :  - analyse et interprétation d'images médicales (radiographies, radioscopies, échographies, 
 scanographies, IRM, ultrasons, endoscopies, électrocardiogrammes et électroencéphalogrammes)
 NC :  -  services rendus aux personnes hospitalisées (86.10.1)
  -  services des laboratoires d'analyses médicales (86.90.15)
-86.22.19 Autres services des médecins spécialistes
+86.22.19 Autres services des medecins spécialistes
 CC :  - consultation de pédiatrie, de gynécologie-obstétrique, de neurologie, de psychiatrie et de spécialités 
 médicales diverses
  -  consultation de chirurgie, notamment consultations préopératoires
@@ -33035,7 +33035,7 @@ Classification des Produits Française CPF rév. 2.1  811
 [[[NEW PAGE]]]
 
    Cette sous-classe comprend :
--     les consultations et les soins dispensés par les médecins spécialistes
+-     les consultations et les soins dispensés par les medecins spécialistes
   Cette sous-classe comprend aussi :
 -     les services des centres de planning familial assurant des actes médicaux tels que la stérilisation 
 ou l'interruption de grossesse, sans hébergement
@@ -33063,7 +33063,7 @@ hygiénistes dentaires (cf. 86.90D)
    86.9  AUTRES ACTIVITÉS POUR LA SANTÉ HUMAINE 
      86.90  Autres activités pour la santé humaine 
       Cette  classe  comprend  principalement  les  activités  pour  la  santé  humaine  non  exercées  dans  
-des hôpitaux ou par des médecins ou dentistes.
+des hôpitaux ou par des medecins ou dentistes.
   Ces activités peuvent être réalisées dans des dispensaires, des infi rmeries ou d'autres 
 établissements analogues attachés à des entreprises, des écoles, des maisons de retraite pour 
 personnes  âgées,  des  organisations  professionnelles,  ou  encore  dans  des  établissements  de  
@@ -33206,7 +33206,7 @@ scanographies, IRM, ultrasons, endoscopies, électrocardiogrammes et électroenc
 86.90.18 Services de soins psychiatriques
 CC :  -  psychothérapie et psychanalyse
  -  services des psychologues à vocation thérapeutique
-NC :  -  services fournis par des médecins spécialistes (86.22.19)
+NC :  -  services fournis par des medecins spécialistes (86.22.19)
 86.90.19 Autres services de santé humaine n.c.a.
 CC :  - autres services paramédicaux de santé humaine éventuellement exercés hors d'un cadre 
 réglementé :
@@ -33238,12 +33238,12 @@ d'assistance aux malades. Les installations représentent une part importante du
 les soins dispensés combinent des services médicaux et sociaux, le volet médical se composant dans une 
 large mesure de soins infirmiers.
 Cette division ne comprend pas :
- - hébergement, assorti de soins médicaux, avec médecin à demeure (cf. 86.10Z) 
+ - hébergement, assorti de soins médicaux, avec medecin à demeure (cf. 86.10Z) 
 87.1 HÉBERGEMENT MÉDICALISÉ
 87.10 Hébergement médicalisé
 87.10A Hébergement médicalisé pour personnes âgées
 Cette sous-classe comprend :
--  l'accueil et l'hébergement, assortis de soins médicaux, sans médecin à demeure, de personnes 
+-  l'accueil et l'hébergement, assortis de soins médicaux, sans medecin à demeure, de personnes 
 âgées dans des établissements de moyen et long séjour, des centres de convalescence, des 
 maisons de repos, etc.
 •  par exemple, services fournis par les établissements suivants : établissement d'hébergement 
@@ -33255,7 +33255,7 @@ soins médicaux limités (cf. 87.30A)
 Produits associés : 87.10.10p
 87.10B Hébergement médicalisé pour enfants handicapés
 Cette sous-classe comprend :
--  l'accueil,  l'hébergement  et  la  rééducation,  assortis  de  soins  médicaux,  sans  médecin  à  
+-  l'accueil,  l'hébergement  et  la  rééducation,  assortis  de  soins  médicaux,  sans  medecin  à  
 demeure, d'enfants handicapés dans des établissements de moyen et long séjour, des centres 
 de convalescence, des maisons de repos, etc.
 •  par  exemple,  services  fournis  par  les  établissements  suivants  :  instituts  médico-éducatif  
@@ -33271,7 +33271,7 @@ Produits associés : 87.10.10p
 87.10C Hébergement médicalisé pour adultes handicapés et autre hébergement 
 médicalisé
 Cette sous-classe comprend :
--  l'accueil,  l'hébergement  et  la  réadaptation,  assortis  de  soins  médicaux,  sans  médecin  à  
+-  l'accueil,  l'hébergement  et  la  réadaptation,  assortis  de  soins  médicaux,  sans  medecin  à  
 demeure, d'adultes handicapés et d'autres personnes en difficulté dans des établissements de 
 moyen et long séjour, des centres de convalescence, des maisons de repos, etc.
 •  par exemple, services fournis par les établissements suivants : maison d'accueil spécialisé 
@@ -33293,7 +33293,7 @@ sans-abri (cf. 87.90B)
 87.10 Services d'hébergement médicalisé
 87.10.1 Services d'hébergement médicalisé
 87.10.10 Services d'hébergement médicalisé
-CC  :    - accueil et hébergement, assorti de soins médicaux, sans médecin à demeure dans des établissements 
+CC  :    - accueil et hébergement, assorti de soins médicaux, sans medecin à demeure dans des établissements 
 de moyen et long séjour, des résidences pour personnes âgées dispensant des soins médicaux, des 
 centres de convalescence, des maisons de repos, etc.
 NC :  -  services à domicile fournis par des professionnels de santé (86)
@@ -33322,7 +33322,7 @@ Cette sous-classe comprend :
 -  l'accueil, l'hébergement et la réadaptation de personnes souffrant d'une déficience mentale ou 
 d'une  maladie  mentale.  Les  établissements  concernés  (établissements  spécialisés,  centres  
 de  convalescence,  etc.)  procurent  hébergement,  nourriture,  surveillance,  conseil,  ainsi  que  
-quelques soins de santé, sans médecin à demeure.
+quelques soins de santé, sans medecin à demeure.
 •  par exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer 
 de vie
 Cette sous-classe ne comprend pas :
@@ -33336,7 +33336,7 @@ Cette sous-classe comprend :
 -  l'accueil, l'hébergement et la réadaptation de personnes souffrant d'alcoolisme ou de toxicomanie. 
 Les  établissements  concernés  (établissements  spécialisés,  centres  de  convalescence,  etc.)  
 procurent hébergement, nourriture, surveillance, conseil, ainsi que quelques soins de santé, 
-sans médecin à demeure.
+sans medecin à demeure.
 Cette sous-classe ne comprend pas :
  - les  services  hospitaliers  pour  les  personnes  souffrant  d'alcoolisme  ou  de  toxicomanie 
 (cf. 86.10Z) 
@@ -33377,21 +33377,21 @@ toxicomanes
 CC :  -  accueil,  hébergement  et  rééducation  d'enfants  et  adolescents  souffrant  d'une  déficience 
 mentale,  d'une  maladie  mentale,  d'alcoolisme  ou  de  toxicomanie.  Les  établissements  concernés  
 (établissements  spécialisés,  centres  de  convalescence,  etc.)  procurent  hébergement,  nourriture,  
-surveillance, conseil, ainsi que quelques soins de santé, sans médecin à demeure.
+surveillance, conseil, ainsi que quelques soins de santé, sans medecin à demeure.
 87.20.12 Services d'hébergement social pour adultes handicapés mentaux, malades mentaux et 
 toxicomanes
 CC :  -  accueil, hébergement et réadaptation d'adultes souffrant d'une déficience mentale, d'une maladie 
 mentale, d'alcoolisme ou de toxicomanie. Les établissements concernés (établissements spécialisés, 
 centres de convalescence, etc.) procurent hébergement, nourriture, surveillance, conseil, ainsi que 
-quelques soins de santé, sans médecin à demeure.
+quelques soins de santé, sans medecin à demeure.
  
 87.3 SERVICES D'HÉBERGEMENT SOCIAL POUR PERSONNES 
 ÂGÉES OU HANDICAPÉES PHYSIQUES
 87.30 Services d'hébergement social pour personnes âgées ou 
 handicapées physiques
 87.30.1 Services d'hébergement social pour personnes âgées ou handicapées physiques
-NC :  -  hébergement, assorti de soins médicaux, avec médecin à demeure (86.10.1)
- -  hébergement, assorti de soins médicaux, sans médecin à demeure (87.10.10)
+NC :  -  hébergement, assorti de soins médicaux, avec medecin à demeure (86.10.1)
+ -  hébergement, assorti de soins médicaux, sans medecin à demeure (87.10.10)
   -   services  d'action  sociale  avec  hébergement  dispensés  à  d'autres  personnes  que  les  personnes  
 âgées ou handicapées où les soins médicaux, l'enseignement ou la formation ne jouent pas de rôle 
 important (87.90)
@@ -33405,7 +33405,7 @@ Classification des Produits Française CPF rév. 2.1  821
 
 une aide dans les activités quotidiennes de la vie, telles que les tâches domestiques. Dans 
 certains cas, ces établissements procurent des soins médicaux limités aux résidents dans des 
-installations distinctes, sans médecin à demeure.
+installations distinctes, sans medecin à demeure.
 •  par exemple, services fournis par les établissements suivants : logement-foyer
 Cette sous-classe ne comprend pas :
  - les activités des résidences pour personnes âgées dispensant des soins médicaux (cf. 87.10A) 
@@ -33417,7 +33417,7 @@ autonomes ou qui ne désirent pas vivre de manière autonome. Les établissement
 (établissements  de  moyen  et  long  séjour,  maisons  de  repos,  etc.)  procurent  hébergement,  
 nourriture,  surveillance  et  une  aide  dans  les  activités  quotidiennes  de  la  vie,  telles  que  les  
 tâches domestiques. Dans certains cas, ces établissements procurent des soins médicaux 
-limités aux résidents dans des installations distinctes, sans médecin à demeure.
+limités aux résidents dans des installations distinctes, sans medecin à demeure.
 •  par exemple, services fournis par les établissements suivants : foyer d'hébergement, foyer 
 de vie
 Cette sous-classe ne comprend pas :
@@ -33612,10 +33612,10 @@ Cette sous-classe comprend :
 •  les activités des assistantes maternelles à leur domicile
 •  les activités des haltes-garderies
 Cette sous-classe comprend aussi :
--  les services de garde d'enfants à domicile assurés par des prestataires de services indépendants
+-  les services de garde d'enfants à domicile assurés par des prestataires de services independants
 Cette sous-classe ne comprend pas :
  - l'accueil ou l'accompagnement sans hébergement d'enfants handicapés (cf. 88.91B) 
- - les services de garde d'enfants à domicile assurés par du personnel domestique salarié des 
+ - les services de garde d'enfants à domicile assurés par du personnel domestique salarie des 
 ménages utilisateurs (cf. 97.00Z) 
 Produits associés : 88.91.11, 88.91.13
 88.91B Accueil ou accompagnement sans hébergement d'enfants handicapés
@@ -33672,7 +33672,7 @@ NC :  -  services d'hébergement social pour enfants et jeunes handicapés (87.3
 88.91.13 Services de garde d'enfants
 CC  :    -   autres  services  de  garde  d'enfants  :  assistantes  maternelles  à  leur  domicile,  garde  d'enfants  à  
 domicile y compris baby-sitting, etc.
-NC :  -  services de garde d'enfants à domicile assurés par du personnel domestique salarié des ménages 
+NC :  -  services de garde d'enfants à domicile assurés par du personnel domestique salarie des ménages 
 utilisateurs (97.00.11)
  
 88.99 Autres services d'action sociale sans hébergement n.c.a.
@@ -33754,7 +33754,7 @@ Cette sous-classe comprend :
 -  la production de spectacles, de productions théâtrales, de concerts, de spectacles d'opéra, de 
 spectacles de danse et d'autres productions analogues :
 •  activités de groupes, de cirques ou de compagnies, d'orchestres ou d'autres formations
-•  activités exercées par des artistes indépendants tels que des acteurs, danseurs, musiciens, 
+•  activités exercées par des artistes independants tels que des acteurs, danseurs, musiciens, 
 conteurs
 -  l'organisation de tournées et la diffusion de spectacles lorsqu'elles comprennent la responsabilité 
 artistique du spectacle
@@ -33792,7 +33792,7 @@ CC :  - services de production, de promotion et d'organisation de spectacles com
 artistique du spectacle
   -  services  des  acteurs,  lecteurs,  chanteurs,  musiciens,  danseurs,  cascadeurs,  présentateurs  de  
 programmes télévisés, conteurs, orateurs, artistes de cirque et autres artistes du spectacle
- -  services de modèles indépendants
+ -  services de modèles independants
  
 90.02 Services de soutien au spectacle vivant
 90.02.1 Services de soutien au spectacle vivant
@@ -33822,7 +33822,7 @@ Cette classe ne comprend pas :
  - la restauration de meubles à l'exclusion de la restauration dans le cadre de musées (cf. 95.24Z) 
 90.03A Création artistique relevant des arts plastiques
 Cette sous-classe comprend :
--  les  activités  exercées  par  des  artistes  indépendants  tels  que  des  sculpteurs,  peintres,  
+-  les  activités  exercées  par  des  artistes  independants  tels  que  des  sculpteurs,  peintres,  
 dessinateurs-caricaturistes, graveurs au burin, aquafortistes, etc.
 -  la restauration d'œuvres d'art telles que les peintures, etc.
 Cette sous-classe ne comprend pas :
@@ -33830,10 +33830,10 @@ Cette sous-classe ne comprend pas :
 Produits associés : 90.03.11p, 90.03.13
 90.03B Autre création artistique
 Cette sous-classe comprend :
--  les activités des écrivains indépendants, pour tous les sujets, y compris la fiction, les ouvrages 
+-  les activités des écrivains independants, pour tous les sujets, y compris la fiction, les ouvrages 
 techniques, etc.
 -  les activités des compositeurs de musique
--  les activités des journalistes indépendants
+-  les activités des journalistes independants
 Produits associés : 90.03.11p, 90.03.12
  
 90.04 Gestion de salles de spectacles
@@ -33871,11 +33871,11 @@ NC :  -  services de gestion des droits cinématographiques (59.13.12)
 90.03.1 Création artistique
 90.03.11 Services fournis par des auteurs, compositeurs, sculpteurs et autres artistes, à 
 l'exclusion des artistes du spectacle vivant
-CC :  -  services des artistes indépendants, tels que les compositeurs, sculpteurs, peintres, dessinateurs-
+CC :  -  services des artistes independants, tels que les compositeurs, sculpteurs, peintres, dessinateurs-
 caricaturistes, graveurs au burin, aquafortistes, etc.
-  -  services des écrivains indépendants, pour tous les sujets, y compris la fiction et les ouvrages 
+  -  services des écrivains independants, pour tous les sujets, y compris la fiction et les ouvrages 
 techniques
- -  services des journalistes indépendants
+ -  services des journalistes independants
  -  services de restauration d'objets d'art
 NC :  -  services de restauration d'orgues et d'autres instruments de musique historiques (33.19.10)
   -  services de production et de post-production de films cinématographiques et de vidéos (59.11.1, 
@@ -34112,7 +34112,7 @@ danse et d'autres productions analogues (cf. 90)
 93.1 ACTIVITÉS LIÉES AU SPORT
 Ce  groupe  comprend  l'exploitation  d'installations  sportives,  les  activités  des  équipes  ou  clubs  
 sportifs  participant  principalement  à  des  manifestations  sportives  devant  un  public  payant,  les  
-activités  des  athlètes  indépendants  participants  à  des  courses  ou  manifestations  sportives  
+activités  des  athlètes  independants  participants  à  des  courses  ou  manifestations  sportives  
 devant un public payant, l'activité des propriétaires de voitures, chiens, chevaux, etc. de course 
 consistant  principalement  à  engager  ceux  ci  dans  des  courses  ou  d'autres  manifestations  de  
 sports-spectacles, les activités des entraîneurs sportifs fournissant des services spécialisés de 
@@ -34183,7 +34183,7 @@ NC :  -  services d'exploitation de remontées mécaniques (49.39.20)
 CC  :    -   services  d'organisation  et  de  gestion  de  manifestations  sportives  organisées  par  des  clubs  qui  
 offrent la possibilité de pratiquer un sport (par exemple, football, bowling, natation, golf, boxe, sports 
 d'hiver, échec, athlétisme, etc.)
-NC :  -  cours de sports donnés par des professeurs indépendants, des entraîneurs (85.51.10)
+NC :  -  cours de sports donnés par des professeurs independants, des entraîneurs (85.51.10)
  -  services de gestion d'installations sportives (93.11.10)
   -  services  d'organisation  et  de  gestion  d'activités  sportives  en  salle  ou  en  plein  air  pour  des  
 professionnels  ou  des  amateurs  par  des  organisations  disposant  de  leurs  propres  installations  
@@ -34197,7 +34197,7 @@ Classification des Produits Française CPF rév. 2.1  843
 •  clubs d'athlétisme
 •  clubs de tir, etc.
 Cette sous-classe ne comprend pas :
- - les cours de sports donnés par des professeurs indépendants, des entraîneurs (cf. 85.51Z) 
+ - les cours de sports donnés par des professeurs independants, des entraîneurs (cf. 85.51Z) 
  - l'exploitation d'installations sportives (cf. 93.11Z) 
  - l'organisation et la gestion d'activités sportives en salle ou en plein air pour des professionnels 
 ou des amateurs par des organisations disposant de leurs propres installations (cf. 93.11Z) 
@@ -34207,7 +34207,7 @@ Produits associés : 93.12.10
 Cette sous-classe comprend :
 -  les clubs et centres de culture physique et de musculation
 Cette sous-classe ne comprend pas :
- - les cours de sports donnés par des professeurs indépendants, des entraîneurs (cf. 85.51Z) 
+ - les cours de sports donnés par des professeurs independants, des entraîneurs (cf. 85.51Z) 
 Produits associés : 93.13.10
 93.19 Autres activités liées au sport
 93.19Z Autres activités liées au sport
@@ -34246,7 +34246,7 @@ l'exploitation de diverses attractions, telles que les manèges mécaniques, bal
 93.13.1 Services des centres de culture physique
 93.13.10 Services des centres de culture physique
 CC :  -  services fournis par les clubs et centres de culture physique et de musculation
-NC :  -  cours de sports donnés par des professeurs indépendants, des entraîneurs (85.51.10)
+NC :  -  cours de sports donnés par des professeurs independants, des entraîneurs (85.51.10)
  
 93.19 Autres services liés au sport
 93.19.1 Autres services liés au sport
@@ -34373,8 +34373,8 @@ Cette division comprend les activités des organisations qui représentent les i
 qui  promeuvent  leurs  idées  auprès  du  grand  public.  Ces  organisations  disposent  en  général  d'un  groupe  
 précis de membres, mais leurs activités peuvent également impliquer et bénéficier à des non-membres. La 
 structuration primaire de cette division est déterminée par l'objet de ces organisations, à savoir les intérêts des 
-employeurs, des travailleurs indépendants et de la communauté scientifique (groupe 94.1), les intérêts des 
-salariés (groupe 94.2) ou la promotion d'idées et d'activités religieuses, politiques, culturelles, éducatives ou 
+employeurs, des travailleurs independants et de la communauté scientifique (groupe 94.1), les intérêts des 
+salaries (groupe 94.2) ou la promotion d'idées et d'activités religieuses, politiques, culturelles, éducatives ou 
 récréatives (groupe 94.9). 
 94.1 ACTIVITÉS DES ORGANISATIONS ÉCONOMIQUES, 
 PATRONALES ET PROFESSIONNELLES
@@ -34394,13 +34394,13 @@ indépendamment du type d'activité
 -  la  diffusion  d'informations,  la  représentation  auprès  des  organismes  publics,  les  relations 
 publiques et les négociations collectives des organisations patronales et consulaires
 Cette sous-classe ne comprend pas :
- - les activités des syndicats de salariés (cf. 94.20Z) 
+ - les activités des syndicats de salaries (cf. 94.20Z) 
 Produits associés : 94.11.10
 94.12 Activités des organisations professionnelles
 94.12Z Activités des organisations professionnelles
 Cette sous-classe comprend :
 -  les activités des organisations dont les membres s'intéressent principalement à une discipline, à 
-une profession ou à un domaine technique particulier, telles que les associations de médecins, 
+une profession ou à un domaine technique particulier, telles que les associations de medecins, 
 de juristes, de comptables, d'ingénieurs, d'architectes, etc.
 -  les activités des associations de spécialistes qui exercent des activités à caractère scientifique, 
 intellectuel  ou  culturel,  telles  que  les  associations  d'écrivains,  de  peintres,  d'artistes,  de  
@@ -34432,7 +34432,7 @@ par  des  organisations  patronales  et  consulaires  dont  les  membres  ont  p
 développement  et  la  défense  des  entreprises  ou  du  commerce  en  général  ou  d'une  branche  en  
 particulier, y compris les chambres de commerce
 NC :  -  services de relations publiques fournis par des tiers pour le compte d'une association (70.21.10)
- -  services fournis par les syndicats de salariés (94.20.10)
+ -  services fournis par les syndicats de salaries (94.20.10)
  
 94.12 Services fournis par des organisations professionnelles
 94.12.1 Services fournis par des organisations professionnelles
@@ -34449,15 +34449,15 @@ Classification des Produits Française CPF rév. 2.1  849
 Produits associés : 94.12.10
  
 94.2 ACTIVITÉS DES SYNDICATS DE SALARIÉS
-94.20 Activités des syndicats de salariés
-94.20Z Activités des syndicats de salariés
+94.20 Activités des syndicats de salaries
+94.20Z Activités des syndicats de salaries
 Cette sous-classe comprend :
--  la promotion des intérêts des salariés organisés en syndicats
+-  la promotion des intérêts des salaries organisés en syndicats
 Cette sous-classe comprend aussi :
--  les activités des associations dont les membres sont des salariés ayant pour objectif essentiel 
+-  les activités des associations dont les membres sont des salaries ayant pour objectif essentiel 
 de faire connaître leurs vues sur les conditions salariales et les conditions de travail et de 
 s'organiser en vue d'une action concertée
--  les  activités  des  syndicats  de  salariés  d'une  entreprise,  des  fédérations  et  confédérations  
+-  les  activités  des  syndicats  de  salaries  d'une  entreprise,  des  fédérations  et  confédérations  
 syndicales organisées selon des critères professionnels, régionaux, structurels ou autres
 -  les activités de représentation des comités d'entreprises
 Cette sous-classe ne comprend pas :
@@ -34500,11 +34500,11 @@ Produits associés : 94.92.10
  222222
  111111
 94.2 SERVICES FOURNIS PAR DES SYNDICATS DE SALARIÉS
-94.20 Services fournis par des syndicats de salariés
-94.20.1 Services fournis par des syndicats de salariés
-94.20.10 Services fournis par des syndicats de salariés
+94.20 Services fournis par des syndicats de salaries
+94.20.1 Services fournis par des syndicats de salaries
+94.20.10 Services fournis par des syndicats de salaries
 CC :  -  services de représentation, négociation et diffusion d'informations fournis par des associations 
-dont les membres sont principalement des salariés et qui visent à faire connaître leurs vues sur la 
+dont les membres sont principalement des salaries et qui visent à faire connaître leurs vues sur la 
 situation des travailleurs et à s'organiser en vue d'une action concertée
 NC :  -  services d'enseignement assurés par ces organisations (85)
  
@@ -34811,7 +34811,7 @@ CC :  -  services spécialisés de réparation de chaussures, de bagages et d'ar
 95.24.1 Services de réparation de meubles et d'équipements du foyer
 95.24.10 Services de réparation de meubles et d'équipements du foyer
 CC :  -  rembourrage, remise à neuf, réparation et restauration de meubles et d'équipements du foyer
-CA :  -  assemblage de meubles indépendants
+CA :  -  assemblage de meubles independants
  
 95.25 Services de réparation d'articles d'horlogerie et de bijouterie
 95.25.1 Services de réparation d'articles d'horlogerie et de bijouterie
@@ -35132,12 +35132,12 @@ Cette sous-classe comprend :
 cuisiniers  ou  cuisinières,  serveurs,  valets  de  chambre,  maîtres  d'hôtel,  blanchisseuses, 
 jardiniers, portiers, palefreniers, chauffeurs, concierges, gouvernantes, gardiennes d'enfants 
 à domicile (baby-sitters), précepteurs, secrétaires, etc. Cette sous-classe permet aux 
-domestiques salariés d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, 
+domestiques salaries d'indiquer l'activité de l'employeur lors des recensements ou enquêtes, 
 bien que l'employeur soit un particulier. Le service produit par cette activité est consommé par 
 le ménage employeur
 Cette sous-classe ne comprend pas :
  - la  prestation  de  services  de  cuisine,  jardinage,  etc.,  par  des  prestataires  de  services  
-indépendants (entreprises ou particuliers), voir selon le type de service
+independants (entreprises ou particuliers), voir selon le type de service
  - la fourniture de personnel de maison par des entreprises (cf. 78) 
  - l'aide à domicile dans le cadre de l'action sociale, y compris les services de baby-sitting (cf. 88) 
 Produits associés : 97.00.11, 97.00.12, 97.00.13, 97.00.14, 97.00.19
@@ -35157,13 +35157,13 @@ PERSONNEL DOMESTIQUE
 97.00 Services des ménages en tant qu'employeurs de personnel 
 domestique
 97.00.1 Services des ménages en tant qu'employeurs de personnel domestique
-NC :  -  prestations similaires assurées par des prestataires de services indépendants, voir selon le type de 
+NC :  -  prestations similaires assurées par des prestataires de services independants, voir selon le type de 
 service
 97.00.11 Services des ménages en tant qu'employeurs de personnel domestique fournissant des 
 services de garde d'enfants
 CC :  -  services de garde d'enfants, y compris baby-sitting, à domicile, le ménage étant l'employeur direct 
 du personnel de service
-NC :  -  services de garde d'enfants, y compris baby-sitting, par des prestataires de services indépendants, 
+NC :  -  services de garde d'enfants, y compris baby-sitting, par des prestataires de services independants, 
 à domicile ou ailleurs (88.91)
 97.00.12 Services des ménages en tant qu'employeurs de personnel domestique fournissant des 
 services d'assistance aux personnes âgées, sans soins médicaux
@@ -35176,7 +35176,7 @@ le ménage étant l'employeur direct du personnel de service :
 •  autres services d'assistance à la vie quotidienne (ménage, lavage et repassage du linge, jardinage, 
 etc.)
 NC :  - services de visite et d'assistance pour personnes âgées par des prestataires de services 
-indépendants (88.10.11)
+independants (88.10.11)
 97.00.13 Services des ménages en tant qu'employeurs de personnel domestique fournissant des 
 services d'assistance aux adultes handicapés, sans soins médicaux
 CC  :    -   services  d'assistance  à  la  vie  quotidienne  à  domicile  pour  les  adultes  handicapés,  sans  soins  
@@ -35188,7 +35188,7 @@ médicaux, le ménage étant l'employeur direct du personnel de service :
 •  autres services d'assistance à la vie quotidienne (ménage, lavage et repassage du linge, jardinage, 
 entretien courant du logement, etc.)
 NC  :    -   services  de  visite  et  d'assistance  pour  personnes  handicapées  par  des  prestataires  de  services  
-indépendants (88.10.14)
+independants (88.10.14)
 97.00.14 Services des ménages en tant qu'employeurs de personnel domestique fournissant des 
 services d'aide à la vie quotidienne à domicile
 CC :  - services d'assistance à la vie quotidienne à domicile courants, le ménage étant l'employeur direct du 

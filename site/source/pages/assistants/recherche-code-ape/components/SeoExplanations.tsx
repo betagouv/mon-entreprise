@@ -1,6 +1,6 @@
 import { Trans } from 'react-i18next'
 
-import { Body, H2, Link } from '@/design-system'
+import { Body, H2, Link } from '@/design-system/index'
 
 export const SeoExplanations = () => (
 	<Trans i18nKey="pages.assistants.recherche-code-ape.seo explanation">

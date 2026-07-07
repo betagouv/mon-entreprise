@@ -13,23 +13,23 @@ export default function Explications() {
 			cotisationsSection={CotisationsSection}
 			répartitionRevenuData={{
 				revenu: {
-					dottedName: 'assimilé salarié . rémunération . nette . après impôt',
+					dottedName: 'assimilé salarie . rémunération . nette . après impôt',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.explications.répartition.revenu',
+						'pages.simulateurs.assimilé-salarie.explications.répartition.revenu',
 						'Revenu disponible'
 					),
 				},
 				cotisations: {
-					dottedName: 'assimilé salarié . cotisations',
+					dottedName: 'assimilé salarie . cotisations',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.explications.répartition.cotisations',
+						'pages.simulateurs.assimilé-salarie.explications.répartition.cotisations',
 						'Cotisations'
 					),
 				},
 				impôt: {
 					dottedName: 'impôt . montant',
 					title: t(
-						'pages.simulateurs.assimilé-salarié.explications.répartition.impôt',
+						'pages.simulateurs.assimilé-salarie.explications.répartition.impôt',
 						'Impôt'
 					),
 				},
@@ -41,34 +41,34 @@ export default function Explications() {
 
 const CotisationsSection: Partial<Record<DottedName, Array<string>>> = {
 	'protection sociale . maladie': [
-		'assimilé salarié . cotisations . maladie',
-		'assimilé salarié . cotisations . prévoyances',
-		'assimilé salarié . cotisations . prévoyances . santé',
-		'assimilé salarié . cotisations . ATMP',
+		'assimilé salarie . cotisations . maladie',
+		'assimilé salarie . cotisations . prévoyances',
+		'assimilé salarie . cotisations . prévoyances . santé',
+		'assimilé salarie . cotisations . ATMP',
 	],
 	'protection sociale . retraite': [
-		'assimilé salarié . cotisations . vieillesse',
-		'assimilé salarié . cotisations . retraite complémentaire',
-		'assimilé salarié . cotisations . CEG',
-		'assimilé salarié . cotisations . CET',
-		// 'assimilé salarié . cotisations . retraite supplémentaire',
+		'assimilé salarie . cotisations . vieillesse',
+		'assimilé salarie . cotisations . retraite complémentaire',
+		'assimilé salarie . cotisations . CEG',
+		'assimilé salarie . cotisations . CET',
+		// 'assimilé salarie . cotisations . retraite supplémentaire',
 	],
 	'protection sociale . famille': [
-		'assimilé salarié . cotisations . allocations familiales',
+		'assimilé salarie . cotisations . allocations familiales',
 	],
 	'protection sociale . formation': [
-		"assimilé salarié . cotisations . taxe d'apprentissage",
-		'assimilé salarié . cotisations . formation professionnelle',
+		"assimilé salarie . cotisations . taxe d'apprentissage",
+		'assimilé salarie . cotisations . formation professionnelle',
 	],
 	'protection sociale . transport': [
-		'assimilé salarié . cotisations . versement mobilité',
+		'assimilé salarie . cotisations . versement mobilité',
 	],
 	'protection sociale . autres': [
-		'assimilé salarié . cotisations . CSG-CRDS',
-		'assimilé salarié . cotisations . FNAL',
-		'assimilé salarié . cotisations . CSA',
-		'assimilé salarié . cotisations . forfait social',
-		'assimilé salarié . cotisations . PEEC',
-		'assimilé salarié . cotisations . Apec',
+		'assimilé salarie . cotisations . CSG-CRDS',
+		'assimilé salarie . cotisations . FNAL',
+		'assimilé salarie . cotisations . CSA',
+		'assimilé salarie . cotisations . forfait social',
+		'assimilé salarie . cotisations . PEEC',
+		'assimilé salarie . cotisations . Apec',
 	],
 }

@@ -19,7 +19,7 @@ describe('Simulateur lodeom', function () {
 
 	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 	const inputAmount = '{selectall}3500'
-	const idPrefix = 'salarié___cotisations___exonérations___lodeom___montant'
+	const idPrefix = 'salarie___cotisations___exonérations___lodeom___montant'
 
 	beforeEach(function () {
 		return cy.visit('/simulateurs/lodeom')
@@ -249,7 +249,7 @@ describe('Simulateur lodeom', function () {
 					expect(baseAmount).to.be.greaterThan(0)
 				})
 
-			cy.contains('Plus de 50 salariés').click()
+			cy.contains('Plus de 50 salaries').click()
 			cy.contains('Modifier mes réponses').click()
 			cy.get('div[data-cy="modal"]')
 				.first()
@@ -450,7 +450,7 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('devrait afficher les montants de l’exonération', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 
 			cy.get(inputSelector).should('have.length', 12)
 			cy.get(inputSelector).first().type(inputAmount)
@@ -464,7 +464,7 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('devrait permettre de choisir un barème', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 			cy.get(inputSelector).first().type(inputAmount)
 
 			let baseAmount: number
@@ -495,7 +495,7 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('ne devrait pas inclure la répartition de l’exonération', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 			cy.get(inputSelector).first().type(inputAmount)
 
 			cy.get(`#${idPrefix}-janvier`).trigger('mouseover')
@@ -507,12 +507,12 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('devrait afficher un avertissement adapté au barème sélectionné pour une rémunération trop élevée', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 			cy.get(inputSelector).first().type('{selectall}5500')
 
 			cy.get(`#${idPrefix}-janvier button`).first().trigger('mouseover')
 			cy.contains(
-				'Le barème pour les employeurs de moins de 11 salariés concerne uniquement les salaires inférieurs à 3 Smic.'
+				'Le barème pour les employeurs de moins de 11 salaries concerne uniquement les salaires inférieurs à 3 Smic.'
 			).should('be.visible')
 
 			cy.contains('Barème d’exonération sectorielle').click()
@@ -537,7 +537,7 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('devrait inclure un tableau récapitulatif', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 
 			cy.get('div[id="simulator-legend"]').should(
 				'include.text',
@@ -546,7 +546,7 @@ describe('Simulateur lodeom', function () {
 		})
 
 		it('devrait afficher un code en fonction du barème sélectionné dans le tableau récapitulatif', function () {
-			cy.contains('Barème pour les employeurs de moins de 11 salariés').click()
+			cy.contains('Barème pour les employeurs de moins de 11 salaries').click()
 			cy.contains('Récapitulatif trimestriel').next().as('recapTable')
 
 			cy.get('@recapTable').should('include.text', 'code 687')

@@ -1,7 +1,7 @@
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
+import { Body, Emoji, Grid, Intro, Message } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
@@ -76,41 +76,41 @@ function infereSimulateurRevenuFromSituation(
 	}
 	if (engine.evaluate('entreprise . catégorie juridique . EI').nodeValue) {
 		const métierProfessionLibéral = engine.evaluate(
-			'dirigeant . indépendant . PL . métier'
+			'dirigeant . independant . PL . métier'
 		).nodeValue
 		switch (métierProfessionLibéral) {
 			case 'avocat':
 				return 'avocat'
 			case 'expert-comptable':
 				return 'expert-comptable'
-			case 'santé . médecin':
-				return 'médecin'
+			case 'santé . medecin':
+				return 'medecin'
 			case 'santé . chirurgien-dentiste':
 				return 'chirurgien-dentiste'
 			case 'santé . sage-femme':
 				return 'sage-femme'
 			case 'santé . auxiliaire médical':
-				return 'auxiliaire-médical'
+				return 'auxiliaire-medical'
 			case 'santé . pharmacien':
 				return 'pharmacien'
 		}
-		if (engine.evaluate('dirigeant . indépendant . PL').nodeValue) {
-			return 'profession-libérale'
+		if (engine.evaluate('dirigeant . independant . PL').nodeValue) {
+			return 'profession-liberale'
 		}
 
 		return 'entreprise-individuelle'
 	}
 	const régimeSocial = engine.evaluate('dirigeant . régime social').nodeValue
 
-	if (régimeSocial === 'indépendant') {
-		return 'indépendant'
+	if (régimeSocial === 'independant') {
+		return 'independant'
 	}
 
-	// TODO : assimilé-salarié
+	// TODO : assimilé-salarie
 	// if (
-	// 	régimeSocial === 'assimilé-salarié'
+	// 	régimeSocial === 'assimilé-salarie'
 	// ) {
-	// 	return 'assimilé-salarié'
+	// 	return 'assimilé-salarie'
 	// }
 	return null
 }

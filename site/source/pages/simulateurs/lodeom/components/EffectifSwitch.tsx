@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
-import { ChoixUnique } from '@/design-system'
+import { ChoixUnique } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
@@ -11,7 +11,7 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const dottedName = 'entreprise . salariés . effectif' as DottedName
+	const dottedName = 'entreprise . salaries . effectif' as DottedName
 	const engineEffectif = engine.evaluate(dottedName).nodeValue as string
 	const [currentEffectif, setCurrentEffectif] = useState(engineEffectif)
 	const { t } = useTranslation()
@@ -21,14 +21,14 @@ export default function EffectifSwitch() {
 			value: '10',
 			label: t(
 				'pages.simulateurs.lodeom.effectif.moins-de-50',
-				'Moins de 50 salariés'
+				'Moins de 50 salaries'
 			),
 		},
 		{
 			value: '100',
 			label: t(
 				'pages.simulateurs.lodeom.effectif.plus-de-50',
-				'Plus de 50 salariés'
+				'Plus de 50 salaries'
 			),
 		},
 	]

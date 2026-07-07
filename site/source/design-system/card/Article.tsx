@@ -2,9 +2,9 @@ import React, { useRef } from 'react'
 import { AriaButtonOptions, useButton } from 'react-aria'
 import { styled } from 'styled-components'
 
-import { Link } from '@/lib/navigation'
+import { Link } from '@/lib/navigation/index'
 
-import { ChevronIcon } from '../icons'
+import { ChevronIcon } from '../icons/index'
 import { H4 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
 import { Body } from '../typography/paragraphs'

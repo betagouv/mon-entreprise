@@ -2,7 +2,7 @@ import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
+import { useBarèmeLodeom } from '@/hooks/useBaremeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import { round } from '@/utils/number'
@@ -15,12 +15,12 @@ export default function WarningSalaireTrans() {
 	const engine = useEngine()
 
 	const barèmeRule = engine.getRule(
-		`salarié . cotisations . exonérations . lodeom . ${zone} . barèmes . ${currentBarème}` as DottedName
+		`salarie . cotisations . exonérations . lodeom . ${zone} . barèmes . ${currentBarème}` as DottedName
 	)
 	const barème = barèmeRule.title.toLocaleLowerCase()
 
 	const seuilDeSortie = engine.evaluate(
-		'salarié . cotisations . exonérations . lodeom . montant . seuil sortie'
+		'salarie . cotisations . exonérations . lodeom . montant . seuil sortie'
 	).nodeValue as number
 	const seuil = formatValue(seuilDeSortie) as string
 

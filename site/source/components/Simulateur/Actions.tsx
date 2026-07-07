@@ -4,7 +4,7 @@ import {
 	BoutonConseillersEntreprises,
 	type ConseillersEntreprisesVariant,
 } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
-import { BoutonDétail } from './BoutonDétail'
+import { BoutonDétail } from './BoutonDetail'
 import { BoutonPartage } from './BoutonPartage'
 
 type Props = {

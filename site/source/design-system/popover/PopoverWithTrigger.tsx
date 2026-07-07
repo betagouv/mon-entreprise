@@ -3,10 +3,10 @@ import { AriaButtonProps, useOverlayTrigger } from 'react-aria'
 import { useOverlayTriggerState } from 'react-stately'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useNavigation } from '@/lib/navigation'
-import { omit } from '@/utils'
+import { useNavigation } from '@/lib/navigation/index'
+import { omit } from '@/utils/index'
 
-import { Button } from '../buttons'
+import { Button } from '../buttons/index'
 import { Link } from '../typography/link'
 import { Popover } from './Popover'
 

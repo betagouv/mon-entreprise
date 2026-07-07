@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import { configAvocat } from '../profession-libérale/simulationConfig'
+import { configAvocat } from '../profession-liberale/simulationConfig'
 import { AvertissementAvocat } from './AvertissementAvocat'
 import { Avocat } from './Avocat'
 
@@ -14,7 +14,7 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 		},
 		icône: '⚖', // j'ai hesité avec 🥑 mais pas envie de me prendre un procès
 		iframePath: 'avocat',
-		pathId: 'simulateurs.profession-libérale.avocat',
+		pathId: 'simulateurs.profession-liberale.avocat',
 		shortName: t('pages.simulateurs.avocat.shortname', 'Avocat'),
 		title: t(
 			'pages.simulateurs.avocat.title',
@@ -30,7 +30,7 @@ export function avocatConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'Calcul du revenu net après cotisations à partir du total des recettes.'
 			),
 		},
-		path: sitePaths.simulateurs['profession-libérale'].avocat,
+		path: sitePaths.simulateurs['profession-liberale'].avocat,
 		simulation: configAvocat,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: Avocat,

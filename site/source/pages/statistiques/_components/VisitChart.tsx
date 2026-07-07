@@ -7,7 +7,7 @@ import {
 	Spacing,
 	ToggleGroup,
 	typography,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import { Visites } from '../types'
 import { AccessibleTable } from './AccessibleTable'

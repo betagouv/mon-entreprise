@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Spacing } from '../layout'
+import { Spacing } from '../layout/index'
 import { Link } from '../typography/link'
 import { Body } from '../typography/paragraphs'
 

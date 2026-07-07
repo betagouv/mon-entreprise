@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
-import { H1, Li, Link, Ul } from '@/design-system'
+import { TrackPage } from '@/components/PianoAnalytics/index'
+import { H1, Li, Link, Ul } from '@/design-system/index'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -45,7 +45,7 @@ export const PlanContent = () => {
 			</Li>
 
 			<Li>
-				<Link to={absoluteSitePaths.nouveautés.index}>
+				<Link to={absoluteSitePaths.nouveautes.index}>
 					<Trans>Nouveautés</Trans>
 				</Link>
 			</Li>

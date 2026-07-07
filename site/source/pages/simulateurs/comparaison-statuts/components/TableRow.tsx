@@ -2,12 +2,12 @@ import Engine from 'publicodes'
 import { ComponentProps } from 'react'
 
 import Value from '@/components/EngineValue/Value'
-import { H3 } from '@/design-system'
+import { H3 } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 function TableRow({
 	dottedName,
-	engines: [assimiléEngine, autoEntrepreneurEngine, indépendantEngine],
+	engines: [assimiléEngine, autoEntrepreneurEngine, independantEngine],
 	precision,
 	unit,
 }: {
@@ -28,7 +28,7 @@ function TableRow({
 			</div>
 			<div className="indep">
 				<Value
-					engine={indépendantEngine}
+					engine={independantEngine}
 					expression={dottedName}
 					documentationPath="/simulateurs/comparaison-régimes-sociaux/EI"
 					precision={precision}

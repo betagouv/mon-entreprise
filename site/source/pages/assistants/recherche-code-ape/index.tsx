@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
-import { Body, Link, Message, SmallBody, Spacing } from '@/design-system'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
+import { Body, Link, Message, SmallBody, Spacing } from '@/design-system/index'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 

@@ -132,7 +132,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 						</td>
 						<td>
 							<Value
-								expression={`${namespace} . cotisations . salarié`}
+								expression={`${namespace} . cotisations . salarie`}
 								displayedUnit="€"
 								linkToRule={false}
 							/>

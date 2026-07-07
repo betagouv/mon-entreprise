@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
-import { Body, SmallBody } from '@/design-system'
+import { Body, SmallBody } from '@/design-system/index'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import * as logosSrc from '@/utils/logos'
 
@@ -37,7 +37,7 @@ export default function CaisseRetraite({ role }: Props) {
 		CARMF: {
 			description: t(
 				'simulateurs.explanation.institutions.CARMF.description',
-				'La CARMF est la caisse de retraite autonome des médecins de France.'
+				'La CARMF est la caisse de retraite autonome des medecins de France.'
 			),
 			site: 'https://www.carmf.fr',
 		},
@@ -76,7 +76,7 @@ export default function CaisseRetraite({ role }: Props) {
 
 				return (
 					<Condition
-						expression={`indépendant . profession libérale . réglementée . ${caisse}`}
+						expression={`independant . profession libérale . réglementée . ${caisse}`}
 						key={caisse}
 					>
 						<InstitutionLine role={role}>
@@ -102,13 +102,13 @@ export default function CaisseRetraite({ role }: Props) {
 							<Value
 								unit={unit}
 								displayedUnit="€"
-								expression="indépendant . profession libérale . cotisations caisse de retraite"
+								expression="independant . profession libérale . cotisations caisse de retraite"
 							/>
 						</InstitutionLine>
 					</Condition>
 				)
 			})}
-			<Condition expression="indépendant . profession libérale . Cipav">
+			<Condition expression="independant . profession libérale . Cipav">
 				<InstitutionLine role={role}>
 					<InstitutionLogo
 						href="https://www.lacipav.fr"

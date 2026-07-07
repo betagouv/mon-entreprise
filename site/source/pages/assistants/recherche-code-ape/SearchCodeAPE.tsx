@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
@@ -13,12 +13,12 @@ import {
 	SmallBody,
 	Spacing,
 	VisibleRadio,
-} from '@/design-system'
+} from '@/design-system/index'
 import { usePromise } from '@/hooks/usePromise'
 
 import { Result } from './components/Result'
 
-type Data = typeof import('@/public/data/ape-search.json')
+type Data = typeof import('@/public/data/ape-search')
 
 interface SearchableData {
 	original: string[]
@@ -107,7 +107,7 @@ export default function SearchCodeAPE({
 
 	const { lazyData, buildedResearch } = usePromise(
 		async () => {
-			const lazyData = (await import('@/public/data/ape-search.json')).default
+			const lazyData = (await import('@/public/data/ape-search')).default
 
 			return { lazyData, buildedResearch: buildResearch(lazyData) }
 		},

@@ -5,7 +5,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
-import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsRéponduesNom.selector'
+import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsReponduesNom.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function useQuestionList(): [

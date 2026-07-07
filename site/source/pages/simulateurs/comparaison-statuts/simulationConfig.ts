@@ -1,8 +1,8 @@
 import { TFunction } from 'i18next'
 
-import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
+import { AssimiléSalariéContexte } from '@/domaine/AssimileSalarieContexte'
 import { ComparateurConfig } from '@/domaine/ComparateurConfig'
-import { IndépendantContexte } from '@/domaine/IndépendantContexte'
+import { IndépendantContexte } from '@/domaine/IndependantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import { Question } from '@/domaine/SimulationConfig'
 
@@ -186,8 +186,8 @@ export const configComparateurStatuts: ComparateurConfig = {
 	'unité par défaut': '€/mois',
 	situation: {
 		'entreprise . catégorie juridique': "''",
-		salarié: 'non',
-		'salarié . cotisations . ATMP . taux fonctions support': 'oui',
+		salarie: 'non',
+		'salarie . cotisations . ATMP . taux fonctions support': 'oui',
 		"entreprise . chiffre d'affaires": '4000 €/mois',
 		'entreprise . charges': '1000 €/mois',
 		'entreprise . date de création': "période . début d'année",

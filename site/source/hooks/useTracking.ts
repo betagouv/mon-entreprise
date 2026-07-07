@@ -1,6 +1,6 @@
 import { useCallback, useMemo } from 'react'
 
-import { toAtString } from '@/components/PianoAnalytics'
+import { toAtString } from '@/components/PianoAnalytics/index'
 import { usePianoTracker } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	getTrackingChapters,

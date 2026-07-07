@@ -16,7 +16,7 @@ export default function CotisationsUrssafAutoEntrepreneur({ role }: Props) {
 			<Trans i18nKey="pages.simulateurs.auto-entrepreneur.explications.institutions.urssaf">
 				L’Urssaf recouvre les cotisations servant au financement de la sécurité
 				sociale (assurance maladie, allocations familiales, dépendance
-				<WhenNotApplicable dottedName={'dirigeant . indépendant . PL . CNAVPL'}>
+				<WhenNotApplicable dottedName={'dirigeant . independant . PL . CNAVPL'}>
 					{' '}
 					et retraite
 				</WhenNotApplicable>

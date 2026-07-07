@@ -1,11 +1,11 @@
 const fr = Cypress.env('language') === 'fr'
 
-describe('Partage (simulateur salarié)', function () {
-	const brutInputSelector = '#salarié___contrat___salaire_brut-input'
+describe('Partage (simulateur salarie)', function () {
+	const brutInputSelector = '#salarie___contrat___salaire_brut-input'
 	const simulatorUrl = '/simulateurs/salaire-brut-net'
 	const searchParams = new URLSearchParams({
-		'salarié . contrat': "'CDD'",
-		'salarié . contrat . salaire brut': '2700 €/mois',
+		'salarie . contrat': "'CDD'",
+		'salarie . contrat . salaire brut': '2700 €/mois',
 		unité: '€/mois',
 	})
 

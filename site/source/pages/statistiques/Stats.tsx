@@ -1,4 +1,4 @@
-import { Body, H1, Intro, Message, Spinner } from '@/design-system'
+import { Body, H1, Intro, Message, Spinner } from '@/design-system/index'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import StatPage from './StatsPage'

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
 import {
 	Body,
 	Button,
@@ -16,12 +16,12 @@ import {
 	SmallBody,
 	Spacing,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { useNextStep, useStepPaths } from './_components/useSteps'
-import créerSvg from './_illustrations/créer.svg'
+import créerSvg from './_illustrations/creer.svg'
 
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()

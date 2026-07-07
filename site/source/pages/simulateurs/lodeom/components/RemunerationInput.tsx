@@ -1,0 +1,32 @@
+import { MontantField } from '@/design-system/index'
+import { euros } from '@/domaine/Montant'
+import { rémunérationBruteDottedName } from '@/pages/simulateurs/lodeom/utils'
+
+type Props = {
+	index: number
+	monthName: string
+	rémunérationBrute: number
+	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
+}
+
+export default function RémunérationInput({
+	index,
+	monthName,
+	rémunérationBrute,
+	onRémunérationChange,
+}: Props) {
+	return (
+		<MontantField
+			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			aria={{
+				labelledby: 'simu-update-explaining',
+			}}
+			onChange={(montant) => onRémunérationChange(index, montant?.valeur ?? 0)}
+			value={
+				rémunérationBrute !== undefined ? euros(rémunérationBrute) : undefined
+			}
+			unité="€"
+			avecCentimes
+		/>
+	)
+}

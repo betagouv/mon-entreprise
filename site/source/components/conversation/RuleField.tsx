@@ -3,7 +3,7 @@ import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { H3 } from '@/design-system'
+import { H3 } from '@/design-system/index'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,

@@ -18,7 +18,7 @@ import {
 	Message,
 	Spacing,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { OuiNon } from '@/domaine/OuiNon'
 import { useStatefulRulesEdit } from '@/hooks/useStatefulRulesEdit'

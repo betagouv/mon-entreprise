@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { H2 } from '@/design-system'
+import { H2 } from '@/design-system/index'
 
 import { ForceThemeProvider } from '../utils/DarkModeContext'
 

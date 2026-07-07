@@ -1,22 +1,22 @@
 import { useMemo } from 'react'
 
-import { Body, Chip, H5, Li, Message, Strong, Ul } from '@/design-system'
+import { Body, Chip, H5, Li, Message, Strong, Ul } from '@/design-system/index'
 import { usePromise } from '@/hooks/usePromise'
-import { capitalise0 } from '@/utils'
+import { capitalise0 } from '@/utils/index'
 
-type ApeToGuichet = typeof import('@/public/data/ape-to-guichet.json')
-type Guichet = typeof import('@/public/data/guichet.json')
+type ApeToGuichet = typeof import('@/public/data/ape-to-guichet')
+type Guichet = typeof import('@/public/data/guichet')
 
 export type GuichetEntry = Guichet[keyof Guichet]
 
 export function useGuichetInfo(codeApe?: string): GuichetEntry[] | null {
 	const guichet = usePromise(
-		async () => (await import('@/public/data/guichet.json'))?.default,
+		async () => (await import('@/public/data/guichet'))?.default,
 		[]
 	)
 
 	const apeToGuichet = usePromise(
-		async () => (await import('@/public/data/ape-to-guichet.json'))?.default,
+		async () => (await import('@/public/data/ape-to-guichet'))?.default,
 		[]
 	)
 

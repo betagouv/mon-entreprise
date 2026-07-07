@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Button, LinkIcon, PopoverWithTrigger } from '@/design-system'
+import { Button, LinkIcon, PopoverWithTrigger } from '@/design-system/index'
 import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 

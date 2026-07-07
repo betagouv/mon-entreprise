@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Body, Grid } from '@/design-system'
+import { Body, Grid } from '@/design-system/index'
 import { Contexte } from '@/domaine/Contexte'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'

@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 
 import { Choice } from '@/components/conversation/Choice'
 import { ExplicableRule } from '@/components/conversation/Explicable'
-import { Emoji, H3, H4, Radio, Spacing } from '@/design-system'
+import { Emoji, H3, H4, Radio, Spacing } from '@/design-system/index'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 

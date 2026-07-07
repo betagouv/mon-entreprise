@@ -3,7 +3,7 @@ import { ComponentProps } from 'react'
 import { Item } from 'react-stately'
 
 import { Body } from '../typography/paragraphs'
-import { Accordion } from './'
+import { Accordion } from './index'
 
 const meta: Meta<typeof Accordion> = {
 	component: Accordion,

@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Link, SmallBody } from '@/design-system'
+import { Link, SmallBody } from '@/design-system/index'
 
 export interface Raccourci {
 	id: string

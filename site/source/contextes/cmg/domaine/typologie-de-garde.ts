@@ -1,4 +1,4 @@
-import { DéclarationDeGarde } from './déclaration-de-garde'
+import { DéclarationDeGarde } from './declaration-de-garde'
 import { Enfant, enfantAPlusDe3Ans, getEnfantFromPrénom } from './enfant'
 
 type TypologieDeGardeAMA =
@@ -11,13 +11,13 @@ export type TypologieDeGarde = TypologieDeGardeAMA | 'GED'
 
 export const détermineLaTypologieDeLaGarde =
 	<Prénom extends string>(enfants: Array<Enfant<Prénom>>) =>
-	(déclarationDeGarde: DéclarationDeGarde<Prénom>): TypologieDeGarde => {
-		if (déclarationDeGarde.type === 'GED') {
+	(declarationDeGarde: DéclarationDeGarde<Prénom>): TypologieDeGarde => {
+		if (declarationDeGarde.type === 'GED') {
 			return 'GED'
 		}
 
-		if (déclarationDeGarde.enfantsGardés.length > 1) {
-			const unEnfantDePlusDe3Ans = déclarationDeGarde.enfantsGardés.some(
+		if (declarationDeGarde.enfantsGardés.length > 1) {
+			const unEnfantDePlusDe3Ans = declarationDeGarde.enfantsGardés.some(
 				(prénom: Prénom) =>
 					enfantAPlusDe3Ans(getEnfantFromPrénom(prénom, enfants))
 			)
@@ -27,7 +27,7 @@ export const détermineLaTypologieDeLaGarde =
 				return 'AMA Fratrie 0-3 ans'
 			}
 		} else {
-			const prénom = déclarationDeGarde.enfantsGardés[0]
+			const prénom = declarationDeGarde.enfantsGardés[0]
 			if (enfantAPlusDe3Ans(getEnfantFromPrénom(prénom, enfants))) {
 				return 'AMA Enfant unique 3-6 ans'
 			} else {

@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 
-import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
+import SimulationChargéeBanner from '@/components/Simulation/SimulationChargeeBanner'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Emoji, Strong } from '@/design-system'
+import { Body, Emoji, Strong } from '@/design-system/index'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 

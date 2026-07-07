@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Article, Emoji } from '@/design-system'
+import { Article, Emoji } from '@/design-system/index'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 

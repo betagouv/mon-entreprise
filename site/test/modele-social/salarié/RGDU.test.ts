@@ -6,7 +6,7 @@ const situationParDéfaut = {
 	dirigeant: 'non',
 	'entreprise . catégorie juridique': "''",
 	'entreprise . imposition': 'non',
-	'salarié . cotisations . assiette': '2200 €/mois',
+	'salarie . cotisations . assiette': '2200 €/mois',
 }
 
 describe('Réduction générale dégressive unique', () => {
@@ -20,7 +20,7 @@ describe('Réduction générale dégressive unique', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			expect(e).toEvaluate(
-				'salarié . cotisations . exonérations . RGDU',
+				'salarie . cotisations . exonérations . RGDU',
 				573.98
 			)
 		})
@@ -29,11 +29,11 @@ describe('Réduction générale dégressive unique', () => {
 			const Smic = engine.evaluate('SMIC').nodeValue as number
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . assiette': `${Math.ceil(3 * Smic)} €/mois`,
+				'salarie . cotisations . assiette': `${Math.ceil(3 * Smic)} €/mois`,
 			})
 
 			expect(e).not.toBeApplicable(
-				'salarié . cotisations . exonérations . RGDU'
+				'salarie . cotisations . exonérations . RGDU'
 			)
 		})
 	})
@@ -43,27 +43,27 @@ describe('Réduction générale dégressive unique', () => {
 		beforeEach(() => {
 			engine.setSituation(situationParDéfaut)
 			réductionDeBase = engine.evaluate(
-				'salarié . cotisations . exonérations . RGDU'
+				'salarie . cotisations . exonérations . RGDU'
 			).nodeValue as number
 		})
 
 		it('Taille de l’entreprise', () => {
 			engine.setSituation({
 				...situationParDéfaut,
-				'entreprise . salariés . effectif': '49',
+				'entreprise . salaries . effectif': '49',
 			})
 			const réductionÀ49 = engine.evaluate(
-				'salarié . cotisations . exonérations . RGDU'
+				'salarie . cotisations . exonérations . RGDU'
 			).nodeValue as number
 
 			expect(réductionDeBase).toEqual(réductionÀ49)
 
 			engine.setSituation({
 				...situationParDéfaut,
-				'entreprise . salariés . effectif': '50',
+				'entreprise . salaries . effectif': '50',
 			})
 			const réductionÀ50 = Math.round(
-				engine.evaluate('salarié . cotisations . exonérations . RGDU')
+				engine.evaluate('salarie . cotisations . exonérations . RGDU')
 					.nodeValue as number
 			)
 
@@ -74,11 +74,11 @@ describe('Réduction générale dégressive unique', () => {
 		it('Obligation de cotiser à une caisse de congés payés', () => {
 			engine.setSituation({
 				...situationParDéfaut,
-				'salarié . cotisations . exonérations . RGDU . caisse de congés payés':
+				'salarie . cotisations . exonérations . RGDU . caisse de congés payés':
 					'oui',
 			})
 			const réductionAvecCCP = Math.round(
-				engine.evaluate('salarié . cotisations . exonérations . RGDU')
+				engine.evaluate('salarie . cotisations . exonérations . RGDU')
 					.nodeValue as number
 			)
 

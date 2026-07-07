@@ -1,4 +1,4 @@
-import CMG from '@/pages/assistants/cmg'
+import CMG from '@/pages/assistants/cmg/index'
 import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 

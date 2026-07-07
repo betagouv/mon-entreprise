@@ -20,9 +20,9 @@ describe('Indépendant', () => {
 				'entreprise . charges': '10000 €/an',
 			})
 
-			expect(e).toEvaluate('indépendant . revenu brut', 40_000)
+			expect(e).toEvaluate('independant . revenu brut', 40_000)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS',
+				'independant . cotisations et contributions . assiette CSG-CRDS',
 				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
@@ -30,12 +30,12 @@ describe('Indépendant', () => {
 		it('calcule à l’IS', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . brute': '40000 €/an',
+				'independant . rémunération . brute': '40000 €/an',
 			})
 
-			expect(e).toEvaluate('indépendant . revenu brut', 40_000)
+			expect(e).toEvaluate('independant . revenu brut', 40_000)
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS',
+				'independant . cotisations et contributions . assiette CSG-CRDS',
 				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
@@ -43,11 +43,11 @@ describe('Indépendant', () => {
 		it('applique un abattement plafonné à 1,3 Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . brute': '250000 €/an',
+				'independant . rémunération . brute': '250000 €/an',
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
+				'independant . cotisations et contributions . assiette CSG-CRDS . abattement',
 				Math.round(1.3 * Pass)
 			)
 		})
@@ -55,11 +55,11 @@ describe('Indépendant', () => {
 		it('applique un abattement plancher de 1,76% du Pass', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
-				'indépendant . rémunération . brute': '1000 €/an',
+				'independant . rémunération . brute': '1000 €/an',
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
+				'independant . cotisations et contributions . assiette CSG-CRDS . abattement',
 				Math.round((1.76 / 100) * Pass)
 			)
 		})
@@ -68,17 +68,17 @@ describe('Indépendant', () => {
 	describe('assiette sociale', () => {
 		const situationParDéfaut = {
 			'entreprise . imposition': "'IS'",
-			'indépendant . rémunération . brute': '40000 €/an',
+			'independant . rémunération . brute': '40000 €/an',
 		}
 
 		it('calcule sans ajustements', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			const assietteCSG = e.evaluate(
-				'indépendant . cotisations et contributions . assiette CSG-CRDS'
+				'independant . cotisations et contributions . assiette CSG-CRDS'
 			).nodeValue
 			const assietteSociale = e.evaluate(
-				'indépendant . cotisations et contributions . assiette sociale'
+				'independant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
 			expect(assietteSociale).toEqual(assietteCSG)
@@ -87,16 +87,16 @@ describe('Indépendant', () => {
 		it('calcule avec des revenus de remplacement', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'indépendant . revenus de remplacement': 'oui',
-				'indépendant . revenus de remplacement . bruts': '2000 €/an',
+				'independant . revenus de remplacement': 'oui',
+				'independant . revenus de remplacement . bruts': '2000 €/an',
 			})
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . assiette CSG-CRDS'
+					'independant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
-				'indépendant . cotisations et contributions . assiette sociale'
+				'independant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
 			expect(assietteSociale).toEqual(assietteCSG + (2_000 * (100 - 26)) / 100)
@@ -105,16 +105,16 @@ describe('Indépendant', () => {
 		it('calcule avec des revenus étrangers bénéficiaires', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'indépendant . revenus étrangers': 'oui',
-				'indépendant . revenus étrangers . montant': '4000 €/an',
+				'independant . revenus étrangers': 'oui',
+				'independant . revenus étrangers . montant': '4000 €/an',
 			})
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . assiette CSG-CRDS'
+					'independant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
-				'indépendant . cotisations et contributions . assiette sociale'
+				'independant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
 			expect(assietteSociale).toEqual(assietteCSG + 4_000)
@@ -123,16 +123,16 @@ describe('Indépendant', () => {
 		it('calcule avec des revenus étrangers déficitaires', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'indépendant . revenus étrangers': 'oui',
-				'indépendant . revenus étrangers . montant': '-4000 €/an',
+				'independant . revenus étrangers': 'oui',
+				'independant . revenus étrangers . montant': '-4000 €/an',
 			})
 
 			const assietteCSG =
 				(e.evaluate(
-					'indépendant . cotisations et contributions . assiette CSG-CRDS'
+					'independant . cotisations et contributions . assiette CSG-CRDS'
 				).nodeValue as number) || 0
 			const assietteSociale = e.evaluate(
-				'indépendant . cotisations et contributions . assiette sociale'
+				'independant . cotisations et contributions . assiette sociale'
 			).nodeValue
 
 			expect(assietteSociale).toEqual(assietteCSG - 4_000)
@@ -145,7 +145,7 @@ describe('Indépendant', () => {
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . assiette sociale',
+				'independant . cotisations et contributions . assiette sociale',
 				Math.round((40_000 * (100 - 26)) / 100)
 			)
 		})
@@ -153,7 +153,7 @@ describe('Indépendant', () => {
 
 	describe('assiette retraite et invalidité-décès', () => {
 		const situationParDéfaut = {
-			'indépendant . cotisations et contributions . assiette sociale':
+			'independant . cotisations et contributions . assiette sociale':
 				'60000 €/an',
 		}
 
@@ -161,7 +161,7 @@ describe('Indépendant', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				'independant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
 				60_000
 			)
 		})
@@ -170,12 +170,12 @@ describe('Indépendant', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'entreprise . activité . commerciale . débit de tabac': 'oui',
-				'indépendant . cotisations et contributions . déduction tabac':
+				'independant . cotisations et contributions . déduction tabac':
 					'20000 €/an',
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				'independant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
 				60_000 - 20_000
 			)
 		})
@@ -183,15 +183,15 @@ describe('Indépendant', () => {
 		it('calcule avec conjoint collaborateur', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
-				'indépendant . conjoint collaborateur': 'oui',
-				'indépendant . conjoint collaborateur . choix assiette':
+				'independant . conjoint collaborateur': 'oui',
+				'independant . conjoint collaborateur . choix assiette':
 					"'revenu avec partage'",
-				'indépendant . conjoint collaborateur . choix assiette . proportion':
+				'independant . conjoint collaborateur . choix assiette . proportion':
 					"'moitié'",
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				'independant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
 				60_000 / 2
 			)
 		})
@@ -200,17 +200,17 @@ describe('Indépendant', () => {
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'entreprise . activité . commerciale . débit de tabac': 'oui',
-				'indépendant . cotisations et contributions . déduction tabac':
+				'independant . cotisations et contributions . déduction tabac':
 					'20000 €/an',
-				'indépendant . conjoint collaborateur': 'oui',
-				'indépendant . conjoint collaborateur . choix assiette':
+				'independant . conjoint collaborateur': 'oui',
+				'independant . conjoint collaborateur . choix assiette':
 					"'revenu avec partage'",
-				'indépendant . conjoint collaborateur . choix assiette . proportion':
+				'independant . conjoint collaborateur . choix assiette . proportion':
 					"'moitié'",
 			})
 
 			expect(e).toEvaluate(
-				'indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
+				'independant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès',
 				(60_000 - 20_000) / 2
 			)
 		})

@@ -14,7 +14,7 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 			chapter2: 'profession_liberale',
 			chapter3: 'cipav',
 		},
-		pathId: 'simulateurs.profession-libérale.cipav',
+		pathId: 'simulateurs.profession-liberale.cipav',
 		iframePath: 'cipav',
 		meta: {
 			title: t(
@@ -32,7 +32,7 @@ export function cipavConfig({ t, sitePaths }: SimulatorsDataParams) {
 			'pages.simulateurs.cipav.title',
 			'Simulateur de revenus pour professions libérales Cipav'
 		),
-		path: sitePaths.simulateurs['profession-libérale'].cipav,
+		path: sitePaths.simulateurs['profession-liberale'].cipav,
 		simulation: cipavSimulationConfig,
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: Cipav,

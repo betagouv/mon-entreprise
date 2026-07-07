@@ -1,9 +1,11 @@
+'use client'
+
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Logo } from '@/components/Logo'
 import SearchButton from '@/components/SearchButton'
-import { Container, Emoji, Link, Switch } from '@/design-system'
+import { Container, Emoji, Link, Switch } from '@/design-system/index'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
 import { useSitePaths } from '@/sitePaths'

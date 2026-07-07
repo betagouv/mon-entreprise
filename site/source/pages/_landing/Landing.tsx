@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import Meta from '@/components/utils/Meta'
@@ -16,7 +16,7 @@ import {
 	Link,
 	Spacing,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
@@ -90,7 +90,7 @@ export default function Landing() {
 					}}
 				>
 					<ForceThemeProvider forceTheme="default">
-						<SimulateurCard {...simulators.salarié} />
+						<SimulateurCard {...simulators.salarie} />
 
 						<SimulateurCard {...simulators['choix-statut']} />
 

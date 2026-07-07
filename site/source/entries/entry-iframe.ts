@@ -74,7 +74,7 @@ const links = document.createElement('div')
 const moduleToSitePath = {
 	'simulateur-embauche': '/simulateurs/salaire-brut-net',
 	'simulateur-autoentrepreneur': '/simulateurs/auto-entrepreneur',
-	'simulateur-independant': '/simulateurs/indépendant',
+	'simulateur-independant': '/simulateurs/independant',
 	'simulateur-assimilesalarie': '/simulateurs/sasu',
 }
 

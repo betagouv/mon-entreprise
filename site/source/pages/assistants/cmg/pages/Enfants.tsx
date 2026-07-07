@@ -2,7 +2,7 @@ import * as A from 'effect/Array'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import {
 	Enfant,
 	estAeeHInférieurOuÉgalAuNombreDEnfants,
@@ -12,10 +12,10 @@ import {
 	pasDePrénomEndouble,
 	tousLesEnfantsSontValides,
 	useCMG,
-} from '@/contextes/cmg'
-import { Button, Spacing } from '@/design-system'
+} from '@/contextes/cmg/index'
+import { Button, Spacing } from '@/design-system/index'
 import { useGetPath } from '@/hooks/useGetPath'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 
 import EnfantInput from '../components/enfants/EnfantInput'
 import QuestionsAeeH from '../components/enfants/QuestionsAeeH'
@@ -105,7 +105,7 @@ export default function Enfants() {
 
 			<Navigation
 				précédent="informations"
-				suivant="déclarations"
+				suivant="declarations"
 				isSuivantDisabled={isSuivantDisabled}
 			/>
 

@@ -8,7 +8,7 @@ import Engine from 'publicodes'
 import { Dispatch, Middleware } from 'redux'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
-import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLesProchainesQuestions'
+import { détermineLesProchainesQuestions } from '@/domaine/engine/determineLesProchainesQuestions'
 import { getOrCreateEnginePromise } from '@/domaine/engine/engineCache'
 import {
 	Action,

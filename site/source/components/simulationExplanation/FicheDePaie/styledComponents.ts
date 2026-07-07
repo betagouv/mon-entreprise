@@ -1,6 +1,6 @@
 import { styled } from 'styled-components'
 
-import { Body, H3, H4 } from '@/design-system'
+import { Body, H3, H4 } from '@/design-system/index'
 
 export const TitreSection = styled(H3)`
 	border-bottom: 1px solid

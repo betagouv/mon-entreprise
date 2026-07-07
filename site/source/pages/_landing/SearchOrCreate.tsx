@@ -12,11 +12,11 @@ import {
 	H3,
 	PopoverConfirm,
 	Spacing,
-} from '@/design-system'
+} from '@/design-system/index'
 import { Entreprise } from '@/domaine/Entreprise'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSetEntrepriseFromUrssafConnection from '@/hooks/useSetEntrepriseFromUrssafConnection'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'

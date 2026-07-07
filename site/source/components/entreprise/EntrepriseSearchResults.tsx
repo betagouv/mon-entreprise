@@ -12,7 +12,7 @@ import {
 	Strong,
 	StyledLink,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import { Entreprise } from '@/domaine/Entreprise'
 
 import { FromTop } from '../ui/animate'

@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics/index'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Button, Spacing, Strong } from '@/design-system'
+import { Body, Button, Spacing, Strong } from '@/design-system/index'
 import { useGetPath } from '@/hooks/useGetPath'
 
 export default function Accueil() {
@@ -29,7 +29,7 @@ export default function Accueil() {
 						<Strong>De quoi avez-vous besoin&nbsp;?</Strong> De votre revenu
 						fiscal 2023, ainsi que du nombre d’heures de garde, du montant des
 						rémunérations et du CMG perçu pour les mois de mars, avril et mai
-						2025, pour chacune de vos salariées.
+						2025, pour chacune de vos salariees.
 					</Body>
 				</Trans>
 			</Warning>

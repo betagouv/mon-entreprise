@@ -13,55 +13,55 @@ describe('En contrat de professionnalisation', () => {
 	describe('la rémunération minimale', () => {
 		describe('avec un niveau de formation inférieur au bac', () => {
 			const situation = {
-				'salarié . contrat': "'professionnalisation'",
-				'salarié . contrat . professionnalisation . formation':
+				'salarie . contrat': "'professionnalisation'",
+				'salarie . contrat . professionnalisation . formation':
 					"'moins que bac'",
 			}
 
-			it('est de 55% du Smic pour les salarié⋅es de moins de 21 ans', () => {
+			it('est de 55% du Smic pour les salarie⋅es de moins de 21 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'moins de 21'",
+					'salarie . contrat . professionnalisation . âge': "'moins de 21'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(0.55 * Smic)
 				)
 			})
 
-			it('est de 70% du Smic pour les salarié⋅es de 21 à 25 ans', () => {
+			it('est de 70% du Smic pour les salarie⋅es de 21 à 25 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'de 21 à 25'",
+					'salarie . contrat . professionnalisation . âge': "'de 21 à 25'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(0.7 * Smic)
 				)
 			})
 
-			it('est de 100% du Smic pour les salarié⋅es de 26 à 44 ans', () => {
+			it('est de 100% du Smic pour les salarie⋅es de 26 à 44 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'de 26 à 44'",
+					'salarie . contrat . professionnalisation . âge': "'de 26 à 44'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(Smic)
 				)
 			})
 
-			it('est de 100% du Smic pour les salarié⋅es de 45 ans ou plus', () => {
+			it('est de 100% du Smic pour les salarie⋅es de 45 ans ou plus', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'plus de 44'",
+					'salarie . contrat . professionnalisation . âge': "'plus de 44'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(Smic)
 				)
 			})
@@ -69,54 +69,54 @@ describe('En contrat de professionnalisation', () => {
 
 		describe('avec un niveau de formation supérieur ou égal au bac', () => {
 			const situation = {
-				'salarié . contrat': "'professionnalisation'",
-				'salarié . contrat . professionnalisation . formation': "'bac ou plus'",
+				'salarie . contrat': "'professionnalisation'",
+				'salarie . contrat . professionnalisation . formation': "'bac ou plus'",
 			}
 
-			it('est de 65% du Smic pour les salarié⋅es de moins de 21 ans', () => {
+			it('est de 65% du Smic pour les salarie⋅es de moins de 21 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'moins de 21'",
+					'salarie . contrat . professionnalisation . âge': "'moins de 21'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(0.65 * Smic)
 				)
 			})
 
-			it('est de 80% du Smic pour les salarié⋅es de 21 à 25 ans', () => {
+			it('est de 80% du Smic pour les salarie⋅es de 21 à 25 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'de 21 à 25'",
+					'salarie . contrat . professionnalisation . âge': "'de 21 à 25'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(0.8 * Smic)
 				)
 			})
 
-			it('est de 100% du Smic pour les salarié⋅es de 26 à 44 ans', () => {
+			it('est de 100% du Smic pour les salarie⋅es de 26 à 44 ans', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'de 26 à 44'",
+					'salarie . contrat . professionnalisation . âge': "'de 26 à 44'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(Smic)
 				)
 			})
 
-			it('est de 100% du Smic pour les salarié⋅es de 45 ans ou plus', () => {
+			it('est de 100% du Smic pour les salarie⋅es de 45 ans ou plus', () => {
 				const e = engine.setSituation({
 					...situation,
-					'salarié . contrat . professionnalisation . âge': "'plus de 44'",
+					'salarie . contrat . professionnalisation . âge': "'plus de 44'",
 				})
 
 				expect(e).toEvaluate(
-					'salarié . contrat . professionnalisation . rémunération minimale',
+					'salarie . contrat . professionnalisation . rémunération minimale',
 					Math.round(Smic)
 				)
 			})

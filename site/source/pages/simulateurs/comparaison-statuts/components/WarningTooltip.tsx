@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Tooltip, WarningIcon } from '@/design-system'
+import { Tooltip, WarningIcon } from '@/design-system/index'
 
 const WarningTooltip = ({ tooltip }: { tooltip: ReactNode }) => {
 	const { t } = useTranslation()

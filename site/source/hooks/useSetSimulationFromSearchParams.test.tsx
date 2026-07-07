@@ -14,13 +14,13 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 } from '@/domaine/Quantite'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import {
 	enregistreLesRéponsesAuxQuestions,
 	updateUnit,
 } from '@/store/actions/actions'
 
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 
 vi.mock('@/lib/navigation', () => ({
@@ -41,18 +41,18 @@ vi.mock('@/hooks/useEngineFromModèle', () => ({
 describe('useSetSimulationFromSearchParams hook', () => {
 	it('récupère la situation et l’unité depuis les search params', () => {
 		const initialParams = new URLSearchParams({
-			'salarié . contrat': 'CDD',
-			'salarié . contrat . CDD . congés pris': '2.08 jours ouvrés',
-			'salarié . contrat . salaire brut': '2700 €/mois',
-			'salarié . rémunération . frais professionnels . titres-restaurant':
+			'salarie . contrat': 'CDD',
+			'salarie . contrat . CDD . congés pris': '2.08 jours ouvrés',
+			'salarie . contrat . salaire brut': '2700 €/mois',
+			'salarie . rémunération . frais professionnels . titres-restaurant':
 				'oui',
-			'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire':
+			'salarie . rémunération . frais professionnels . titres-restaurant . montant unitaire':
 				'12 €/titre-restaurant',
-			'salarié . rémunération . frais professionnels . titres-restaurant . nombre':
+			'salarie . rémunération . frais professionnels . titres-restaurant . nombre':
 				'22 titre-restaurant/mois',
-			'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur':
+			'salarie . rémunération . frais professionnels . titres-restaurant . taux employeur':
 				'60%',
-			'salarié . temps de travail . heures supplémentaires':
+			'salarie . temps de travail . heures supplémentaires':
 				'17.33 heures/mois',
 			unité: '€/mois',
 		})
@@ -75,11 +75,11 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		vi.mocked(useSelector).mockImplementation((selector) => {
 			if (selector.name === 'configObjectifsSelector') {
 				return [
-					'salarié . coût total employeur',
-					'salarié . contrat . salaire brut',
-					'salarié . contrat . salaire brut . équivalent temps plein',
-					'salarié . rémunération . net . à payer avant impôt',
-					'salarié . rémunération . net . payé après impôt',
+					'salarie . coût total employeur',
+					'salarie . contrat . salaire brut',
+					'salarie . contrat . salaire brut . équivalent temps plein',
+					'salarie . rémunération . net . à payer avant impôt',
+					'salarie . rémunération . net . payé après impôt',
 				]
 			}
 
@@ -95,18 +95,18 @@ describe('useSetSimulationFromSearchParams hook', () => {
 
 		expect(dispatchMock).toHaveBeenCalledWith(
 			enregistreLesRéponsesAuxQuestions({
-				'salarié . contrat': O.some('CDD'),
-				'salarié . contrat . CDD . congés pris': O.some(joursOuvrés(2.08)),
-				'salarié . contrat . salaire brut': O.some(eurosParMois(2700)),
-				'salarié . rémunération . frais professionnels . titres-restaurant':
+				'salarie . contrat': O.some('CDD'),
+				'salarie . contrat . CDD . congés pris': O.some(joursOuvrés(2.08)),
+				'salarie . contrat . salaire brut': O.some(eurosParMois(2700)),
+				'salarie . rémunération . frais professionnels . titres-restaurant':
 					O.some('oui'),
-				'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire':
+				'salarie . rémunération . frais professionnels . titres-restaurant . montant unitaire':
 					O.some(eurosParTitreRestaurant(12)),
-				'salarié . rémunération . frais professionnels . titres-restaurant . nombre':
+				'salarie . rémunération . frais professionnels . titres-restaurant . nombre':
 					O.some(titresRestaurantParMois(22)),
-				'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur':
+				'salarie . rémunération . frais professionnels . titres-restaurant . taux employeur':
 					O.some(pourcentage(60)),
-				'salarié . temps de travail . heures supplémentaires': O.some(
+				'salarie . temps de travail . heures supplémentaires': O.some(
 					heuresParMois(17.33)
 				),
 			} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -119,7 +119,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 
 	it('ne supprime pas les search params hors situation et unité', () => {
 		const initialParams = new URLSearchParams({
-			'salarié . contrat': 'CDD',
+			'salarie . contrat': 'CDD',
 			unité: '€/mois',
 			utm_campaign: 'marketing',
 		})

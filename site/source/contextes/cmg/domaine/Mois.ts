@@ -1,3 +1,3 @@
-import { Salariée } from './salariée'
+import { Salariée } from './salariee'
 
 export type Mois = keyof Salariée

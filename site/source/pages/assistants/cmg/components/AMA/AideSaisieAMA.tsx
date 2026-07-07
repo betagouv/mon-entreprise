@@ -1,8 +1,8 @@
 import { styled } from 'styled-components'
 
-import AideSaisieCMG from '../déclaration/AideSaisieCMG'
-import AideSaisieHeuresDeGarde from '../déclaration/AideSaisieHeuresDeGarde'
-import AideSaisieRémunération from '../déclaration/AideSaisieRémunération'
+import AideSaisieCMG from '../declaration/AideSaisieCMG'
+import AideSaisieHeuresDeGarde from '../declaration/AideSaisieHeuresDeGarde'
+import AideSaisieRémunération from '../declaration/AideSaisieRemuneration'
 import { MobileHidden } from '../styled-components'
 import AideSaisieEnfants from './AideSaisieEnfants'
 

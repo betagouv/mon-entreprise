@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
-import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
+import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezCompleteCetteSimulation'
 import Notifications from '@/components/Notifications'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
-import { Body, Conversation, H3, Spacing } from '@/design-system'
+import { Body, Conversation, H3, Spacing } from '@/design-system/index'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import {

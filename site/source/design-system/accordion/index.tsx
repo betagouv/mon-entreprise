@@ -7,10 +7,10 @@ import { Node, TreeState, useTreeState } from 'react-stately'
 import useMeasure from 'react-use-measure'
 import { css, styled } from 'styled-components'
 
-import { Button } from '../buttons'
+import { Button } from '../buttons/index'
 import { FocusStyle } from '../global-style'
-import { ChevronIcon } from '../icons'
-import { Grid } from '../layout'
+import { ChevronIcon } from '../icons/index'
+import { Grid } from '../layout/index'
 import chevronImg from './chevron.svg'
 
 const SAVE_STATE_LOCALSTORAGE_KEY = 'accordion-state'

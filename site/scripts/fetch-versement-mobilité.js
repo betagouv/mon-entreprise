@@ -39,4 +39,4 @@ const data = rawCSV
 		{}
 	)
 
-writeInDataDir('versement-mobilité.json', data)
+writeInDataDir('versement-mobilite.json', data)

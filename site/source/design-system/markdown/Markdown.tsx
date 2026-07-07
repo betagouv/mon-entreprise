@@ -15,7 +15,7 @@ import {
 	Strong,
 	U,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import ImgRenderer from './ImgRenderer'
 import LinkRenderer from './LinkRenderer'

@@ -13,7 +13,7 @@ import {
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
 import { NomModèle } from '@/domaine/SimulationConfig'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
 	enregistreLesRéponsesAuxQuestions,
@@ -23,7 +23,7 @@ import {
 import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
 import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.slice'
 
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 
 export default function useSetSimulationFromSearchParams(nomModèle: NomModèle) {
 	const { searchParams, setSearchParams } = useNavigation()

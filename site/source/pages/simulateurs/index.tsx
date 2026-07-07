@@ -8,15 +8,15 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import Loader from '@/components/utils/Loader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Link } from '@/design-system'
+import { Link } from '@/design-system/index'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 import { PageConfig } from './_configs/types'
-import { RéductionGénérale } from './reduction-generale'
+import { RéductionGénérale } from './reduction-generale/index'
 
 export default function Simulateurs() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()

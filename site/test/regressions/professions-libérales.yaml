@@ -1,112 +1,112 @@
-médecin:
-  - indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
+medecin:
+  - independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 50000 €/an
   - # Secteur 2 dépassement honoraire
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 10000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 50000 €/an
+    independant . profession libérale . réglementée . métier . santé . medecin . secteur: "'S2'"
+    independant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 10000 €/an
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 300000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 150000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 300000 €/an
+    independant . profession libérale . réglementée . métier . santé . medecin . secteur: "'S2'"
+    independant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 150000 €/an
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 400000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 80000 €/an
-    indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée: 160000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 400000 €/an
+    independant . profession libérale . réglementée . métier . santé . medecin . secteur: "'S2'"
+    independant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 80000 €/an
+    independant . profession libérale . réglementée . PAMC . recettes activité conventionnée: 160000 €/an
   - # Non conventionné
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 120000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'non conventionné'"
+    independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 120000 €/an
+    independant . profession libérale . réglementée . métier . santé . medecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
     entreprise . date de création: 01/01/2025
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . medecin'"
+    independant . rémunération . brute: 50000 €/an
 
 sage-femme:
-  - indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 50000 €/an
+  - independant . profession libérale . réglementée . métier: "'santé . sage-femme'"
+    independant . rémunération . brute: 50000 €/an
   - # Réduction retraite complémentaire
-    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 20000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . sage-femme'"
+    independant . rémunération . brute: 20000 €/an
   - # Exonération RID
-    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 4000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . sage-femme'"
+    independant . rémunération . brute: 4000 €/an
 
 auxiliaire médical:
-  - indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 30000 €/an
+  - independant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
+    independant . rémunération . brute: 30000 €/an
   - # Dépassement honoraire
-    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 30000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 15000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
+    independant . rémunération . brute: 30000 €/an
+    independant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 15000 €/an
   - # Grosse rémunération
-    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 300000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 300000 €/an
+    independant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
+    independant . rémunération . brute: 300000 €/an
+    independant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 300000 €/an
 
 avocat:
-  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
-    indépendant . rémunération . brute: 50000 €/an
-  - indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
-    indépendant . rémunération . brute: 50000 €/an
+  - independant . profession libérale . réglementée . métier: "'juridique . avocat'"
+    independant . rémunération . brute: 50000 €/an
+  - independant . profession libérale . réglementée . métier: "'juridique . avocat'"
+    independant . rémunération . brute: 50000 €/an
     entreprise . durée d'activité . en fin d'année: 6 ans
 
 expert-comptable:
-  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
-    indépendant . rémunération . brute: 20000 €/an
-  - indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
-    indépendant . rémunération . brute: 50000 €/an
+  - independant . profession libérale . réglementée . métier: "'expert-comptable'"
+    independant . rémunération . brute: 20000 €/an
+  - independant . profession libérale . réglementée . métier: "'expert-comptable'"
+    independant . rémunération . brute: 50000 €/an
 
 CIPAV échelle de revenu:
-  - indépendant . rémunération . nette: 500 €/an
-  - indépendant . rémunération . nette: 1000 €/an
-  - indépendant . rémunération . nette: 1500 €/an
-  - indépendant . rémunération . nette: 2000 €/an
-  - indépendant . rémunération . nette: 5000 €/an
-  - indépendant . rémunération . nette: 10000 €/an
-  - indépendant . rémunération . nette: 100000 €/an
-  - indépendant . rémunération . nette: 1000000 €/an
+  - independant . rémunération . nette: 500 €/an
+  - independant . rémunération . nette: 1000 €/an
+  - independant . rémunération . nette: 1500 €/an
+  - independant . rémunération . nette: 2000 €/an
+  - independant . rémunération . nette: 5000 €/an
+  - independant . rémunération . nette: 10000 €/an
+  - independant . rémunération . nette: 100000 €/an
+  - independant . rémunération . nette: 1000000 €/an
 
 CIPAV exonération incapacité:
-  - indépendant . rémunération . nette: 40000 €/an
-    indépendant . profession libérale . CNAVPL . exonération incapacité: oui
+  - independant . rémunération . nette: 40000 €/an
+    independant . profession libérale . CNAVPL . exonération incapacité: oui
 
 CIPAV conjoint collaborateur:
   - &CNAVPL-conjoint-collaborateur
-    indépendant . rémunération . nette: 60000 €/an
-    indépendant . conjoint collaborateur: oui
+    independant . rémunération . nette: 60000 €/an
+    independant . conjoint collaborateur: oui
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    independant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
-    indépendant . rémunération . nette: 1000 €/an
+    independant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    independant . rémunération . nette: 1000 €/an
 
 CIPAV Acre:
   - &CNAVPL-Acre
-    indépendant . rémunération . nette: 5000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
+    independant . rémunération . nette: 5000 €/an
+    independant . cotisations et contributions . cotisations . exonérations . Acre: oui
     entreprise . date de création: 11/11/2025
   - <<: *CNAVPL-Acre
-    indépendant . rémunération . nette: 20000 €/an
+    independant . rémunération . nette: 20000 €/an
   - <<: *CNAVPL-Acre
-    indépendant . rémunération . nette: 50000 €/an
+    independant . rémunération . nette: 50000 €/an
 
 CIPAV années précédentes:
-  - indépendant . rémunération . nette: 60000 €/an
+  - independant . rémunération . nette: 60000 €/an
     date: 01/2025
-  - indépendant . rémunération . nette: 50000 €/an
+  - independant . rémunération . nette: 50000 €/an
     date: 01/2024
-  - indépendant . rémunération . nette: 40000 €/an
+  - independant . rémunération . nette: 40000 €/an
     date: 01/2023
 
 CIPAV année incomplète:
@@ -114,12 +114,12 @@ CIPAV année incomplète:
     entreprise . date de création: 01/05/2025
     entreprise . date de cessation: 31/08/2025
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 2000 €/an
+    independant . rémunération . nette: 2000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 5000 €/an
+    independant . rémunération . nette: 5000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 10000 €/an
+    independant . rémunération . nette: 10000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 100000 €/an
+    independant . rémunération . nette: 100000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 1000000 €/an
+    independant . rémunération . nette: 1000000 €/an

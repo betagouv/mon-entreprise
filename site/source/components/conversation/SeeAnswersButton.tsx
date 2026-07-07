@@ -7,7 +7,7 @@ import {
 	EditIcon,
 	FocusStyle,
 	PopoverWithTrigger,
-} from '@/design-system'
+} from '@/design-system/index'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 import { AnswersList } from './AnswersList'

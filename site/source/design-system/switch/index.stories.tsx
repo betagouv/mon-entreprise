@@ -2,7 +2,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { Switch } from './'
+import { Switch } from './index'
 
 const meta: Meta<typeof Switch> = {
 	component: Switch,

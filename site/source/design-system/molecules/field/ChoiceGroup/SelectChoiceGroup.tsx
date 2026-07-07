@@ -1,7 +1,7 @@
 import { Key } from 'react'
 import { Item } from 'react-stately'
 
-import { Select } from '../Select'
+import { Select } from '../Select/index'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 export interface SelectChoiceGroupProps {

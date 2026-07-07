@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import illustration from '@/assets/images/illustration.svg'
 import PageHeader from '@/components/PageHeader'
-import { Body, Link } from '@/design-system'
+import { Body, Link } from '@/design-system/index'
 
 export default function DéclarationRevenusPAMC() {
 	const { t } = useTranslation()
@@ -11,7 +11,7 @@ export default function DéclarationRevenusPAMC() {
 		<PageHeader
 			titre={t(
 				'pages.assistants.declaration-revenus-pamc.header',
-				'L’assistant à la déclaration de revenus des PAMC, c’est terminé'
+				'L’assistant à la declaration de revenus des PAMC, c’est terminé'
 			)}
 			picture={illustration}
 		>

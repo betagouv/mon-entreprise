@@ -14,7 +14,7 @@ import {
 	SmallBody,
 	Strong,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 import { euros } from '@/domaine/Montant'
 import { heuresParMois } from '@/domaine/Quantite'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -41,7 +41,7 @@ export default function MonthOptions({
 	)
 
 	const isTempsPartiel = engine.evaluate(
-		'salarié . contrat . temps de travail . temps partiel'
+		'salarie . contrat . temps de travail . temps partiel'
 	).nodeValue as boolean
 	const additionalHours = isTempsPartiel
 		? 'heuresComplémentaires'

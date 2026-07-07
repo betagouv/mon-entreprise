@@ -1,6 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { Body, H2, Link } from '@/design-system'
+import { Body, H2, Link } from '@/design-system/index'
 import { useSitePaths } from '@/sitePaths'
 
 export const SeoExplanations = () => {
@@ -42,17 +42,17 @@ export const SeoExplanations = () => {
 				</Link>
 				.
 			</Body>
-			<H2>Cas particulier du dirigeant non salarié</H2>
+			<H2>Cas particulier du dirigeant non salarie</H2>
 			<Body>
-				Pour le travailleur indépendant non salarié, la part des dividendes
+				Pour le travailleur independant non salarie, la part des dividendes
 				dépassant 10% du capital social sera soumise aux cotisations et
 				contributions suivant les mêmes modalités que sa rémunération de
 				dirigeant.
 			</Body>
 			<Body>
 				Pour ce cas de figure veuillez utiliser le{' '}
-				<Link to={absoluteSitePaths.simulateurs.indépendant}>
-					simulateur de revenus pour indépendant
+				<Link to={absoluteSitePaths.simulateurs.independant}>
+					simulateur de revenus pour independant
 				</Link>
 				.
 			</Body>

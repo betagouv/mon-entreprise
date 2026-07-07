@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react'
 
-import { initialRésultat, Résultat } from '../domaine/résultat'
+import { initialRésultat, Résultat } from '../domaine/resultat'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 
 type SituationContextType = {

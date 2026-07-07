@@ -1,8 +1,8 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Emoji } from '../emoji'
+import { Emoji } from '../emoji/index'
 import { Body } from '../typography/paragraphs'
-import { Message } from './'
+import { Message } from './index'
 
 const meta: Meta<typeof Message> = {
 	component: Message,

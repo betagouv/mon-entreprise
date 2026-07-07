@@ -1,28 +1,28 @@
 import * as O from 'effect/Option'
 import { PublicodesExpression } from 'publicodes'
 
-import { CodeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { CodeCatégorieJuridique } from '@/domaine/CodeCategorieJuridique'
 import { toPublicodeDate } from '@/domaine/Date'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Entreprise, RègleIdentitéEntreprise } from '@/domaine/Entreprise'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Action } from '@/store/actions/actions'
-import { omit } from '@/utils'
+import { omit } from '@/utils/index'
 import { buildSituationFromObject } from '@/utils/publicodes/publicodes'
 
 import { SituationPublicodes } from './rootReducer'
 
 const SAVED_NAMESPACES = [
-	'indépendant . profession libérale . réglementée . métier',
+	'independant . profession libérale . réglementée . métier',
 
 	'dirigeant . gérant minoritaire',
-	'dirigeant . indépendant . PL . métier',
+	'dirigeant . independant . PL . métier',
 	'entreprise . activité',
 	'entreprise . activité . nature',
 	'entreprise . activités',
 	'entreprise . catégorie juridique',
 	'entreprise . date de création',
-	'entreprise . salariés',
+	'entreprise . salaries',
 	'entreprise . exercice',
 	'entreprise . exonérations',
 	'entreprise . TVA',
@@ -32,12 +32,12 @@ const SAVED_NAMESPACES = [
 	'entreprise . nom',
 	'entreprise . associés',
 	'établissement',
-	'salarié . convention collective',
+	'salarie . convention collective',
 	// Titre restaurant
-	'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire',
-	'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur',
+	'salarie . rémunération . frais professionnels . titres-restaurant . montant unitaire',
+	'salarie . rémunération . frais professionnels . titres-restaurant . taux employeur',
 	// Mutuelle
-	'salarié . cotisations . prévoyances . santé',
+	'salarie . cotisations . prévoyances . santé',
 ] as Array<DottedName>
 
 export function isCompanyDottedName(dottedName: DottedName) {

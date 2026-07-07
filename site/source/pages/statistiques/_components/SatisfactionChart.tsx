@@ -13,7 +13,7 @@ import {
 } from 'recharts'
 import { styled } from 'styled-components'
 
-import { Emoji, Radio, Spacing, ToggleGroup, typography } from '@/design-system'
+import { Emoji, Radio, Spacing, ToggleGroup, typography } from '@/design-system/index'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
 import { round } from '@/utils/number'

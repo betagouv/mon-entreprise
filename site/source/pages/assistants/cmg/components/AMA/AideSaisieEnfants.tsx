@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Body } from '@/design-system'
+import { Body } from '@/design-system/index'
 
 import { Question } from '../styled-components'
 
@@ -12,13 +12,13 @@ export default function AideSaisieEnfants() {
 		<>
 			<StyledQuestion>
 				{t(
-					'pages.assistants.cmg.déclarations.aise-saisie.enfants.titre',
+					'pages.assistants.cmg.declarations.aise-saisie.enfants.titre',
 					'Enfants gardés'
 				)}
 			</StyledQuestion>
 			<StyledBody>
 				{t(
-					'pages.assistants.cmg.déclarations.aise-saisie.enfants.contenu',
+					'pages.assistants.cmg.declarations.aise-saisie.enfants.contenu',
 					'Indiquez le ou les enfants gardés sur ces mois de référence.'
 				)}
 			</StyledBody>

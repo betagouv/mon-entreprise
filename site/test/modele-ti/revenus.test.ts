@@ -27,7 +27,7 @@ describe('Indépendant', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette',
+					'independant . rémunération . nette',
 					RÉMUNÉRATION_NETTE
 				)
 			})
@@ -38,7 +38,7 @@ describe('Indépendant', () => {
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . après impôt',
+					'independant . rémunération . nette . après impôt',
 					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
 				)
 			})
@@ -48,7 +48,7 @@ describe('Indépendant', () => {
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				const CACalculé = e.evaluate("entreprise . chiffre d'affaires")
@@ -58,11 +58,11 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . après impôt',
+					'independant . rémunération . nette . après impôt',
 					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
 				)
 			})
@@ -72,18 +72,18 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+					'independant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette',
+					'independant . rémunération . nette',
 					RÉMUNÉRATION_NETTE
 				)
 			})
 			it('calcule le chiffre d’affaires', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+					'independant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				const CACalculé = e.evaluate("entreprise . chiffre d'affaires")
@@ -103,33 +103,33 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
+					'independant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette',
+					'independant . rémunération . nette',
 					RÉMUNÉRATION_NETTE
 				)
 			})
 			it('calcule la rémunération nette avec dividendes', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
+					'independant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . avec dividendes',
+					'independant . rémunération . nette . avec dividendes',
 					RÉMUNÉRATION_NETTE
 				)
 			})
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
+					'independant . rémunération . brute': `${RÉMUNÉRATION_TOTALE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . après impôt',
+					'independant . rémunération . nette . après impôt',
 					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
 				)
 			})
@@ -139,11 +139,11 @@ describe('Indépendant', () => {
 			it('calcule la rémunération brute', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				const rémunérationTotaleCalculée = e.evaluate(
-					'indépendant . rémunération . brute'
+					'independant . rémunération . brute'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)
@@ -152,11 +152,11 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . après impôt',
+					'independant . rémunération . nette . après impôt',
 					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
 				)
 			})
@@ -166,11 +166,11 @@ describe('Indépendant', () => {
 			it('calcule la rémunération brute', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				const rémunérationTotaleCalculée = e.evaluate(
-					'indépendant . rémunération . brute'
+					'independant . rémunération . brute'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)
@@ -179,11 +179,11 @@ describe('Indépendant', () => {
 			it('calcule le revenu après impôt', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
+					'independant . rémunération . nette . avec dividendes': `${RÉMUNÉRATION_NETTE} €/an`,
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . rémunération . nette . après impôt',
+					'independant . rémunération . nette . après impôt',
 					RÉMUNÉRATION_NETTE_APRÈS_IMPÔT
 				)
 			})
@@ -193,11 +193,11 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+					'independant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				const rémunérationNetteCalculée = e.evaluate(
-					'indépendant . rémunération . nette'
+					'independant . rémunération . nette'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_NETTE - rémunérationNetteCalculée)
@@ -206,11 +206,11 @@ describe('Indépendant', () => {
 			it('calcule la rémunération nette avec dividendes', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+					'independant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				const rémunérationNetteCalculée = e.evaluate(
-					'indépendant . rémunération . nette . avec dividendes'
+					'independant . rémunération . nette . avec dividendes'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_NETTE - rémunérationNetteCalculée)
@@ -219,11 +219,11 @@ describe('Indépendant', () => {
 			it('calcule la rémunération brute', () => {
 				const e = engine.setSituation({
 					...situationParDéfaut,
-					'indépendant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
+					'independant . rémunération . nette . après impôt': `${RÉMUNÉRATION_NETTE_APRÈS_IMPÔT} €/an`,
 				})
 
 				const rémunérationTotaleCalculée = e.evaluate(
-					'indépendant . rémunération . brute'
+					'independant . rémunération . brute'
 				).nodeValue as number
 				expect(
 					Math.abs(RÉMUNÉRATION_TOTALE - rémunérationTotaleCalculée)

@@ -6,7 +6,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import { StatutType } from '@/components/StatutTag'
 import {
 	Button,
@@ -15,12 +15,12 @@ import {
 	Intro,
 	Spacing,
 	Strong,
-} from '@/design-system'
+} from '@/design-system/index'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { Comparaison } from '@/pages/simulateurs/comparaison-statuts/components/Comparaison'
 import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
-import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
+import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstime'
 import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'

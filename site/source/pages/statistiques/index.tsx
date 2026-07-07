@@ -2,10 +2,10 @@ import { lazy, Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { H1, Intro } from '@/design-system'
+import { H1, Intro } from '@/design-system/index'
 
 import DemandeUtilisateurs from './DemandesUtilisateurs'
 

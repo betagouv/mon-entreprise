@@ -2,7 +2,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { typography } from '@/design-system'
+import { typography } from '@/design-system/index'
 
 import { formatDay, formatMonth } from './utils'
 

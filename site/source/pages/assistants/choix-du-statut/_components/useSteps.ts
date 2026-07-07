@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']

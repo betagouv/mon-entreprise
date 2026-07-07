@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . cotisations . invalidité et décès'
+	'independant . cotisations et contributions . cotisations . invalidité et décès'
 
 describe('Cotisation invalidité et décès', () => {
 	let engine: Engine
@@ -19,12 +19,12 @@ describe('Cotisation invalidité et décès', () => {
 
 		it('applique une assiette minimale égale à 11,5% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'1000 €/an',
 			})
 
 			const assietteMinimale = e.evaluate(
-				'indépendant . assiette minimale . invalidité et décès'
+				'independant . assiette minimale . invalidité et décès'
 			).nodeValue as number
 			expect(assietteMinimale).toEqual(Math.round((PASS * 11.5) / 100))
 
@@ -35,7 +35,7 @@ describe('Cotisation invalidité et décès', () => {
 
 		it('applique le taux de 1,3% à l’assiette sociale lorsqu’elle est comprise entre 11,5% du PASS et 1 PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -46,7 +46,7 @@ describe('Cotisation invalidité et décès', () => {
 
 		it('applique une assiette maximale égale au PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -58,7 +58,7 @@ describe('Cotisation invalidité et décès', () => {
 		describe('n’applique pas d’assiette minimale', () => {
 			it('en cas de RSA ou de prime d’activité', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'situation personnelle . RSA': 'oui',
 				})
@@ -68,7 +68,7 @@ describe('Cotisation invalidité et décès', () => {
 
 			it('en cas d’activité saisonnière', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 					'entreprise . activité . saisonnière': 'oui',
 				})
@@ -82,16 +82,16 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					"entreprise . en cessation d'activité": 'oui',
 					'entreprise . date de cessation': '01/06/2026',
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = e.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				expect(PASSProratisé).toEqual(Math.round((PASS * 152) / 365))
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . invalidité et décès'
+					'independant . assiette minimale . invalidité et décès'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(
 					Math.round((PASSProratisé * 11.5) / 100)
@@ -106,11 +106,11 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					"entreprise . en cessation d'activité": 'oui',
 					'entreprise . date de cessation': '01/06/2026',
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'40000 €/an',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = e.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				expect(PASSProratisé).toEqual(Math.round((PASS * 152) / 365))
 
@@ -123,7 +123,7 @@ describe('Cotisation invalidité et décès', () => {
 				const e = engine.setSituation({
 					"entreprise . en cessation d'activité": 'oui',
 					'entreprise . date de cessation': '01/06/2026',
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'10000 €/an',
 				})
 
@@ -135,10 +135,10 @@ describe('Cotisation invalidité et décès', () => {
 
 		it('applique la déduction tabac à l’assiette sociale', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 				'entreprise . activité . commerciale . débit de tabac': 'oui',
-				'indépendant . cotisations et contributions . déduction tabac':
+				'independant . cotisations et contributions . déduction tabac':
 					'10000 €/an',
 			})
 
@@ -164,17 +164,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Chirurgien-dentiste', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'santé . chirurgien-dentiste'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARCDSF = e.evaluate(
-					'indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès'
+					'independant . profession libérale . réglementée . CARCDSF . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue as number
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -185,17 +185,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Sage-femme', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'santé . sage-femme'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARCDSF = e.evaluate(
-					'indépendant . profession libérale . réglementée . CARCDSF . invalidité et décès'
+					'independant . profession libérale . réglementée . CARCDSF . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -206,17 +206,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Médecin', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
-						"'santé . médecin'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . profession libérale . réglementée . métier':
+						"'santé . medecin'",
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARMF = e.evaluate(
-					'indépendant . profession libérale . réglementée . CARMF . invalidité et décès'
+					'independant . profession libérale . réglementée . CARMF . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -227,17 +227,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Auxiliaire médical', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'santé . auxiliaire médical'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCARPIMKO = e.evaluate(
-					'indépendant . profession libérale . réglementée . CARPIMKO . invalidité et décès'
+					'independant . profession libérale . réglementée . CARPIMKO . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -248,17 +248,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Expert-comptable', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'expert-comptable'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCAVEC = e.evaluate(
-					'indépendant . profession libérale . réglementée . CAVEC . invalidité et décès'
+					'independant . profession libérale . réglementée . CAVEC . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -269,17 +269,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Pharmacien', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'santé . pharmacien'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCAVP = e.evaluate(
-					'indépendant . profession libérale . réglementée . CAVP . invalidité et décès'
+					'independant . profession libérale . réglementée . CAVP . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -290,17 +290,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('Avocat', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . profession libérale . réglementée . métier':
+					'independant . profession libérale . réglementée . métier':
 						"'juridique . avocat'",
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCNBF = e.evaluate(
-					'indépendant . profession libérale . réglementée . CNBF . invalidité et décès'
+					'independant . profession libérale . réglementée . CNBF . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -311,15 +311,15 @@ describe('Cotisation invalidité et décès', () => {
 			it('Cipav', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				const cotisationCIPAV = e.evaluate(
-					'indépendant . profession libérale . Cipav . invalidité et décès'
+					'independant . profession libérale . Cipav . invalidité et décès'
 				).nodeValue
 				const cotisationCNAVPL = e.evaluate(
-					'indépendant . profession libérale . CNAVPL . invalidité et décès'
+					'independant . profession libérale . CNAVPL . invalidité et décès'
 				).nodeValue
 				const cotisationIndépendant = e.evaluate(COTISATION).nodeValue
 
@@ -334,17 +334,17 @@ describe('Cotisation invalidité et décès', () => {
 			it('applique une assiette minimale égale à 37% du PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'1000 €/an',
 				})
 
 				const assietteMinimale = e.evaluate(
-					'indépendant . assiette minimale . invalidité et décès Cipav'
+					'independant . assiette minimale . invalidité et décès Cipav'
 				).nodeValue as number
 				expect(assietteMinimale).toEqual(Math.round((PASS * 37) / 100))
 
 				expect(e).toEvaluate(
-					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+					'independant . profession libérale . Cipav . invalidité et décès . assiette',
 					assietteMinimale
 				)
 
@@ -354,12 +354,12 @@ describe('Cotisation invalidité et décès', () => {
 			it('applique un taux de 0,5% en cas d’assiette sociale comprise entre 37% du PASS et 1,85 PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+					'independant . profession libérale . Cipav . invalidité et décès . assiette',
 					50_000
 				)
 
@@ -369,12 +369,12 @@ describe('Cotisation invalidité et décès', () => {
 			it('applique une assiette maximale égale à 1,85 PASS', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'100000 €/an',
 				})
 
 				expect(e).toEvaluate(
-					'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+					'independant . profession libérale . Cipav . invalidité et décès . assiette',
 					1.85 * PASS
 				)
 
@@ -385,13 +385,13 @@ describe('Cotisation invalidité et décès', () => {
 				it('en cas de RSA ou de prime d’activité', () => {
 					const e = engine.setSituation({
 						...defaultSituation,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'1000 €/an',
 						'situation personnelle . RSA': 'oui',
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+						'independant . profession libérale . Cipav . invalidité et décès . assiette',
 						1_000
 					)
 				})
@@ -399,13 +399,13 @@ describe('Cotisation invalidité et décès', () => {
 				it('en cas d’activité saisonnière', () => {
 					const e = engine.setSituation({
 						...defaultSituation,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'1000 €/an',
 						'entreprise . activité . saisonnière': 'oui',
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+						'independant . profession libérale . Cipav . invalidité et décès . assiette',
 						1_000
 					)
 				})
@@ -420,7 +420,7 @@ describe('Cotisation invalidité et décès', () => {
 				it('applique une assiette minimale égale à 37% du PASS métropole', () => {
 					const e = engine.setSituation({
 						...situation,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'1000 €/an',
 					})
 
@@ -432,12 +432,12 @@ describe('Cotisation invalidité et décès', () => {
 				it('applique un taux de 0,5% en cas d’assiette sociale comprise entre 37% du PASS métropole et 1,85 PASS métropole', () => {
 					const e = engine.setSituation({
 						...situation,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'50000 €/an',
 					})
 
 					expect(e).toEvaluate(
-						'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+						'independant . profession libérale . Cipav . invalidité et décès . assiette',
 						50_000
 					)
 
@@ -447,7 +447,7 @@ describe('Cotisation invalidité et décès', () => {
 				it('applique une assiette maximale égale à 1,85 PASS métropole', () => {
 					const e = engine.setSituation({
 						...situation,
-						'indépendant . cotisations et contributions . assiette sociale':
+						'independant . cotisations et contributions . assiette sociale':
 							'100000 €/an',
 					})
 
@@ -460,13 +460,13 @@ describe('Cotisation invalidité et décès', () => {
 					it('en cas de RSA ou de prime d’activité', () => {
 						const e = engine.setSituation({
 							...situation,
-							'indépendant . cotisations et contributions . assiette sociale':
+							'independant . cotisations et contributions . assiette sociale':
 								'1000 €/an',
 							'situation personnelle . RSA': 'oui',
 						})
 
 						expect(e).toEvaluate(
-							'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+							'independant . profession libérale . Cipav . invalidité et décès . assiette',
 							1_000
 						)
 					})
@@ -474,13 +474,13 @@ describe('Cotisation invalidité et décès', () => {
 					it('en cas d’activité saisonnière', () => {
 						const e = engine.setSituation({
 							...situation,
-							'indépendant . cotisations et contributions . assiette sociale':
+							'independant . cotisations et contributions . assiette sociale':
 								'1000 €/an',
 							'entreprise . activité . saisonnière': 'oui',
 						})
 
 						expect(e).toEvaluate(
-							'indépendant . profession libérale . Cipav . invalidité et décès . assiette',
+							'independant . profession libérale . Cipav . invalidité et décès . assiette',
 							1_000
 						)
 					})

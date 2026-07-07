@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Message, SmallBody, Strong } from '@/design-system'
+import { Message, SmallBody, Strong } from '@/design-system/index'
 import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { PageConfig } from '@/pages/simulateurs/_configs/types'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'

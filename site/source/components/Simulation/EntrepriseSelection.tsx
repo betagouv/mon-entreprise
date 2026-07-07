@@ -9,7 +9,7 @@ import {
 	Grid,
 	SearchIcon,
 	typography,
-} from '@/design-system'
+} from '@/design-system/index'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import EntrepriseInput from '../conversation/EntrepriseInput'

@@ -1,6 +1,6 @@
 import { Key } from 'react'
 
-import { Radio, ToggleGroup } from '../Radio'
+import { Radio, ToggleGroup } from '../Radio/index'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 
 export interface ToggleChoiceGroupProps {

@@ -9,7 +9,7 @@ import {
 	SquareIcon,
 	Tag,
 	TriangleIcon,
-} from '@/design-system'
+} from '@/design-system/index'
 
 export const TAG_DATA = {
 	EI: {

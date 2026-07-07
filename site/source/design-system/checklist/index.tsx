@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { css, styled } from 'styled-components'
 
-import { CheckmarkIcon, CrossIcon } from '../icons'
+import { CheckmarkIcon, CrossIcon } from '../icons/index'
 
 export const CheckList = ({
 	items,

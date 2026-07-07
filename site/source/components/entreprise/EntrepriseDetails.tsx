@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Body, H3, H4, Strong } from '@/design-system'
+import { Body, H3, H4, Strong } from '@/design-system/index'
 import { companyDetailsSelector } from '@/store/selectors/company/companyDetails.selector'
 
 type Props = {

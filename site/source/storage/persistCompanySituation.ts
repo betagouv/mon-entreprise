@@ -3,7 +3,7 @@ import { Store } from 'redux'
 import { Action } from '@/store/actions/actions'
 import { RootState, SituationPublicodes } from '@/store/reducers/rootReducer'
 
-import { debounce } from '../utils'
+import { debounce } from '../utils/index'
 import * as safeLocalStorage from './safeLocalStorage'
 import { sanitizePersistedSituation } from './sanitizePersistedSituation'
 

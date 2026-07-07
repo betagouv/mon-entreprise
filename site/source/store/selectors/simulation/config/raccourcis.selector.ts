@@ -2,7 +2,7 @@ import { createSelector } from 'reselect'
 
 import { QuestionsAutoGénérées } from '@/domaine/SimulationConfig'
 import { configSelector } from '@/store/selectors/simulation/config/config.selector'
-import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsRéponduesNom.selector'
+import { questionsRéponduesNomSelector } from '@/store/selectors/simulation/questions/questionsReponduesNom.selector'
 import { questionsSuivantesSelector } from '@/store/selectors/simulation/questions/questionsSuivantes.selector'
 
 export const raccourcisSelector = createSelector(

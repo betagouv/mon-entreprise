@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { CloseButton as CloseButtonComponent } from './'
+import { CloseButton as CloseButtonComponent } from './index'
 
 const meta: Meta<typeof CloseButtonComponent> = {
 	component: CloseButtonComponent,

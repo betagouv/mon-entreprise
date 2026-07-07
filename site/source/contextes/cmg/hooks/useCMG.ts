@@ -10,15 +10,15 @@ import { Montant } from '@/domaine/Montant'
 import {
 	estDéclarationAMAVide,
 	estDéclarationGEDVide,
-} from '../domaine/déclaration-de-garde'
-import { éligibilité, RaisonInéligibilité } from '../domaine/éligibilité'
+} from '../domaine/declaration-de-garde'
+import { éligibilité, RaisonInéligibilité } from '../domaine/eligibilite'
 import { Enfant } from '../domaine/enfant'
-import { Résultat } from '../domaine/résultat'
+import { Résultat } from '../domaine/resultat'
 import {
 	auMoinsUneDéclaration,
 	SalariéeAMA,
 	SalariéeGED,
-} from '../domaine/salariée'
+} from '../domaine/salariee'
 import { initialSituationCMG, SituationCMG } from '../domaine/situation'
 import { MoisIdentiques, useSituationContext } from './CMGContext'
 
@@ -106,21 +106,21 @@ export const useCMG = () => {
 			}))
 		},
 
-		salariéesGED: (salariéesGED: Array<SalariéeGED>) => {
+		salarieesGED: (salarieesGED: Array<SalariéeGED>) => {
 			const newSalariéesGED = pipe(
-				salariéesGED,
+				salarieesGED,
 				A.filter(auMoinsUneDéclaration),
-				A.map((déclarations) =>
-					R.map(déclarations, (déclaration) =>
-						estDéclarationGEDVide(déclaration) ? O.none() : déclaration
+				A.map((declarations) =>
+					R.map(declarations, (declaration) =>
+						estDéclarationGEDVide(declaration) ? O.none() : declaration
 					)
 				)
 			)
 
 			updateSituation((prev) => ({
 				...prev,
-				salariées: {
-					AMA: prev.salariées.AMA,
+				salariees: {
+					AMA: prev.salariees.AMA,
 					GED: newSalariéesGED,
 				},
 			}))
@@ -129,10 +129,10 @@ export const useCMG = () => {
 		nouvelleGED: () => {
 			updateSituation((prev) => ({
 				...prev,
-				salariées: {
-					AMA: prev.salariées.AMA,
+				salariees: {
+					AMA: prev.salariees.AMA,
 					GED: [
-						...prev.salariées.GED,
+						...prev.salariees.GED,
 						{
 							mars: O.none(),
 							avril: O.none(),
@@ -147,21 +147,21 @@ export const useCMG = () => {
 			}))
 		},
 
-		salariéesAMA: (salariéesAMA: Array<SalariéeAMA<string>>) => {
+		salarieesAMA: (salarieesAMA: Array<SalariéeAMA<string>>) => {
 			const newSalariéesAMA = pipe(
-				salariéesAMA,
+				salarieesAMA,
 				A.filter(auMoinsUneDéclaration),
-				A.map((déclarations) =>
-					R.map(déclarations, (déclaration) =>
-						estDéclarationAMAVide(déclaration) ? O.none() : déclaration
+				A.map((declarations) =>
+					R.map(declarations, (declaration) =>
+						estDéclarationAMAVide(declaration) ? O.none() : declaration
 					)
 				)
 			)
 
 			updateSituation((prev) => ({
 				...prev,
-				salariées: {
-					GED: prev.salariées.GED,
+				salariees: {
+					GED: prev.salariees.GED,
 					AMA: newSalariéesAMA,
 				},
 			}))
@@ -170,10 +170,10 @@ export const useCMG = () => {
 		nouvelleAMA: () => {
 			updateSituation((prev) => ({
 				...prev,
-				salariées: {
-					GED: prev.salariées.GED,
+				salariees: {
+					GED: prev.salariees.GED,
 					AMA: [
-						...prev.salariées.AMA,
+						...prev.salariees.AMA,
 						{
 							mars: O.none(),
 							avril: O.none(),
@@ -203,9 +203,9 @@ export const useCMG = () => {
 			'pages.assistants.cmg.raisons-inéligibilité.CMG-perçu',
 			'Vous n’avez pas été éligible au CMG entre mars et mai 2025.'
 		),
-		déclarations: t(
-			'pages.assistants.cmg.raisons-inéligibilité.déclarations',
-			'Vous n’avez pas saisi suffisamment de déclarations entre mars et mai 2025.'
+		declarations: t(
+			'pages.assistants.cmg.raisons-inéligibilité.declarations',
+			'Vous n’avez pas saisi suffisamment de declarations entre mars et mai 2025.'
 		),
 		'enfants-à-charge': t(
 			'pages.assistants.cmg.raisons-inéligibilité.enfants-à-charge',
@@ -234,8 +234,8 @@ export const useCMG = () => {
 		enfants: situation.enfantsÀCharge.enfants,
 		perçoitAeeH: situation.enfantsÀCharge.perçoitAeeH,
 		AeeH: situation.enfantsÀCharge.AeeH,
-		salariéesGED: situation.salariées.GED,
-		salariéesAMA: situation.salariées.AMA,
+		salarieesGED: situation.salariees.GED,
+		salarieesAMA: situation.salariees.AMA,
 		moisIdentiques,
 		...résultat,
 		set,

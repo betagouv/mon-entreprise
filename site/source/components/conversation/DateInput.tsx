@@ -7,7 +7,7 @@ import {
 	DateFieldProps,
 	InputSuggestions,
 	InputSuggestionsRecord,
-} from '@/design-system'
+} from '@/design-system/index'
 import {
 	dateToIsoDate,
 	isIsoDate,

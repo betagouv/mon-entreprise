@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Button } from '@/design-system'
+import { Button } from '@/design-system/index'
 
 type Props = {
 	onDelete: () => void

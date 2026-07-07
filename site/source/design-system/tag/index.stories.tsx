@@ -16,7 +16,7 @@ import {
 	SquareIcon,
 	SuccessIcon,
 	TriangleIcon,
-} from '../icons'
+} from '../icons/index'
 
 const meta: Meta<typeof Tag> = {
 	component: Tag,

@@ -28,7 +28,7 @@ SMIC . horaire:
     dernière revalorisation du SMIC.
   titre.en: '[automatic] schedule'
   titre.fr: horaire
-assimilé salarié:
+assimilé salarie:
   description.en: >
     [automatic] Some company directors (notably SASU) are considered by the
     social security system to be
@@ -42,7 +42,7 @@ assimilé salarié:
   description.fr: >
     Certains dirigeants d’entreprise (c’est notamment le cas pour les SASU) sont
 
-    considérés par la sécurité sociale comme assimilés aux salariés. Ils sont
+    considérés par la sécurité sociale comme assimilés aux salaries. Ils sont
     alors
 
     au régime général de la sécurité sociale, avec quelques contraintes
@@ -50,23 +50,23 @@ assimilé salarié:
 
     Par exemple, ils ne cotisent pas au chômage, et n’y ont donc pas droit.
   titre.en: '[automatic] assimilated employee'
-  titre.fr: assimilé salarié
-assimilé salarié . cotisations:
+  titre.fr: assimilé salarie
+assimilé salarie . cotisations:
   avec:
     employeur:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   description.en: '[automatic] Total social security contributions paid for this
     employee. This includes both employer and employee contributions.'
   description.fr: Total des cotisations et contributions à la sécurité sociales
-    versées pour ce salarié. Il comprends une part employeur et une part
+    versées pour ce salarie. Il comprends une part employeur et une part
     employé.
   titre.en: '[automatic] contributions'
   titre.fr: cotisations
-assimilé salarié . cotisations . ATMP:
+assimilé salarie . cotisations . ATMP:
   avec:
     seuil taux mixte ou individuel:
       titre.en: '[automatic] threshold mixed or individual rate'
@@ -102,9 +102,9 @@ assimilé salarié . cotisations . ATMP:
         - human resources.
       description.fr: >
         Le taux « fonctions support » permet à l’employeur qui le demande de
-        bénéficier d’un taux de cotisation AT/MP réduit pour les salariés non
+        bénéficier d’un taux de cotisation AT/MP réduit pour les salaries non
         exposés au risque principal de l’établissement. Il est réservé aux
-        salariés occupant à titre principal une fonction support de nature
+        salaries occupant à titre principal une fonction support de nature
         administrative.
 
 
@@ -125,7 +125,7 @@ assimilé salarié . cotisations . ATMP:
       question.en:
         '[automatic] Does the employee perform an administrative support
         function?'
-      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      question.fr: Le salarie occupe-t-il une fonction support de nature administrative ?
       titre.en: '[automatic] support function rate'
       titre.fr: taux fonctions support
     taux minimum:
@@ -141,14 +141,14 @@ assimilé salarié . cotisations . ATMP:
     Professionnelles.
   titre.en: '[automatic] accidents at work &amp; occupational diseases'
   titre.fr: accidents du travail & maladies professionnelles
-assimilé salarié . cotisations . Apec:
+assimilé salarie . cotisations . Apec:
   avec:
     employeur:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   description.en: >
     [automatic] Specific contribution to APEC (Association pour l'Emploi des
     Cadres)
@@ -159,7 +159,7 @@ assimilé salarié . cotisations . Apec:
     (Association Pour l’Emploi des Cadres)
   titre.en: '[automatic] Apec'
   titre.fr: Apec
-assimilé salarié . cotisations . CEG:
+assimilé salarie . cotisations . CEG:
   avec:
     employeur:
       titre.en: "[automatic] employer's share"
@@ -167,9 +167,9 @@ assimilé salarié . cotisations . CEG:
     employeur . taux T1:
       titre.en: '[automatic] T1 rate'
       titre.fr: taux T1
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   description.en: '[automatic] This contribution, created in 2019, offsets the
     cost of employees retiring before the age of 67, and honors the pension
     commitments of people who have contributed to the GMP, a former compensation
@@ -181,7 +181,7 @@ assimilé salarié . cotisations . CEG:
     cotisation de compensation pour les cadres.
   titre.en: '[automatic] general equilibrium contribution'
   titre.fr: contribution d'équilibre général
-assimilé salarié . cotisations . CET:
+assimilé salarie . cotisations . CET:
   avec:
     employeur:
       titre.en: "[automatic] employer's share"
@@ -189,19 +189,19 @@ assimilé salarié . cotisations . CET:
     employeur . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   titre.en: '[automatic] technical balance contribution'
   titre.fr: contribution d'équilibre technique
-assimilé salarié . cotisations . CSA:
+assimilé salarie . cotisations . CSA:
   avec:
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
   titre.en: '[automatic] Autonomy solidarity contribution'
   titre.fr: Contribution solidarité autonomie
-assimilé salarié . cotisations . CSG-CRDS:
+assimilé salarie . cotisations . CSG-CRDS:
   description.en: >-
     [automatic] CSG and CRDS are payable by all employees meeting the following
     two conditions:
@@ -212,7 +212,7 @@ assimilé salarié . cotisations . CSG-CRDS:
     If one of the two criteria is not met, CSG and CRDS are not due, provided
     proof is provided (tax receipt or social security card).
   description.fr: >-
-    La CSG et la CRDS sont dues par tous les salariés remplissant les deux
+    La CSG et la CRDS sont dues par tous les salaries remplissant les deux
     conditions suivantes :
 
     - ils sont domiciliés fiscalement en France, - ils sont à la charge d’un
@@ -223,7 +223,7 @@ assimilé salarié . cotisations . CSG-CRDS:
     d’assuré social).
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
-assimilé salarié . cotisations . CSG-CRDS . CRDS:
+assimilé salarie . cotisations . CSG-CRDS . CRDS:
   avec:
     taux:
       titre.en: '[automatic] rate'
@@ -232,7 +232,7 @@ assimilé salarié . cotisations . CSG-CRDS . CRDS:
   description.fr: Contribution pour le remboursement de la dette sociale
   titre.en: '[automatic] CRDS'
   titre.fr: CRDS
-assimilé salarié . cotisations . CSG-CRDS . CSG:
+assimilé salarie . cotisations . CSG-CRDS . CSG:
   avec:
     déductible:
       titre.en: '[automatic] CSG deductible from income tax'
@@ -278,20 +278,20 @@ assimilé salarié . cotisations . CSG-CRDS . CSG:
     également le fonds de solidarité vieillesse
   titre.en: '[automatic] CSG'
   titre.fr: CSG
-assimilé salarié . cotisations . CSG-CRDS . assiette de base:
+assimilé salarie . cotisations . CSG-CRDS . assiette de base:
   avec:
     assiette abattue:
       titre.en: '[automatic] knocked-down plate'
       titre.fr: assiette abattue
   titre.en: '[automatic] BASIS'
   titre.fr: assiette de base
-assimilé salarié . cotisations . CSG-CRDS . non déductible:
+assimilé salarie . cotisations . CSG-CRDS . non déductible:
   titre.en: '[automatic] Non-deductible CSG and CRDS'
   titre.fr: CSG non déductible et CRDS
-assimilé salarié . cotisations . CSG-CRDS . sur revenus imposables non déductible:
+assimilé salarie . cotisations . CSG-CRDS . sur revenus imposables non déductible:
   titre.en: '[automatic] CSG / CRDS not deductible from income tax'
   titre.fr: CSG / CRDS non déductible de l'impôt sur le revenu
-assimilé salarié . cotisations . FNAL:
+assimilé salarie . cotisations . FNAL:
   avec:
     privé:
       titre.en: '[automatic] private'
@@ -311,7 +311,7 @@ assimilé salarié . cotisations . FNAL:
   titre.en: "[automatic] Contribution to the Fonds National d'Aide au Logement
     (National Housing Aid Fund)"
   titre.fr: Contribution au Fonds National d’Aide au Logement
-assimilé salarié . cotisations . PEEC:
+assimilé salarie . cotisations . PEEC:
   description.en: "[automatic] Participation des employeurs à l'effort de construction"
   description.fr: Participation des employeurs à l'effort de construction
   note.en: >
@@ -320,11 +320,11 @@ assimilé salarié . cotisations . PEEC:
     or granting them and their families reduced-rate construction loans.
   note.fr: >
     L'employeur a le choix entre verser cet impôt à un "organisme du 1%
-    patronal" agréé, investir la somme dans le logement de ses salariés, ou
+    patronal" agréé, investir la somme dans le logement de ses salaries, ou
     accorder à eux et leur famille des prêts de construction à taux réduit.
   titre.en: '[automatic] Participation in the construction effort'
   titre.fr: Participation à l'effort de construction
-assimilé salarié . cotisations . allocations familiales:
+assimilé salarie . cotisations . allocations familiales:
   avec:
     taux:
       titre.en: '[automatic] rate'
@@ -334,7 +334,7 @@ assimilé salarié . cotisations . allocations familiales:
       titre.fr: taux réduit
   titre.en: '[automatic] family'
   titre.fr: famille
-assimilé salarié . cotisations . assiette:
+assimilé salarie . cotisations . assiette:
   avec:
     sans prévoyance:
       description.en:
@@ -361,7 +361,7 @@ assimilé salarié . cotisations . assiette:
     L'assiette des cotisations sociales est la base de calcul d'un grand nombre
     de
 
-    cotisations sur le travail salarié. Elle comprend notamment les
+    cotisations sur le travail salarie. Elle comprend notamment les
     rémunérations en
 
     espèces (salaire de base, indemnité, primes…) et les avantages en nature
@@ -369,7 +369,7 @@ assimilé salarié . cotisations . assiette:
     (logement, véhicule…).
   titre.en: '[automatic] plate'
   titre.fr: assiette
-assimilé salarié . cotisations . assiette forfaitaire:
+assimilé salarie . cotisations . assiette forfaitaire:
   avec:
     montant:
       note.en: >
@@ -396,10 +396,10 @@ assimilé salarié . cotisations . assiette forfaitaire:
       titre.fr: rémunération réelle
   titre.en: '[automatic] lump-sum basis'
   titre.fr: assiette forfaitaire
-assimilé salarié . cotisations . autres employeur:
+assimilé salarie . cotisations . autres employeur:
   titre.en: '[automatic] Other employer charges'
   titre.fr: Autres charges dues par l'employeur
-assimilé salarié . cotisations . catégories:
+assimilé salarie . cotisations . catégories:
   avec:
     CSG-CRDS:
       titre.en: '[automatic] CSG / CRDS'
@@ -424,7 +424,7 @@ assimilé salarié . cotisations . catégories:
       titre.fr: retraite
   titre.en: '[automatic] categories'
   titre.fr: catégories
-assimilé salarié . cotisations . exonérations:
+assimilé salarie . cotisations . exonérations:
   avec:
     employeur:
       description.en: '[automatic] With the exception of the overtime deduction,
@@ -434,43 +434,43 @@ assimilé salarié . cotisations . exonérations:
         exclusif.
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   titre.en: '[automatic] contribution exemptions and reductions'
   titre.fr: exonérations et allègements de cotisations
-assimilé salarié . cotisations . exonérations . Acre:
+assimilé salarie . cotisations . exonérations . Acre:
   titre.en: '[automatic] Acre'
   titre.fr: Acre
-assimilé salarié . cotisations . exonérations . Acre . coefficient dégressif:
+assimilé salarie . cotisations . exonérations . Acre . coefficient dégressif:
   titre.en: '[automatic] degressive coefficient'
   titre.fr: coefficient dégressif
-assimilé salarié . cotisations . exonérations . Acre . cotisations patronales exonérées pour 75% du PSS:
+assimilé salarie . cotisations . exonérations . Acre . cotisations patronales exonérées pour 75% du PSS:
   titre.en: "[automatic] employer's contributions exempt for 75% of PSS"
   titre.fr: cotisations patronales exonérées pour 75% du PSS
-assimilé salarié . cotisations . exonérations . Acre . cotisations salariales exonérées pour 75% du PSS:
+assimilé salarie . cotisations . exonérations . Acre . cotisations salariales exonérées pour 75% du PSS:
   titre.en: '[automatic] employee contributions exempt for 75% of the PSS'
   titre.fr: cotisations salariales exonérées pour 75% du PSS
-assimilé salarié . cotisations . exonérations . Acre . employeur:
+assimilé salarie . cotisations . exonérations . Acre . employeur:
   titre.en: '[automatic] employer'
   titre.fr: employeur
-assimilé salarié . cotisations . exonérations . Acre . salarié:
+assimilé salarie . cotisations . exonérations . Acre . salarie:
   titre.en: '[automatic] employee'
-  titre.fr: salarié
-assimilé salarié . cotisations . exonérations . JEI:
+  titre.fr: salarie
+assimilé salarie . cotisations . exonérations . JEI:
   description.en: |
     [automatic] Exemption for young innovative companies (JEI).
   description.fr: |
     Exonération pour les jeunes entreprises innovantes (JEI).
   titre.en: '[automatic] JEI exemption'
   titre.fr: Exonération JEI
-assimilé salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
+assimilé salarie . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre
-assimilé salarié . cotisations . exonérations . cotisations salariales exonérées Acre:
+assimilé salarie . cotisations . exonérations . cotisations salariales exonérées Acre:
   titre.en: '[automatic] Exempt employee contributions Acre'
   titre.fr: cotisations salariales exonérées Acre
-assimilé salarié . cotisations . forfait social:
+assimilé salarie . cotisations . forfait social:
   description.en: >
     [automatic] The forfait social is a contribution paid by the employer. It is
     deducted from remuneration or earnings not subject to social security
@@ -481,7 +481,7 @@ assimilé salarié . cotisations . forfait social:
     contributions sociales, mais assujettis à la CSG.
   titre.en: '[automatic] Social security contributions'
   titre.fr: Forfait social
-assimilé salarié . cotisations . formation professionnelle:
+assimilé salarie . cotisations . formation professionnelle:
   description.en: "[automatic] This compulsory contribution is collected by the
     OPCO (skills operators) designated by the company's contractual branch, or
     by an interprofessional OPCO."
@@ -523,7 +523,7 @@ assimilé salarié . cotisations . formation professionnelle:
 
 
     Le taux est porté à 1,3 % pour les entreprises de travail temporaire. Par
-    ailleurs en cas de franchissement du seuil d'effectifs de 10 salariés, des
+    ailleurs en cas de franchissement du seuil d'effectifs de 10 salaries, des
     taux spécifiques s'appliquent afin de limiter la hausse de la contribution à
     la formation professionnelle :
 
@@ -540,7 +540,7 @@ assimilé salarié . cotisations . formation professionnelle:
     entreprises de travail temporaire)
   titre.en: '[automatic] professional training'
   titre.fr: formation professionnelle
-assimilé salarié . cotisations . maladie:
+assimilé salarie . cotisations . maladie:
   avec:
     employeur:
       avec:
@@ -552,10 +552,10 @@ assimilé salarié . cotisations . maladie:
           titre.fr: taux réduit
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
-    salarié . taux:
+      titre.fr: part salarie
+    salarie . taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
   description.en: '[automatic] The sickness-maternity-disability insurance
@@ -568,7 +568,7 @@ assimilé salarié . cotisations . maladie:
     et en espèces.
   titre.en: '[automatic] Social Security Sickness Maternity Disability Death'
   titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
-assimilé salarié . cotisations . prévoyances:
+assimilé salarie . cotisations . prévoyances:
   avec:
     conventionnelle:
       titre.en: '[automatic] conventional'
@@ -576,9 +576,9 @@ assimilé salarié . cotisations . prévoyances:
     conventionnelle . employeur:
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
-    conventionnelle . salarié:
+    conventionnelle . salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
     employeur:
       avec:
         non déductible socialement:
@@ -603,24 +603,24 @@ assimilé salarié . cotisations . prévoyances:
         employeur:
           titre.en: '[automatic] employer'
           titre.fr: employeur
-        salarié:
+        salarie:
           titre.en: '[automatic] employee'
-          titre.fr: salarié
+          titre.fr: salarie
       titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
       titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
-    salarié:
+    salarie:
       avec:
         non déductible:
           titre.en: '[automatic] Non-deductible employee benefits'
-          titre.fr: Prévoyance salarié non déductible
+          titre.fr: Prévoyance salarie non déductible
         références:
           titre.en: '[automatic] references'
           titre.fr: références
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
+      titre.fr: part salarie
   titre.en: '[automatic] supplementary pension plans'
   titre.fr: prévoyances complémentaires
-assimilé salarié . cotisations . prévoyances . santé:
+assimilé salarie . cotisations . prévoyances . santé:
   avec:
     employeur:
       titre.en: '[automatic] employer'
@@ -633,7 +633,7 @@ assimilé salarié . cotisations . prévoyances . santé:
         negotiates the contract and monitors its progress with the insurer.
         Complementary health insurance must cover a minimum range of benefits.
       description.fr: >
-        En complément des garanties de base de la Sécurité sociale, un salarié
+        En complément des garanties de base de la Sécurité sociale, un salarie
         peut bénéficier de prestations de la complémentaire santé de son
         entreprise (ou de l'association qui l'emploie). C'est l'employeur qui
         négocie le contrat et assure son suivi auprès de l'organisme assureur.
@@ -642,7 +642,7 @@ assimilé salarié . cotisations . prévoyances . santé:
       question.en: "[automatic] What is the total monthly amount (employee and
         employer) of the company's complementary health insurance (mutuelle)?"
       question.fr:
-        Quel est le montant mensuel total (salarié et employeur) de la
+        Quel est le montant mensuel total (salarie et employeur) de la
         complémentaire santé de l'entreprise (mutuelle) ?
       suggestions.alsace moselle basique.en: '[automatic] alsace moselle basique'
       suggestions.alsace moselle basique.fr: alsace moselle basique
@@ -652,9 +652,9 @@ assimilé salarié . cotisations . prévoyances . santé:
       suggestions.élevé.fr: élevé
       titre.en: '[automatic] supplementary health insurance (mutuelle)'
       titre.fr: prévoyance complémentaire santé (mutuelle)
-    salarié:
+    salarie:
       titre.en: '[automatic] employee'
-      titre.fr: salarié
+      titre.fr: salarie
     taux employeur:
       avec:
         contrôle min:
@@ -683,7 +683,7 @@ assimilé salarié . cotisations . prévoyances . santé:
       titre.fr: taux employeur
   titre.en: '[automatic] complementary compulsory health insurance'
   titre.fr: complémentaire garanties frais de santé obligatoire
-assimilé salarié . cotisations . retraite complémentaire:
+assimilé salarie . cotisations . retraite complémentaire:
   avec:
     employeur:
       titre.en: "[automatic] employer's share"
@@ -694,13 +694,13 @@ assimilé salarié . cotisations . retraite complémentaire:
     employeur . taux T2:
       titre.en: '[automatic] T2 rates'
       titre.fr: taux T2
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
-    salarié . taux T1:
+      titre.fr: part salarie
+    salarie . taux T1:
       titre.en: '[automatic] T1 rate'
       titre.fr: taux T1
-    salarié . taux T2:
+    salarie . taux T2:
       titre.en: '[automatic] T2 rates'
       titre.fr: taux T2
   description.en: |
@@ -709,17 +709,17 @@ assimilé salarié . cotisations . retraite complémentaire:
     Cotisations de retraite complémentaire.
   titre.en: '[automatic] supplementary pension'
   titre.fr: retraite complémentaire
-assimilé salarié . cotisations . retraite complémentaire-CEG-CET:
+assimilé salarie . cotisations . retraite complémentaire-CEG-CET:
   avec:
     employeur:
       titre.en: '[automatic] employer'
       titre.fr: employeur
-    salarié:
+    salarie:
       titre.en: '[automatic] employee'
-      titre.fr: salarié
+      titre.fr: salarie
   titre.en: '[automatic] supplementary pension, CEG and CET'
   titre.fr: retraite complémentaire, CEG et CET
-assimilé salarié . cotisations . taxe d'apprentissage:
+assimilé salarie . cotisations . taxe d'apprentissage:
   avec:
     assiette:
       description.en:
@@ -757,21 +757,21 @@ assimilé salarié . cotisations . taxe d'apprentissage:
     compte ici.
   titre.en: '[automatic] apprenticeship tax'
   titre.fr: taxe d'apprentissage
-assimilé salarié . cotisations . versement mobilité:
+assimilé salarie . cotisations . versement mobilité:
   description.en: '[automatic] Contribution on salaries to finance public transport.'
   description.fr: Contribution sur les salaires destinée au financement des transports publics.
   titre.en: '[automatic] mobility payment'
   titre.fr: versement mobilité
-assimilé salarié . cotisations . vieillesse:
+assimilé salarie . cotisations . vieillesse:
   avec:
     déplafonnée:
       avec:
         employeur:
           titre.en: '[automatic] employer'
           titre.fr: employeur
-        salarié:
+        salarie:
           titre.en: '[automatic] employee'
-          titre.fr: salarié
+          titre.fr: salarie
       titre.en: '[automatic] Social Security Unfunded old-age pension'
       titre.fr: Sécurité Sociale Vieillesse déplafonnée
     employeur:
@@ -796,22 +796,22 @@ assimilé salarié . cotisations . vieillesse:
         employeur:
           titre.en: '[automatic] employer'
           titre.fr: employeur
-        salarié:
+        salarie:
           titre.en: '[automatic] employee'
-          titre.fr: salarié
+          titre.fr: salarie
       titre.en: '[automatic] Social Security Old-age ceiling'
       titre.fr: Sécurité Sociale Vieillesse plafonnée
-    salarié:
+    salarie:
       titre.en: '[automatic] employee share'
-      titre.fr: part salarié
-    salarié . déplafonnée:
+      titre.fr: part salarie
+    salarie . déplafonnée:
       avec:
         taux:
           titre.en: '[automatic] rate'
           titre.fr: taux
       titre.en: '[automatic] uncapped'
       titre.fr: déplafonnée
-    salarié . plafonnée:
+    salarie . plafonnée:
       avec:
         taux:
           titre.en: '[automatic] rate'
@@ -821,13 +821,13 @@ assimilé salarié . cotisations . vieillesse:
   description.en:
     '[automatic] Old-age pension contribution for the basic employee
     pension scheme.'
-  description.fr: Cotisation vieillesse pour le régime de retraite de base des salariés.
+  description.fr: Cotisation vieillesse pour le régime de retraite de base des salaries.
   titre.en: '[automatic] old age'
   titre.fr: vieillesse
-assimilé salarié . exonérations:
+assimilé salarie . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
-assimilé salarié . exonérations . Acre:
+assimilé salarie . exonérations . Acre:
   description.en: >
     [automatic] Assistance for setting up or taking over a business (Acre)
 
@@ -935,7 +935,7 @@ assimilé salarié . exonérations . Acre:
 
     - personne de moins de 30 ans reconnue handicapée ;
 
-    - personne salariée ou licenciée d’une entreprise en sauvegarde, en
+    - personne salariee ou licenciée d’une entreprise en sauvegarde, en
     redressement
 
     ou en liquidation judiciaire et qui reprend l’activité de cette entreprise ;
@@ -972,7 +972,7 @@ assimilé salarié . exonérations . Acre:
   question.fr: Bénéficiez-vous de l’Acre ?
   titre.en: '[automatic] Acre'
   titre.fr: Acre
-assimilé salarié . exonérations . JEI:
+assimilé salarie . exonérations . JEI:
   description.en: >-
     [automatic] The status of “young innovative company” (JEI) was established
     by the 2004 Finance Act and allows SMEs that are less than 8 years old and
@@ -1001,14 +1001,14 @@ assimilé salarié . exonérations . JEI:
 
     L’exonération peut s’appliquer sur les rémunérations versées :
 
-    - aux salariés pour lesquels l’employeur est soumis à l’obligation
+    - aux salaries pour lesquels l’employeur est soumis à l’obligation
     d’assurance chômage
 
     - aux mandataires sociaux qui participent, à titre principal, au projet de
     recherche et de développement de l’entreprise
 
 
-    Par simplification, le bénéfice de l’exonération au titre d’un salarié sera
+    Par simplification, le bénéfice de l’exonération au titre d’un salarie sera
     considéré comme acquis dès lors que la moitié de son temps de travail au
     moins est consacrée à un ou des projets de recherche et de développement et
     l’exonération ne pourra être remise en cause.
@@ -1018,10 +1018,10 @@ assimilé salarié . exonérations . JEI:
   question.fr: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
   titre.en: '[automatic] JEI'
   titre.fr: JEI
-assimilé salarié . régimes spécifiques:
+assimilé salarie . régimes spécifiques:
   titre.en: '[automatic] specific regimes'
   titre.fr: régimes spécifiques
-assimilé salarié . régimes spécifiques . alsace moselle:
+assimilé salarie . régimes spécifiques . alsace moselle:
   description.en: >
     [automatic] We consider that an employee is affiliated to the Alsace-Moselle
     scheme when the establishment in which he or she works is located in these
@@ -1032,7 +1032,7 @@ assimilé salarié . régimes spécifiques . alsace moselle:
     than that, see the exact conditions [on the scheme's
     website](https://regime-local.fr/affiliation/).
   description.fr: >
-    Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand
+    Nous considérons qu'un salarie est affilié au régime Alsace-Moselle quand
     l'établissement dans lequel il travaille est situé dans ces départements.
 
 
@@ -1041,7 +1041,7 @@ assimilé salarié . régimes spécifiques . alsace moselle:
     régime](https://regime-local.fr/affiliation/).
   titre.en: '[automatic] Alsace-Moselle regime'
   titre.fr: Régime Alsace-Moselle
-assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
+assimilé salarie . régimes spécifiques . alsace moselle . ATMP:
   avec:
     seuil taux mixte ou individuel:
       titre.en: '[automatic] threshold mixed or individual rate'
@@ -1051,7 +1051,7 @@ assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
       titre.fr: taux fonctions support
   titre.en: '[automatic] ATMP'
   titre.fr: ATMP
-assimilé salarié . régimes spécifiques . taux réduits:
+assimilé salarie . régimes spécifiques . taux réduits:
   description.en: >
     [automatic] Employment in certain professions gives rise to the payment of
     social security contributions at reduced rates.
@@ -1071,12 +1071,12 @@ assimilé salarié . régimes spécifiques . taux réduits:
     - les artistes du spectacle,
     - les mannequins,
     - les journalistes professionnels et les pigistes,
-    - les professions médicales salariées.
+    - les professions médicales salariees.
   question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
-  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  question.fr: Le salarie bénéficie-t-il de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
-assimilé salarié . régimes spécifiques . taux réduits . profession:
+assimilé salarie . régimes spécifiques . taux réduits . profession:
   avec:
     VRP multicarte:
       description.en: >
@@ -1109,7 +1109,7 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
 
         - radio and television broadcasting companies
       description.fr: >
-        Concerne les salariés pigistes et journalistes et assimilés pour les
+        Concerne les salaries pigistes et journalistes et assimilés pour les
         employeurs suivants :
 
         - journaux d’information
@@ -1137,7 +1137,7 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
 
         several employers under the general scheme.
       description.fr: >
-        Concerne les membres des professions médicales et les médecins salariés
+        Concerne les membres des professions médicales et les medecins salaries
         qui exercent
 
         leur activité à **temps partiel régulièrement et simultanément** pour
@@ -1148,11 +1148,11 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
   question.en:
     "[automatic] What is the employee's occupation for the application
     of reduced contribution rates?"
-  question.fr: Quelle est la profession du salarié pour l'application de taux de
+  question.fr: Quelle est la profession du salarie pour l'application de taux de
     cotisations réduits ?
   titre.en: '[automatic] profession'
   titre.fr: profession
-assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
+assimilé salarie . régimes spécifiques . taux réduits . réduction de taux:
   avec:
     cotisations ATMP taux:
       titre.en: '[automatic] ATMP contributions rates'
@@ -1169,9 +1169,9 @@ assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
     cotisations maladie employeur taux:
       titre.en: '[automatic] employer health contribution rates'
       titre.fr: cotisations maladie employeur taux
-    cotisations maladie salarié taux:
+    cotisations maladie salarie taux:
       titre.en: '[automatic] employee health contribution rate'
-      titre.fr: cotisations maladie salarié taux
+      titre.fr: cotisations maladie salarie taux
     cotisations versement mobilité:
       titre.en: '[automatic] contributions mobility payment'
       titre.fr: cotisations versement mobilité
@@ -1181,15 +1181,15 @@ assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
     cotisations vieillesse employeur plafonnée taux:
       titre.en: '[automatic] capped old-age employer contributions rate'
       titre.fr: cotisations vieillesse employeur plafonnée taux
-    cotisations vieillesse salarié déplafonnée taux:
+    cotisations vieillesse salarie déplafonnée taux:
       titre.en: '[automatic] unfunded employee old-age contributions rate'
-      titre.fr: cotisations vieillesse salarié déplafonnée taux
-    cotisations vieillesse salarié plafonnée taux:
+      titre.fr: cotisations vieillesse salarie déplafonnée taux
+    cotisations vieillesse salarie plafonnée taux:
       titre.en: '[automatic] capped employee pension contributions rate'
-      titre.fr: cotisations vieillesse salarié plafonnée taux
+      titre.fr: cotisations vieillesse salarie plafonnée taux
   titre.en: '[automatic] rate reduction'
   titre.fr: réduction de taux
-assimilé salarié . régimes spécifiques . taxe sur les salaires:
+assimilé salarie . régimes spécifiques . taxe sur les salaires:
   description.en:
     '[automatic] The French payroll tax (taxe sur les salaires) is a
     progressive tax created in 1948 that certain employers must pay on the wages
@@ -1203,10 +1203,10 @@ assimilé salarié . régimes spécifiques . taxe sur les salaires:
   note.fr: Nous n'implémentons pas les taux spécifiques pour l'Outre-mer, ni la décôte
   titre.en: '[automatic] payroll tax'
   titre.fr: taxe sur les salaires
-assimilé salarié . rémunération:
+assimilé salarie . rémunération:
   titre.en: '[automatic] compensation'
   titre.fr: rémunération
-assimilé salarié . rémunération . avantages en nature:
+assimilé salarie . rémunération . avantages en nature:
   avec:
     autres:
       avec:
@@ -1276,7 +1276,7 @@ assimilé salarié . rémunération . avantages en nature:
 
         Le repas d’un restaurant d’entreprise ou une cantine, que vous gérez ou
 
-        subventionnez moyennant une participation du salarié, constitue selon
+        subventionnez moyennant une participation du salarie, constitue selon
         les
 
         cas un avantage en nature.
@@ -1409,7 +1409,7 @@ assimilé salarié . rémunération . avantages en nature:
 
         de travail, accord d’entreprise, règlement intérieur, courrier de la
 
-        direction de l’entreprise autorisant le salarié à faire un usage privé
+        direction de l’entreprise autorisant le salarie à faire un usage privé
         des
 
         outils), soit de l’existence de factures détaillées permettant d’établir
@@ -1462,7 +1462,7 @@ assimilé salarié . rémunération . avantages en nature:
     téléphone, réductions, logement…) ?
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
-assimilé salarié . rémunération . brute:
+assimilé salarie . rémunération . brute:
   description.en: >
     [automatic] Gross remuneration corresponds to the total amount received by
     the
@@ -1477,7 +1477,7 @@ assimilé salarié . rémunération . brute:
   description.fr: >
     La rémunération brute correspond à l'intégralité des sommes perçues par le
 
-    dirigeant assimilé salarié avant déduction des cotisations de sécurité
+    dirigeant assimilé salarie avant déduction des cotisations de sécurité
     sociale
 
     à sa charge, de la contribution sociale généralisée (CSG) et de la
@@ -1486,7 +1486,7 @@ assimilé salarié . rémunération . brute:
     au remboursement de la dette sociale (CRDS).
   titre.en: '[automatic] Gross remuneration'
   titre.fr: Rémunération brute
-assimilé salarié . rémunération . impôt:
+assimilé salarie . rémunération . impôt:
   description.en: >
     [automatic] Amount of income tax on the remuneration of an assimilated
     employee
@@ -1505,7 +1505,7 @@ assimilé salarié . rémunération . impôt:
     companies subject to income tax (IR).
   description.fr: |
     Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
-    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
+    salarie d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
     cas du calcul avec le barème standard, des autres revenus imposables du
     foyer fiscal.
 
@@ -1513,7 +1513,7 @@ assimilé salarié . rémunération . impôt:
     entreprises soumises à l’impôt sur les revenus (IR).
   titre.en: '[automatic] income tax'
   titre.fr: impôt sur le revenu
-assimilé salarié . rémunération . montant net social:
+assimilé salarie . rémunération . montant net social:
   description.en: >
     [automatic] The net social amount, or NSA, corresponds to the reference
     amount to be declared by
@@ -1542,23 +1542,23 @@ assimilé salarié . rémunération . montant net social:
   résumé.fr: Montant à déclarer pour les demandes de Prime d'activité et de RSA
   titre.en: '[automatic] Net corporate amount'
   titre.fr: Montant net social
-assimilé salarié . rémunération . nette:
+assimilé salarie . rémunération . nette:
   résumé.en: '[automatic] After deduction of contributions and expenses'
   résumé.fr: Après déduction des cotisations, contributions et charges
   titre.en: '[automatic] Net remuneration'
   titre.fr: Rémunération nette
-assimilé salarié . rémunération . nette . après impôt:
+assimilé salarie . rémunération . nette . après impôt:
   description.en: >
     [automatic] This is the salary paid into the employee's bank account, once
     contributions and taxes have been deducted.
   description.fr: >
-    C'est le salaire versé sur le compte bancaire du salarié, une fois les
+    C'est le salaire versé sur le compte bancaire du salarie, une fois les
     cotisations et l'impôt prélevés.
   résumé.en: '[automatic] Net salary paid'
   résumé.fr: Le salaire net payé
   titre.en: '[automatic] Net salary after tax'
   titre.fr: Salaire net après impôt
-assimilé salarié . rémunération . nette . imposable:
+assimilé salarie . rémunération . nette . imposable:
   avec:
     sans déductions:
       description.en: '[automatic] Net taxable income before exemptions and deductions'
@@ -1571,14 +1571,14 @@ assimilé salarié . rémunération . nette . imposable:
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   titre.en: '[automatic] Net taxable salary'
   titre.fr: Salaire net imposable
-assimilé salarié . rémunération . nette . à payer avant impôt:
+assimilé salarie . rémunération . nette . à payer avant impôt:
   description.en: >-
     [automatic] This is the amount that a salaried executive receives at the end
     of the month before paying income tax.
 
     Also known as net salary before tax.
   description.fr: >-
-    C'est le montant que le dirigeant assimilé salarié touche à la fin du mois
+    C'est le montant que le dirigeant assimilé salarie touche à la fin du mois
     avant de payer l'impôt sur le revenu.
 
     Aussi appelé salaire net à payer avant impôt.
@@ -1586,10 +1586,10 @@ assimilé salarié . rémunération . nette . à payer avant impôt:
   résumé.fr: Salaire net avant impôt
   titre.en: '[automatic] Net salary'
   titre.fr: Salaire net
-assimilé salarié . rémunération . salaire brut:
+assimilé salarie . rémunération . salaire brut:
   titre.en: '[automatic] gross salary'
   titre.fr: salaire brut
-assimilé salarié . rémunération . totale:
+assimilé salarie . rémunération . totale:
   description.en: >
     [automatic] This is how much the company spends on executive remuneration.
 
@@ -1715,7 +1715,7 @@ entreprise . date de création:
     approximation.
   description.fr: |
     La date de début d’activité (ou date de création) est fixée lors de la
-    déclaration de votre entreprise.
+    declaration de votre entreprise.
 
     Vous pouvez [renseigner votre entreprise](/), pour préremplir
     automatiquement cette information.
@@ -1794,7 +1794,7 @@ entreprise . imposition . IR:
     Le résultat est déterminé lors du remplissage de la **liasse fiscale**
     (aussi
 
-    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
+    appelée declaration de résultat). C’est l’expert-comptable qui s’en charge.
 
 
     Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
@@ -1898,7 +1898,7 @@ entreprise . imposition . IS:
     Le résultat imposable est déterminé lors du remplissage de la **liasse
     fiscale**
 
-    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en
+    (aussi appelée declaration de résultat). C’est l’expert-comptable qui s’en
     charge.
 
 
@@ -1923,10 +1923,10 @@ entreprise . imposition . IS:
 entreprise . nom:
   titre.en: '[automatic] name'
   titre.fr: nom
-entreprise . salariés:
+entreprise . salaries:
   titre.en: '[automatic] employees'
-  titre.fr: salariés
-entreprise . salariés . effectif:
+  titre.fr: salaries
+entreprise . salaries . effectif:
   avec:
     seuil:
       avec:
@@ -1963,7 +1963,7 @@ entreprise . salariés . effectif:
       titre.fr: seuil d’effectif
   titre.en: '[automatic] workforce'
   titre.fr: effectif
-entreprise . salariés . ratio alternants:
+entreprise . salaries . ratio alternants:
   description.en: >
     [automatic] This fraction determines the additional apprenticeship
     contribution for the companies concerned.
@@ -2114,7 +2114,7 @@ impôt . barème standard . revenu d'activité abattu:
     *actual expenses*, which will replace the default flat rate.
   description.fr: |
     Dans le cas général, l’impôt est calculé après l’application d’un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    forfaitaire fixe. Chacun peut néanmoins opter pour la declaration de ses
     *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: '[automatic] reduced business income'
   titre.fr: revenu d'activité abattu
@@ -2393,7 +2393,7 @@ impôt . taux neutre:
     substantial income from assets).
   description.fr: >
     C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
+    l’impôt à payer mensuellement pour les salaries qui ne veulent pas révéler à
     leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
     revenus du patrimoine importants).
   note.en:
@@ -2468,7 +2468,7 @@ paramètres . impôt . revenu d'activité:
     frais professionnels.
 
 
-    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
+    Il est à renseigner pour les salaries, assimilés salaries et dirigeants à
     l'IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
@@ -2722,9 +2722,9 @@ protection sociale . invalidité et décès:
         Le versement de la pension est possible, sous certaines conditions,
         lorsque
 
-        le défunt exerçait une activité salariée ou non salariée (travailleur
+        le défunt exerçait une activité salariee ou non salariee (travailleur
 
-        indépendant, professionnel libéral, agriculteur).
+        independant, professionnel libéral, agriculteur).
 
 
         La pension est égale à 54 % de la retraite que votre époux/épouse ou
@@ -2759,9 +2759,9 @@ protection sociale . invalidité et décès:
         minimum:
           titre.en: '[automatic] minimum'
           titre.fr: minimum
-        minimum salarié:
+        minimum salarie:
           titre.en: '[automatic] minimum wage'
-          titre.fr: minimum salarié
+          titre.fr: minimum salarie
         revenu annuel moyen des 10 meilleures années:
           description.en: >
             [automatic] Since July 1, 2016, you can only receive one disability
@@ -2779,7 +2779,7 @@ protection sociale . invalidité et décès:
           description.fr: >
             Depuis le 1er juillet 2016, vous ne pouvez percevoir qu’une seule
 
-            pension d’invalidité : soit au titre de votre activité salariée,
+            pension d’invalidité : soit au titre de votre activité salariee,
             soit au
 
             titre de votre activité d’artisan/commerçant. Toutefois, le montant
@@ -2788,7 +2788,7 @@ protection sociale . invalidité et décès:
             la pension tient compte de tous vos revenus perçus qu’ils
             proviennent de
 
-            votre activité salariée ou de votre activité comme indépendant.
+            votre activité salariee ou de votre activité comme independant.
           titre.en: '[automatic] average annual income for the 10 best years'
           titre.fr: revenu annuel moyen des 10 meilleures années
       titre.en: '[automatic] disability pension'
@@ -2842,12 +2842,12 @@ protection sociale . invalidité et décès:
   titre.fr: invalidité et décès
 protection sociale . maladie:
   avec:
-    abattement forfaitaire salarié:
+    abattement forfaitaire salarie:
       titre.en: '[automatic] flat-rate employee allowance'
-      titre.fr: abattement forfaitaire salarié
-    plancher indemnités salarié:
+      titre.fr: abattement forfaitaire salarie
+    plancher indemnités salarie:
       titre.en: '[automatic] employee indemnity floor'
-      titre.fr: plancher indemnités salarié
+      titre.fr: plancher indemnités salarie
   description.en: >
     [automatic] Assurance Maladie provides lasting protection for the health of
     every individual
@@ -3241,7 +3241,7 @@ protection sociale . retraite . base:
 
     > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
 
-    > travailleur indépendant pendant les 25 années les plus avantageuses de
+    > travailleur independant pendant les 25 années les plus avantageuses de
     votre
 
     > carrière ;
@@ -3377,7 +3377,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
         A noter : il sert aussi de base au calcul des cotisations payées par
 
-        l’employeur et le salarié : il est alors multiplié par 1,27 pour
+        l’employeur et le salarie : il est alors multiplié par 1,27 pour
         déterminer
 
         les cotisations à payer.
@@ -3386,7 +3386,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         Le taux qui apparait sur le bulletin de salaire et qui est réparti entre
         le
 
-        salarié et l’employeur est donc supérieur au taux d’acquisition des
+        salarie et l’employeur est donc supérieur au taux d’acquisition des
         points.
 
         Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
@@ -3400,7 +3400,7 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
       note.fr:
         Le taux de cotisation de retraite complémentaire étant 127% du taux de
         calcul des points, il faut diviser par 1.27 le montant des cotisations
-        versées par le salarié pour obtenir le montant à utiliser pour le calcul
+        versées par le salarie pour obtenir le montant à utiliser pour le calcul
         des points.
       titre.en: '[automatic] points acquired'
       titre.fr: points acquis

@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import { useNavigation } from '@/lib/navigation'
-import { debounce, getSessionStorage } from '@/utils'
+import { useNavigation } from '@/lib/navigation/index'
+import { debounce, getSessionStorage } from '@/utils/index'
 
 const POP_ACTION_LABEL = 'POP'
 const REPLACE_ACTION_LABEL = 'REPLACE'

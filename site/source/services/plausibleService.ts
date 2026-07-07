@@ -14,14 +14,9 @@ class PlausibleService {
 
 		if (this.plausible || this.isTrackingDisabled) return
 
-		const domain: string =
-			(import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined) ||
-			(IS_PRODUCTION ? 'mon-entreprise.urssaf.fr' : 'dev.mon-entreprise.fr')
-		const apiHost =
-			(import.meta.env.VITE_PLAUSIBLE_API_HOST as string | undefined) ||
-			'https://plausible.io'
-		const trackLocalhost =
-			import.meta.env.VITE_PLAUSIBLE_TRACK_LOCALHOST === 'true'
+		const domain = 'dev.mon-entreprise.fr'
+		const apiHost = 'https://plausible.io'
+		const trackLocalhost = true
 
 		this.plausible = Plausible({
 			domain,

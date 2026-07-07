@@ -1,7 +1,7 @@
 import { ComponentType, lazy, Suspense, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Body, Button, PhoneIcon, PopoverWithTrigger } from '@/design-system'
+import { Body, Button, PhoneIcon, PopoverWithTrigger } from '@/design-system/index'
 
 import Loader from '../utils/Loader'
 

@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import illustration from '@/assets/images/illustration.svg'
 import PageHeader from '@/components/PageHeader'
-import { Body } from '@/design-system'
+import { Body } from '@/design-system/index'
 
 export const RéductionGénérale = () => {
 	const { t } = useTranslation()

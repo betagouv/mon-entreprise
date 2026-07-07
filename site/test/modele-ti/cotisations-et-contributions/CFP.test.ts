@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . formation professionnelle'
+	'independant . cotisations et contributions . formation professionnelle'
 
 describe('Contribution à la formation professionnelle', () => {
 	let engine: Engine
@@ -22,7 +22,7 @@ describe('Contribution à la formation professionnelle', () => {
 
 		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
 			const e = engine.setSituation({
-				'indépendant . conjoint collaborateur': 'oui',
+				'independant . conjoint collaborateur': 'oui',
 			})
 
 			expect(e).toEvaluate(`${COTISATION} . taux`, 0.34)
@@ -86,7 +86,7 @@ describe('Contribution à la formation professionnelle', () => {
 		it('vaut 0,34% du PASS avec conjoint collaborateur', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . conjoint collaborateur': 'oui',
+				'independant . conjoint collaborateur': 'oui',
 			})
 
 			expect(e).toEvaluate(`${COTISATION} . taux`, 0.34)

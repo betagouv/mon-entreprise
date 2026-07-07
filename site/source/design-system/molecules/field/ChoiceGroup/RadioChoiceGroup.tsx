@@ -3,10 +3,10 @@ import { AriaRadioGroupProps, useRadioGroup } from 'react-aria'
 import { useRadioGroupState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
-import { FlexCenter, H5, InfoButton } from '@/design-system'
+import { FlexCenter, H5, InfoButton } from '@/design-system/index'
 
-import { Emoji } from '../../../emoji'
-import { Radio } from '../Radio'
+import { Emoji } from '../../../emoji/index'
+import { Radio } from '../Radio/index'
 import { RadioContext } from '../Radio/Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
 

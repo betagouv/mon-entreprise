@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import { configSageFemme } from '../profession-libérale/simulationConfig'
+import { configSageFemme } from '../profession-liberale/simulationConfig'
 import { AvertissementSageFemme } from './AvertissementSageFemme'
 import { SageFemme } from './SageFemme'
 
@@ -25,13 +25,13 @@ export function sageFemmeConfig({ t, sitePaths }: SimulatorsDataParams) {
 			),
 		},
 		iframePath: 'sage-femme',
-		pathId: 'simulateurs.profession-libérale.sage-femme',
+		pathId: 'simulateurs.profession-liberale.sage-femme',
 		shortName: t('pages.simulateurs.sage-femme.shortname', 'Sage-femme'),
 		title: t(
 			'pages.simulateurs.sage-femme.title',
 			'Simulateur de revenus pour sage-femme en libéral'
 		),
-		path: sitePaths.simulateurs['profession-libérale']['sage-femme'],
+		path: sitePaths.simulateurs['profession-liberale']['sage-femme'],
 		simulation: configSageFemme,
 		codesCatégorieJuridique: ['1000', '5410'],
 		component: SageFemme,

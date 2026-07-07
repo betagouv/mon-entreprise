@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { round } from '@/utils/number'
 
 const COTISATION =
-	'indépendant . cotisations et contributions . cotisations . allocations familiales'
+	'independant . cotisations et contributions . cotisations . allocations familiales'
 
 const TAUX = 3.1 / 100
 
@@ -21,7 +21,7 @@ describe('Cotisation allocations familiales', () => {
 	describe('pour les artisans, commerçants et PLNR', () => {
 		it('applique un taux nul en cas d’assiette sociale inférieure à 110% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -31,7 +31,7 @@ describe('Cotisation allocations familiales', () => {
 
 		it('applique un taux progressif compris entre 0% et 3,10% en cas d’assiette sociale comprise entre 110% et 140% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 
@@ -44,7 +44,7 @@ describe('Cotisation allocations familiales', () => {
 
 		it('applique un taux de 3,10% en cas d’assiette sociale supérieure à 140% du PASS', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'70000 €/an',
 			})
 
@@ -55,7 +55,7 @@ describe('Cotisation allocations familiales', () => {
 		describe('en cas d’année incomplète', () => {
 			it('applique un taux nul en cas d’assiette sociale annualisée inférieure à 110% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 					"entreprise . durée d'activité cette année": '355 jour',
 				})
@@ -66,12 +66,12 @@ describe('Cotisation allocations familiales', () => {
 
 			it('applique un taux progressif compris entre 0% et 3,10% en cas d’assiette sociale annualisée comprise entre 110% et 140% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 					"entreprise . durée d'activité cette année": '304 jour',
 				})
 
-				const PASSProratisé = e.evaluate('indépendant . PASS proratisé')
+				const PASSProratisé = e.evaluate('independant . PASS proratisé')
 					.nodeValue as number
 				const taux =
 					round(
@@ -89,7 +89,7 @@ describe('Cotisation allocations familiales', () => {
 
 			it('applique un taux de 3,10% en cas d’assiette sociale annualisée supérieure à 140% du PASS', () => {
 				const e = engine.setSituation({
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'50000 €/an',
 					"entreprise . durée d'activité cette année": '260 jour',
 				})
@@ -109,7 +109,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e1 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -121,7 +121,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e2 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 
@@ -133,7 +133,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e3 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'70000 €/an',
 			})
 
@@ -154,7 +154,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
+					'independant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
 						'30000 €/an',
 				})
 
@@ -164,7 +164,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique une assiette abattue de 50% si elle est inférieure au PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'35000 €/an',
 				})
 
@@ -179,7 +179,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique une assiette maximale égale à 50% du PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 
@@ -208,7 +208,7 @@ describe('Cotisation allocations familiales', () => {
 		it('applique le même barème que pour les artisans, commerçants et PLNR', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -217,7 +217,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 			const taux2 =
@@ -231,7 +231,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e3 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'70000 €/an',
 			})
 
@@ -250,7 +250,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e1 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -262,7 +262,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e2 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
 
@@ -274,7 +274,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const e3 = engine.setSituation({
 				...situation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'70000 €/an',
 			})
 
@@ -296,7 +296,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
+					'independant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
 						'30000 €/an',
 				})
 
@@ -306,7 +306,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique une assiette abattue de 50% si elle est inférieure au PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'35000 €/an',
 				})
 
@@ -321,7 +321,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique une assiette maximale égale à 50% du PASS mahorais', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . assiette sociale':
+					'independant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
 

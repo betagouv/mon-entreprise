@@ -17,7 +17,7 @@ import {
 	NumberField,
 	QuantitéField,
 	type DateFieldProps,
-} from '@/design-system'
+} from '@/design-system/index'
 import { isIsoDate } from '@/domaine/Date'
 import {
 	decodeArrondi,
@@ -44,11 +44,11 @@ import { getMeta } from '@/utils/publicodes/publicodes'
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { DateInput } from './DateInput'
 import { OuiNonInput } from './OuiNonInput'
-import { PlusieursPossibilités } from './PlusieursPossibilités'
+import { PlusieursPossibilités } from './PlusieursPossibilites'
 import SelectCommune from './select/SelectCommune'
 import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
-import { UnePossibilité } from './UnePossibilité'
+import { UnePossibilité } from './UnePossibilite'
 
 export const PLUSIEURS_POSSIBILITES = 'PlusieursPossibilités'
 export const UNE_POSSIBILITE = 'UnePossibilité'

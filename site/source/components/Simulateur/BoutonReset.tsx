@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { ArrowCircleIcon, Button } from '@/design-system'
+import { ArrowCircleIcon, Button } from '@/design-system/index'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 
 export const BoutonReset = () => {

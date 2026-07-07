@@ -6,10 +6,10 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, {
 	SimulationGoal,
 	SimulationGoals,
-} from '@/components/Simulation'
+} from '@/components/Simulation/index'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DistributionBranch } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/DistributionDesCotisations'
-import { typography } from '@/design-system'
+import { DistributionBranch } from '@/components/simulationExplanation/AQuoiServentMesCotisations/DistributionDesCotisations'
+import { typography } from '@/design-system/index'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import InstitutionsPartenaires from '@/pages/simulateurs/artiste-auteur/components/InstitutionsPartenaires'

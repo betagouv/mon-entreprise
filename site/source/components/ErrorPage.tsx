@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import FeedbackForm from '@/components/Feedback/FeedbackForm'
-import { Container, Grid, Message, typography } from '@/design-system'
+import { Container, Grid, Message, typography } from '@/design-system/index'
 
 import { Logo } from './Logo'
 

@@ -37,29 +37,29 @@ exports[`calculate simulations-artiste-auteur > option surcotisation 4`] = `
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 1`] = `
+exports[`calculate simulations-artiste-auteur > salarie 1`] = `
 "artiste-auteur . cotisations: 160
 artiste-auteur . cotisations . IRCEC: 0
 
 Notifications affichées : artiste-auteur . cotisations . avertissement trimestres retraite"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 2`] = `
+exports[`calculate simulations-artiste-auteur > salarie 2`] = `
 "artiste-auteur . cotisations: 1523
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 3`] = `
+exports[`calculate simulations-artiste-auteur > salarie 3`] = `
 "artiste-auteur . cotisations: 1683
 artiste-auteur . cotisations . IRCEC: 0"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 4`] = `
+exports[`calculate simulations-artiste-auteur > salarie 4`] = `
 "artiste-auteur . cotisations: 1070
 artiste-auteur . cotisations . IRCEC: 8000"
 `;
 
-exports[`calculate simulations-artiste-auteur > salarié 5`] = `
+exports[`calculate simulations-artiste-auteur > salarie 5`] = `
 "artiste-auteur . cotisations: 1399
 artiste-auteur . cotisations . IRCEC: 11200"
 `;

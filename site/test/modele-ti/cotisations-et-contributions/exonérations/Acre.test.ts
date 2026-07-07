@@ -4,14 +4,14 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { round } from '@/utils/number'
 
-const COTISATIONS = 'indépendant . cotisations et contributions . cotisations'
+const COTISATIONS = 'independant . cotisations et contributions . cotisations'
 
 const defaultSituation = {
 	'entreprise . date de création': '01/01/2026',
 }
 const defaultSituationAcre = {
 	...defaultSituation,
-	'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+	'independant . cotisations et contributions . cotisations . exonérations . Acre':
 		'oui',
 }
 
@@ -36,7 +36,7 @@ describe('L’exonération Acre', () => {
 		it('est totale lorsque l’assiette sociale est inférieure à 75% du PASS', () => {
 			const e = engine.setSituation({
 				...defaultSituationAvecAcreAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -50,7 +50,7 @@ describe('L’exonération Acre', () => {
 		it('est partielle lorsque l’assiette sociale est comprise entre 75% du PASS et le PASS', () => {
 			const e1 = engine.setSituation({
 				...defaultSituationAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 
@@ -72,7 +72,7 @@ describe('L’exonération Acre', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituationAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale': `${TroisQuartDuPASS} €/an`,
+				'independant . cotisations et contributions . assiette sociale': `${TroisQuartDuPASS} €/an`,
 			})
 
 			const AM75Pass = e2.evaluate(`${COTISATIONS} . maladie-maternité`)
@@ -88,7 +88,7 @@ describe('L’exonération Acre', () => {
 
 			const e3 = engine.setSituation({
 				...defaultSituationAvecAcreAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 
@@ -120,14 +120,14 @@ describe('L’exonération Acre', () => {
 		it('est nulle lorsque l’assiette sociale est supérieure au PASS', () => {
 			const e1 = engine.setSituation({
 				...defaultSituationAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 			const cotisations = e1.evaluate(COTISATIONS).nodeValue
 
 			const e2 = engine.setSituation({
 				...defaultSituationAvecAcreAvant2026,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -138,7 +138,7 @@ describe('L’exonération Acre', () => {
 			const e1 = engine.setSituation({
 				...defaultSituationAvant2026,
 				'entreprise . date de création': '18/02/2024',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -156,7 +156,7 @@ describe('L’exonération Acre', () => {
 			const e2 = engine.setSituation({
 				...defaultSituationAvecAcreAvant2026,
 				'entreprise . date de création': '18/02/2024', // = 47 jours d'Acre restant en 2025
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -188,7 +188,7 @@ describe('L’exonération Acre', () => {
 		it('est égale au quart des cotisations exonérées lorsque l’assiette sociale est inférieure à 75% du PASS', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -205,7 +205,7 @@ describe('L’exonération Acre', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituationAcre,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -234,7 +234,7 @@ describe('L’exonération Acre', () => {
 		it('est dégressive lorsque l’assiette sociale est comprise entre 75% du PASS et le PASS', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 
@@ -255,7 +255,7 @@ describe('L’exonération Acre', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale': `${TroisQuartDuPASS} €/an`,
+				'independant . cotisations et contributions . assiette sociale': `${TroisQuartDuPASS} €/an`,
 			})
 
 			const AM75Pass = e2.evaluate(`${COTISATIONS} . maladie-maternité`)
@@ -271,7 +271,7 @@ describe('L’exonération Acre', () => {
 
 			const e3 = engine.setSituation({
 				...defaultSituationAcre,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'40000 €/an',
 			})
 
@@ -303,14 +303,14 @@ describe('L’exonération Acre', () => {
 		it('est nulle lorsque l’assiette sociale est supérieure au PASS', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 			const cotisations = e1.evaluate(COTISATIONS).nodeValue
 
 			const e2 = engine.setSituation({
 				...defaultSituationAcre,
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'50000 €/an',
 			})
 
@@ -321,7 +321,7 @@ describe('L’exonération Acre', () => {
 			const e1 = engine.setSituation({
 				...defaultSituation,
 				'entreprise . date de création': '18/02/2025',
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
@@ -339,7 +339,7 @@ describe('L’exonération Acre', () => {
 			const e2 = engine.setSituation({
 				...defaultSituationAcre,
 				'entreprise . date de création': '18/02/2025', // = 48 jours d'Acre restant en 2026
-				'indépendant . cotisations et contributions . assiette sociale':
+				'independant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 

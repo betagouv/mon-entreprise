@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { Emoji, Grid, Message, typography, Ul } from '@/design-system'
+import { Emoji, Grid, Message, typography, Ul } from '@/design-system/index'
 
 import { useStatistiques } from '../useStatistiques'
 import {

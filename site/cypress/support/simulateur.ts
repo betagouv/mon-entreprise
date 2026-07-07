@@ -13,11 +13,11 @@ type Simulateur =
 	| 'salaire-brut-net'
 	| 'salary'
 	| 'sasu'
-	| 'indépendant'
+	| 'independant'
 	| 'profession-liberale'
 	| 'profession-liberale/auxiliaire-medical'
 	| 'profession-liberale/chirurgien-dentiste'
-	| 'profession-liberale/médecin'
+	| 'profession-liberale/medecin'
 	| 'profession-liberale/sage-femme'
 	| 'profession-liberale/pharmacien'
 	| 'profession-liberale/avocat'
@@ -120,7 +120,7 @@ export const runSimulateurTest = (
 					.invoke('val')
 					.should('match', /^€?1[\s,]000(?:\s€)?$/)
 
-				if (['indépendant', 'profession-liberale'].includes(simulateur)) {
+				if (['independant', 'profession-liberale'].includes(simulateur)) {
 					cy.get(chargeInputSelector)
 						.first()
 						.invoke('val')

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation/index'
 import { useSitePaths } from '@/sitePaths'
 
 const PAGE_TITLE = 'Un avis sur cette page ?'
@@ -33,7 +33,7 @@ export const useFeedback = () => {
 			// Exclure les pages et sous-pages
 			![
 				absoluteSitePaths.documentation.index,
-				absoluteSitePaths.nouveautés.index,
+				absoluteSitePaths.nouveautes.index,
 
 				absoluteSitePaths.stats,
 				absoluteSitePaths.développeur.index,

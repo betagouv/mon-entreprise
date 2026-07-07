@@ -10,7 +10,7 @@ import {
 	InfoBulle,
 	SmallBody,
 	SmallCard,
-} from '@/design-system'
+} from '@/design-system/index'
 import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 

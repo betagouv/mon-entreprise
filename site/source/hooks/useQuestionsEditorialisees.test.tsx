@@ -37,8 +37,8 @@ const questionFournie = <S extends Situation>(
 describe('useQuestionsÉditorialisées', () => {
 	it('supprime les questions Publicodes principales non applicables', () => {
 		const questionsPublicodesPrincipales = [
-			questionPublicodes('indépendant', true),
-			questionPublicodes('assimilé salarié', false),
+			questionPublicodes('independant', true),
+			questionPublicodes('assimilé salarie', false),
 		]
 
 		const { result } = renderHook(() =>
@@ -48,7 +48,7 @@ describe('useQuestionsÉditorialisées', () => {
 		)
 
 		expect(result.current.questionsPrincipales.map((q) => q.id)).toEqual([
-			'indépendant',
+			'independant',
 		])
 	})
 
@@ -57,8 +57,8 @@ describe('useQuestionsÉditorialisées', () => {
 			groupe: {
 				titre: () => 'groupe',
 				liste: [
-					questionPublicodes('indépendant', true),
-					questionPublicodes('assimilé salarié', false),
+					questionPublicodes('independant', true),
+					questionPublicodes('assimilé salarie', false),
 				],
 			},
 		}
@@ -73,18 +73,18 @@ describe('useQuestionsÉditorialisées', () => {
 			Record.values(result.current.groupesDeQuestions)
 				.at(0)
 				?.liste.map((q) => q.id)
-		).toEqual(['indépendant'])
+		).toEqual(['independant'])
 	})
 
 	it('supprime les groupes de questions Publicodes dont aucune question n’est applicable', () => {
 		const groupesDeQuestionsPublicodes = {
 			groupeNonVide: {
 				titre: () => 'groupe non vide',
-				liste: [questionPublicodes('indépendant', true)],
+				liste: [questionPublicodes('independant', true)],
 			},
 			groupeVide: {
 				titre: () => 'groupe vide',
-				liste: [questionPublicodes('assimilé salarié', false)],
+				liste: [questionPublicodes('assimilé salarie', false)],
 			},
 		}
 
@@ -103,7 +103,7 @@ describe('useQuestionsÉditorialisées', () => {
 			questionFournie('question applicable'),
 			questionFournie(
 				'question non applicable',
-				(s) => !!s && 'salarié' in s && s.salarié === 'oui'
+				(s) => !!s && 'salarie' in s && s.salarie === 'oui'
 			),
 		]
 
@@ -112,7 +112,7 @@ describe('useQuestionsÉditorialisées', () => {
 				questionsFourniesPrincipales,
 				situation: {
 					_tag: 'Situation',
-					salarié: 'non',
+					salarie: 'non',
 				} as Situation,
 			})
 		)
@@ -130,7 +130,7 @@ describe('useQuestionsÉditorialisées', () => {
 					questionFournie('question applicable'),
 					questionFournie(
 						'question non applicable',
-						(s) => !!s && 'salarié' in s && s.salarié === 'oui'
+						(s) => !!s && 'salarie' in s && s.salarie === 'oui'
 					),
 				],
 			},
@@ -141,7 +141,7 @@ describe('useQuestionsÉditorialisées', () => {
 				groupesDeQuestionsFournies,
 				situation: {
 					_tag: 'Situation',
-					salarié: 'non',
+					salarie: 'non',
 				} as Situation,
 			})
 		)
@@ -164,7 +164,7 @@ describe('useQuestionsÉditorialisées', () => {
 				liste: [
 					questionFournie(
 						'question non applicable',
-						(s) => !!s && 'salarié' in s && s.salarié === 'oui'
+						(s) => !!s && 'salarie' in s && s.salarie === 'oui'
 					),
 				],
 			},
@@ -175,7 +175,7 @@ describe('useQuestionsÉditorialisées', () => {
 				groupesDeQuestionsFournies,
 				situation: {
 					_tag: 'Situation',
-					salarié: 'non',
+					salarie: 'non',
 				} as Situation,
 			})
 		)

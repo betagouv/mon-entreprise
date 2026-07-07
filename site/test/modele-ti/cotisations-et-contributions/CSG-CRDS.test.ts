@@ -2,7 +2,7 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-const CSG_CRDS = 'indépendant . cotisations et contributions . CSG-CRDS'
+const CSG_CRDS = 'independant . cotisations et contributions . CSG-CRDS'
 
 const TAUX = 9.7 / 100
 
@@ -15,7 +15,7 @@ describe('CSG-CRDS', () => {
 	describe('pour les artisans, commerçants et PLNR', () => {
 		it('applique un taux de 9,7% dans le cas général', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+				'independant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 			})
 
@@ -31,7 +31,7 @@ describe('CSG-CRDS', () => {
 
 		it('applique un taux de 9,7% en cas d’année incomplète', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+				'independant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 				"entreprise . durée d'activité cette année": '250 jour',
 			})
@@ -41,7 +41,7 @@ describe('CSG-CRDS', () => {
 
 		it('ne s’applique pas en cas de domiciliation fiscale à l’étranger', () => {
 			const e = engine.setSituation({
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+				'independant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
 			})
@@ -59,7 +59,7 @@ describe('CSG-CRDS', () => {
 		it('applique un taux de 9,7%', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+				'independant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 			})
 
@@ -76,7 +76,7 @@ describe('CSG-CRDS', () => {
 		it('ne s’applique pas en cas de domiciliation fiscale à l’étranger', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'indépendant . cotisations et contributions . assiette CSG-CRDS':
+				'independant . cotisations et contributions . assiette CSG-CRDS':
 					'50000 €/an',
 				"situation personnelle . domiciliation fiscale à l'étranger": 'oui',
 			})

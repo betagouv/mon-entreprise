@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import { useTranslation } from 'react-i18next'
 
-import { DateField } from '@/design-system'
+import { DateField } from '@/design-system/index'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 import { Label } from '../styled-components'

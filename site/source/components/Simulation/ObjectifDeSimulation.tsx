@@ -2,7 +2,7 @@ import { Option } from 'effect'
 import React from 'react'
 import { styled } from 'styled-components'
 
-import { Body, Grid, InfoBulle, TitreObjectif } from '@/design-system'
+import { Body, Grid, InfoBulle, TitreObjectif } from '@/design-system/index'
 import { Montant, montantToString } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 

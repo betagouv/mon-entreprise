@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Button, Emoji, Spacing } from '@/design-system'
+import { Button, Emoji, Spacing } from '@/design-system/index'
 import { simulationUrlSelector } from '@/store/selectors/simulation/simulationUrl.selector'
 
 export default function BackToSimulation() {

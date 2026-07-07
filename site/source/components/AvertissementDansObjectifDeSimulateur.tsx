@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 
-import { Message, SmallBody } from '@/design-system'
+import { Message, SmallBody } from '@/design-system/index'
 
 export default function AvertissementDansObjectifDeSimulateur({
 	children,

@@ -8,8 +8,8 @@ import {
 	SearchCommune,
 	searchCommunes,
 } from '@/api/commune'
-import { Body, TextField } from '@/design-system'
-import { debounce } from '@/utils'
+import { Body, TextField } from '@/design-system/index'
+import { debounce } from '@/utils/index'
 
 function formatCommune(value: SearchCommune) {
 	return value && `${value.nom} (${value['code postal']})`

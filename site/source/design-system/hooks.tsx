@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { getIframeOffset } from '@/utils'
+import { getIframeOffset } from '@/utils/index'
 
 export const useIFrameOffset = () => {
 	const [offsetTop, setOffset] = useState<number>()

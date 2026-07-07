@@ -15,13 +15,13 @@ import {
 import {
 	DéclarationDeGarde,
 	toutesLesDéclarations,
-} from './déclaration-de-garde'
+} from './declaration-de-garde'
 import { EnfantsÀCharge } from './enfant'
 import { ModeDeGarde } from './mode-de-garde'
 import { SituationCMGValide } from './situation'
 
 export const calculeComplémentTransitoire = (situation: SituationCMGValide) => {
-	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.salariées)
+	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.salariees)
 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
 	const différence = M.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
 
@@ -32,9 +32,9 @@ export const calculeComplémentTransitoire = (situation: SituationCMGValide) => 
 	return différence
 }
 
-export const moyenneCMGPerçus = (salariées: SituationCMGValide['salariées']) =>
+export const moyenneCMGPerçus = (salariees: SituationCMGValide['salariees']) =>
 	pipe(
-		salariées,
+		salariees,
 		toutesLesDéclarations,
 		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
 		N.sumAll,
@@ -44,7 +44,7 @@ export const moyenneCMGPerçus = (salariées: SituationCMGValide['salariées']) 
 
 export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 	pipe(
-		situation.salariées,
+		situation.salariees,
 		toutesLesDéclarations,
 		A.map(
 			(d) =>
@@ -60,13 +60,13 @@ export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 	)
 
 export const calculeCMGRLinéarisé = (
-	déclarationDeGarde: DéclarationDeGarde,
+	declarationDeGarde: DéclarationDeGarde,
 	enfantsÀCharge: EnfantsÀCharge,
 	revenuMensuel: M.Montant<'€/mois'>
 ) => {
-	const teh = tauxEffortHoraire(déclarationDeGarde.type, enfantsÀCharge) / 100
-	const coûtMensuel = coûtMensuelDeLaGarde(déclarationDeGarde)
-	const coûtHoraireMédian = COÛT_HORAIRE_MÉDIAN[déclarationDeGarde.type]
+	const teh = tauxEffortHoraire(declarationDeGarde.type, enfantsÀCharge) / 100
+	const coûtMensuel = coûtMensuelDeLaGarde(declarationDeGarde)
+	const coûtHoraireMédian = COÛT_HORAIRE_MÉDIAN[declarationDeGarde.type]
 
 	return M.euros(
 		coûtMensuel.valeur * (1 - (revenuMensuel.valeur * teh) / coûtHoraireMédian)
@@ -110,21 +110,21 @@ export const tauxEffortHoraire = (
 }
 
 export const coûtMensuelDeLaGarde = (
-	déclarationDeGarde: DéclarationDeGarde
+	declarationDeGarde: DéclarationDeGarde
 ) => {
-	if (O.isNone(déclarationDeGarde.heuresDeGarde)) {
+	if (O.isNone(declarationDeGarde.heuresDeGarde)) {
 		return M.euros(0)
 	}
 
 	const coûtHoraireNet = round(
-		O.getOrElse(déclarationDeGarde.rémunération, () => M.euros(0)).valeur /
-			déclarationDeGarde.heuresDeGarde.value,
+		O.getOrElse(declarationDeGarde.rémunération, () => M.euros(0)).valeur /
+			declarationDeGarde.heuresDeGarde.value,
 		2
 	)
 	const coûtHoraireAppliqué = Math.min(
 		coûtHoraireNet,
-		COÛT_HORAIRE_MAXIMAL[déclarationDeGarde.type]
+		COÛT_HORAIRE_MAXIMAL[declarationDeGarde.type]
 	)
 
-	return M.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde.value)
+	return M.euros(coûtHoraireAppliqué * declarationDeGarde.heuresDeGarde.value)
 }

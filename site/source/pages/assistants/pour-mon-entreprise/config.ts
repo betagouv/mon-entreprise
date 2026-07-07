@@ -1,4 +1,4 @@
-import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
+import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise/index'
 import { config } from '@/pages/simulateurs/_configs/config'
 import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
 

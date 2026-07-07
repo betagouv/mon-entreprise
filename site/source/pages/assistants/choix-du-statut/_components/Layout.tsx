@@ -1,4 +1,4 @@
-import { Grid, H3 } from '@/design-system'
+import { Grid, H3 } from '@/design-system/index'
 
 import StatutsPossibles from './StatutsPossibles'
 

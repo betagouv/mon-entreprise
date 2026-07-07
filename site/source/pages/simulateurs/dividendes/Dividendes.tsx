@@ -2,9 +2,9 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import Notifications from '@/components/Notifications'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation from '@/components/Simulation'
+import Simulation from '@/components/Simulation/index'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
-import { DarkLi, Strong, Ul } from '@/design-system'
+import { DarkLi, Strong, Ul } from '@/design-system/index'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
@@ -15,7 +15,7 @@ import { Explications } from './components/Explications'
 import { DividendesSimulationGoals } from './Goals'
 
 const nextSteps = [
-	'salarié',
+	'salarie',
 	'is',
 	'comparaison-statuts',
 ] satisfies SimulateurId[]
@@ -51,7 +51,7 @@ export default function DividendesSimulation() {
 										Cette simulation ne concerne que les sociétés françaises à
 										l’impôt sur les sociétés (IS), et{' '}
 										<Strong>
-											ne concerne pas les travailleurs indépendants non salariés
+											ne concerne pas les travailleurs independants non salaries
 										</Strong>{' '}
 										comme les <Strong>gérants majoritaires de SARL</Strong>, les
 										associés uniques d’

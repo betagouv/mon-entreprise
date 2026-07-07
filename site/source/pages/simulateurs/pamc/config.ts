@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
+import { configProfessionLibérale } from '../profession-liberale/simulationConfig'
 import { PAMCHome } from './PAMCHome'
 
 export function pamcConfig({ t, sitePaths }: SimulatorsDataParams) {
@@ -20,7 +20,7 @@ export function pamcConfig({ t, sitePaths }: SimulatorsDataParams) {
 			title: t('pages.simulateurs.pamc.meta.title', 'Simulateurs régime PAMC'),
 			description: t(
 				'pages.simulateurs.pamc.meta.description',
-				'Calcul du revenu net pour les professions libérales du régime PAMC (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
+				'Calcul du revenu net pour les professions libérales du régime PAMC (medecin, chirurgien-dentiste, sage-femme et auxiliaire médical)'
 			),
 		},
 		shortName: t('pages.simulateurs.pamc.shortname', 'PAMC'),

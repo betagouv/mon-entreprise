@@ -2,7 +2,7 @@ import * as R from 'effect/Record'
 import { useState } from 'react'
 
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/PianoAnalytics/index'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {
 	Body,
@@ -21,7 +21,7 @@ import {
 	Spacing,
 	Strong,
 	Ul,
-} from '@/design-system'
+} from '@/design-system/index'
 
 import Meta from '../../components/utils/Meta'
 import rawBudget from './budget.yaml'
@@ -204,7 +204,7 @@ export default function Budget() {
 							<Body>
 								La marge du porteur attributaire du marché public de l’Urssaf
 								Caisse Nationale, ainsi que les coûts liés à la société
-								spécialement créée pour effectuer le portage des indépendants
+								spécialement créée pour effectuer le portage des independants
 								qui travaillent sur le site (administration, comptabilité,
 								facturation, impôts, etc.).
 							</Body>

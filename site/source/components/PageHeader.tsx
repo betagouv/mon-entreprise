@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { styled } from 'styled-components'
 
-import { Grid, H1 } from '@/design-system'
+import { Grid, H1 } from '@/design-system/index'
 
 const Illustration = styled.img`
 	height: 100%;

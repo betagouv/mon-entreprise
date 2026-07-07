@@ -5,7 +5,7 @@ import { useCallback } from 'react'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle, Question } from '@/domaine/SimulationConfig'
 
-import { useEngineFromModèle } from './useEngineFromModèle'
+import { useEngineFromModèle } from './useEngineFromModele'
 
 export type GroupeDeQuestionsPublicodes = {
 	titre: (t: TFunction) => string

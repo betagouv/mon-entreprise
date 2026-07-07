@@ -1,8 +1,8 @@
 import { codeActivité } from '@/domaine/CodeActivite'
-import { codeCatégorieJuridique } from '@/domaine/CodeCatégorieJuridique'
+import { codeCatégorieJuridique } from '@/domaine/CodeCategorieJuridique'
 import { Entreprise } from '@/domaine/Entreprise'
 import { EntreprisesRepository } from '@/domaine/EntreprisesRepository'
-import { Établissement } from '@/domaine/Établissement'
+import { Établissement } from '@/domaine/Etablissement'
 import { siren, siret } from '@/domaine/Siren'
 
 export const FabriqueSocialEntreprisesRepository: EntreprisesRepository = {

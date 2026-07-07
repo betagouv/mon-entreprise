@@ -6,7 +6,7 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { InfoButton } from '@/design-system'
+import { InfoButton } from '@/design-system/index'
 
 import { fieldContainerStyles, radioFieldsSharedStyles } from '../fieldsStyles'
 
