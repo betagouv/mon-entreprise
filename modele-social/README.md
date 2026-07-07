@@ -12,8 +12,8 @@ npm install publicodes modele-social
 ### Exemple d'utilisation
 
 ```js
-import Engine, { formatValue } from 'publicodes'
 import rules from 'modele-social'
+import Engine, { formatValue } from 'publicodes'
 
 const engine = new Engine(rules)
 
