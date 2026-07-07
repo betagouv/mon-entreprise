@@ -103,19 +103,19 @@ export function RuleField({
 
 	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
 		return (
-			<fieldset>
-				<Legend>
+			<StyledFieldset>
+				<StyledLegend>
 					{labelOrLegend}
 
 					<ExplicableRule dottedName={dottedName} />
-				</Legend>
+				</StyledLegend>
 
 				<RuleInput
 					dottedName={dottedName}
 					onChange={onChange}
 					onSubmit={onSubmit}
 				/>
-			</fieldset>
+			</StyledFieldset>
 		)
 	}
 
@@ -139,12 +139,22 @@ export function RuleField({
 	)
 }
 
-const Legend = styled.legend`
+const StyledFieldset = styled.fieldset`
+	display: contents;
+
+	padding: 0;
+	margin: 0;
+	border: none;
+`
+
+const StyledLegend = styled.legend`
 	${H3Style}
+
 	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xxs}`};
 `
 
 const LabelWithMargin = styled(H3)`
-	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xs}`};
 	display: inline-block;
+
+	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xs}`};
 `
