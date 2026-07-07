@@ -14,11 +14,8 @@ import {
 import { MontantField } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 
-interface Props {}
-
 export const RecettesCourteDuréeQuestion: ComposantQuestion<
-	SituationÉconomieCollaborative,
-	Props
+	SituationÉconomieCollaborative
 > = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useEconomieCollaborative()

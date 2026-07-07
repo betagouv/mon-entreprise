@@ -9,8 +9,6 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
-interface Props {}
-
 export const AlsaceMoselleQuestion: ComposantQuestion<
 	SituationÉconomieCollaborative,
 	Props

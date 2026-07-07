@@ -50,6 +50,20 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				{ keepPreviousSituation: true }
 			)
 		},
+
+		réponse: (question, valeur) => {
+			if (question === 'nature-activité') {
+				engine?.setSituation({
+					'entreprise . activité': valeur,
+				})
+			}
+
+			if (question === 'méthode-imposition') {
+				engine?.setSituation({
+					'entreprise . activité': valeur,
+				})
+			}
+		},
 	},
 
 	get: {

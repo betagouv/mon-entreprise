@@ -1,4 +1,7 @@
-import { MontantRécurrent } from '../Montant'
+import * as O from 'effect/Option'
+
+import { eurosParAn, MontantRécurrent } from '../Montant'
+import { quantité } from '../Quantité'
 import { NomModèle } from '../SimulationConfig'
 import {
 	ModèleComparable,
@@ -6,10 +9,22 @@ import {
 	QuantitéDocumentée,
 	ValeurDocumentée,
 } from './ModèleComparable'
+import { Question, Réponse, SituationComparée } from './situation'
 
-interface SituationComparée {
-	chiffreDAffaires?: MontantRécurrent
-	charges?: MontantRécurrent
+const situationComparée: SituationComparée = {
+	_tag: 'Situation',
+	_type: 'comparateur',
+	chiffreDAffaires: O.some(eurosParAn(48_000)),
+	charges: O.some(eurosParAn(12_000)),
+	natureActivité: 'commerciale',
+	typeActivité: O.some('vente'),
+	activitéLibéraleRéglementée: O.none(),
+	méthodeImposition: 'barème standard',
+	tauxImposition: O.none(),
+	situationFamiliale: O.some('célibataire'),
+	enfants: O.some(quantité(0, 'enfant')),
+	autresRevenus: O.some(eurosParAn(0)),
+	tva: true,
 }
 
 interface Comparaison {
@@ -39,12 +54,16 @@ interface Comparaison {
 	}
 }
 
-const situationComparée: SituationComparée = {}
-
 export interface Comparateur {
+	situation: SituationComparée
 	set: {
 		chiffreDAffaires: (montant: MontantRécurrent) => Comparateur
 		charges: (montant: MontantRécurrent) => Comparateur
+		réponse: (
+			...args: {
+				[K in Question]: [question: K, valeur: Réponse<K>]
+			}[Question]
+		) => Comparateur
 	}
 	compare: () => Comparaison[]
 }
@@ -53,6 +72,8 @@ export const ComparateurDeModèles = (
 	modèles: ModèleComparable[]
 ): Comparateur => {
 	return {
+		situation: situationComparée,
+
 		set: {
 			chiffreDAffaires: (montant: MontantRécurrent) => {
 				situationComparée.chiffreDAffaires = montant
@@ -63,6 +84,13 @@ export const ComparateurDeModèles = (
 			charges: (montant: MontantRécurrent) => {
 				situationComparée.charges = montant
 				modèles.forEach((modèle) => modèle.set.charges(montant))
+
+				return ComparateurDeModèles(modèles)
+			},
+			réponse: (...args) => {
+				const [question, valeur] = args
+				situationComparée[question] = valeur
+				modèles.forEach((modèle) => modèle.set.réponse(...args))
 
 				return ComparateurDeModèles(modèles)
 			},
