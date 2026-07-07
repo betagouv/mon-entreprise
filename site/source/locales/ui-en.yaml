@@ -1564,6 +1564,12 @@ pages:
         access: Access the simulator {{year}}
         back: Back to simulator {{year}}
         info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
+    comparaison-status:
+      objectifs:
+        CA:
+          titre: Estimated revenue
+        charges:
+          titre: Estimated Expenses
     comparaison-statuts:
       accordion-title: Compare...
       description: When you start your business, the legal structure you choose will
@@ -1749,6 +1755,14 @@ pages:
           réglementée: Regulated activity
           titre: Activity
           type: Type of activity
+        activité-nature:
+          artisanale:
+            label: Handcrafted
+          commerciale:
+            label: Sales
+          libellé: What kind of business do you run?
+          libérale:
+            label: Liberal
         autres-revenus: Other taxable income
         foyer-fiscal:
           enfants: Dependent children

@@ -1660,6 +1660,12 @@ pages:
         access: Accéder au simulateur {{year}}
         back: Retourner au simulateur {{year}}
         info: "Cette simulation concerne l'année <2>{{currentEngineYear}}</2>. "
+    comparaison-status:
+      objectifs:
+        CA:
+          titre: Chiffre d'affaires estimé
+        charges:
+          titre: Charges estimé
     comparaison-statuts:
       accordion-title: Comparer…
       description: Lorsque vous créez votre entreprise, le choix du statut juridique
@@ -1849,6 +1855,14 @@ pages:
           réglementée: Activité réglementée
           titre: Activité
           type: Type d’activité
+        activité-nature:
+          artisanale:
+            label: Artisanale
+          commerciale:
+            label: Commerciale
+          libellé: Quelle est la nature de votre activité ?
+          libérale:
+            label: Libérale
         autres-revenus: Autres revenus imposables
         foyer-fiscal:
           enfants: Enfants à charge

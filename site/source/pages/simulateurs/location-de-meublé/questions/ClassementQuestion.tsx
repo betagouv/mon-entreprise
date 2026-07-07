@@ -10,11 +10,8 @@ import {
 } from '@/contextes/économie-collaborative'
 import { RadioChoiceGroup } from '@/design-system'
 
-interface Props {}
-
 export const ClassementQuestion: ComposantQuestion<
-	SituationÉconomieCollaborative,
-	Props
+	SituationÉconomieCollaborative
 > = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useEconomieCollaborative()

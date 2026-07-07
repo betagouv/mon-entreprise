@@ -9,11 +9,8 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Radio, ToggleGroup } from '@/design-system'
 
-interface Props {}
-
 export const PremiereAnneeQuestion: ComposantQuestion<
-	SituationÉconomieCollaborative,
-	Props
+	SituationÉconomieCollaborative
 > = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useEconomieCollaborative()
