@@ -12,9 +12,12 @@ const unitsTranslations = unitsTranslationsRaw as Units
 export const SUPPORTED_LANGUAGES = ['fr', 'en'] as const
 export type AvailableLang = (typeof SUPPORTED_LANGUAGES)[number]
 
+export const estLangueSupportée = (valeur: string): valeur is AvailableLang =>
+	(SUPPORTED_LANGUAGES as readonly string[]).includes(valeur)
+
 export const parseLangue = (raw: string | undefined): AvailableLang => {
 	const value = raw ?? 'fr'
-	if (!SUPPORTED_LANGUAGES.includes(value as AvailableLang)) {
+	if (!estLangueSupportée(value)) {
 		throw new Error(
 			`LANGUE invalide : "${value}". Valeurs supportées : ${SUPPORTED_LANGUAGES.join(
 				', '
@@ -22,7 +25,7 @@ export const parseLangue = (raw: string | undefined): AvailableLang => {
 		)
 	}
 
-	return value as AvailableLang
+	return value
 }
 
 export const baseI18nConfig = (langue: AvailableLang) => ({

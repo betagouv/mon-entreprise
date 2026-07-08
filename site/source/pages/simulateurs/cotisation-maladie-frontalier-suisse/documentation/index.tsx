@@ -6,6 +6,7 @@ import {
 	MDXDocumentationIndex,
 } from '@/components/documentation'
 import { useNavigation } from '@/lib/navigation'
+import { parseLangue } from '@/locales/i18nResources'
 import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
@@ -22,7 +23,7 @@ export const DocumentationHub = () => {
 
 	const { documentations, indexComponent } = createMDXDocumentationFromGlob(
 		mdxModules,
-		i18n.language
+		parseLangue(i18n.language)
 	)
 
 	if (!isIndex) {

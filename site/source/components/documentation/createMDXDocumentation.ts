@@ -1,5 +1,7 @@
 import { ComponentType } from 'react'
 
+import { AvailableLang, estLangueSupportée } from '@/locales/i18nResources'
+
 export interface MDXDocumentation {
 	path: string
 	slug: string
@@ -74,7 +76,7 @@ export interface MDXDocumentationResult {
  */
 export function createMDXDocumentationFromGlob(
 	globModules: Record<string, unknown>,
-	langue = 'fr'
+	langue: AvailableLang = 'fr'
 ): MDXDocumentationResult {
 	const modulesParSlug = sélectionnerModulesParLangue(globModules, langue)
 
@@ -95,15 +97,13 @@ export function createMDXDocumentationFromGlob(
 	}
 }
 
-const LANGUES_SUPPORTÉES = ['fr', 'en']
-
 /**
  * Sélectionne, pour chaque document, la variante de langue demandée :
  * `slug.<langue>.mdx`, à défaut `slug.fr.mdx`, à défaut `slug.mdx` (sans suffixe).
  */
 function sélectionnerModulesParLangue(
 	globModules: Record<string, unknown>,
-	langue: string
+	langue: AvailableLang
 ): Record<string, MDXModule | ComponentType> {
 	const variantesParSlug: Record<
 		string,
@@ -128,14 +128,14 @@ function sélectionnerModulesParLangue(
 
 function extraireSlugEtLangue(path: string): {
 	slug: string
-	langue: string | null
+	langue: AvailableLang | null
 } {
 	const filename = extractBaseFilename(path)
 	const dernierPoint = filename.lastIndexOf('.')
 
 	if (dernierPoint !== -1) {
 		const suffixe = filename.slice(dernierPoint + 1)
-		if (LANGUES_SUPPORTÉES.includes(suffixe)) {
+		if (estLangueSupportée(suffixe)) {
 			return { slug: filename.slice(0, dernierPoint), langue: suffixe }
 		}
 	}
