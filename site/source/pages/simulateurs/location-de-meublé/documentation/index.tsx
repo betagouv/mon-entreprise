@@ -1,14 +1,18 @@
+import { useTranslation } from 'react-i18next'
+
 import {
 	createMDXDocumentationFromGlob,
 	DocumentationRouter,
 	MDXDocumentationIndex,
 } from '@/components/documentation'
 import { useNavigation } from '@/lib/navigation'
+import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
 
 export const DocumentationHub = () => {
+	const { i18n } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
 	const isIndex = currentPath.endsWith('/documentation')
@@ -16,8 +20,8 @@ export const DocumentationHub = () => {
 	const baseUrl = absoluteSitePaths.simulateurs['location-de-logement-meublé']
 	const docUrl = baseUrl + '/documentation'
 
-	const { documentations, indexComponent } =
-		createMDXDocumentationFromGlob(mdxModules)
+	const { documentations, indexComponent, indexMetadata } =
+		createMDXDocumentationFromGlob(mdxModules, parseLangue(i18n.language))
 
 	if (!isIndex) {
 		return (
@@ -34,10 +38,10 @@ export const DocumentationHub = () => {
 			documentations={documentations}
 			baseUrl={baseUrl}
 			docUrl={docUrl}
-			title="Comprendre la location de meublé courte durée"
+			title={indexMetadata?.title ?? ''}
 			trackingPageName="Documentation location meublée"
-			metaTitle="Documentation - Location de meublé"
-			metaDescription="Comprendre les régimes fiscaux et sociaux de la location meublée"
+			metaTitle={indexMetadata?.metaTitle ?? ''}
+			metaDescription={indexMetadata?.description ?? ''}
 			indexComponent={indexComponent}
 		/>
 	)
