@@ -103,7 +103,6 @@ export const Accordion = <T extends object>(
 					{isFoldable && (
 						<Grid item>
 							<StyledFoldButton
-								underline
 								onPress={() => (allItemsOpen ? closeAll() : openAll())}
 							>
 								<StyledChevronIcon $isOpen={allItemsOpen} />
@@ -273,14 +272,22 @@ const StyledGrid = styled(Grid)`
 `
 
 const StyledFoldButton = styled(Button)`
-	text-decoration: none;
 	background-color: transparent;
+	padding: 0;
+	border: none;
+	border-radius: ${({ theme }) => theme.box.borderRadius};
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
+	svg {
+		margin-right: ${({ theme }) => theme.spacings.xxs};
+	}
 	&:hover {
-		text-decoration: none;
+		background-color: transparent;
+	}
+	&:focus {
+		${FocusStyle}
 	}
 `
 
