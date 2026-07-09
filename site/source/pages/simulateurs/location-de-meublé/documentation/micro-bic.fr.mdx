@@ -54,7 +54,6 @@ Au-delà de ces plafonds, vous basculez automatiquement au régime réel d'impos
 - **Abattement automatique** : Les charges sont déduites forfaitairement
 
 export const ExempleCalculDynamique = () => {
-	const { situation } = useEconomieCollaborative()
 	const recettesExemple = eurosParAn(20_000)
 	const abattement = ABATTEMENT_REGIME_GENERAL
 	const montantAbattement = eurosParAn(20_000 * abattement)
