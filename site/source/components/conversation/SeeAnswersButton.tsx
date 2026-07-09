@@ -75,5 +75,6 @@ const StyledButton = styled(Button)`
 
 	&:focus {
 		${FocusStyle}
+		border-radius: ${({ theme }) => theme.box.borderRadius};
 	}
 `

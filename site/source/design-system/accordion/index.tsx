@@ -230,6 +230,7 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 	}
 	&:focus {
 		${FocusStyle}
+		border-radius: ${({ theme }) => theme.box.borderRadius};
 	}
 
 	${({ $variant }) =>
