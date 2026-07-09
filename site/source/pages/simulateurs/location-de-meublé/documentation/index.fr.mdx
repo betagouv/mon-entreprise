@@ -1,27 +1,15 @@
-import * as O from 'effect/Option'
 import {
 	SEUIL_PROFESSIONNALISATION
 } from '@/contextes/économie-collaborative'
-import { Conseil, Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
+import { Conseil, Info, Tableau, Valeur } from '@/design-system'
 import { montantToString } from '@/domaine/Montant'
-import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
+
+import { RecettesDéclarées } from './RecettesDéclarées'
 
 export const metadata = {
 	title: 'Comprendre la location de meublé courte durée',
 	metaTitle: 'Documentation - Location de meublé',
 	description: 'Comprendre les régimes fiscaux et sociaux de la location meublée'
-}
-
-export const RecettesDéclaréesS = () => {
-	const { situation } = useEconomieCollaborative()
-
-	if (O.isSome(situation.recettes)) {
-		return (<div>
-				Vous avez indiqué <ValeurImportante>{montantToString(situation.recettes.value)}</ValeurImportante> de recettes.
-			</div>)
-	}
-
-	return <div>Remplissez le simulateur pour plus d’information</div>
 }
 
 # Location meublée : vue d'ensemble
@@ -36,7 +24,7 @@ En tant que loueur en meublé, vous devez :
 - **Cotiser au régime social** adapté à votre situation : <Valeur>{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur>
 
 
-<RecettesDéclaréesS />
+<RecettesDéclarées />
 
 
 ## Seuils importants
