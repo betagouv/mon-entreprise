@@ -19,7 +19,6 @@ export const FocusStyle = css`
 				? theme.colors.extended.grey[100]
 				: theme.colors.bases.primary[700]};
 	outline-offset: 2px;
-	border-radius: ${({ theme }) => theme.box.borderRadius};
 `
 
 export const FlexCenter = css`
