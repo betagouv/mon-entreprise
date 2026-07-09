@@ -163,8 +163,9 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 	display: inline-flex;
 	align-items: center;
 	text-align: initial;
-	padding: 0 ${({ theme }) => theme.spacings.sm};
-	margin: 0 ${({ theme }) => theme.spacings.xxs};
+	padding: 0 ${({ theme }) => theme.spacings.xs} 0
+		${({ theme }) => theme.spacings.sm};
+	margin: ${({ theme }) => `0 -${theme.spacings.xxs} 0 ${theme.spacings.xxs}`};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	z-index: 1;
 	${({ theme, $inert }) =>
