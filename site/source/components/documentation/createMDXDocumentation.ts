@@ -15,6 +15,7 @@ export interface MDXModule {
 	metadata?: {
 		title: string
 		description?: string
+		metaTitle?: string
 	}
 }
 
@@ -39,9 +40,8 @@ function createMDXDocumentation(
 	mdxModules: Record<string, MDXModule | ComponentType>
 ): MDXDocumentation[] {
 	return Object.entries(mdxModules).map(([slug, module]) => {
-		const isFullModule = typeof module === 'object' && 'default' in module
-		const component = isFullModule ? module.default : module
-		const metadata = isFullModule ? module.metadata : undefined
+		const component = getDefaultComponent(module)
+		const metadata = getMetadata(module)
 
 		const title = metadata?.title ?? slugToTitle(slug)
 		const description = metadata?.description
@@ -59,6 +59,7 @@ function createMDXDocumentation(
 export interface MDXDocumentationResult {
 	documentations: MDXDocumentation[]
 	indexComponent?: ComponentType
+	indexMetadata?: MDXModule['metadata']
 }
 
 /**
@@ -82,10 +83,12 @@ export function createMDXDocumentationFromGlob(
 
 	const processedModules: Record<string, MDXModule | ComponentType> = {}
 	let indexComponent: ComponentType | undefined
+	let indexMetadata: MDXModule['metadata']
 
 	Object.entries(modulesParSlug).forEach(([slug, module]) => {
 		if (slug === 'index') {
 			indexComponent = getDefaultComponent(module)
+			indexMetadata = getMetadata(module)
 		} else {
 			processedModules[slug] = module
 		}
@@ -94,6 +97,7 @@ export function createMDXDocumentationFromGlob(
 	return {
 		documentations: createMDXDocumentation(processedModules),
 		indexComponent,
+		indexMetadata,
 	}
 }
 
@@ -159,6 +163,12 @@ function getDefaultComponent<T>(
 	const isModuleWithDefault = typeof module === 'object' && 'default' in module
 
 	return isModuleWithDefault ? (module.default as ComponentType<T>) : module
+}
+
+function getMetadata(module: MDXModule | ComponentType): MDXModule['metadata'] {
+	return typeof module === 'object' && 'metadata' in module
+		? module.metadata
+		: undefined
 }
 
 function extractBaseFilename(filePath: string): string {
