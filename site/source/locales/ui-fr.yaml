@@ -1882,11 +1882,11 @@ pages:
         date-affiliation:
           erreur: La date de début d’affiliation ne peut pas être postérieure à la date de
             fin.
-          libellé: À quelle date votre affiliation a-t-elle débuté ?
+          libellé: Date de début d’affiliation
         date-fin-affiliation:
           erreur: La date de fin d’affiliation ne peut pas être antérieure à la date de
             début.
-          libellé: À quelle date votre affiliation prend-elle fin ?
+          libellé: Date de fin d’affiliation
         groupe-fin-affiliation:
           titre: Fin d’affiliation
       résultat:

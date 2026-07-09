@@ -47,7 +47,7 @@ DateAffiliationQuestion.id = 'date-affiliation'
 DateAffiliationQuestion.libellé = (t) =>
 	t(
 		'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-affiliation.libellé',
-		'À quelle date votre affiliation a-t-elle débuté ?'
+		'Date de début d’affiliation'
 	)
 const ValeurDateAffiliation = () => {
 	const { situation } = useFrontalierSuisse()
