@@ -1,6 +1,10 @@
 import { ComponentType } from 'react'
 
-import { AvailableLang, estLangueSupportée } from '@/locales/langue'
+import {
+	AvailableLang,
+	estLangueSupportée,
+	SUPPORTED_LANGUAGES,
+} from '@/locales/langue'
 
 export interface MDXDocumentation {
 	path: string
@@ -101,33 +105,56 @@ export function createMDXDocumentationFromGlob(
 	}
 }
 
+type ModuleMDX = MDXModule | ComponentType
+
 /**
- * Sélectionne, pour chaque document, la variante de langue demandée :
- * `slug.<langue>.mdx`, à défaut `slug.fr.mdx`, à défaut `slug.mdx` (sans suffixe).
+ * Sélectionne, pour chaque document, la variante de la langue demandée.
+ * Chaque document doit exister dans chaque langue supportée
+ * (`slug.fr.mdx`, `slug.en.mdx`, …) ; un fichier sans suffixe de langue
+ * est une erreur.
  */
 function sélectionnerModulesParLangue(
 	globModules: Record<string, unknown>,
 	langue: AvailableLang
-): Record<string, MDXModule | ComponentType> {
+): Record<string, ModuleMDX> {
 	const variantesParSlug: Record<
 		string,
-		Record<string, MDXModule | ComponentType>
+		Partial<Record<AvailableLang, ModuleMDX>>
 	> = {}
 
 	Object.entries(globModules).forEach(([path, module]) => {
 		const { slug, langue: langueDuFichier } = extraireSlugEtLangue(path)
+		if (langueDuFichier === null) {
+			throw new Error(
+				`Documentation « ${slug} » : fichier sans suffixe de langue reconnu — fournir une variante par langue supportée (${slug}.fr.mdx, ${slug}.en.mdx, …).`
+			)
+		}
 		variantesParSlug[slug] ??= {}
-		variantesParSlug[slug][langueDuFichier ?? 'défaut'] = module as
-			| MDXModule
-			| ComponentType
+		variantesParSlug[slug][langueDuFichier] = module as ModuleMDX
 	})
 
-	const modules: Record<string, MDXModule | ComponentType> = {}
+	const modules: Record<string, ModuleMDX> = {}
 	Object.entries(variantesParSlug).forEach(([slug, variantes]) => {
-		modules[slug] = variantes[langue] ?? variantes.fr ?? variantes.défaut
+		modules[slug] = valideVariantesComplètes(slug, variantes)[langue]
 	})
 
 	return modules
+}
+
+function valideVariantesComplètes(
+	slug: string,
+	variantes: Partial<Record<AvailableLang, ModuleMDX>>
+): Record<AvailableLang, ModuleMDX> {
+	const manquantes = SUPPORTED_LANGUAGES.filter((langue) => !variantes[langue])
+	if (manquantes.length > 0) {
+		throw new Error(
+			`Documentation « ${slug} » : variante(s) de langue manquante(s) : ${manquantes.join(
+				', '
+			)}.`
+		)
+	}
+
+	return variantes as Record<AvailableLang, ModuleMDX>
 }
 
 function extraireSlugEtLangue(path: string): {
