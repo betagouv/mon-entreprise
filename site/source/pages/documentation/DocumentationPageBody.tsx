@@ -23,6 +23,7 @@ import {
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/SimulationConfig'
 import { useNavigation } from '@/lib/navigation'
+import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
@@ -65,7 +66,7 @@ export default function DocumentationPageBody({
 	return (
 		<StyledDocumentation>
 			<RulePage
-				language={i18n.language as 'fr' | 'en'}
+				language={parseLangue(i18n.language)}
 				rulePath={rulePath}
 				engine={engine}
 				documentationPath={documentationPath}

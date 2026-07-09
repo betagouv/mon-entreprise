@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Emoji } from '@/design-system/emoji'
+import { parseLangue } from '@/locales/langue'
 
 import {
 	fieldInputStyles,
@@ -37,7 +38,7 @@ export function DateFieldWithPicker({
 	label,
 }: DateFieldsWithPickerProps) {
 	const { i18n } = useTranslation()
-	const language = i18n.language as 'fr' | 'en'
+	const language = parseLangue(i18n.language)
 
 	const dateFormatHelperText = language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'
 

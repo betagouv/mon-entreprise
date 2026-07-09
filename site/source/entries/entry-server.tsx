@@ -8,6 +8,7 @@ import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 import { ReactRouterNavigationProvider } from '@/lib/navigation'
+import { AvailableLang } from '@/locales/langue'
 
 import i18next from '../locales/i18n'
 import { AppEn } from './entry-en'
@@ -32,7 +33,10 @@ interface Result {
 	helmet: FilledContext['helmet']
 }
 
-export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
+export async function render(
+	url: string,
+	lang: AvailableLang
+): Promise<Result> {
 	global.window.location.href = url
 	global.window.location.search = ''
 
