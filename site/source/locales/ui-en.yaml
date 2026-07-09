@@ -2072,6 +2072,19 @@ pages:
         classement: housing classification
         recettesCourteDurée: short-term income
         typeDurée: type of duration
+      documentation:
+        exemple:
+          abattement: "{{pourcentage}}% allowance: <4>{{abattement}}</4>"
+          base: "Taxable base: <2>{{baseImposable}}</2>"
+          recettes: "For {{recettes}} of income from a standard rental:"
+        recettes-déclarées: You have declared <2>{{recettes}}</2> of income.
+        remplir-simulateur: Fill in the simulator for more information
+        seuils:
+          abattement: Flat-rate allowance
+          classique: Standard furnished rental
+          plafond: Annual ceiling
+          tourisme: Classified tourist furnished rental
+          type: Type of rental
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative
