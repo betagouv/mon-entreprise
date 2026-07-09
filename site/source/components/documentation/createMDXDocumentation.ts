@@ -1,6 +1,6 @@
 import { ComponentType } from 'react'
 
-import { AvailableLang, estLangueSupportée } from '@/locales/i18nResources'
+import { AvailableLang, estLangueSupportée } from '@/locales/langue'
 
 export interface MDXDocumentation {
 	path: string

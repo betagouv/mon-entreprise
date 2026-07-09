@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { AvailableLang, parseLangue } from '@/locales/langue'
 import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 const rawSitePathsFr = {
@@ -281,9 +282,9 @@ export type RelativeSitePaths =
 export type AbsoluteSitePaths =
 	(typeof absoluteSitePaths)[keyof typeof absoluteSitePaths]
 
-export const useSitePaths = <T extends 'fr' | 'en'>(lang?: T) => {
+export const useSitePaths = <T extends AvailableLang>(lang?: T) => {
 	const { language } = useTranslation().i18n
-	lang ??= language as T
+	lang ??= parseLangue(language) as T
 
 	return {
 		relativeSitePaths: relativeSitePaths[lang],
@@ -351,13 +352,12 @@ export const generateSiteMap = (sitePaths: AbsoluteSitePaths): SiteMap =>
 	)
 
 export const alternatePathname = () => {
-	type Lang = 'fr' | 'en'
 	type Sitepath = { [k: string]: string | Sitepath }
-	type LangSitepath = { [k in Lang]: string }
+	type LangSitepath = { [k in AvailableLang]: string }
 	type Return = { [k: string]: LangSitepath | Return }
 
 	const buildSitemap = (
-		lang: Lang,
+		lang: AvailableLang,
 		sitePath: Sitepath,
 		initialValue: Return = {}
 	): Return =>
@@ -371,10 +371,13 @@ export const alternatePathname = () => {
 
 	const buildPathname = (
 		sitemap: Return,
-		initialValue: Record<Lang, Record<string, string>> = { fr: {}, en: {} }
+		initialValue: Record<AvailableLang, Record<string, string>> = {
+			fr: {},
+			en: {},
+		}
 	) =>
 		Object.values(sitemap).reduce(
-			(acc, obj): Record<Lang, Record<string, string>> =>
+			(acc, obj): Record<AvailableLang, Record<string, string>> =>
 				typeof obj === 'object' && ('fr' in obj || 'en' in obj)
 					? {
 							fr: {

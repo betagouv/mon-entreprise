@@ -6,7 +6,7 @@ import {
 	MDXDocumentationIndex,
 } from '@/components/documentation'
 import { useNavigation } from '@/lib/navigation'
-import { parseLangue } from '@/locales/i18nResources'
+import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })

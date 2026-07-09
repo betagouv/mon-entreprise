@@ -12,7 +12,7 @@ import {
 import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
 import { NextJsNavigationProvider } from '@/lib/navigation/providers/NextJsNavigationProvider'
 import { createI18nClient } from '@/locales/i18n-client'
-import { AvailableLang } from '@/locales/i18nResources'
+import { AvailableLang } from '@/locales/langue'
 import { makeStore } from '@/store/store'
 
 export function ClientProviders({

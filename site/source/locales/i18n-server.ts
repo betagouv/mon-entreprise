@@ -2,7 +2,8 @@ import 'server-only'
 
 import i18next from 'i18next'
 
-import { baseI18nConfig, parseLangue } from './i18nResources'
+import { baseI18nConfig } from './i18nResources'
+import { parseLangue } from './langue'
 
 export const langue = parseLangue(process.env.LANGUE)
 

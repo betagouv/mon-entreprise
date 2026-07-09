@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
+import { parseLangue } from '@/locales/langue'
 
 import { Button } from '../../buttons'
 import { Emoji } from '../../emoji'
@@ -42,7 +43,7 @@ export const DateField = (props: DateFieldProps) => {
 	} = rest
 
 	const { t, i18n } = useTranslation()
-	const language = i18n.language as 'fr' | 'en'
+	const language = parseLangue(i18n.language)
 
 	const [isChangeOnce, setIsChangeOnce] = useState(false)
 	const [selected, setSelected] = useState<Date>()

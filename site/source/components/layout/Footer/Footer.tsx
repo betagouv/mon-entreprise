@@ -15,6 +15,7 @@ import {
 	Link,
 } from '@/design-system'
 import { NavigationAPI, useNavigation } from '@/lib/navigation'
+import { parseLangue } from '@/locales/langue'
 import { environnement } from '@/services/environnement/environnement'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
@@ -45,7 +46,7 @@ export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { currentPath, matchPath, generatePath } = useNavigation()
 	const { t, i18n } = useTranslation()
-	const language = i18n.language as 'fr' | 'en'
+	const language = parseLangue(i18n.language)
 
 	const path = decodeURIComponent(
 		currentPath.replace(/^\/(mon-entreprise|infrance)/, '')

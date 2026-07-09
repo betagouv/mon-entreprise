@@ -1,3 +1,5 @@
+import { AvailableLang } from '@/locales/langue'
+
 // Ajoute la propriété 'pa' à Window pour que Typescript accepte window.pa
 declare global {
 	interface Window {
@@ -38,7 +40,7 @@ export interface PianoTracker {
 
 	setProperties(
 		propertiesObject: {
-			env_language: 'fr' | 'en'
+			env_language: AvailableLang
 			'n:simulateur_embarque': 1 | 0
 		},
 		options: {
@@ -74,7 +76,7 @@ export function createPianoTracker(siteId?: string, doNotTrack = false) {
 	}
 
 	class Tracker implements PianoTracker {
-		constructor(options: { language: 'fr' | 'en' }) {
+		constructor(options: { language: AvailableLang }) {
 			window.pa.setConfigurations({
 				site,
 				collectDomain: 'https://tm.urssaf.fr',
@@ -104,7 +106,7 @@ export function createPianoTracker(siteId?: string, doNotTrack = false) {
 
 		setProperties(
 			propertiesObject: {
-				env_language: 'fr' | 'en'
+				env_language: AvailableLang
 				'n:simulateur_embarque': 1 | 0
 			},
 			options: { persistent: true }

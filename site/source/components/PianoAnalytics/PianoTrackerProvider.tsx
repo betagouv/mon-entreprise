@@ -6,6 +6,7 @@ import {
 	PianoTracker,
 } from '@/components/PianoAnalytics/PianoTracker'
 import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
+import { parseLangue } from '@/locales/langue'
 import { environnement } from '@/services/environnement/environnement'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import { scheduleWhenIdle } from '@/utils/polyfill'
@@ -34,7 +35,7 @@ export function PianoTrackerProvider({
 			)
 
 			const instance = new PianoTrackerClass({
-				language: i18next.language as 'fr' | 'en',
+				language: parseLangue(i18next.language),
 			})
 
 			setTracker(instance)
