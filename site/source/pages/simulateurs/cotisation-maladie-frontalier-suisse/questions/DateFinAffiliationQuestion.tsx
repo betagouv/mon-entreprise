@@ -47,7 +47,7 @@ DateFinAffiliationQuestion.id = 'date-fin-affiliation'
 DateFinAffiliationQuestion.libellé = (t) =>
 	t(
 		'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-fin-affiliation.libellé',
-		'À quelle date votre affiliation prend-elle fin ?'
+		'Date de fin d’affiliation'
 	)
 const ValeurDateFinAffiliation = () => {
 	const { situation } = useFrontalierSuisse()

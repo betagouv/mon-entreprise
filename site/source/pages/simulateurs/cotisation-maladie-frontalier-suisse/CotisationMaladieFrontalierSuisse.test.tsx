@@ -12,7 +12,7 @@ const saisirDateAffiliation = async (
 	dateAffiliation: string
 ) => {
 	const question = await screen.findByRole('group', {
-		name: /affiliation a-t-elle débuté/i,
+		name: /date de début d.affiliation/i,
 	})
 	await user.type(within(question).getByRole('textbox'), dateAffiliation)
 }
@@ -37,7 +37,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 
 		expect(
 			await screen.findByRole('group', {
-				name: /affiliation a-t-elle débuté/i,
+				name: /date de début d.affiliation/i,
 			})
 		).toBeInTheDocument()
 		expect(screen.getByText(/Salaires perçus en/i)).toBeInTheDocument()
@@ -52,7 +52,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		)
 
 		await screen.findByRole('group', {
-			name: /affiliation a-t-elle débuté/i,
+			name: /date de début d.affiliation/i,
 		})
 
 		expect(
@@ -114,7 +114,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		)
 
 		await screen.findByRole('group', {
-			name: /affiliation a-t-elle débuté/i,
+			name: /date de début d.affiliation/i,
 		})
 		expect(
 			screen.queryByRole('button', { name: /préciser votre situation/i })
@@ -141,7 +141,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		)
 
 		await screen.findByRole('group', {
-			name: /affiliation a-t-elle débuté/i,
+			name: /date de début d.affiliation/i,
 		})
 		expect(
 			screen.queryByRole('button', { name: /lien de partage/i })
@@ -174,7 +174,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
 		)
 		const questionFin = await screen.findByRole('group', {
-			name: /votre affiliation prend-elle fin/i,
+			name: /date de fin d.affiliation/i,
 		})
 		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
 
@@ -197,7 +197,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
 		)
 		const questionFin = await screen.findByRole('group', {
-			name: /votre affiliation prend-elle fin/i,
+			name: /date de fin d.affiliation/i,
 		})
 		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
 		await user.click(
@@ -225,7 +225,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			await screen.findByRole('button', { name: /modifier fin d.affiliation/i })
 		)
 		const questionFin = await screen.findByRole('group', {
-			name: /votre affiliation prend-elle fin/i,
+			name: /date de fin d.affiliation/i,
 		})
 		await user.type(within(questionFin).getByRole('textbox'), '30/09/2025')
 
