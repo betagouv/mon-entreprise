@@ -1,0 +1,100 @@
+import {
+	ABATTEMENT_REGIME_GENERAL,
+	PLAFOND_REGIME_GENERAL
+} from '@/contextes/économie-collaborative'
+import { Attention, Conseil, ExemplePratique, Info, Tableau, Valeur } from '@/design-system'
+import { eurosParAn, montantToString } from '@/domaine/Montant'
+export const metadata = {
+	title: 'The micro-BIC scheme',
+	description: 'Understand the simplified tax scheme for small furnished rental landlords.'
+}
+
+export const TableauSeuilsDynamique = () => {
+	return (
+		<Tableau>
+			<thead>
+				<tr>
+					<th>Type of rental</th>
+					<th>Annual ceiling</th>
+					<th>Flat-rate allowance</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Standard furnished rental</td>
+					<td><Valeur couleur="primary">{montantToString(PLAFOND_REGIME_GENERAL)}</Valeur></td>
+					<td><strong>{ABATTEMENT_REGIME_GENERAL*100}%</strong></td>
+				</tr>
+				<tr>
+					<td>Classified tourist furnished rental</td>
+					<td><Valeur couleur="primary"></Valeur></td>
+					<td><strong>{0}%</strong></td>
+				</tr>
+			</tbody>
+		</Tableau>
+	)
+}
+
+# The micro-BIC scheme
+
+The micro-BIC scheme (industrial and commercial profits) is a simplified tax scheme for furnished rental landlords whose income does not exceed certain ceilings.
+
+## Income ceilings
+
+<TableauSeuilsDynamique />
+
+<Attention>
+Above these ceilings, you automatically switch to the actual expenses tax scheme.
+</Attention>
+
+## Advantages of the scheme
+
+- **Simplicity**: no complex bookkeeping required
+- **Simplified declaration**: a simple income declaration is enough
+- **Automatic allowance**: expenses are deducted at a flat rate
+
+export const ExempleCalculDynamique = () => {
+	const recettesExemple = eurosParAn(20_000)
+	const abattement = ABATTEMENT_REGIME_GENERAL
+	const montantAbattement = eurosParAn(20_000 * abattement)
+	const baseImposable = eurosParAn(20_000 * (1 - abattement))
+
+	return (
+		<ExemplePratique>
+			For {montantToString(recettesExemple)} of income from a standard rental:
+			<ul>
+				<li>{abattement*100}% allowance: <strong>{montantToString(montantAbattement)}</strong></li>
+				<li>Taxable base: <strong>{montantToString(baseImposable)}</strong></li>
+			</ul>
+		</ExemplePratique>
+	)
+}
+
+<ExempleCalculDynamique />
+
+## Accounting obligations
+
+- Keep an income ledger
+- Keep supporting documents for 6 years
+- Declare gross annual income
+
+<Conseil>
+Use rental management software or a simple spreadsheet to track your income throughout the year.
+</Conseil>
+
+## Switching to the actual expenses scheme
+
+Switching to the actual expenses scheme is:
+
+### Mandatory if:
+- Your income exceeds the ceilings
+- The activity is carried out through a company
+
+### Optional if:
+- Your actual expenses exceed the flat-rate allowance
+- You want to carry a loss forward
+- You want to recover VAT on renovation work
+
+<Info>
+The option for the actual expenses scheme is valid for a minimum of 2 years and is tacitly renewed for 2-year periods.
+</Info>

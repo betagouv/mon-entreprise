@@ -1,0 +1,74 @@
+import * as O from 'effect/Option'
+import {
+	SEUIL_PROFESSIONNALISATION
+} from '@/contextes/économie-collaborative'
+import { Conseil, Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
+import { montantToString } from '@/domaine/Montant'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
+
+export const metadata = {
+	title: 'Understanding short-term furnished rental',
+	metaTitle: 'Documentation - Furnished rental',
+	description: 'Understanding the tax and social security schemes for furnished rentals'
+}
+
+export const RecettesDéclaréesS = () => {
+	const { situation } = useEconomieCollaborative()
+
+	if (O.isSome(situation.recettes)) {
+		return (<div>
+				You have declared <ValeurImportante>{montantToString(situation.recettes.value)}</ValeurImportante> of income.
+			</div>)
+	}
+
+	return <div>Fill in the simulator for more information</div>
+}
+
+# Furnished rental: overview
+
+**Furnished rental** is subject to specific tax and social security schemes which mainly depend on your annual rental income.
+
+## General principle
+
+As a furnished rental landlord, you must:
+- **Declare your income** from the rental
+- **Choose a tax scheme** (micro-BIC or actual expenses scheme)
+- **Contribute to the social security scheme** suited to your situation: <Valeur>{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur>
+
+
+<RecettesDéclaréesS />
+
+
+## Key thresholds
+
+<Tableau>
+	<thead>
+	<tr>
+		<th>Rental income</th>
+		<th>Social security scheme</th>
+		<th>Specificities</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Less than <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur></td>
+		<td>No mandatory contributions</td>
+		<td>Income considered as property income</td>
+	</tr>
+	<tr>
+		<td>More than <Valeur couleur="primary">{montantToString(SEUIL_PROFESSIONNALISATION.MEUBLÉ)}</Valeur></td>
+		<td>General scheme or micro-social scheme</td>
+		<td>Professional activity</td>
+	</tr>
+		</tbody>
+</Tableau>
+
+<Info>
+	Taxation follows its own thresholds, with different ceilings depending on the
+	type of rental (standard or classified tourist accommodation).
+</Info>
+
+<Conseil>
+	Browse the sections below to understand each scheme in detail and optimise
+	your situation.
+</Conseil>
