@@ -55,7 +55,7 @@ export function ObjectifDeSimulation({
 						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
 
 						{sousTitre && (
-							<SousTitre id={`${id}-sous-titre`}>{sousTitre}</SousTitre>
+							<SousTitre id={`${id}-description`}>{sousTitre}</SousTitre>
 						)}
 
 						{description && <InfoBulle description={description} />}
@@ -67,7 +67,7 @@ export function ObjectifDeSimulation({
 						<StyledValue
 							id={`${id}-value`}
 							aria-labelledby={`${id}-label`}
-							aria-describedby={sousTitre ? `${id}-sous-titre` : undefined}
+							aria-describedby={sousTitre ? `${id}-description` : undefined}
 						>
 							{valeurAffichee}
 						</StyledValue>
