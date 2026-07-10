@@ -652,6 +652,63 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
 exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
 {
   "components": {
+    "parameters": {
+      "modele": {
+        "description": "Le nom du modèle de règles à utiliser (\\"as\\" pour assimilé⋅es salarié⋅es ou \\"ti\\" pour travailleureuses indépendant⋅es)",
+        "in": "path",
+        "name": "modele",
+        "required": true,
+        "schema": {
+          "enum": [
+            "as",
+            "ti",
+          ],
+          "type": "string",
+        },
+      },
+    },
+    "responses": {
+      "erreurDeValidation": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/InputValidationError",
+            },
+          },
+        },
+        "description": "Erreur de validation de la requête",
+      },
+      "evaluation": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/EvaluateResponse",
+            },
+          },
+        },
+        "description": "Évaluation des expressions demandées",
+      },
+      "rule": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Rule",
+            },
+          },
+        },
+        "description": "La règle demandée",
+      },
+      "rulesList": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Rules",
+            },
+          },
+        },
+        "description": "Liste de toutes les règles du modèle donné",
+      },
+    },
     "schemas": {
       "EvaluateBody": {
         "properties": {
@@ -911,6 +968,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
         },
         "responses": {
           "200": {
+            "$ref": "#/components/responses/evaluation",
             "content": {
               "application/json": {
                 "schema": {
@@ -921,6 +979,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
             "description": "La requête a réussi",
           },
           "400": {
+            "$ref": "#/components/responses/erreurDeValidation",
             "content": {
               "application/json": {
                 "schema": {
@@ -931,10 +990,109 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
             "description": "Erreur de validation d'entrée",
           },
         },
-        "summary": "Evalue une expression avec un situation donnée",
+        "summary": "Évalue une ou plusieurs expressions avec les règles de \`modele-social\` et une situation donnée",
         "tags": [
           "publicodes-api",
         ],
+      },
+    },
+    "/modeles/{modele}/evaluate": {
+      "post": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/modele",
+          },
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {
+                "Assimilé salarié": {
+                  "description": "\`/modeles/as/evaluate\`",
+                  "value": {
+                    "expressions": [
+                      "assimilé salarié . rémunération . nette . après impôt",
+                    ],
+                    "situation": {
+                      "assimilé salarié . rémunération . totale": "50000 €/an",
+                    },
+                  },
+                },
+                "Travailleur indépendant": {
+                  "description": "\`/modeles/ti/evaluate\`",
+                  "value": {
+                    "expressions": [
+                      "indépendant . cotisations et contributions . assiette CSG-CRDS",
+                    ],
+                    "situation": {
+                      "entreprise . chiffre d'affaires": "50000 €/an",
+                      "entreprise . imposition": "'IR'",
+                    },
+                  },
+                },
+              },
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateBody",
+              },
+            },
+          },
+          "required": true,
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/evaluation",
+          },
+          "400": {
+            "$ref": "#/components/responses/erreurDeValidation",
+          },
+        },
+        "summary": "Évalue une ou plusieurs expressions avec un modèle de règles et une situation donnés",
+      },
+    },
+    "/modeles/{modele}/rules": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/modele",
+          },
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rulesList",
+          },
+        },
+        "summary": "Retourne toutes les règles du modèle donné.",
+      },
+    },
+    "/modeles/{modele}/rules/{rule}": {
+      "get": {
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/modele",
+          },
+          {
+            "examples": {
+              "Rémunération nette (AS)": {
+                "value": "assimilé salarié . rémunération . nette . à payer avant impôt",
+              },
+              "Rémunération nette (TI)": {
+                "value": "indépendant . rémunération . nette",
+              },
+            },
+            "in": "path",
+            "name": "rule",
+            "required": true,
+            "schema": {
+              "type": "string",
+            },
+          },
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/rule",
+          },
+        },
+        "summary": "Retourne la règle demandée du modèle de règles donné",
       },
     },
     "/rules": {
@@ -942,6 +1100,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
         "operationId": "rules",
         "responses": {
           "200": {
+            "$ref": "#/components/responses/rulesList",
             "content": {
               "application/json": {
                 "schema": {
@@ -962,7 +1121,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
             "description": "Erreur de validation d'entrée",
           },
         },
-        "summary": "Retourne toutes les règles",
+        "summary": "Retourne toutes les règles de \`modele-social\`",
         "tags": [
           "publicodes-api",
         ],
@@ -1029,7 +1188,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
             "description": "Erreur de validation d'entrée",
           },
         },
-        "summary": "Retourne la règle demandée",
+        "summary": "Retourne la règle de \`modele-social\` demandée",
         "tags": [
           "publicodes-api",
         ],
