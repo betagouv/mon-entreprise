@@ -317,10 +317,13 @@ describe('L’exonération Acre', () => {
 			expect(e2).toEvaluate(COTISATIONS, cotisations)
 		})
 
+		// TODO: supprimer 'date' et "période . début d'année" des situations lorsque
+		// la date de modele-ti sera en 2027
 		it('est proratisée en fonction de la durée d’application sur l’année en cours', () => {
 			const e1 = engine.setSituation({
-				...defaultSituation,
-				'entreprise . date de création': '18/02/2025',
+				date: '01/01/2027',
+				"période . début d'année": '01/01/2027',
+				'entreprise . date de création': '18/02/2026',
 				'indépendant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
@@ -338,12 +341,14 @@ describe('L’exonération Acre', () => {
 
 			const e2 = engine.setSituation({
 				...defaultSituationAcre,
-				'entreprise . date de création': '18/02/2025', // = 48 jours d'Acre restant en 2026
+				date: '01/01/2027',
+				"période . début d'année": '01/01/2027',
+				'entreprise . date de création': '18/02/2026', // = 48 jours d'Acre restant en 2027
 				'indépendant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
 			})
 
-			// Aant prorata, l'exonération est maximale (25%) car assiette sociale < 75% du PASS proratisé
+			// Avant prorata, l'exonération est maximale (25%) car assiette sociale < 75% du PASS proratisé
 			expect(e2).toEvaluate(
 				`${COTISATIONS} . maladie-maternité`,
 				AM - Math.round(((AM / 4) * 48) / 365)

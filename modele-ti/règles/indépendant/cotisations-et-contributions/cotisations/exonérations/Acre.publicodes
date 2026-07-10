@@ -62,7 +62,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     l’exonération est proratisée en fonction de la durée effective de l’Acre sur
     l’année courante.
 
-    > Par exemple, pour une entreprise crée le 1er février 2025, le calcul du prorata
+    > Par exemple, pour une entreprise créée le 1er février 2025, le calcul du prorata
     > pour les cotisations 2026 sera le suivant :
     >
     > `31 jours d’Acre restant en 2026 / 365 jours = 8,5 %`
@@ -71,7 +71,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
 
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . exonération maximale:
   variations:
-    - si: date < 01/2026
+    - si: entreprise . date de création < 01/2026
       alors: 100%
     - sinon: 25%
 
@@ -150,7 +150,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
                       assiette sociale: 75% * PASS proratisé
                   - 1 / PASS proratisé
                   - variations:
-                      - si: date < 01/2026
+                      - si: entreprise . date de création < 01/2026
                         alors: 1 / 0.25
                       - sinon: 1
         - prorata sur l'année
@@ -168,7 +168,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
                 produit:
                   - (PASS proratisé - indemnités journalières . assiette) / indemnités journalières . assiette
                   - variations:
-                      - si: date < 01/2026
+                      - si: entreprise . date de création < 01/2026
                         alors: 3
                       - sinon: 0.75
         - prorata sur l'année
@@ -185,7 +185,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
                 produit:
                   - (PASS proratisé - assiette sociale) / assiette sociale
                   - variations:
-                      - si: date < 01/2026
+                      - si: entreprise . date de création < 01/2026
                         alors: 3
                       - sinon: 0.75
         - prorata sur l'année
@@ -202,7 +202,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
                 produit:
                   - (PASS proratisé - assiette retraite et invalidité-décès) / assiette retraite et invalidité-décès
                   - variations:
-                      - si: date < 01/2026
+                      - si: entreprise . date de création < 01/2026
                         alors: 3
                       - sinon: 0.75
         - prorata sur l'année

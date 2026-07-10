@@ -1,42 +1,42 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 1`] = `
-"entreprise . chiffre d'affaires: 6713
-indépendant . cotisations et contributions: 1713
-indépendant . cotisations et contributions . avec dividendes: 1713
-indépendant . cotisations et contributions . début activité: 2885
-indépendant . rémunération . brute: 6713
+"entreprise . chiffre d'affaires: 6164
+indépendant . cotisations et contributions: 1164
+indépendant . cotisations et contributions . avec dividendes: 1164
+indépendant . cotisations et contributions . début activité: 2165
+indépendant . rémunération . brute: 6164
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
 indépendant . rémunération . nette: 5000
 indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base: 3
-protection sociale . retraite . base . trimestres: 2
-protection sociale . retraite . complémentaire: 29"
+protection sociale . retraite . base . trimestres: 0
+protection sociale . retraite . complémentaire: 26"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
-"entreprise . chiffre d'affaires: 26068
-indépendant . cotisations et contributions: 6068
-indépendant . cotisations et contributions . avec dividendes: 6068
-indépendant . cotisations et contributions . début activité: 2885
-indépendant . rémunération . brute: 26068
-indépendant . rémunération . impôt: 534
-indépendant . rémunération . impôt . avec dividendes: 534
+"entreprise . chiffre d'affaires: 24133
+indépendant . cotisations et contributions: 4133
+indépendant . cotisations et contributions . avec dividendes: 4133
+indépendant . cotisations et contributions . début activité: 2165
+indépendant . rémunération . brute: 24133
+indépendant . rémunération . impôt: 528
+indépendant . rémunération . impôt . avec dividendes: 528
 indépendant . rémunération . nette: 20000
-indépendant . rémunération . nette . après impôt: 19466
+indépendant . rémunération . nette . après impôt: 19472
 indépendant . rémunération . nette . avec dividendes: 20000
-protection sociale . retraite . base: 12
-protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire: 108"
+protection sociale . retraite . base: 11
+protection sociale . retraite . base . trimestres: 1
+protection sociale . retraite . complémentaire: 99"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 3`] = `
 "entreprise . chiffre d'affaires: 70159
 indépendant . cotisations et contributions: 20159
 indépendant . cotisations et contributions . avec dividendes: 20159
-indépendant . cotisations et contributions . début activité: 2885
+indépendant . cotisations et contributions . début activité: 2165
 indépendant . rémunération . brute: 70159
 indépendant . rémunération . impôt: 8556
 indépendant . rémunération . impôt . avec dividendes: 8556
