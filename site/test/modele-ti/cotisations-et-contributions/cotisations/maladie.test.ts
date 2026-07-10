@@ -30,7 +30,7 @@ describe('Cotisation maladie', () => {
 				'indépendant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
 			})
 
-			expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 0)
+			expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux 1`, 0)
 			expect(e).toEvaluate(COTISATION, 0)
 		})
 
@@ -43,7 +43,7 @@ describe('Cotisation maladie', () => {
 				round((100 * TAUX1_T1 * (10_000 - 0.2 * PASS)) / (0.2 * PASS), 2) / 100
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(10_000 * taux))
@@ -63,7 +63,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(23_000 * taux))
@@ -83,7 +83,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(40_000 * taux))
@@ -103,7 +103,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(60_000 * taux))
@@ -123,7 +123,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(100_000 * taux))
@@ -135,7 +135,7 @@ describe('Cotisation maladie', () => {
 					'150000 €/an',
 			})
 
-			expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 8.5)
+			expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux 1`, 8.5)
 			expect(e).toEvaluate(
 				COTISATION,
 				Math.round(3 * PASS * TAUX1_T5 + (150_000 - 3 * PASS) * TAUX2)
@@ -152,7 +152,7 @@ describe('Cotisation maladie', () => {
 					"entreprise . durée d'activité cette année": '355 jour',
 				})
 
-				expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 0)
+				expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux 1`, 0)
 				expect(e).toEvaluate(COTISATION, 0)
 			})
 
@@ -172,7 +172,7 @@ describe('Cotisation maladie', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(5_000 * taux))
@@ -196,7 +196,7 @@ describe('Cotisation maladie', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(5_000 * taux))
@@ -220,7 +220,7 @@ describe('Cotisation maladie', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(5_000 * taux))
@@ -244,7 +244,7 @@ describe('Cotisation maladie', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(5_000 * taux))
@@ -268,7 +268,7 @@ describe('Cotisation maladie', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(5_000 * taux))
@@ -283,7 +283,7 @@ describe('Cotisation maladie', () => {
 				const PASSProratisé = engine.evaluate('indépendant . PASS proratisé')
 					.nodeValue as number
 
-				expect(e).toEvaluate(`${COTISATION} avant abattements . taux 1`, 8.5)
+				expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux 1`, 8.5)
 				expect(e).toEvaluate(
 					COTISATION,
 					Math.round(
@@ -302,7 +302,7 @@ describe('Cotisation maladie', () => {
 				})
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux 1`,
+					`${COTISATION} . avant exonérations . taux 1`,
 					100 * TAUX1_T5
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(60_000 * TAUX1_T5))
@@ -343,7 +343,7 @@ describe('Cotisation maladie', () => {
 				'indépendant . cotisations et contributions . assiette sociale': `${plancherTaux1} €/an`,
 			})
 
-			expect(e1).toEvaluate(`${COTISATION} avant abattements . taux 1`, 0)
+			expect(e1).toEvaluate(`${COTISATION} . avant exonérations . taux 1`, 0)
 			expect(e1).toEvaluate(COTISATION, 0)
 
 			const e2 = engine.setSituation({
@@ -355,7 +355,7 @@ describe('Cotisation maladie', () => {
 				round((100 * TAUX1_T1 * (10_000 - 0.2 * PASS)) / (0.2 * PASS), 2) / 100
 
 			expect(e2).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux2
 			)
 			expect(e2).toEvaluate(COTISATION, Math.round(10_000 * taux2))
@@ -374,7 +374,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e3).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux3
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(23_000 * taux3))
@@ -393,7 +393,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e4).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux4
 			)
 			expect(e4).toEvaluate(COTISATION, Math.round(40_000 * taux4))
@@ -412,7 +412,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e5).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux5
 			)
 			expect(e5).toEvaluate(COTISATION, Math.round(60_000 * taux5))
@@ -431,7 +431,7 @@ describe('Cotisation maladie', () => {
 				) / 100
 
 			expect(e6).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * taux6
 			)
 			expect(e6).toEvaluate(COTISATION, Math.round(100_000 * taux6))
@@ -443,7 +443,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e7).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * TAUX1_T5
 			)
 			expect(e7).toEvaluate(
@@ -567,7 +567,7 @@ describe('Cotisation maladie', () => {
 			})
 
 			expect(e).toEvaluate(
-				`${COTISATION} avant abattements . taux 1`,
+				`${COTISATION} . avant exonérations . taux 1`,
 				100 * TAUX1_T5
 			)
 			expect(e).toEvaluate(COTISATION, Math.round(60_000 * TAUX1_T5))

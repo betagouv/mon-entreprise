@@ -2142,19 +2142,25 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     des revenus de la famille.
   titre.en: '[automatic] family allowances'
   titre.fr: allocations familiales
-indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
+indépendant . cotisations et contributions . cotisations . allocations familiales . après exonérations:
+  titre.en: '[automatic] child support'
+  titre.fr: allocations familiales
+indépendant . cotisations et contributions . cotisations . allocations familiales . après participation CPAM:
+  titre.en: '[automatic] child support'
+  titre.fr: allocations familiales
+indépendant . cotisations et contributions . cotisations . allocations familiales . avant exonérations:
   avec:
     assiette:
       titre.en: '[automatic] plate'
       titre.fr: assiette
     assiette non abattue:
-      titre.en: '[automatic] untrimmed plate'
+      titre.en: '[automatic] unharvested quota'
       titre.fr: assiette non abattue
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
-  titre.en: '[automatic] family allowances before allowances'
-  titre.fr: allocations familiales avant abattements
+  titre.en: '[automatic] before exemptions'
+  titre.fr: avant exonérations
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   titre.en: '[automatic] pension and disability-death base'
   titre.fr: assiette retraite et invalidité-décès
@@ -2709,22 +2715,20 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
   titre.fr: exonération maximale
 indépendant . cotisations et contributions . cotisations . exonérations . Acre . prorata sur l'année:
   description.en: >
-    [automatic] As self-employed contributions are calculated on a full-year
-    basis,
+    [automatic] Since contributions for self-employed individuals are calculated
+    on a full-year basis,
 
-    the exemption is prorated according to the actual duration of Acre over the
+    the exemption is prorated based on the actual duration of the Acre program
 
-    current year.
+    during the current year.
 
 
-    > For example, for a company created on February 1, 2025, the prorata
-    calculation for
+    > For example, for a business established on February 1, 2025, the pro-rata
+    calculation> for the 2026 contributions will be as follows:
 
-    > for 2026 contributions will be as follows :
+    &gt;
 
-    >
-
-    > 31 days of Acre remaining in 2026 / 365 days = 8.5%`.
+    > `31 days of Acre remaining in 2026 / 365 days = 8.5%`
   description.fr: >
     Comme le calcul des cotisations indépendants s’effectue sur l’année entière,
 
@@ -2733,7 +2737,7 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
     l’année courante.
 
 
-    > Par exemple, pour une entreprise crée le 1er février 2025, le calcul du
+    > Par exemple, pour une entreprise créée le 1er février 2025, le calcul du
     prorata
 
     > pour les cotisations 2026 sera le suivant :
@@ -3089,6 +3093,13 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
   titre.en: '[automatic] disability and death'
   titre.fr: invalidité et décès
 indépendant . cotisations et contributions . cotisations . maladie-maternité:
+  avec:
+    assiette:
+      titre.en: '[automatic] plate'
+      titre.fr: assiette
+    plancher assiette:
+      titre.en: '[automatic] floor plate'
+      titre.fr: plancher assiette
   description.en: >
     [automatic] This contribution entitles the member to all benefits
 
@@ -3126,6 +3137,58 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     souscrire une assurance maladie complémentaire.
   titre.en: '[automatic] illness-maternity'
   titre.fr: maladie-maternité
+indépendant . cotisations et contributions . cotisations . maladie-maternité . après exonérations:
+  description.en: >
+    [automatic] This premium entitles you to all health and maternity benefits
+
+    administered by the health insurance system and the CPAMs:
+
+
+    - health coverage for the insured person and their family members, identical
+
+    to that provided to employees (same rates and same reimbursement terms);
+
+    - comprehensive maternity coverage in the event of pregnancy or adoption;
+
+    - supplementary health insurance for low-income individuals or assistance
+    with
+
+    purchasing supplemental health insurance.
+  description.fr: >
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille,
+    identique
+
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide
+    pour
+
+    souscrire une assurance maladie complémentaire.
+  titre.en: '[automatic] sick leave and maternity leave'
+  titre.fr: maladie-maternité
+indépendant . cotisations et contributions . cotisations . maladie-maternité . après participation CPAM:
+  titre.en: '[automatic] sick leave and maternity leave'
+  titre.fr: maladie-maternité
+indépendant . cotisations et contributions . cotisations . maladie-maternité . avant exonérations:
+  avec:
+    plafond taux 1:
+      titre.en: '[automatic] Rate Cap 1'
+      titre.fr: plafond taux 1
+    taux 1:
+      titre.en: '[automatic] rate 1'
+      titre.fr: taux 1
+    taux 2:
+      titre.en: '[automatic] rate 2'
+      titre.fr: taux 2
+  titre.en: '[automatic] sick leave and maternity leave (before exemptions)'
+  titre.fr: maladie-maternité (avant exonérations)
 indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   avec:
     taux:
@@ -3148,25 +3211,6 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     fonction du revenu déclaré.
   titre.en: '[automatic] tax domicile abroad'
   titre.fr: domiciliation fiscale étranger
-indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
-  avec:
-    assiette:
-      titre.en: '[automatic] plate'
-      titre.fr: assiette
-    plafond taux 1:
-      titre.en: '[automatic] ceiling rate 1'
-      titre.fr: plafond taux 1
-    plancher assiette:
-      titre.en: '[automatic] floor plate'
-      titre.fr: plancher assiette
-    taux 1:
-      titre.en: '[automatic] rate 1'
-      titre.fr: taux 1
-    taux 2:
-      titre.en: '[automatic] rate 2'
-      titre.fr: taux 2
-  titre.en: '[automatic] sickness-maternity before deductions'
-  titre.fr: maladie-maternité avant abattements
 indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie:
   avec:
     assiette:
