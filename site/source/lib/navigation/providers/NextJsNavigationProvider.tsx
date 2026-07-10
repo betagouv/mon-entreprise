@@ -87,28 +87,29 @@ export function NextJsNavigationProvider({ children }: Props) {
 		[router]
 	)
 
-	const setSearchParams = useCallback(
-		(
-			params:
-				| URLSearchParams
-				| Record<string, string>
-				| ((prev: URLSearchParams) => URLSearchParams),
-			options?: { replace?: boolean }
-		) => {
+	const pathnameRef = useRef(pathname)
+	pathnameRef.current = pathname
+	const searchParamsRef = useRef(searchParams)
+	searchParamsRef.current = searchParams
+
+	const setSearchParams = useCallback<NavigationAPI['setSearchParams']>(
+		(params, options) => {
 			const newParams =
 				typeof params === 'function'
-					? params(new URLSearchParams(searchParams.toString()))
+					? params(new URLSearchParams(searchParamsRef.current.toString()))
 					: params instanceof URLSearchParams
 					? params
 					: new URLSearchParams(params)
 
 			const hash = typeof window !== 'undefined' ? window.location.hash : ''
 			const queryString = newParams.toString()
-			const url = `${pathname}${queryString ? `?${queryString}` : ''}${hash}`
+			const url = `${pathnameRef.current}${
+				queryString ? `?${queryString}` : ''
+			}${hash}`
 
 			navigate(url, options)
 		},
-		[pathname, searchParams, navigate]
+		[navigate]
 	)
 
 	const getHref = useCallback(

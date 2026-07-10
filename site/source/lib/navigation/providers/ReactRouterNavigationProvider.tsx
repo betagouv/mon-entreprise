@@ -27,8 +27,15 @@ interface Props {
 export function ReactRouterNavigationProvider({ children }: Props) {
 	const rrNavigate = useNavigate()
 	const location = useLocation()
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [searchParams, rrSetSearchParams] = useSearchParams()
 	const navigationType = useNavigationType()
+
+	const rrSetSearchParamsRef = useRef(rrSetSearchParams)
+	rrSetSearchParamsRef.current = rrSetSearchParams
+	const setSearchParams = useCallback<NavigationAPI['setSearchParams']>(
+		(params, options) => rrSetSearchParamsRef.current(params, options),
+		[]
+	)
 
 	const subscribersRef = useRef(new Set<() => void>())
 	const isFirstRenderRef = useRef(true)
