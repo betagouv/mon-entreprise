@@ -21,6 +21,21 @@ describe('L’exonération Acre', () => {
 		engine = new Engine(rules)
 	})
 
+	it('n’est pas applicable aux PAMC d’outre-mer', () => {
+		const e = engine.setSituation({
+			...defaultSituation,
+			'entreprise . activité': "'libérale'",
+			'entreprise . activité . libérale . réglementée': 'oui',
+			'indépendant . profession libérale . réglementée . métier':
+				"'santé . médecin'",
+			'établissement . commune . département . outre-mer': 'oui',
+		})
+
+		expect(e).not.toBeApplicable(
+			'indépendant . cotisations et contributions . cotisations . exonérations . Acre'
+		)
+	})
+
 	describe('avant 2026', () => {
 		const defaultSituationAvant2026 = {
 			...defaultSituation,
