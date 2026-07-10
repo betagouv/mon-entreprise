@@ -9,6 +9,7 @@ import {
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
 import { Body, Link, Message } from '@/design-system'
+import { LOCALE_PAR_LANGUE, parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 export const RésultatCotisation = ({
@@ -29,7 +30,7 @@ export const RésultatCotisation = ({
 		'/documentation'
 
 	const formatDate = (date: Date) =>
-		date.toLocaleDateString(i18n.language === 'en' ? 'en-GB' : 'fr-FR')
+		date.toLocaleDateString(LOCALE_PAR_LANGUE[parseLangue(i18n.language)])
 
 	const débuteDansLAnnée = dateAffiliation.getFullYear() === annéeRevenus
 	const finitDansLAnnée = dateFinAffiliation?.getFullYear() === annéeRevenus
