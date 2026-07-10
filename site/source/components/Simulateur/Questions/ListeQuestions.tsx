@@ -60,7 +60,9 @@ export const ListeQuestions = <S extends Situation = Situation>({
 								</div>
 
 								<ValueContainer>
-									{groupe.réponse && engine ? (
+									{groupe.Réponse ? (
+										<groupe.Réponse />
+									) : groupe.réponse && engine ? (
 										groupe.réponse(engine, t)
 									) : (
 										<premièreQuestion.Valeur />

@@ -1787,8 +1787,10 @@ pages:
         date-fin-affiliation:
           erreur: The affiliation end date cannot be earlier than the start date.
           libellé: Affiliation end date
-        groupe-fin-affiliation:
-          titre: End of affiliation
+        groupe-affiliation:
+          réponse-depuis: since <1></1>
+          réponse-période: from <1></1> to <3></3>
+          titre: Affiliation
       résultat:
         annuel: Annual health contribution
         avertissement-futur: Since your affiliation is in the future, this estimate

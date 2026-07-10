@@ -1887,8 +1887,10 @@ pages:
           erreur: La date de fin d’affiliation ne peut pas être antérieure à la date de
             début.
           libellé: Date de fin d’affiliation
-        groupe-fin-affiliation:
-          titre: Fin d’affiliation
+        groupe-affiliation:
+          réponse-depuis: depuis le <1></1>
+          réponse-période: du <1></1> au <3></3>
+          titre: Affiliation
       résultat:
         annuel: Cotisation maladie annuelle
         avertissement-futur: Votre affiliation étant à venir, cette estimation suppose

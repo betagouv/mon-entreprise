@@ -14,5 +14,6 @@ export type ComposantQuestionFournie<S extends Situation> =
 
 export type GroupeDeQuestionsFournies<S extends Situation> = {
 	titre: (t: TFunction) => string
+	Réponse?: React.FunctionComponent
 	liste: ComposantQuestionFournie<S>[]
 }
