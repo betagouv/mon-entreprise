@@ -36,7 +36,7 @@ salarié . cotisations . exonérations . Acre . employeur:
     tranches:
       - montant:
           variations:
-            - si: date < 01/2026
+            - si: entreprise . date de création < 01/2026
               alors: cotisations patronales exonérées Acre
             - sinon: 25% * cotisations patronales exonérées Acre
         plafond: 75%
@@ -64,7 +64,7 @@ salarié . cotisations . exonérations . Acre . salarié:
 
 salarié . cotisations . exonérations . Acre . coefficient dégressif:
   variations:
-    - si: date < 01/2026
+    - si: entreprise . date de création < 01/2026
       alors: (plafond sécurité sociale - salarié . cotisations . assiette) / (25% * plafond sécurité sociale)
     - sinon: (plafond sécurité sociale - salarié . cotisations . assiette) / plafond sécurité sociale
 

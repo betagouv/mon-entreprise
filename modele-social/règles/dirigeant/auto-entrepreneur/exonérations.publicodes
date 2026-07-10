@@ -114,7 +114,7 @@ dirigeant . auto-entrepreneur . Acre:
         l’auto-entrepreneur doit s’acquitter de 75% du montant d’origine des
         cotisations.
       variations:
-        - si: date < 07/2026
+        - si: entreprise . date de création < 07/2026
           alors: 50%
         - sinon: 75%
       unité: '%'

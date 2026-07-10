@@ -240,7 +240,7 @@ dirigeant . indépendant . cotisations et contributions . exonérations . ACRE .
     tranches:
       - taux:
           variations:
-            - si: date < 01/2026
+            - si: entreprise . date de création < 01/2026
               alors: 100%
             - sinon: 25%
         plafond: 75%
