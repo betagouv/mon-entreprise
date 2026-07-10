@@ -1,6 +1,6 @@
 {
 	"name": "modele-social",
-	"version": "10.0.1",
+	"version": "11.0.0",
 	"description": "Les règles publicodes du système social français",
 	"type": "module",
 	"main": "./dist/index.js",
@@ -8,7 +8,7 @@
 	"types": "./index.d.ts",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/betagouv/mon-entreprise.git",
+		"url": "git+https://github.com/betagouv/mon-entreprise.git",
 		"directory": "modele-social"
 	},
 	"bugs": "https://github.com/betagouv/mon-entreprise/issues?q=is%3Aopen+is%3Aissue+label%3A%22%F0%9F%93%95+l%C3%A9gislation%22",
