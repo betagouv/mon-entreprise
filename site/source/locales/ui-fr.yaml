@@ -1861,8 +1861,8 @@ pages:
           assiette: Assiette retenue
           base: Base de cotisation
           calcul: Calcul
-          incomplet: Renseignez le simulateur (date d’affiliation et revenus) pour voir le
-            calcul appliqué à votre situation.
+          incomplet: Renseignez votre situation (date d’affiliation et revenus) pour voir
+            le calcul qui s’y applique.
           mensuelle: Cotisation mensuelle
           montant: Montant
           prorata: Cotisation {{année}} au prorata
