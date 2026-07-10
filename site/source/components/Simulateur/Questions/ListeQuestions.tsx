@@ -18,7 +18,7 @@ type Props<S extends Situation> = {
 	groupesDeQuestions: Record<string, GroupeDeQuestions<S>>
 	onSélection: (questionId: string) => void
 	retour: () => void
-	onReset?: () => void
+	onReset: () => void
 }
 
 export const ListeQuestions = <S extends Situation = Situation>({

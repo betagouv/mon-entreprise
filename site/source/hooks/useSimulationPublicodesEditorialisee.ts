@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux'
+import { useCallback } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
 	NomModèle,
 	QuestionsÉditorialisées,
 	SimulationConfig,
 } from '@/domaine/SimulationConfig'
+import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
@@ -46,11 +48,18 @@ export default function useSimulationPublicodesÉditorialisées(
 	const situation = useSelector(situationSelector)
 	const simulationEstCommencée = Object.keys(situation).length > 0
 
+	const dispatch = useDispatch()
+	const onReset = useCallback(
+		() => dispatch(réinitialiseLaSimulation()),
+		[dispatch]
+	)
+
 	return {
 		isReady: currentKey === id,
 		engine,
 		questionsPrincipales: questionsPublicodesPrincipales,
 		groupesDeQuestions: groupesDeQuestionsPublicodes,
 		simulationEstCommencée,
+		onReset,
 	}
 }

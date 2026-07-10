@@ -27,6 +27,7 @@ export const ComparateurDeStatuts = () => {
 		questionsPrincipales,
 		groupesDeQuestions,
 		simulationEstCommencée,
+		onReset,
 	} = useSimulationPublicodesÉditorialisées(simulateurConfig)
 
 	const situation = useSelector(completeSituationSelector)
@@ -101,6 +102,7 @@ export const ComparateurDeStatuts = () => {
 					groupesDeQuestionsPublicodes={groupesDeQuestions}
 					détail={<DétailSimulation namedEngines={engines} />}
 					simulationEstCommencée={simulationEstCommencée}
+					onReset={onReset}
 				/>
 			</SimulateurPageLayout>
 		</EngineProvider>
