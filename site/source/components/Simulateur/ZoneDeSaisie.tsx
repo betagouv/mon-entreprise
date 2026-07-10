@@ -23,7 +23,7 @@ type Props<S extends Situation> = {
 	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	situation?: S
-	situationMinimaleSaisie?: boolean
+	questionsPrincipalesRépondues?: boolean
 	onReset: () => void
 }
 
@@ -34,7 +34,7 @@ export const ZoneDeSaisie = <S extends Situation = Situation>({
 	questionsFourniesPrincipales,
 	groupesDeQuestionsFournies,
 	situation,
-	situationMinimaleSaisie,
+	questionsPrincipalesRépondues,
 	onReset,
 }: Props<S>) => {
 	const { t } = useTranslation()
@@ -57,7 +57,7 @@ export const ZoneDeSaisie = <S extends Situation = Situation>({
 						questionsFourniesPrincipales={questionsFourniesPrincipales}
 						groupesDeQuestionsFournies={groupesDeQuestionsFournies}
 						situation={situation}
-						situationMinimaleSaisie={situationMinimaleSaisie}
+						questionsPrincipalesRépondues={questionsPrincipalesRépondues}
 						onReset={onReset}
 					/>
 				</LeftColumn>

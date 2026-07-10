@@ -138,7 +138,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		).toBeInTheDocument()
 	})
 
-	it("ne propose de préciser la situation qu'une fois la situation minimale saisie", async () => {
+	it('propose de préciser la situation dès que la question principale est répondue', async () => {
 		const user = userEvent.setup()
 		render(
 			<TestProvider>
@@ -154,11 +154,6 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		).not.toBeInTheDocument()
 
 		await saisirDateAffiliation(user, '15/01/2026')
-		expect(
-			screen.queryByRole('button', { name: /préciser votre situation/i })
-		).not.toBeInTheDocument()
-
-		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
 
 		expect(
 			await screen.findByRole('button', { name: /préciser votre situation/i })
@@ -180,7 +175,12 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			screen.queryByRole('button', { name: /lien de partage/i })
 		).not.toBeInTheDocument()
 
-		await saisirSituationComplète(user)
+		await saisirDateAffiliation(user, '15/01/2026')
+		expect(
+			screen.queryByRole('button', { name: /lien de partage/i })
+		).not.toBeInTheDocument()
+
+		await user.type(screen.getByLabelText(/Salaires perçus en/i), '50000')
 
 		expect(
 			await screen.findByRole('button', { name: /lien de partage/i })
