@@ -15,7 +15,38 @@ indépendant . cotisations et contributions . cotisations:
     Taux de cotisations - Profession libérale réglementée relevant de la Cipav: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-plr-cipav.html
     Taux de cotisations - Praticien ou auxiliaire médical: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-pam.html
 
-indépendant . cotisations et contributions . cotisations . maladie-maternité avant abattements:
+indépendant . cotisations et contributions . cotisations . maladie-maternité:
+  description: |
+    Cette cotisation permet de bénéficier de l’ensemble des prestations
+    maladie-maternité gérées par l’assurance maladie et les Cpam :
+
+    - une couverture maladie pour l’assuré/assurée et les membres de sa famille, identique
+    à celle des salariés (mêmes taux et mêmes conditions de remboursement) ;
+    - une assurance maternité complète en cas de grossesse ou d’adoption ;
+    - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
+    souscrire une assurance maladie complémentaire.
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
+  variations:
+    - si:
+        toutes ces conditions:
+          - profession libérale . réglementée . PAMC
+          - profession libérale . réglementée . métier . santé . médecin . secteur != 'S2'
+      alors: maladie-maternité . après participation CPAM
+    - sinon: maladie-maternité . après exonérations
+
+  avec:
+    assiette:
+      valeur: assiette sociale
+      plancher: plancher assiette
+
+    plancher assiette:
+      variations:
+        - si: après réforme
+          alors: 0
+        - sinon: assiette minimale . maladie
+
+indépendant . cotisations et contributions . cotisations . maladie-maternité . avant exonérations:
+  titre: maladie-maternité (avant exonérations)
   non applicable si: établissement . commune . département . outre-mer . Mayotte
   variations:
     - si:
@@ -36,16 +67,6 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité a
             - taux: taux 2
 
   avec:
-    assiette:
-      valeur: assiette sociale
-      plancher: plancher assiette
-
-    plancher assiette:
-      variations:
-        - si: après réforme
-          alors: 0
-        - sinon: assiette minimale . maladie
-
     plafond taux 1:
       variations:
         - si: après réforme
@@ -98,7 +119,8 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité a
       références:
         Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
 
-indépendant . cotisations et contributions . cotisations . maladie-maternité:
+indépendant . cotisations et contributions . cotisations . maladie-maternité . après exonérations:
+  titre: maladie-maternité
   description: |
     Cette cotisation permet de bénéficier de l’ensemble des prestations
     maladie-maternité gérées par l’assurance maladie et les Cpam :
@@ -109,25 +131,31 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
     souscrire une assurance maladie complémentaire.
   non applicable si: établissement . commune . département . outre-mer . Mayotte
-  valeur:
-    valeur: maladie-maternité avant abattements
-    abattement:
-      variations:
-        - si: exonérations . invalidité = non
-          alors:
-            valeur: exonérations . Acre . exonération . montant maladie-maternité
-            unité: €/an
-        - si: exonérations . Acre = non
-          alors:
-            valeur: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
-            unité: '%'
-  abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
+  valeur: maladie-maternité . avant exonérations
+  abattement:
+    variations:
+      - si: exonérations . invalidité = non
+        alors:
+          valeur: exonérations . Acre . exonération . montant maladie-maternité
+          unité: €/an
+      - si: exonérations . Acre = non
+        alors:
+          valeur: exonérations . invalidité . exonération . taux maladie-maternité et indemnités journalières
+          unité: '%'
   arrondi: oui
   unité: €/an
   références:
     Cotisations maladie: https://www.urssaf.fr/accueil/independant/comprendre-payer-cotisations/vos-cotisations.html#ancre-cotisations-maladie
     Article D621-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904610
     Article D621-2 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049904592
+
+indépendant . cotisations et contributions . cotisations . maladie-maternité . après participation CPAM:
+  titre: maladie-maternité
+  valeur: maladie-maternité . après exonérations
+  abattement: profession libérale . réglementée . PAMC . participation CPAM . maladie
+  arrondi: oui
+  unité: €/an
+
 
 indépendant . cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger:
   description: |
@@ -200,7 +228,25 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
                   alors: 0.50%
                 - sinon: 0.85%
 
-indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements:
+indépendant . cotisations et contributions . cotisations . allocations familiales:
+  description: |
+    Cette cotisation permet de bénéficier des allocations familiales versées par la
+    caisse d’allocations familiales dans les mêmes conditions que les salariés :
+
+    - compensation des charges familiales (naissance, enfant à charge, garde,
+    rentrée scolaire) ;
+    - prestations liées au logement, handicap, précarité (RSA…).
+
+    Le versement de la plupart de ces prestations est soumis à des conditions de
+    ressources.
+    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
+    des revenus de la famille.
+  variations:
+    - si: profession libérale . réglementée . métier . santé . médecin . secteur = 'S1'
+      alors: après participation CPAM
+    - sinon: après exonérations
+
+indépendant . cotisations et contributions . cotisations . allocations familiales . avant exonérations:
   produit:
     - assiette
     - taux
@@ -267,22 +313,9 @@ indépendant . cotisations et contributions . cotisations . allocations familial
                   taux: 3.10%
             arrondi: 2 décimales
 
-indépendant . cotisations et contributions . cotisations . allocations familiales:
-  description: |
-    Cette cotisation permet de bénéficier des allocations familiales versées par la
-    caisse d’allocations familiales dans les mêmes conditions que les salariés :
-
-    - compensation des charges familiales (naissance, enfant à charge, garde,
-    rentrée scolaire) ;
-    - prestations liées au logement, handicap, précarité (RSA…).
-
-    Le versement de la plupart de ces prestations est soumis à des conditions de
-    ressources.
-    Le montant des allocations attribuées à partir du 2ème enfant varie en fonction
-    des revenus de la famille.
-  valeur:
-    valeur: allocations familiales avant abattements
-    abattement: profession libérale . réglementée . PAMC . participation CPAM . allocations familiales
+indépendant . cotisations et contributions . cotisations . allocations familiales . après exonérations:
+  titre: allocations familiales
+  valeur: allocations familiales . avant exonérations
   abattement:
     variations:
       - si: exonérations . Mayotte 24 mois
@@ -296,6 +329,12 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     Article D613-1 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041966324
     Taux de cotisations - Travailleur indépendant à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-ti-mayotte.html
     Article 28-5 de l’ordonnance n°96-1122: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000025018568
+
+indépendant . cotisations et contributions . cotisations . allocations familiales . après participation CPAM:
+  titre: allocations familiales
+  valeur:
+    valeur: allocations familiales . après exonérations
+    abattement: profession libérale . réglementée . PAMC . participation CPAM . allocations familiales
 
 indépendant . cotisations et contributions . cotisations . assiette retraite et invalidité-décès:
   variations:

@@ -25,7 +25,7 @@ describe('Cotisation allocations familiales', () => {
 					'50000 €/an',
 			})
 
-			expect(e).toEvaluate(`${COTISATION} avant abattements . taux`, 0)
+			expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux`, 0)
 			expect(e).toEvaluate(COTISATION, 0)
 		})
 
@@ -38,7 +38,10 @@ describe('Cotisation allocations familiales', () => {
 			const taux =
 				round((100 * TAUX * (60_000 - 1.1 * PASS)) / (0.3 * PASS), 2) / 100
 
-			expect(e).toEvaluate(`${COTISATION} avant abattements . taux`, 100 * taux)
+			expect(e).toEvaluate(
+				`${COTISATION} . avant exonérations . taux`,
+				100 * taux
+			)
 			expect(e).toEvaluate(COTISATION, Math.round(60_000 * taux))
 		})
 
@@ -48,7 +51,10 @@ describe('Cotisation allocations familiales', () => {
 					'70000 €/an',
 			})
 
-			expect(e).toEvaluate(`${COTISATION} avant abattements . taux`, 100 * TAUX)
+			expect(e).toEvaluate(
+				`${COTISATION} . avant exonérations . taux`,
+				100 * TAUX
+			)
 			expect(e).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
 		})
 
@@ -60,7 +66,7 @@ describe('Cotisation allocations familiales', () => {
 					"entreprise . durée d'activité cette année": '355 jour',
 				})
 
-				expect(e).toEvaluate(`${COTISATION} avant abattements . taux`, 0)
+				expect(e).toEvaluate(`${COTISATION} . avant exonérations . taux`, 0)
 				expect(e).toEvaluate(COTISATION, 0)
 			})
 
@@ -81,7 +87,7 @@ describe('Cotisation allocations familiales', () => {
 					) / 100
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux`,
+					`${COTISATION} . avant exonérations . taux`,
 					100 * taux
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(50_000 * taux))
@@ -95,7 +101,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . taux`,
+					`${COTISATION} . avant exonérations . taux`,
 					100 * TAUX
 				)
 				expect(e).toEvaluate(COTISATION, Math.round(50_000 * TAUX))
@@ -114,7 +120,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e1).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e1).toEvaluate(COTISATION, Math.round(50_000 * TAUX))
@@ -126,7 +132,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e2).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e2).toEvaluate(COTISATION, Math.round(60_000 * TAUX))
@@ -138,7 +144,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
@@ -154,7 +160,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
+					'indépendant . cotisations et contributions . cotisations . allocations familiales . avant exonérations . assiette':
 						'30000 €/an',
 				})
 
@@ -169,7 +175,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . assiette`,
+					`${COTISATION} . avant exonérations . assiette`,
 					35_000 / 2
 				)
 
@@ -187,7 +193,7 @@ describe('Cotisation allocations familiales', () => {
 					.nodeValue as number
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . assiette`,
+					`${COTISATION} . avant exonérations . assiette`,
 					Math.round(PASSMahorais / 2)
 				)
 
@@ -212,7 +218,7 @@ describe('Cotisation allocations familiales', () => {
 					'50000 €/an',
 			})
 
-			expect(e1).toEvaluate(`${COTISATION} avant abattements . taux`, 0)
+			expect(e1).toEvaluate(`${COTISATION} . avant exonérations . taux`, 0)
 			expect(e1).toEvaluate(COTISATION, 0)
 
 			const e2 = engine.setSituation({
@@ -224,7 +230,7 @@ describe('Cotisation allocations familiales', () => {
 				round((100 * TAUX * (60_000 - 1.1 * PASS)) / (0.3 * PASS), 2) / 100
 
 			expect(e2).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * taux2
 			)
 			expect(e2).toEvaluate(COTISATION, Math.round(60_000 * taux2))
@@ -236,7 +242,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
@@ -255,7 +261,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e1).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e1).toEvaluate(COTISATION, Math.round(50_000 * TAUX))
@@ -267,7 +273,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e2).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e2).toEvaluate(COTISATION, Math.round(60_000 * TAUX))
@@ -279,7 +285,7 @@ describe('Cotisation allocations familiales', () => {
 			})
 
 			expect(e3).toEvaluate(
-				`${COTISATION} avant abattements . taux`,
+				`${COTISATION} . avant exonérations . taux`,
 				100 * TAUX
 			)
 			expect(e3).toEvaluate(COTISATION, Math.round(70_000 * TAUX))
@@ -296,7 +302,7 @@ describe('Cotisation allocations familiales', () => {
 			it('applique un taux fixe de 1,60%', () => {
 				const e = engine.setSituation({
 					...situation,
-					'indépendant . cotisations et contributions . cotisations . allocations familiales avant abattements . assiette':
+					'indépendant . cotisations et contributions . cotisations . allocations familiales . avant exonérations . assiette':
 						'30000 €/an',
 				})
 
@@ -311,7 +317,7 @@ describe('Cotisation allocations familiales', () => {
 				})
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . assiette`,
+					`${COTISATION} . avant exonérations . assiette`,
 					35_000 / 2
 				)
 
@@ -329,7 +335,7 @@ describe('Cotisation allocations familiales', () => {
 					.nodeValue as number
 
 				expect(e).toEvaluate(
-					`${COTISATION} avant abattements . assiette`,
+					`${COTISATION} . avant exonérations . assiette`,
 					Math.round(PASSMahorais / 2)
 				)
 

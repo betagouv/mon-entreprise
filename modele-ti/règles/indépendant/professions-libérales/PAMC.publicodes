@@ -230,21 +230,14 @@ indépendant . profession libérale . réglementée . PAMC . participation CPAM 
 
   avec:
     taux maladie:
-      variations:
-        - si:
-            est applicable: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger
-          alors: cotisations et contributions . cotisations . maladie-maternité . domiciliation fiscale étranger . taux
-        - si:
-            est applicable: profession libérale . CNAVPL . maladie
-          alors: profession libérale . CNAVPL . maladie . taux
-        - sinon:
-            valeur: cotisations et contributions . cotisations . maladie-maternité avant abattements / cotisations et contributions . cotisations . maladie-maternité avant abattements . assiette
-            unité: '%'
+      valeur: cotisations et contributions . cotisations . maladie-maternité . après exonérations /
+        cotisations et contributions . cotisations . maladie-maternité . assiette
+      unité: '%'
 
 indépendant . profession libérale . réglementée . PAMC . participation CPAM . allocations familiales:
   applicable si: métier . santé . médecin . secteur = 'S1'
   produit:
-    - cotisations et contributions . cotisations . allocations familiales avant abattements
+    - cotisations et contributions . cotisations . allocations familiales . après exonérations
     - grille:
         assiette: assiette participation CPAM
         multiplicateur: plafond sécurité sociale

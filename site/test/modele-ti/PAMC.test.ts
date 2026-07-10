@@ -99,51 +99,52 @@ describe('PAMC', () => {
 	})
 
 	describe('les cotisations forfaitaires de début d’activité', () => {
-		describe('au régime réel de l’IR', () => {
-			it('ne sont pas applicables en cas d’entreprise créée avant l’année en cours', () => {
-				const e = engine.setSituation(defaultSituation)
+		it.each([
+			['au régime réel de l’IR', defaultSituation],
+			[
+				'au régime micro-fiscal',
+				{
+					...defaultSituation,
+					'entreprise . imposition . IR . régime micro-fiscal': 'oui',
+				},
+			],
+		])(
+			'ne sont pas applicables %s en cas d’entreprise créée avant l’année en cours',
+			(_libellé, situation) => {
+				const e = engine.setSituation(situation)
 
 				expect(e).not.toBeApplicable(
 					'indépendant . cotisations et contributions . début activité'
 				)
-			})
+			}
+		)
 
-			it('sont applicables en cas d’entreprise créée l’année en cours', () => {
-				const e = engine.setSituation({
+		it.each([
+			[
+				'au régime réel de l’IR',
+				{
 					...defaultSituation,
 					'entreprise . date de création': '01/01/2026',
-				})
+				},
+			],
+			[
+				'au régime micro-fiscal',
+				{
+					...defaultSituation,
+					'entreprise . imposition . IR . régime micro-fiscal': 'oui',
+					'entreprise . date de création': '01/01/2026',
+				},
+			],
+		])(
+			'sont applicables %s en cas d’entreprise créée l’année en cours',
+			(_libellé, situation) => {
+				const e = engine.setSituation(situation)
 
 				expect(e).toBeApplicable(
 					'indépendant . cotisations et contributions . début activité'
 				)
-			})
-		})
-
-		describe('au régime micro-fiscal', () => {
-			it('ne sont pas applicables en cas d’entreprise créée avant l’année en cours', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . imposition . IR . régime micro-fiscal': 'oui',
-				})
-
-				expect(e).not.toBeApplicable(
-					'indépendant . cotisations et contributions . début activité'
-				)
-			})
-
-			it('sont applicables en cas d’entreprise créée l’année en cours', () => {
-				const e = engine.setSituation({
-					...defaultSituation,
-					'entreprise . imposition . IR . régime micro-fiscal': 'oui',
-					'entreprise . date de création': '01/01/2026',
-				})
-
-				expect(e).toBeApplicable(
-					'indépendant . cotisations et contributions . début activité'
-				)
-			})
-		})
+			}
+		)
 	})
 
 	describe('la Curps', () => {

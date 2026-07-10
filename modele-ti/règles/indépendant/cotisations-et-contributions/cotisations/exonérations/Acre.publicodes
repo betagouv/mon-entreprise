@@ -144,12 +144,12 @@ indépendant . cotisations et contributions . cotisations . exonérations . Acre
             - si: assiette sociale < 75% * PASS proratisé
               alors:
                 produit:
-                  - cotisations . maladie-maternité avant abattements
+                  - cotisations . maladie-maternité . avant exonérations
                   - exonération maximale
             - sinon:
                 produit:
                   - PASS proratisé - assiette sociale
-                  - valeur: cotisations . maladie-maternité avant abattements
+                  - valeur: cotisations . maladie-maternité . avant exonérations
                     contexte:
                       assiette sociale: 75% * PASS proratisé
                   - 1 / PASS proratisé
