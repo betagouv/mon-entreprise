@@ -2,7 +2,7 @@ import { writeInDataDir } from './utils.js'
 
 const CURRENT_YEAR = 2026
 const CSV_URL =
-	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20260106.csv'
+	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20260710.csv'
 
 const INDEX = {
 	TAUX: 2,
