@@ -22,6 +22,7 @@ import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
 import { DateAffiliationQuestion } from './questions/DateAffiliationQuestion'
 import { DateFinAffiliationQuestion } from './questions/DateFinAffiliationQuestion'
+import { RéponseAffiliation } from './questions/RéponseAffiliation'
 
 const questionsPrincipales = [DateAffiliationQuestion]
 
@@ -29,13 +30,14 @@ const groupesDeQuestions: Record<
 	string,
 	GroupeDeQuestionsFournies<SituationFrontalierSuisse>
 > = {
-	'fin-affiliation': {
+	affiliation: {
 		titre: (t) =>
 			t(
-				'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.groupe-fin-affiliation.titre',
-				'Fin d’affiliation'
+				'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.groupe-affiliation.titre',
+				'Affiliation'
 			),
-		liste: [DateFinAffiliationQuestion],
+		Réponse: RéponseAffiliation,
+		liste: [DateAffiliationQuestion, DateFinAffiliationQuestion],
 	},
 }
 

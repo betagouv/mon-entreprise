@@ -66,6 +66,7 @@ export type Question<S extends Situation> =
 export type GroupeDeQuestions<S extends Situation> = {
 	titre: (t: TFunction) => string
 	réponse?: (engine: Engine, t: TFunction) => string
+	Réponse?: React.FunctionComponent
 	liste: Array<Question<S>>
 }
 
