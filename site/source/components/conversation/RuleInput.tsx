@@ -143,6 +143,7 @@ interface RuleInputProps {
 	modifiers?: Record<string, string>
 	required?: boolean
 	errorMessage?: string
+	validation?: DateFieldProps['validation']
 
 	className?: string
 	autoFocus?: boolean
@@ -167,6 +168,7 @@ export default function RuleInput({
 	small,
 	displayedUnit,
 	errorMessage,
+	validation,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -337,6 +339,7 @@ export default function RuleInput({
 				}}
 				type={rule.rawNode.type as DateFieldProps['type']}
 				errorMessage={errorMessage}
+				validation={validation}
 			/>
 		)
 	}

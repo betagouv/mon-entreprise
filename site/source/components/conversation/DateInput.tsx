@@ -29,6 +29,7 @@ interface DateInputProps {
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<IsoDate | ASTNode>
 	errorMessage?: string
+	validation?: DateFieldProps['validation']
 
 	title?: string
 	type: DateFieldProps['type']
@@ -48,6 +49,7 @@ export const DateInput = ({
 	value,
 	type,
 	errorMessage,
+	validation,
 	aria,
 }: DateInputProps) => {
 	const engine = useEngine()
@@ -101,6 +103,7 @@ export const DateInput = ({
 				label={title}
 				type={type}
 				errorMessage={errorMessage}
+				validation={validation}
 			/>
 		</div>
 	)
