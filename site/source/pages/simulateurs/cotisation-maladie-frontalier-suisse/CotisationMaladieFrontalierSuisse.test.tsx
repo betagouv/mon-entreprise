@@ -26,7 +26,40 @@ const saisirSituationComplète = async (
 }
 
 describe('Simulateur cotisation maladie frontalier suisse', () => {
-	beforeEach(() => testerEn(2026))
+	beforeEach(() => {
+		testerEn(2026)
+		window.history.replaceState(null, '', '/')
+	})
+
+	it("permet de recharger la simulation depuis l'URL produite", async () => {
+		const user = userEvent.setup()
+		const { unmount } = render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		await saisirSituationComplète(user)
+		await screen.findByText(/Cotisation maladie annuelle/i)
+
+		const recherche = window.location.search
+		unmount()
+		window.history.replaceState(null, '', `/${recherche}`)
+
+		render(
+			<TestProvider>
+				<CotisationMaladieFrontalierSuisse />
+			</TestProvider>
+		)
+
+		expect(
+			await screen.findByText(/Cotisation maladie annuelle/i)
+		).toBeInTheDocument()
+		const question = screen.getByRole('group', {
+			name: /date de début d.affiliation/i,
+		})
+		expect(within(question).getByRole('textbox')).toHaveValue('15/01/2026')
+	})
 
 	it('affiche les trois champs de saisie au montage', async () => {
 		render(
