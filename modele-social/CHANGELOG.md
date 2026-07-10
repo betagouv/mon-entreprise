@@ -2,6 +2,14 @@
 
 ## next
 
+## 11.1.0
+
+### Mises à jour
+- Mise à jour de la date (01/07/2026)
+
+### Corrections
+- L'application de la réforme de l'Acre dépend de la date de création de l'entreprise
+
 ## 11.0.0
 
 ### Breaking changes
