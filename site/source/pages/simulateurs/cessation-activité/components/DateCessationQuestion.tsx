@@ -1,9 +1,10 @@
 import { Option } from 'effect'
-import { useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { SimpleField } from '@/components/Simulation/SimpleField'
 import { H3 } from '@/design-system'
+import { dateToIsoDate, isoDateToPublicodesDate } from '@/domaine/Date'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -14,6 +15,8 @@ import { useDate } from '@/hooks/useDate'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
+const RÈGLE_DATE_INVALIDE = 'entreprise . date de cessation . invalide'
+
 export const DateCessationQuestion = () => {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -21,9 +24,28 @@ export const DateCessationQuestion = () => {
 	const radiéeCetteAnnée = PublicodesAdapter.decode(
 		engine.evaluate('entreprise . radiée cette année')
 	)
-	const notificationDateInvalide = getNotification(
-		engine,
-		'entreprise . date de cessation . invalide'
+	const notificationDateInvalide = getNotification(engine, RÈGLE_DATE_INVALIDE)
+
+	const validationDate = useCallback(
+		(date: Date): Option.Option<string> => {
+			const invalide =
+				engine.evaluate({
+					valeur: RÈGLE_DATE_INVALIDE,
+					contexte: {
+						'entreprise . date de cessation': isoDateToPublicodesDate(
+							dateToIsoDate(date)
+						),
+					},
+				}).nodeValue === true
+
+			return invalide
+				? Option.some(
+						engine.getRule(RÈGLE_DATE_INVALIDE).rawNode.description?.trim() ??
+							''
+				  )
+				: Option.none()
+		},
+		[engine]
 	)
 
 	useEffect(() => {
@@ -50,6 +72,7 @@ export const DateCessationQuestion = () => {
 			dottedName="entreprise . date de cessation"
 			labelStyle={H3}
 			errorMessage={notificationDateInvalide?.description}
+			validation={validationDate}
 		/>
 	)
 }

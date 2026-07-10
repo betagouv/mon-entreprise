@@ -6,7 +6,7 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { Intro, Markdown } from '@/design-system'
+import { Intro, Markdown, type DateFieldProps } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
@@ -19,10 +19,11 @@ type SimpleFieldProps = {
 	question?: string
 	labelStyle?: IStyledComponent<'web', object>
 	errorMessage?: string
+	validation?: DateFieldProps['validation']
 }
 
 export function SimpleField(props: SimpleFieldProps) {
-	const { dottedName, question, labelStyle, errorMessage } = props
+	const { dottedName, question, labelStyle, errorMessage, validation } = props
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
@@ -85,6 +86,7 @@ export function SimpleField(props: SimpleFieldProps) {
 				}
 				onChange={dispatchValue}
 				errorMessage={errorMessage}
+				validation={validation}
 			/>
 		</FadeIn>
 	)
