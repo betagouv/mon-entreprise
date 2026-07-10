@@ -72,6 +72,19 @@ export function MockNavigationProvider({
 		[currentPath]
 	)
 
+	const setSearchParams = useCallback<NavigationAPI['setSearchParams']>(
+		(params) => {
+			if (typeof params === 'function') {
+				setSearchParamsState(params)
+			} else if (params instanceof URLSearchParams) {
+				setSearchParamsState(params)
+			} else {
+				setSearchParamsState(new URLSearchParams(params))
+			}
+		},
+		[]
+	)
+
 	const navigation = useMemo<NavigationAPI>(
 		() => ({
 			Link: MockLink,
@@ -84,15 +97,7 @@ export function MockNavigationProvider({
 			},
 			currentPath,
 			searchParams,
-			setSearchParams: (params) => {
-				if (typeof params === 'function') {
-					setSearchParamsState(params)
-				} else if (params instanceof URLSearchParams) {
-					setSearchParamsState(params)
-				} else {
-					setSearchParamsState(new URLSearchParams(params))
-				}
-			},
+			setSearchParams,
 			locationHash,
 			navigationType: initialNavigationType,
 			getHref,
@@ -103,6 +108,7 @@ export function MockNavigationProvider({
 		[
 			currentPath,
 			searchParams,
+			setSearchParams,
 			locationHash,
 			initialNavigationType,
 			getHref,
