@@ -13,6 +13,7 @@ describe('ListeQuestions', () => {
 					groupesDeQuestions={{}}
 					onSélection={vi.fn()}
 					retour={vi.fn()}
+					onReset={vi.fn()}
 				/>
 			</TestProvider>
 		)

@@ -30,7 +30,7 @@ type Props<S extends Situation> = {
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	situation?: S
 	situationMinimaleSaisie?: boolean
-	onReset?: () => void
+	onReset: () => void
 	avertissement?: React.ReactNode
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 	simulationEstCommencée: boolean

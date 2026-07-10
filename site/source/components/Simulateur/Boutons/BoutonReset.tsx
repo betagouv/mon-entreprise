@@ -1,25 +1,12 @@
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 
 import { ArrowCircleIcon, Button } from '@/design-system'
-import { réinitialiseLaSimulation } from '@/store/actions/actions'
 
-export const BoutonReset = ({ onReset }: { onReset?: () => void }) => {
+export const BoutonReset = ({ onReset }: { onReset: () => void }) => {
 	const { t } = useTranslation()
-	const dispatch = useDispatch()
 
 	return (
-		<Button
-			size="XXS"
-			light
-			onPress={() => {
-				if (onReset) {
-					onReset()
-				} else {
-					dispatch(réinitialiseLaSimulation())
-				}
-			}}
-		>
+		<Button size="XXS" light onPress={onReset}>
 			<ArrowCircleIcon />
 			{t(
 				'components.simulateur.zone-de-saisie.situation.réinitialiser',

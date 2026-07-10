@@ -26,7 +26,7 @@ type Props<S extends Situation> = {
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	situation?: S
 	situationMinimaleSaisie?: boolean
-	onReset?: () => void
+	onReset: () => void
 }
 
 export const BlocSituation = <S extends Situation = Situation>({
