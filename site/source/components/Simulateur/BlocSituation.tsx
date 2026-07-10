@@ -25,7 +25,7 @@ type Props<S extends Situation> = {
 	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	situation?: S
-	situationMinimaleSaisie?: boolean
+	questionsPrincipalesRépondues?: boolean
 	onReset: () => void
 }
 
@@ -35,7 +35,7 @@ export const BlocSituation = <S extends Situation = Situation>({
 	questionsFourniesPrincipales,
 	groupesDeQuestionsFournies,
 	situation,
-	situationMinimaleSaisie,
+	questionsPrincipalesRépondues,
 	onReset,
 }: Props<S>) => {
 	const { t } = useTranslation()
@@ -70,7 +70,7 @@ export const BlocSituation = <S extends Situation = Situation>({
 						setAfficherQuestionsPrincipales(false)
 						setAutoScrollToQuestions(true)
 					}}
-					situationMinimaleSaisie={situationMinimaleSaisie}
+					questionsPrincipalesRépondues={questionsPrincipalesRépondues}
 				/>
 			) : questionCourante ? (
 				<Container>

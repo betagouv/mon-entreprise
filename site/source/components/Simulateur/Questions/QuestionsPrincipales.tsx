@@ -10,13 +10,13 @@ import { QuestionCourante } from './QuestionCourante'
 type Props<S extends Situation> = {
 	questions: Question<S>[]
 	onClose: () => void
-	situationMinimaleSaisie?: boolean
+	questionsPrincipalesRépondues?: boolean
 }
 
 export const QuestionsPrincipales = <S extends Situation = Situation>({
 	questions,
 	onClose,
-	situationMinimaleSaisie = true,
+	questionsPrincipalesRépondues = true,
 }: Props<S>) => {
 	const { t } = useTranslation()
 
@@ -24,7 +24,7 @@ export const QuestionsPrincipales = <S extends Situation = Situation>({
 		<>
 			<QuestionCourante questions={questions} />
 
-			{situationMinimaleSaisie && (
+			{questionsPrincipalesRépondues && (
 				<StyledDiv>
 					<Body>
 						{t(

@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { Route, Routes } from 'react-router-dom'
 
 import { GroupeDeQuestionsFournies } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
@@ -60,6 +61,7 @@ const PageSimulateur = () => {
 				id="cotisation-maladie-frontalier-suisse"
 				situation={situation}
 				situationMinimaleSaisie={estSituationValide(situation)}
+				questionsPrincipalesRépondues={O.isSome(situation.dateAffiliation)}
 				questionsFourniesPrincipales={questionsPrincipales}
 				groupesDeQuestionsFournies={groupesDeQuestions}
 				montantsÀSaisir={
