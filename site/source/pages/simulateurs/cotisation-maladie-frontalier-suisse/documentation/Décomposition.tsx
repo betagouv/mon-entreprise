@@ -23,7 +23,7 @@ export const Décomposition = () => {
 			<Info>
 				{t(
 					'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
-					'Renseignez le simulateur (date d’affiliation et revenus) pour voir le calcul appliqué à votre situation.'
+					'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
 				)}
 			</Info>
 		)

@@ -1762,8 +1762,8 @@ pages:
           assiette: Income base
           base: Contribution base
           calcul: Calculation
-          incomplet: Enter your information into the simulator (affiliation date and
-            income) to see how the calculation applies to your situation.
+          incomplet: Enter your situation (affiliation date and income) to see the
+            calculation that applies to it.
           mensuelle: Monthly contribution
           montant: Amount
           prorata: Prorated contribution for {{année}}
