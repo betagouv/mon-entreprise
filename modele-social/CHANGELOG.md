@@ -2,6 +2,8 @@
 
 ## next
 
+## 11.0.0
+
 ### Breaking changes
 - Suppression des règles `salarié . cotisations . exonérations . réduction générale` (utiliser `... . RGDU` à la place)
 - Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
