@@ -14,7 +14,7 @@ const créerRateLimiter = () => {
 	const { NODE_ENV, SCALINGO_REDIS_URL } = process.env
 
 	if (NODE_ENV !== 'production' || !SCALINGO_REDIS_URL) {
-		return new RateLimiterMemory({ points: 5, duration: 1 })
+		return new RateLimiterMemory({ points: 10, duration: 1 })
 	}
 
 	const storeClient = new Redis(SCALINGO_REDIS_URL, {

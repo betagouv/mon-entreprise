@@ -3,9 +3,11 @@ import { createHash } from 'crypto'
 import Router from '@koa/router'
 import IORedis from 'ioredis'
 import IORedisMock from 'ioredis-mock'
+import { Next } from 'koa'
 import { koaBody } from 'koa-body'
 
 import { superviserRedis } from './redis-supervision.js'
+import { KoaContext } from './types.js'
 
 const Redis = IORedis.default
 const RedisMock = IORedisMock.default
@@ -26,41 +28,63 @@ superviserRedis(redis, 'cache')
 export const redisCacheMiddleware = () => {
 	const router = new Router()
 
-	router.post('/evaluate', koaBody(), async (ctx, next) => {
-		if (!redis || !ctx.request.body) {
-			await next()
+	const evaluatePaths = {
+		'/evaluate': 'modele-social',
+		'/modeles/as/evaluate': 'modele-as',
+		'/modeles/ti/evaluate': 'modele-ti',
+	}
 
-			return
-		}
-
-		const cacheKey = createHash('sha1')
-			.update(JSON.stringify(ctx.request.body))
-			.digest('base64')
-
-		// Si Redis ne répond pas, on répond sans cache.
-		const cachedResponse = await redis.get(cacheKey).catch(() => null)
-		if (cachedResponse) {
-			ctx.body = JSON.parse(cachedResponse) as unknown
-
-			return
-		}
-
-		await next()
-
-		if (ctx.status === 200) {
-			const responseCachedAt = Date.now()
-			const cacheExpiresAt = responseCachedAt + CACHE_EXPIRE * 1000
-			// Si Redis ne répond pas, on n'enregistre pas.
-			await redis
-				.set(
-					cacheKey,
-					JSON.stringify({ responseCachedAt, cacheExpiresAt, ...ctx.body }),
-					'EX',
-					CACHE_EXPIRE
-				)
-				.catch(() => undefined)
-		}
+	Object.keys(evaluatePaths).forEach((path) => {
+		router.post(path, koaBody(), async (ctx, next) => {
+			await handleCache(
+				ctx,
+				next,
+				evaluatePaths[path as keyof typeof evaluatePaths]
+			)
+		})
 	})
 
 	return router.routes()
+}
+
+const handleCache = async (ctx: KoaContext, next: Next, modèle: string) => {
+	if (!redis || !ctx.request.body) {
+		await next()
+
+		return
+	}
+
+	const cacheKey = createHash('sha1')
+		.update(
+			JSON.stringify({
+				modèle,
+				// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+				requête: ctx.request.body,
+			})
+		)
+		.digest('base64')
+
+	// Si Redis ne répond pas, on répond sans cache.
+	const cachedResponse = await redis.get(cacheKey).catch(() => null)
+	if (cachedResponse) {
+		ctx.body = JSON.parse(cachedResponse) as unknown
+
+		return
+	}
+
+	await next()
+
+	if (ctx.status === 200) {
+		const responseCachedAt = Date.now()
+		const cacheExpiresAt = responseCachedAt + CACHE_EXPIRE * 1000
+		// Si Redis ne répond pas, on n'enregistre pas.
+		await redis
+			.set(
+				cacheKey,
+				JSON.stringify({ responseCachedAt, cacheExpiresAt, ...ctx.body }),
+				'EX',
+				CACHE_EXPIRE
+			)
+			.catch(() => undefined)
+	}
 }

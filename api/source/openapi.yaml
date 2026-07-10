@@ -14,6 +14,7 @@ servers:
 paths:
   /evaluate:
     post:
+      summary: Évalue une ou plusieurs expressions avec les règles de `modele-social` et une situation donnée
       requestBody:
         content:
           application/json:
@@ -53,11 +54,266 @@ paths:
                         'dirigeant . auto-entrepreneur . revenu net . après impôt',
                       ],
                   }
+      responses:
+        '200':
+          $ref: '#/components/responses/evaluation'
+        '400':
+          $ref: '#/components/responses/erreurDeValidation'
+
+  /rules:
+    get:
+      summary: Retourne toutes les règles de `modele-social`
+      responses:
+        '200':
+          $ref: '#/components/responses/rulesList'
+
   /rules/{rule}:
     get:
+      summary: Retourne la règle de `modele-social` demandée
       parameters:
-        - examples:
+        - name: rule
+          in: path
+          required: true
+          schema:
+            type: string
+          examples:
             'Salaire net':
               value: 'salarié . rémunération . net . à payer avant impôt'
             Impot:
               value: 'impôt . méthode de calcul'
+      responses:
+        '200':
+          $ref: '#/components/responses/rule'
+
+  /modeles/{modele}/evaluate:
+    post:
+      summary: Évalue une ou plusieurs expressions avec un modèle de règles et une situation donnés
+      parameters:
+        - $ref: '#/components/parameters/modele'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvaluateBody'
+            examples:
+              'Assimilé salarié':
+                description: '`/modeles/as/evaluate`'
+                value:
+                  {
+                    'situation':
+                      {
+                        'assimilé salarié . rémunération . totale': '50000 €/an',
+                      },
+                    'expressions':
+                      ['assimilé salarié . rémunération . nette . après impôt'],
+                  }
+              'Travailleur indépendant':
+                description: '`/modeles/ti/evaluate`'
+                value:
+                  {
+                    'situation':
+                      {
+                        'entreprise . imposition': "'IR'",
+                        "entreprise . chiffre d'affaires": '50000 €/an',
+                      },
+                    'expressions':
+                      [
+                        'indépendant . cotisations et contributions . assiette CSG-CRDS',
+                      ],
+                  }
+      responses:
+        '200':
+          $ref: '#/components/responses/evaluation'
+        '400':
+          $ref: '#/components/responses/erreurDeValidation'
+
+  /modeles/{modele}/rules:
+    get:
+      summary: Retourne toutes les règles du modèle donné.
+      parameters:
+        - $ref: '#/components/parameters/modele'
+      responses:
+        '200':
+          $ref: '#/components/responses/rulesList'
+
+  /modeles/{modele}/rules/{rule}:
+    get:
+      summary: Retourne la règle demandée du modèle de règles donné
+      parameters:
+        - $ref: '#/components/parameters/modele'
+        - name: rule
+          in: path
+          required: true
+          schema:
+            type: string
+          examples:
+            'Rémunération nette (AS)':
+              value: 'assimilé salarié . rémunération . nette . à payer avant impôt'
+            'Rémunération nette (TI)':
+              value: 'indépendant . rémunération . nette'
+      responses:
+        '200':
+          $ref: '#/components/responses/rule'
+
+components:
+  parameters:
+    modele:
+      name: modele
+      in: path
+      required: true
+      description: Le nom du modèle de règles à utiliser ("as" pour assimilé⋅es salarié⋅es ou "ti" pour travailleureuses indépendant⋅es)
+      schema:
+        type: string
+        enum: ['as', 'ti']
+
+  responses:
+    evaluation:
+      description: Évaluation des expressions demandées
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/EvaluateResponse'
+    erreurDeValidation:
+      description: Erreur de validation de la requête
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InputValidationError'
+    rulesList:
+      description: Liste de toutes les règles du modèle donné
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Rules'
+    rule:
+      description: La règle demandée
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Rule'
+
+  # Schémas repris de l'export `openapi` du package `@publicodes/rest-api`
+  schemas:
+    PublicodesExpression:
+      description: Une expression Publicodes
+      oneOf:
+        - type: number
+        - type: string
+        - type: object
+          minProperties: 1
+          additionalProperties: {}
+
+    Expressions:
+      description: Une expression ou un tableau d'expressions Publicodes
+      oneOf:
+        - type: array
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/PublicodesExpression'
+        - $ref: '#/components/schemas/PublicodesExpression'
+
+    Situation:
+      description: La situation avec laquelle l'expression ou les expressions seront évaluées
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/PublicodesExpression'
+
+    EvaluateBody:
+      type: object
+      required: ['expressions']
+      properties:
+        expressions:
+          $ref: '#/components/schemas/Expressions'
+        situation:
+          $ref: '#/components/schemas/Situation'
+
+    EvaluateResponse:
+      description: Schéma retourné par l'endpoint evaluate
+      oneOf:
+        - type: object
+          properties:
+            evaluate:
+              type: array
+              items:
+                anyOf:
+                  - type: object
+                    properties:
+                      nodeValue:
+                        type: number
+                      missingVariables:
+                        type: array
+                        items:
+                          type: string
+            warnings:
+              type: array
+              items:
+                type: object
+                properties:
+                  message:
+                    type: string
+        - type: object
+          properties:
+            situationError:
+              type: object
+              properties:
+                message:
+                  type: string
+        - type: object
+          properties:
+            error:
+              type: object
+              properties:
+                message:
+                  type: string
+            warnings:
+              type: array
+              items:
+                type: object
+                properties:
+                  message:
+                    type: string
+
+    InputValidationError:
+      type: array
+      items:
+        type: object
+        properties:
+          keyword:
+            type: string
+          dataPath:
+            type: string
+          schemaPath:
+            type: string
+          message:
+            type: string
+          params:
+            type: object
+            additionalProperties:
+              type: string
+
+    Rule:
+      type: object
+      properties:
+        title:
+          type: string
+        nodeKind:
+          type: string
+        rawNode:
+          type: object
+          properties:
+            question:
+              type: string
+          additionalProperties:
+            type: object
+        replacements:
+          type: array
+          items:
+            type: object
+        suggestions:
+          type: object
+
+    Rules:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Rule'
