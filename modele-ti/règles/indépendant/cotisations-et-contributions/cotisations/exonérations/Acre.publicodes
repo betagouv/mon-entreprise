@@ -1,5 +1,9 @@
 indépendant . cotisations et contributions . cotisations . exonérations . Acre:
   applicable si: entreprise . durée d'activité . en début d'année < 1 an
+  non applicable si:
+    toutes ces conditions:
+      - indépendant . profession libérale . réglementée . PAMC
+      - établissement . commune . département . outre-mer
   question: Bénéficiez-vous de l’Acre ?
   par défaut: non
   description: |
