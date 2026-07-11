@@ -42,9 +42,8 @@ const groupesDeQuestions: Record<
 }
 
 const PageSimulateur = () => {
-	const simulateurConfig = useSimulatorData(
-		'cotisation-maladie-frontalier-suisse'
-	)
+	const id = 'cotisation-maladie-frontalier-suisse'
+	const simulateurConfig = useSimulatorData(id)
 	const { situation, set } = useFrontalierSuisse()
 
 	const externalLinks = [
@@ -60,7 +59,7 @@ const PageSimulateur = () => {
 			showDate={false}
 		>
 			<Simulateur
-				id="cotisation-maladie-frontalier-suisse"
+				id={id}
 				situation={situation}
 				situationMinimaleSaisie={estSituationValide(situation)}
 				questionsPrincipalesRépondues={O.isSome(situation.dateAffiliation)}
