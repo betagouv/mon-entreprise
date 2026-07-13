@@ -978,47 +978,87 @@ pages:
       section.<7></7></1></7><8></8><9>Example</9><10>Here's an example of how
       to use the various routes. You can explore their code in the
       <1>example</1> folder</10><11><0></0></11>"
-    bibliothèque: "<0><0>You can reuse the mon-entreprise calculations on your site
-      or service very easily thanks to the open-source JavaScript library
-      available on npm.</0></0><1>How to use this
-      library</1><2>Installation</2><3><0>npm install --save publicodes
-      modele-social</0></3><4>To run your own calculations, you need to install
-      the <2><0>publicodes</0></2> package, containing the publicodes
-      interpreter, and the <6><0>modele-social</0></6>package, which contains
-      the rules for the mon-entreprise simulators.</4><5><0>What is
-      publicodes?</0><1>Publicodes is a declarative language developed by
-      beta.gouv.fr and Urssaf to encode algorithms of public interest. It is the
-      language that powers all the calculations in the mon-entreprise
-      simulators.</1><2><0>Find out more about publicodes</0></2></5><6>Launch
-      the calculation</6><7>To launch the calculation, you need to parameterize
-      the engine with the rules in the <1>modele-social</1> package and call the
-      <4>evaluate</4> function with the rule whose value you wish to calculate.
-      Here's an example of a gross/net calculation</7><8><0></0></8><9>Setting
-      up the calculation</9><10>As you will have seen from the previous example,
-      the recipe for a calculation is simple: input variables (gross salary),
-      one or more output variables (net salary).</10><11>However, the
-      calculation can be parameterized using all the possibilities offered by
-      mon-entreprise's simulators!</11><12>All available rules are listed and
-      explained in the <2>online documentation</2>. This documentation is
-      auto-generated from the publicodes rule files, and fed by the current
-      simulation.</12><13>How do I reproduce a simulator calculation?</13><14>To
-      replicate a calculation from a mon-entreprise simulator in the library,
-      follow these steps: </14><15><0></0><1><0>Copy the customized code snippet
-      and integrate it into your application</0><1></1>You'll find it by
-      clicking on the \"Reuse this calculation\"
-      section.<3></3></1><2><0>(optional) Modify the situation values to tailor
-      the calculation to your needs</0><1></1> You can modify the situation
-      values without hesitation. They accept any <4>expression or publicodes
-      object.</4></2></15><16>Here's how the calculation works with the above
-      example:</16><17><0></0></17><18><0>The situation contains the data from
-      your simulation (executive with a salary of €3,400 gross), but also data
-      relating to the simulator settings.</0></18><19></19><20>Creating economic
-      graphs <1></1></20><21>You can also use the library for economic or
-      political analysis calculations. Here, we plot the price of labor and the
-      net wage as a function of the gross wage.</21><22>You can see how
-      progressive the total wage is, being lower in percentage terms for a
-      minimum wage than for a high income. In other words, high earners pay part
-      of the social contributions of low earners.</22><23><0></0></23>"
+    bibliothèque:
+      aria-label:
+        documentation: online documentation, new window
+        modele-as: modele-as, see the npm page, new window
+        modele-social: social model, see the npm page (opens in a new window)
+        modele-ti: modele-ti, see the npm page, new window
+        publicodes:
+          expression: publicodes expression or object, learn more, new window
+          npm: publicodes, see the npm page (opens in a new window)
+          site: Learn more about publicodes (opens in a new window)
+      exemples:
+        association: "Integration example on codesandbox.io: integration with other
+          libraries"
+        lancement: "Integration example on codesandbox.io: running a calculation"
+        paramétrage: "Integration example on codesandbox.io: configuring the calculation"
+      texte: "<0><0>You can easily reuse the calculations from mon-entreprise on your
+        website or service using the open-source JavaScript libraries available
+        on npm.</0></0><1>Which library should you choose?</1><3>modele-as This
+        library contains the rules and calculations for executives
+        <2>assimilated-employees&lt;/2> and female executives treated as
+        employees, such as the executives of SAS and SASU companies. This is the
+        library used in the <5>income simulator for SAS(U)
+        executives</5>.</3><4>modele-ti</4><5>This library contains the rules
+        and calculations for <2>self-employed individuals&lt;/2> , including
+        self-employed women, such as the owners of sole proprietorships
+        (excluding “auto-entreprise” entities) and EURLs, as well as members of
+        the liberal professions. This is the library used in the <5>income
+        simulator for self-employed individuals&lt;/5> and its
+        variants.</5><7>modele-socialThis is the historical library, which still
+        contains the rules for employees and employers (including Lodeom),
+        auto-entrepreneurs, dividend recipients, corporate income tax
+        calculations, and the costs of starting a business. It is used in all
+        mon-entreprise simulators and wizards except those for SAS(U) and
+        self-employed individuals</7><8>. Please note: although they are still
+        present, the rules in this library concerning employees by analogy and
+        self-employed individuals are no longer maintained.</8><9>How to use
+        these libraries?</9><10>Installation</10><11><0>npm install --save
+        publicodes modele-xx</0></11><12>Replace <1>modele-xx&lt;/1> with
+        <3>modele-as</3>,<5>modele-ti&lt;/5> or <7>modele-social&lt;/7>
+        depending on the calculations you wish to perform.</12><13>To run your
+        own calculations, you must install the package
+        <2><0>publicodes</0>&lt;/2> containing the publicodes interpreter, as
+        well as the package of your choice— <6><0>modele-as</0></6>,
+        <9><0>modele-ti</0>&lt;/9> or <13><0>modele-social</0></13>—which
+        contain the rules for the mon-entreprise simulators.</13><14><0>What is
+        Publicodes?</0><1>Publicodes is a declarative language developed by
+        beta.gouv.fr and Urssaf to implement algorithms of public interest. It
+        is the language that powers the calculations in most of the
+        “mon-entreprise” simulators.</1><2><0>Learn more about
+        Publicodes</0></2></14><16>Usage: To run a calculation, you must
+        configure the engine with the rules from the package
+        <1>modele-social&lt;/1> and call the function <4>evaluate&lt;/4> with
+        the rule whose value you wish to calculate. Here is an example for
+        gross/net pay calculation using the package <7>modele-social&lt;/7>
+        :</16><17><0></0></17><18>Configuring the</18><19>Calculation As you saw
+        in the previous example, the structure of a calculation is simple: input
+        variables (gross pay) and one or more output variables (net
+        pay).</19><20>However, the calculation can be configured using all the
+        options available in the mon-entreprise simulators!</20><21>All
+        available rules are listed and explained in the <2>online
+        documentation</2>. This documentation is auto-generated from the public
+        rule files and populated by the current simulation.</21><22>How to
+        Reproduce a Simulator’s Calculation?</22><23>To replicate the
+        calculation of a “mon-entreprise” simulator in the library, follow these
+        steps: </23><24><0></0><1><0>Copy the custom code snippet and integrate
+        it into your application</0><1></1>You’ll find it by clicking on the
+        “Reuse this calculation” section.<3></3></1><2><0>(optional) Modify the
+        scenario values to configure the calculation according to your
+        needs</0><1> &lt;/1> Feel free to modify the scenario values. They
+        accept any <4>Publicodes expression or object</4>.</2></24><25>Here is
+        the result of the calculation using the example cited
+        above:</25><26><0></0></26><27><0>The scenario contains your simulation
+        data (manager with a gross salary of €3,400), as well as data related to
+        the simulator’s settings.</0></27><28></28><29>Creating Economic Charts
+        <1></1></29><30>It is also possible to use the library for economic or
+        political analysis calculations. Here, we plot the cost of labor and net
+        pay as a function of gross pay.</30><31>We can see the progressive
+        nature of total pay, which is a smaller percentage for someone earning
+        the minimum wage than for someone with a high income. In other words,
+        high earners pay a portion of the social security contributions for
+        low-wage earners.</31><32><0></0></32>"
     choice:
       github:
         body: All our tools are open and publicly developed on GitHub.
