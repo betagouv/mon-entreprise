@@ -164,10 +164,10 @@ export default function SimulateursEtAssistants() {
 						{...simulators['location-de-logement-meublé']}
 						role="listitem"
 					/>
-					<SimulateurCard
+					{/* <SimulateurCard
 						{...simulators['cotisation-maladie-frontalier-suisse']}
 						role="listitem"
-					/>
+					/> */}
 
 					<SimulateurCard
 						{...simulators['coût-création-entreprise']}

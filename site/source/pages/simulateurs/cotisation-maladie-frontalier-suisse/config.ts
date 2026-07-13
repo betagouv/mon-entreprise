@@ -37,5 +37,6 @@ export function cotisationMaladieFrontalierSuisseConfig({
 		},
 		path: sitePaths.simulateurs['cotisation-maladie-frontalier-suisse'],
 		component: CotisationMaladieFrontalierSuisse,
+		hidden: true,
 	} as const)
 }
