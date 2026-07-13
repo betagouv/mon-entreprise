@@ -1037,50 +1037,91 @@ pages:
       ».<7></7></1></7><8></8><9>Exemple</9><10>Voici un exemple d'utilisation
       des différentes routes, vous pouvez explorer leur code dans le dossier
       <1>example</1></10><11><0></0></11>"
-    bibliothèque: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur
-      votre site ou service très facilement grâce à la bibliothèque JavaScript
-      open-source disponible sur npm.</0></0><1>Comment utiliser cette librairie
-      ?</1><2>Installation</2><3><0>npm install --save publicodes
-      modele-social</0></3><4>Pour lancer vos propres calculs, vous devez
-      installer le paquet <2><0>publicodes</0></2> contenant l'interpréteur
-      publicodes, ainsi que le paquet <6><0>modele-social</0></6>, qui contient
-      les règles des simulateurs mon-entreprise.</4><5><0>Qu'est-ce que
-      publicodes ?</0><1>Publicodes est un langage déclaratif développé par
-      beta.gouv.fr et l'Urssaf pour encoder des algorithmes d'intérêt public.
-      C'est le langage qui propulse tous les calculs des simulateurs de
-      mon-entreprise.</1><2><0>En savoir plus sur
-      publicodes</0></2></5><6>Lancer le calcul</6><7>Pour lancer le calcul, il
-      vous faut paramétrer le moteur avec les règles du paquet
-      <1>modele-social</1> et à appeler la fonction <4>evaluate</4> avec la
-      règle dont vous souhaitez calculer la valeur. Voici un exemple pour le
-      calcul brut / net</7><8><0></0></8><9>Paramétrer le calcul</9><10>Vous
-      l'aurez constaté dans l'exemple précédent, la recette d'un calcul est
-      simple : des variables d'entrée (le salaire brut), une ou plusieurs
-      variables de sorties (le salaire net).</10><11>Le calcul est cependant
-      paramétrable avec toutes les possibilités permises dans les simulateurs de
-      mon-entreprise !</11><12>Toutes les règles disponibles sont listées et
-      expliquées sur la <2>documentation en ligne</2>. Cette documentation est
-      auto-générée depuis les fichiers de règles publicodes, et alimentée par la
-      simulation en cours.</12><13>Comment reproduire un calcul d'un simulateur
-      ?</13><14>Pour répliquer un calcul d'un simulateur de mon-entreprise dans
-      la bibliothèque, voici la marche à suivre : </14><15><0></0><1><0>Copiez
-      l'extrait de code personnalisé et intégrez-le dans votre
-      application</0><1></1>Vous le trouverez en cliquant sur la section «
-      Réutiliser ce calcul ».<3></3></1><2><0>(facultatif) Modifiez les valeurs
-      de la situation pour paramétrer le calcul selon vos besoins</0><1></1>
-      Vous pouvez modifier sans hésiter les valeurs de la situation. Ces
-      dernières acceptent n'importe quelle <4>expression ou objet
-      publicodes.</4></2></15><16>Voici ce que donne le calcul avec l'exemple
-      cité ci-dessus :</16><17><0></0></17><18><0>La situation contient les
-      données de votre simulation (cadre avec salaire à 3400 € brut), mais
-      également les données relatives au paramétrage du
-      simulateur.</0></18><19></19><20>Faire des graphiques économiques
-      <1></1></20><21>Il est aussi possible d'utiliser la bibliothèque pour des
-      calculs d'analyse économique ou politique. Ici, on trace le prix du
-      travail et le salaire net en fonction du brut.</21><22>On peut constater
-      la progressivité du salaire total, qui est en pourcent plus faible pour un
-      SMIC que pour un haut revenu. Autrement dit, les hauts salaires paient une
-      partie des cotisations sociales des bas salaires.</22><23><0></0></23>"
+    bibliothèque:
+      aria-label:
+        documentation: documentation en ligne, nouvelle fenêtre
+        modele-as: modele-as, voir la page npm, nouvelle fenêtre
+        modele-social: modele-social, voir la page npm, nouvelle fenêtre
+        modele-ti: modele-ti, voir la page npm, nouvelle fenêtre
+        publicodes:
+          expression: expression ou objet publicodes, en savoir plus, nouvelle fenêtre
+          npm: publicodes, voir la page npm, nouvelle fenêtre
+          site: En savoir plus sur publicodes, nouvelle fenêtre
+      exemples:
+        association: "Exemple d’intégration sur codesandbox.io : association avec
+          d’autres librairies"
+        lancement: "Exemple d’intégration sur codesandbox.io : lancement d’un calcul"
+        paramétrage: "Exemple d’intégration sur codesandbox.io : paramétrage du calcul"
+      texte: "<0><0>Vous pouvez réutiliser les calculs de mon-entreprise sur votre
+        site ou service très facilement grâce aux bibliothèques JavaScript open
+        source disponibles sur npm.</0></0><1>Quelle librairie choisir
+        ?</1><2>modele-as</2><3>Cette librairie contient les règles et calculs
+        pour les dirigeants <2>assimilés salariés</2> et dirigeantes assimilées
+        salariées, comme les dirigeantes et dirigeants de SAS et de SASU. C’est
+        la librairie utilisée dans le <5>simulateur de revenus pour dirigeant de
+        SAS(U)</5>.</3><4>modele-ti</4><5>Cette librairie contient les règles et
+        calculs pour les <2>travailleurs indépendants</2> et travailleuses
+        indépendantes, comme les dirigeantes et dirigeants d'entreprise
+        individuelle (hors auto-entreprise) et d’EURL et les professions
+        libérales. C’est la librairie utilisée dans le <5>simulateur de revenus
+        pour indépendant</5> et ses variantes.</5><6>modele-social</6><7>C’est
+        la librairie historique, qui contient encore les règles pour les
+        salariées/salariés et employeurs/employeuses (dont Lodeom), les
+        auto-entrepreneurs/auto-entrepreneuses, les bénéficiaires de dividendes,
+        le calcul de l’impôt sur les sociétés et les coûts de création d’une
+        entreprise. Elle est utilisée dans les autres simulateurs et assistants
+        de mon-entreprise que ceux pour SAS(U) et travailleurs
+        indépendants.</7><8>Attention, bien qu’elles soient toujours présentes,
+        les règles de cette librairie qui concernent les assimilés salariés et
+        les travailleurs indépendants ne sont plus maintenues.</8><9>Comment
+        utiliser ces librairies ?</9><10>Installation</10><11><0>npm install
+        --save publicodes modele-xx</0></11><12>Remplacez <1>modele-xx</1> par
+        <3>modele-as</3>,<5>modele-ti</5> ou <7>modele-social</7> selon les
+        calculs que vous souhaitez effectuer.</12><13>Pour lancer vos propres
+        calculs, vous devez installer le paquet <2><0>publicodes</0></2>
+        contenant l'interpréteur publicodes, ainsi que le paquet de votre choix
+        <6><0>modele-as</0></6>, <9><0>modele-ti</0></9> ou
+        <13><0>modele-social</0></13>, qui contiennent les règles des
+        simulateurs de mon-entreprise.</13><14><0>Qu’est-ce que publicodes
+        ?</0><1>Publicodes est un langage déclaratif développé par beta.gouv.fr
+        et l’Urssaf pour encoder des algorithmes d'intérêt public. C’est le
+        langage qui propulse les calculs de la plupart des simulateurs de
+        mon-entreprise.</1><2><0>En savoir plus sur
+        publicodes</0></2></14><15>Utilisation</15><16>Pour lancer le calcul, il
+        vous faut paramétrer le moteur avec les règles du paquet
+        <1>modele-social</1> et à appeler la fonction <4>evaluate</4> avec la
+        règle dont vous souhaitez calculer la valeur. Voici un exemple pour le
+        calcul brut / net avec le paquet <7>modele-social</7>
+        :</16><17><0></0></17><18>Paramétrer le calcul</18><19>Vous l'aurez
+        constaté dans l'exemple précédent, la recette d'un calcul est simple :
+        des variables d'entrée (le salaire brut), une ou plusieurs variables de
+        sorties (le salaire net).</19><20>Le calcul est cependant paramétrable
+        avec toutes les possibilités permises dans les simulateurs de
+        mon-entreprise !</20><21>Toutes les règles disponibles sont listées et
+        expliquées sur la <2>documentation en ligne</2>. Cette documentation est
+        auto-générée depuis les fichiers de règles publicodes, et alimentée par
+        la simulation en cours.</21><22>Comment reproduire le calcul d’un
+        simulateur ?</22><23>Pour répliquer le calcul d’un simulateur de
+        mon-entreprise dans la bibliothèque, voici la marche à suivre :
+        </23><24><0></0><1><0>Copiez l'extrait de code personnalisé et
+        intégrez-le dans votre application</0><1></1>Vous le trouverez en
+        cliquant sur la section « Réutiliser ce calcul
+        ».<3></3></1><2><0>(facultatif) Modifiez les valeurs de la situation
+        pour paramétrer le calcul selon vos besoins</0><1></1> Vous pouvez
+        modifier sans hésiter les valeurs de la situation. Ces dernières
+        acceptent n'importe quelle <4>expression ou objet
+        publicodes</4>.</2></24><25>Voici ce que donne le calcul avec l'exemple
+        cité ci-dessus :</25><26><0></0></26><27><0>La situation contient les
+        données de votre simulation (cadre avec salaire à 3400 € brut), mais
+        également les données relatives au paramétrage du
+        simulateur.</0></27><28></28><29>Faire des graphiques économiques
+        <1></1></29><30>Il est aussi possible d'utiliser la bibliothèque pour
+        des calculs d'analyse économique ou politique. Ici, on trace le prix du
+        travail et le salaire net en fonction du brut.</30><31>On peut constater
+        la progressivité du salaire total, qui est en pourcent plus faible pour
+        un SMIC que pour un haut revenu. Autrement dit, les hauts salaires
+        paient une partie des cotisations sociales des bas
+        salaires.</31><32><0></0></32>"
     choice:
       github:
         body: Tous nos outils sont ouverts et développés publiquement sur GitHub.
