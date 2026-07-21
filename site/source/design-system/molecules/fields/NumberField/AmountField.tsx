@@ -1,6 +1,5 @@
 import { type NumberFieldProps as RANumberFieldProps } from 'react-aria-components'
 
-import { type Montant } from '@/domaine/Montant'
 import { type UnitéMonétaire } from '@/domaine/Unites'
 
 import { InputSuggestionsRecord } from '../../../suggestions'
@@ -26,9 +25,7 @@ export type AmountFieldProps = Pick<
 	placeholder?: string
 	suggestions?: InputSuggestionsRecord<number>
 	unit: UnitéMonétaire
-	value: Montant<UnitéMonétaire> | undefined
 	withCents?: boolean
-	onSubmit?: (source?: string) => void
 }
 
 export function AmountField({
