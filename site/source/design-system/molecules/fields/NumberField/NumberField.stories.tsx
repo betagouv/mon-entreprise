@@ -31,6 +31,10 @@ export const WithDisplayedUnit: Story = {
 export const WithPlaceholder: Story = {
 	args: {
 		label: "Nombre d'enfants de 0 à 17 ans",
+		formatOptions: {
+			minimumFractionDigits: 0,
+			maximumFractionDigits: 0,
+		},
 		placeholder: 'par exemple : 2',
 	},
 }

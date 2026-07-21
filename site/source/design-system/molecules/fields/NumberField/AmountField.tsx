@@ -1,7 +1,7 @@
 import { type NumberFieldProps as RANumberFieldProps } from 'react-aria-components'
 
 import { type Montant } from '@/domaine/Montant'
-import { type UnitéMonétaire } from '@/domaine/Unités'
+import { type UnitéMonétaire } from '@/domaine/Unites'
 
 import { InputSuggestionsRecord } from '../../../suggestions'
 import { NumberField } from './NumberField'
