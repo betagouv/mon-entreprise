@@ -4,13 +4,17 @@ import type { JSX } from 'react'
 
 import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
+import { type OpenGraph } from '@/components/utils/Meta'
 import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
 /**
- * Configuration d'une page de simulateur ou d'assistant
+ * Métadonnées d'une page de simulateur ou d'assistant : uniquement des
+ * données pures (textes, chemins, drapeaux), sans composant React ni
+ * ressource de la page. C'est la seule partie agrégée pour les besoins
+ * transverses : plan du site, recherche, cards, statistiques, Algolia.
  */
-export interface PageConfig {
+export interface PageMetadata {
 	/** Identifiant unique de la page
 	 */
 	id: string
@@ -39,8 +43,6 @@ export interface PageConfig {
 	/** Titre H1 de la page du simulateur */
 	title: string
 
-	/** Configuration du tracking */
-
 	/**
 	 * Les informations liées au tracking, utilisées pour les statistiques.
 	 *
@@ -61,18 +63,12 @@ export interface PageConfig {
 	 */
 	tracking: TrackingChapters
 
-	/** Métadonnées de la page */
+	/** Métadonnées textuelles de la page pour les moteurs de recherche */
 	meta: {
 		/** Titre de la page pour les moteurs de recherche */
 		title: string
 		/** Description de la page pour les moteurs de recherche */
 		description: string
-		/** Description Open Graph de la page */
-		ogDescription?: string
-		/** Titre Open Graph de la page */
-		ogTitle?: string
-		/** Image Open Graph de la page */
-		ogImage?: string
 	}
 
 	/** Indique si le simulateur est privé
@@ -95,9 +91,36 @@ export interface PageConfig {
 	tooltip?: string
 
 	/**
+	 * Indique les catégories d'entreprise concernées par le simulateur.
+	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
+	 */
+	codesCatégorieJuridique?: string[]
+}
+
+/**
+ * Configuration d'une page de simulateur ou d'assistant : ses métadonnées,
+ * plus tout ce qui n'appartient qu'à la page (composants React, image
+ * Open Graph, configuration de simulation…). À n'importer que depuis la
+ * page elle-même ou le routeur — jamais depuis un agrégat transverse.
+ */
+export interface PageConfig extends PageMetadata {
+	/** Balises Open Graph de la page (partage sur les réseaux sociaux) */
+	openGraph?: OpenGraph
+
+	/**
 	 * Avertissement propre au simulateur à ajouter dans l’encart générique
 	 */
 	warning?: () => JSX.Element
+
+	/**
+	 * Composant React de la page
+	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
+	 * example: `component: MyComponent,`
+	 */
+	component?: () => JSX.Element
+
+	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
+	seoExplanations?: () => JSX.Element
 
 	/** ID des pages de simulateur ou assistant à faire apparaître dans la
 	 * section « Ressources utiles » en bas de page.
@@ -123,12 +146,6 @@ export interface PageConfig {
 	autoloadLastSimulation?: boolean
 
 	/**
-	 * Indique les catégories d'entreprise concernées par le simulateur.
-	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
-	 */
-	codesCatégorieJuridique?: string[]
-
-	/**
 	 * Indique si la date du simulateur doit être masquée ou pas.
 	 */
 	hideDate?: boolean
@@ -137,16 +154,6 @@ export interface PageConfig {
 	 * Indique si le formulaire de retour doit être désactivé en iframe
 	 */
 	disableIframeFeedback?: boolean
-
-	/**
-	 * Composant React de la page
-	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
-	 * example: `component: MyComponent,`
-	 */
-	component?: () => JSX.Element
-
-	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
-	seoExplanations?: () => JSX.Element
 
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 }
