@@ -38,7 +38,7 @@ export default function Landing() {
 					'landing.description',
 					"L'assistant officiel des entrepreneurs"
 				)}
-				ogImage="/logo-share.png"
+				openGraph={{ image: '/logo-share.png' }}
 			/>
 
 			<Container>

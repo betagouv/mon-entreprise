@@ -1,12 +1,16 @@
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
+export type OpenGraph = {
+	title?: string
+	description?: string
+	image?: string
+}
+
 type PropType = {
 	title: string
 	description: string
-	ogDescription?: string
-	ogTitle?: string
-	ogImage?: string
+	openGraph?: OpenGraph
 }
 
 /**
@@ -15,13 +19,7 @@ type PropType = {
  * example : `<Helmet title='...' />` or
  * `<Helmet> <title>...</title> <meta name="description" content="..." /> </Helmet>`
  */
-export default function Meta({
-	title,
-	description,
-	ogDescription,
-	ogTitle,
-	ogImage,
-}: PropType) {
+export default function Meta({ title, description, openGraph }: PropType) {
 	const { t, i18n } = useTranslation()
 
 	return (
@@ -44,7 +42,7 @@ export default function Meta({
 			<meta
 				property="og:title"
 				content={
-					ogTitle ??
+					openGraph?.title ??
 					title ??
 					t(
 						'site.meta.og:title',
@@ -55,7 +53,7 @@ export default function Meta({
 			<meta
 				property="og:description"
 				content={
-					ogDescription ??
+					openGraph?.description ??
 					description ??
 					t(
 						'site.meta.og:description',
@@ -66,7 +64,7 @@ export default function Meta({
 			<meta
 				property="og:image"
 				content={
-					ogImage ??
+					openGraph?.image ??
 					(i18n.language === 'fr'
 						? '/assets/images/logo-monentreprise.svg'
 						: '/assets/images/logo-mycompany-share.svg')

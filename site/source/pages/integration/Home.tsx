@@ -27,7 +27,7 @@ export default function Options() {
 					'intégration.description',
 					'Outils pour les développeurs'
 				)}
-				ogImage={illustration}
+				openGraph={{ image: illustration }}
 			/>
 			<PageHeader
 				picture={illustration}

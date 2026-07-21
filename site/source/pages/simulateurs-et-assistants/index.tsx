@@ -37,7 +37,7 @@ export default function SimulateursEtAssistants() {
 					'pages.simulateurs.accueil.description',
 					'Tous les simulateurs et assistants sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 				)}
-				ogImage={illustration}
+				openGraph={{ image: illustration }}
 			/>
 			<PageHeader titre={titre} picture={illustration}>
 				<Intro>
