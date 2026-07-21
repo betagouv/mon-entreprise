@@ -65,9 +65,11 @@ export default function SimulateurPageLayout({
 				<Meta
 					title={metadata.title}
 					description={metadata.description}
-					ogTitle={metadata.ogTitle}
-					ogDescription={metadata.ogDescription}
-					ogImage={metadata.ogImage}
+					openGraph={{
+						title: metadata.ogTitle,
+						description: metadata.ogDescription,
+						image: metadata.ogImage,
+					}}
 				/>
 			)}
 
