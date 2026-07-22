@@ -3,39 +3,12 @@ import { SimulatorsDataParams } from '../_configs/types'
 import { configExpertComptable } from '../profession-libérale/simulationConfig'
 import { AvertissementExpertComptable } from './AvertissementExpertComptable'
 import { ExpertComptable } from './ExpertComptable'
+import { expertComptableMetadata } from './metadata'
 
-export function expertComptableConfig({ t, sitePaths }: SimulatorsDataParams) {
+export function expertComptableConfig(params: SimulatorsDataParams) {
 	return config({
-		id: 'expert-comptable',
-		tracking: {
-			chapter1: 'simulateurs',
-			chapter2: 'profession_liberale',
-			chapter3: 'expert_comptable',
-		},
-		icône: '🧮',
-		iframePath: 'expert-comptable',
-		pathId: 'simulateurs.profession-libérale.expert-comptable',
-		shortName: t(
-			'pages.simulateurs.expert-comptable.shortname',
-			'Expert-Comptable'
-		),
-		title: t(
-			'pages.simulateurs.expert-comptable.title',
-			'Simulateur de revenus pour expert comptable et commissaire aux comptes en libéral'
-		),
-		meta: {
-			title: t(
-				'pages.simulateurs.expert-comptable.meta.title',
-				'Expert-comptable : simulateur de revenus'
-			),
-			description: t(
-				'pages.simulateurs.expert-comptable.meta.description',
-				'Calcul du revenu net après cotisations à partir du total des recettes.'
-			),
-		},
-		path: sitePaths.simulateurs['profession-libérale']['expert-comptable'],
+		...expertComptableMetadata(params),
 		simulation: configExpertComptable,
-		codesCatégorieJuridique: ['1000', '5410', '5499'],
 		component: ExpertComptable,
 		conseillersEntreprisesVariant: 'professions_liberales',
 		warning: AvertissementExpertComptable,
