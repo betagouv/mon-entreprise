@@ -5,7 +5,7 @@ import rulesModèleSocial from 'modele-social'
 import rulesModèleTI from 'modele-ti'
 import Engine from 'publicodes'
 
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 import {
 	formatRulesToAlgolia,
@@ -15,10 +15,7 @@ import {
 
 const path = '../../source/public/simulation-data.json'
 // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const simuData = (await import(path)).default as unknown as Omit<
-	SimulatorData,
-	'component'
->
+const simuData = (await import(path)).default as unknown as SimulatorsMetadata
 
 const parsedRulesModèleSocial = new Engine(rulesModèleSocial).getParsedRules()
 const parsedRulesModèleAS = new Engine(rulesModèleAS).getParsedRules()

@@ -1,9 +1,9 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import getMetadataSrc, {
+import getConfigsSrc, {
 	SimulatorData,
-} from '@/pages/simulateurs-et-assistants/metadata-src'
+} from '@/pages/simulateurs-et-assistants/configs-src'
 import { useSitePaths } from '@/sitePaths'
 
 /**
@@ -15,7 +15,7 @@ export default function useSimulatorsData(): SimulatorData {
 
 	return useMemo(
 		() =>
-			getMetadataSrc({
+			getConfigsSrc({
 				t,
 				sitePaths: absoluteSitePaths,
 				language: i18n.language,

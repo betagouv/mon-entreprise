@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { AvailableLang, parseLangue } from '@/locales/langue'
-import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/configs-src'
 
 const rawSitePathsFr = {
 	index: '',
