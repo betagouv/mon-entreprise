@@ -1,7 +1,7 @@
 import { ParsedRules } from 'publicodes'
 
 import { NomModèle } from '@/domaine/SimulationConfig'
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 export const formatRulesToAlgolia = (
 	rules: ParsedRules<string>,
@@ -39,7 +39,7 @@ export const formatRulesToAlgolia = (
 		.filter(<T>(value: T | false): value is T => Boolean(value))
 
 export const formatSimulationDataToAlgolia = (
-	simulations: Omit<SimulatorData, 'component'>
+	simulations: SimulatorsMetadata
 ) =>
 	Object.entries(simulations)
 		.filter(

@@ -1,4 +1,4 @@
-import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/configs-src'
 import { Merge, ToOptional } from '@/types/utils'
 
 import useSimulatorsData, { SimulateurId } from './useSimulatorsData'

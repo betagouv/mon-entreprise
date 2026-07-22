@@ -3,7 +3,7 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/PianoAnalytics'
 import { H1, Li, Link, Ul } from '@/design-system'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../components/utils/Meta'
@@ -34,7 +34,7 @@ export default function Plan() {
 
 export const PlanContent = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	const simulatorData = useSimulatorsData()
+	const simulatorData = useSimulatorsMetadata()
 
 	return (
 		<>

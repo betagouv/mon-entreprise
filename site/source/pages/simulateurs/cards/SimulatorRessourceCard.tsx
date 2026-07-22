@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Article, Emoji } from '@/design-system'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorData } from '@/pages/simulateurs-et-assistants/configs-src'
 
 type SimulatorRessourceCardProps = {
 	simulatorId: keyof SimulatorData

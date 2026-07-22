@@ -8,7 +8,7 @@ import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useNavigation } from '@/lib/navigation'
-import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/configs-src'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
 import { MainIndicators } from './_components/LastMonthIndicators'
