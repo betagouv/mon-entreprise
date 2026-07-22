@@ -49,6 +49,7 @@ export default function SimulateurPageLayout({
 		beta,
 		tooltip,
 		private: privateIframe,
+		openGraph,
 		seoExplanations: SeoExplanations,
 	} = simulateurConfig
 
@@ -65,11 +66,7 @@ export default function SimulateurPageLayout({
 				<Meta
 					title={metadata.title}
 					description={metadata.description}
-					openGraph={{
-						title: metadata.ogTitle,
-						description: metadata.ogDescription,
-						image: metadata.ogImage,
-					}}
+					openGraph={openGraph}
 				/>
 			)}
 
