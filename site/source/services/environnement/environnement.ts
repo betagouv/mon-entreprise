@@ -2,23 +2,22 @@ import { EnvironnementDéployé } from '@/domaine/EnvironnementDeploye'
 
 const sousVite = typeof import.meta.env !== 'undefined'
 
-const déployé: EnvironnementDéployé =
-	typeof ENVIRONNEMENT !== 'undefined'
+const déployé: EnvironnementDéployé = sousVite
+	? typeof ENVIRONNEMENT !== 'undefined'
 		? ENVIRONNEMENT
-		: (process.env.NEXT_PUBLIC_ENVIRONNEMENT as
-				| EnvironnementDéployé
-				| undefined) ?? 'développement'
+		: 'développement'
+	: (process.env.NEXT_PUBLIC_ENVIRONNEMENT as
+			| EnvironnementDéployé
+			| undefined) ?? 'développement'
 
 export const environnement = {
 	déployé,
-	branche:
-		typeof BRANCH_NAME !== 'undefined'
-			? BRANCH_NAME
-			: process.env.NEXT_PUBLIC_BRANCH_NAME ?? '',
-	sentryRelease:
-		typeof SENTRY_RELEASE_NAME !== 'undefined'
-			? SENTRY_RELEASE_NAME
-			: process.env.NEXT_PUBLIC_SENTRY_RELEASE ?? '',
+	branche: sousVite
+		? (typeof BRANCH_NAME !== 'undefined' && BRANCH_NAME) || ''
+		: process.env.NEXT_PUBLIC_BRANCH_NAME ?? '',
+	sentryRelease: sousVite
+		? (typeof SENTRY_RELEASE_NAME !== 'undefined' && SENTRY_RELEASE_NAME) || ''
+		: process.env.NEXT_PUBLIC_SENTRY_RELEASE ?? '',
 	algolia: {
 		appId: sousVite
 			? import.meta.env.VITE_ALGOLIA_APP_ID
