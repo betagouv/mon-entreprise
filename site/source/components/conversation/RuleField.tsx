@@ -107,6 +107,7 @@ export function RuleField({
 			<StylingContainer>
 				<YesOrNoToggleGroup
 					legend={labelOrLegend ?? ''}
+					ruleToExplain={dottedName}
 					value={value as 'oui' | 'non' | undefined}
 					onChange={(value) => onChange(value, dottedName)}
 				/>
@@ -156,8 +157,8 @@ const StylingContainer = styled.div`
 	.react-aria-Label {
 		${H3Style}
 
-		margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xxs}`};
-}
+		margin: ${({ theme }) => `${theme.spacings.sm} 0 0`};
+	}
 `
 
 const StyledFieldset = styled.fieldset`

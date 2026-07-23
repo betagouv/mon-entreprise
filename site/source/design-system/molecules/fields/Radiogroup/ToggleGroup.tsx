@@ -6,6 +6,9 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+
 import { fieldContainerStyles, radioFieldsSharedStyles } from '../fieldsStyles'
 
 export type ToggleOption = {
@@ -19,12 +22,14 @@ type ToggleGroupProps = Pick<
 > & {
 	legend: string
 	options: ToggleOption[]
+	ruleToExplain?: DottedName
 }
 
 export function ToggleGroup({
 	defaultValue = null,
 	legend,
 	options,
+	ruleToExplain,
 	value,
 	onChange,
 }: ToggleGroupProps) {
@@ -35,7 +40,11 @@ export function ToggleGroup({
 			onChange={onChange}
 			orientation="horizontal"
 		>
-			<RALabel>{legend}</RALabel>
+			<StyledLegendAndExplicableRuleContainer>
+				<RALabel>{legend}</RALabel>
+
+				{ruleToExplain && <ExplicableRule dottedName={ruleToExplain} />}
+			</StyledLegendAndExplicableRuleContainer>
 
 			<StyledGroupContainer>
 				{options.map((option) => (
@@ -52,6 +61,12 @@ const StyledRARadioGroup = styled(RARadioGroup)`
 	${fieldContainerStyles}
 
 	gap: ${({ theme }) => theme.spacings.xs};
+`
+
+const StyledLegendAndExplicableRuleContainer = styled.div`
+	display: flex;
+	align-items: baseline;
+	gap: ${({ theme }) => theme.spacings.xxs};
 `
 
 const StyledGroupContainer = styled.div`
