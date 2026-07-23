@@ -83,7 +83,7 @@ export const fieldInputStyles = css`
 	}
 
 	@media not print {
-		color: ${({ theme }) =>
+		${({ theme }) =>
 			theme.darkMode
 				? `color: ${theme.colors.extended.grey[100]}`
 				: 'color: inherit'};
@@ -132,7 +132,9 @@ export const radioFieldsSharedStyles = css`
 
 	&::before {
 		padding: ${({ theme }) => theme.spacings.xxs};
-		border: ${({ theme }) => theme.spacings.sm} solid white;
+		border: ${({ theme }) => theme.spacings.sm} solid;
+		border-color: ${({ theme }) =>
+			theme.darkMode ? theme.colors.extended.grey[700] : 'white'};
 
 		background: transparent;
 	}
@@ -144,8 +146,9 @@ export const radioFieldsSharedStyles = css`
 
 		width: ${({ theme }) => theme.spacings.md};
 		height: ${({ theme }) => theme.spacings.md};
-		border: ${({ theme }) => theme.spacings.xxxs} solid
-			${({ theme }) => theme.colors.extended.grey[600]};
+		border: ${({ theme }) => theme.spacings.xxxs} solid;
+		border-color: ${({ theme }) =>
+			theme.darkMode ? 'white' : theme.colors.extended.grey[600]};
 	}
 
 	&[data-focused='true'] {
@@ -154,7 +157,13 @@ export const radioFieldsSharedStyles = css`
 		}
 	}
 
+	&[data-selected='true']::before {
+		background: ${({ theme }) =>
+			theme.darkMode ? 'white' : theme.colors.bases.primary[700]};
+	}
+
 	&[data-selected='true']::after {
-		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
+		border-color: ${({ theme }) =>
+			theme.darkMode ? 'white' : theme.colors.bases.primary[700]};
 	}
 `

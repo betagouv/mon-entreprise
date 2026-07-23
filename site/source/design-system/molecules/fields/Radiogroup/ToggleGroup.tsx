@@ -98,19 +98,20 @@ const StyledRadioContainer = styled.div`
 const StyledRARadio = styled(RARadio)`
 	${radioFieldsSharedStyles}
 
-	&:hover {
-		background: ${({ theme }) => theme.colors.bases.primary[200]};
-	}
-
 	&::before {
 		transition: none;
 	}
 
-	&:hover::before {
-		border-color: ${({ theme }) => theme.colors.bases.primary[200]};
+	&:hover {
+		background: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[600]
+				: theme.colors.bases.primary[200]};
 	}
 
-	&[data-selected='true']::before {
-		background: ${({ theme }) => theme.colors.bases.primary[700]};
-	}
+	&:hover::before {
+		border-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[600]
+				: theme.colors.bases.primary[200]};
 `
