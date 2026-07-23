@@ -2,24 +2,25 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { Message, SmallBody, Strong } from '@/design-system'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
-import { PageConfig } from '@/pages/simulateurs/_configs/types'
+import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 
 export default function WrongSimulateurWarning() {
 	const company = useSelector(companySituationSelector)
-	const simulatorData = useCurrentSimulatorData().currentSimulatorData as
-		| PageConfig
-		| undefined
+	const simulatorData = useCurrentSimulatorMetadata().currentSimulatorMetadata
 
 	if (!company['entreprise . catégorie juridique']) {
 		return null
 	}
 
+	const codesCatégorieJuridique = simulatorData?.codesCatégorieJuridique as
+		| readonly string[]
+		| undefined
+
 	const isWrongSimulateur =
 		simulatorData &&
-		simulatorData.codesCatégorieJuridique?.length &&
-		simulatorData.codesCatégorieJuridique.indexOf(
+		codesCatégorieJuridique?.length &&
+		codesCatégorieJuridique.indexOf(
 			company['entreprise . code catégorie juridique'] as string
 		) < 0
 

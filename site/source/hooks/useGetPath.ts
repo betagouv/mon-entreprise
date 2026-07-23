@@ -1,5 +1,5 @@
 import { useSitePaths } from '../sitePaths'
-import { useCurrentSimulatorData } from './useCurrentSimulatorData'
+import { useCurrentSimulatorMetadata } from './useCurrentSimulatorMetadata'
 import { useIsEmbedded } from './useIsEmbedded'
 
 type NestedKeyOf<ObjectType extends object> = {
@@ -41,10 +41,10 @@ const trouveLeChemin = (
 export const useGetPath = () => {
 	const { relativeSitePaths, absoluteSitePaths } = useSitePaths()
 	const isEmbedded = useIsEmbedded()
-	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { currentSimulatorMetadata } = useCurrentSimulatorMetadata()
 
 	return (sitePath: NestedKeyOf<typeof relativeSitePaths>): string => {
-		if (!currentSimulatorData) {
+		if (!currentSimulatorMetadata) {
 			throw new Error(
 				'useGetPath doit être utilisé dans un contexte de simulateur/assistant'
 			)
@@ -54,13 +54,13 @@ export const useGetPath = () => {
 
 		const cheminDeBaseDeLAssistant = trouveLeChemin(
 			absoluteSitePaths,
-			currentSimulatorData.pathId.split('.')
+			currentSimulatorMetadata.pathId.split('.')
 		)
 
-		return isEmbedded && currentSimulatorData.iframePath
+		return isEmbedded && currentSimulatorMetadata.iframePath
 			? cheminComplet.replace(
 					cheminDeBaseDeLAssistant,
-					`/iframes/${currentSimulatorData.iframePath}`
+					`/iframes/${currentSimulatorMetadata.iframePath}`
 			  )
 			: cheminComplet
 	}

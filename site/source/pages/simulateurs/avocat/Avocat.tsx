@@ -13,6 +13,7 @@ export function Avocat() {
 			metadata={metadata}
 			simulation={configAvocat}
 			avertissement={<AvertissementAvocat />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

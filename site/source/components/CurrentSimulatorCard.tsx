@@ -3,8 +3,8 @@ import { Trans } from 'react-i18next'
 
 import { Body, Emoji, Grid, Intro, Message } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/configs-src'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { SimulateurCard } from './SimulateurCard'
@@ -15,7 +15,7 @@ export function CurrentSimulatorCard({
 	fromGérer?: boolean
 }) {
 	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
-	const simulateurs = useSimulatorsData()
+	const simulateurs = useSimulatorsMetadata()
 
 	return dirigeantSimulateur ? (
 		<SimulateurCard
@@ -50,7 +50,7 @@ export function CurrentSimulatorCard({
 
 function infereSimulateurRevenuFromSituation(
 	engine: Engine<DottedName>
-): keyof SimulatorData | null {
+): keyof SimulatorsMetadata | null {
 	if (
 		engine.evaluate('entreprise . catégorie juridique . EI . auto-entrepreneur')
 			.nodeValue

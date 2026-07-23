@@ -1,8 +1,6 @@
 import type { TFunction } from 'i18next'
 import { PublicodesExpression } from 'publicodes'
-import type { JSX } from 'react'
 
-import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
@@ -93,23 +91,6 @@ export interface PageMetadata {
 	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
 	 */
 	codesCatégorieJuridique?: string[]
-}
-
-/**
- * Entrée de la table de routage des simulateurs et assistants :
- * les métadonnées de la page, son composant, et le peu de champs
- * que le routeur ou l'iframe consomment encore.
- */
-export interface PageConfig extends PageMetadata {
-	/** Composant React de la page */
-	component?: () => JSX.Element
-
-	/**
-	 * Indique si le formulaire de retour doit être désactivé en iframe
-	 */
-	disableIframeFeedback?: boolean
-
-	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 }
 
 export type ConditionalExternalLink = ExternalLink & {

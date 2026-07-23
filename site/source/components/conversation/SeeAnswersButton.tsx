@@ -8,7 +8,7 @@ import {
 	FocusStyle,
 	PopoverWithTrigger,
 } from '@/design-system'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 
 import { AnswersList } from './AnswersList'
 
@@ -19,7 +19,7 @@ export default function SeeAnswersButton({
 	children?: React.ReactNode
 	label?: React.ReactNode
 }) {
-	const { key: simulateur } = useCurrentSimulatorData()
+	const { key: simulateur } = useCurrentSimulatorMetadata()
 
 	return (
 		<>

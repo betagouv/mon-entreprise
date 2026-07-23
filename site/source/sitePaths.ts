@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { AvailableLang, parseLangue } from '@/locales/langue'
-import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/configs-src'
+import { SimulatorMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 const rawSitePathsFr = {
 	index: '',
@@ -235,7 +235,7 @@ type UnionToIntersection<T> = (
 	: never
 
 // Union of pathId
-type PathIds = SimulatorDataValues['pathId']
+type PathIds = SimulatorMetadata['pathId']
 
 type RequiredPath = Required<UnionToIntersection<PathToType<PathIds, string>>>
 

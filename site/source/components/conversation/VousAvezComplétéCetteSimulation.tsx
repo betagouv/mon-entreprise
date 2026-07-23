@@ -5,7 +5,7 @@ import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import Notifications from '@/components/Notifications'
 import { SIMULATION_TERMINEE, TrackPage } from '@/components/PianoAnalytics'
 import { Body, Button, Emoji, Grid, H3, Spacing } from '@/design-system'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 
 interface Props {
 	customEndMessages?: React.ReactNode
@@ -16,7 +16,7 @@ export function VousAvezComplétéCetteSimulation({
 	customEndMessages,
 	onPrevious,
 }: Props) {
-	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { currentSimulatorMetadata } = useCurrentSimulatorMetadata()
 
 	const [firstRenderDone, setFirstRenderDone] = useState(false)
 	useEffect(() => setFirstRenderDone(true), [])
@@ -39,7 +39,7 @@ export function VousAvezComplétéCetteSimulation({
 						</Trans>
 					)}
 				</Body>
-				{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
+				{currentSimulatorMetadata?.pathId === 'simulateurs.salarié' && (
 					<>
 						<JeDonneMonAvis />
 						<Spacing md />

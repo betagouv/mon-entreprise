@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { useDispatch } from 'react-redux'
 
+import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
@@ -15,8 +16,10 @@ import { serviceIndépendant } from '@/external-links/serviceIndépendant'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
-import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
+import {
+	MergedSimulatorMetadata,
+	SimulateurId,
+} from '@/hooks/useSimulatorsMetadata'
 import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
 import { ObjectifsIndépendant } from '@/pages/simulateurs/indépendant/components/Objectifs'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -45,6 +48,7 @@ type Props = {
 	avertissement?: ReactNode
 	openGraph?: OpenGraph
 	seoExplanations?: ReactNode
+	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 }
 
 export default function IndépendantBase({
@@ -53,6 +57,7 @@ export default function IndépendantBase({
 	avertissement,
 	openGraph,
 	seoExplanations,
+	conseillersEntreprisesVariant,
 }: Props) {
 	const dispatch = useDispatch()
 	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
@@ -87,6 +92,7 @@ export default function IndépendantBase({
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 					explanations={<ExplicationsIndépendant />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

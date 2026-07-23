@@ -13,6 +13,7 @@ export function Cipav() {
 			metadata={metadata}
 			simulation={cipavSimulationConfig}
 			avertissement={<AvertissementCipav />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

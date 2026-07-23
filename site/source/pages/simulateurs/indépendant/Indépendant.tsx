@@ -7,5 +7,11 @@ import { configIndépendant } from './simulationConfig'
 export function Indépendant() {
 	const metadata = usePageMetadata(indépendantMetadata)
 
-	return <IndépendantBase metadata={metadata} simulation={configIndépendant} />
+	return (
+		<IndépendantBase
+			metadata={metadata}
+			simulation={configIndépendant}
+			conseillersEntreprisesVariant="revenus_par_statut"
+		/>
+	)
 }

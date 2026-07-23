@@ -18,6 +18,7 @@ export const EntrepriseIndividuelle = () => {
 			simulation={configEntrepriseIndividuelle}
 			openGraph={entrepriseIndividuelleOpenGraph(t)}
 			seoExplanations={<SeoExplanations />}
+			conseillersEntreprisesVariant="revenus_par_statut"
 		/>
 	)
 }

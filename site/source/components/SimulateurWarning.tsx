@@ -4,8 +4,10 @@ import { Trans } from 'react-i18next'
 import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Emoji, Strong } from '@/design-system'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
-import { useSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
+import {
+	SimulateurId,
+	useSimulatorMetadata,
+} from '@/hooks/useSimulatorsMetadata'
 
 type SimulateurWarningProps = {
 	simulateur: SimulateurId

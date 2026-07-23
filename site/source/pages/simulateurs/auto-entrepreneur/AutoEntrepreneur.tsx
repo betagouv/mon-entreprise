@@ -14,7 +14,7 @@ import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceAutoEntrepreneur } from '@/external-links/serviceAutoEntrepreneur'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import ExplicationsAutoEntrepreneur from '@/pages/simulateurs/auto-entrepreneur/components/Explications'
 import { SeoExplanations } from '@/pages/simulateurs/auto-entrepreneur/SeoExplanations'
 import { URSSAF } from '@/utils/logos'
@@ -96,6 +96,7 @@ export function AutoEntrepreneur() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					conseillersEntreprisesVariant="micro_entrepreneur"
 					explanations={<ExplicationsAutoEntrepreneur />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

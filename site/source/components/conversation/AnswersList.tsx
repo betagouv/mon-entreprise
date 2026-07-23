@@ -22,7 +22,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { estPasQuestionEnListeNoire } from '@/domaine/estPasQuestionEnListeNoire'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EvaluatedRule } from '@/domaine/publicodes/EvaluatedRule'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import {
 	enregistreLaRéponseÀLaQuestion,
@@ -47,7 +47,7 @@ type AnswersListProps = {
 
 export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 	const { t } = useTranslation()
-	const { currentSimulatorData } = useCurrentSimulatorData()
+	const { currentSimulatorMetadata } = useCurrentSimulatorMetadata()
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
@@ -147,7 +147,7 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 				</>
 			)}
 
-			{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
+			{currentSimulatorMetadata?.pathId === 'simulateurs.salarié' && (
 				<div
 					className="print-hidden"
 					style={{

@@ -40,9 +40,6 @@ import { ImmutableType } from '@/types/utils'
  * Contient les métadonnées (données pures, sans composant React) de tous les
  * simulateurs et assistants : plan du site, recherche, cards, statistiques,
  * script de mise à jour des données pour Algolia…
- *
- * Pour la config complète d'une page (composants inclus), voir configs-src.ts
- * (routeur Vite) ou la config individuelle du simulateur concerné.
  */
 const getMetadataSrc = (params: SimulatorsDataParams) => {
 	return {

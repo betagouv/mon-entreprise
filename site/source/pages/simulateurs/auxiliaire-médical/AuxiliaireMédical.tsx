@@ -13,6 +13,7 @@ export function AuxiliaireMédical() {
 			metadata={metadata}
 			simulation={configAuxiliaire}
 			avertissement={<AvertissementAuxiliaireMédical />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

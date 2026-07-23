@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
+import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import ShareOrSaveSimulationBanner, {
 	CustomSimulationButton,
 } from '@/components/ShareSimulationBanner'
@@ -10,7 +11,6 @@ import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 import { QuestionPublicodes } from '@/hooks/useQuestions'
 import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
@@ -74,6 +74,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
 	simulationEstCommencée?: (situation?: S) => boolean
+	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
@@ -94,13 +95,13 @@ export default function Simulation<S extends Situation = Situation>({
 	customSimulationbutton,
 	entrepriseSelection = true,
 	simulationEstCommencée,
+	conseillersEntreprisesVariant,
 	situation,
 	questions,
 	questionsPublicodes,
 	raccourcisPublicodes,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
-	const { currentSimulatorData } = useCurrentSimulatorData()
 	const laSimulationEstCommencée = simulationEstCommencée
 		? simulationEstCommencée(situation)
 		: isFirstStepCompleted
@@ -166,9 +167,7 @@ export default function Simulation<S extends Situation = Situation>({
 							<ShareOrSaveSimulationBanner
 								share
 								print
-								conseillersEntreprisesVariant={
-									currentSimulatorData?.conseillersEntreprisesVariant
-								}
+								conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 							/>
 							<Spacing lg />
 						</>
