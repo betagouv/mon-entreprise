@@ -64,7 +64,9 @@ export default defineConfig(({ command, mode }) => ({
 		IS_STAGING: environnementDéployé(mode) === 'staging',
 		IS_PRODUCTION: environnementDéployé(mode) === 'production',
 		ENVIRONNEMENT: JSON.stringify(environnementDéployé(mode)),
-		SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)),
+		...(sentryReleaseName(mode) !== undefined
+			? { SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)) }
+			: {}),
 	},
 	plugins: [
 		command === 'build' &&
