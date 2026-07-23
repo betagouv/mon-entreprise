@@ -13,6 +13,7 @@ export function ProfessionLibérale() {
 			metadata={metadata}
 			simulation={configProfessionLibérale}
 			avertissement={<AvertissementProfessionLibérale />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

@@ -2,11 +2,16 @@ import { FeedbackButton } from '@/components/Feedback/FeedbackButton'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
 import { LogoWithLink } from '@/components/Logo'
 import { Spacing } from '@/design-system'
-import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
-export default function IframeFooter() {
-	const { currentSimulatorData } = useCurrentSimulatorData()
+type Props = {
+	avecAvis?: boolean
+	avecLogo?: boolean
+}
 
+export default function IframeFooter({
+	avecAvis = true,
+	avecLogo = false,
+}: Props) {
 	return (
 		<>
 			<div
@@ -15,7 +20,7 @@ export default function IframeFooter() {
 				}}
 			>
 				<Spacing md />
-				{!currentSimulatorData?.disableIframeFeedback && (
+				{avecAvis && (
 					<>
 						<FeedbackButton isEmbedded />
 						<Spacing md />
@@ -23,9 +28,7 @@ export default function IframeFooter() {
 				)}
 				<PrivacyPolicy noUnderline={false} />
 				<Spacing lg />
-				{!currentSimulatorData?.pathId.startsWith('simulateur') && (
-					<LogoWithLink />
-				)}
+				{avecLogo && <LogoWithLink />}
 			</div>
 		</>
 	)

@@ -18,6 +18,7 @@ export function EIRL() {
 			simulation={configEirl}
 			avertissement={<AvertissementEIRL />}
 			openGraph={eirlOpenGraph(t)}
+			conseillersEntreprisesVariant="revenus_par_statut"
 		/>
 	)
 }

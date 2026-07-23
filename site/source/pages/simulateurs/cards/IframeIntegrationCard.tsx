@@ -1,11 +1,11 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Article, Emoji } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useSitePaths } from '@/sitePaths'
 
 type IframeIntegrationCardProps = {
-	simulateur: MergedSimulatorDataValues['id']
+	simulateur: MergedSimulatorMetadata['id']
 }
 
 export function IframeIntegrationCard({

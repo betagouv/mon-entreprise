@@ -13,6 +13,7 @@ export function ExpertComptable() {
 			metadata={metadata}
 			simulation={configExpertComptable}
 			avertissement={<AvertissementExpertComptable />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

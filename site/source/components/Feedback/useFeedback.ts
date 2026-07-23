@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
@@ -12,7 +12,7 @@ export const useFeedback = () => {
 	const { currentPath } = useNavigation()
 	const currentPathDecoded = decodeURI(currentPath)
 	const { absoluteSitePaths } = useSitePaths()
-	const simulators = useSimulatorsData()
+	const simulators = useSimulatorsMetadata()
 
 	useEffect(() => {
 		if (

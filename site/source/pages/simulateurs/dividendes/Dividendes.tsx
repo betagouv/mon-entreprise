@@ -7,7 +7,7 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import { DarkLi, Strong, Ul } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'

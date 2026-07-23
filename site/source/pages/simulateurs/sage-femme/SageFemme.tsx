@@ -13,6 +13,7 @@ export function SageFemme() {
 			metadata={metadata}
 			simulation={configSageFemme}
 			avertissement={<AvertissementSageFemme />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

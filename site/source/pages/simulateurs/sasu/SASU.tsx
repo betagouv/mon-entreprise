@@ -13,7 +13,7 @@ import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
@@ -44,6 +44,7 @@ export function SASUSimulation() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					conseillersEntreprisesVariant="revenus_par_statut"
 					explanations={<ExplicationsSalaire />}
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>

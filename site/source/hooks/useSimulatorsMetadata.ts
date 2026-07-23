@@ -8,7 +8,7 @@ import getMetadataSrc, {
 import { useSitePaths } from '@/sitePaths'
 import { Merge, ToOptional } from '@/types/utils'
 
-import { SimulateurId } from './useSimulatorsData'
+export type SimulateurId = keyof SimulatorsMetadata
 
 export type MergedSimulatorMetadata = ToOptional<Merge<SimulatorMetadata>>
 

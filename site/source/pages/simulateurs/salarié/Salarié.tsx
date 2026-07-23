@@ -11,7 +11,7 @@ import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import ExplicationsSalaire from '@/pages/simulateurs/salarié/components/Explications'
 import { SeoExplanations } from '@/pages/simulateurs/salarié/components/SeoExplanations'
 import { useSitePaths } from '@/sitePaths'
@@ -71,6 +71,7 @@ export default function SalariéSimulation() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					conseillersEntreprisesVariant="recrutement"
 					explanations={<ExplicationsSalaire />}
 					customEndMessages={t(
 						'simulation-end.hiring.text',

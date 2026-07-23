@@ -13,6 +13,7 @@ export function Pharmacien() {
 			metadata={metadata}
 			simulation={configPharmacien}
 			avertissement={<AvertissementPharmacien />}
+			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)
 }

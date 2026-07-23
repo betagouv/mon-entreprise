@@ -6,7 +6,7 @@ import {
 	QuestionPublicodes,
 } from '@/domaine/questions'
 import { Situation } from '@/domaine/Situation'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import { useTracking } from '@/hooks/useTracking'
 
 import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'

@@ -11,8 +11,8 @@ import {
 	SmallBody,
 	SmallCard,
 } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
 import { FromTop } from '../ui/animate'
 import { Highlight } from './Hightlight'
@@ -20,9 +20,9 @@ import { Highlight } from './Hightlight'
 type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
-	path: MergedSimulatorDataValues['path']
-	pathId: MergedSimulatorDataValues['pathId']
-	tooltip?: MergedSimulatorDataValues['tooltip']
+	path: MergedSimulatorMetadata['path']
+	pathId: MergedSimulatorMetadata['pathId']
+	tooltip?: MergedSimulatorMetadata['tooltip']
 }>
 
 type SimulatorHitsProps = {

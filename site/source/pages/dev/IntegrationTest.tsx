@@ -3,10 +3,10 @@ import { str2Color } from '@atomik-color/core'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
 import { Button, H2 } from '@/design-system'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 
 export default function IntegrationTest() {
-	const simulators = useSimulatorsData()
+	const simulators = useSimulatorsMetadata()
 	const integrableModuleNames = useMemo(
 		() =>
 			Object.values(simulators)

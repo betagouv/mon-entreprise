@@ -25,7 +25,7 @@ import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import useYear from '@/hooks/useYear'
 import {
 	enregistreLaRéponseÀLaQuestion,

@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 import { Grid, H2, Spacing, Ul } from '@/design-system'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'

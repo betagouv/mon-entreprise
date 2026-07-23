@@ -24,7 +24,7 @@ import {
 	TextField,
 	Ul,
 } from '@/design-system'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useNavigation } from '@/lib/navigation'
 
 import Meta from '../../components/utils/Meta'
@@ -33,7 +33,7 @@ import './iframe.css'
 
 import { pipe } from 'effect'
 
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/configs-src'
+import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
 import {
 	CODE_DU_TRAVAIL_NUMERIQUE,
@@ -45,12 +45,12 @@ import cciLogo from './images/cci.png'
 
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
-	const simulatorsData = useSimulatorsData()
+	const simulatorsData = useSimulatorsMetadata()
 	const { searchParams, setSearchParams, getHref } = useNavigation()
 
 	const simulateursValidesPourIntégration = pipe(
 		simulatorsData,
-		R.filter((simulateur: SimulatorData[keyof SimulatorData]) => {
+		R.filter((simulateur: SimulatorsMetadata[keyof SimulatorsMetadata]) => {
 			const simulateurIsNotPrivate = !(
 				'private' in simulateur && simulateur.private
 			)
@@ -136,7 +136,7 @@ function IntegrationCustomizer() {
 						label="Assistant ou simulateur"
 						onSelectionChange={(value) =>
 							estSimulateurValidePourIntégration(value as string) &&
-							setCurrentSimulateur(value as keyof SimulatorData)
+							setCurrentSimulateur(value as keyof SimulatorsMetadata)
 						}
 						selectedKey={currentSimulateur}
 					>

@@ -2,17 +2,17 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { Article, Emoji } from '@/design-system'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
-import { SimulatorData } from '@/pages/simulateurs-et-assistants/configs-src'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 type SimulatorRessourceCardProps = {
-	simulatorId: keyof SimulatorData
+	simulatorId: keyof SimulatorsMetadata
 }
 
 export function SimulatorRessourceCard({
 	simulatorId,
 }: SimulatorRessourceCardProps) {
-	const simulator = useSimulatorsData()[simulatorId]
+	const simulator = useSimulatorsMetadata()[simulatorId]
 	const { t } = useTranslation()
 	const [, setNavigationOrigin] = useNavigationOrigin()
 

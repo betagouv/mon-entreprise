@@ -12,7 +12,7 @@ import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
@@ -52,6 +52,7 @@ export function ActivitéPartielle() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					conseillersEntreprisesVariant="activite_partielle"
 					results={
 						<Condition expression="salarié . contrat . salaire brut >= salarié . contrat . temps de travail . SMIC">
 							<ComparaisonTable />

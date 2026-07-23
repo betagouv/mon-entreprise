@@ -6,9 +6,9 @@ import { toAtString } from '@/components/PianoAnalytics'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
-import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useNavigation } from '@/lib/navigation'
-import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/configs-src'
+import { SimulatorMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
 import { MainIndicators } from './_components/LastMonthIndicators'
@@ -168,7 +168,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 	)
 }
 
-export function getFilter(s: SimulatorDataValues): Filter | '' {
+export function getFilter(s: SimulatorMetadata): Filter | '' {
 	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
 	}
@@ -196,7 +196,7 @@ export function getFilter(s: SimulatorDataValues): Filter | '' {
 function useStatState() {
 	const { searchParams, setSearchParams } = useNavigation()
 
-	const simulators = useSimulatorsData()
+	const simulators = useSimulatorsMetadata()
 	const URLFilter: string = searchParams.get('module') ?? ''
 
 	const [filter, setFilter] = useState<Filter | ''>(
