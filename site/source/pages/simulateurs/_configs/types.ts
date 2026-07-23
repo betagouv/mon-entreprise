@@ -3,6 +3,7 @@ import { PublicodesExpression } from 'publicodes'
 
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { AbsoluteSitePaths } from '@/sitePaths'
+import { ImmutableType } from '@/types/utils'
 
 /**
  * Métadonnées d'une page de simulateur ou d'assistant : uniquement des
@@ -110,4 +111,12 @@ export interface SimulatorsDataParams {
 	t: TFunction
 	sitePaths: AbsoluteSitePaths
 	language: string
+}
+
+export function parId<Base extends ImmutableType<PageMetadata>>(
+	base: ImmutableType<PageMetadata> & Base
+) {
+	return {
+		[base.id]: base,
+	} as ImmutableType<{ [k in Base['id']]: Base }>
 }
