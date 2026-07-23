@@ -98,7 +98,7 @@ const Statut = forwardRef(function Statut(
 	return (
 		<Li ref={ref} className={disabled ? 'disabled' : ''}>
 			<StyledSpan>{engine.getRule(statut).title}</StyledSpan>
-			<StatutTag statut={acronyme} text="acronym" showIcon />
+			<StatutTag statut={acronyme} />
 		</Li>
 	)
 })

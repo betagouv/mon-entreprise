@@ -116,7 +116,7 @@ const DetailsRowCards = ({
 						<StatusCard>
 							{sameValueOptions.map(({ name }) => (
 								<StatusCard.Étiquette key={name}>
-									<StatutTag statut={name} text="acronym" showIcon />
+									<StatutTag statut={name} />
 								</StatusCard.Étiquette>
 							))}
 							{expressionOrDottedName && (
