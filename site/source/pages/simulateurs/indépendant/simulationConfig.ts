@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configIndépendant: SimulationConfig = {
+export const configIndépendant: PublicodesSimulationConfig = {
 	nomModèle: 'modele-ti',
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",

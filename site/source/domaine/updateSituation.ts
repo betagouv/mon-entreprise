@@ -8,11 +8,11 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { ImmutableType } from '@/types/utils'
 import { objectTransform } from '@/utils'
 
-import { SimulationConfig } from './SimulationConfig'
+import { PublicodesSimulationConfig } from './PublicodesSimulationConfig'
 import { SituationPublicodes } from './SituationPublicodes'
 
 export function updateSituation(
-	config: ImmutableType<SimulationConfig>,
+	config: ImmutableType<PublicodesSimulationConfig>,
 	currentSituation: SituationPublicodes,
 	dottedName: DottedName,
 	value: ValeurPublicodes

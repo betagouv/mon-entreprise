@@ -17,7 +17,7 @@ import {
 } from '@/store/actions/actions'
 import {
 	RootState,
-	SimulationConfig,
+	PublicodesSimulationConfig,
 	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
@@ -27,7 +27,7 @@ import { complement } from '@/utils/complement'
 import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 let lastSimulation: Simulation | null = null
-let lastConfig: SimulationConfig | null = null
+let lastConfig: PublicodesSimulationConfig | null = null
 let lastSituationsAvecContextes: NonEmptyArray<SituationPublicodes> | null =
 	null
 let engines: NonEmptyArray<Engine> | null = null

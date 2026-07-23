@@ -8,7 +8,7 @@ import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/domaine/questions'
-import { NomModèle, Question } from '@/domaine/SimulationConfig'
+import { NomModèle, Question } from '@/domaine/PublicodesSimulationConfig'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 

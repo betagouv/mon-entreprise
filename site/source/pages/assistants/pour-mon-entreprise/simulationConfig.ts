@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configPourMonEntreprise: SimulationConfig = {
+export const configPourMonEntreprise: PublicodesSimulationConfig = {
 	nomModèle: 'modele-social',
 	questions: {
 		'liste noire': ['entreprise . imposition . régime'],

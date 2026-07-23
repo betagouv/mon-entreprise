@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configAutoEntrepreneur: SimulationConfig = {
+export const configAutoEntrepreneur: PublicodesSimulationConfig = {
 	nomModèle: 'modele-social',
 	'objectifs exclusifs': [
 		"dirigeant . auto-entrepreneur . chiffre d'affaires",

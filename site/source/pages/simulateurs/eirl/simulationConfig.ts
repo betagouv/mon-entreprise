@@ -1,5 +1,5 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
 import { configEntrepriseIndividuelle } from '../entreprise-individuelle/simulationConfig'
 
-export const configEirl: SimulationConfig = configEntrepriseIndividuelle
+export const configEirl: PublicodesSimulationConfig = configEntrepriseIndividuelle

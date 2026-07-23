@@ -4,7 +4,7 @@ import { chargeModèle } from '@/utils/chargeModele'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { DottedName } from '../publicodes/DottedName'
-import { NomModèle } from '../SimulationConfig'
+import { NomModèle } from '../PublicodesSimulationConfig'
 
 type EngineCacheEntry = {
 	engine?: Engine<DottedName>

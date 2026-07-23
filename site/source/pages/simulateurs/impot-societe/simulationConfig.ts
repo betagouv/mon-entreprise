@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const ISSimulationConfig: SimulationConfig = {
+export const ISSimulationConfig: PublicodesSimulationConfig = {
 	nomModèle: 'modele-social',
 	'unité par défaut': '€/an',
 	situation: {

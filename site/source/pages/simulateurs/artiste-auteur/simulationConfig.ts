@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configArtisteAuteur: SimulationConfig = {
+export const configArtisteAuteur: PublicodesSimulationConfig = {
 	nomModèle: 'modele-social',
 	objectifs: [
 		'artiste-auteur . cotisations',

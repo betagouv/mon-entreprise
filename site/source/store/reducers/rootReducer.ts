@@ -3,7 +3,7 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { Action, enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
@@ -14,7 +14,7 @@ import { simulationSourceReducer } from '@/store/slices/simulationSource.slice'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
-export type { SimulationConfig, SituationPublicodes }
+export type { PublicodesSimulationConfig, SituationPublicodes }
 
 function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {

@@ -2,7 +2,7 @@ import Engine, { EngineOptions } from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Rules } from '@/domaine/publicodes/Rules'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import i18next from '@/locales/i18n'
 import ruleTranslationsAS from '@/locales/rules-as-en.yaml'
 import ruleTranslations from '@/locales/rules-en.yaml'

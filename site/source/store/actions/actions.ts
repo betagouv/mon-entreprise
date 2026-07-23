@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { PublicodesSimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 import { CompanyActions } from './companyActions'
@@ -29,7 +29,7 @@ export type Action =
 // Configuration de la simulation
 
 export const configureLaSimulation = (
-	config: SimulationConfig,
+	config: PublicodesSimulationConfig,
 	url: string,
 	key: string
 ) =>

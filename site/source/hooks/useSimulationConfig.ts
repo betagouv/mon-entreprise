@@ -6,7 +6,7 @@ import {
 	chargeLaSimulationPrécédente,
 	configureLaSimulation,
 } from '@/store/actions/actions'
-import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { PublicodesSimulationConfig } from '@/store/reducers/rootReducer'
 import { configSelector } from '@/store/selectors/simulation/config/config.selector'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 
@@ -18,7 +18,7 @@ export default function useSimulationConfig({
 }: {
 	key: string
 	url: string
-	config?: SimulationConfig
+	config?: PublicodesSimulationConfig
 	autoloadLastSimulation?: boolean
 }) {
 	const dispatch = useDispatch()

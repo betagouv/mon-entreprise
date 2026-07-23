@@ -3,7 +3,7 @@ import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { Situation } from '@/domaine/Situation'
 import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'

@@ -10,14 +10,16 @@ import {
 	configureLaSimulation,
 	enregistreLaRéponseÀLaQuestion,
 } from '@/store/actions/actions'
-import reducers, { SimulationConfig } from '@/store/reducers/rootReducer'
+import reducers, {
+	PublicodesSimulationConfig,
+} from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 
 function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-const simulationConfig: SimulationConfig = {
+const simulationConfig: PublicodesSimulationConfig = {
 	'objectifs exclusifs': [],
 	objectifs: [],
 	situation: {},
