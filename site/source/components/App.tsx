@@ -7,7 +7,6 @@ import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
-import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
@@ -21,7 +20,6 @@ import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
 import Documentation from '@/pages/documentation/Documentation'
 import Iframes from '@/pages/iframes'
-import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
 import { CatchOffline } from '@/pages/Offline'
@@ -68,8 +66,6 @@ const App = () => {
 	usePlausibleTracking()
 
 	const isEmbedded = useIsEmbedded()
-	const { key: simulateurCourant, currentSimulatorMetadata } =
-		useCurrentSimulatorMetadata()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
@@ -165,14 +161,7 @@ const App = () => {
 				</Container>
 			</main>
 
-			{isEmbedded ? (
-				<IframeFooter
-					avecAvis={simulateurCourant !== 'cmg'}
-					avecLogo={!currentSimulatorMetadata?.pathId.startsWith('simulateur')}
-				/>
-			) : (
-				<Footer />
-			)}
+			<Footer />
 		</StyledLayout>
 	)
 }
