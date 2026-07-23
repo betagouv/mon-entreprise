@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { H3, H3Style } from '@/design-system'
+import { YesOrNoToggleGroup } from '@/design-system/molecules/fields/Radiogroup'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -101,7 +102,17 @@ export function RuleField({
 		value
 	)
 
-	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
+	if (ruleFieldNature === YES_OR_NO_TOGGLE_GROUP) {
+		return (
+			<YesOrNoToggleGroup
+				legend={labelOrLegend ?? ''}
+				value={value as 'oui' | 'non' | undefined}
+				onChange={(value) => onChange(value, dottedName)}
+			/>
+		)
+	}
+
+	if (ruleFieldNature === RADIO_GROUP) {
 		return (
 			<StyledFieldset>
 				<StyledLegend>
