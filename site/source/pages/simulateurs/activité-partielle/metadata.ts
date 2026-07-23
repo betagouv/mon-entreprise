@@ -25,7 +25,7 @@ export function activitéPartielleMetadata({
 		meta: {
 			title: t(
 				'pages.simulateurs.activité-partielle.meta.titre',
-				"Calcul de l'indemnité activité partielle : le simulateur Urssaf"
+				"Calcul de l'indemnité activité partielle : le simulateur Urssaf"
 			),
 			description: t(
 				'pages.simulateurs.activité-partielle.meta.description',

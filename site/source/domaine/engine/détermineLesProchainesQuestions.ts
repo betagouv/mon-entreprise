@@ -6,8 +6,8 @@ import { ComparateurConfig } from '@/domaine/ComparateurConfig'
 import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesManquantes'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
-	QuestionsAutoGénérées,
 	PublicodesSimulationConfig,
+	QuestionsAutoGénérées,
 } from '@/domaine/PublicodesSimulationConfig'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 

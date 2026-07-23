@@ -4,11 +4,11 @@ import Engine from 'publicodes'
 import { useCallback } from 'react'
 
 import Value from '@/components/EngineValue/Value'
+import { NomModèle, Question } from '@/domaine/PublicodesSimulationConfig'
 import {
 	GroupeDeQuestionsPublicodes,
 	QuestionPublicodes,
 } from '@/domaine/questions'
-import { NomModèle, Question } from '@/domaine/PublicodesSimulationConfig'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 

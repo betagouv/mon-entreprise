@@ -4,8 +4,6 @@ import type { JSX } from 'react'
 
 import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
-import { type OpenGraph } from '@/components/utils/Meta'
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
 /**
@@ -98,57 +96,13 @@ export interface PageMetadata {
 }
 
 /**
- * Configuration d'une page de simulateur ou d'assistant : ses métadonnées,
- * plus tout ce qui n'appartient qu'à la page (composants React, image
- * Open Graph, configuration de simulation…). À n'importer que depuis la
- * page elle-même ou le routeur — jamais depuis un agrégat transverse.
+ * Entrée de la table de routage des simulateurs et assistants :
+ * les métadonnées de la page, son composant, et le peu de champs
+ * que le routeur ou l'iframe consomment encore.
  */
 export interface PageConfig extends PageMetadata {
-	/** Balises Open Graph de la page (partage sur les réseaux sociaux) */
-	openGraph?: OpenGraph
-
-	/**
-	 * Avertissement propre au simulateur à ajouter dans l’encart générique
-	 */
-	warning?: () => JSX.Element
-
-	/**
-	 * Composant React de la page
-	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
-	 * example: `component: MyComponent,`
-	 */
+	/** Composant React de la page */
 	component?: () => JSX.Element
-
-	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
-	seoExplanations?: () => JSX.Element
-
-	/** ID des pages de simulateur ou assistant à faire apparaître dans la
-	 * section « Ressources utiles » en bas de page.
-	 */
-	nextSteps?: string[] | false
-
-	/** Liens externes à faire apparaître dans la section « Ressources utiles » en bas de page. */
-	externalLinks?: ExternalLink[]
-
-	/**
-	 * Liens externes à faire apparaître dans la section « Ressources utiles » en bas de page,
-	 * associés à une règle Publicode qui conditionne leur affichage.
-	 */
-	conditionalExternalLinks?: ConditionalExternalLink[]
-
-	/** Configuration de la simulation */
-	simulation?: PublicodesSimulationConfig
-
-	/**
-	 * Indique si la dernière simulation doit être chargée automatiquement à l'arrivée
-	 * sur la page
-	 */
-	autoloadLastSimulation?: boolean
-
-	/**
-	 * Indique si la date du simulateur doit être masquée ou pas.
-	 */
-	hideDate?: boolean
 
 	/**
 	 * Indique si le formulaire de retour doit être désactivé en iframe

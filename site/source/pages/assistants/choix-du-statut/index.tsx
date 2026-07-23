@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 import { useSitePaths } from '@/sitePaths'
@@ -16,15 +16,21 @@ import Commune from './commune'
 import Comparateur from './comparateur'
 import DétailsActivité from './détails-activité'
 import AccueilChoixStatut from './home'
+import { choixStatutJuridiqueMetadata } from './metadata'
 import RechercheActivité from './recherche-activité'
 import Rémunération from './rémunération'
 import Résultat from './résultat'
+import { SeoExplanations } from './SeoExplanations'
+import { configChoixDuStatut } from './simulationConfig'
 
 const nextSteps = ['coût-création-entreprise'] satisfies SimulateurId[]
 
 export default function ChoixDuStatut() {
-	const simulateurConfig = useSimulatorData('choix-statut')
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(choixStatutJuridiqueMetadata)
+	const { isReady, engine } = useSimulationPublicodes(
+		metadata,
+		configChoixDuStatut
+	)
 
 	const { relativeSitePaths } = useSitePaths()
 	const currentStep = useCurrentStep()
@@ -36,7 +42,8 @@ export default function ChoixDuStatut() {
 
 			<EngineProvider value={engine}>
 				<SimulateurPageLayout
-					simulateurConfig={simulateurConfig}
+					metadata={metadata}
+					seoExplanations={<SeoExplanations />}
 					isReady={isReady}
 					nextSteps={nextSteps}
 				>

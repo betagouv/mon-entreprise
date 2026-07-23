@@ -33,8 +33,7 @@ export default defineConfig({
 					type MetadataExport = {
 						default: Record<string, PageMetadata>
 					}
-					const algoliaUpdate = ((await import(path)) as MetadataExport)
-						.default
+					const algoliaUpdate = ((await import(path)) as MetadataExport).default
 
 					writeFileSync(
 						'./source/public/simulation-data.json',

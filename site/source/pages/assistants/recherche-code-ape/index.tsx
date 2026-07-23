@@ -2,13 +2,15 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { Body, Link, Message, SmallBody, Spacing } from '@/design-system'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 
+import { SeoExplanations } from './components/SeoExplanations'
+import { rechercheCodeApeMetadata } from './metadata'
 import SearchCodeAPE from './SearchCodeAPE'
 
 export default function SearchCodeApePage() {
-	const simulateurConfig = useSimulatorData('recherche-code-ape')
+	const metadata = usePageMetadata(rechercheCodeApeMetadata)
 	const { t } = useTranslation()
 
 	return (
@@ -16,7 +18,8 @@ export default function SearchCodeApePage() {
 			<TrackPage name={ACCUEIL} />
 
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				seoExplanations={<SeoExplanations />}
 				showDate={false}
 			>
 				<Trans i18nKey="pages.assistants.recherche-code-ape.description">

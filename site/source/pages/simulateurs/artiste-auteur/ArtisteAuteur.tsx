@@ -10,21 +10,25 @@ import Simulation, {
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { DistributionBranch } from '@/components/simulationExplanation/ÀQuoiServentMesCotisations/DistributionDesCotisations'
 import { typography } from '@/design-system'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import InstitutionsPartenaires from '@/pages/simulateurs/artiste-auteur/components/InstitutionsPartenaires'
 import { URSSAF } from '@/utils/logos'
 import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { artisteAuteurMetadata } from './metadata'
+import { artisteAuteurOpenGraph } from './opengraph'
+import { configArtisteAuteur } from './simulationConfig'
 
 const { Body, H2 } = typography
 
 export function ArtisteAuteur() {
-	const id = 'artiste-auteur'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(artisteAuteurMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configArtisteAuteur
+	)
 
 	const { t } = useTranslation()
 
@@ -51,7 +55,8 @@ export function ArtisteAuteur() {
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={artisteAuteurOpenGraph(t)}
 				isReady={isReady}
 				externalLinks={externalLinks}
 			>
@@ -63,7 +68,7 @@ export function ArtisteAuteur() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur="artiste-auteur"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.artiste-auteur.warning">

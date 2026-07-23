@@ -3,34 +3,33 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import {
 	NomModèle,
-	QuestionsÉditorialisées,
 	PublicodesSimulationConfig,
+	QuestionsÉditorialisées,
 } from '@/domaine/PublicodesSimulationConfig'
+import { PageMetadata } from '@/pages/simulateurs/_configs/types'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 
-import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
 import { useEngineFromModèle } from './useEngineFromModèle'
 import { useQuestionsPublicodesÉditorialisées } from './useQuestionsPublicodesEditorialisees'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'
 
 export default function useSimulationPublicodesÉditorialisées(
-	simulatorConfig: MergedSimulatorDataValues
+	{ id, path }: Pick<PageMetadata, 'id' | 'path'>,
+	simulation: PublicodesSimulationConfig
 ) {
-	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
-	const nomModèle = simulation?.nomModèle as NomModèle
+	const nomModèle = simulation.nomModèle as NomModèle
 	const {
 		'questions principales': questionsPrincipales,
 		'groupes de questions': groupesDeQuestions,
-	} = simulation?.questions as QuestionsÉditorialisées
+	} = simulation.questions as QuestionsÉditorialisées
 
 	useSimulationConfig({
 		key: id,
 		url: path,
-		config: simulation as PublicodesSimulationConfig,
-		autoloadLastSimulation,
+		config: simulation,
 	})
 	useSetSimulationFromSearchParams(nomModèle)
 

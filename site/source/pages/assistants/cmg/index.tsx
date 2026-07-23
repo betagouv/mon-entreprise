@@ -2,10 +2,11 @@ import { Route, Routes } from 'react-router-dom'
 
 import useScrollToTop from '@/components/utils/Scroll/useScrollToTop'
 import { CMGProvider } from '@/contextes/cmg'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 import { useSitePaths } from '@/sitePaths'
 
+import { CMGMetadata } from './metadata'
 import Accueil from './pages/Accueil'
 import Déclarations from './pages/Déclarations'
 import Enfants from './pages/Enfants'
@@ -14,13 +15,13 @@ import NonÉligible from './pages/NonÉligible'
 import Résultat from './pages/Résultat'
 
 const CMG = () => {
-	const simulateurConfig = useSimulatorData('cmg')
+	const metadata = usePageMetadata(CMGMetadata)
 	useScrollToTop()
 	const { relativeSitePaths } = useSitePaths()
 	const childrenPaths = relativeSitePaths.assistants.cmg
 
 	return (
-		<SimulateurPageLayout simulateurConfig={simulateurConfig} showDate={false}>
+		<SimulateurPageLayout metadata={metadata} showDate={false}>
 			<Routes>
 				<Route index element={<Accueil />} />
 				<Route

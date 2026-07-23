@@ -5,14 +5,17 @@ import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { DarkLi, Strong, Ul } from '@/design-system'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { Explications } from './components/Explications'
 import { DividendesSimulationGoals } from './Goals'
+import { dividendesMetadata } from './metadata'
+import { SeoExplanations } from './SeoExplanations'
+import { configDividendes } from './simulationConfig'
 
 const nextSteps = [
 	'salarié',
@@ -21,17 +24,19 @@ const nextSteps = [
 ] satisfies SimulateurId[]
 
 export default function DividendesSimulation() {
-	const id = 'dividendes'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(dividendesMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configDividendes
+	)
 
 	const { t } = useTranslation()
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 			>
@@ -43,7 +48,7 @@ export default function DividendesSimulation() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur="dividendes"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

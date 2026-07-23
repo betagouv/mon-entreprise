@@ -10,13 +10,17 @@ import { DarkLi, Ul } from '@/design-system'
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import ComparaisonTable from './ComparaisonTable'
+import { activitéPartielleMetadata } from './metadata'
+import { activitéPartielleOpenGraph } from './opengraph'
+import { SeoExplanations } from './SeoExplanations'
+import { configActivitéPartielle } from './simulationConfig'
 
 const nextSteps = ['salarié'] satisfies SimulateurId[]
 
@@ -27,17 +31,20 @@ const externalLinks = [
 ]
 
 export function ActivitéPartielle() {
-	const id = 'activité-partielle'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(activitéPartielleMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configActivitéPartielle
+	)
 
 	const { t } = useTranslation()
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={activitéPartielleOpenGraph(t)}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
@@ -60,7 +67,7 @@ export function ActivitéPartielle() {
 					}
 				>
 					<SimulateurWarning
-						simulateur={id}
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

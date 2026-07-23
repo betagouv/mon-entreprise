@@ -14,13 +14,12 @@ export default function useSimulationConfig({
 	key,
 	url,
 	config,
-	autoloadLastSimulation = false,
 }: {
 	key: string
 	url: string
 	config?: PublicodesSimulationConfig
-	autoloadLastSimulation?: boolean
 }) {
+	const autoloadLastSimulation = config?.autoloadLastSimulation ?? false
 	const dispatch = useDispatch()
 
 	// Initialize redux store in SSR mode

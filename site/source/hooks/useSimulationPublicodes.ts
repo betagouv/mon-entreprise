@@ -1,25 +1,27 @@
 import { useSelector } from 'react-redux'
 
-import { NomModèle, PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import {
+	NomModèle,
+	PublicodesSimulationConfig,
+} from '@/domaine/PublicodesSimulationConfig'
+import { PageMetadata } from '@/pages/simulateurs/_configs/types'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 
-import { MergedSimulatorDataValues } from './useCurrentSimulatorData'
 import { useEngineFromModèle } from './useEngineFromModèle'
 import { useQuestionsPublicodes } from './useQuestionsPublicodes'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'
 
 export default function useSimulationPublicodes(
-	simulatorConfig: MergedSimulatorDataValues
+	{ id, path }: Pick<PageMetadata, 'id' | 'path'>,
+	simulation: PublicodesSimulationConfig
 ) {
-	const { id, path, simulation, autoloadLastSimulation } = simulatorConfig
-	const nomModèle = simulation?.nomModèle as NomModèle
+	const nomModèle = simulation.nomModèle as NomModèle
 
 	useSimulationConfig({
 		key: id,
 		url: path,
-		config: simulation as PublicodesSimulationConfig,
-		autoloadLastSimulation,
+		config: simulation,
 	})
 	useSetSimulationFromSearchParams(nomModèle)
 

@@ -12,14 +12,18 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import { DarkLi, Link, Ul } from '@/design-system'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceAutoEntrepreneur } from '@/external-links/serviceAutoEntrepreneur'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import ExplicationsAutoEntrepreneur from '@/pages/simulateurs/auto-entrepreneur/components/Explications'
+import { SeoExplanations } from '@/pages/simulateurs/auto-entrepreneur/SeoExplanations'
 import { URSSAF } from '@/utils/logos'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { autoEntrepreneurMetadata } from './metadata'
+import { autoEntrepreneurOpenGraph } from './opengraph'
+import { configAutoEntrepreneur } from './simulationConfig'
 
 const nextSteps = [
 	'indépendant',
@@ -27,10 +31,11 @@ const nextSteps = [
 ] satisfies SimulateurId[]
 
 export function AutoEntrepreneur() {
-	const id = 'auto-entrepreneur'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(autoEntrepreneurMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configAutoEntrepreneur
+	)
 
 	const { t } = useTranslation()
 
@@ -81,7 +86,9 @@ export function AutoEntrepreneur() {
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={autoEntrepreneurOpenGraph(t)}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
@@ -93,7 +100,7 @@ export function AutoEntrepreneur() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur="auto-entrepreneur"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

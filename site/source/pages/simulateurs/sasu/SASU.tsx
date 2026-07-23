@@ -1,4 +1,4 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
@@ -11,26 +11,33 @@ import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner
 import { Body, H2 } from '@/design-system'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import ExplicationsSalaire from './components/Explications'
+import { sasuMetadata } from './metadata'
+import { sasuOpenGraph } from './opengraph'
+import { configSASU } from './simulationConfig'
 
 const nextSteps = ['is', 'comparaison-statuts'] satisfies SimulateurId[]
 
 export function SASUSimulation() {
-	const id = 'sasu'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const { t } = useTranslation()
+	const metadata = usePageMetadata(sasuMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configSASU
+	)
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={sasuOpenGraph(t)}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 			>
@@ -41,7 +48,7 @@ export function SASUSimulation() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur="sasu"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.sasu.warning">

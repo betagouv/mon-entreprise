@@ -8,19 +8,20 @@ import {
 } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { PublicodesDateChip } from '@/components/PublicodesDateChip'
 import Loader from '@/components/utils/Loader'
-import Meta from '@/components/utils/Meta'
+import Meta, { OpenGraph } from '@/components/utils/Meta'
 import { H1, Intro } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
-import { Merge } from '@/types/utils'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
 import { ExternalLink } from './_configs/types'
 import NextSteps from './NextSteps'
 
 type Props = {
 	children: ReactNode
-	simulateurConfig: MergedSimulatorDataValues
+	metadata: MergedSimulatorMetadata
+	openGraph?: OpenGraph
+	seoExplanations?: ReactNode
 	isReady?: boolean
 	showDate?: boolean
 	nextSteps?: SimulateurId[]
@@ -29,7 +30,9 @@ type Props = {
 
 export default function SimulateurPageLayout({
 	children,
-	simulateurConfig,
+	metadata,
+	openGraph,
+	seoExplanations,
 	isReady = true,
 	showDate = true,
 	nextSteps,
@@ -49,12 +52,9 @@ export default function SimulateurPageLayout({
 		beta,
 		tooltip,
 		private: privateIframe,
-		openGraph,
-		seoExplanations: SeoExplanations,
-	} = simulateurConfig
+	} = metadata
 
 	const { chapter1, chapter2, chapter3 } = tracking as TrackingChapters
-	const metadata = meta as Merge<MergedSimulatorDataValues['meta']>
 
 	return (
 		<TrackingChaptersProvider
@@ -62,10 +62,10 @@ export default function SimulateurPageLayout({
 			chapter2={chapter2}
 			chapter3={chapter3}
 		>
-			{metadata && (
+			{meta && (
 				<Meta
-					title={metadata.title}
-					description={metadata.description}
+					title={meta.title}
+					description={meta.description}
 					openGraph={openGraph}
 				/>
 			)}
@@ -85,11 +85,7 @@ export default function SimulateurPageLayout({
 
 			{!inIframe && (
 				<>
-					{SeoExplanations && (
-						<section>
-							<SeoExplanations />
-						</section>
-					)}
+					{seoExplanations && <section>{seoExplanations}</section>}
 
 					<NextSteps
 						simulateur={privateIframe ? undefined : id}
