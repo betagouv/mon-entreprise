@@ -29,7 +29,7 @@ export default function RevenuTable({
 							{namedEngines.map(({ name }) => (
 								<th scope="col" key={name}>
 									<span className="table-title">
-										<StyledStatutTag statut={name} text="acronym" showIcon />
+										<StyledStatutTag statut={name} />
 									</span>
 								</th>
 							))}
@@ -141,7 +141,7 @@ export default function RevenuTable({
 							{namedEngines.map(({ name }) => (
 								<th scope="col" key={name}>
 									<span className="table-title">
-										<StyledStatutTag statut={name} text="acronym" showIcon />
+										<StyledStatutTag statut={name} />
 									</span>
 								</th>
 							))}

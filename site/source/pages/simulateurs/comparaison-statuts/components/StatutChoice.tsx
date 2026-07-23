@@ -55,7 +55,7 @@ function StatutBloc({
 	return (
 		<StatusCard>
 			<StatusCard.Étiquette>
-				<StatutTag statut={name} text="acronym" showIcon />
+				<StatutTag statut={name} />
 			</StatusCard.Étiquette>
 			<StatusCard.Titre>
 				<H4 as="h3">{TAG_DATA[name].longName}</H4>
