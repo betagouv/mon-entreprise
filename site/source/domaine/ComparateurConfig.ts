@@ -1,12 +1,12 @@
 import { NonEmptyReadonlyArray } from 'effect/Array'
 
 import { Contexte } from '@/domaine/Contexte'
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export interface ComparateurConfig extends SimulationConfig {
+export interface ComparateurConfig extends PublicodesSimulationConfig {
 	contextes: NonEmptyReadonlyArray<Contexte>
 }
 
 export const isComparateurConfig = (
-	config: SimulationConfig
+	config: PublicodesSimulationConfig
 ): config is ComparateurConfig => 'contextes' in config

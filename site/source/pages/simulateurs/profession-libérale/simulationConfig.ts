@@ -1,8 +1,8 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
 import { configIndépendant } from '../indépendant/simulationConfig'
 
-export const configProfessionLibérale: SimulationConfig = {
+export const configProfessionLibérale: PublicodesSimulationConfig = {
 	...configIndépendant,
 	situation: {
 		...configIndépendant.situation,
@@ -11,7 +11,7 @@ export const configProfessionLibérale: SimulationConfig = {
 	},
 }
 
-const configFromPLMetier = (metier: string): SimulationConfig => ({
+const configFromPLMetier = (metier: string): PublicodesSimulationConfig => ({
 	...configProfessionLibérale,
 	situation: {
 		...configProfessionLibérale.situation,

@@ -5,7 +5,7 @@ import { DottedName } from './publicodes/DottedName'
 import { RaccourciPublicodes } from './RaccourciPublicodes'
 import { SituationPublicodes } from './SituationPublicodes'
 
-export type SimulationConfig = Partial<{
+export type PublicodesSimulationConfig = Partial<{
 	nomModèle: NomModèle
 
 	/**
@@ -58,7 +58,7 @@ export type Question = {
 
 // TODO: quand QuestionsAutoGénérées ne sera plus utilisé,
 // supprimer l'export de QuestionsÉditorialisées et le
-// remplacer ailleurs par le type de SimulationConfig['questions']
+// remplacer ailleurs par le type de PublicodesSimulationConfig['questions']
 export type QuestionsÉditorialisées = {
 	'questions principales': Question[]
 	'groupes de questions': Record<

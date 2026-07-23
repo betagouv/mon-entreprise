@@ -1,4 +1,4 @@
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 
 export const useDocumentationPath = (nomModèle?: NomModèle) => {

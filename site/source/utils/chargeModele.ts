@@ -1,5 +1,5 @@
 import { Rules } from '@/domaine/publicodes/Rules'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 
 export const chargeModèle = (
 	nomModèle: NomModèle

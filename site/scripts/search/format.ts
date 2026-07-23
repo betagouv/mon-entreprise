@@ -1,6 +1,6 @@
 import { ParsedRules } from 'publicodes'
 
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 export const formatRulesToAlgolia = (

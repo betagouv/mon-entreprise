@@ -1,6 +1,6 @@
 import { TFunction } from 'i18next'
 
-import { Question } from '@/domaine/SimulationConfig'
+import { Question } from '@/domaine/PublicodesSimulationConfig'
 
 export const questionActivitéPrincipale = {
 	libellé: (t: TFunction) =>

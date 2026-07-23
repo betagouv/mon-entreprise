@@ -7,13 +7,13 @@ import { listeLesVariablesManquantes } from '@/domaine/engine/listeLesVariablesM
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	QuestionsAutoGénérées,
-	SimulationConfig,
-} from '@/domaine/SimulationConfig'
+	PublicodesSimulationConfig,
+} from '@/domaine/PublicodesSimulationConfig'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 export const détermineLesProchainesQuestions = (
 	engines: NonEmptyArray<Engine>,
-	config: SimulationConfig | ComparateurConfig,
+	config: PublicodesSimulationConfig | ComparateurConfig,
 	answeredQuestions: Array<QuestionRépondue> = []
 ): Array<DottedName> => {
 	const {

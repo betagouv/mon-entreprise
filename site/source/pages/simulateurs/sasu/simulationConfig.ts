@@ -1,6 +1,6 @@
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configSASU: SimulationConfig = {
+export const configSASU: PublicodesSimulationConfig = {
 	nomModèle: 'modele-as',
 	'objectifs exclusifs': [
 		'assimilé salarié . rémunération . totale',

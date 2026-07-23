@@ -5,7 +5,7 @@ import type { JSX } from 'react'
 import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { type OpenGraph } from '@/components/utils/Meta'
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
 
 /**
@@ -137,7 +137,7 @@ export interface PageConfig extends PageMetadata {
 	conditionalExternalLinks?: ConditionalExternalLink[]
 
 	/** Configuration de la simulation */
-	simulation?: SimulationConfig
+	simulation?: PublicodesSimulationConfig
 
 	/**
 	 * Indique si la dernière simulation doit être chargée automatiquement à l'arrivée

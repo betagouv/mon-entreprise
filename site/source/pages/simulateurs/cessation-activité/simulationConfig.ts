@@ -1,10 +1,10 @@
 import {
 	QuestionsAutoGénérées,
-	SimulationConfig,
-} from '@/domaine/SimulationConfig'
+	PublicodesSimulationConfig,
+} from '@/domaine/PublicodesSimulationConfig'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 
-export const configCessationActivité: SimulationConfig = {
+export const configCessationActivité: PublicodesSimulationConfig = {
 	nomModèle: 'modele-ti',
 	...configIndépendant,
 	'objectifs exclusifs': [

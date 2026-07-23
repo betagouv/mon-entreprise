@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 
 import { setEngineSituation } from '@/domaine/engine/engineCache'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'

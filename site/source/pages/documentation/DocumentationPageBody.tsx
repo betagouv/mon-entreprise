@@ -21,7 +21,7 @@ import {
 	UlStyle,
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'

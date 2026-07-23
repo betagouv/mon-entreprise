@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	NomModèle,
 	QuestionsÉditorialisées,
-	SimulationConfig,
-} from '@/domaine/SimulationConfig'
+	PublicodesSimulationConfig,
+} from '@/domaine/PublicodesSimulationConfig'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
@@ -29,7 +29,7 @@ export default function useSimulationPublicodesÉditorialisées(
 	useSimulationConfig({
 		key: id,
 		url: path,
-		config: simulation as SimulationConfig,
+		config: simulation as PublicodesSimulationConfig,
 		autoloadLastSimulation,
 	})
 	useSetSimulationFromSearchParams(nomModèle)

@@ -10,7 +10,7 @@ import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/SimulationConfig'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 
 import BackToSimulation from './BackToSimulation'

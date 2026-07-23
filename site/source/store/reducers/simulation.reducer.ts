@@ -3,7 +3,7 @@ import * as R from 'effect/Record'
 import * as Optics from 'optics-ts'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { SimulationConfig } from '@/domaine/SimulationConfig'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
@@ -17,7 +17,7 @@ export type QuestionRépondue = {
 
 export type Simulation = {
 	key: string
-	config: SimulationConfig
+	config: PublicodesSimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
 	situation: SituationPublicodes
