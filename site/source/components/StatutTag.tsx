@@ -106,29 +106,19 @@ const StyledTag = styled(Tag)`
 
 interface StatutTagProps {
 	statut: StatutType
-	text?: 'acronym' | 'longName'
 	children?: ReactNode
-	showIcon?: boolean
-	className?: string
 }
 
-export const StatutTag = ({
-	statut,
-	text = 'acronym',
-	showIcon,
-	children,
-}: StatutTagProps) => {
+export const StatutTag = ({ statut, children }: StatutTagProps) => {
 	const Icon = TAG_DATA[statut].icon
 
 	return (
 		<StyledTag color={TAG_DATA[statut].color}>
-			{showIcon && <Icon />}
-			{(children ?? text === 'acronym') ? (
+			<Icon />
+			{children ?? (
 				<abbr title={TAG_DATA[statut].longName}>
 					{TAG_DATA[statut].acronym}
 				</abbr>
-			) : (
-				TAG_DATA[statut][text]
 			)}
 		</StyledTag>
 	)
