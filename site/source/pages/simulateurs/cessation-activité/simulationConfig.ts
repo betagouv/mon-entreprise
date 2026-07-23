@@ -1,6 +1,6 @@
 import {
-	QuestionsAutoGénérées,
 	PublicodesSimulationConfig,
+	QuestionsAutoGénérées,
 } from '@/domaine/PublicodesSimulationConfig'
 import { configIndépendant } from '@/pages/simulateurs/indépendant/simulationConfig'
 

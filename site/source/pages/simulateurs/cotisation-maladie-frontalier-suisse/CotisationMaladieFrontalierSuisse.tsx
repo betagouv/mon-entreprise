@@ -11,18 +11,18 @@ import {
 import { docCotisationFrontalierSuisse } from '@/external-links/docCotisationFrontalierSuisse'
 import { docDeclarerRevenusFrontalierSuisse } from '@/external-links/docDeclarerRevenusFrontalierSuisse'
 import { docFrontalierSuisse } from '@/external-links/docFrontalierSuisse'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
+import { cotisationMaladieFrontalierSuisseMetadata } from './metadata'
 import { ObjectifAutresRevenus } from './objectifs/ObjectifAutresRevenus'
 import { ObjectifSalaires } from './objectifs/ObjectifSalaires'
 import { RésultatCotisation } from './objectifs/RésultatCotisation'
 import { groupesDeQuestions, questionsPrincipales } from './questions'
 
 const PageSimulateur = () => {
-	const id = 'cotisation-maladie-frontalier-suisse'
-	const simulateurConfig = useSimulatorData(id)
+	const metadata = usePageMetadata(cotisationMaladieFrontalierSuisseMetadata)
 	const { situation, set } = useFrontalierSuisse()
 
 	const externalLinks = [
@@ -33,12 +33,12 @@ const PageSimulateur = () => {
 
 	return (
 		<SimulateurPageLayout
-			simulateurConfig={simulateurConfig}
+			metadata={metadata}
 			externalLinks={externalLinks}
 			showDate={false}
 		>
 			<Simulateur
-				id={id}
+				id={metadata.id}
 				situation={situation}
 				situationMinimaleSaisie={estSituationValide(situation)}
 				questionsPrincipalesRépondues={O.isSome(situation.dateAffiliation)}

@@ -7,13 +7,15 @@ import { Body, Emoji } from '@/design-system'
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import LodeomSimulationGoals from './Goals'
+import { lodeomMetadata } from './metadata'
+import { configLodeom } from './simulationConfig'
 
 const nextSteps = ['salarié'] satisfies SimulateurId[]
 
@@ -24,15 +26,16 @@ const externalLinks = [
 ]
 
 export default function LodeomSimulation() {
-	const id = 'lodeom'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(lodeomMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configLodeom
+	)
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
@@ -43,7 +46,7 @@ export default function LodeomSimulation() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur="lodeom"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.lodeom.warning">

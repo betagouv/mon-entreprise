@@ -16,8 +16,8 @@ import {
 	metÀJourLesQuestionsSuivantes,
 } from '@/store/actions/actions'
 import {
-	RootState,
 	PublicodesSimulationConfig,
+	RootState,
 	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'

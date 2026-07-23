@@ -12,7 +12,7 @@ import {
 } from '@/contextes/économie-collaborative'
 import { simulationEstCommencée } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
 import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
 import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
 import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
@@ -28,10 +28,11 @@ import { URSSAF } from '@/utils/logos'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
+import { locationDeMeubleMetadata } from './metadata'
+import { locationDeMeubleOpenGraph } from './opengraph'
 
 const LocationDeMeublé = () => {
-	const id = 'location-de-logement-meublé'
-	const simulateurConfig = useSimulatorData(id)
+	const metadata = usePageMetadata(locationDeMeubleMetadata)
 	const { t } = useTranslation()
 	const { situation } = useEconomieCollaborative()
 
@@ -60,7 +61,8 @@ const LocationDeMeublé = () => {
 
 	return (
 		<SimulateurPageLayout
-			simulateurConfig={simulateurConfig}
+			metadata={metadata}
+			openGraph={locationDeMeubleOpenGraph(t)}
 			externalLinks={externalLinks}
 			showDate={false}
 		>
@@ -78,7 +80,7 @@ const LocationDeMeublé = () => {
 				simulationEstCommencée={simulationEstCommencée}
 				hideDetails={true}
 			>
-				<SimulateurWarning simulateur="location-de-logement-meublé" />
+				<SimulateurWarning simulateur={metadata.id} />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>
 					{isMeubléDeTourisme && (
 						<>

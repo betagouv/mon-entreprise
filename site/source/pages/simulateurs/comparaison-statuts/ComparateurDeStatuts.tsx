@@ -7,8 +7,8 @@ import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
 import { IndépendantContexte } from '@/domaine/IndépendantContexte'
 import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodesÉditorialisées from '@/hooks/useSimulationPublicodesEditorialisee'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { useSitePaths } from '@/sitePaths'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
@@ -17,10 +17,11 @@ import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DétailSimulation'
 import { MontantsÀSaisir } from './components/MontantsASaisir'
 import { EngineComparison } from './EngineComparison'
+import { comparaisonStatutsMetadata } from './metadata'
+import { configComparateurStatuts } from './simulationConfig'
 
 export const ComparateurDeStatuts = () => {
-	const id = 'comparaison-statuts'
-	const simulateurConfig = useSimulatorData(id)
+	const metadata = usePageMetadata(comparaisonStatutsMetadata)
 	const {
 		isReady,
 		engine,
@@ -28,7 +29,7 @@ export const ComparateurDeStatuts = () => {
 		groupesDeQuestions,
 		simulationEstCommencée,
 		onReset,
-	} = useSimulationPublicodesÉditorialisées(simulateurConfig)
+	} = useSimulationPublicodesÉditorialisées(metadata, configComparateurStatuts)
 
 	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
@@ -67,10 +68,7 @@ export const ComparateurDeStatuts = () => {
 
 	return (
 		<EngineProvider value={engine}>
-			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
-				isReady={isReady}
-			>
+			<SimulateurPageLayout metadata={metadata} isReady={isReady}>
 				<Trans i18nKey="pages.simulateurs.comparaison-statuts.notif">
 					<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
 						<Body>
@@ -96,7 +94,7 @@ export const ComparateurDeStatuts = () => {
 				</Intro>
 
 				<Simulateur
-					id={id}
+					id={metadata.id}
 					montantsÀSaisir={<MontantsÀSaisir />}
 					questionsPublicodesPrincipales={questionsPrincipales}
 					groupesDeQuestionsPublicodes={groupesDeQuestions}

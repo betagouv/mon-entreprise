@@ -23,8 +23,8 @@ import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import useYear from '@/hooks/useYear'
 import {
@@ -35,24 +35,29 @@ import { situationSelector } from '@/store/selectors/simulation/situation/situat
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { impôtSociétéMetadata } from './metadata'
+import { ISSimulationConfig } from './simulationConfig'
 
 const nextSteps = ['salarié', 'comparaison-statuts'] satisfies SimulateurId[]
 
 export default function ISSimulation() {
-	const id = 'is'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine } = useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(impôtSociétéMetadata)
+	const { isReady, engine } = useSimulationPublicodes(
+		metadata,
+		ISSimulationConfig
+	)
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 			>
 				<SimulationContainer>
 					<SimulateurWarning
-						simulateur="is"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.is.warning">

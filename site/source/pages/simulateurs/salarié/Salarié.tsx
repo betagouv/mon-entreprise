@@ -9,26 +9,31 @@ import { Body, Emoji, Link, Message, SmallBody, Strong } from '@/design-system'
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import ExplicationsSalaire from '@/pages/simulateurs/salarié/components/Explications'
+import { SeoExplanations } from '@/pages/simulateurs/salarié/components/SeoExplanations'
 import { useSitePaths } from '@/sitePaths'
 import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import SalariéSimulationGoals from './Goals'
+import { salariéMetadata } from './metadata'
+import { salariéOpenGraph } from './opengraph'
+import { configSalarié } from './simulationConfig'
 
 const nextSteps = ['activité-partielle'] satisfies SimulateurId[]
 
 export default function SalariéSimulation() {
-	const id = 'salarié'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(salariéMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configSalarié
+	)
 
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	const externalLinks = [
 		{
@@ -56,7 +61,9 @@ export default function SalariéSimulation() {
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={salariéOpenGraph(t, i18n.language)}
+				seoExplanations={<SeoExplanations />}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
@@ -99,7 +106,7 @@ export default function SalariéSimulation() {
 					}
 				>
 					<SimulateurWarning
-						simulateur="salarié"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<>
 								<Body>

@@ -6,13 +6,13 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import {
 	getRèglesIgnoréesFromSearchParams,
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
-import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {

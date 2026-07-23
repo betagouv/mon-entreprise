@@ -32,6 +32,8 @@ export type PublicodesSimulationConfig = Partial<{
 	'règles à ignorer pour déclencher les questions'?: DottedName[]
 
 	'notifications à ignorer'?: DottedName[]
+
+	autoloadLastSimulation: boolean
 }>
 
 export type NomModèle = 'modele-social' | 'modele-as' | 'modele-ti'

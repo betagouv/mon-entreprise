@@ -7,27 +7,30 @@ import Simulation, {
 	SimulationGoals,
 } from '@/components/Simulation'
 import { DarkLi, Grid, H3, Ul } from '@/design-system'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { coûtCréationEntrepriseMetadata } from './metadata'
+import { configCoûtCréationEntreprise } from './simulationConfig'
 
 const nextSteps = ['choix-statut'] satisfies SimulateurId[]
 
 export default function CoutCreationEntreprise() {
-	const id = 'coût-création-entreprise'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(coûtCréationEntrepriseMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configCoûtCréationEntreprise
+	)
 
 	const { t } = useTranslation()
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
 				isReady={isReady}
 				nextSteps={nextSteps}
 			>
@@ -86,7 +89,7 @@ export default function CoutCreationEntreprise() {
 					}
 				>
 					<SimulateurWarning
-						simulateur="coût-création-entreprise"
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

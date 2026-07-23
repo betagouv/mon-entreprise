@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { Body, Li, Strong, Ul } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
-import useSimulatorsData, { SimulateurId } from '@/hooks/useSimulatorsData'
+import { SimulateurId } from '@/hooks/useSimulatorsData'
 import { useUrl } from '@/hooks/useUrl'
 import { CessationActivitéGoals } from '@/pages/simulateurs/cessation-activité/Goals'
+import { indépendantMetadata } from '@/pages/simulateurs/indépendant/metadata'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { omit } from '@/utils'
@@ -17,14 +17,18 @@ import { URSSAF } from '@/utils/logos'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
+import { cessationActivitéMetadata } from './metadata'
+import { cessationActivitéOpenGraph } from './opengraph'
+import { configCessationActivité } from './simulationConfig'
 
 const nextSteps = ['indépendant'] satisfies SimulateurId[]
 
 export const CessationActivitéSimulation = () => {
-	const id = 'cessation-activité'
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const metadata = usePageMetadata(cessationActivitéMetadata)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		configCessationActivité
+	)
 
 	const { t } = useTranslation()
 
@@ -54,14 +58,14 @@ export const CessationActivitéSimulation = () => {
 	}
 
 	const filteredSituation = omit(situation, 'entreprise . date de cessation')
-	const basePath = useSimulatorsData().indépendant
-		.path as MergedSimulatorDataValues['path']
+	const basePath = usePageMetadata(indépendantMetadata).path
 	const lien = useUrl({ path: basePath, situation: filteredSituation })
 
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={cessationActivitéOpenGraph(t)}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={externalLinks}
@@ -75,7 +79,7 @@ export const CessationActivitéSimulation = () => {
 					}}
 				>
 					<SimulateurWarning
-						simulateur={id}
+						simulateur={metadata.id}
 						informationsComplémentaires={
 							<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
 								<Body>

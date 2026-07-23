@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next'
 
 import { Card, Chip, Emoji, Grid, InfoBulle, SmallCard } from '@/design-system'
-import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
-type SimulateurCardProps = MergedSimulatorDataValues & {
+type SimulateurCardProps = MergedSimulatorMetadata & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string

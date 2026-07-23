@@ -1,19 +1,22 @@
+import { ReactNode } from 'react'
 import { useDispatch } from 'react-redux'
 
 import RuleInput from '@/components/conversation/RuleInput'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
+import { OpenGraph } from '@/components/utils/Meta'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { serviceExpertComptable } from '@/external-links/serviceExpertComptable'
 import { serviceIndépendant } from '@/external-links/serviceIndépendant'
 import { servicePAM } from '@/external-links/servicePAM'
 import { servicePLR } from '@/external-links/servicePLR'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorData } from '@/hooks/useSimulatorData'
 import { SimulateurId } from '@/hooks/useSimulatorsData'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
 import { ObjectifsIndépendant } from '@/pages/simulateurs/indépendant/components/Objectifs'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -37,29 +40,26 @@ const conditionalExternalLinks = [
 ]
 
 type Props = {
-	id: (
-		| 'indépendant'
-		| 'eirl'
-		| 'entreprise-individuelle'
-		| 'eurl'
-		| 'profession-libérale'
-		| 'auxiliaire-médical'
-		| 'avocat'
-		| 'chirurgien-dentiste'
-		| 'cipav'
-		| 'expert-comptable'
-		| 'médecin'
-		| 'pharmacien'
-		| 'sage-femme'
-	) &
-		SimulateurId
+	metadata: MergedSimulatorMetadata
+	simulation: PublicodesSimulationConfig
+	avertissement?: ReactNode
+	openGraph?: OpenGraph
+	seoExplanations?: ReactNode
 }
 
-export default function IndépendantBase({ id }: Props) {
+export default function IndépendantBase({
+	metadata,
+	simulation,
+	avertissement,
+	openGraph,
+	seoExplanations,
+}: Props) {
 	const dispatch = useDispatch()
-	const simulateurConfig = useSimulatorData(id)
-	const { isReady, engine, questions, raccourcis } =
-		useSimulationPublicodes(simulateurConfig)
+	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
+		metadata,
+		simulation
+	)
+	const id = metadata.id
 
 	const relevantConditionalExternalLinks = conditionalExternalLinks?.filter(
 		({ associatedRule }) => engine.evaluate(associatedRule).nodeValue
@@ -74,12 +74,12 @@ export default function IndépendantBase({ id }: Props) {
 		'cipav',
 	]
 
-	const Warning = simulateurConfig.warning
-
 	return (
 		<EngineProvider value={engine}>
 			<SimulateurPageLayout
-				simulateurConfig={simulateurConfig}
+				metadata={metadata}
+				openGraph={openGraph}
+				seoExplanations={seoExplanations}
 				isReady={isReady}
 				nextSteps={nextSteps}
 				externalLinks={allExternalLinks}
@@ -97,7 +97,7 @@ export default function IndépendantBase({ id }: Props) {
 								{confusionAEPossible.indexOf(id) > -1 && (
 									<AvertissementAutoEntrepreneur />
 								)}
-								{Warning && <Warning />}
+								{avertissement}
 								<AvertissementAnnéeCotisationsIndépendant />
 								<AvertissementDoubleRégimeIndépendant />
 							</>
