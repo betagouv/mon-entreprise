@@ -104,11 +104,13 @@ export function RuleField({
 
 	if (ruleFieldNature === YES_OR_NO_TOGGLE_GROUP) {
 		return (
-			<YesOrNoToggleGroup
-				legend={labelOrLegend ?? ''}
-				value={value as 'oui' | 'non' | undefined}
-				onChange={(value) => onChange(value, dottedName)}
-			/>
+			<StylingContainer>
+				<YesOrNoToggleGroup
+					legend={labelOrLegend ?? ''}
+					value={value as 'oui' | 'non' | undefined}
+					onChange={(value) => onChange(value, dottedName)}
+				/>
+			</StylingContainer>
 		)
 	}
 
@@ -149,6 +151,14 @@ export function RuleField({
 		</>
 	)
 }
+
+const StylingContainer = styled.div`
+	.react-aria-Label {
+		${H3Style}
+
+		margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xxs}`};
+}
+`
 
 const StyledFieldset = styled.fieldset`
 	display: contents;
