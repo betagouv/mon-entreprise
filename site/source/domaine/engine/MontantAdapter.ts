@@ -5,6 +5,8 @@ import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 import {
 	euros,
 	eurosParAn,
+	eurosParHeure,
+	eurosParJour,
 	eurosParMois,
 	eurosParTitreRestaurant,
 	Montant,
@@ -38,6 +40,10 @@ export const MontantAdapter = {
 				return O.some(eurosParAn(numberValue))
 			case '€/mois':
 				return O.some(eurosParMois(numberValue))
+			case '€/jour':
+				return O.some(eurosParJour(numberValue))
+			case '€/heure':
+				return O.some(eurosParHeure(numberValue))
 			case '€/titre-restaurant':
 				return O.some(eurosParTitreRestaurant(numberValue))
 			default:
