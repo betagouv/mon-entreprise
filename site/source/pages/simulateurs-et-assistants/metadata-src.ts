@@ -2,9 +2,9 @@ import { choixStatutJuridiqueMetadata } from '@/pages/assistants/choix-du-statut
 import { CMGMetadata } from '@/pages/assistants/cmg/metadata'
 import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entreprise/metadata'
 import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
-import { parId } from '@/pages/simulateurs/_configs/config'
 import {
 	PageMetadata,
+	parId,
 	SimulatorsDataParams,
 } from '@/pages/simulateurs/_configs/types'
 import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
