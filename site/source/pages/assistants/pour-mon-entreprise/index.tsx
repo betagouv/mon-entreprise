@@ -154,12 +154,13 @@ function PourMonEntreprise() {
 					>
 						<FromTop>
 							<FormsImage src={illustrationFormes} alt="" />
-							<Spacing xs />
 							<ForceThemeProvider forceTheme="dark">
-								{t(
-									'pages.assistants.pour-mon-entreprise.simulateurs',
-									'Simulateurs pour votre entreprise'
-								)}
+								<H2>
+									{t(
+										'pages.assistants.pour-mon-entreprise.simulateurs',
+										'Simulateurs pour votre entreprise'
+									)}
+								</H2>
 							</ForceThemeProvider>
 							<Grid
 								container
