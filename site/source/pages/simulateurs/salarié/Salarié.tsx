@@ -108,6 +108,7 @@ export default function SalariéSimulation() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<>
 								<Body>

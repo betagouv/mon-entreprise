@@ -26,6 +26,3 @@ export function useSimulatorsMetadata(): SimulatorsMetadata {
 		[t, absoluteSitePaths, i18n.language]
 	)
 }
-
-export const useSimulatorMetadata = (simulateurId: SimulateurId) =>
-	useSimulatorsMetadata()[simulateurId] as MergedSimulatorMetadata

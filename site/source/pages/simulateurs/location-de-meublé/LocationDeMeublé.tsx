@@ -80,7 +80,7 @@ const LocationDeMeublé = () => {
 				simulationEstCommencée={simulationEstCommencée}
 				hideDetails={true}
 			>
-				<SimulateurWarning simulateur={metadata.id} />
+				<SimulateurWarning simulateur={metadata.id} beta={metadata.beta} />
 				<SimulationGoals toggles={<TypeHébergementSwitch />}>
 					{isMeubléDeTourisme && (
 						<>

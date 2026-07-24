@@ -98,6 +98,7 @@ export default function IndépendantBase({
 				>
 					<SimulateurWarning
 						simulateur={id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<>
 								{confusionAEPossible.indexOf(id) > -1 && (

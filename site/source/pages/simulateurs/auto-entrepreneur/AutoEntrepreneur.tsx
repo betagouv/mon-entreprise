@@ -102,6 +102,7 @@ export function AutoEntrepreneur() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

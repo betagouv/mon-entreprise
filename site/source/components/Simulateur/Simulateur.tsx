@@ -23,6 +23,7 @@ import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props<S extends Situation> = {
 	id: SimulateurId
+	beta?: boolean
 	montantsÀSaisir: React.ReactNode
 	questionsPublicodesPrincipales?: QuestionPublicodes[]
 	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
@@ -40,6 +41,7 @@ type Props<S extends Situation> = {
 
 export const Simulateur = <S extends Situation = Situation>({
 	id,
+	beta,
 	montantsÀSaisir,
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
@@ -65,6 +67,7 @@ export const Simulateur = <S extends Situation = Situation>({
 		<Container>
 			<SimulateurWarning
 				simulateur={id}
+				beta={beta}
 				informationsComplémentaires={avertissement}
 			/>
 

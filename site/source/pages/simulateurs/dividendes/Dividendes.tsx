@@ -49,6 +49,7 @@ export default function DividendesSimulation() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

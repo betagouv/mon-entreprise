@@ -95,6 +95,7 @@ export const ComparateurDeStatuts = () => {
 
 				<Simulateur
 					id={metadata.id}
+					beta={metadata.beta}
 					montantsÀSaisir={<MontantsÀSaisir />}
 					questionsPublicodesPrincipales={questionsPrincipales}
 					groupesDeQuestionsPublicodes={groupesDeQuestions}
