@@ -3,7 +3,7 @@ import { SeoExplanations } from '@/pages/simulateurs/entreprise-individuelle/Seo
 
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
+import RémunérationIndépendantPreview from '../indépendant/RémunérationIndépendantPreview.png'
 import { configEntrepriseIndividuelle } from './simulationConfig'
 
 export function entrepriseIndividuelleConfig({
@@ -36,7 +36,7 @@ export function entrepriseIndividuelleConfig({
 				'pages.simulateurs.ei.meta.titre',
 				'Entreprise individuelle (EI) : simulateur de revenus'
 			),
-			ogImage: AutoEntrepreneurPreview,
+			ogImage: RémunérationIndépendantPreview,
 		},
 		pathId: 'simulateurs.entreprise-individuelle',
 		shortName: t('pages.simulateurs.ei.shortname', 'Entreprise Individuelle'),

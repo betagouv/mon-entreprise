@@ -1,6 +1,6 @@
 import { config } from '../_configs/config'
 import { SimulatorsDataParams } from '../_configs/types'
-import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
+import RémunérationIndépendantPreview from '../indépendant/RémunérationIndépendantPreview.png'
 import { EURL } from './EURL'
 import { configEurl } from './simulationConfig'
 
@@ -31,7 +31,7 @@ export function eurlConfig({ t, sitePaths }: SimulatorsDataParams) {
 				'pages.simulateurs.eurl.meta.titre',
 				'EURL : simulateur de revenus pour dirigeant'
 			),
-			ogImage: RémunérationSASUPreview,
+			ogImage: RémunérationIndépendantPreview,
 		},
 		pathId: 'simulateurs.eurl',
 		shortName: t('pages.simulateurs.eurl.shortname', 'EURL'),
