@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import illustration from '@/assets/images/illustrations/code.svg'
 import PageHeader from '@/components/PageHeader'
 import {
 	Body,
@@ -13,7 +14,6 @@ import {
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../../components/utils/Meta'
-import illustration from './images/illustration_code.svg'
 
 export default function Options() {
 	const { absoluteSitePaths } = useSitePaths()

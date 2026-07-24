@@ -5,7 +5,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import urssafLogo from '@/assets/images/Urssaf.svg'
 import { TrackPage } from '@/components/PianoAnalytics'
 import {
 	Article,
@@ -36,10 +35,13 @@ import { pipe } from 'effect'
 
 import { SimulatorData } from '@/pages/simulateurs-et-assistants/metadata-src'
 import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
+import {
+	CODE_DU_TRAVAIL_NUMERIQUE,
+	FRANCE_TRAVAIL,
+	URSSAF,
+} from '@/utils/logos'
 
 import cciLogo from './images/cci.png'
-import minTraLogo from './images/min-tra.jpg'
-import poleEmploiLogo from './images/pole-emploi.png'
 
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
@@ -272,7 +274,7 @@ export default function Integration() {
 								'Urssaf, voir l’intégration, nouvelle fenêtre'
 							)}
 						>
-							<Logo src={urssafLogo} alt="" />
+							<Logo src={URSSAF} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
@@ -304,7 +306,7 @@ export default function Integration() {
 								'Code du travail numérique", voir le simulateur, nouvelle fenêtre'
 							)}
 						>
-							<Logo src={minTraLogo} alt="" />
+							<Logo src={CODE_DU_TRAVAIL_NUMERIQUE} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
@@ -320,7 +322,7 @@ export default function Integration() {
 								'France Travail, voir le simulateur, nouvelle fenêtre'
 							)}
 						>
-							<Logo src={poleEmploiLogo} alt="" />
+							<Logo src={FRANCE_TRAVAIL} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>

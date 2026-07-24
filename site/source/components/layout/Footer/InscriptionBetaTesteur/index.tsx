@@ -1,3 +1,4 @@
+import illustration from '@/assets/images/illustrations/feedback.svg'
 import {
 	Body,
 	Button,
@@ -6,8 +7,6 @@ import {
 	PopoverWithTrigger,
 	Spacing,
 } from '@/design-system'
-
-import FeedbackSvg from './feedback.svg'
 
 export const INSCRIPTION_LINK =
 	'https://b713d5c4.sibforms.com/serve/MUIEACTpgg9LvLVG7P4mkAbGA91OHsC2kuCsR3VlW9bV2m0vliZ31_DvZbtg8R5Lhqzd1Mc1iwuIsBw3FHBDG8Mbr4pjpVSbTzq6SLdox3f41GzWuIsT2IPSZ6x7-wh3ohDNDmHE7wbrenXUnqyPnH8Dm0cP2Hxnrq7T72GzINJR9DWwZd-LsqY2XZrvElFcRz6TlR6l36wGik3X'
@@ -23,7 +22,7 @@ export default function InscriptionBetaTesteur() {
 			small
 		>
 			<img
-				src={FeedbackSvg}
+				src={illustration}
 				style={{
 					height: 'auto',
 					maxWidth: '25rem',

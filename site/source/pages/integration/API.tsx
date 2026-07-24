@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import illustration from '@/assets/images/illustrations/api.svg'
 import PageHeader from '@/components/PageHeader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Button, typography } from '@/design-system'
@@ -8,7 +9,6 @@ import { Button, typography } from '@/design-system'
 import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './components/CasParticuliers'
 import StepByStep from './components/StepByStep'
-import illustration from './images/API_illustration.svg'
 
 const { Body, Li, Link, Ul, H2, H3, Intro, Code, Ol, Strong } = typography
 
