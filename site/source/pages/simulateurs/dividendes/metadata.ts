@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function dividendesMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function dividendesMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'dividendes',
 		pathId: 'simulateurs.dividendes',

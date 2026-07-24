@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function indépendantMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function indépendantMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'indépendant',
 		pathId: 'simulateurs.indépendant',

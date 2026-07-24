@@ -1,9 +1,6 @@
-import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
+import { PageMetadataParams } from '@/pages/simulateurs/_configs/types'
 
-export function rechercheCodeApeMetadata({
-	t,
-	sitePaths,
-}: SimulatorsDataParams) {
+export function rechercheCodeApeMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'recherche-code-ape',
 		pathId: 'assistants.recherche-code-ape',

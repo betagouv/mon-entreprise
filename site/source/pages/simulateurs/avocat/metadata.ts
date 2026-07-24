@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function avocatMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function avocatMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'avocat',
 		pathId: 'simulateurs.profession-libérale.avocat',

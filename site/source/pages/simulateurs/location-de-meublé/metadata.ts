@@ -1,9 +1,6 @@
-import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
+import { PageMetadataParams } from '@/pages/simulateurs/_configs/types'
 
-export function locationDeMeubleMetadata({
-	t,
-	sitePaths,
-}: SimulatorsDataParams) {
+export function locationDeMeubleMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'location-de-logement-meublé',
 		pathId: 'simulateurs.location-de-logement-meublé',

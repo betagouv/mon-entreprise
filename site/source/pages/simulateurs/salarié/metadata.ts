@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function salariéMetadata(params: SimulatorsDataParams) {
+export function salariéMetadata(params: PageMetadataParams) {
 	const { t, sitePaths } = params
 
 	return {

@@ -1,9 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function expertComptableMetadata({
-	t,
-	sitePaths,
-}: SimulatorsDataParams) {
+export function expertComptableMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'expert-comptable',
 		pathId: 'simulateurs.profession-libérale.expert-comptable',

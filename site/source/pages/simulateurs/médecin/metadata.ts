@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function médecinMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function médecinMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'médecin',
 		pathId: 'simulateurs.profession-libérale.médecin',

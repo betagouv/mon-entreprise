@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function impôtSociétéMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function impôtSociétéMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'is',
 		pathId: 'simulateurs.is',

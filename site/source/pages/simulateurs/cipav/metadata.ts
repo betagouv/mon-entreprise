@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function cipavMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function cipavMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'cipav',
 		pathId: 'simulateurs.profession-libérale.cipav',

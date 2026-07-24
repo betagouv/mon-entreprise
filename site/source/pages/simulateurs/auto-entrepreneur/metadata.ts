@@ -1,9 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function autoEntrepreneurMetadata({
-	t,
-	sitePaths,
-}: SimulatorsDataParams) {
+export function autoEntrepreneurMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'auto-entrepreneur',
 		pathId: 'simulateurs.auto-entrepreneur',

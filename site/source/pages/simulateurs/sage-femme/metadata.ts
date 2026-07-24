@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function sageFemmeMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function sageFemmeMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'sage-femme',
 		pathId: 'simulateurs.profession-libérale.sage-femme',

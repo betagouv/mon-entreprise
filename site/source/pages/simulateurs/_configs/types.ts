@@ -107,7 +107,7 @@ export type ExternalLink = {
 	ariaLabel?: string
 }
 
-export interface SimulatorsDataParams {
+export interface PageMetadataParams {
 	t: TFunction
 	sitePaths: AbsoluteSitePaths
 	language: string
