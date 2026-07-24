@@ -69,6 +69,7 @@ export function ArtisteAuteur() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.artiste-auteur.warning">

@@ -47,6 +47,7 @@ export default function LodeomSimulation() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.lodeom.warning">

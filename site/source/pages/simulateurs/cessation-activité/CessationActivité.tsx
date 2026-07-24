@@ -80,6 +80,7 @@ export const CessationActivitéSimulation = () => {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Trans i18nKey="pages.simulateurs.cessation-activité.warning">
 								<Body>

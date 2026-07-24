@@ -8,9 +8,11 @@ import {
 import { useSitePaths } from '@/sitePaths'
 import { ImmutableType } from '@/types/utils'
 
-export function usePageMetadata<M extends ImmutableType<PageMetadata>>(
-	pageMetadata: (params: SimulatorsDataParams) => M
-): M {
+import { MergedSimulatorMetadata } from './useSimulatorsMetadata'
+
+export function usePageMetadata(
+	pageMetadata: (params: SimulatorsDataParams) => ImmutableType<PageMetadata>
+): MergedSimulatorMetadata {
 	const [t, i18n] = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
 
@@ -20,7 +22,7 @@ export function usePageMetadata<M extends ImmutableType<PageMetadata>>(
 				t,
 				sitePaths: absoluteSitePaths,
 				language: i18n.language,
-			}),
+			}) as MergedSimulatorMetadata,
 		[pageMetadata, t, absoluteSitePaths, i18n.language]
 	)
 }

@@ -50,6 +50,7 @@ export function SASUSimulation() {
 				>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.sasu.warning">

@@ -4,22 +4,19 @@ import { Trans } from 'react-i18next'
 import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Emoji, Strong } from '@/design-system'
-import {
-	SimulateurId,
-	useSimulatorMetadata,
-} from '@/hooks/useSimulatorsMetadata'
+import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 
 type SimulateurWarningProps = {
 	simulateur: SimulateurId
+	beta?: boolean
 	informationsComplémentaires?: ReactNode
 }
 
 export default function SimulateurWarning({
 	simulateur,
+	beta,
 	informationsComplémentaires,
 }: SimulateurWarningProps) {
-	const { beta } = useSimulatorMetadata(simulateur)
-
 	return (
 		<>
 			<Warning

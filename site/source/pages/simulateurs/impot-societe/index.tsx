@@ -58,6 +58,7 @@ export default function ISSimulation() {
 				<SimulationContainer>
 					<SimulateurWarning
 						simulateur={metadata.id}
+						beta={metadata.beta}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.is.warning">
