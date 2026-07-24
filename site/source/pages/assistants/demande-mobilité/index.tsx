@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import illustration from '@/assets/images/illustrations/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import { Intro, Link } from '@/design-system'
 
@@ -12,6 +13,7 @@ export default function PageMobilité() {
 				'pages.simulateurs.demande-mobilité.title',
 				'Demande de mobilité internationale'
 			)}
+			picture={illustration}
 		>
 			<Intro>
 				<Trans i18nKey="pages.simulateurs.demande-mobilité.intro">
