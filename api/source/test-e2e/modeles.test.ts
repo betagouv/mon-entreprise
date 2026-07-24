@@ -84,7 +84,7 @@ describe('L’API', () => {
 			'Salaire net',
 		],
 	])('permet de récupérer une règle de %s', async (_libellé, path, titre) => {
-		const apiResponse = await testApp.get(`/api/v1${path}`).send()
+		const apiResponse = await testApp.get(encodeURI(`/api/v1${path}`)).send()
 
 		expect(apiResponse.status).toBe(200)
 
