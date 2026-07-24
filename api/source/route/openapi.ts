@@ -1,23 +1,19 @@
 import Router from '@koa/router'
-import { openapi as publicodesOpenapi } from '@publicodes/rest-api'
 import { Context } from 'koa'
 
 import { analyticsMiddleware } from '../analytics.js'
-import { mergeDeep } from '../utils.js'
+import openapi from '../openapi.json' assert { type: 'json' }
 
 /**
- * /openapi.json route, merge customOpenapi with @publicodes/rest-api openapi json
- * @param customOpenapi
+ * @param openapi
  * @returns
  */
-export const openapiRoutes = (customOpenapi: Record<string, unknown>) => {
+export const openApiRoutes = () => {
 	const router = new Router()
-
-	const mergedOpenapi = mergeDeep(publicodesOpenapi, customOpenapi)
 
 	router.get('/openapi.json', analyticsMiddleware, (ctx: Context) => {
 		ctx.type = 'application/json'
-		ctx.body = mergedOpenapi
+		ctx.body = openapi
 	})
 
 	return router.routes()

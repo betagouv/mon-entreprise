@@ -7,12 +7,11 @@ import Engine from 'publicodes'
 
 import { analyticsMiddleware } from './analytics.js'
 import { catchErrors } from './errors.js'
-import openapi from './openapi.json' assert { type: 'json' }
 import { modèles } from './modeles.js'
 import { rateLimiterMiddleware } from './rate-limiter.js'
 import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
-import { openapiRoutes } from './route/openapi.js'
+import { openApiRoutes } from './route/openapi.js'
 import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
 import v1unitéAdapterMiddleware from './v1unitéAdapterMiddleware.js'
 
@@ -44,7 +43,7 @@ app.use(catchErrors())
 
 app.use(cors())
 
-router.use('', docRoutes(), openapiRoutes(openapi))
+router.use('', docRoutes(), openApiRoutes())
 
 const engineOptions = {
 	warn: {
