@@ -1,8 +1,7 @@
 import Router from '@koa/router'
-import { Next } from 'koa'
+import { Context, Next } from 'koa'
 
-import { modèles } from './modeles.js'
-import { KoaContext } from './types.js'
+import { modèles } from '../modeles.js'
 
 export default function v1unitéAdapterMiddleware() {
 	const router = new Router()
@@ -19,7 +18,7 @@ export default function v1unitéAdapterMiddleware() {
 	return router.routes()
 }
 
-const handleUnitéAdapter = async (ctx: KoaContext, next: Next) => {
+const handleUnitéAdapter = async (ctx: Context, next: Next) => {
 	if (!ctx.request.body) {
 		return next()
 	}

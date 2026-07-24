@@ -5,15 +5,18 @@ import Koa from 'koa'
 import rules from 'modele-social'
 import Engine from 'publicodes'
 
-import { analyticsMiddleware } from './analytics.js'
 import { catchErrors } from './errors.js'
+import { analyticsMiddleware } from './middlewares/analytics.js'
+import { rateLimiterMiddleware } from './middlewares/rate-limiter.js'
+import { redisCacheMiddleware } from './middlewares/redis-cache.js'
+import Sentry, {
+	requestHandler,
+	tracingMiddleWare,
+} from './middlewares/sentry.js'
+import v1unitéAdapterMiddleware from './middlewares/v1unitéAdapterMiddleware.js'
 import { modèles } from './modeles.js'
-import { rateLimiterMiddleware } from './rate-limiter.js'
-import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
 import { openApiRoutes } from './route/openapi.js'
-import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
-import v1unitéAdapterMiddleware from './v1unitéAdapterMiddleware.js'
 
 type State = Koa.DefaultState
 type Context = Koa.DefaultContext

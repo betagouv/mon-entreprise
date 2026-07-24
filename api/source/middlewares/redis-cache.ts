@@ -3,11 +3,10 @@ import { createHash } from 'crypto'
 import Router from '@koa/router'
 import IORedis from 'ioredis'
 import IORedisMock from 'ioredis-mock'
-import { Next } from 'koa'
+import { DefaultContext, DefaultState, Next, ParameterizedContext } from 'koa'
 import { koaBody } from 'koa-body'
 
 import { superviserRedis } from './redis-supervision.js'
-import { KoaContext } from './types.js'
 
 const Redis = IORedis.default
 const RedisMock = IORedisMock.default
@@ -47,7 +46,16 @@ export const redisCacheMiddleware = () => {
 	return router.routes()
 }
 
-const handleCache = async (ctx: KoaContext, next: Next, modèle: string) => {
+// L'import direct du type Context de koa provoque une erreur de type ligne 91
+// sur `...ctx.body`
+type Context = ParameterizedContext<
+	DefaultState,
+	DefaultContext & Router.RouterParamContext<DefaultState, DefaultContext>,
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	any
+>
+
+const handleCache = async (ctx: Context, next: Next, modèle: string) => {
 	if (!redis || !ctx.request.body) {
 		await next()
 

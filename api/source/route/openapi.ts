@@ -1,7 +1,7 @@
 import Router from '@koa/router'
 import { Context } from 'koa'
 
-import { analyticsMiddleware } from '../analytics.js'
+import { analyticsMiddleware } from '../middlewares/analytics.js'
 import openapi from '../openapi.json' assert { type: 'json' }
 
 /**
