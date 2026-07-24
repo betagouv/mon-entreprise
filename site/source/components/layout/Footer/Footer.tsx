@@ -2,7 +2,6 @@ import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import Contact from '@/components/Contact'
 import { FeedbackButton } from '@/components/Feedback/FeedbackButton'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import {
@@ -20,6 +19,7 @@ import { environnement } from '@/services/environnement/environnement'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
+import Contact from './Contact'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import LegalNotice from './LegalNotice'
 import PrivacyPolicy from './PrivacyPolicy'
