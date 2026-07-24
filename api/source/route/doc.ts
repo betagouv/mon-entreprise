@@ -2,7 +2,7 @@ import Router from '@koa/router'
 import koaStatic from 'koa-static'
 import { absolutePath } from 'swagger-ui-dist'
 
-import { analyticsMiddleware } from '../analytics.js'
+import { analyticsMiddleware } from '../middlewares/analytics.js'
 
 export const docRoutes = () => {
 	const router = new Router()
