@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
 
-import image from '@/assets/images/road-sign.svg'
+import illustration from '@/assets/images/illustrations/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button, Container, Spacing } from '@/design-system'
@@ -28,7 +28,7 @@ export default function Page404() {
 						Cette page n'existe pas ou n'existe plus
 					</Trans>
 				}
-				picture={image}
+				picture={illustration}
 			>
 				<Button size="XL" to={'/'}>
 					<Trans i18nKey="pages.404.action">Revenir en lieu sûr</Trans>

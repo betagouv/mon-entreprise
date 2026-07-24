@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import illustration from '@/assets/images/illustration.svg'
+import illustration from '@/assets/images/illustrations/illustration.svg'
 import PageHeader from '@/components/PageHeader'
 import { Body, Link } from '@/design-system'
 

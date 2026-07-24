@@ -1,6 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import illustrationSvg from '@/assets/images/illustrations/landing.svg'
+import illustration2Svg from '@/assets/images/illustrations/landing2.svg'
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
@@ -20,8 +22,6 @@ import {
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import illustrationSvg from './illustration.svg'
-import illustration2Svg from './illustration2.svg'
 import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {

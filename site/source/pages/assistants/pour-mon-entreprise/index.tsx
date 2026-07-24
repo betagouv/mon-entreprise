@@ -6,6 +6,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useOverlayTriggerState } from 'react-stately'
 import { styled } from 'styled-components'
 
+import illustrationCroissance from '@/assets/images/illustrations/croissance.svg'
+import illustrationFormes from '@/assets/images/illustrations/formes.svg'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -42,9 +44,6 @@ import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
-
-import forms from './forms.svg'
-import growth from './growth.svg'
 
 export default function PourMonEntrepriseHome() {
 	const { relativeSitePaths } = useSitePaths()
@@ -133,7 +132,7 @@ function PourMonEntreprise() {
 						/>
 					)}
 
-					<PageHeader picture={growth}>
+					<PageHeader picture={illustrationCroissance}>
 						<Intro>
 							{t(
 								'pages.assistants.pour-mon-entreprise.description',
@@ -154,7 +153,7 @@ function PourMonEntreprise() {
 						backgroundColor={(theme) => theme.colors.bases.primary[600]}
 					>
 						<FromTop>
-							<FormsImage src={forms} alt="" />
+							<FormsImage src={illustrationFormes} alt="" />
 							<Spacing xs />
 							<ForceThemeProvider forceTheme="dark">
 								{t(

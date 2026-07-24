@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import assuranceMaladieSrc from '@/assets/images/assurance-maladie.svg'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
 import { InstitutionLine } from '@/components/simulationExplanation/InstitutionsPartenaires/InstitutionLine'
 import { InstitutionLogo } from '@/components/simulationExplanation/InstitutionsPartenaires/InstitutionLogo'
 import { Body, Emoji } from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { ASSURANCE_MALADIE } from '@/utils/logos'
 
 type Props = {
 	role?: string
@@ -28,7 +28,7 @@ export default function ParticipationCPAM({ role }: Props) {
 					'CPAM, accéder à ameli.fr, nouvelle fenêtre'
 				)}
 			>
-				<img src={assuranceMaladieSrc} alt="CPAM" />
+				<img src={ASSURANCE_MALADIE} alt="CPAM" />
 			</InstitutionLogo>
 			<Body>
 				{t(

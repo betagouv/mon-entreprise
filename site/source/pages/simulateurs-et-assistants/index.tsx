@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import illustration from '@/assets/images/illustrations/simulateur.svg'
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
@@ -17,8 +18,6 @@ import {
 } from '@/design-system'
 import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
-
-import simulatorSvg from './illustration-simulateur.svg'
 
 export default function SimulateursEtAssistants() {
 	const { t } = useTranslation()
@@ -38,9 +37,9 @@ export default function SimulateursEtAssistants() {
 					'pages.simulateurs.accueil.description',
 					'Tous les simulateurs et assistants sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 				)}
-				ogImage={simulatorSvg}
+				ogImage={illustration}
 			/>
-			<PageHeader titre={titre} picture={simulatorSvg}>
+			<PageHeader titre={titre} picture={illustration}>
 				<Intro>
 					{t(
 						'pages.simulateurs.accueil.header',

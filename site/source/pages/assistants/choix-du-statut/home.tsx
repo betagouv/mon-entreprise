@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import illustration from '@/assets/images/illustrations/créer.svg'
 import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
@@ -21,7 +22,6 @@ import { resetCompany } from '@/store/actions/companyActions'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { useNextStep, useStepPaths } from './_components/useSteps'
-import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
@@ -34,7 +34,7 @@ export default function AccueilChoixStatut() {
 		<>
 			<TrackPage name={ACCUEIL} />
 
-			<PageHeader picture={créerSvg}>
+			<PageHeader picture={illustration}>
 				<Intro>
 					<Trans i18nKey="pages.assistants.choix-statut.home.intro">
 						La première étape pour créer votre entreprise consiste à{' '}

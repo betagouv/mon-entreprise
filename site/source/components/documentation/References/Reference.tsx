@@ -4,7 +4,7 @@ import { Grid, Link } from '@/design-system'
 import { capitalise0 } from '@/utils'
 import {
 	AGIRC_ARRCO,
-	AMELI,
+	ASSURANCE_MALADIE,
 	ASSURANCE_RETRAITE,
 	BOFIP,
 	BOSS,
@@ -80,7 +80,7 @@ const StyledImage = styled.img`
 `
 const referencesImages = {
 	'agirc-arrco.fr': AGIRC_ARRCO,
-	'ameli.fr': AMELI,
+	'ameli.fr': ASSURANCE_MALADIE,
 	'autoentrepreneur.urssaf.fr': URSSAF,
 	'bofip.impots.gouv.fr': BOFIP,
 	'boss.gouv.fr': BOSS,

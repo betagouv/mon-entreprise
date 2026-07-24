@@ -1,12 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import dgfipSrc from '@/assets/images/logo-dgfip.svg'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import { Body } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import { DGFIP } from '@/utils/logos'
 
 import { InstitutionLine } from './InstitutionLine'
 import { InstitutionLogo } from './InstitutionLogo'
@@ -32,7 +32,7 @@ export default function ImpôtsDGFIP({ rule, role }: Props) {
 						'DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre'
 					)}
 				>
-					<img src={dgfipSrc} alt="DGFiP" />
+					<img src={DGFIP} alt="DGFiP" />
 				</InstitutionLogo>
 				<Body>
 					<Trans i18nKey="simulateurs.explanation.institutions.dgfip">
