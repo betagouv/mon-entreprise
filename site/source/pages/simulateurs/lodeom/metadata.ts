@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function lodeomMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function lodeomMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'lodeom',
 		pathId: 'simulateurs.lodeom',

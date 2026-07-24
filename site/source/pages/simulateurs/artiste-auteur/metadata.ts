@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function artisteAuteurMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function artisteAuteurMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'artiste-auteur',
 		pathId: 'simulateurs.artiste-auteur',

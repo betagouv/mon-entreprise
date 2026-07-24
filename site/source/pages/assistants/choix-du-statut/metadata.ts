@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../../simulateurs/_configs/types'
+import { PageMetadataParams } from '../../simulateurs/_configs/types'
 
 export function choixStatutJuridiqueMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'choix-statut',
 		pathId: 'assistants.choix-du-statut.index',

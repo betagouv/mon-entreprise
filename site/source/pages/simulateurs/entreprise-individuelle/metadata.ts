@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
 export function entrepriseIndividuelleMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'entreprise-individuelle',
 		pathId: 'simulateurs.entreprise-individuelle',

@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function eirlMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function eirlMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'eirl',
 		pathId: 'simulateurs.eirl',

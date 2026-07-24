@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
 export function coûtCréationEntrepriseMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'coût-création-entreprise',
 		pathId: 'simulateurs.coût-création-entreprise',

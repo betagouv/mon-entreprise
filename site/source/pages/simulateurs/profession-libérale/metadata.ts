@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
 export function professionLibéraleMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'profession-libérale',
 		pathId: 'simulateurs.profession-libérale.index',

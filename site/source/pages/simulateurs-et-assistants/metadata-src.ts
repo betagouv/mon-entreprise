@@ -4,8 +4,8 @@ import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entrepris
 import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
 import {
 	PageMetadata,
+	PageMetadataParams,
 	parId,
-	SimulatorsDataParams,
 } from '@/pages/simulateurs/_configs/types'
 import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
 import { artisteAuteurMetadata } from '@/pages/simulateurs/artiste-auteur/metadata'
@@ -41,7 +41,7 @@ import { ImmutableType } from '@/types/utils'
  * simulateurs et assistants : plan du site, recherche, cards, statistiques,
  * script de mise à jour des données pour Algolia…
  */
-const getMetadataSrc = (params: SimulatorsDataParams) => {
+const getMetadataSrc = (params: PageMetadataParams) => {
 	return {
 		// simulateurs :
 		...parId(salariéMetadata(params)),

@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function sasuMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function sasuMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'sasu',
 		pathId: 'simulateurs.sasu',

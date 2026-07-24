@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
+import { PageMetadataParams } from '@/pages/simulateurs/_configs/types'
 
 export function cotisationMaladieFrontalierSuisseMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'cotisation-maladie-frontalier-suisse',
 		pathId: 'simulateurs.cotisation-maladie-frontalier-suisse',

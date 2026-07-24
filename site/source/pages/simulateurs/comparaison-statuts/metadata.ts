@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
 export function comparaisonStatutsMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'comparaison-statuts',
 		pathId: 'simulateurs.comparaison',

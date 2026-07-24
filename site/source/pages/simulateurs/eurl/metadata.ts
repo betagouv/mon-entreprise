@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function eurlMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function eurlMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'eurl',
 		pathId: 'simulateurs.eurl',

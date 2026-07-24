@@ -1,9 +1,9 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
 export function auxiliaireMédicalMetadata({
 	t,
 	sitePaths,
-}: SimulatorsDataParams) {
+}: PageMetadataParams) {
 	return {
 		id: 'auxiliaire-médical',
 		pathId: 'simulateurs.profession-libérale.auxiliaire',

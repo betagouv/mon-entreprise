@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '@/pages/simulateurs/_configs/types'
+import { PageMetadataParams } from '@/pages/simulateurs/_configs/types'
 
-export function CMGMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function CMGMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'cmg',
 		pathId: 'assistants.cmg.index',

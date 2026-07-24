@@ -1,6 +1,6 @@
-import { SimulatorsDataParams } from '../_configs/types'
+import { PageMetadataParams } from '../_configs/types'
 
-export function pharmacienMetadata({ t, sitePaths }: SimulatorsDataParams) {
+export function pharmacienMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
 		id: 'pharmacien',
 		pathId: 'simulateurs.profession-libérale.pharmacien',
