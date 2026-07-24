@@ -918,7 +918,6 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
   "paths": {
     "/evaluate": {
       "post": {
-        "operationId": "evaluate",
         "requestBody": {
           "content": {
             "application/json": {
@@ -959,41 +958,18 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
                   },
                 },
               },
-              "schema": {
-                "$ref": "#/components/schemas/EvaluateBody",
-              },
             },
           },
-          "required": true,
         },
         "responses": {
           "200": {
             "$ref": "#/components/responses/evaluation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EvaluateResponse",
-                },
-              },
-            },
-            "description": "La requête a réussi",
           },
           "400": {
             "$ref": "#/components/responses/erreurDeValidation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InputValidationError",
-                },
-              },
-            },
-            "description": "Erreur de validation d'entrée",
           },
         },
         "summary": "Évalue une ou plusieurs expressions avec les règles de \`modele-social\` et une situation donnée",
-        "tags": [
-          "publicodes-api",
-        ],
       },
     },
     "/modeles/{modele}/evaluate": {
@@ -1097,42 +1073,18 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
     },
     "/rules": {
       "get": {
-        "operationId": "rules",
         "responses": {
           "200": {
             "$ref": "#/components/responses/rulesList",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Rules",
-                },
-              },
-            },
-            "description": "La requête a réussi",
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InputValidationError",
-                },
-              },
-            },
-            "description": "Erreur de validation d'entrée",
           },
         },
         "summary": "Retourne toutes les règles de \`modele-social\`",
-        "tags": [
-          "publicodes-api",
-        ],
       },
     },
     "/rules/{rule}": {
       "get": {
-        "operationId": "rules-rule",
         "parameters": [
           {
-            "description": "Rule to get",
             "examples": {
               "Impot": {
                 "value": "impôt . méthode de calcul",
@@ -1151,47 +1103,10 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
         ],
         "responses": {
           "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "oneOf": [
-                    {
-                      "$ref": "#/components/schemas/Rule",
-                    },
-                    {
-                      "properties": {
-                        "error": {
-                          "properties": {
-                            "message": {
-                              "type": "string",
-                            },
-                          },
-                          "type": "object",
-                        },
-                      },
-                      "type": "object",
-                    },
-                  ],
-                },
-              },
-            },
-            "description": "La requête a réussi",
-          },
-          "400": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/InputValidationError",
-                },
-              },
-            },
-            "description": "Erreur de validation d'entrée",
+            "$ref": "#/components/responses/rule",
           },
         },
         "summary": "Retourne la règle de \`modele-social\` demandée",
-        "tags": [
-          "publicodes-api",
-        ],
       },
     },
   },
