@@ -1,27 +1,40 @@
 import Router from '@koa/router'
+import { Next } from 'koa'
+
+import { modèles } from './modeles.js'
+import { KoaContext } from './types.js'
 
 export default function v1unitéAdapterMiddleware() {
 	const router = new Router()
 
-	router.post('/evaluate', async (ctx, next) => {
-		if (!ctx.request.body) {
-			return next()
-		}
+	const evaluatePaths = [
+		'/evaluate',
+		...Object.keys(modèles).map((nom) => `/modeles/${nom}/evaluate`),
+	]
 
-		ctx.request.body = deepMap(ctx.request.body, (value, key) => {
-			if (key === 'unité' && typeof value === 'string') {
-				const newValue = value.replace(' /', '/').replace('/ ', '/')
-
-				return newValue
-			}
-
-			return value
-		})
-
-		return next()
+	router.post(evaluatePaths, async (ctx, next) => {
+		await handleUnitéAdapter(ctx, next)
 	})
 
 	return router.routes()
+}
+
+const handleUnitéAdapter = async (ctx: KoaContext, next: Next) => {
+	if (!ctx.request.body) {
+		return next()
+	}
+
+	ctx.request.body = deepMap(ctx.request.body, (value, key) => {
+		if (key === 'unité' && typeof value === 'string') {
+			const newValue = value.replace(' /', '/').replace('/ ', '/')
+
+			return newValue
+		}
+
+		return value
+	})
+
+	return next()
 }
 
 function deepMap(
