@@ -6,6 +6,7 @@ import { Link } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { useNavigation } from '@/lib/navigation'
+import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
@@ -171,7 +172,7 @@ export default function Simulateurs() {
 					<Route path="*" element={<ProfessionLibérale />} />
 				</Route>
 
-				<Route path="*" element={<Navigate to="/404" replace />} />
+				<Route path="*" element={<Page404 />} />
 			</Routes>
 		</>
 	)

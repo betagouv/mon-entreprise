@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { useNavigation } from '@/lib/navigation'
+import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
 
 import ChoixDuStatut from './choix-du-statut'
@@ -65,6 +66,8 @@ export default function Assistants() {
 					path={assistants['recherche-code-ape'] + '/*'}
 					element={<SearchCodeApePage />}
 				/>
+
+				<Route path="*" element={<Page404 />} />
 			</Routes>
 		</>
 	)
