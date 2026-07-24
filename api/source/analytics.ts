@@ -7,13 +7,36 @@ pianoAnalytics.setConfigurations({
 	collectDomain: 'https://tm.urssaf.fr',
 })
 
+const extractPathElements = (path: string) => {
+	if (path.includes('/modeles/')) {
+		const [api, apiVersion, , modèle, page] = path.split('/').filter(Boolean)
+
+		return {
+			modèle: `modele-${modèle}`,
+			page,
+			api,
+			apiVersion,
+		}
+	} else {
+		const [api, apiVersion, page] = path.split('/').filter(Boolean)
+
+		return {
+			modèle: 'modele-social',
+			page,
+			api,
+			apiVersion,
+		}
+	}
+}
+
 function pathToPageData(path: string) {
-	const [pageChapter1, pageChapter2, page] = path.split('/').filter(Boolean)
+	const { modèle, page, api, apiVersion } = extractPathElements(path)
 
 	return {
 		page,
-		page_chapter1: pageChapter1,
-		page_chapter2: pageChapter2,
+		page_chapter1: api,
+		page_chapter2: apiVersion,
+		page_chapter3: modèle,
 	}
 }
 
