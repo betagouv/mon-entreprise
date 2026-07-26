@@ -61,7 +61,9 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
           - variations:
             - si: date < 01/2024
               alors: 10%
-            - sinon: 10.2%
+            - si: date < 01/2026
+              alors: 10.2%
+            - sinon: 11.8%
   abattement:
     applicable si: CNAVPL . exonération incapacité
     valeur: 100%
@@ -70,6 +72,7 @@ indépendant . profession libérale . réglementée . CARMF . retraite compléme
   références:
     Montant des cotisations: http://www.carmf.fr/page.php?page=cdrom/coti/coti-cours.htm
     Guide de l’assurance vieillesse des professions libérales (2025): https://www.cnavpl.fr/wp-content/uploads/2025/07/Guide-2025.pdf#page=45
+    Taux 2026: https://www.carmf.fr/page.php?page=chiffrescles/stats/2026/taux2026.htm
     Taux 2025: https://www.carmf.fr/page.php?page=chiffrescles/stats/2025/taux2025.htm
     Taux 2024: https://www.carmf.fr/page.php?page=chiffrescles/stats/2024/taux2024.htm
     Taux 2023: https://www.carmf.fr/page.php?page=chiffrescles/stats/2023/taux2023.htm
