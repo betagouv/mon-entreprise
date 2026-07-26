@@ -49,8 +49,16 @@ indépendant . profession libérale . réglementée . CARCDSF . retraite complé
         multiplicateur: plafond sécurité sociale . métropole
         tranches:
           - taux: 0%
-            plafond: 0.85
-          - taux: 10.80%
+            plafond:
+              variations:
+                - si: date < 01/2026
+                  alors: 0.85
+                - sinon: 0.65
+          - taux:
+              variations:
+                - si: date < 01/2026
+                  alors: 10.80%
+                - sinon: 11.35%
             plafond: 5
         arrondi: oui
 
