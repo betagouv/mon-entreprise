@@ -11,24 +11,21 @@ const estRouteDeModèle = (page?: string) =>
 	page === 'evaluate' || page === 'rules'
 
 const extractPathElements = (path: string) => {
+	const segments = path.split('/').filter(Boolean)
+
 	if (path.includes('/modeles/')) {
-		const [api, apiVersion, , modèle, page] = path.split('/').filter(Boolean)
+		const [api, apiVersion, , modèle, page] = segments
 
-		return {
-			modèle: `modele-${modèle}`,
-			page,
-			api,
-			apiVersion,
-		}
-	} else {
-		const [api, apiVersion, page] = path.split('/').filter(Boolean)
+		return { api, apiVersion, page, modèle: `modele-${modèle}` }
+	}
 
-		return {
-			modèle: estRouteDeModèle(page) ? 'modele-social' : undefined,
-			page,
-			api,
-			apiVersion,
-		}
+	const [api, apiVersion, page] = segments
+
+	return {
+		api,
+		apiVersion,
+		page,
+		modèle: estRouteDeModèle(page) ? 'modele-social' : undefined,
 	}
 }
 
