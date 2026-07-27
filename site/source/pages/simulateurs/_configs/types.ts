@@ -1,5 +1,4 @@
 import type { TFunction } from 'i18next'
-import { PublicodesExpression } from 'publicodes'
 
 import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { AbsoluteSitePaths } from '@/sitePaths'
@@ -92,10 +91,6 @@ export interface PageMetadata {
 	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
 	 */
 	codesCatégorieJuridique?: string[]
-}
-
-export type ConditionalExternalLink = ExternalLink & {
-	associatedRule: PublicodesExpression
 }
 
 export type ExternalLink = {
