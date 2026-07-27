@@ -6,6 +6,7 @@ import IORedisMock from 'ioredis-mock'
 import { DefaultContext, DefaultState, Next, ParameterizedContext } from 'koa'
 import { koaBody } from 'koa-body'
 
+import { modèles } from '../modeles.js'
 import { superviserRedis } from './redis-supervision.js'
 
 const Redis = IORedis.default
@@ -29,8 +30,12 @@ export const redisCacheMiddleware = () => {
 
 	const evaluatePaths = {
 		'/evaluate': 'modele-social',
-		'/modeles/as/evaluate': 'modele-as',
-		'/modeles/ti/evaluate': 'modele-ti',
+		...Object.fromEntries(
+			Object.keys(modèles).map((nom): [string, string] => [
+				`/modeles/${nom}/evaluate`,
+				`modele-${nom}`,
+			])
+		),
 	}
 
 	Object.keys(evaluatePaths).forEach((path) => {
