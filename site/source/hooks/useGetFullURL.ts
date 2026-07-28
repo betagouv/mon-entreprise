@@ -15,7 +15,10 @@ export const useGetFullURL = () => {
 
 	const language = parseLangue(i18n.language)
 
-	const pathStart = IS_DEVELOPMENT ? DEVELOPMENT_BASE_PATHS[language] : ''
+	const isViteDevelopment =
+		typeof IS_DEVELOPMENT !== 'undefined' && IS_DEVELOPMENT
+
+	const pathStart = isViteDevelopment ? DEVELOPMENT_BASE_PATHS[language] : ''
 
 	// Rustine : permet d'utiliser window en SSR
 	const originRef = useRef('')
