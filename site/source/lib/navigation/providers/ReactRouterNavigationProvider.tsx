@@ -10,6 +10,7 @@ import {
 	generatePath as rrGeneratePath,
 	Link as RRLink,
 	matchPath as rrMatchPath,
+	NavLink as RRNavLink,
 	useHref as rrUseHref,
 	useLocation,
 	useNavigate,
@@ -17,7 +18,7 @@ import {
 	useSearchParams,
 } from 'react-router-dom'
 
-import { LinkProps, NavigationAPI } from '../NavigationAPI'
+import { LinkProps, NavigationAPI, NavLinkProps } from '../NavigationAPI'
 import { NavigationContext } from '../NavigationContext'
 
 interface Props {
@@ -69,6 +70,7 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 	const navigation = useMemo<NavigationAPI>(
 		() => ({
 			Link: RRLink as ComponentType<LinkProps>,
+			NavLink: RRNavLink as ComponentType<NavLinkProps>,
 			navigate: (to, options) => rrNavigate(to, options),
 			currentPath: location.pathname,
 			searchParams,

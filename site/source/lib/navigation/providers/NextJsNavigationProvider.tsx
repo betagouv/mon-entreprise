@@ -16,6 +16,7 @@ import {
 	linkTargetToString,
 	NavigationAPI,
 	NavigationType,
+	NavLinkProps,
 } from '../NavigationAPI'
 import { NavigationContext } from '../NavigationContext'
 import { generatePath, matchPath } from '../pathUtils'
@@ -24,6 +25,34 @@ function NextJsLink({ to, children, ...props }: LinkProps) {
 	return (
 		<NextLink href={linkTargetToString(to)} {...props}>
 			{children}
+		</NextLink>
+	)
+}
+
+function NextJsNavLink({
+	to,
+	end,
+	style,
+	className,
+	children,
+	...props
+}: NavLinkProps) {
+	const pathname = usePathname()
+	const cible = linkTargetToString(to).split('?')[0].split('#')[0]
+	const isActive = end
+		? pathname === cible
+		: pathname === cible || pathname.startsWith(cible + '/')
+	const état = { isActive, isPending: false, isTransitioning: false }
+
+	return (
+		<NextLink
+			href={linkTargetToString(to)}
+			aria-current={isActive ? 'page' : undefined}
+			style={typeof style === 'function' ? style(état) : style}
+			className={typeof className === 'function' ? className(état) : className}
+			{...props}
+		>
+			{typeof children === 'function' ? children(état) : children}
 		</NextLink>
 	)
 }
@@ -131,6 +160,7 @@ export function NextJsNavigationProvider({ children }: Props) {
 	const navigation = useMemo<NavigationAPI>(
 		() => ({
 			Link: NextJsLink,
+			NavLink: NextJsNavLink,
 			navigate,
 			currentPath: pathname,
 			searchParams: new URLSearchParams(searchParams.toString()),

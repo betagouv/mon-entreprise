@@ -58,6 +58,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		})
 		vi.mocked(useNavigation).mockReturnValue({
 			Link: () => null,
+			NavLink: () => null,
 			searchParams: initialParams,
 			setSearchParams: setSearchParamsMock,
 			navigate: vi.fn(),
@@ -125,6 +126,7 @@ describe('useSetSimulationFromSearchParams hook', () => {
 		})
 		vi.mocked(useNavigation).mockReturnValue({
 			Link: () => null,
+			NavLink: () => null,
 			searchParams: initialParams,
 			setSearchParams: setSearchParamsMock,
 			navigate: vi.fn(),

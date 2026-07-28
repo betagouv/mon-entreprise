@@ -1,4 +1,10 @@
-import { AnchorHTMLAttributes, ComponentType, ReactNode } from 'react'
+import {
+	AnchorHTMLAttributes,
+	ComponentType,
+	CSSProperties,
+	ReactNode,
+	Ref,
+} from 'react'
 
 export type NavigationType = 'PUSH' | 'POP' | 'REPLACE'
 
@@ -14,6 +20,25 @@ export interface LinkProps extends Omit<
 	children?: ReactNode
 }
 
+export type NavLinkState = {
+	isActive: boolean
+	isPending: boolean
+	isTransitioning: boolean
+}
+
+export interface NavLinkProps
+	extends Omit<
+		AnchorHTMLAttributes<HTMLAnchorElement>,
+		'href' | 'style' | 'className' | 'children'
+	> {
+	to: LinkTarget
+	end?: boolean
+	ref?: Ref<HTMLAnchorElement>
+	children?: ReactNode | ((state: NavLinkState) => ReactNode)
+	style?: CSSProperties | ((state: NavLinkState) => CSSProperties | undefined)
+	className?: string | ((state: NavLinkState) => string | undefined)
+}
+
 export function linkTargetToString(to: LinkTarget): string {
 	if (typeof to === 'string') return to
 
@@ -22,6 +47,7 @@ export function linkTargetToString(to: LinkTarget): string {
 
 export interface NavigationAPI {
 	Link: ComponentType<LinkProps>
+	NavLink: ComponentType<NavLinkProps>
 	navigate: (to: string, options?: { replace?: boolean }) => void
 	currentPath: string
 	searchParams: URLSearchParams
