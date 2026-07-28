@@ -8,6 +8,7 @@ import logoSvgEN from '@/assets/images/logo-mycompany.svg'
 import { Link } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { environnement } from '@/services/environnement/environnement'
+import { urlAsset } from '@/utils/asset'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */
 
@@ -23,15 +24,15 @@ export function Logo() {
 		<StyledLogo
 			data-test-id="logo img"
 			alt={t('navbar.logo', 'Urssaf Mon entreprise')}
-			src={
+			src={urlAsset(
 				language === 'fr'
 					? isDarkModeEnabled
 						? logoSvgFRDark
 						: logoSvgFR
 					: isDarkModeEnabled
-						? logoSvgENDark
-						: logoSvgEN
-			}
+					? logoSvgENDark
+					: logoSvgEN
+			)}
 		/>
 	)
 }
