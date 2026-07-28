@@ -1,14 +1,8 @@
-import React, {
-	ComponentProps,
-	ComponentPropsWithRef,
-	ForwardedRef,
-	useCallback,
-	useRef,
-} from 'react'
+import React, { ForwardedRef, useCallback, useRef } from 'react'
 import { AriaButtonOptions, AriaButtonProps, useButton } from 'react-aria'
 import { css, styled } from 'styled-components'
 
-import { NavLink } from '@/lib/navigation'
+import { NavLinkProps, useNavigation } from '@/lib/navigation'
 import { omit } from '@/utils'
 
 export const StyledLinkHover = css`
@@ -131,12 +125,13 @@ export function useExternalLinkProps({
  * they are functions and we pass them to NavLink here
  */
 const CustomNavLink = React.forwardRef(function CustomNavLink(
-	props: ComponentProps<typeof NavLink> & {
-		_style?: ComponentProps<typeof NavLink>['style']
-		_className?: ComponentProps<typeof NavLink>['className']
+	props: NavLinkProps & {
+		_style?: NavLinkProps['style']
+		_className?: NavLinkProps['className']
 	},
 	forwardedRef: ForwardedRef<HTMLAnchorElement | null>
 ) {
+	const { NavLink } = useNavigation()
 	const navLinkProps = { ...props }
 	delete navLinkProps._style
 	delete navLinkProps._className
@@ -168,7 +163,7 @@ const CustomNavLink = React.forwardRef(function CustomNavLink(
 
 export type GenericButtonOrNavLinkProps = (
 	| AriaButtonProps<'a'>
-	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
+	| (AriaButtonProps<'a'> & NavLinkProps)
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true

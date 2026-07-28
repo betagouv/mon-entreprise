@@ -9,6 +9,7 @@ import {
 	linkTargetToString,
 	NavigationAPI,
 	NavigationType,
+	NavLinkProps,
 } from '../NavigationAPI'
 import { NavigationContext } from '../NavigationContext'
 
@@ -16,6 +17,28 @@ function MockLink({ to, children, ...props }: LinkProps) {
 	return (
 		<a href={linkTargetToString(to)} {...props}>
 			{children}
+		</a>
+	)
+}
+
+function MockNavLink({
+	to,
+	end,
+	style,
+	className,
+	children,
+	...props
+}: NavLinkProps) {
+	const état = { isActive: false, isPending: false, isTransitioning: false }
+
+	return (
+		<a
+			href={linkTargetToString(to)}
+			style={typeof style === 'function' ? style(état) : style}
+			className={typeof className === 'function' ? className(état) : className}
+			{...props}
+		>
+			{typeof children === 'function' ? children(état) : children}
 		</a>
 	)
 }
@@ -88,6 +111,7 @@ export function MockNavigationProvider({
 	const navigation = useMemo<NavigationAPI>(
 		() => ({
 			Link: MockLink,
+			NavLink: MockNavLink,
 			navigate: (to) => {
 				const url = new URL(to, 'http://localhost')
 				setCurrentPath(url.pathname)
