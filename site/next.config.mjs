@@ -25,6 +25,16 @@ const nextConfig = {
 			},
 		},
 	},
+
+	async rewrites() {
+		return [
+			{
+				source: '/twemoji/:path*',
+				destination:
+					'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/:path*',
+			},
+		]
+	},
 }
 
 export default nextConfig
