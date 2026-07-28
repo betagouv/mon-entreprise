@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 
+import { PageLayout } from '@/components/layout/PageLayout'
 import i18next, { langue } from '@/locales/i18n-server'
 
 import { montserrat, roboto } from './fonts'
@@ -34,7 +35,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<script dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }} />
 			</head>
 			<body>
-				<Providers>{children}</Providers>
+				<Providers>
+					<PageLayout>{children}</PageLayout>
+				</Providers>
 			</body>
 		</html>
 	)

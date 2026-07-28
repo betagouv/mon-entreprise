@@ -22,7 +22,7 @@ export default function Home() {
 	const simulationSource = useSelector(simulationSourceSelector)
 
 	return (
-		<main>
+		<>
 			<H1>{t('app.titre', 'Mon entreprise — Next.js')}</H1>
 			<Body>
 				{t(
@@ -53,6 +53,6 @@ export default function Home() {
 			<Button onPress={() => dispatch(fermeLeBandeau())}>
 				Déclencher fermeLeBandeau
 			</Button>
-		</main>
+		</>
 	)
 }
