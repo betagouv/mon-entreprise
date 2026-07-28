@@ -23,8 +23,8 @@ export default function Contact() {
 		>
 			<Trans i18nKey="contact.email">
 				<Body>
-					Vous pouvez nous contacter via notre module de retours via le boutton
-					👋 en haut à droite de votre ecran ou directement par mail à l'adresse
+					Vous pouvez nous contacter via notre module de retours via le bouton
+					👋 en haut à droite de votre écran ou directement par mail à l'adresse
 					suivante :{' '}
 					<StyledLink
 						href="mailto:contact@mon-entreprise.beta.gouv.fr"

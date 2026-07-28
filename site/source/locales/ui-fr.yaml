@@ -320,8 +320,8 @@ components:
         réinitialiser: Valeurs par défaut
         titre: Situation
 contact:
-  email: "<0>Vous pouvez nous contacter via notre module de retours via le boutton
-    👋 en haut à droite de votre ecran ou directement par mail à l'adresse
+  email: "<0>Vous pouvez nous contacter via notre module de retours via le bouton
+    👋 en haut à droite de votre écran ou directement par mail à l'adresse
     suivante : <2>contact@mon-entreprise.beta.gouv.fr</2></0>"
   info: Nous n'avons pas accès à la situation personnelle des cotisants (pour des
     raisons de confidentialité), et nous ne pouvons légalement pas donner de
