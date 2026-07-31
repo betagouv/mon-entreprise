@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import {
 	Body,
@@ -102,7 +103,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 			{isSimulateurSalaire ? (
 				<JeDonneMonAvis light />
 			) : (
-				<div style={{ textAlign: 'center' }}>
+				<CenteredDiv>
 					<Button
 						color="tertiary"
 						size="XXS"
@@ -115,7 +116,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 					>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</Button>
-				</div>
+				</CenteredDiv>
 			)}
 			{isShowingSuggestionForm && (
 				<Popover
@@ -148,3 +149,8 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 		</>
 	)
 }
+
+const CenteredDiv = styled.div`
+	display: flex;
+	justify-content: center;
+`
