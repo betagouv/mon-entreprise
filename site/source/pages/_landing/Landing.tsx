@@ -134,36 +134,36 @@ export default function Landing() {
 							<H2>Qui sommes-nous ?</H2>
 
 							<Body>
-								Nous sommes une petite{' '}
+								Nous sommes une{' '}
 								<Link
 									aria-label={t(
 										'aria-label.équipe',
-										'équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre'
+										'petite équipe, nouvelle fenêtre'
 									)}
 									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
 								>
-									équipe
+									petite équipe
 								</Link>{' '}
 								autonome et pluridisciplinaire au sein de l’
 								<Link
 									href="https://www.urssaf.fr"
 									aria-label={t(
 										'aria-label.urssaf',
-										'Urssaf, accéder à urssaf.fr, nouvelle fenêtre'
+										'Urssaf, nouvelle fenêtre'
 									)}
 								>
 									Urssaf
 								</Link>
 								. Nous avons à cœur d’être au près de vos besoins afin
-								d’améliorer en permanence ce site conformément à l'approche{' '}
+								d’améliorer en permanence ce site conformément au{' '}
 								<Link
 									href="https://beta.gouv.fr/manifeste"
 									aria-label={t(
 										'aria-label.beta-gouv',
-										'beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre'
+										'manifeste beta.gouv.fr, nouvelle fenêtre'
 									)}
 								>
-									beta.gouv.fr
+									manifeste beta.gouv.fr
 								</Link>
 								.
 							</Body>
