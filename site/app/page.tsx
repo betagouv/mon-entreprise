@@ -4,8 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import PageHeader from '@/components/PageHeader'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import SearchOrCreate from '@/pages/_landing/SearchOrCreate'
-import { Body, Button, Container, Grid, H2, H3, H4, Intro, Spacing, Strong } from '@/design-system'
+import { Body, Button, Container, Grid, H2, H3, H4, Intro, Link, Spacing, Strong } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 
 import { styled } from 'styled-components'
@@ -28,7 +27,7 @@ export default function Home() {
 
 				<PageHeader
 					titre={t('landing.title', "L'assistant officiel des entrepreneurs")}
-					picture="/images/home-banner-illustration.svg"
+					picture="/images/home-banner-decorative.svg"
 				>
 					<Intro $xxl>
 						<Trans i18nKey="landing.subtitle">
@@ -278,6 +277,77 @@ export default function Home() {
 
 				<Spacing xxl />
 			</Container>
+
+			<Container
+				backgroundColor={(theme) =>
+					theme.darkMode
+						? theme.colors.extended.dark[700]
+						: theme.colors.bases.primary[100]
+				}
+			>
+				<StyledAboutGrid container spacing={4}>
+					<StyledDecorativeImageHiddenOnMobile item xs={2} md={2}>
+						<img
+							src="/images/home-about-decorative.svg"
+							alt=""
+						/>
+					</StyledDecorativeImageHiddenOnMobile>
+
+					<Grid item xs={10} md={10}>
+						<Trans i18nKey="landing.aboutUs">
+							<H2>Qui sommes-nous ?</H2>
+
+							<Body>
+								Nous sommes une{' '}
+								<Link
+									aria-label={t(
+										'aria-label.équipe',
+										'petite équipe, nouvelle fenêtre'
+									)}
+									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
+								>
+									petite équipe
+								</Link>{' '}
+								autonome et pluridisciplinaire au sein de l’
+								<Link
+									href="https://www.urssaf.fr"
+									aria-label={t(
+										'aria-label.urssaf',
+										'Urssaf, nouvelle fenêtre'
+									)}
+								>
+									Urssaf
+								</Link>
+								. Nous avons à cœur d’être au près de vos besoins afin
+								d’améliorer en permanence ce site conformément au{' '}
+								<Link
+									href="https://beta.gouv.fr/manifeste"
+									aria-label={t(
+										'aria-label.beta-gouv',
+										'manifeste beta.gouv.fr, nouvelle fenêtre'
+									)}
+								>
+									manifeste beta.gouv.fr
+								</Link>
+								.
+							</Body>
+
+							<Body>
+								Nous avons développé ce site pour accompagner les créateurs
+								d’entreprise dans le développement de leur activité.
+							</Body>
+
+							<Body>
+								Notre objectif est de lever toutes les incertitudes vis à vis de
+								l’administration afin que vous puissiez vous concentrer sur ce
+								qui compte : votre activité.
+							</Body>
+						</Trans>
+					</Grid>
+				</StyledAboutGrid>
+
+				<Spacing lg />
+			</Container>
 		</>
 	)
 }
@@ -292,5 +362,23 @@ const TemporaryCard = styled.article`
 
 	h3, h4 {
 		margin: 0;
+	}
+`
+
+const StyledAboutGrid = styled(Grid)`
+	align-items: center;
+`
+
+const StyledDecorativeImageHiddenOnMobile = styled(Grid)`
+	display: none;
+
+	img {
+		width: 100%;
+		padding-right: 2rem;
+		padding-bottom: 1rem;
+	}
+
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		display: block;
 	}
 `
