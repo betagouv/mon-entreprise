@@ -2,6 +2,9 @@
 
 ## next
 
+### Corrections
+- Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
+
 ## 11.1.0
 
 ### Mises à jour

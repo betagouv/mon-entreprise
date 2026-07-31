@@ -11559,6 +11559,40 @@ salarié . cotisations . exonérations . RGDU:
     P:
       titre.en: '[automatic] P'
       titre.fr: P
+    SMIC:
+      description.en: >
+        [automatic] The minimum wage (SMIC) amount used in the calculation of
+        the RGDU, for the
+
+        eligibility threshold and for the calculation of the coefficient.
+
+
+        The minimum wage is prorated based on hours worked in cases of
+
+        part-time work or overtime.
+
+
+        Despite the increase in the minimum wage effective June 1, the value
+        used is still
+
+        that of January 1, 2026.
+      description.fr: >
+        Montant du Smic utilisé dans le calcul de la RGDU, pour le plafond
+
+        d’éligibilité et pour le calcul du cœfficient.
+
+
+        Le Smic est proratisé en fonction du temps de travail en cas de temps
+
+        partiel ou d’heures supplémentaires.
+
+
+        Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
+        toujours
+
+        celle du 1er janvier 2026.
+      titre.en: '[automatic] Minimum Wage'
+      titre.fr: SMIC
     caisse de congés payés:
       question.en: '[automatic] Are you obliged to use a vacation pay fund?'
       question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?

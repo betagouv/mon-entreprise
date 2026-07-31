@@ -15,18 +15,38 @@ describe('Réduction générale dégressive unique', () => {
 		engine = new Engine(rules)
 	})
 
+	it('utilise le Smic au 1er janvier 2026', () => {
+		const e = engine.setSituation(situationParDéfaut)
+		const Smic = engine.evaluate({
+			valeur: 'SMIC',
+			contexte: {
+				date: '01/01/2026',
+			},
+		}).nodeValue
+
+		expect(e).toEvaluate(
+			'salarié . cotisations . exonérations . RGDU . SMIC',
+			Smic
+		)
+	})
+
 	describe('Situation de base', () => {
 		it('Calcul de la réduction', () => {
 			const e = engine.setSituation(situationParDéfaut)
 
 			expect(e).toEvaluate(
 				'salarié . cotisations . exonérations . RGDU',
-				573.98
+				538.56
 			)
 		})
 
 		it('Salaire supérieur à 3 Smic', () => {
-			const Smic = engine.evaluate('SMIC').nodeValue as number
+			const Smic = engine.evaluate({
+				valeur: 'SMIC',
+				contexte: {
+					date: '01/01/2026',
+				},
+			}).nodeValue as number
 			const e = engine.setSituation({
 				...situationParDéfaut,
 				'salarié . cotisations . assiette': `${Math.ceil(3 * Smic)} €/mois`,
@@ -68,7 +88,7 @@ describe('Réduction générale dégressive unique', () => {
 			)
 
 			expect(réductionDeBase).toBeLessThan(réductionÀ50)
-			expect(réductionÀ50).toEqual(580)
+			expect(réductionÀ50).toEqual(544)
 		})
 
 		it('Obligation de cotiser à une caisse de congés payés', () => {
