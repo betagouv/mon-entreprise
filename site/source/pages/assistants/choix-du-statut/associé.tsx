@@ -16,6 +16,7 @@ import {
 	typography,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { OuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 
@@ -26,8 +27,8 @@ const { Body, H4, H3, Li, Strong, Ul } = typography
 
 type State = {
 	question1: 'seul' | 'plusieurs' | undefined
-	question2: 'oui' | 'non' | undefined
-	question3: 'oui' | 'non' | undefined
+	question2: OuiNon | undefined
+	question3: OuiNon | undefined
 }
 
 export default function Associés() {

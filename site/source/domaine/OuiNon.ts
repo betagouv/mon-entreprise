@@ -5,4 +5,5 @@ export const isOuiNon = (value: unknown): value is OuiNon =>
 
 export const toOuiNon = (value: boolean): OuiNon => (value ? 'oui' : 'non')
 
-export const fromOuiNon = (value: OuiNon): boolean => value === 'oui'
+export const fromOuiNon = (value: OuiNon | undefined): boolean =>
+	value === 'oui'

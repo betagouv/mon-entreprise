@@ -26,7 +26,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
-import { OuiNon } from '@/domaine/OuiNon'
+import { OuiNon, toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité, Quantité } from '@/domaine/Quantite'
 import {
@@ -235,9 +235,9 @@ export default function RuleInput({
 
 							return {
 								...acc,
-								[suffixe]: choixSélectionnés.includes(possibilité.dottedName)
-									? 'oui'
-									: 'non',
+								[suffixe]: toOuiNon(
+									choixSélectionnés.includes(possibilité.dottedName)
+								),
 							}
 						},
 						{}

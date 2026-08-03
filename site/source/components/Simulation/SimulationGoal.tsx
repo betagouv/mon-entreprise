@@ -15,6 +15,7 @@ import {
 import { MontantAdapter } from '@/domaine/engine/MontantAdapter'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { UnitéMonétaire } from '@/domaine/Unites'
 import { ajusteLaSituation } from '@/store/actions/actions'
@@ -53,7 +54,7 @@ export function SimulationGoal({
 
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi: round ? 'oui' : 'non',
+		arrondi: toOuiNon(round),
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 	})
 
