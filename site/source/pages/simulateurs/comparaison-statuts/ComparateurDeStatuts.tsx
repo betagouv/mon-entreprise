@@ -1,74 +1,57 @@
-import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
 import { Simulateur } from '@/components/Simulateur/Simulateur'
+import {
+	ComparateurProvider,
+	ModèleAssimiléSalarié,
+	ModèleAutoEntrepreneur,
+	ModèleTravailleurIndépendant,
+	simulationEstCommencée,
+	useComparateur,
+} from '@/contextes/comparateur'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
-import { AssimiléSalariéContexte } from '@/domaine/AssimiléSalariéContexte'
-import { IndépendantContexte } from '@/domaine/IndépendantContexte'
-import { AutoEntrepreneurContexteDansPublicodes } from '@/domaine/publicodes/AutoEntrepreneurContexteDansPublicodes'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodesÉditorialisées from '@/hooks/useSimulationPublicodesEditorialisee'
 import { useSitePaths } from '@/sitePaths'
-import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
-import { DétailSimulation } from './components/DétailSimulation'
-import { MontantsÀSaisir } from './components/MontantsASaisir'
-import { EngineComparison } from './EngineComparison'
 import { comparaisonStatutsMetadata } from './metadata'
 import { configComparateurStatuts } from './simulationConfig'
+import { DétailSimulation } from './components/DetailSimulation'
+import { Objectifs } from './Objectifs'
+import { groupesDeQuestions, questionsPrincipales } from './questions'
 
-export const ComparateurDeStatuts = () => {
+export const ComparateurDeStatuts = () => (
+	<ComparateurProvider
+		modèles={[
+			ModèleAssimiléSalarié,
+			ModèleTravailleurIndépendant,
+			ModèleAutoEntrepreneur,
+		]}
+	>
+		<PageComparateur />
+	</ComparateurProvider>
+)
+
+const PageComparateur = () => {
 	const metadata = usePageMetadata(comparaisonStatutsMetadata)
 	const {
 		isReady,
 		engine,
-		questionsPrincipales,
-		groupesDeQuestions,
-		simulationEstCommencée,
-		onReset,
+		// questionsPrincipales,
+		// groupesDeQuestions,
+		// simulationEstCommencée,
+		//  onReset,
 	} = useSimulationPublicodesÉditorialisées(metadata, configComparateurStatuts)
 
-	const situation = useSelector(completeSituationSelector)
 	const { absoluteSitePaths } = useSitePaths()
 
-	const assimiléEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				...AssimiléSalariéContexte,
-			}),
-		[situation, engine]
-	)
-	const autoEntrepreneurEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				...AutoEntrepreneurContexteDansPublicodes,
-			}),
-		[situation, engine]
-	)
-
-	const indépendantEngine = useMemo(
-		() =>
-			engine.shallowCopy().setSituation({
-				...situation,
-				...IndépendantContexte,
-			}),
-		[situation, engine]
-	)
-
-	const engines = [
-		{ engine: assimiléEngine, name: 'SASU' },
-		{ engine: indépendantEngine, name: 'EI' },
-		{ engine: autoEntrepreneurEngine, name: 'AE' },
-	] as EngineComparison
+	const { situation, set } = useComparateur()
 
 	return (
 		<EngineProvider value={engine}>
-			<SimulateurPageLayout metadata={metadata} isReady={isReady}>
+			<SimulateurPageLayout metadata={metadata} showDate={false} isReady={isReady}>
 				<Trans i18nKey="pages.simulateurs.comparaison-statuts.notif">
 					<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
 						<Body>
@@ -95,12 +78,16 @@ export const ComparateurDeStatuts = () => {
 
 				<Simulateur
 					metadata={metadata}
-					montantsÀSaisir={<MontantsÀSaisir />}
-					questionsPublicodesPrincipales={questionsPrincipales}
-					groupesDeQuestionsPublicodes={groupesDeQuestions}
-					détail={<DétailSimulation namedEngines={engines} />}
-					simulationEstCommencée={simulationEstCommencée}
-					onReset={onReset}
+					montantsÀSaisir={<Objectifs />}
+					questionsFourniesPrincipales={questionsPrincipales}
+					groupesDeQuestionsFournies={groupesDeQuestions}
+					situation={situation}
+					simulationEstCommencée={simulationEstCommencée(situation)}
+					// montantsÀSaisir={<MontantsÀSaisir />}
+					// questionsPublicodesPrincipales={questionsPrincipales}
+					// groupesDeQuestionsPublicodes={groupesDeQuestions}
+					détail={<DétailSimulation />}
+					onReset={set.reset}
 				/>
 			</SimulateurPageLayout>
 		</EngineProvider>

@@ -13,7 +13,7 @@ export const Avertissement = ({ professionnelles }: Props) => {
 				{professionnelles ? (
 					<Trans
 						i18nKey="pages.simulateurs.profession-libérale.warning.général.spécifique"
-						shouldUnescape={true}
+						shouldUnescape
 					>
 						Ce simulateur est à destination des {{ professionnelles }} en{' '}
 						<Strong>BNC</Strong>. Il ne prend pas en compte les sociétés
