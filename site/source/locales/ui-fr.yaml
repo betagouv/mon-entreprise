@@ -1676,6 +1676,8 @@ pages:
       items:
         gestion:
           conjoint:
+            assimilé-salarié: Conjoint associé ou salarié / Conjointe associée ou salariée
+            auto-entrepreneur: Conjoint collaborateur / Conjointe collaboratrice
             body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
               statuts possibles</1> pour votre conjoint/conjointe
               (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
@@ -1869,6 +1871,8 @@ pages:
           parent-isolé: Parent isolé
           situation: Situation de famille
           titre: Foyer fiscal
+        groupe-activité:
+          titre: Activité
         impôt:
           méthode: Méthode de calcul de l’impôt sur le revenu
           taux: Taux d’imposition

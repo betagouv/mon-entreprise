@@ -1580,6 +1580,8 @@ pages:
       items:
         gestion:
           conjoint:
+            assimilé-salarié: Spouse who is a partner or employee
+            auto-entrepreneur: Spouse who is a co-worker
             body: Whether you're married, in a civil partnership or in a common-law
               relationship, there are <1>3 possible statuses</1> for your
               spouse<3>(associate</3>, <6>partner</6> or <9>employee</9>).
@@ -1769,6 +1771,8 @@ pages:
           parent-isolé: Single parent
           situation: Marital Status
           titre: Tax Household
+        groupe-activité:
+          titre: Activity
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates

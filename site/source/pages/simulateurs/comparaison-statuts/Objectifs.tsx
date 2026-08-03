@@ -5,31 +5,25 @@ import {
 	ChampSaisieProps,
 	ObjectifSaisissableDeSimulation,
 } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
+import { useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
-import { useComparateur } from '@/domaine/comparateur/ComparateurContext'
 import { MontantRécurrent } from '@/domaine/Montant'
 
 export const Objectifs = () => {
 	const { t } = useTranslation()
-	const { comparateur, updateComparateur } = useComparateur()
+	const { situation, set } = useComparateur()
 
-	const chiffreDAffaires = comparateur.situation.chiffreDAffaires
-	const charges = comparateur.situation.charges
+	const chiffreDAffaires = situation.chiffreDAffaires
+	const charges = situation.charges
 
 	const handleCAChange = (valeur: MontantRécurrent | undefined) => {
-		updateComparateur((prevComparateur) => {
-			return prevComparateur.set.chiffreDAffaires(O.fromNullable(valeur))
-		})
-		console.log(comparateur.situation)
-		console.log(comparateur.compare())
+		set.chiffreDAffaires(O.fromNullable(valeur))
+		// console.log(situation)
 	}
 
 	const handleChargesChange = (valeur: MontantRécurrent | undefined) => {
-		updateComparateur((prevComparateur) => {
-			return prevComparateur.set.charges(O.fromNullable(valeur))
-		})
-		console.log(comparateur.situation)
-		console.log(comparateur.compare())
+		set.charges(O.fromNullable(valeur))
+		// console.log(situation)
 	}
 
 	const InputCA = ({ id, aria }: ChampSaisieProps) => (
