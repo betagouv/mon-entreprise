@@ -5,6 +5,9 @@
 ### Breaking changes
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 
+### Corrections
+- Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
+
 ## 0.1.0
 
 ### Mises à jour
