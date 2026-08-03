@@ -4,6 +4,7 @@
 
 ### Breaking changes
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
+- Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
