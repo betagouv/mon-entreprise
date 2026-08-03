@@ -1,52 +1,23 @@
-import * as O from 'effect/Option'
 import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
+import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
+import {
+	NatureActivité,
+	SituationComparée,
+	useComparateur,
+} from '@/contextes/comparateur'
 import { RadioChoiceGroup } from '@/design-system'
-import { useComparateur } from '@/domaine/comparateur/ComparateurContext'
-import { SituationComparée } from '@/domaine/comparateur/situation'
 
-export const NatureActivitéQuestion: ComposantQuestion<
+export const NatureActivitéQuestion: ComposantQuestionFournie<
 	SituationComparée
 > = () => {
+	const { situation, set } = useComparateur()
 	const { t } = useTranslation()
-	const { comparateur, updateComparateur } = useComparateur()
 
 	const handleChange = useCallback(
-		(newValue: Key) => {
-			const prevValue = comparateur.situation.natureActivité
-			if (newValue && newValue !== prevValue) {
-				updateComparateur((prevComparateur) => {
-					let newComparateur = prevComparateur.set.réponse(
-						'natureActivité',
-						newValue as 'artisanale' | 'commerciale' | 'libérale'
-					)
-					if (
-						newValue === 'libérale' &&
-						(prevValue === 'artisanale' || prevValue === 'commerciale')
-					) {
-						newComparateur = newComparateur.set.réponse(
-							'typeActivité',
-							O.none() as O.Option<'vente' | 'service'>
-						)
-					} else if (
-						prevValue === 'libérale' &&
-						(newValue === 'artisanale' || newValue === 'commerciale')
-					) {
-						newComparateur = newComparateur.set.réponse(
-							'activitéLibéraleRéglementée',
-							O.none() as O.Option<boolean>
-						)
-					}
-
-					return newComparateur
-				})
-			}
-			console.log(comparateur.situation)
-			console.log(comparateur.compare())
-		},
-		[updateComparateur]
+		(newValue: Key) => set.natureActivité(newValue as NatureActivité),
+		[set]
 	)
 
 	const options = [
@@ -78,11 +49,17 @@ export const NatureActivitéQuestion: ComposantQuestion<
 
 	return (
 		<RadioChoiceGroup
-			value={comparateur.situation.natureActivité}
+			value={situation.natureActivité}
 			onChange={handleChange}
 			options={options}
 		/>
 	)
+}
+
+const ValeurNatureActivité = () => {
+	const { situation } = useComparateur()
+
+	return situation.natureActivité
 }
 
 NatureActivitéQuestion._tag = 'QuestionFournie'
@@ -93,4 +70,4 @@ NatureActivitéQuestion.libellé = (t) =>
 		'Quelle est la nature de votre activité ?'
 	)
 NatureActivitéQuestion.applicable = () => true
-NatureActivitéQuestion.répondue = () => true
+NatureActivitéQuestion.Valeur = ValeurNatureActivité
