@@ -67,8 +67,8 @@ plafond sécurité sociale:
 SMIC:
   unité: €/mois
   produit:
-    - durée légale du travail . mensuelle
     - SMIC . horaire
+    - durée légale du travail
   références:
     Article 1 du Décret n° 2025-1228 du 17 décembre 2025 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000053044705
     Article 1 du Décret n° 2024-951 du 23 octobre 2024 portant relèvement du salaire minimum de croissance: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050393533
@@ -134,12 +134,9 @@ SMIC . horaire:
         date: période . début d'année
 
 durée légale du travail:
-  valeur: 35 heure/semaine
+  produit:
+    - 35 heure/semaine
+    - 52 semaine/an / 12 mois/an
+  unité: heure/mois
   références:
     Code du travail numérique: https://code.travail.gouv.fr/fiche-ministere-travail/la-duree-legale-du-travail
-
-  avec:
-    mensuelle:
-      produit:
-        - durée légale du travail
-        - période . semaines par mois
