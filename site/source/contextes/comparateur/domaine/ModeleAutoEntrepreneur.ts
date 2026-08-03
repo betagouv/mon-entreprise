@@ -11,6 +11,7 @@ import {
 	Montant,
 	MontantRécurrent,
 } from '@/domaine/Montant'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	pointsParAn,
@@ -84,6 +85,20 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 					{ keepPreviousSituation: true }
 				)
 			}
+		},
+
+		versementLibératoire: (valeur: boolean) => {
+			if (!engine) {
+				engine = engineFactory(rules, nomModèle)
+			}
+
+			engine.setSituation(
+				{
+					'dirigeant . auto-entrepreneur . impôt . versement libératoire':
+						PublicodesAdapter.encode(O.some(toOuiNon(valeur))),
+				},
+				{ keepPreviousSituation: true }
+			)
 		},
 
 		réponse: () => {},

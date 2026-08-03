@@ -682,13 +682,13 @@ pages:
         gestion:
           conjoint:
             body: "Whether you are married, in a civil partnership, or cohabiting: there are
-              <1>3 possible statuses&lt;/1> for your spouse (<3>employee</3>,
-              <6>partner&lt;/6> or <9>staff member</9>)."
+              <1>3 possible statuses</1> for your spouse (<3>employee</3>,
+              <6>partner</6> or <9>staff member</9>)."
             h4: Spousal Status
           création:
             body: The formalities involved in starting a business vary depending on the
               articles of incorporation and the nature of the business. This
-              guide focuses on the <1>mandatory procedures&lt;/1> (registration,
+              guide focuses on the <1>mandatory procedures</1> (registration,
               legal notices, drafting the articles of incorporation, etc.).
             h4: Setup Cost
           title: Legal and Accounting Management
@@ -698,7 +698,7 @@ pages:
               <2>additional lump-sum parental leave allowance</2>.
             h4: Adoption
             label: paid in a single lump sum
-          body: <0>All employment statuses entitle you to <2>daily benefits&lt;/2> for
+          body: <0>All employment statuses entitle you to <2>daily benefits</2> for
             maternity, paternity, and adoption leave.</0><1>To be eligible, you
             must have made contributions <2>for at least 6 months</2>.</1>
           maternité:
@@ -709,19 +709,19 @@ pages:
           title: Maternity, Paternity, and Adoption
         prévoyance:
           body: All membership categories contribute to the <2>disability-and-death
-            pension&lt;/2> , which <5>protects you in the event of
-            disability&lt;/5> and provides your loved ones with a <8>survivor’s
+            pension</2> , which <5>protects you in the event of
+            disability</5> and provides your loved ones with a <8>survivor’s
             pension and a lump-sum payment in the event of your death</8>.
           décès:
             body:
-              "1": Social Security provides a <2>death benefit for your beneficiaries&lt;/2>
+              "1": Social Security provides a <2>death benefit for your beneficiaries</2>
                 (dependents) under certain conditions.
-              "2": In addition to the death benefit, a <2>survivor's pension&lt;/2> may be
+              "2": In addition to the death benefit, a <2>survivor's pension</2> may be
                 paid to your spouse. It corresponds to the <5>retirement
-                benefits you will have accrued&lt;/5> during your working life.
+                benefits you will have accrued</5> during your working life.
               "3": If a death occurs as a result of a <2>work-related accident</2>, your
                 spouse may be eligible for a <4>death benefit</4>.
-              "4": In the event of death, an <1>“orphan” benefit&lt;/1> is paid to&lt;3> your
+              "4": In the event of death, an <1>“orphan” benefit</1> is paid to<3> your
                 children</3>, subject to certain conditions.
             h4: Death
             label:
@@ -743,7 +743,7 @@ pages:
         retraite:
           base:
             body: Each year, depending on your income, you can accrue <2>up to 4
-              quarters&lt;/2> toward your basic pension. The total number of
+              quarters</2> toward your basic pension. The total number of
               quarters accrued determines your eligibility for a full pension.
             h4: Basic Pension
             revenu-cotisé:
@@ -766,17 +766,17 @@ pages:
           title: Your Retirement Rights
         revenus:
           détails:
-            "1": Let <2><0></0> &lt;/2> before taxes
-            "2": With <2><0></0> &lt;/2> in social security contributions based on revenue
-              (i.e., <6><0></0> &lt;/6> of profit)
-            "3": With <2><0></0> &lt;/2> on social security contributions on profits
+            "1": Let <2><0></0> </2> before taxes
+            "2": With <2><0></0> </2> in social security contributions based on revenue
+              (i.e., <6><0></0> </6> of profit)
+            "3": With <2><0></0> </2> on social security contributions on profits
           h4: Monthly Net Income After Taxes
           info:
             subject: income
             title: Calculate Your Income
           title: Your Income
           warning: You are about to exceed the micro-enterprise <2> revenue</2> cap
-            <2>(<1> &lt;/1> ).</2>
+            <2>(<1> </1> ).</2>
         santé:
           arrêt:
             body: "Regardless of your employment status, you will have a <2>3-day waiting
@@ -785,17 +785,17 @@ pages:
             footer: To be eligible, you must have made contributions for at least
               <2><0></0></2>
             h4: Sick Leave
-            warning: Your <1>compensation&lt;/1> is <4>too low&lt;/4> to qualify for sick
+            warning: Your <1>compensation</1> is <4>too low</4> to qualify for sick
               leave.
           atmp:
             body: "In the event<1>of a work-related accident</1>, a <4>occupational
-              illness&lt;/4> , or a <7>commuting accident</7>, you will receive
+              illness</4> , or a <7>commuting accident</7>, you will receive
               compensation in the amount of:"
             evolution-label: starting on the 29th day
             h4: Work-Related Accidents and Occupational Diseases
           body: <0>All membership statuses entitle you to <2>reimbursement for medical
             care.</2></0><1>For all categories, it is recommended that you
-            enroll in a <2>supplemental health insurance plan (mutuelle)&lt;/2>
+            enroll in a <2>supplemental health insurance plan (mutuelle)</2>
             to improve your reimbursement for healthcare costs.</1>
           title: Your Health Benefits
       meta:
@@ -812,9 +812,9 @@ pages:
           title: Acre
         confirm-label: Save Options
         imposition:
-          body: You can <2>choose between corporate and income taxation&lt;/2> during the
+          body: You can <2>choose between corporate and income taxation</2> during the
             first 5 years.
-          body-ae: As a sole proprietorship (AE), the<1>income tax&lt;/1> is automatically
+          body-ae: As a sole proprietorship (AE), the<1>income tax</1> is automatically
             applied. In certain situations, you can also opt for the
             <4><0>lump-sum payment</0></4>.
           hors-ae:
@@ -896,7 +896,7 @@ pages:
         réforme:
           aria-label: Read the page dedicated to the reform of the contribution base and
             contribution schedule on the Urssaf website (opens in a new window)
-          texte: <2>Reform of the Contribution Base and Rate&lt;/2> has not yet been
+          texte: <2>Reform of the Contribution Base and Rate</2> has not yet been
             implemented on this comparison tool.
     declaration-charges-sociales-independant:
       aria-label: Read the dedicated page on the Urssaf website, new window
@@ -1020,15 +1020,15 @@ pages:
         website or service using the open-source JavaScript libraries available
         on npm.</0></0><1>Which library should you choose?</1><3>modele-as This
         library contains the rules and calculations for executives
-        <2>assimilated-employees&lt;/2> and female executives treated as
+        <2>assimilated-employees</2> and female executives treated as
         employees, such as the executives of SAS and SASU companies. This is the
         library used in the <5>income simulator for SAS(U)
         executives</5>.</3><4>modele-ti</4><5>This library contains the rules
-        and calculations for <2>self-employed individuals&lt;/2> , including
+        and calculations for <2>self-employed individuals</2> , including
         self-employed women, such as the owners of sole proprietorships
         (excluding “auto-entreprise” entities) and EURLs, as well as members of
         the liberal professions. This is the library used in the <5>income
-        simulator for self-employed individuals&lt;/5> and its
+        simulator for self-employed individuals</5> and its
         variants.</5><7>modele-socialThis is the historical library, which still
         contains the rules for employees and employers (including Lodeom),
         auto-entrepreneurs, dividend recipients, corporate income tax
@@ -1038,13 +1038,13 @@ pages:
         present, the rules in this library concerning employees by analogy and
         self-employed individuals are no longer maintained.</8><9>How to use
         these libraries?</9><10>Installation</10><11><0>npm install --save
-        publicodes modele-xx</0></11><12>Replace <1>modele-xx&lt;/1> with
-        <3>modele-as</3>,<5>modele-ti&lt;/5> or <7>modele-social&lt;/7>
+        publicodes modele-xx</0></11><12>Replace <1>modele-xx</1> with
+        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7>
         depending on the calculations you wish to perform.</12><13>To run your
         own calculations, you must install the package
-        <2><0>publicodes</0>&lt;/2> containing the publicodes interpreter, as
+        <2><0>publicodes</0></2> containing the publicodes interpreter, as
         well as the package of your choice— <6><0>modele-as</0></6>,
-        <9><0>modele-ti</0>&lt;/9> or <13><0>modele-social</0></13>—which
+        <9><0>modele-ti</0></9> or <13><0>modele-social</0></13>—which
         contain the rules for the mon-entreprise simulators.</13><14><0>What is
         Publicodes?</0><1>Publicodes is a declarative language developed by
         beta.gouv.fr and Urssaf to implement algorithms of public interest. It
@@ -1052,9 +1052,9 @@ pages:
         “mon-entreprise” simulators.</1><2><0>Learn more about
         Publicodes</0></2></14><16>Usage: To run a calculation, you must
         configure the engine with the rules from the package
-        <1>modele-social&lt;/1> and call the function <4>evaluate&lt;/4> with
+        <1>modele-social</1> and call the function <4>evaluate</4> with
         the rule whose value you wish to calculate. Here is an example for
-        gross/net pay calculation using the package <7>modele-social&lt;/7>
+        gross/net pay calculation using the package <7>modele-social</7>
         :</16><17><0></0></17><18>Configuring the</18><19>Calculation As you saw
         in the previous example, the structure of a calculation is simple: input
         variables (gross pay) and one or more output variables (net
@@ -1069,7 +1069,7 @@ pages:
         it into your application</0><1></1>You’ll find it by clicking on the
         “Reuse this calculation” section.<3></3></1><2><0>(optional) Modify the
         scenario values to configure the calculation according to your
-        needs</0><1> &lt;/1> Feel free to modify the scenario values. They
+        needs</0><1> </1> Feel free to modify the scenario values. They
         accept any <4>Publicodes expression or object</4>.</2></24><25>Here is
         the result of the calculation using the example cited
         above:</25><26><0></0></26><27><0>The scenario contains your simulation
@@ -1628,12 +1628,12 @@ pages:
             your loved ones with a <8>survivor's pension and a lump-sum payment
             in the event of death</8>.
           capital-orphelin:
-            body: In the event of death, an <1>“orphan” benefit&lt;/1> is paid to&lt;3> your
+            body: In the event of death, an <1>“orphan” benefit</1> is paid to<3> your
               children</3>, subject to certain conditions.
             unit: € per child
           décès:
             capital-décès:
-              body: Social Security provides a <2>death benefit for your beneficiaries&lt;/2>
+              body: Social Security provides a <2>death benefit for your beneficiaries</2>
                 (dependents) under certain conditions.
               label: for your loved ones
             h4: Deaths
@@ -1649,9 +1649,9 @@ pages:
             body: If your disability is caused by a <2>work-related accident</2>, you may be
               eligible for a <4>disability pension</4>.
           pension-réversion:
-            body: In addition to the death benefit, a <2>survivor's pension&lt;/2> may be
+            body: In addition to the death benefit, a <2>survivor's pension</2> may be
               paid to your spouse. It corresponds to the <5>pension benefits you
-              will have accrued&lt;/5> during your working life.
+              will have accrued</5> during your working life.
             label: maximum
           rente-décès:
             body: If a death occurs as a result of a <2>work-related accident</2>, your
@@ -1684,10 +1684,10 @@ pages:
           title: Your pension rights
         revenus:
           détails:
-            "1": <1>{{revenuAvantImpôt}} &lt;/1> before taxes
-            "2": With <1>{{pourcentageSurCA}} &lt;/1> of social security contributions based
-              on revenue (i.e., <4>{{pourcentageSurBénéfice}} &lt;/4> of profit)
-            "3": With <1>{{pourcentageSurBénéfice}} &lt;/1> on social security contributions
+            "1": <1>{{revenuAvantImpôt}} </1> before taxes
+            "2": With <1>{{pourcentageSurCA}} </1> of social security contributions based
+              on revenue (i.e., <4>{{pourcentageSurBénéfice}} </4> of profit)
+            "3": With <1>{{pourcentageSurBénéfice}} </1> on social security contributions
               on profits
           h4: Net monthly income after tax
           info:
@@ -1735,14 +1735,12 @@ pages:
         imposition:
           IR: Income Tax
           IS: Corporate Income Tax
-          aria-label: Access the documentation on imposition mode
           disclaimer: As of now, this comparison tool does not take into account the
             calculation of income tax for SAS(U)s.
           info-bulle: You can <2>choose between corporate and income tax</2> during the
             first 5 years.
           titre: Taxation Method (excluding sole proprietorships)
         versement-libératoire:
-          aria-label: Access documentation on withholding tax
           info-bulle: As a sole proprietorship, the<1>income tax</1> is automatically
             applied. In certain situations, you may opt for the <4>withholding
             tax</4>.
@@ -1909,7 +1907,7 @@ pages:
           company.</2><3>How are withholding taxes on dividends
           calculated?</3><4>Dividends may be subject to a single flat-rate
           withholding tax of 30%, which includes both income tax and social
-          security contributions (also known as the &lt;1> flat tax</1>).
+          security contributions (also known as the <1> flat tax</1>).
           Alternatively, the standard tax schedule may be chosen. This simulator
           can be used to compare the two systems.</4><5>An advance tax payment
           (12.8%) is withheld at the time the dividends are paid, unless the
@@ -2370,11 +2368,11 @@ pages:
           The amount quoted includes employee contributions, which are used to
           fund the employee’s social security benefits and are deducted from the
           “net” pay received by the employee.</1><2>You can use our calculator
-          to convert <2>gross pay to net pay&lt;/2> : simply enter the offered
+          to convert <2>gross pay to net pay</2> : simply enter the offered
           salary in the “gross pay” field. You can refine the calculation by
           answering various questions (fixed-term contract, executive status,
           overtime, part-time work, meal vouchers,
-          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax&lt;/1>
+          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax</1>
           has been withheld at source. To facilitate this, the Directorate
           General of Public Finances (DGFiP) provides the employer with the tax
           rate calculated based on the employee’s tax return. If this rate is
@@ -2387,7 +2385,7 @@ pages:
           cost to your company.</1><2>In addition to salary, our simulator
           factors in benefits in kind (cell phone, company car, etc.), as well
           as mandatory health insurance.</2><3>There are <2>deferred
-          incentives&lt;/2> available for hiring that are not all included in
+          incentives</2> available for hiring that are not all included in
           our simulator; you can find them on <6>the official
           portal</6>.</3></1><2><0>Talk to an advisor about your hiring
           plan</0><1>You would like to:</1><2><0>Receive advice on the hiring

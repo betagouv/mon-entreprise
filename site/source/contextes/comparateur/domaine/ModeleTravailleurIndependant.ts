@@ -19,6 +19,7 @@ import {
 import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
+import { IRouIS } from './imposition'
 import {
 	ModèleComparable,
 	MontantDocumenté,
@@ -69,6 +70,19 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 					{ keepPreviousSituation: true }
 				)
 			}
+		},
+
+		IRouIS: (valeur: IRouIS) => {
+			if (!engine) {
+				engine = engineFactory(rules, nomModèle)
+			}
+
+			engine.setSituation(
+				{
+					'entreprise . imposition': PublicodesAdapter.encode(O.some(valeur)),
+				},
+				{ keepPreviousSituation: true }
+			)
 		},
 
 		réponse: (question, valeur) => {

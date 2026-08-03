@@ -9,6 +9,9 @@ import { useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
 import { MontantRécurrent } from '@/domaine/Montant'
 
+import { ChoixImposition } from './components/ChoixImposition'
+import { ChoixVersementLibératoire } from './components/ChoixVersementLiberatoire'
+
 export const Objectifs = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useComparateur()
@@ -67,6 +70,10 @@ export const Objectifs = () => {
 				valeur={charges}
 				rendreChampSaisie={InputCharges}
 			/>
+
+			<ChoixImposition />
+
+			<ChoixVersementLibératoire />
 		</>
 	)
 }
