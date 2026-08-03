@@ -4,7 +4,7 @@ import PeriodSwitch from '@/components/PeriodSwitch'
 import { SimulationGoal } from '@/components/Simulation'
 
 import { ChoixImposition } from './ChoixImposition'
-import { ChoixVersementLibératoire } from './ChoixVersementLibératoire'
+import { ChoixVersementLibératoire } from './ChoixVersementLiberatoire'
 
 export const MontantsÀSaisir = () => {
 	const { t } = useTranslation()

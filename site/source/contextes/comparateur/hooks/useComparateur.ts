@@ -5,7 +5,11 @@ import { Montant, MontantRécurrent } from '@/domaine/Montant'
 import { Quantité } from '@/domaine/Quantite'
 
 import { NatureActivité, TypeActivité } from '../domaine/activite'
-import { MéthodeImposition, SituationFamiliale } from '../domaine/imposition'
+import {
+	IRouIS,
+	MéthodeImposition,
+	SituationFamiliale,
+} from '../domaine/imposition'
 import {
 	initialSituationComparée,
 	SituationComparée,
@@ -29,9 +33,17 @@ export const useComparateur = () => {
 				modèles.forEach((modèle) => modèle.set.charges(charges))
 			},
 
-			// TODO:
-			// - versement libératoire (pour AE)
-			// - IR ou IS (pour TI)
+			IRouIS: (valeur: IRouIS) => {
+				updateSituation((prev) => ({ ...prev, IRouIS: valeur }))
+				modèles.forEach((modèle) => modèle.set.IRouIS?.(valeur))
+			},
+
+			versementLibératoire: (versementLibératoire: boolean) => {
+				updateSituation((prev) => ({ ...prev, versementLibératoire }))
+				modèles.forEach(
+					(modèle) => modèle.set.versementLibératoire?.(versementLibératoire)
+				)
+			},
 
 			natureActivité: (natureActivité: NatureActivité) => {
 				updateSituation((prev) => ({ ...prev, natureActivité }))
