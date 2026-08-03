@@ -814,8 +814,8 @@ pages:
           title: Acre
         confirm-label: Save Options
         imposition:
-          body: You can <2>choose between corporate and income tax</2> during the first
-            5 years.
+          body: You can <2>choose between corporate and income tax</2> during the first 5
+            years.
           body-ae: As a sole proprietor (AE), the<1>income tax</1> is automatically
             applied. In certain situations, you can also opt for the
             <4><0>lump-sum payment</0></4>.
@@ -1869,14 +1869,12 @@ pages:
         imposition:
           IR: Income Tax
           IS: Corporate Income Tax
-          aria-label: Access the documentation on imposition mode
           disclaimer: As of now, this comparison tool does not take into account the
             calculation of income tax for SAS(U)s.
           info-bulle: You can <2>choose between corporate and income tax</2> during the
             first 5 years.
           titre: Taxation Method (excluding sole proprietorships)
         versement-libératoire:
-          aria-label: Access documentation on withholding tax
           info-bulle: As a sole proprietorship, the<1>income tax</1> is automatically
             applied. In certain situations, you may opt for the <4>withholding
             tax</4>.

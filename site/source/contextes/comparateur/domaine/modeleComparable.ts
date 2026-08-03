@@ -6,6 +6,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Quantité } from '@/domaine/Quantite'
 import { NomModèle } from '@/domaine/SimulationConfig'
 
+import { IRouIS } from './imposition'
 import { Question, Réponse } from './situation'
 
 type ValeurDocumentée = {
@@ -22,6 +23,8 @@ export interface ModèleComparable {
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => void
 		charges: (montant: O.Option<MontantRécurrent>) => void
+		IRouIS?: (valeur: IRouIS) => void
+		versementLibératoire?: (valeur: boolean) => void
 		réponse: (
 			...args: {
 				[K in Question]: [question: K, valeur: Réponse<K>]

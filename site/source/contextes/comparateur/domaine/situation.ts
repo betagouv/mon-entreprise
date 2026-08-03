@@ -5,12 +5,14 @@ import { quantité, Quantité } from '@/domaine/Quantite'
 import { Situation } from '@/domaine/Situation'
 
 import { NatureActivité, TypeActivité } from './activite'
-import { MéthodeImposition, SituationFamiliale } from './imposition'
+import { IRouIS, MéthodeImposition, SituationFamiliale } from './imposition'
 
 export interface SituationComparée extends Situation {
 	_type: 'comparaison-statuts'
 	chiffreDAffaires: O.Option<MontantRécurrent>
 	charges: O.Option<MontantRécurrent>
+	IRouIS: IRouIS
+	versementLibératoire: boolean
 	natureActivité: NatureActivité
 	typeActivité: TypeActivité
 	activitéLibéraleRéglementée: boolean
@@ -48,6 +50,8 @@ export const initialSituationComparée: SituationComparée = {
 	_type: 'comparaison-statuts',
 	chiffreDAffaires: O.none(),
 	charges: O.none(),
+	IRouIS: 'IR',
+	versementLibératoire: false,
 	natureActivité: 'commerciale',
 	typeActivité: 'vente',
 	activitéLibéraleRéglementée: false,

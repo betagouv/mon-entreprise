@@ -1,44 +1,18 @@
-import { Option } from 'effect'
-import { Key, useCallback } from 'react'
+import { Key } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { LienDocumentation } from '@/components/Simulateur/LienDocumentation'
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
-import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
+import { IRouIS, useComparateur } from '@/contextes/comparateur'
 import { Message, SmallBody, Strong } from '@/design-system'
-import {
-	PublicodesAdapter,
-	ValeurPublicodes,
-} from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { ajusteLaSituation } from '@/store/actions/actions'
-import { useEngine } from '@/utils/publicodes/EngineContext'
-
-const DOTTED_NAME = 'entreprise . imposition'
-
-type IRouIS = "'IR'" | "'IS'"
 
 export const ChoixImposition = () => {
-	const dispatch = useDispatch()
-	const engine = useEngine()
 	const { t } = useTranslation()
+	const { situation, set } = useComparateur()
 
-	const value = PublicodesAdapter.decode(engine.evaluate(DOTTED_NAME))
-
-	const handleChange = useCallback(
-		(value: Key) => {
-			dispatch(
-				ajusteLaSituation({
-					[DOTTED_NAME]: value as IRouIS,
-				} as Record<DottedName, ValeurPublicodes>)
-			)
-		},
-		[dispatch]
-	)
-
-	const documentationId = `${normalizeRuleName(DOTTED_NAME)}-documentation`
+	const handleChange = (valeur: Key) => {
+		set.IRouIS(valeur as IRouIS)
+	}
 
 	return (
 		<SimulationGoalRadio
@@ -47,20 +21,20 @@ export const ChoixImposition = () => {
 				'Mode d’imposition (hors auto-entreprise)'
 			)}
 			aide={<ImpositionPopoverContent />}
-			documentation={{
-				element: (
-					<LienDocumentation
-						id={documentationId}
-						dottedName={DOTTED_NAME}
-						aria-label={t(
-							'pages.simulateurs.comparaison-statuts.montants.imposition.aria-label',
-							"Accéder à la documentation sur le mode d'imposition"
-						)}
-					/>
-				),
-				id: documentationId,
-			}}
-			value={Option.isSome(value) ? (value.value as string) : undefined}
+			// documentation={{
+			// 	element: (
+			// 		<LienDocumentation
+			// 			id={documentationId}
+			// 			dottedName={DOTTED_NAME}
+			// 			aria-label={t(
+			// 				'pages.simulateurs.comparaison-statuts.montants.imposition.aria-label',
+			// 				"Accéder à la documentation sur le mode d'imposition"
+			// 			)}
+			// 		/>
+			// 	),
+			// 	id: documentationId,
+			// }}
+			value={situation.IRouIS}
 			options={[
 				{
 					key: 'IR',
