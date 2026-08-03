@@ -1616,10 +1616,6 @@ date:
   titre.en: '[automatic] date'
   titre.fr: date
 durée légale du travail:
-  avec:
-    mensuelle:
-      titre.en: '[automatic] monthly'
-      titre.fr: mensuelle
   titre.en: '[automatic] legal working hours'
   titre.fr: durée légale du travail
 entreprise:

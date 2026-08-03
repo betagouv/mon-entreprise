@@ -2,6 +2,9 @@
 
 ## next
 
+### Breaking changes
+- Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
+
 ## 0.1.0
 
 ### Mises à jour
