@@ -8,10 +8,10 @@ import {
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import { Radio, ToggleGroup } from '@/design-system'
+import { toOuiNon } from '@/domaine/OuiNon'
 
 export const AlsaceMoselleQuestion: ComposantQuestion<
-	SituationÉconomieCollaborative,
-	Props
+	SituationÉconomieCollaborative
 > = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useEconomieCollaborative()
@@ -24,9 +24,7 @@ export const AlsaceMoselleQuestion: ComposantQuestion<
 	)
 
 	const value = O.isSome(situation.estAlsaceMoselle)
-		? situation.estAlsaceMoselle.value
-			? 'oui'
-			: 'non'
+		? toOuiNon(situation.estAlsaceMoselle.value)
 		: undefined
 
 	return (

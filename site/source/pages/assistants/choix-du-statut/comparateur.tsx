@@ -17,6 +17,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { useNavigation } from '@/lib/navigation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
@@ -150,8 +151,9 @@ function getSituationFromStatut(statut: StatutType): SituationPublicodes {
 								: statut === 'SELASU'
 									? 'SELAS'
 									: statut,
-			'entreprise . catégorie juridique . EI . auto-entrepreneur':
-				statut === 'AE' ? 'oui' : 'non',
+			'entreprise . catégorie juridique . EI . auto-entrepreneur': toOuiNon(
+				statut === 'AE'
+			),
 			'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(
 				statut
 			)

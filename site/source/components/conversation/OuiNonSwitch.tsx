@@ -1,5 +1,5 @@
 import { Switch } from '@/design-system'
-import { OuiNon } from '@/domaine/OuiNon'
+import { fromOuiNon, OuiNon, toOuiNon } from '@/domaine/OuiNon'
 import { NoOp } from '@/utils/NoOp'
 
 interface OuiNonSwitchProps {
@@ -15,13 +15,13 @@ export function OuiNonSwitch({
 	defaultValue,
 }: OuiNonSwitchProps) {
 	const handleChange = (value: boolean) => {
-		onChange(value ? 'oui' : 'non')
+		onChange(toOuiNon(value))
 	}
 
 	return (
 		<Switch
 			onChange={handleChange}
-			defaultSelected={defaultValue === 'oui'}
+			defaultSelected={fromOuiNon(defaultValue)}
 			light
 			/* Need this useless aria-label to silence a React-Aria warning */
 			aria-label=""

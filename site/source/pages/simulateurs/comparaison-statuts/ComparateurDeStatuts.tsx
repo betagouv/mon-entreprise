@@ -16,11 +16,11 @@ import { useSitePaths } from '@/sitePaths'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
-import { comparaisonStatutsMetadata } from './metadata'
-import { configComparateurStatuts } from './simulationConfig'
 import { DétailSimulation } from './components/DetailSimulation'
+import { comparaisonStatutsMetadata } from './metadata'
 import { Objectifs } from './Objectifs'
 import { groupesDeQuestions, questionsPrincipales } from './questions'
+import { configComparateurStatuts } from './simulationConfig'
 
 export const ComparateurDeStatuts = () => (
 	<ComparateurProvider
@@ -51,7 +51,11 @@ const PageComparateur = () => {
 
 	return (
 		<EngineProvider value={engine}>
-			<SimulateurPageLayout metadata={metadata} showDate={false} isReady={isReady}>
+			<SimulateurPageLayout
+				metadata={metadata}
+				showDate={false}
+				isReady={isReady}
+			>
 				<Trans i18nKey="pages.simulateurs.comparaison-statuts.notif">
 					<Message type="secondary" icon={<Emoji emoji="✨" />} border={false}>
 						<Body>
