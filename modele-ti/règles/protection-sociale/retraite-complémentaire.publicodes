@@ -7,9 +7,17 @@ protection sociale . retraite . complémentaire . points acquis:
     Nombre total de points de retraite complémentaire acquis sur une année.
   variations:
     - si: indépendant . profession libérale . CNAVPL
-      alors: RCI . points acquis
-    - sinon: Cipav . points acquis
+      alors: Cipav . points acquis
+    - sinon: RCI . points acquis
   unité: point/an
+
+protection sociale . retraite . complémentaire . valeur du point:
+  titre: Valeur de service du point de retraite complémentaire
+  variations:
+    - si: indépendant . profession libérale . CNAVPL
+      alors: Cipav . valeur du point
+    - sinon: RCI . valeur du point
+  unité: €/an/point
 
 protection sociale . retraite . complémentaire . RCI:
   acronyme: RCI
@@ -75,7 +83,7 @@ protection sociale . retraite . complémentaire . Cipav:
           alors: 45.30 €/point
         - sinon: 47.40 €/point
 
-    valeur de service du point:
+    valeur du point:
       unité: €/an/point
       variations:
         - si: date < 01/2024
