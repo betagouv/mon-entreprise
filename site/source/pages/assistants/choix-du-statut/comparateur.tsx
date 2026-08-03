@@ -18,15 +18,15 @@ import {
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { useNavigation } from '@/lib/navigation'
-import { Comparaison } from '@/pages/simulateurs/comparaison-statuts/components/Comparaison'
-import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
-import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
-import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
+import { Comparaison } from './_components/Comparaison'
+import ModifierOptions from './_components/ModifierOptions'
+import RevenuEstimé from './_components/RevenuEstimé'
+import StatutChoice from './_components/StatutChoice'
 import { usePreviousStep, useStepPaths } from './_components/useSteps'
 
 export default function Comparateur() {
