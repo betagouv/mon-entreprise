@@ -266,13 +266,11 @@ const StyledTable = styled.table`
 const StyledStatutTag = styled(StatutTag)`
 	width: 100%;
 	justify-content: center;
-	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 const StyledTag = styled(Tag)`
 	width: 100%;
 	justify-content: center;
-	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
 const Minus = styled.span`
