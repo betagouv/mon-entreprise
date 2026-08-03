@@ -1,7 +1,8 @@
-import { Data, Either } from 'effect'
-import { dual } from 'effect/Function'
+import { Data, Either, Option } from 'effect'
+import { dual, pipe } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
+import { pourcentage, Quantité } from './Quantite'
 import {
 	isUnitéMonétaireRécurrente,
 	UnitéMonétaire,
@@ -279,6 +280,35 @@ export const parRapportÀ = dual<
 	}
 )
 
+export const pourcentageParRapportÀ = dual<
+	<M extends Montant>(
+		diviseur: M
+	) => (a: M) => Either.Either<Quantité<'%'>, DivisionParZéro>,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	) => Either.Either<Quantité<'%'>, DivisionParZéro>
+>(
+	2,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	): Either.Either<Quantité<'%'>, DivisionParZéro> => {
+		if (estZéro(diviseur)) {
+			return Either.left(new DivisionParZéro())
+		}
+
+		return pipe(
+			a,
+			parRapportÀ(diviseur),
+			Either.getRight,
+			Option.getOrElse(() => 0),
+			(rapport) => pourcentage(100 * rapport),
+			Either.right
+		)
+	}
+)
+
 export const estPlusGrandQue = dual<
 	<M extends Montant>(b: M) => (a: M) => boolean,
 	<M extends Montant>(a: M, b: M) => boolean
@@ -306,7 +336,8 @@ export const montantToString = (
 	montant: Montant,
 	displayedUnit?: string
 ): string => {
-	return `${montant.valeur.toLocaleString('fr-FR')} ${
+	// eslint-disable-next-line no-irregular-whitespace
+	return `${montant.valeur.toLocaleString('fr-FR')} ${
 		displayedUnit ?? montant.unité
 	}`
 }

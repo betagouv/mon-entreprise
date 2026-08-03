@@ -608,6 +608,7 @@ pages:
     activité-détails:
       next1: Continuer avec cette activité
     choix-statut:
+      accordion-title: Comparer…
       activité:
         help:
           subject: l’activité principale
@@ -714,6 +715,127 @@ pages:
             titre: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
           titre: <0>Une entreprise est déjà renseignée</0><1>Pour accéder à l'assistant,
             il vous faut réinitialiser les données.</1>
+      items:
+        gestion:
+          conjoint:
+            body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
+              statuts possibles</1> pour votre conjoint/conjointe
+              (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
+              <9>salarié/salariée</9>)."
+            h4: Statut du conjoint / de la conjointe
+          création:
+            body: Les formalités de création d’une entreprise diffèrent selon les statuts et
+              la nature de l’activité. Le calcul se concentre ici sur les
+              <1>procédures obligatoires</1> (immatriculation, annonces légales,
+              rédaction des statuts…).
+            h4: Coût de création
+          title: La gestion juridique et comptable
+        parentalité:
+          adoption:
+            body: En plus des indemnités journalières, vous pouvez aussi prétendre à une
+              <2>allocation forfaitaire de repos parental supplémentaire</2>.
+            h4: Adoption
+            label: versés en une fois
+          body: <0>Tous les statuts vous ouvrent le droit aux <2>indemnités
+            journalières</2> de congé maternité, paternité, adoption.</0><1>Pour
+            y prétendre, vous devez avoir cotisé <2>au moins 6 mois</2>.</1>
+          maternité:
+            body: En plus des indemnités journalières, vous pouvez aussi prétendre à une
+              <2>allocation forfaitaire de repos maternel supplémentaire</2>.
+            h4: Maternité
+            label: versés en deux fois
+          title: La maternité, paternité et adoption
+        prévoyance:
+          body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui
+            vous <5>protège en cas d’invalidité</5> et assure à vos proches une
+            <8>pension de réversion et un capital en cas de décès</8>.
+          décès:
+            body:
+              "1": La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
+                (personnes qui sont à votre charge) sous certaines conditions.
+              "2": En plus du capital décès, une <2>pension de réversion</2> peut être versée
+                à votre conjoint/conjointe. Elle correspond aux <5>droits à la
+                retraite que vous aurez acquis</5> durant sa vie
+                professionnelle.
+              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>,
+                votre conjoint/conjointe peut bénéficier d’une <4>rente de
+                décès</4>.
+              "4": En cas de décès, un <1>capital « orphelin »</1> est versé à<3> vos
+                enfants</3>, sous certaines conditions.
+            h4: Décès
+            label:
+              "1": pour vos proches
+              "2": maximum
+              "3": en cas d’accident professionnel
+          invalidité:
+            body:
+              "1": <0>Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou
+                d’accident conduisant à une incapacité à poursuivre votre
+                activité professionnelle</2>.</0><1>Pour y prétendre, vous devez
+                respecter <2>certaines règles<1></1></2>.</1>
+              "2": Pour une invalidité causée par un <2>accident professionnel</2>, vous
+                pouvez bénéficier d’une <4>rente d’incapacité</4>.
+            evolution-label: (invalidité totale)
+            h4: Invalidité
+            label: (invalidité partielle)
+          title: Votre couverture invalidité et décès
+        retraite:
+          base:
+            body: Chaque année, selon votre rémunération, vous validez <2>jusqu'à 4
+              trimestres</2> pour votre retraite de base. Le nombre total de
+              trimestres validés détermine votre droit à une retraite à taux
+              plein.
+            h4: Retraite de base
+            revenu-cotisé:
+              body: Le montant de votre pension dépend aussi du <2>revenu cotisé</2>,
+                c'est-à-dire la part de vos revenus sur laquelle vous cotisez
+                pour la retraite de base.
+            unit: trimestre(s) acquis par an
+          complémentaire:
+            body: Tous les ans, selon votre rémunération, <2>vous gagnez des points de
+              retraite complémentaire</2>. En fin de carrière, vos points sont
+              convertis en pension mensuelle qui s'ajoute à votre retraite de
+              base.
+            h4: Retraite complémentaire
+            unit: point(s) acquis par an
+            valeur-du-point: "Valeur du point : <2><0></0></2>"
+          lien-assurance-retraite:
+            aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
+            message: Pour estimer le montant de votre future pension de retraite, utilisez
+              le <2>simulateur de l'Assurance retraite</2>.
+          title: Vos droits pour la retraite
+        revenus:
+          détails:
+            "1": Soit <2><0></0></2> avant impôts
+            "2": Avec <2><0></0></2> de cotisations sociales sur le chiffre d’affaires (soit
+              <6><0></0></6> du bénéfice)
+            "3": Avec <2><0></0></2> de cotisations sociales sur le bénéfice
+          h4: Revenu net mensuel après impôts
+          info:
+            subject: le revenu
+            title: Calculer vos revenus
+          title: Vos revenus
+          warning: Vous allez dépasser le plafond de la micro-entreprise <2>(<1></1> de
+            chiffre d’affaires).</2>
+        santé:
+          arrêt:
+            body: "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>.
+              En cas d’arrêt maladie, l’assurance maladie vous versera :"
+            footer: Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>
+            h4: Arrêt maladie
+            warning: Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier
+              d’arrêt maladie.
+          atmp:
+            body: "En cas d’<1>accident du travail</1>, de <4>maladie professionnelle</4> ou
+              d’un <7>accident sur le trajet domicile-travail</7>, vous recevrez
+              une indemnisation de :"
+            evolution-label: à partir du 29ème jour
+            h4: Accident du travail et maladie professionnelle
+          body: <0>Tous les statuts vous ouvrent le droit au <2>remboursement des
+            soins.</2></0><1>Pour tous les statuts, il est conseillé de
+            souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
+            améliorer le remboursement des frais de santé.</1>
+          title: Vos prestations santé
       meta:
         description: SAS, EURL, EI, auto-entrepreneur…  Ce simulateur vous aide à
           choisir le statut juridique le plus adapté à votre projet
@@ -783,6 +905,12 @@ pages:
         reposent sur une analyse approfondie et impartiale.</3></5>
       shortname: Choix du statut
       title: Choisir votre statut
+      warning:
+        réforme:
+          aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
+            cotisations sur le site de l’Urssaf, nouvelle fenêtre
+          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
+            encore implémentée sur ce comparateur.
     declaration-charges-sociales-independant:
       aria-label: Lire la page dédiée sur le site de l’Urssaf, nouvelle fenêtre
       header: L’assistant à la détermination des charges sociales déductibles, c’est
@@ -1529,23 +1657,13 @@ pages:
         en existe <4>trois différents</4>, avec chacun ses avantages et
         inconvénients. Avec ce comparatif, trouvez celui qui vous correspond le
         mieux.
+      détail:
+        aucun: Veuillez renseigner un chiffre d’affaires pour afficher les détails.
       items:
         gestion:
           conjoint:
             assimilé-salarié: Conjoint associé ou salarié / Conjointe associée ou salariée
             auto-entrepreneur: Conjoint collaborateur / Conjointe collaboratrice
-            body: "Vous êtes marié/mariée, pacsé/pacsée ou en union libre : il existe <1>3
-              statuts possibles</1> pour votre conjoint/conjointe
-              (<3>collaborateur/collaboratrice</3>, <6>associé/associée</6> ou
-              <9>salarié/salariée</9>)."
-            h4: Statut du conjoint / de la conjointe
-          création:
-            body: Les formalités de création d’une entreprise diffèrent selon les statuts et
-              la nature de l’activité. Le calcul se concentre ici sur les
-              <1>procédures obligatoires</1> (immatriculation, annonces légales,
-              rédaction des statuts…).
-            h4: Coût de création
-          title: La gestion juridique et comptable
         parentalité:
           adoption:
             body: En plus des indemnités journalières, vous pouvez aussi prétendre à une
@@ -1565,35 +1683,38 @@ pages:
           body: Tous les statuts cotisent pour une <2>pension invalidité-décès</2> qui
             vous <5>protège en cas d’invalidité</5> et assure à vos proches une
             <8>pension de réversion et un capital en cas de décès</8>.
+          capital-orphelin:
+            body: En cas de décès, un <1>capital « orphelin »</1> est versé à<3> vos
+              enfants</3>, sous certaines conditions.
+            unit: €/enfant
           décès:
-            body:
-              "1": La Sécurité Sociale garantit un <2>capital décès pour vos ayants droits</2>
-                (personnes qui sont à votre charge) sous certaines conditions.
-              "2": En plus du capital décès, une <2>pension de réversion</2> peut être versée
-                à votre conjoint/conjointe. Elle correspond aux <5>droits à la
-                retraite que vous aurez acquis</5> durant sa vie
-                professionnelle.
-              "3": Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>,
-                votre conjoint/conjointe peut bénéficier d’une <4>rente de
-                décès</4>.
-              "4": En cas de décès, un <1>capital « orphelin »</1> est versé à<3> vos
-                enfants</3>, sous certaines conditions.
+            capital-décès:
+              body: La Sécurité Sociale garantit un <2>capital décès pour vos ayants
+                droits</2> (personnes qui sont à votre charge) sous certaines
+                conditions.
+              label: pour vos proches
             h4: Décès
-            label:
-              "1": pour vos proches
-              "2": maximum
-              "3": en cas d’accident professionnel
           invalidité:
-            body:
-              "1": <0>Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou
-                d’accident conduisant à une incapacité à poursuivre votre
-                activité professionnelle</2>.</0><1>Pour y prétendre, vous devez
-                respecter <2>certaines règles<1></1></2>.</1>
-              "2": Pour une invalidité causée par un <2>accident professionnel</2>, vous
-                pouvez bénéficier d’une <4>rente d’incapacité</4>.
+            body: <0>Vous pouvez bénéficier d’une pension invalidité <2>en cas de maladie ou
+              d’accident conduisant à une incapacité à poursuivre votre activité
+              professionnelle</2>.</0><1>Pour y prétendre, vous devez respecter
+              <2>certaines règles<1></1></2>.</1>
             evolution-label: (invalidité totale)
             h4: Invalidité
             label: (invalidité partielle)
+          invalidité-ATMP:
+            body: Pour une invalidité causée par un <2>accident professionnel</2>, vous
+              pouvez bénéficier d’une <4>rente d’incapacité</4>.
+          pension-réversion:
+            body: En plus du capital décès, une <2>pension de réversion</2> peut être versée
+              à votre conjoint/conjointe. Elle correspond aux <5>droits à la
+              retraite que vous aurez acquis</5> durant sa vie professionnelle.
+            label: maximum
+          rente-décès:
+            body: Pour un décès survenu dans le cadre d’un <2>accident professionnel</2>,
+              votre conjoint/conjointe peut bénéficier d’une <4>rente de
+              décès</4>.
+            label: en cas d’accident professionnel
           title: Votre couverture invalidité et décès
         retraite:
           base:
@@ -1607,14 +1728,15 @@ pages:
                 c'est-à-dire la part de vos revenus sur laquelle vous cotisez
                 pour la retraite de base.
             unit: trimestre(s) acquis par an
+            unité: € cotisés par an
           complémentaire:
             body: Tous les ans, selon votre rémunération, <2>vous gagnez des points de
               retraite complémentaire</2>. En fin de carrière, vos points sont
               convertis en pension mensuelle qui s'ajoute à votre retraite de
               base.
             h4: Retraite complémentaire
-            unit: point(s) acquis par an
-            valeur-du-point: "Valeur du point : <2><0></0></2>"
+            unité: point(s) acquis par an
+            valeur-du-point: "Valeur du point : <2>{{valeurPointComplémentaire}}</2>"
           lien-assurance-retraite:
             aria-label: Accéder au simulateur de l'Assurance retraite, nouvelle fenêtre
             message: Pour estimer le montant de votre future pension de retraite, utilisez
@@ -1622,22 +1744,35 @@ pages:
           title: Vos droits pour la retraite
         revenus:
           détails:
-            "1": Soit <2><0></0></2> avant impôts
-            "2": Avec <2><0></0></2> de cotisations sociales sur le chiffre d’affaires (soit
-              <6><0></0></6> du bénéfice)
-            "3": Avec <2><0></0></2> de cotisations sociales sur le bénéfice
+            "1": Soit <1>{{revenuAvantImpôt}}</1> avant impôts
+            "2": Avec <1>{{pourcentageSurCA}}</1> de cotisations sociales sur le chiffre
+              d’affaires (soit <4>{{pourcentageSurBénéfice}}</4> du bénéfice)
+            "3": Avec <1>{{pourcentageSurBénéfice}}</1> de cotisations sociales sur le
+              bénéfice
           h4: Revenu net mensuel après impôts
           info:
-            subject: le revenu
-            title: Calculer vos revenus
+            subject: Vos revenus
+          tableau:
+            caption:
+              "1": Tableau affichant le détail du calcul du revenu net pour chaque statut
+              "2": Tableau affichant le détail du calcul du revenu net après impôt pour chaque
+                statut
+            moins: moins
+            th:
+              CA: Chiffre d’affaires
+              charges: Charges
+              cotisations: Cotisations
+              impôts: Impôts
+              revenu-après-impôt: Revenu après impôt
+              revenu-avant-impôt: Revenu avant impôt
+              statut: Type de structure
           title: Vos revenus
-          warning: Vous allez dépasser le plafond de la micro-entreprise <2>(<1></1> de
-            chiffre d’affaires).</2>
         santé:
           arrêt:
             body: "Pour tous les statuts, vous aurez un <2>délai de carence de 3 jours</2>.
               En cas d’arrêt maladie, l’assurance maladie vous versera :"
-            footer: Pour y prétendre, vous devez avoir cotisé au moins <2><0></0></2>
+            footer: Pour y prétendre, vous devez avoir cotisé au moins
+              <2>{{délaiAttente}}</2>
             h4: Arrêt maladie
             warning: Votre <1>rémunération</1> est <4>trop faible</4> pour bénéficier
               d’arrêt maladie.
@@ -1645,8 +1780,8 @@ pages:
             body: "En cas d’<1>accident du travail</1>, de <4>maladie professionnelle</4> ou
               d’un <7>accident sur le trajet domicile-travail</7>, vous recevrez
               une indemnisation de :"
-            evolution-label: à partir du 29ème jour
             h4: Accident du travail et maladie professionnelle
+            secondary-label: à partir du 29ème jour
           body: <0>Tous les statuts vous ouvrent le droit au <2>remboursement des
             soins.</2></0><1>Pour tous les statuts, il est conseillé de
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
@@ -1763,11 +1898,8 @@ pages:
           réglementées. </0><1>En effet, ces dernières sont soumises à des
           règles spécifiques, et ont accès à des statuts dédiés : les sociétés
           d'exercice libérale (SEL).</1><2><0>En savoir plus</0> </2>"
-        réforme:
-          aria-label: Lire la page dédiée à la réforme de l’assiette et du barème des
-            cotisations sur le site de l’Urssaf, nouvelle fenêtre
-          texte: La <2>réforme de l’assiette et du barème des cotisations</2> n'est pas
-            encore implémentée sur ce comparateur.
+        auto-entrepreneur: Vous allez dépasser le plafond de la micro-entreprise
+          ({{montant}} de chiffre d’affaires).
     cotisation-maladie-frontalier-suisse:
       documentation:
         décomposition:
