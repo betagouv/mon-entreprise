@@ -22,18 +22,16 @@ import {
 	StyledLink,
 	Ul,
 } from '@/design-system'
+import ItemTitle from '@/pages/simulateurs/comparaison-statuts/components/ItemTitle'
+import WarningTooltip from '@/pages/simulateurs/comparaison-statuts/components/WarningTooltip'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 import DetailsRowCards from './DetailsRowCards'
-import ItemTitle from './ItemTitle'
 import RevenuTable from './RevenuTable'
-import StatutChoice from './StatutChoice'
-import WarningTooltip from './WarningTooltip'
 
 export const Comparaison = ({
 	namedEngines,
 	expandRevenuSection = false,
-	withStatusCards = false,
 }: {
 	namedEngines: EngineComparison
 	expandRevenuSection?: boolean
@@ -84,11 +82,6 @@ export const Comparaison = ({
 					</H2>
 				}
 				isFoldable
-				banner={
-					withStatusCards && (
-						<StatutChoice namedEngines={namedEngines} hideCTA />
-					)
-				}
 			>
 				<Item
 					title={

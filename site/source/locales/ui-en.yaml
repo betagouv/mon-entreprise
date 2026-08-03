@@ -683,9 +683,8 @@ pages:
         gestion:
           conjoint:
             body: "Whether you are married, in a civil partnership, or living with a
-              partner: there are <1>3 possible statuses</1> for your spouse
-              or partner (<3>employee</3>, <6>partner</6> or <9>staff
-              member</9>)."
+              partner: there are <1>3 possible statuses</1> for your spouse or
+              partner (<3>employee</3>, <6>partner</6> or <9>staff member</9>)."
             h4: Spousal Status
           création:
             body: The formalities involved in starting a business vary depending on the
@@ -712,17 +711,17 @@ pages:
           title: Motherhood, Fatherhood, and Adoption
         prévoyance:
           body: All membership categories contribute to the
-            <2>disability-and-death-pension</2> , which <5>protects you in
-            the event of disability</5> and provides your loved ones with a
+            <2>disability-and-death-pension</2> , which <5>protects you in the
+            event of disability</5> and provides your loved ones with a
             <8>survivor’s pension and a lump-sum payment in the event of your
             death</8>.
           décès:
             body:
               "1": Social Security provides a <2>death benefit for your beneficiaries</2>
                 (dependents) under certain conditions.
-              "2": In addition to the death benefit, a <2>survivor's pension</2> may be
-                paid to your spouse. It corresponds to the <5>retirement
-                benefits you have accrued</5> during your working life.
+              "2": In addition to the death benefit, a <2>survivor's pension</2> may be paid
+                to your spouse. It corresponds to the <5>retirement benefits you
+                have accrued</5> during your working life.
               "3": In the event of a death resulting from a <2>work-related accident</2>, your
                 spouse may be eligible for a <4>death benefit</4>.
               "4": In the event of death, an <1>“orphan” benefit</1> is paid to<3> your
@@ -789,8 +788,7 @@ pages:
             footer: To be eligible, you must have made contributions for at least
               <2><0></0></2>
             h4: Sick Leave
-            warning: Your <1>compensation</1> is <4>too low</4> to qualify for sick
-              leave.
+            warning: Your <1>compensation</1> is <4>too low</4> to qualify for sick leave.
           atmp:
             body: "In the event<1>of a work-related accident</1>, <4>occupational
               illness</4> , or a <7>commuting accident</7>, you will receive
@@ -799,13 +797,42 @@ pages:
             h4: Work-Related Accidents and Occupational Diseases
           body: <0>All membership statuses entitle you to <2>reimbursement for medical
             care.</2></0><1>For all categories, it is recommended that you
-            enroll in a <2>supplemental health insurance plan (mutuelle)</2>
-            to improve your healthcare reimbursement.</1>
+            enroll in a <2>supplemental health insurance plan (mutuelle)</2> to
+            improve your healthcare reimbursement.</1>
           title: Your Health Benefits
       meta:
         description: SAS, EURL, EI, auto-entrepreneur... This simulator will help you
           choose the legal status best suited to your business project.
         title: Help in choosing legal status
+      modifier-options:
+        acre:
+          body: The Business Start-up or Takeover Assistance Program (Acre) consists of a
+            <2>partial exemption from social security contributions</2>—known as
+            the “start-up exemption”— <4>for a period of 12 months</4>.
+          info-title: Take Advantage of the Acre Program
+          label: Enable the acre in the simulation
+          title: Acre
+        confirm-label: Save Options
+        imposition:
+          body: You can <2>choose between corporate and income tax</2> during the first
+            5 years.
+          body-ae: As a sole proprietor (AE), the<1>income tax</1> is automatically
+            applied. In certain situations, you can also opt for the
+            <4><0>lump-sum payment</0></4>.
+          hors-ae:
+            disclaimer: As of now, this comparison tool does not take into account the
+              calculation of income tax for SAS(U)s.
+            label: Taxation Method (excluding AE)
+          title: Taxation
+          versement-libératoire:
+            title: Lump-Sum Payment (for AE)
+        title: Change my settings
+        versement-libératoire:
+          label: Enable the lump-sum payment in the simulation
+      revenu-table:
+        net: Table showing the breakdown of net income calculations for each status
+        net-après-impôt: Table showing the breakdown of the calculation of net income
+          after taxes for each status
       rémunération:
         CA:
           help:
@@ -1127,9 +1154,9 @@ pages:
         website or service using the open-source JavaScript libraries available
         on npm.</0></0><1>Which library should you choose?</1><3>modele-as This
         library contains the rules and calculations for executives
-        <2>assimilated-employees</2> and female executives treated as
-        employees, such as the executives of SAS and SASU companies. This is the
-        library used in the <5>income simulator for SAS(U)
+        <2>assimilated-employees</2> and female executives treated as employees,
+        such as the executives of SAS and SASU companies. This is the library
+        used in the <5>income simulator for SAS(U)
         executives</5>.</3><4>modele-ti</4><5>This library contains the rules
         and calculations for <2>self-employed individuals</2> , including
         self-employed women, such as the owners of sole proprietorships
@@ -1146,22 +1173,22 @@ pages:
         self-employed individuals are no longer maintained.</8><9>How to use
         these libraries?</9><10>Installation</10><11><0>npm install --save
         publicodes modele-xx</0></11><12>Replace <1>modele-xx</1> with
-        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7>
-        depending on the calculations you wish to perform.</12><13>To run your
-        own calculations, you must install the package
-        <2><0>publicodes</0></2> containing the publicodes interpreter, as
-        well as the package of your choice— <6><0>modele-as</0></6>,
-        <9><0>modele-ti</0></9> or <13><0>modele-social</0></13>—which
-        contain the rules for the mon-entreprise simulators.</13><14><0>What is
+        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7> depending on
+        the calculations you wish to perform.</12><13>To run your own
+        calculations, you must install the package <2><0>publicodes</0></2>
+        containing the publicodes interpreter, as well as the package of your
+        choice— <6><0>modele-as</0></6>, <9><0>modele-ti</0></9> or
+        <13><0>modele-social</0></13>—which contain the rules for the
+        mon-entreprise simulators.</13><14><0>What is
         Publicodes?</0><1>Publicodes is a declarative language developed by
         beta.gouv.fr and Urssaf to implement algorithms of public interest. It
         is the language that powers the calculations in most of the
         “mon-entreprise” simulators.</1><2><0>Learn more about
         Publicodes</0></2></14><16>Usage: To run a calculation, you must
         configure the engine with the rules from the package
-        <1>modele-social</1> and call the function <4>evaluate</4> with
-        the rule whose value you wish to calculate. Here is an example for
-        gross/net pay calculation using the package <7>modele-social</7>
+        <1>modele-social</1> and call the function <4>evaluate</4> with the rule
+        whose value you wish to calculate. Here is an example for gross/net pay
+        calculation using the package <7>modele-social</7>
         :</16><17><0></0></17><18>Configuring the</18><19>Calculation As you saw
         in the previous example, the structure of a calculation is simple: input
         variables (gross pay) and one or more output variables (net
@@ -1176,9 +1203,9 @@ pages:
         it into your application</0><1></1>You’ll find it by clicking on the
         “Reuse this calculation” section.<3></3></1><2><0>(optional) Modify the
         scenario values to configure the calculation according to your
-        needs</0><1> </1> Feel free to modify the scenario values. They
-        accept any <4>Publicodes expression or object</4>.</2></24><25>Here is
-        the result of the calculation using the example cited
+        needs</0><1> </1> Feel free to modify the scenario values. They accept
+        any <4>Publicodes expression or object</4>.</2></24><25>Here is the
+        result of the calculation using the example cited
         above:</25><26><0></0></26><27><0>The scenario contains your simulation
         data (manager with a gross salary of €3,400), as well as data related to
         the simulator’s settings.</0></27><28></28><29>Creating Economic Charts
@@ -1756,9 +1783,9 @@ pages:
             body: If your disability is caused by a <2>work-related accident</2>, you may be
               eligible for a <4>disability pension</4>.
           pension-réversion:
-            body: In addition to the death benefit, a <2>survivor's pension</2> may be
-              paid to your spouse. It corresponds to the <5>retirement benefits
-              you have accrued</5> during your working life.
+            body: In addition to the death benefit, a <2>survivor's pension</2> may be paid
+              to your spouse. It corresponds to the <5>retirement benefits you
+              have accrued</5> during your working life.
             label: maximum
           rente-décès:
             body: In the event of a death resulting from a <2>work-related accident</2>,
@@ -1792,10 +1819,10 @@ pages:
         revenus:
           détails:
             "1": That is <1>{{revenuAvantImpôt}} </1> before taxes
-            "2": With <1>{{pourcentageSurCA}} </1> of social security contributions based
-              on revenue (i.e., <4>{{pourcentageSurBénéfice}} </4> of profit)
-            "3": With <1>{{pourcentageSurBénéfice}} </1> of social security contributions
-              on profits
+            "2": With <1>{{pourcentageSurCA}} </1> of social security contributions based on
+              revenue (i.e., <4>{{pourcentageSurBénéfice}} </4> of profit)
+            "3": With <1>{{pourcentageSurBénéfice}} </1> of social security contributions on
+              profits
           h4: Net monthly income after tax
           info:
             subject: Your Income
@@ -1837,31 +1864,6 @@ pages:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
         title: Legal status comparator
-      modifier-options:
-        acre:
-          body: Assistance for setting up or taking over a business (Acre) consists of a
-            <2>partial exemption from social security contributions</2>, known
-            as the "start-up exemption", for a <4>period of 12 months</4>.
-          info-title: Benefit from Acre
-          label: Activate Acre in simulation
-          title: Acre
-        confirm-label: Save Options
-        imposition:
-          body: You can <2>choose between corporate and income taxation</2> for the first
-            5 years.
-          body-ae: As an auto-entrepreneur (AE),<1>income tax</1> is applied
-            automatically. In certain situations, you can also opt for the
-            <4><0>versement libératoire</0></4>.
-          hors-ae:
-            disclaimer: At present, this comparator does not include income tax calculations
-              for SAS(U).
-            label: Taxation method (excluding AE)
-          title: Taxation
-          versement-libératoire:
-            title: Payment in full discharge (for AE)
-        title: Modify my options
-        versement-libératoire:
-          label: Activate final payment in simulation
       montants:
         CA: Estimated sales
         imposition:
@@ -1914,10 +1916,6 @@ pages:
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates
-      revenu-table:
-        net: Table showing net income calculation details for each status
-        net-après-impôt: Table showing detailed calculation of net income after tax for
-          each status
       réponses:
         activité:
           artisanale: Handcrafted
@@ -2510,10 +2508,10 @@ pages:
           salary in the “gross pay” field. You can refine the calculation by
           answering various questions (fixed-term contract, executive status,
           overtime, part-time work, meal vouchers,
-          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax</1>
-          has been withheld at source. To facilitate this, the Directorate
-          General of Public Finances (DGFiP) provides the employer with the tax
-          rate calculated based on the employee’s tax return. If this rate is
+          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax</1> has
+          been withheld at source. To facilitate this, the Directorate General
+          of Public Finances (DGFiP) provides the employer with the tax rate
+          calculated based on the employee’s tax return. If this rate is
           unknown—for example, during an employee’s first year of employment—the
           employer uses the <4>default rate</4>.</4></0><1><0>How do you
           calculate the total cost of hiring?</0><1>If you’re looking to hire,
@@ -2523,8 +2521,8 @@ pages:
           cost to your company.</1><2>In addition to salary, our simulator
           factors in benefits in kind (cell phone, company car, etc.), as well
           as mandatory health insurance.</2><3>There are <2>deferred
-          incentives</2> available for hiring that are not all included in
-          our simulator; you can find them on <6>the official
+          incentives</2> available for hiring that are not all included in our
+          simulator; you can find them on <6>the official
           portal</6>.</3></1><2><0>Talk to an advisor about your hiring
           plan</0><1>You would like to:</1><2><0>Receive advice on the hiring
           incentives available for your recruitment</0><1>Learn about
