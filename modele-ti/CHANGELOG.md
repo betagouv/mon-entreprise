@@ -10,6 +10,9 @@
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
 
+### Corrections
+- Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
+
 ## 0.1.0
 
 ### Mises à jour

@@ -6026,26 +6026,27 @@ protection sociale . invalidité et décès . capital décès:
   titre.fr: capital décès
 protection sociale . invalidité et décès . capital décès . orphelin:
   description.en: >
-    [automatic] An "orphan" capital sum is paid to the children of self-employed
+    [automatic] An “orphan’s” benefit is paid to the children of self-employed
     workers
 
-    who have died. It concerns :
+    who have died. It applies to:
 
 
-    - children under the age of 16 on the day of the insured's death and
-    dependent on the insured
+    - children under the age of 16 on the date of the insured person’s death and
+    who were
 
-    dependent ;
+    dependent on the insured person;
 
-    - dependent children of the deceased aged over 16 and under 20,
+    - children over the age of 16 and under the age of 20 who were dependents of
+    the deceased
 
-    pursuing their studies or apprenticeship;
+    and are continuing their studies or apprenticeship;
 
-    - children of any age in receipt of disability benefits.
+    - children, regardless of age, who are recipients of benefits
 
-    disabled persons.
+    established for people with disabilities.
   description.fr: >
-    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
+    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
 
     décédés. Il concerne :
 
