@@ -24,6 +24,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
@@ -277,12 +278,10 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 							}
 						: {}),
 					'entreprise . activité . nature . libérale . réglementée': O.some(
-						PLRMétier ? 'oui' : 'non'
+						toOuiNon(!!PLRMétier)
 					),
 					'dirigeant . indépendant . PL . métier': O.fromNullable(PLRMétier),
-					'artiste-auteur': O.some(
-						guichet.artisteAuteurPossible ? 'oui' : 'non'
-					),
+					'artiste-auteur': O.some(toOuiNon(guichet.artisteAuteurPossible)),
 				} as Record<DottedName, O.Option<ValeurPublicodes>>)
 			)
 		},

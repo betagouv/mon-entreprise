@@ -40,8 +40,8 @@ export const useComparateur = () => {
 
 			versementLibératoire: (versementLibératoire: boolean) => {
 				updateSituation((prev) => ({ ...prev, versementLibératoire }))
-				modèles.forEach(
-					(modèle) => modèle.set.versementLibératoire?.(versementLibératoire)
+				modèles.forEach((modèle) =>
+					modèle.set.versementLibératoire?.(versementLibératoire)
 				)
 			},
 

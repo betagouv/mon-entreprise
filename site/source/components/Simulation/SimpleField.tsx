@@ -8,6 +8,7 @@ import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { Intro, Markdown, type DateFieldProps } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { fromOuiNon, OuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
@@ -28,7 +29,7 @@ export function SimpleField(props: SimpleFieldProps) {
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
 	const rule = engine.getRule(dottedName)
-	const meta = getMeta<{ requis?: 'oui' | 'non' }>(rule.rawNode, {})
+	const meta = getMeta<{ requis?: OuiNon }>(rule.rawNode, {})
 	const dispatchValue = useCallback(
 		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
 			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
@@ -55,7 +56,7 @@ export function SimpleField(props: SimpleFieldProps) {
 		p: labelStyle ?? Intro,
 	}
 
-	const required = meta.requis === 'oui'
+	const required = fromOuiNon(meta.requis)
 
 	return (
 		<FadeIn>

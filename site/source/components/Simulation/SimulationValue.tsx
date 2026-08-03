@@ -9,6 +9,7 @@ import { Body, Grid } from '@/design-system'
 import { Contexte } from '@/domaine/Contexte'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInitialRender } from '@/hooks/useInitialRender'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
@@ -45,7 +46,7 @@ export function SimulationValue({
 	const language = useTranslation().i18n.language
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi: round ? 'oui' : 'non',
+		arrondi: toOuiNon(round),
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 		contexte,
 	})

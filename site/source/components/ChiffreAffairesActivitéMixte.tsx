@@ -14,6 +14,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
@@ -171,7 +172,7 @@ function ActivitéMixte() {
 						(acc, dottedName) => ({ ...acc, [dottedName]: O.none() }),
 						{
 							'entreprise . activité . revenus mixtes': O.some(
-								checked ? 'oui' : 'non'
+								toOuiNon(checked)
 							),
 						} as Record<DottedName, O.Option<ValeurPublicodes>>
 					)
