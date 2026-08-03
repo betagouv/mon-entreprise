@@ -13,7 +13,7 @@ indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base . revenu cotisé: 916
 protection sociale . retraite . base . trimestres: 0
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 11"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
@@ -29,7 +29,7 @@ indépendant . rémunération . nette . après impôt: 19472
 indépendant . rémunération . nette . avec dividendes: 20000
 protection sociale . retraite . base . revenu cotisé: 3036
 protection sociale . retraite . base . trimestres: 1
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 41"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV Acre 3`] = `
@@ -45,7 +45,7 @@ indépendant . rémunération . nette . après impôt: 41444
 indépendant . rémunération . nette . avec dividendes: 50000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 129"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 1`] = `
@@ -61,7 +61,7 @@ indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 6"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 2`] = `
@@ -77,7 +77,7 @@ indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 12"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 3`] = `
@@ -93,7 +93,7 @@ indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
 protection sociale . retraite . base . revenu cotisé: 12016
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 23"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 4`] = `
@@ -109,7 +109,7 @@ indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 384"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV année incomplète 5`] = `
@@ -125,7 +125,7 @@ indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 750"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 1`] = `
@@ -141,7 +141,7 @@ indépendant . rémunération . nette . après impôt: 48272
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 3925
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 187"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 2`] = `
@@ -157,7 +157,7 @@ indépendant . rémunération . nette . après impôt: 41140
 indépendant . rémunération . nette . avec dividendes: 50000
 protection sociale . retraite . base . revenu cotisé: 3864
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 114"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV années précédentes 3`] = `
@@ -173,7 +173,7 @@ indépendant . rémunération . nette . après impôt: 33953
 indépendant . rémunération . nette . avec dividendes: 40000
 protection sociale . retraite . base . revenu cotisé: 3666
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 82"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 1`] = `
@@ -189,7 +189,7 @@ indépendant . rémunération . nette . après impôt: 55178
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 212"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 2`] = `
@@ -205,7 +205,7 @@ indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 208"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 3`] = `
@@ -221,7 +221,7 @@ indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 206"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 4`] = `
@@ -237,7 +237,7 @@ indépendant . rémunération . nette . après impôt: 55185
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 208"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 5`] = `
@@ -253,7 +253,7 @@ indépendant . rémunération . nette . après impôt: 55188
 indépendant . rémunération . nette . avec dividendes: 60000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 206"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV conjoint collaborateur 6`] = `
@@ -269,7 +269,7 @@ indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 5"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV exonération incapacité 1`] = `
@@ -285,7 +285,7 @@ indépendant . rémunération . nette . après impôt: 34606
 indépendant . rémunération . nette . avec dividendes: 40000
 protection sociale . retraite . base . revenu cotisé: 0
 protection sociale . retraite . base . trimestres: 0
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 0"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 1`] = `
@@ -301,7 +301,7 @@ indépendant . rémunération . nette . après impôt: 500
 indépendant . rémunération . nette . avec dividendes: 500
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 1"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 2`] = `
@@ -317,7 +317,7 @@ indépendant . rémunération . nette . après impôt: 1000
 indépendant . rémunération . nette . avec dividendes: 1000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 3"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 3`] = `
@@ -333,7 +333,7 @@ indépendant . rémunération . nette . après impôt: 1500
 indépendant . rémunération . nette . avec dividendes: 1500
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 4"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 4`] = `
@@ -349,7 +349,7 @@ indépendant . rémunération . nette . après impôt: 2000
 indépendant . rémunération . nette . avec dividendes: 2000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 6"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 5`] = `
@@ -365,7 +365,7 @@ indépendant . rémunération . nette . après impôt: 5000
 indépendant . rémunération . nette . avec dividendes: 5000
 protection sociale . retraite . base . revenu cotisé: 6564
 protection sociale . retraite . base . trimestres: 3
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 12"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 6`] = `
@@ -381,7 +381,7 @@ indépendant . rémunération . nette . après impôt: 10000
 indépendant . rémunération . nette . avec dividendes: 10000
 protection sociale . retraite . base . revenu cotisé: 12016
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 23"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 7`] = `
@@ -397,7 +397,7 @@ indépendant . rémunération . nette . après impôt: 73897
 indépendant . rémunération . nette . avec dividendes: 100000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 384"
 `;
 
 exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu 8`] = `
@@ -413,7 +413,7 @@ indépendant . rémunération . nette . après impôt: 528620
 indépendant . rémunération . nette . avec dividendes: 1000000
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
-protection sociale . retraite . complémentaire . points acquis: null"
+protection sociale . retraite . complémentaire . points acquis: 750"
 `;
 
 exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] = `

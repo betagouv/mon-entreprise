@@ -4,9 +4,15 @@
 
 ### Breaking changes
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
+- Renomme `protection sociale . retraite . complémentaire . RCI . valeur de service du point` en `[...] . valeur du point`
+
+### Nouveautés
+- Ajoute la règle `protection sociale . retraite . complémentaire . valeur du point` regroupant RCI et Cipav
 
 ### Corrections
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
+- Corrige la règle `protection sociale . retraite . complémentaire . points acquis` (inversion entre RCI et Cipav)
+
 
 ## 0.1.0
 

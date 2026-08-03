@@ -6710,9 +6710,9 @@ protection sociale . retraite . complémentaire . Cipav:
     valeur d'acquisition:
       titre.en: '[automatic] purchase price'
       titre.fr: valeur d'acquisition
-    valeur de service du point:
-      titre.en: '[automatic] point service value'
-      titre.fr: valeur de service du point
+    valeur du point:
+      titre.en: '[automatic] point value'
+      titre.fr: valeur du point
   titre.en: '[automatic] Cipav'
   titre.fr: Cipav
 protection sociale . retraite . complémentaire . RCI:
@@ -6735,6 +6735,9 @@ protection sociale . retraite . complémentaire . points acquis:
     Nombre total de points de retraite complémentaire acquis sur une année.
   titre.en: '[automatic] Accrued supplemental retirement points'
   titre.fr: Points de retraite complémentaire acquis
+protection sociale . retraite . complémentaire . valeur du point:
+  titre.en: '[automatic] Service Value of the Supplemental Retirement Benefit'
+  titre.fr: Valeur de service du point de retraite complémentaire
 période:
   titre.en: '[automatic] period'
   titre.fr: période
