@@ -1036,7 +1036,8 @@ protection sociale . invalidité et décès:
         instituées en faveur des personnes handicapées.
       références:
         Le capital orphelin pour les enfants des travailleurs indépendants: https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
-      valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
+      valeur: 5% * plafond sécurité sociale * 1 an
+      unité: €
 
     pension de reversion:
       titre: pension de reversion maximum

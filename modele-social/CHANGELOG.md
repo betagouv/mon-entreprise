@@ -11,6 +11,7 @@
 
 ### Corrections
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
+- Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 
 ## 11.1.0
 
