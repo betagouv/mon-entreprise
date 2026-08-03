@@ -14,16 +14,15 @@ export const Tag = ({ children, color }: TagProps) => (
 )
 
 const StyledTag = styled.span<{ $color?: Color }>`
-	font-family: ${({ theme }) => theme.fonts.main};
-
 	display: inline-flex;
 	vertical-align: middle;
 	align-items: center;
 	width: fit-content;
-	padding: 0.25rem 0.5rem;
+	padding: ${({ theme }) => `${theme.spacings.xxs} ${theme.spacings.xs}`};
 	border-radius: 0.25rem;
+	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
-	font-size: 0.75rem;
+	font-size: ${({ theme }) => theme.fontSizes.min};
 	line-height: 1rem;
 
 	${({ theme, $color }) => {
