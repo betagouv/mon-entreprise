@@ -51,14 +51,14 @@ export default function ModifierOptions() {
 					{...buttonProps}
 				>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.title',
+						'pages.assistants.choix-statut.modifier-options.title',
 						'Modifier mes options'
 					)}{' '}
 					<StyledArrowRightIcon />
 				</Button>
 			)}
 			confirmLabel={t(
-				'pages.simulateurs.comparaison-statuts.modifier-options.confirm-label',
+				'pages.assistants.choix-statut.modifier-options.confirm-label',
 				'Enregistrer les options'
 			)}
 			onConfirm={confirm}
@@ -67,27 +67,27 @@ export default function ModifierOptions() {
 			<>
 				<H2>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.title',
+						'pages.assistants.choix-statut.modifier-options.title',
 						'Modifier mes options'
 					)}
 				</H2>
 
 				<H3>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.acre.title',
+						'pages.assistants.choix-statut.modifier-options.acre.title',
 						'Acre'
 					)}{' '}
 					<ExplicableRule
 						dottedName={DOTTEDNAME_ACRE}
 						title={t(
-							'pages.simulateurs.comparaison-statuts.modifier-options.acre.info-title',
+							'pages.assistants.choix-statut.modifier-options.acre.info-title',
 							'Bénéficier de l’Acre'
 						)}
 					/>
 				</H3>
 
 				<Body>
-					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.acre.body">
+					<Trans i18nKey="pages.assistants.choix-statut.modifier-options.acre.body">
 						L’aide à la création ou à la reprise d’une entreprise (Acre)
 						consiste en une{' '}
 						<Strong>exonération partielle de charges sociales</Strong>, dite
@@ -98,7 +98,7 @@ export default function ModifierOptions() {
 					<FlexCentered>
 						<OuiNonSwitch
 							label={t(
-								'pages.simulateurs.comparaison-statuts.modifier-options.acre.label',
+								'pages.assistants.choix-statut.modifier-options.acre.label',
 								'Activer l’Acre dans la simulation'
 							)}
 							onChange={set[DOTTEDNAME_ACRE]}
@@ -111,12 +111,12 @@ export default function ModifierOptions() {
 
 				<H3>
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.title',
+						'pages.assistants.choix-statut.modifier-options.imposition.title',
 						'Imposition'
 					)}
 				</H3>
 				<Body>
-					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body">
+					<Trans i18nKey="pages.assistants.choix-statut.modifier-options.imposition.body">
 						Vous pouvez{' '}
 						<Strong>
 							choisir entre l’imposition sur les sociétés et sur le revenu
@@ -125,7 +125,7 @@ export default function ModifierOptions() {
 					</Trans>
 				</Body>
 				<Body>
-					<Trans i18nKey="pages.simulateurs.comparaison-statuts.modifier-options.imposition.body-ae">
+					<Trans i18nKey="pages.assistants.choix-statut.modifier-options.imposition.body-ae">
 						En tant qu’auto-entreprise (AE), c’est l’
 						<Strong>impôt sur le revenu</Strong> qui est appliqué
 						automatiquement. Dans certaines situations, vous pouvez aussi opter
@@ -140,7 +140,7 @@ export default function ModifierOptions() {
 				</Body>
 				<H5 as="h4" id="entreprise-imposition-label">
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.label',
+						'pages.assistants.choix-statut.modifier-options.imposition.hors-ae.label',
 						'Mode d’imposition (hors AE)'
 					)}
 				</H5>
@@ -169,7 +169,7 @@ export default function ModifierOptions() {
 								}}
 							>
 								{t(
-									'pages.simulateurs.comparaison-statuts.modifier-options.imposition.hors-ae.disclaimer',
+									'pages.assistants.choix-statut.modifier-options.imposition.hors-ae.disclaimer',
 									'À ce jour, ce comparateur ne prend pas en compte le calcul de l’impôt sur le revenu pour les SAS(U).'
 								)}
 							</Body>
@@ -185,7 +185,7 @@ export default function ModifierOptions() {
 				/>
 				<H5 as="h3">
 					{t(
-						'pages.simulateurs.comparaison-statuts.modifier-options.imposition.versement-libératoire.title',
+						'pages.assistants.choix-statut.modifier-options.imposition.versement-libératoire.title',
 						'Versement libératoire (pour AE)'
 					)}{' '}
 					<ExplicableRule
@@ -195,7 +195,7 @@ export default function ModifierOptions() {
 				<FlexCentered>
 					<OuiNonSwitch
 						label={t(
-							'pages.simulateurs.comparaison-statuts.modifier-options.versement-libératoire.label',
+							'pages.assistants.choix-statut.modifier-options.versement-libératoire.label',
 							'Activer le versement libératoire dans la simulation'
 						)}
 						onChange={set[DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE]}

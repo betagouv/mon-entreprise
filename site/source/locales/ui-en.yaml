@@ -802,6 +802,35 @@ pages:
         description: SAS, EURL, EI, auto-entrepreneur... This simulator will help you
           choose the legal status best suited to your business project.
         title: Help in choosing legal status
+      modifier-options:
+        acre:
+          body: Assistance for starting or taking over a business (Acre) consists of a
+            <2>partial exemption from social security contributions</2>—known as
+            the “start-up exemption”— <4>for 12 months</4>.
+          info-title: Take Advantage of the Acre Program
+          label: Enable the acre in the simulation
+          title: Acre
+        confirm-label: Save Options
+        imposition:
+          body: You can <2>choose between corporate and income taxation&lt;/2> during the
+            first 5 years.
+          body-ae: As a sole proprietorship (AE), the<1>income tax&lt;/1> is automatically
+            applied. In certain situations, you can also opt for the
+            <4><0>lump-sum payment</0></4>.
+          hors-ae:
+            disclaimer: As of now, this comparison tool does not take into account income
+              tax calculations for SAS(U)s.
+            label: Taxation Method (excluding AE)
+          title: Taxation
+          versement-libératoire:
+            title: Final Payment (for AE)
+        title: Change My Settings
+        versement-libératoire:
+          label: Enable the lump-sum payment in the simulation
+      revenu-table:
+        net: Table showing the details of the net income calculation for each status
+        net-après-impôt: Table showing the breakdown of the calculation of net income
+          after taxes for each status
       rémunération:
         CA:
           help:
@@ -1701,31 +1730,6 @@ pages:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
         title: Legal status comparator
-      modifier-options:
-        acre:
-          body: Assistance for setting up or taking over a business (Acre) consists of a
-            <2>partial exemption from social security contributions</2>, known
-            as the "start-up exemption", for a <4>period of 12 months</4>.
-          info-title: Benefit from Acre
-          label: Activate Acre in simulation
-          title: Acre
-        confirm-label: Save Options
-        imposition:
-          body: You can <2>choose between corporate and income taxation</2> for the first
-            5 years.
-          body-ae: As an auto-entrepreneur (AE),<1>income tax</1> is applied
-            automatically. In certain situations, you can also opt for the
-            <4><0>versement libératoire</0></4>.
-          hors-ae:
-            disclaimer: At present, this comparator does not include income tax calculations
-              for SAS(U).
-            label: Taxation method (excluding AE)
-          title: Taxation
-          versement-libératoire:
-            title: Payment in full discharge (for AE)
-        title: Modify my options
-        versement-libératoire:
-          label: Activate final payment in simulation
       montants:
         CA: Estimated sales
         imposition:
@@ -1778,10 +1782,6 @@ pages:
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates
-      revenu-table:
-        net: Table showing net income calculation details for each status
-        net-après-impôt: Table showing detailed calculation of net income after tax for
-          each status
       réponses:
         activité:
           artisanale: Handcrafted

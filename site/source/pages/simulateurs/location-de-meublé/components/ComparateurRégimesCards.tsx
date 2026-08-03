@@ -11,7 +11,6 @@ import {
 } from '@/contextes/économie-collaborative'
 import { Grid, H3, Spacing, Ul } from '@/design-system'
 
-import { getGridSizes } from '../../comparaison-statuts/components/DetailsRowCards'
 import { MicroEntrepriseCard } from './MicroEntrepriseCard'
 import { RégimeGénéralCard } from './RégimeGénéralCard'
 import { SécuritéSocialeIndépendantsCard } from './SécuritéSocialeIndépendantsCard'
@@ -27,8 +26,6 @@ export const ComparateurRégimesCards = () => {
 		O.getOrElse((): RésultatApplicabilitéParRégime[] => [])
 	)
 
-	const gridSizes = getGridSizes(1, 3)
-
 	return (
 		<div>
 			<Spacing lg />
@@ -40,7 +37,7 @@ export const ComparateurRégimesCards = () => {
 			</H3>
 			<Grid container spacing={4} as={Ul} data-testid="comparateur-régimes">
 				{résultats.map((résultat) => (
-					<Grid key={résultat.régime} item {...gridSizes} as="li">
+					<Grid key={résultat.régime} item xs={12} lg={4} as="li">
 						<RégimeCard résultat={résultat} />
 					</Grid>
 				))}

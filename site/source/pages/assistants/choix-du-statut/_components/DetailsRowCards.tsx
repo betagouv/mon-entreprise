@@ -10,8 +10,7 @@ import { StatutTag } from '@/components/StatutTag'
 import { Grid, HelpIcon, StatusCard, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-
-import { OptionType } from '../utils'
+import { OptionType } from '@/pages/simulateurs/comparaison-statuts/utils'
 
 export const getGridSizes = (numberOptions: number, total: number) => {
 	return {

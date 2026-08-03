@@ -6,10 +6,9 @@ import { ExplicableRule } from '@/components/conversation/Explicable'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button, Grid, H4, Li, StatusCard, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { getGridSizes } from '@/pages/assistants/choix-du-statut/_components/DetailsRowCards'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 import { useSitePaths } from '@/sitePaths'
-
-import { getGridSizes } from './DetailsRowCards'
 
 const StatutChoice = ({
 	namedEngines,
