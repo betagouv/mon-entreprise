@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 
 import { Simulateur } from '@/components/Simulateur/Simulateur'
@@ -48,6 +49,11 @@ const PageComparateur = () => {
 	const { absoluteSitePaths } = useSitePaths()
 
 	const { situation, set } = useComparateur()
+
+	useEffect(() => {
+		set.reset()
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<EngineProvider value={engine}>

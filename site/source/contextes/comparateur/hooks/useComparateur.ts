@@ -90,6 +90,14 @@ export const useComparateur = () => {
 
 			reset: () => {
 				updateSituation(() => initialSituationComparée)
+				modèles.forEach((modèle) => {
+					modèle.set.chiffreDAffaires(initialSituationComparée.chiffreDAffaires)
+					modèle.set.charges(initialSituationComparée.charges)
+					modèle.set.IRouIS?.(initialSituationComparée.IRouIS)
+					modèle.set.versementLibératoire?.(
+						initialSituationComparée.versementLibératoire
+					)
+				})
 			},
 		}),
 		[modèles, updateSituation]
