@@ -69,7 +69,7 @@ export const configComparateurStatuts: ComparateurConfig = {
 			},
 			acre: {
 				titre: (t: TFunction) =>
-					t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
+					t('pages.simulateurs.comparaison-statuts.questions.acre.libellé', 'Acre'),
 				liste: [questionAcre],
 			},
 			TVA: {
@@ -149,14 +149,14 @@ export const configComparateurStatuts: ComparateurConfig = {
 			autresRevenus: {
 				titre: (t: TFunction) =>
 					t(
-						'pages.simulateurs.comparaison-statuts.questions.autres-revenus',
+						'pages.simulateurs.comparaison-statuts.questions.autres-revenus.libellé',
 						'Autres revenus imposables'
 					),
 				liste: [
 					{
 						libellé: (t: TFunction) =>
 							t(
-								'pages.simulateurs.comparaison-statuts.questions.autres-revenus',
+								'pages.simulateurs.comparaison-statuts.questions.autres-revenus.libellé',
 								'Autres revenus imposables'
 							),
 						dottedName:

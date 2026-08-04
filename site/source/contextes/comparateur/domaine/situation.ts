@@ -15,19 +15,20 @@ export interface SituationComparée extends Situation {
 	versementLibératoire: boolean
 	natureActivité: NatureActivité
 	typeActivité: TypeActivité
-	acre: boolean
 	activitéLibéraleRéglementée: boolean
+	acre: boolean
 	méthodeImposition: MéthodeImposition
 	tauxImposition: O.Option<Quantité<'%'>>
 	situationFamiliale: SituationFamiliale
 	enfants: Quantité<'enfant'>
+	parentIsolé: boolean
 	autresRevenus: Montant<'€/an'>
 	tva: boolean
 }
 
 export type Question = keyof Omit<
 	SituationComparée,
-	'chiffreDAffaires' | 'charges'
+	'chiffreDAffaires' | 'charges' | 'IRouIS' | 'versementLibératoire'
 >
 
 export type Réponse<T extends Question> = SituationComparée[T]
@@ -57,12 +58,13 @@ export const initialSituationComparée: SituationComparée = {
 	typeActivité: 'vente',
 	activitéLibéraleRéglementée: false,
 	acre: false,
+	tva: true,
 	méthodeImposition: 'barème standard',
 	tauxImposition: O.none(),
 	situationFamiliale: 'célibataire',
 	enfants: quantité(0, 'enfant'),
+	parentIsolé: false,
 	autresRevenus: eurosParAn(0),
-	tva: true,
 }
 
 export const estSituationValide = (

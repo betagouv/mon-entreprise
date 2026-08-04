@@ -1,7 +1,11 @@
 export { ComparateurProvider } from './hooks/ComparaisonStatutsContext'
 export { useComparateur } from './hooks/useComparateur'
-export { type NatureActivité } from './domaine/activite'
-export { type IRouIS } from './domaine/imposition'
+export { type NatureActivité, type TypeActivité } from './domaine/activite'
+export {
+	type IRouIS,
+	type MéthodeImposition,
+	type SituationFamiliale,
+} from './domaine/imposition'
 export { ModèleAssimiléSalarié } from './domaine/ModeleAssimileSalarie'
 export { ModèleAutoEntrepreneur } from './domaine/ModeleAutoEntrepreneur'
 export { ModèleTravailleurIndépendant } from './domaine/ModeleTravailleurIndependant'

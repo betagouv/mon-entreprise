@@ -56,7 +56,7 @@ export const NatureActivitéQuestion: ComposantQuestionFournie<
 	)
 }
 
-const ValeurNatureActivité = () => {
+const NatureActivitéValeur = () => {
 	const { situation } = useComparateur()
 
 	return situation.natureActivité
@@ -67,7 +67,8 @@ NatureActivitéQuestion.id = 'activité-nature'
 NatureActivitéQuestion.libellé = (t) =>
 	t(
 		'pages.simulateurs.comparaison-statuts.questions.activité-nature.libellé',
-		'Quelle est la nature de votre activité ?'
+		'Activité principale'
 	)
+NatureActivitéQuestion.typeRadioGroup = true
 NatureActivitéQuestion.applicable = () => true
-NatureActivitéQuestion.Valeur = ValeurNatureActivité
+NatureActivitéQuestion.Valeur = NatureActivitéValeur
