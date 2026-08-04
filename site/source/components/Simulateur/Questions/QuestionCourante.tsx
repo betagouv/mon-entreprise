@@ -1,13 +1,11 @@
 import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
-import { H3 } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { Question } from '@/hooks/useQuestionsEditorialisees'
 
 import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
+import { QuestionFournie } from './QuestionFournie'
 import { QuestionPublicodes } from './QuestionPublicodes'
 
 type Props<S extends Situation> = {
@@ -17,7 +15,6 @@ type Props<S extends Situation> = {
 export const QuestionCourante = <S extends Situation = Situation>({
 	questions,
 }: Props<S>) => {
-	const { t } = useTranslation()
 	const { autoScrollToQuestions } = useAutoScrollToQuestions()
 
 	return (
@@ -25,10 +22,7 @@ export const QuestionCourante = <S extends Situation = Situation>({
 			{questions.map((Question) => (
 				<React.Fragment key={Question.id}>
 					{Question._tag === 'QuestionFournie' && (
-						<fieldset>
-							<QuestionTitle as="legend">{Question.libellé(t)}</QuestionTitle>
-							<Question />
-						</fieldset>
+						<QuestionFournie Question={Question} />
 					)}
 
 					{Question._tag === 'QuestionPublicodes' && (
@@ -39,7 +33,3 @@ export const QuestionCourante = <S extends Situation = Situation>({
 		</ScrollToElement>
 	)
 }
-
-const QuestionTitle = styled(H3)`
-	margin-top: 0;
-`
