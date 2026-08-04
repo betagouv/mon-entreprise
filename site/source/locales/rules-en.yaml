@@ -11608,24 +11608,33 @@ salarié . cotisations . exonérations . RGDU:
       titre.en: '[automatic] ceiling with application of DFS'
       titre.fr: plafond avec application de la DFS
   description.en: >
-    [automatic] The general reduction in employers' social security
-    contributions enables
+    [automatic] The general reduction in employer contributions program allows
 
-    employers to reduce their contributions. As of January 1, 2026,
+    employers to lower the amount of their contributions. Effective January 1,
+    2026,
 
-    the contribution reduction scheme has been renamed
+    the contribution relief program has been renamed
 
-    **single degressive general reduction" (RGDU)**.
+    **“single degressive general reduction” (RGDU)**.
 
 
-    This reduction is maximum for a salary at the Smic level. For
+    This reduction is at its maximum for wages at the minimum wage level. For
 
-    between Smic and **less than 3 Smic**, the reduction is degressive.
+    wages between the minimum wage and **less than 3 times the minimum wage**,
+    the reduction is
 
-    degressive. The reduction in contributions no longer applies from a salary
-    of
+    degressive. The contribution relief no longer applies for
 
-    3 Smic.
+    remuneration equal to 3 times the minimum wage.
+
+
+    Despite the increase in the minimum wage effective June 1, 2026, eligibility
+    for the RGDU and
+
+    the calculation of its coefficient continue to be based on the minimum wage
+    as of
+
+    January 1, 2026.
   description.fr: >
     Le dispositif de réduction générale de cotisations patronales permet à
 
@@ -11645,6 +11654,13 @@ salarié . cotisations . exonérations . RGDU:
     dégressive. L’allègement de cotisations ne s’applique plus à partir d’une
 
     rémunération égale à 3 Smic.
+
+
+    Malgré l’augmentation du Smic au 1er juin 2026, l’éligibilité à la RGDU et
+
+    le calcul de son coefficient continuent de se baser sur la valeur du Smic au
+
+    1er janvier 2026.
   titre.en: '[automatic] RGDU'
   titre.fr: RGDU
 salarié . cotisations . exonérations . T:
