@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import {
 	FieldError as RAFieldError,
 	Group as RAGroup,
@@ -25,7 +25,7 @@ import {
 
 type NumberFieldProps = Pick<
 	RANumberFieldProps,
-	'defaultValue' | 'formatOptions' | 'value'
+	'defaultValue' | 'formatOptions' | 'onChange'
 > & {
 	description?: string
 	displayedUnit?: string
@@ -33,7 +33,6 @@ type NumberFieldProps = Pick<
 	label: string
 	placeholder?: string
 	suggestions?: InputSuggestionsRecord<number>
-	onSubmit?: (source?: string) => void
 }
 
 export function NumberField({
@@ -48,15 +47,20 @@ export function NumberField({
 	label,
 	placeholder,
 	suggestions,
+	onChange,
 }: NumberFieldProps) {
 	const [currentValue, setCurrentValue] = useState(defaultValue || undefined)
 	const { t } = useTranslation()
 
+	useEffect(() => {
+		onChange?.(currentValue ?? 0)
+	}, [currentValue])
+
 	return (
 		<StyledRANumberField
-			defaultValue={defaultValue}
 			formatOptions={formatOptions}
 			value={currentValue}
+			onChange={setCurrentValue}
 			$hasError={!!errorMessage}
 		>
 			<StyledRALabel>{label}</StyledRALabel>
@@ -86,9 +90,7 @@ export function NumberField({
 
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={(value: number) => {
-							setCurrentValue(value)
-						}}
+						onFirstClick={setCurrentValue}
 					/>
 				</StyledSuggestionsContainer>
 			)}
@@ -96,7 +98,7 @@ export function NumberField({
 	)
 }
 
-const StyledRANumberField = styled(RANumberField)<{
+const StyledRANumberField = styled(RANumberField) <{
 	$hasError: boolean
 }>`
 	${fieldContainerStyles}
