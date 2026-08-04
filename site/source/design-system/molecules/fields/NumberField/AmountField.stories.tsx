@@ -1,5 +1,7 @@
 import { Meta, StoryObj } from '@storybook/react'
 
+import { montant } from '@/domaine/Montant'
+
 import { AmountField } from './AmountField'
 
 export default {
@@ -41,7 +43,7 @@ export const WithPlaceholder: Story = {
 
 export const WithInitialValue: Story = {
 	args: {
-		defaultValue: 1801.8,
+		defaultMontant: montant(1801.8, '€/mois'),
 		label: 'Montant mensuel brut (SMIC par défaut)',
 		unit: '€/mois',
 		withCents: true,
@@ -57,12 +59,12 @@ export const WithDescription: Story = {
 	},
 }
 
-export const WithSuggestionns = {
+export const WithSuggestions = {
 	args: {
 		description:
 			'Brut de référence (sans les primes, indemnités ni majorations)',
 		label: 'Salaire mensuel brut',
-		suggestions: { 'salaire médian': 2700, SMIC: 1801.8 },
+		suggestionsDeMontants: { 'salaire médian': montant(2700, '€/mois'), SMIC: montant(1801.8, '€/mois') },
 		unit: '€/mois',
 		withCents: true,
 	},
