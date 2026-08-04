@@ -35,13 +35,22 @@ const nomModèle = 'modele-ti'
 
 let engine: Engine<DottedName> | null = null
 
+const initEngine = () => {
+	engine = engineFactory(rules, nomModèle)
+	engine.setSituation({
+		'entreprise . date de création': "période . début d'année",
+	})
+
+	return engine
+}
+
 export const ModèleTravailleurIndépendant: ModèleComparable = {
 	nom: nomModèle,
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			if (O.isNone(montant)) {
@@ -60,7 +69,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 		charges: (montant: O.Option<MontantRécurrent>) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			if (O.isNone(montant)) {
@@ -78,7 +87,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 		IRouIS: (valeur: IRouIS) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			engine.setSituation(
@@ -91,7 +100,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 		réponse: (question, valeur) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			if (question === 'natureActivité') {
@@ -115,7 +124,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? engineFactory(rules, nomModèle),
+		engine: () => engine ?? initEngine(),
 
 		statut: {
 			étiquette: 'EI',
