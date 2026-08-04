@@ -35,6 +35,15 @@ let engine: Engine<DottedName> | null = null
 let chiffreDAffaires: O.Option<MontantRécurrent> = O.none()
 let charges: O.Option<MontantRécurrent> = O.none()
 
+const initEngine = () => {
+	engine = engineFactory(rules, nomModèle)
+	engine.setSituation({
+		'entreprise . date de création': "période . début d'année",
+	})
+
+	return engine
+}
+
 const setRevenuBrut = () => {
 	if (O.isNone(chiffreDAffaires)) {
 		return
@@ -46,7 +55,7 @@ const setRevenuBrut = () => {
 	)
 
 	if (!engine) {
-		engine = engineFactory(rules, nomModèle)
+		engine = initEngine()
 	}
 
 	engine.setSituation(
@@ -77,7 +86,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? engineFactory(rules, nomModèle),
+		engine: () => engine ?? initEngine(),
 
 		statut: {
 			étiquette: 'SASU',
