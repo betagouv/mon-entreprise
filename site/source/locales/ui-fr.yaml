@@ -94,6 +94,7 @@ Nombres: Nombres
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
+Option <1>Acre</1> activée: Option <1>Acre</1> activée
 Option ACRE non activée: Option ACRE non activée
 Options: Options
 Outils pour les développeurs: Outils pour les développeurs
@@ -1681,6 +1682,15 @@ pages:
           titre: Charges estimé
     comparaison-statuts:
       accordion-title: Comparer…
+      carte:
+        acre:
+          non: Option Acre non activée
+        imposition:
+          IR: <0>Impôt sur le revenu</0> (IR)
+          IS: <0>Impôt sur les sociétés</0> (IS)
+          versement-libératoire: <0>Versement libératoire</0> de l’impôt sur le revenu
+        régime:
+          assimilé-salarié: Régime général
       description: Lorsque vous créez votre entreprise, le choix du statut juridique
         va <2>déterminer à quel régime social le dirigeant est affilié</2>. Il
         en existe <4>trois différents</4>, avec chacun ses avantages et
@@ -1816,6 +1826,10 @@ pages:
             souscrire à une <2>prévoyance complémentaire (mutuelle)</2> pour
             améliorer le remboursement des frais de santé.</1>
           title: Vos prestations santé
+        statut:
+          régime:
+            auto-entrepreneur: Régime micro-social
+            travailleur-indépendant: Travailleur indépendant
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
           revenu, retraite et indemnités maladie

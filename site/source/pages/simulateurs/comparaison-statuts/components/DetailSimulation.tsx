@@ -1,20 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { StatutType } from '@/components/StatutTag'
 import { estSituationValide, useComparateur } from '@/contextes/comparateur'
 import { Body, H4, Link, Message } from '@/design-system'
-import { NomModèle } from '@/domaine/SimulationConfig'
 import { useSitePaths } from '@/sitePaths'
 
 import { EngineComparison } from '../EngineComparison'
 import { Comparaison } from './ComparaisonListe'
-
-export const étiquetteFromNomModèle: Record<NomModèle, StatutType> = {
-	'modele-social': 'AE',
-	'modele-ti': 'EI',
-	'modele-as': 'SASU',
-}
 
 export const DétailSimulation = () => {
 	const { situation, comparaison } = useComparateur()
@@ -33,7 +25,7 @@ export const DétailSimulation = () => {
 	}
 
 	const engines = comparaison.map((résultatModèle) => ({
-		name: étiquetteFromNomModèle[résultatModèle.nomModèle],
+		name: résultatModèle.statut.étiquette,
 		engine: résultatModèle.engine(),
 	}))
 

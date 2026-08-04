@@ -15,6 +15,7 @@ export interface SituationComparée extends Situation {
 	versementLibératoire: boolean
 	natureActivité: NatureActivité
 	typeActivité: TypeActivité
+	acre: boolean
 	activitéLibéraleRéglementée: boolean
 	méthodeImposition: MéthodeImposition
 	tauxImposition: O.Option<Quantité<'%'>>
@@ -55,6 +56,7 @@ export const initialSituationComparée: SituationComparée = {
 	natureActivité: 'commerciale',
 	typeActivité: 'vente',
 	activitéLibéraleRéglementée: false,
+	acre: false,
 	méthodeImposition: 'barème standard',
 	tauxImposition: O.none(),
 	situationFamiliale: 'célibataire',
