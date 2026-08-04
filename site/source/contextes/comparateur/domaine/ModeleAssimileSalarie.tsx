@@ -14,12 +14,14 @@ import {
 	moins,
 	MontantRécurrent,
 } from '@/domaine/Montant'
+import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	pointsParAn,
 	quantité,
 	trimestresValidésParAn,
 } from '@/domaine/Quantite'
+import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import {
@@ -82,7 +84,100 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			setRevenuBrut()
 		},
 
-		réponse: () => {},
+		réponse: (question, valeur) => {
+			if (!engine) {
+				engine = initEngine()
+			}
+
+			if (question === 'acre') {
+				engine.setSituation(
+					{
+						'assimilé salarié . exonérations . Acre': PublicodesAdapter.encode(
+							O.some(toOuiNon(valeur))
+						),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'tva') {
+				engine.setSituation(
+					{
+						'entreprise . TVA': PublicodesAdapter.encode(
+							O.some(toOuiNon(valeur))
+						),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'méthodeImposition') {
+				engine.setSituation(
+					{
+						'impôt . méthode de calcul': PublicodesAdapter.encode(
+							O.some(valeur)
+						),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'tauxImposition') {
+				if (O.isNone(valeur)) {
+					const situation = engine.getSituation()
+					engine.setSituation(omit(situation, 'impôt . taux personnalisé'))
+				} else {
+					engine.setSituation(
+						{
+							'impôt . taux personnalisé': PublicodesAdapter.encode(valeur),
+						},
+						{ keepPreviousSituation: true }
+					)
+				}
+			}
+
+			if (question === 'situationFamiliale') {
+				engine.setSituation(
+					{
+						'impôt . foyer fiscal . situation de famille . question':
+							PublicodesAdapter.encode(O.some(valeur)),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'enfants') {
+				engine.setSituation(
+					{
+						'impôt . foyer fiscal . enfants à charge': PublicodesAdapter.encode(
+							O.some(valeur)
+						),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'parentIsolé') {
+				engine.setSituation(
+					{
+						'impôt . foyer fiscal . parent isolé': PublicodesAdapter.encode(
+							O.some(toOuiNon(valeur))
+						),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+
+			if (question === 'autresRevenus') {
+				engine.setSituation(
+					{
+						'impôt . foyer fiscal . autres revenus imposables':
+							PublicodesAdapter.encode(O.some(valeur)),
+					},
+					{ keepPreviousSituation: true }
+				)
+			}
+		},
 	},
 
 	get: {

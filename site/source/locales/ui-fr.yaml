@@ -1858,7 +1858,8 @@ pages:
         TVA:
           libellé: Entreprise assujettie à la TVA
           titre: TVA
-        acre: Acre
+        acre:
+          libellé: Acre
         activité:
           principale: Activité principale
           réglementée: Activité réglementée
@@ -1869,20 +1870,56 @@ pages:
             label: Artisanale
           commerciale:
             label: Commerciale
-          libellé: Quelle est la nature de votre activité ?
+          libellé: Activité principale
           libérale:
             label: Libérale
-        autres-revenus: Autres revenus imposables
+        activité-réglementée:
+          libellé: Activité réglementée
+        activité-type:
+          libellé: Type d’activité
+          service:
+            label: Prestation de service
+          vente:
+            label: Vente de biens, restauration ou hébergement
+        autres-revenus:
+          libellé: Autres revenus imposables
+        enfants:
+          libellé: Enfants à charge
         foyer-fiscal:
           enfants: Enfants à charge
           parent-isolé: Parent isolé
           situation: Situation de famille
           titre: Foyer fiscal
-        groupe-activité:
-          titre: Activité
+        groupe:
+          TVA: TVA
+          acre: Acre
+          activité: Activité
+          autres-revenus: Autres revenus imposables
+          foyer-fiscal: Foyer fiscal
+          impôt: Méthode de calcul de l’impôt sur le revenu
         impôt:
           méthode: Méthode de calcul de l’impôt sur le revenu
           taux: Taux d’imposition
+        méthode-impôt:
+          barème:
+            label: avec le barème standard
+          libellé: Méthode de calcul de l’impôt sur le revenu
+          taux:
+            label: avec un taux personnalisé
+        parent-isolé:
+          libellé: Parent isolé
+        situation-familiale:
+          couple:
+            label: Marié/mariée ou pacsé/pacsée
+          célibataire:
+            label: Célibataire, divorcé/divorcée ou union libre
+          libellé: Situation de famille
+          veuf:
+            label: Veuf/veuve
+        taux-imposition:
+          libellé: Taux d’imposition
+        tva:
+          libellé: Entreprise assujettie à la TVA
       réponses:
         activité:
           artisanale: Artisanale
