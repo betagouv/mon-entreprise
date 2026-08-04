@@ -16,7 +16,7 @@ Il propose notamment des simulateurs de cotisations sociales très complets, bas
 
 > 🧮 [Voir la liste des simulateurs](https://mon-entreprise.urssaf.fr/simulateurs)
 
-Les développeurs peuvent intégrer ces simulateurs sur d’autres sites, ou de réutiliser les règles pour effectuer leur propre calculs.
+Les développeurs peuvent intégrer ces simulateurs sur d’autres sites ou réutiliser les règles pour effectuer leurs propres calculs.
 
 > 🧰 [Voir les outils à disposition des développeurs](https://mon-entreprise.urssaf.fr/int%C3%A9gration)
 
