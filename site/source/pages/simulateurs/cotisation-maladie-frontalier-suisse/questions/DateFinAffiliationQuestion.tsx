@@ -23,6 +23,7 @@ export const DateFinAffiliationQuestion: ComposantQuestionFournie<
 
 	return (
 		<DateField
+			id="date-fin-affiliation"
 			defaultSelected={O.getOrUndefined(situation.dateFinAffiliation)}
 			onChange={handleChange}
 			validation={(date) =>
@@ -49,6 +50,7 @@ DateFinAffiliationQuestion.libellé = (t) =>
 		'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-fin-affiliation.libellé',
 		'Date de fin d’affiliation'
 	)
+DateFinAffiliationQuestion.typeRadioGroup = false
 const ValeurDateFinAffiliation = () => {
 	const { situation } = useFrontalierSuisse()
 
