@@ -31,6 +31,6 @@ export const questionActivitéRéglementée = {
 
 export const questionAcre = {
 	libellé: (t: TFunction) =>
-		t('pages.simulateurs.comparaison-statuts.questions.acre', 'Acre'),
+		t('pages.simulateurs.comparaison-statuts.questions.acre.libellé', 'Acre'),
 	dottedName: 'dirigeant . exonérations . ACRE',
 } satisfies Question

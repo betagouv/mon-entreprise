@@ -1903,7 +1903,8 @@ pages:
         TVA:
           libellé: Company subject to VAT
           titre: VAT
-        acre: Acre
+        acre:
+          libellé: Acre
         activité:
           principale: Main activity
           réglementée: Regulated activity
@@ -1914,20 +1915,56 @@ pages:
             label: Handcrafted
           commerciale:
             label: Sales
-          libellé: What kind of business do you run?
+          libellé: Primary Activity
           libérale:
             label: Liberal
-        autres-revenus: Other taxable income
+        activité-réglementée:
+          libellé: Regulated Activity
+        activité-type:
+          libellé: Type of Activity
+          service:
+            label: Service Provision
+          vente:
+            label: Retail, Food Service, or Lodging
+        autres-revenus:
+          libellé: Other taxable income
+        enfants:
+          libellé: Dependent children
         foyer-fiscal:
           enfants: Dependent children
           parent-isolé: Single parent
           situation: Marital Status
           titre: Tax Household
-        groupe-activité:
-          titre: Activity
+        groupe:
+          TVA: VAT
+          acre: Acre
+          activité: Activity
+          autres-revenus: Other taxable income
+          foyer-fiscal: Tax Household
+          impôt: Method for Calculating Income Tax
         impôt:
           méthode: Income tax calculation method
           taux: Tax rates
+        méthode-impôt:
+          barème:
+            label: using the standard scale
+          libellé: Method for Calculating Income Tax
+          taux:
+            label: with a personalized rate
+        parent-isolé:
+          libellé: Single parent
+        situation-familiale:
+          couple:
+            label: Married or in a civil partnership
+          célibataire:
+            label: Single, divorced, or in a common-law relationship
+          libellé: Marital Status
+          veuf:
+            label: Widower/Widow
+        taux-imposition:
+          libellé: Tax Rates
+        tva:
+          libellé: VAT-registered business
       réponses:
         activité:
           artisanale: Handcrafted
