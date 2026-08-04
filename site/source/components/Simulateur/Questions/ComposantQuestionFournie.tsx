@@ -8,7 +8,8 @@ export type ComposantQuestionFournie<S extends Situation> =
 		_tag: 'QuestionFournie'
 		id: string
 		libellé: (t: TFunction) => string
-		applicable: Predicate<S>
+		typeRadioGroup: boolean
+		applicable: Predicate<S | undefined>
 		Valeur: React.FunctionComponent
 	}
 

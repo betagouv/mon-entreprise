@@ -1,10 +1,10 @@
 import { pipe } from 'effect'
 import * as A from 'effect/Array'
-import { isUndefined, Predicate } from 'effect/Predicate'
+import { isUndefined } from 'effect/Predicate'
 import * as R from 'effect/Record'
 import { TFunction } from 'i18next'
 import Engine from 'publicodes'
-import { FunctionComponent, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 
 import {
 	ComposantQuestionFournie,
@@ -16,16 +16,9 @@ import {
 } from '@/domaine/questions'
 import { Situation } from '@/domaine/Situation'
 
-type QuestionFournie<S extends Situation> = Omit<
-	ComposantQuestionFournie<S>,
-	'applicable'
-> & {
-	applicable: Predicate<S | undefined>
-} & FunctionComponent
-
 const adapteUneQuestionFournie = <S extends Situation>(
 	q: ComposantQuestionFournie<S>
-): QuestionFournie<S> => {
+): ComposantQuestionFournie<S> => {
 	const originalApplicable = q.applicable
 
 	return Object.assign(q, {
@@ -60,7 +53,7 @@ const filtreLesGroupesSansQuestions = <S extends Situation>(
 ) => groupeDeQuestion.liste.length > 0
 
 export type Question<S extends Situation> =
-	| QuestionFournie<S>
+	| ComposantQuestionFournie<S>
 	| QuestionPublicodes
 
 export type GroupeDeQuestions<S extends Situation> = {
