@@ -9,6 +9,10 @@ salarié . cotisations . exonérations . RGDU:
     rémunération comprise entre le Smic et **moins de 3 Smic**, la réduction est
     dégressive. L’allègement de cotisations ne s’applique plus à partir d’une
     rémunération égale à 3 Smic.
+
+    Malgré l’augmentation du Smic au 1er juin 2026, l’éligibilité à la RGDU et
+    le calcul de son coefficient continuent de se baser sur la valeur du Smic au
+    1er janvier 2026.
   références:
     La réduction générale dégressive unique: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
     Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
