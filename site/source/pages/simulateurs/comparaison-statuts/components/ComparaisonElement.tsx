@@ -25,8 +25,6 @@ import {
 	quantitéToString,
 } from '@/domaine/Quantite'
 
-import { étiquetteFromNomModèle } from './DetailSimulation'
-
 export const getGridSizes = (numberOptions: number, total: number) => {
 	return {
 		xs: 12,
@@ -90,9 +88,8 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 
 	return (
 		<Grid container spacing={4} as={Ul}>
-			{comparaison.map((résultatModèle) => {
-				const nomModèle = résultatModèle.nomModèle
-				const statut = étiquetteFromNomModèle[nomModèle]
+			{comparaison.map((résultatModèle, index) => {
+				const statut = résultatModèle.statut.étiquette
 
 				const catégorie = résultatModèle[catégorieComparée]()
 				const valeur = élémentComparé
@@ -111,13 +108,7 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 				const isDefinedAndApplicable = !isNotApplicable && !isNotDefined
 
 				return (
-					<Grid
-						key={résultatModèle.nomModèle}
-						item
-						as="li"
-						xs={12}
-						lg={12 / comparaison.length}
-					>
+					<Grid key={index} item as="li" xs={12} lg={12 / comparaison.length}>
 						<StatusCard>
 							<StatusCard.Étiquette>
 								<StatutTag statut={statut} />

@@ -34,6 +34,7 @@ import {
 } from '@/domaine/Montant'
 import { arrondirÀLUnité, quantitéToString } from '@/domaine/Quantite'
 
+import { CartesStatuts } from './CartesStatuts'
 import { ComparaisonÉlément } from './ComparaisonElement'
 import ItemTitle from './ItemTitle'
 import { TableauRevenus } from './TableauRevenus'
@@ -63,7 +64,7 @@ export const Comparaison = () => {
 					</H2>
 				}
 				isFoldable
-				// banner={<StatutChoice namedEngines={namedEngines} hideCTA />}
+				banner={<CartesStatuts />}
 			>
 				<Item
 					title={
