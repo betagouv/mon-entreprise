@@ -64,7 +64,10 @@ export const WithSuggestions = {
 		description:
 			'Brut de référence (sans les primes, indemnités ni majorations)',
 		label: 'Salaire mensuel brut',
-		suggestionsDeMontants: { 'salaire médian': montant(2700, '€/mois'), SMIC: montant(1801.8, '€/mois') },
+		suggestionsDeMontants: {
+			'salaire médian': montant(2700, '€/mois'),
+			SMIC: montant(1801.8, '€/mois'),
+		},
 		unit: '€/mois',
 		withCents: true,
 	},

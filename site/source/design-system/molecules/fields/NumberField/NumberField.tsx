@@ -98,7 +98,7 @@ export function NumberField({
 	)
 }
 
-const StyledRANumberField = styled(RANumberField) <{
+const StyledRANumberField = styled(RANumberField)<{
 	$hasError: boolean
 }>`
 	${fieldContainerStyles}

@@ -16,10 +16,7 @@ const UNIT_TO_DISPLAY: Record<UnitéMonétaire, string> = {
 	'€/titre-restaurant': '€ par titre-restaurant',
 }
 
-export type ChampMontantProps = Pick<
-	RANumberFieldProps,
-	'formatOptions'
-> & {
+export type ChampMontantProps = Pick<RANumberFieldProps, 'formatOptions'> & {
 	defaultMontant: Montant | undefined
 	description?: string
 	displayedUnit?: string
@@ -53,7 +50,9 @@ export function ChampMontant({
 	// et/ou des suggestions, il faut convertir defaultMontant et les suggestions
 	// pour les afficher dans l'unité fournie 'unit'
 
-	const suggestionsDeValeurs = suggestionsDeMontants && Record.map(suggestionsDeMontants, (montant) => montant.valeur)
+	const suggestionsDeValeurs =
+		suggestionsDeMontants &&
+		Record.map(suggestionsDeMontants, (montant) => montant.valeur)
 
 	return (
 		<NumberField
