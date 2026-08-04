@@ -2,10 +2,10 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import { montant } from '@/domaine/Montant'
 
-import { AmountField } from './AmountField'
+import { ChampMontant } from './ChampMontant'
 
 export default {
-	component: AmountField,
+	component: ChampMontant,
 	decorators: [
 		(Story) => (
 			<div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -13,9 +13,9 @@ export default {
 			</div>
 		),
 	],
-} as Meta<typeof AmountField>
+} as Meta<typeof ChampMontant>
 
-type Story = StoryObj<typeof AmountField>
+type Story = StoryObj<typeof ChampMontant>
 
 export const Default: Story = {
 	args: {

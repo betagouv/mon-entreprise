@@ -1,2 +1,2 @@
-export { AmountField } from './AmountField'
+export { ChampMontant } from './ChampMontant'
 export { NumberField } from './NumberField'

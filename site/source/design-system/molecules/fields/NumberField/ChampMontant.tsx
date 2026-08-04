@@ -16,7 +16,7 @@ const UNIT_TO_DISPLAY: Record<UnitéMonétaire, string> = {
 	'€/titre-restaurant': '€ par titre-restaurant',
 }
 
-export type AmountFieldProps = Pick<
+export type ChampMontantProps = Pick<
 	RANumberFieldProps,
 	'formatOptions'
 > & {
@@ -32,7 +32,7 @@ export type AmountFieldProps = Pick<
 	onChange?: (montant: Montant) => void
 }
 
-export function AmountField({
+export function ChampMontant({
 	defaultMontant,
 	description,
 	errorMessage,
@@ -42,7 +42,7 @@ export function AmountField({
 	unit,
 	withCents = false,
 	onChange,
-}: AmountFieldProps) {
+}: ChampMontantProps) {
 	const { valeur, unité } = defaultMontant ?? { valeur: undefined, unité: unit }
 
 	const handleChange = (valeur: number) => {
