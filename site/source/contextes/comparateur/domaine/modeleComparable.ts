@@ -1,6 +1,9 @@
 import * as O from 'effect/Option'
+import { TFunction } from 'i18next'
 import Engine from 'publicodes'
+import { ReactNode } from 'react'
 
+import { StatutType } from '@/components/StatutTag'
 import { Montant, MontantRécurrent } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Quantité } from '@/domaine/Quantite'
@@ -34,6 +37,12 @@ export interface ModèleComparable {
 
 	get: {
 		engine: () => Engine<DottedName>
+		statut: {
+			étiquette: StatutType
+			nom: string
+			régime: (t: TFunction) => string
+			imposition: () => ReactNode
+		}
 		revenu: () => {
 			bénéfice: MontantRécurrentDocumenté
 			revenuNetAprèsImpôt: MontantRécurrentDocumenté
@@ -83,7 +92,7 @@ export interface ModèleComparable {
 
 export type CatégorieComparée = keyof Omit<
 	ModèleComparable['get'],
-	'engine' | 'warning'
+	'engine' | 'statut' | 'warning'
 >
 export type ÉlémentComparé<K extends CatégorieComparée> = Exclude<
 	keyof ReturnType<ModèleComparable['get'][K]>,

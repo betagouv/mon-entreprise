@@ -90,6 +90,7 @@ Nombres: Numbers
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
 Nouveautés: News
+Option <1>Acre</1> activée: <1>Acre</1> option enabled
 Option ACRE non activée: ACRE option not activated
 Options: Options
 Outils pour les développeurs: Tools for developers
@@ -1595,6 +1596,15 @@ pages:
           titre: Estimated Expenses
     comparaison-statuts:
       accordion-title: Compare...
+      carte:
+        acre:
+          non: Acre Option Not Enabled
+        imposition:
+          IR: <0>Income Tax</0> (IR)
+          IS: <0>Corporate Income Tax</0> (IS)
+          versement-libératoire: <0>Final Payment</0> of Income Tax
+        régime:
+          assimilé-salarié: General Plan
       description: When you start your business, the legal structure you choose will
         <2>determine which social security system the business owner is enrolled
         in</2>. There are <4>three different</4> options, each with its own
@@ -1726,6 +1736,10 @@ pages:
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
+        statut:
+          régime:
+            auto-entrepreneur: Micro-Social Plan
+            travailleur-indépendant: Self-employed person
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits

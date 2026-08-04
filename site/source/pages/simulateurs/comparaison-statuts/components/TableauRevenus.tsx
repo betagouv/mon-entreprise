@@ -13,8 +13,6 @@ import {
 	toEurosParAn,
 } from '@/domaine/Montant'
 
-import { étiquetteFromNomModèle } from './DetailSimulation'
-
 export function TableauRevenus() {
 	const { situation, comparaison } = useComparateur()
 	const { t } = useTranslation()
@@ -245,9 +243,7 @@ const RowStatuts = ({ comparaison }: Props) => {
 			</th>
 			{comparaison.map((résultatModèle, index) => (
 				<th scope="col" key={index}>
-					<StatutTag
-						statut={étiquetteFromNomModèle[résultatModèle.nomModèle]}
-					/>
+					<StatutTag statut={résultatModèle.statut.étiquette} />
 				</th>
 			))}
 		</tr>

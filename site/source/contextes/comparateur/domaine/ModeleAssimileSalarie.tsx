@@ -1,24 +1,25 @@
 import * as O from 'effect/Option'
-import rules from 'modele-social'
+import { TFunction } from 'i18next'
+import rules from 'modele-as'
 import Engine from 'publicodes'
+import { Trans } from 'react-i18next'
 
+import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import {
 	euros,
 	eurosParAn,
 	eurosParJour,
 	eurosParMois,
-	Montant,
+	moins,
 	MontantRécurrent,
 } from '@/domaine/Montant'
-import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	pointsParAn,
 	quantité,
 	trimestresValidésParAn,
 } from '@/domaine/Quantite'
-import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import {
@@ -28,124 +29,98 @@ import {
 	QuantitéDocumentée,
 } from './modeleComparable'
 
-const nomModèle = 'modele-social'
+const nomModèle = 'modele-as'
 
 let engine: Engine<DottedName> | null = null
+let chiffreDAffaires: O.Option<MontantRécurrent> = O.none()
+let charges: O.Option<MontantRécurrent> = O.none()
 
-const initEngine = () => {
-	engine = engineFactory(rules, nomModèle)
-	engine.setSituation({
-		salarié: 'non',
-		'entreprise . catégorie juridique': "'EI'",
-		'entreprise . activité . revenus mixtes': 'non',
-		'entreprise . date de création': "période . début d'année",
-		'entreprise . imposition': "'IR'",
-		'dirigeant . auto-entrepreneur': 'oui',
-	})
+const setRevenuBrut = () => {
+	if (O.isNone(chiffreDAffaires)) {
+		return
+	}
 
-	return engine
+	const revenuBrut = moins(
+		chiffreDAffaires.value,
+		O.getOrElse(charges, () => eurosParAn(0))
+	)
+
+	if (!engine) {
+		engine = engineFactory(rules, nomModèle)
+	}
+
+	engine.setSituation(
+		{
+			'assimilé salarié . rémunération . totale': PublicodesAdapter.encode(
+				O.some(revenuBrut)
+			),
+		},
+		{ keepPreviousSituation: true }
+	)
 }
 
-export const ModèleAutoEntrepreneur: ModèleComparable = {
+export const ModèleAssimiléSalarié: ModèleComparable = {
 	nom: nomModèle,
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
-			if (!engine) {
-				engine = initEngine()
-			}
-
-			if (O.isNone(montant)) {
-				const situation = engine.getSituation()
-				engine.setSituation(omit(situation, "entreprise . chiffre d'affaires"))
-			} else {
-				engine.setSituation(
-					{
-						"entreprise . chiffre d'affaires":
-							PublicodesAdapter.encode(montant),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
+			chiffreDAffaires = montant
+			setRevenuBrut()
 		},
 
 		charges: (montant: O.Option<MontantRécurrent>) => {
-			if (!engine) {
-				engine = initEngine()
-			}
-
-			if (O.isNone(montant)) {
-				const situation = engine.getSituation()
-				engine.setSituation(omit(situation, 'entreprise . charges'))
-			} else {
-				engine.setSituation(
-					{
-						'entreprise . charges': PublicodesAdapter.encode(montant),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-		},
-
-		versementLibératoire: (valeur: boolean) => {
-			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
-			}
-
-			engine.setSituation(
-				{
-					'dirigeant . auto-entrepreneur . impôt . versement libératoire':
-						PublicodesAdapter.encode(O.some(toOuiNon(valeur))),
-				},
-				{ keepPreviousSituation: true }
-			)
+			charges = montant
+			setRevenuBrut()
 		},
 
 		réponse: () => {},
 	},
 
 	get: {
-		engine: () => engine ?? initEngine(),
+		engine: () => engine ?? engineFactory(rules, nomModèle),
+
+		statut: {
+			étiquette: 'SASU',
+			nom: 'Société par actions simplifiée unipersonnelle',
+			régime: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.carte.régime.assimilé-salarié',
+					'Régime général'
+				),
+			imposition: () => (
+				<Trans i18nKey="pages.simulateurs.comparaison-statuts.carte.imposition.IS">
+					<Strong>Impôt sur les sociétés</Strong> (IS)
+				</Trans>
+			),
+		},
 
 		revenu: () => {
 			let bénéfice = eurosParMois(0) as MontantRécurrentDocumenté
-			let revenuNet = eurosParMois(0) as MontantRécurrentDocumenté
 			let revenuNetAprèsImpôt = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
 				const calculBénéfice = engine.evaluate(
-					'dirigeant . rémunération . totale'
+					'assimilé salarié . rémunération . totale'
 				)
 				bénéfice = O.getOrElse(PublicodesAdapter.decode(calculBénéfice), () =>
 					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculNet = engine.evaluate({
-					valeur: 'dirigeant . rémunération . net',
-					unité: '€/mois',
-				})
-				revenuNet = O.getOrElse(PublicodesAdapter.decode(calculNet), () =>
-					eurosParMois(0)
-				) as MontantRécurrentDocumenté
-
-				const calculNetAprèsImpôt = engine.evaluate({
-					valeur: 'dirigeant . rémunération . net . après impôt',
-					unité: '€/mois',
-				})
+				const calculNetAprèsImpôt = engine.evaluate(
+					'assimilé salarié . rémunération . nette . après impôt'
+				)
 				revenuNetAprèsImpôt = O.getOrElse(
 					PublicodesAdapter.decode(calculNetAprèsImpôt),
 					() => eurosParMois(0)
 				) as MontantRécurrentDocumenté
 			}
 
-			bénéfice.documentationRule = 'dirigeant . rémunération . totale'
-			revenuNet.documentationRule = 'dirigeant . rémunération . net'
+			bénéfice.documentationRule = 'assimilé salarié . rémunération . totale'
 			revenuNetAprèsImpôt.documentationRule =
-				'dirigeant . rémunération . net . après impôt'
+				'assimilé salarié . rémunération . nette . après impôt'
 
 			return {
 				bénéfice,
-				revenuNet,
 				revenuNetAprèsImpôt,
 			}
 		},
@@ -155,22 +130,24 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 			let impôt = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
-				const calcul = engine.evaluate('dirigeant . rémunération . cotisations')
-				cotisations = O.getOrElse(PublicodesAdapter.decode(calcul), () =>
-					eurosParMois(0)
+				const calculCotisations = engine.evaluate(
+					'assimilé salarié . cotisations'
+				)
+				cotisations = O.getOrElse(
+					PublicodesAdapter.decode(calculCotisations),
+					() => eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculImpôt = engine.evaluate({
-					valeur: 'dirigeant . rémunération . impôt',
-					unité: '€/mois',
-				})
+				const calculImpôt = engine.evaluate(
+					'assimilé salarié . rémunération . impôt'
+				)
 				impôt = O.getOrElse(PublicodesAdapter.decode(calculImpôt), () =>
 					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 			}
 
-			cotisations.documentationRule = 'dirigeant . rémunération . cotisations'
-			impôt.documentationRule = 'dirigeant . rémunération . impôt'
+			cotisations.documentationRule = 'assimilé salarié . cotisations'
+			impôt.documentationRule = 'assimilé salarié . rémunération . impôt'
 
 			return {
 				cotisations,
@@ -186,7 +163,7 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 
 			if (engine) {
 				const calculTrimestres = engine.evaluate(
-					'protection sociale . retraite . trimestres'
+					'protection sociale . retraite . base . trimestres'
 				)
 				trimestres = O.getOrElse(
 					PublicodesAdapter.decode(calculTrimestres),
@@ -194,7 +171,7 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as QuantitéDocumentée
 
 				const calculRevenuCotisé = engine.evaluate(
-					'protection sociale . retraite . base . cotisée'
+					'protection sociale . retraite . base . revenu cotisé'
 				)
 				revenuCotisé = O.getOrElse(
 					PublicodesAdapter.decode(calculRevenuCotisé),
@@ -221,9 +198,9 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 			}
 
 			trimestres.documentationRule =
-				'protection sociale . retraite . trimestres'
+				'protection sociale . retraite . base . trimestres'
 			revenuCotisé.documentationRule =
-				'protection sociale . retraite . base . cotisée'
+				'protection sociale . retraite . base . revenu cotisé'
 			pointsComplémentaire.documentationRule =
 				'protection sociale . retraite . complémentaire . points acquis'
 			valeurPointComplémentaire.documentationRule =
@@ -240,7 +217,18 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 
 		maladie: () => {
 			let indemnitésArrêtMaladie = eurosParJour(0) as MontantRécurrentDocumenté
+			let indemnitésATMP = eurosParJour(0) as MontantRécurrentDocumenté
+			let indemnitésATMPLongTerme = eurosParJour(0) as MontantRécurrentDocumenté
 			let délaiAttente = quantité(0, 'mois') as QuantitéDocumentée
+
+			indemnitésArrêtMaladie.documentationRule =
+				'protection sociale . maladie . arrêt maladie'
+			indemnitésATMP.documentationRule =
+				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités'
+			indemnitésATMPLongTerme.documentationRule =
+				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour'
+			délaiAttente.documentationRule =
+				"protection sociale . maladie . arrêt maladie . délai d'attente"
 
 			if (engine) {
 				const calculIndemnitésArrêtMaladie = engine.evaluate(
@@ -258,17 +246,39 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 					PublicodesAdapter.decode(calculDélaiAttente),
 					() => quantité(0, 'mois')
 				) as QuantitéDocumentée
+
+				const calculIndemnitésATMP = engine.evaluate(
+					'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités'
+				)
+				indemnitésATMP = O.getOrElse(
+					PublicodesAdapter.decode(calculIndemnitésATMP),
+					() => eurosParJour(0)
+				) as MontantRécurrentDocumenté
+
+				const calculIndemnitésATMPLongTerme = engine.evaluate(
+					'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour'
+				)
+				indemnitésATMPLongTerme = O.getOrElse(
+					PublicodesAdapter.decode(calculIndemnitésATMPLongTerme),
+					() => eurosParJour(0)
+				) as MontantRécurrentDocumenté
 			}
 
 			indemnitésArrêtMaladie.documentationRule =
 				'protection sociale . maladie . arrêt maladie'
 			délaiAttente.documentationRule =
 				"protection sociale . maladie . arrêt maladie . délai d'attente"
+			indemnitésATMP.documentationRule =
+				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités'
+			indemnitésATMPLongTerme.documentationRule =
+				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour'
 
 			return {
 				documentationRule: 'protection sociale . maladie',
 				indemnitésArrêtMaladie,
 				délaiAttente,
+				indemnitésATMP,
+				indemnitésATMPLongTerme,
 			}
 		},
 
@@ -276,8 +286,6 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 			let indemnitésMaternitéPaternitéAdoption = eurosParJour(
 				0
 			) as MontantRécurrentDocumenté
-			let allocationNaissance = euros(0) as MontantDocumenté
-			let allocationAdoption = euros(0) as MontantDocumenté
 
 			if (engine) {
 				const calculIndemnitésMaternitéPaternitéAdoption = engine.evaluate(
@@ -287,36 +295,14 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 					PublicodesAdapter.decode(calculIndemnitésMaternitéPaternitéAdoption),
 					() => eurosParJour(0)
 				) as MontantRécurrentDocumenté
-
-				const calculAllocationNaissance = engine.evaluate(
-					'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-				)
-				allocationNaissance = O.getOrElse(
-					PublicodesAdapter.decode(calculAllocationNaissance),
-					() => euros(0)
-				) as MontantDocumenté
-
-				const calculAllocationAdoption = engine.evaluate(
-					'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
-				)
-				allocationAdoption = O.getOrElse(
-					PublicodesAdapter.decode(calculAllocationAdoption),
-					() => euros(0)
-				) as MontantDocumenté
 			}
 
 			indemnitésMaternitéPaternitéAdoption.documentationRule =
 				'protection sociale . maladie . maternité paternité adoption'
-			allocationNaissance.documentationRule =
-				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-			allocationAdoption.documentationRule =
-				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
 
 			return {
 				documentationRule: 'protection sociale . maladie',
 				indemnitésMaternitéPaternitéAdoption,
-				allocationNaissance,
-				allocationAdoption,
 			}
 		},
 
@@ -325,6 +311,7 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				0
 			) as MontantRécurrentDocumenté
 			let pensionInvaliditéTotale = eurosParMois(0) as MontantRécurrentDocumenté
+			let renteIncapacitéATMP = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
 				const calculPensionInvaliditéPartielle = engine.evaluate(
@@ -342,24 +329,35 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 					PublicodesAdapter.decode(calculPensionInvaliditéTotale),
 					() => eurosParMois(0)
 				) as MontantRécurrentDocumenté
+
+				const calculRenteIncapacitéATMP = engine.evaluate(
+					'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité'
+				)
+				renteIncapacitéATMP = O.getOrElse(
+					PublicodesAdapter.decode(calculRenteIncapacitéATMP),
+					() => eurosParMois(0)
+				) as MontantRécurrentDocumenté
 			}
 
 			pensionInvaliditéPartielle.documentationRule =
 				'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
 			pensionInvaliditéTotale.documentationRule =
 				'protection sociale . invalidité et décès . pension invalidité . invalidité totale'
+			renteIncapacitéATMP.documentationRule =
+				'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente incapacité'
 
 			return {
 				documentationRule: 'protection sociale . invalidité et décès',
 				pensionInvaliditéPartielle,
 				pensionInvaliditéTotale,
+				renteIncapacitéATMP,
 			}
 		},
 
 		décès: () => {
 			let pensionDeRéversion = eurosParMois(0) as MontantRécurrentDocumenté
 			let capitalDécès = euros(0) as MontantDocumenté
-			let capitalOrphelin = euros(0) as MontantDocumenté
+			let renteDécèsATMP = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
 				const calculPensionDeRéversion = engine.evaluate(
@@ -378,68 +376,47 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 					() => euros(0)
 				) as MontantDocumenté
 
-				const calculCapitalOrphelin = engine.evaluate(
-					'protection sociale . invalidité et décès . capital décès . orphelin'
+				const calculRenteDécèsATMP = engine.evaluate(
+					'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès'
 				)
-				capitalOrphelin = O.getOrElse(
-					PublicodesAdapter.decode(calculCapitalOrphelin),
-					() => euros(0)
-				) as MontantDocumenté
+				renteDécèsATMP = O.getOrElse(
+					PublicodesAdapter.decode(calculRenteDécèsATMP),
+					() => eurosParMois(0)
+				) as MontantRécurrentDocumenté
 			}
 
 			pensionDeRéversion.documentationRule =
 				'protection sociale . invalidité et décès . pension de reversion'
 			capitalDécès.documentationRule =
 				'protection sociale . invalidité et décès . capital décès'
-			capitalOrphelin.documentationRule =
-				'protection sociale . invalidité et décès . capital décès . orphelin'
+			renteDécèsATMP.documentationRule =
+				'protection sociale . invalidité et décès . accidents du travail et maladies professionnelles . rente décès'
 
 			return {
 				documentationRule: 'protection sociale . invalidité et décès',
 				pensionDeRéversion,
 				capitalDécès,
-				capitalOrphelin,
+				renteDécèsATMP,
 			}
 		},
 
 		// gestion: () => {
 		// 	return {
-		// 		coûtsDeCréation: euros(0),
-		// 		statutConjointe: (t: TFunction) => t('pages.simulateurs.comparaison-statuts.items.gestion.conjoint.auto-entrepreneur', 'Conjoint collaborateur / Conjointe collaboratrice'),
+		// 		coûtsDeCréation: euros(191.43),
+		// 		statutConjointe: (t: TFunction) => t('pages.simulateurs.comparaison-statuts.items.gestion.conjoint.assimilé-salarié', 'Conjoint associé ou salarié / Conjointe associée ou salariée'),
 		// 	}
 		// },
 
 		warning: () => {
-			let seuilMicro
+			let revenuTropBasPourIJ = false
 
 			if (engine) {
-				const seuilMicroEstDépassé = !!engine.evaluate(
-					"entreprise . chiffre d'affaires . seuil micro . dépassé"
+				revenuTropBasPourIJ = !engine.evaluate(
+					'protection sociale . maladie . arrêt maladie'
 				).nodeValue
-
-				if (seuilMicroEstDépassé) {
-					const estActivitéLibérale =
-						String(
-							engine.evaluate('entreprise . activité . nature').nodeValue
-						) === 'libérale'
-					const estActivitéDeTypeService =
-						String(
-							engine.evaluate('entreprise . activités . service ou vente')
-								.nodeValue
-						) === 'service'
-					const calculMontantSeuil = engine.evaluate(
-						estActivitéLibérale || estActivitéDeTypeService
-							? "entreprise . chiffre d'affaires . seuil micro . libérale"
-							: "entreprise . chiffre d'affaires . seuil micro . total"
-					)
-
-					seuilMicro = O.getOrThrow(
-						PublicodesAdapter.decode(calculMontantSeuil)
-					) as Montant<'€/an'>
-				}
 			}
 
-			return { seuilMicro }
+			return { revenuTropBasPourIJ }
 		},
 	},
 }

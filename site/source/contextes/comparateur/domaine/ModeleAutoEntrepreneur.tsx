@@ -1,15 +1,20 @@
 import * as O from 'effect/Option'
-import rules from 'modele-ti'
+import { TFunction } from 'i18next'
+import rules from 'modele-social'
 import Engine from 'publicodes'
+import { Trans } from 'react-i18next'
 
+import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import {
 	euros,
 	eurosParAn,
 	eurosParJour,
 	eurosParMois,
+	Montant,
 	MontantRécurrent,
 } from '@/domaine/Montant'
+import { fromOuiNon, OuiNon, toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	pointsParAn,
@@ -19,32 +24,46 @@ import {
 import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
-import { IRouIS } from './imposition'
 import {
 	ModèleComparable,
 	MontantDocumenté,
 	MontantRécurrentDocumenté,
 	QuantitéDocumentée,
 } from './modeleComparable'
+import { initialSituationComparée } from './situation'
 
-const nomModèle = 'modele-ti'
+const nomModèle = 'modele-social'
 
 let engine: Engine<DottedName> | null = null
 
-export const ModèleTravailleurIndépendant: ModèleComparable = {
+const initEngine = () => {
+	engine = engineFactory(rules, nomModèle)
+	engine.setSituation({
+		salarié: 'non',
+		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . activité . revenus mixtes': 'non',
+		'entreprise . date de création': "période . début d'année",
+		'entreprise . imposition': "'IR'",
+		'dirigeant . auto-entrepreneur': 'oui',
+	})
+
+	return engine
+}
+
+export const ModèleAutoEntrepreneur: ModèleComparable = {
 	nom: nomModèle,
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			if (O.isNone(montant)) {
 				const situation = engine.getSituation()
 				engine.setSituation(omit(situation, "entreprise . chiffre d'affaires"))
 			} else {
-				engine?.setSituation(
+				engine.setSituation(
 					{
 						"entreprise . chiffre d'affaires":
 							PublicodesAdapter.encode(montant),
@@ -56,14 +75,14 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 		charges: (montant: O.Option<MontantRécurrent>) => {
 			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
+				engine = initEngine()
 			}
 
 			if (O.isNone(montant)) {
 				const situation = engine.getSituation()
 				engine.setSituation(omit(situation, 'entreprise . charges'))
 			} else {
-				engine?.setSituation(
+				engine.setSituation(
 					{
 						'entreprise . charges': PublicodesAdapter.encode(montant),
 					},
@@ -72,78 +91,95 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 			}
 		},
 
-		IRouIS: (valeur: IRouIS) => {
+		versementLibératoire: (valeur: boolean) => {
 			if (!engine) {
 				engine = engineFactory(rules, nomModèle)
 			}
 
 			engine.setSituation(
 				{
-					'entreprise . imposition': PublicodesAdapter.encode(O.some(valeur)),
+					'dirigeant . auto-entrepreneur . impôt . versement libératoire':
+						PublicodesAdapter.encode(O.some(toOuiNon(valeur))),
 				},
 				{ keepPreviousSituation: true }
 			)
 		},
 
-		réponse: (question, valeur) => {
-			if (!engine) {
-				engine = engineFactory(rules, nomModèle)
-			}
-
-			if (question === 'natureActivité') {
-				engine.setSituation(
-					{
-						'entreprise . activité': valeur,
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'méthodeImposition') {
-				engine.setSituation(
-					{
-						'entreprise . activité': valeur,
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-		},
+		réponse: () => {},
 	},
 
 	get: {
-		engine: () => engine ?? engineFactory(rules, nomModèle),
+		engine: () => engine ?? initEngine(),
+
+		statut: {
+			étiquette: 'AE',
+			nom: 'Auto-entrepreneur',
+			régime: (t: TFunction) =>
+				t(
+					'pages.simulateurs.comparaison-statuts.items.statut.régime.auto-entrepreneur',
+					'Régime micro-social'
+				),
+			imposition: () => {
+				let versementLibératoire = initialSituationComparée.versementLibératoire
+
+				if (engine) {
+					const valeur = engine.evaluate(
+						'dirigeant . auto-entrepreneur . impôt . versement libératoire'
+					)
+					versementLibératoire = fromOuiNon(
+						O.getOrElse(PublicodesAdapter.decode(valeur), () =>
+							toOuiNon(initialSituationComparée.versementLibératoire)
+						) as OuiNon
+					)
+				}
+
+				return versementLibératoire ? (
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.carte.imposition.versement-libératoire">
+						<Strong>Versement libératoire</Strong> de l’impôt sur le revenu
+					</Trans>
+				) : (
+					<Trans i18nKey="pages.simulateurs.comparaison-statuts.carte.imposition.IR">
+						<Strong>Impôt sur le revenu</Strong> (IR)
+					</Trans>
+				)
+			},
+		},
 
 		revenu: () => {
-			let bénéfice = eurosParAn(0) as MontantRécurrentDocumenté
+			let bénéfice = eurosParMois(0) as MontantRécurrentDocumenté
 			let revenuNet = eurosParMois(0) as MontantRécurrentDocumenté
 			let revenuNetAprèsImpôt = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
-				const calculBénéfice = engine.evaluate({
-					valeur: 'indépendant . rémunération . brute',
-				})
+				const calculBénéfice = engine.evaluate(
+					'dirigeant . rémunération . totale'
+				)
 				bénéfice = O.getOrElse(PublicodesAdapter.decode(calculBénéfice), () =>
-					eurosParAn(0)
+					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculNet = engine.evaluate('indépendant . rémunération . nette')
+				const calculNet = engine.evaluate({
+					valeur: 'dirigeant . rémunération . net',
+					unité: '€/mois',
+				})
 				revenuNet = O.getOrElse(PublicodesAdapter.decode(calculNet), () =>
 					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculNetAprèsImpôt = engine.evaluate(
-					'indépendant . rémunération . nette . après impôt'
-				)
+				const calculNetAprèsImpôt = engine.evaluate({
+					valeur: 'dirigeant . rémunération . net . après impôt',
+					unité: '€/mois',
+				})
 				revenuNetAprèsImpôt = O.getOrElse(
 					PublicodesAdapter.decode(calculNetAprèsImpôt),
 					() => eurosParMois(0)
 				) as MontantRécurrentDocumenté
 			}
 
-			bénéfice.documentationRule = 'indépendant . rémunération . brute'
-			revenuNet.documentationRule = 'indépendant . rémunération . nette'
+			bénéfice.documentationRule = 'dirigeant . rémunération . totale'
+			revenuNet.documentationRule = 'dirigeant . rémunération . net'
 			revenuNetAprèsImpôt.documentationRule =
-				'indépendant . rémunération . nette . après impôt'
+				'dirigeant . rémunération . net . après impôt'
 
 			return {
 				bénéfice,
@@ -153,28 +189,26 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 		},
 
 		dépenses: () => {
-			let cotisations = eurosParAn(0) as MontantRécurrentDocumenté
+			let cotisations = eurosParMois(0) as MontantRécurrentDocumenté
 			let impôt = eurosParMois(0) as MontantRécurrentDocumenté
 
 			if (engine) {
-				const calcul = engine.evaluate(
-					'indépendant . cotisations et contributions'
-				)
+				const calcul = engine.evaluate('dirigeant . rémunération . cotisations')
 				cotisations = O.getOrElse(PublicodesAdapter.decode(calcul), () =>
-					eurosParAn(0)
+					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculImpôt = engine.evaluate(
-					'indépendant . rémunération . impôt'
-				)
+				const calculImpôt = engine.evaluate({
+					valeur: 'dirigeant . rémunération . impôt',
+					unité: '€/mois',
+				})
 				impôt = O.getOrElse(PublicodesAdapter.decode(calculImpôt), () =>
 					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 			}
 
-			cotisations.documentationRule =
-				'indépendant . cotisations et contributions'
-			impôt.documentationRule = 'indépendant . rémunération . impôt'
+			cotisations.documentationRule = 'dirigeant . rémunération . cotisations'
+			impôt.documentationRule = 'dirigeant . rémunération . impôt'
 
 			return {
 				cotisations,
@@ -190,7 +224,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 			if (engine) {
 				const calculTrimestres = engine.evaluate(
-					'protection sociale . retraite . base . trimestres'
+					'protection sociale . retraite . trimestres'
 				)
 				trimestres = O.getOrElse(
 					PublicodesAdapter.decode(calculTrimestres),
@@ -198,7 +232,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as QuantitéDocumentée
 
 				const calculRevenuCotisé = engine.evaluate(
-					'protection sociale . retraite . base . revenu cotisé'
+					'protection sociale . retraite . base . cotisée'
 				)
 				revenuCotisé = O.getOrElse(
 					PublicodesAdapter.decode(calculRevenuCotisé),
@@ -225,9 +259,9 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 			}
 
 			trimestres.documentationRule =
-				'protection sociale . retraite . base . trimestres'
+				'protection sociale . retraite . trimestres'
 			revenuCotisé.documentationRule =
-				'protection sociale . retraite . base . revenu cotisé'
+				'protection sociale . retraite . base . cotisée'
 			pointsComplémentaire.documentationRule =
 				'protection sociale . retraite . complémentaire . points acquis'
 			valeurPointComplémentaire.documentationRule =
@@ -408,9 +442,42 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 
 		// gestion: () => {
 		// 	return {
-		// 		coûtsDeCréation: euros(22.88),
-		// 		statutConjointe: (t: TFunction) => t('pages.simulateurs.comparaison-statuts.items.gestion.conjoint.travailleur-indépendant', 'Conjoint collaborateur ou salarié / Conjointe collaboratrice ou salariée'),
+		// 		coûtsDeCréation: euros(0),
+		// 		statutConjointe: (t: TFunction) => t('pages.simulateurs.comparaison-statuts.items.gestion.conjoint.auto-entrepreneur', 'Conjoint collaborateur / Conjointe collaboratrice'),
 		// 	}
 		// },
+
+		warning: () => {
+			let seuilMicro
+
+			if (engine) {
+				const seuilMicroEstDépassé = !!engine.evaluate(
+					"entreprise . chiffre d'affaires . seuil micro . dépassé"
+				).nodeValue
+
+				if (seuilMicroEstDépassé) {
+					const estActivitéLibérale =
+						String(
+							engine.evaluate('entreprise . activité . nature').nodeValue
+						) === 'libérale'
+					const estActivitéDeTypeService =
+						String(
+							engine.evaluate('entreprise . activités . service ou vente')
+								.nodeValue
+						) === 'service'
+					const calculMontantSeuil = engine.evaluate(
+						estActivitéLibérale || estActivitéDeTypeService
+							? "entreprise . chiffre d'affaires . seuil micro . libérale"
+							: "entreprise . chiffre d'affaires . seuil micro . total"
+					)
+
+					seuilMicro = O.getOrThrow(
+						PublicodesAdapter.decode(calculMontantSeuil)
+					) as Montant<'€/an'>
+				}
+			}
+
+			return { seuilMicro }
+		},
 	},
 }
