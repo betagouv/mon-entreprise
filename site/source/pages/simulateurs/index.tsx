@@ -77,7 +77,6 @@ export default function Simulateurs() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
-				{/* Simulateurs décomissionnés */}
 				<Route
 					path={simulateurs['réduction-générale']}
 					element={<RéductionGénérale />}
