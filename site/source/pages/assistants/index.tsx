@@ -31,7 +31,6 @@ export default function Assistants() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
-				{/* Assistants décomissionnés */}
 				<Route
 					path={assistants['déclaration-charges-sociales-indépendant']}
 					element={<ChargesSocialesIndépendant />}
