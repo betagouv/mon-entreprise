@@ -1,6 +1,6 @@
 import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
-export const configChoixDuStatut: PublicodesSimulationConfig = {
+export const choixDuStatutConfig: PublicodesSimulationConfig = {
 	nomModèle: 'modele-social',
 	autoloadLastSimulation: true,
 	situation: {
