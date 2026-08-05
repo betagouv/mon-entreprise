@@ -4,14 +4,11 @@ import { LogoWithLink } from '@/components/Logo'
 import { Spacing } from '@/design-system'
 
 type Props = {
-	avecAvis?: boolean
-	avecLogo?: boolean
+	avecAvis: boolean
+	avecLogo: boolean
 }
 
-export default function IframeFooter({
-	avecAvis = true,
-	avecLogo = false,
-}: Props) {
+export default function IframeFooter({ avecAvis, avecLogo }: Props) {
 	return (
 		<>
 			<div
