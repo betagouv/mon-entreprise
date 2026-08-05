@@ -16,20 +16,20 @@ import Commune from './commune'
 import Comparateur from './comparateur'
 import DétailsActivité from './détails-activité'
 import AccueilChoixStatut from './home'
-import { choixStatutJuridiqueMetadata } from './metadata'
+import { choixDuStatutMetadata } from './metadata'
 import RechercheActivité from './recherche-activité'
 import Rémunération from './rémunération'
 import Résultat from './résultat'
 import { SeoExplanations } from './SeoExplanations'
-import { configChoixDuStatut } from './simulationConfig'
+import { choixDuStatutConfig } from './simulationConfig'
 
 const nextSteps = ['coût-création-entreprise'] satisfies SimulateurId[]
 
 export default function ChoixDuStatut() {
-	const metadata = usePageMetadata(choixStatutJuridiqueMetadata)
+	const metadata = usePageMetadata(choixDuStatutMetadata)
 	const { isReady, engine } = useSimulationPublicodes(
 		metadata,
-		configChoixDuStatut
+		choixDuStatutConfig
 	)
 
 	const { relativeSitePaths } = useSitePaths()
