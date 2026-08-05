@@ -38,7 +38,7 @@ import { ImmutableType } from '@/types/utils'
 
 /**
  * Contient les métadonnées (données pures, sans composant React) de tous les
- * simulateurs et assistants : plan du site, recherche, cards, statistiques,
+ * simulateurs et assistants utilisées pour : plan du site, recherche, cards, statistiques,
  * script de mise à jour des données pour Algolia…
  */
 const getMetadataSrc = (params: PageMetadataParams) => {
