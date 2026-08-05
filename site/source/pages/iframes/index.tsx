@@ -43,7 +43,7 @@ import { SASUSimulation } from '@/pages/simulateurs/sasu/SASU'
 import IframeFooter from './IframeFooter'
 
 const ChromeIframe = ({
-	avecAvis = true,
+	avecAvis = false,
 	avecLogo = false,
 }: {
 	avecAvis?: boolean
@@ -92,7 +92,7 @@ export default function Iframes() {
 			*/}
 			<base target="_parent" />
 			<Routes>
-				<Route element={<ChromeIframe />}>
+				<Route element={<ChromeIframe avecAvis />}>
 					{routeIframe(simulateurs.salarié, <SalariéSimulation />)}
 					{routeIframe(
 						simulateurs['entreprise-individuelle'],
@@ -152,7 +152,7 @@ export default function Iframes() {
 					)}
 				</Route>
 
-				<Route element={<ChromeIframe avecLogo />}>
+				<Route element={<ChromeIframe avecAvis avecLogo />}>
 					{routeIframe(simulateurs['choix-statut'], <ChoixDuStatut />)}
 					{routeIframe(
 						simulateurs['pour-mon-entreprise'],
@@ -165,7 +165,7 @@ export default function Iframes() {
 					<Route path="*" element={<Page404 />} />
 				</Route>
 
-				<Route element={<ChromeIframe avecAvis={false} avecLogo />}>
+				<Route element={<ChromeIframe avecLogo />}>
 					{routeIframe(simulateurs.cmg, <CMG />)}
 				</Route>
 			</Routes>
