@@ -14,7 +14,7 @@ import { TestProvider } from '@/test/TestProvider'
 
 const t = ((_clé: string, défaut: string) => défaut) as unknown as TFunction
 
-const rendÀ = (path: string, ui: ReactElement) => {
+const renderAt = (path: string, ui: ReactElement) => {
 	window.history.replaceState(null, '', path)
 
 	render(ui)
@@ -48,7 +48,7 @@ describe.each(langues)('Routage en $langue', ({ langue, laPage404 }) => {
 	it.each(pages)(
 		'la page « $id » ($path) est routée et ne tombe pas en 404',
 		({ path }) => {
-			rendÀ(
+			renderAt(
 				path,
 				<TestProvider langue={langue}>
 					<Router />
@@ -60,7 +60,7 @@ describe.each(langues)('Routage en $langue', ({ langue, laPage404 }) => {
 	)
 
 	it('un chemin inconnu affiche la 404', () => {
-		rendÀ(
+		renderAt(
 			sitePaths.simulateurs.index + '/chemin-qui-nexiste-pas',
 			<TestProvider langue={langue}>
 				<Router />
@@ -87,7 +87,7 @@ describe('Routage des iframes', () => {
 	it.each(pages)(
 		"l'iframe « $id » (/iframes/$iframePath) est routée et ne tombe pas en 404",
 		({ iframePath }) => {
-			rendÀ(
+			renderAt(
 				'/iframes/' + iframePath,
 				<TestProvider>
 					<Router />
@@ -99,7 +99,7 @@ describe('Routage des iframes', () => {
 	)
 
 	it('un chemin iframe inconnu affiche la 404', () => {
-		rendÀ(
+		renderAt(
 			'/iframes/chemin-qui-nexiste-pas',
 			<TestProvider>
 				<Router />
