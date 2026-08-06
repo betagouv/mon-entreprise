@@ -13,7 +13,10 @@ import { IRouIS } from './imposition'
 import { Question, Réponse } from './situation'
 
 type ValeurDocumentée = {
+	// TODO: remplacer documentationRule par DocumentationLink (un composant)
 	documentationRule: DottedName
+	// TODO: déplacer les warnings ici
+	// warning?: ReactNode
 }
 
 export type MontantDocumenté = Montant & ValeurDocumentée
@@ -40,6 +43,7 @@ export interface ModèleComparable {
 		statut: {
 			étiquette: StatutType
 			nom: string
+			// TODO: ne plus retourner de trad, c'est le comparateur qui gère ça
 			régime: (t: TFunction) => string
 			imposition: () => ReactNode
 		}

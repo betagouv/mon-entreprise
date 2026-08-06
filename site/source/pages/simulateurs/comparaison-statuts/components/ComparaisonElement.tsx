@@ -1,17 +1,18 @@
 import { TFunction } from 'i18next'
 import { ReactNode } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { StatutTag } from '@/components/StatutTag'
-import { ÉlémentComparé, useComparateur } from '@/contextes/comparateur'
 import {
 	CatégorieComparée,
+	ÉlémentComparé,
 	MontantDocumenté,
 	QuantitéDocumentée,
-} from '@/contextes/comparateur/domaine/modeleComparable'
-import { Grid, HelpIcon, StatusCard, Strong, Ul } from '@/design-system'
+	useComparateur,
+} from '@/contextes/comparateur'
+import { Grid, HelpIcon, StatusCard, Ul } from '@/design-system'
 import {
 	arrondirÀLEuro,
 	isMontant,
@@ -35,7 +36,7 @@ export const getGridSizes = (numberOptions: number, total: number) => {
 
 type Props<K extends CatégorieComparée> = {
 	catégorieComparée: K
-	élémentComparé?: ÉlémentComparé<K>
+	élémentComparé: ÉlémentComparé<K>
 	convertisseur?: (m: MontantRécurrent) => MontantRécurrent
 	displayedUnit?: string
 	libellé?: ReactNode | string
@@ -92,20 +93,16 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 				const statut = résultatModèle.statut.étiquette
 
 				const catégorie = résultatModèle[catégorieComparée]()
-				const valeur = élémentComparé
-					? (catégorie[élémentComparé as keyof typeof catégorie] as
-							| MontantDocumenté
-							| QuantitéDocumentée)
-					: undefined
+				const valeur = catégorie[élémentComparé as keyof typeof catégorie] as
+					| MontantDocumenté
+					| QuantitéDocumentée
 				const valeurSecondaire = élémentComparéSecondaire
 					? (catégorie[élémentComparéSecondaire as keyof typeof catégorie] as
 							| MontantDocumenté
 							| QuantitéDocumentée)
 					: undefined
 
-				const isNotApplicable = !valeur
-				const isNotDefined = false
-				const isDefinedAndApplicable = !isNotApplicable && !isNotDefined
+				const isApplicable = !!valeur
 
 				return (
 					<Grid key={index} item as="li" xs={12} lg={12 / comparaison.length}>
@@ -115,12 +112,13 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 							</StatusCard.Étiquette>
 							{élémentComparé && (
 								<StatusCard.Titre>
-									{isNotApplicable && (
+									{!isApplicable && (
 										<StyledDiv>
+											{/* TODO: traduction */}
 											<DisabledLabel>Ne s'applique pas</DisabledLabel>
 										</StyledDiv>
 									)}
-									{isDefinedAndApplicable && (
+									{isApplicable && (
 										<StyledDiv>
 											<span>
 												{formattedValue(valeur)}
@@ -139,17 +137,9 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 											{warning?.(résultatModèle)}
 										</StyledDiv>
 									)}
-									{isNotDefined && (
-										<StyledSmall>
-											<Trans>
-												Le montant demandé n'est{' '}
-												<Strong>pas calculable…</Strong>
-											</Trans>
-										</StyledSmall>
-									)}
 								</StatusCard.Titre>
 							)}
-							{isDefinedAndApplicable && valeurSecondaire && (
+							{isApplicable && valeurSecondaire && (
 								<StatusCard.ValeurSecondaire>
 									{formattedValue(valeurSecondaire)}
 									{libelléSecondaire && ' '}
@@ -168,12 +158,6 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 		</Grid>
 	)
 }
-
-const StyledSmall = styled.small`
-	color: ${({ theme }) => theme.colors.extended.grey[800]};
-	font-weight: normal;
-	font-size: 80%;
-`
 
 const RuleLinkContainer = styled.div`
 	display: inline-flex;

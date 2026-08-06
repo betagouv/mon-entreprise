@@ -16,6 +16,7 @@ export {
 	type SituationComparée,
 } from './domaine/situation'
 export {
+	type CatégorieComparée,
 	type ÉlémentComparé,
 	type MontantDocumenté,
 	type MontantRécurrentDocumenté,

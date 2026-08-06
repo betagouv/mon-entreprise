@@ -1,4 +1,4 @@
-import { Data, Either, Option } from 'effect'
+import { Data, Either } from 'effect'
 import { dual, pipe } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
@@ -294,17 +294,10 @@ export const pourcentageParRapportÀ = dual<
 		a: M,
 		diviseur: M
 	): Either.Either<Quantité<'%'>, DivisionParZéro> => {
-		if (estZéro(diviseur)) {
-			return Either.left(new DivisionParZéro())
-		}
-
 		return pipe(
 			a,
 			parRapportÀ(diviseur),
-			Either.getRight,
-			Option.getOrElse(() => 0),
-			(rapport) => pourcentage(100 * rapport),
-			Either.right
+			Either.map((rapport) => pourcentage(100 * rapport))
 		)
 	}
 )

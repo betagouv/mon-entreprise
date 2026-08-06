@@ -51,6 +51,8 @@ export const DétailSimulation = () => {
 		<>
 			<Comparaison />
 
+			{/* TODO: créer un autre composant qui prend un <Documentation /> directement
+					fourni par le modèle (objectif modèle comparable hors Publicodes) */}
 			<EngineDocumentationRoutes
 				basePath={absoluteSitePaths.simulateurs.comparaison}
 				namedEngines={engines as EngineComparison}
