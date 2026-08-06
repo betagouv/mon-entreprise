@@ -71,6 +71,11 @@ export const useComparateur = () => {
 				modèles.forEach((modèle) => modèle.set.réponse('acre', acre))
 			},
 
+			tva: (tva: boolean) => {
+				updateSituation((prev) => ({ ...prev, tva }))
+				modèles.forEach((modèle) => modèle.set.réponse('tva', tva))
+			},
+
 			méthodeImposition: (méthodeImposition: MéthodeImposition) => {
 				updateSituation((prev) => ({ ...prev, méthodeImposition }))
 				modèles.forEach((modèle) =>
@@ -109,11 +114,6 @@ export const useComparateur = () => {
 				modèles.forEach((modèle) =>
 					modèle.set.réponse('autresRevenus', autresRevenus)
 				)
-			},
-
-			tva: (tva: boolean) => {
-				updateSituation((prev) => ({ ...prev, tva }))
-				modèles.forEach((modèle) => modèle.set.réponse('tva', tva))
 			},
 
 			reset: () => {
