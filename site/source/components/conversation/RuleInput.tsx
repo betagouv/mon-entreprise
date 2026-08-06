@@ -193,14 +193,14 @@ export default function RuleInput({
 
 	const estUnMontant = Boolean(
 		(value && isMontant(value)) ||
-			(defaultValue && isMontant(defaultValue)) ||
-			isUnitéMonétaire(unitéPublicodes)
+		(defaultValue && isMontant(defaultValue)) ||
+		isUnitéMonétaire(unitéPublicodes)
 	)
 
 	const estUneQuantité = Boolean(
 		(value && isQuantité(value)) ||
-			(defaultValue && isQuantité(defaultValue)) ||
-			isUnitéQuantité(unitéPublicodes)
+		(defaultValue && isQuantité(defaultValue)) ||
+		isUnitéQuantité(unitéPublicodes)
 	)
 
 	const inputNature = getRuleInputNature(
@@ -326,8 +326,8 @@ export default function RuleInput({
 					isIsoDate(value)
 						? value
 						: isIsoDate(defaultValue)
-						? defaultValue
-						: undefined
+							? defaultValue
+							: undefined
 				}
 				onChange={(value) => onChange(value, dottedName)}
 				title={rule.title}
@@ -386,7 +386,7 @@ export default function RuleInput({
 				: unitéDeBase
 		const unité = isUnitéMonétaire(displayedUnit)
 			? displayedUnit
-			: unitéConvertie ?? undefined
+			: (unitéConvertie ?? undefined)
 		const unitéRécurrenteCible = isUnitéMonétaireRécurrente(targetUnit)
 			? targetUnit
 			: undefined

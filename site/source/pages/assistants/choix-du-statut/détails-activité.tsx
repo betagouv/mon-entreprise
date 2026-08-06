@@ -274,7 +274,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 						? {
 								'entreprise . activité . nature': O.some(activité),
 								[`entreprise . activités . ${activité}`]: O.some('oui'),
-						  }
+							}
 						: {}),
 					'entreprise . activité . nature . libérale . réglementée': O.some(
 						PLRMétier ? 'oui' : 'non'
@@ -294,12 +294,12 @@ function getActivitéFromGuichet(guichet: GuichetEntry) {
 	return guichet.catégorieActivité.includes('LIBERALE')
 		? 'libérale'
 		: guichet.catégorieActivité.includes('ARTISANALE')
-		? 'artisanale'
-		: guichet.catégorieActivité.includes('COMMERCIALE')
-		? 'commerciale'
-		: guichet.catégorieActivité.includes('AGRICOLE')
-		? 'agricole'
-		: undefined
+			? 'artisanale'
+			: guichet.catégorieActivité.includes('COMMERCIALE')
+				? 'commerciale'
+				: guichet.catégorieActivité.includes('AGRICOLE')
+					? 'agricole'
+					: undefined
 }
 
 function choixEntreArtisanaleOuCommerciale(entries: GuichetEntry[]): boolean {

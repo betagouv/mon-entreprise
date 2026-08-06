@@ -184,12 +184,12 @@ const PopoverContainer = styled.div<{ $offsetTop?: number }>`
 					@media (min-width: ${theme.breakpointsWidth.md}) {
 						margin-top: ${theme.spacings.xl};
 					}
-			  `
+				`
 			: css`
 					@media (max-width: ${theme.breakpointsWidth.sm}) {
 						margin: 0 -16px;
 					}
-			  `}
+				`}
 `
 
 export const CloseButtonContainer = styled.div`

@@ -79,7 +79,7 @@ export const enregistreLaRéponseÀLaQuestion = (
 				type: 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION',
 				fieldName,
 				value,
-		  } as const)
+			} as const)
 
 /**
  * Modifie la liste des question répondues, sans modifier la situation

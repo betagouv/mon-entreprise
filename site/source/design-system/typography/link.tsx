@@ -57,7 +57,7 @@ export const StyledLinkStyle = css<StyledLinkProps>`
 			$isDisabled
 				? css`
 						outline: none;
-				  `
+					`
 				: ''}
 	}
 `

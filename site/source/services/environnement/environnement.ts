@@ -6,44 +6,44 @@ const déployé: EnvironnementDéployé = sousVite
 	? typeof ENVIRONNEMENT !== 'undefined'
 		? ENVIRONNEMENT
 		: 'développement'
-	: (process.env.NEXT_PUBLIC_ENVIRONNEMENT as
+	: ((process.env.NEXT_PUBLIC_ENVIRONNEMENT as
 			| EnvironnementDéployé
-			| undefined) ?? 'développement'
+			| undefined) ?? 'développement')
 
 export const environnement = {
 	déployé,
 	branche: sousVite
 		? (typeof BRANCH_NAME !== 'undefined' && BRANCH_NAME) || ''
-		: process.env.NEXT_PUBLIC_BRANCH_NAME ?? '',
+		: (process.env.NEXT_PUBLIC_BRANCH_NAME ?? ''),
 	sentryRelease: sousVite
 		? (typeof SENTRY_RELEASE_NAME !== 'undefined' && SENTRY_RELEASE_NAME) || ''
-		: process.env.NEXT_PUBLIC_SENTRY_RELEASE ?? '',
+		: (process.env.NEXT_PUBLIC_SENTRY_RELEASE ?? ''),
 	algolia: {
 		appId: sousVite
 			? import.meta.env.VITE_ALGOLIA_APP_ID
-			: process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? '',
+			: (process.env.NEXT_PUBLIC_ALGOLIA_APP_ID ?? ''),
 		searchKey: sousVite
 			? import.meta.env.VITE_ALGOLIA_SEARCH_KEY
-			: process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY ?? '',
+			: (process.env.NEXT_PUBLIC_ALGOLIA_SEARCH_KEY ?? ''),
 		préfixeIndex: sousVite
 			? import.meta.env.VITE_ALGOLIA_INDEX_PREFIX
-			: process.env.NEXT_PUBLIC_ALGOLIA_INDEX_PREFIX ?? '',
+			: (process.env.NEXT_PUBLIC_ALGOLIA_INDEX_PREFIX ?? ''),
 	},
 	urls: {
 		fr: sousVite
 			? import.meta.env.VITE_FR_BASE_URL
-			: process.env.NEXT_PUBLIC_FR_BASE_URL ?? '',
+			: (process.env.NEXT_PUBLIC_FR_BASE_URL ?? ''),
 		en: sousVite
 			? import.meta.env.VITE_EN_BASE_URL
-			: process.env.NEXT_PUBLIC_EN_BASE_URL ?? '',
+			: (process.env.NEXT_PUBLIC_EN_BASE_URL ?? ''),
 	},
 	features: {
 		économieCollaborative: {
 			afficherLesCotisations: sousVite
 				? import.meta.env.VITE_ENABLE_ECONOMIE_COLLABORATIVE_COTISATIONS ===
-				  'true'
+					'true'
 				: process.env.NEXT_PUBLIC_ENABLE_ECONOMIE_COLLABORATIVE_COTISATIONS ===
-				  'true',
+					'true',
 		},
 	},
 	tracking: {

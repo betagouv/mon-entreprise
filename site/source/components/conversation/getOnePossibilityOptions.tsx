@@ -47,7 +47,7 @@ export const getOnePossibilityOptions = (
 						.map(({ dottedName }) =>
 							getOnePossibilityOptions(engine, dottedName as DottedName)
 						),
-			  }
+				}
 			: null
 	)
 }

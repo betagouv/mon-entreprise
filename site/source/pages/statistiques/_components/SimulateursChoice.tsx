@@ -26,10 +26,11 @@ export function SimulateursChoice(props: {
 	const defaultSelectedKey = !props.value
 		? ''
 		: props.value === 'api-rest'
-		? 'api-rest'
-		: Object.entries(simulateurs).find(
-				([, s]) => JSON.stringify(getFilter(s)) === JSON.stringify(props.value)
-		  )?.[0] ?? ''
+			? 'api-rest'
+			: (Object.entries(simulateurs).find(
+					([, s]) =>
+						JSON.stringify(getFilter(s)) === JSON.stringify(props.value)
+				)?.[0] ?? '')
 
 	return (
 		<Select

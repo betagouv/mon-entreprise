@@ -42,7 +42,7 @@ export const DateCessationQuestion = () => {
 				? Option.some(
 						engine.getRule(RÈGLE_DATE_INVALIDE).rawNode.description?.trim() ??
 							''
-				  )
+					)
 				: Option.none()
 		},
 		[engine]

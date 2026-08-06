@@ -36,7 +36,7 @@ export const DateAffiliationQuestion: ComposantQuestionFournie<
 								'pages.simulateurs.cotisation-maladie-frontalier-suisse.questions.date-affiliation.erreur',
 								'La date de début d’affiliation ne peut pas être postérieure à la date de fin.'
 							)
-					  )
+						)
 			}
 		/>
 	)

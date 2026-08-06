@@ -133,10 +133,10 @@ const StyledStep = styled(Link)<{ $active: boolean }>`
 			? css`
 					color: ${theme.colors.bases.primary[800]};
 					background-color: inherit;
-			  `
+				`
 			: css`
 					font-weight: inherit;
-			  `};
+				`};
 `
 const StyledProgressBar = styled.span<{
 	$active: boolean

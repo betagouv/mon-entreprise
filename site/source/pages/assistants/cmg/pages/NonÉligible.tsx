@@ -31,11 +31,11 @@ export default function NonÉligible() {
 					? t(
 							'pages.assistants.cmg.non-éligible.other',
 							'Au vu des données renseignées, vous n’êtes pas éligible au complément transitoire pour les raisons suivantes :'
-					  )
+						)
 					: t(
 							'pages.assistants.cmg.non-éligible.one',
 							'Au vu des données renseignées, vous n’êtes pas éligible au complément transitoire pour la raison suivante :'
-					  )}
+						)}
 			</Body>
 			<Ul>
 				{getRaisonsInéligibilitéHumaines(raisonsInéligibilité).map(

@@ -45,24 +45,24 @@ export const RésultatCotisation = ({
 						fin: formatDate(dateFinAffiliation),
 						interpolation: { escapeValue: false },
 					}
-			  )
+				)
 			: finitDansLAnnée
-			? t(
-					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.jusquà',
-					'jusqu’au {{date}}',
-					{
-						date: formatDate(dateFinAffiliation),
-						interpolation: { escapeValue: false },
-					}
-			  )
-			: t(
-					'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.depuis',
-					'à partir du {{date}}',
-					{
-						date: formatDate(dateAffiliation),
-						interpolation: { escapeValue: false },
-					}
-			  )
+				? t(
+						'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.jusquà',
+						'jusqu’au {{date}}',
+						{
+							date: formatDate(dateFinAffiliation),
+							interpolation: { escapeValue: false },
+						}
+					)
+				: t(
+						'pages.simulateurs.cotisation-maladie-frontalier-suisse.résultat.prorata.depuis',
+						'à partir du {{date}}',
+						{
+							date: formatDate(dateAffiliation),
+							interpolation: { escapeValue: false },
+						}
+					)
 
 	return (
 		<>

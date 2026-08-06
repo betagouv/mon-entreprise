@@ -20,7 +20,7 @@ const redis =
 		? new Redis(process.env.SCALINGO_REDIS_URL, {
 				enableOfflineQueue: false,
 				keyPrefix: 'cache',
-		  })
+			})
 		: new RedisMock()
 
 superviserRedis(redis, 'cache')

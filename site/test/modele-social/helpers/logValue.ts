@@ -9,8 +9,8 @@ export const logValue = (e: Engine, rule: DottedName) => {
 	const unit = result.unit?.denominators
 		? `${result.unit?.numerators[0]}/-${result.unit?.denominators[0]}`
 		: result.unit?.numerators
-		? `${result.unit?.numerators[0]}`
-		: ''
+			? `${result.unit?.numerators[0]}`
+			: ''
 
 	console.log(`${rule} = ${result.nodeValue?.toString()} ${unit}`)
 }

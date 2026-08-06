@@ -123,7 +123,7 @@ export const StatutTag = ({
 	return (
 		<StyledTag color={TAG_DATA[statut].color}>
 			{showIcon && <Icon />}
-			{children ?? text === 'acronym' ? (
+			{(children ?? text === 'acronym') ? (
 				<abbr title={TAG_DATA[statut].longName}>
 					{TAG_DATA[statut].acronym}
 				</abbr>

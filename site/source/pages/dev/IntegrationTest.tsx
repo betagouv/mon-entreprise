@@ -15,7 +15,7 @@ export default function IntegrationTest() {
 						? {
 								iframePath: s.iframePath,
 								private: 'private' in s ? s.private : false,
-						  }
+							}
 						: false
 				)
 				.filter(((el) => Boolean(el)) as <T>(x: T | false) => x is T),

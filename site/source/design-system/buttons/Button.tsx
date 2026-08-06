@@ -133,7 +133,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			disabled
 				? css`
 						outline: initial;
-				  `
+					`
 				: ''}
 	}
 
@@ -151,8 +151,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					$color === 'primary'
 						? (colorPalette as Palette)[700]
 						: $color === 'error'
-						? colorPalette[400]
-						: colorPalette[300]
+							? colorPalette[400]
+							: colorPalette[300]
 				const color =
 					theme.colors.extended.grey[
 						$color === 'primary' || $color === 'error' ? 100 : 800
@@ -173,14 +173,14 @@ export const StyledButton = styled.button<StyledButtonProps>`
 					$color === 'error'
 						? colorPalette[500]
 						: $color === 'success'
-						? colorPalette[600]
-						: (colorPalette as Palette)[700]
+							? colorPalette[600]
+							: (colorPalette as Palette)[700]
 				const borderColor =
 					$color === 'primary'
 						? (colorPalette as Palette)[700]
 						: $color === 'error'
-						? colorPalette[400]
-						: colorPalette[600]
+							? colorPalette[400]
+							: colorPalette[600]
 
 				return (
 					$light &&
@@ -203,8 +203,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 						$color === 'primary'
 							? (colorPalette as Palette)[800]
 							: $color === 'error'
-							? colorPalette[500]
-							: colorPalette[400]
+								? colorPalette[500]
+								: colorPalette[400]
 
 					/* Regular button (same for dark & light mode, except for Primary) */
 					return (
@@ -246,8 +246,8 @@ export const StyledButton = styled.button<StyledButtonProps>`
 						$color === 'primary'
 							? theme.colors.extended.grey[100]
 							: $color === 'error'
-							? colorPalette[200]
-							: colorPalette[400]
+								? colorPalette[200]
+								: colorPalette[400]
 
 					return (
 						theme.darkMode &&

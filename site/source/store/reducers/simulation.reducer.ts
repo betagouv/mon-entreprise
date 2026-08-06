@@ -95,7 +95,7 @@ export function simulationReducer(
 				: [
 						...state.questionsRépondues,
 						{ règle: action.fieldName, applicable: true },
-				  ]
+					]
 
 			return {
 				...state,
@@ -119,7 +119,7 @@ export function simulationReducer(
 				: [
 						...state.questionsRépondues,
 						{ règle: action.règle, applicable: true },
-				  ]
+					]
 
 			return {
 				...state,

@@ -65,7 +65,7 @@ const StyledSwitch = styled.span<StyledSwitchProps>`
 		$light
 			? css`
 					border: 2px #ffffffbf solid !important;
-			  `
+				`
 			: ''}
 
 	${({ disabled, theme }) =>
@@ -73,7 +73,7 @@ const StyledSwitch = styled.span<StyledSwitchProps>`
 			? css`
 					background-color: ${theme.colors.extended.grey[300]};
 					color: ${theme.colors.extended.grey[500]};
-			  `
+				`
 			: ''}
 `
 

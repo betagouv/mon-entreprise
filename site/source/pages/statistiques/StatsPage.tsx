@@ -180,7 +180,7 @@ export function getFilter(s: SimulatorMetadata): Filter | '' {
 		| { chapter2?: PageChapter2; chapter3?: string }
 
 	const filter =
-		typeof tracking === 'string' ? { chapter2: tracking } : tracking ?? ''
+		typeof tracking === 'string' ? { chapter2: tracking } : (tracking ?? '')
 	if (!filter.chapter2) {
 		return ''
 	}
@@ -203,8 +203,8 @@ function useStatState() {
 		URLFilter in simulators
 			? getFilter(simulators[URLFilter as keyof typeof simulators])
 			: ['PAMC', 'api-rest'].includes(URLFilter)
-			? (URLFilter as Filter)
-			: ''
+				? (URLFilter as Filter)
+				: ''
 	)
 
 	useEffect(() => {

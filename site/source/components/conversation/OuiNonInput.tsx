@@ -34,8 +34,8 @@ export function OuiNonInput({
 		currentSelection === undefined
 			? undefined
 			: currentSelection === 'oui'
-			? 'oui'
-			: 'non'
+				? 'oui'
+				: 'non'
 
 	const { t } = useTranslation()
 

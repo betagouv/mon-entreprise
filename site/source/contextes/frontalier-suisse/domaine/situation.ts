@@ -12,8 +12,7 @@ export interface SituationFrontalierSuisse extends Situation {
 	autresRevenus: O.Option<Montant<'€/an'>>
 }
 
-export interface SituationFrontalierSuisseValide
-	extends SituationFrontalierSuisse {
+export interface SituationFrontalierSuisseValide extends SituationFrontalierSuisse {
 	dateAffiliation: O.Some<Date>
 	salaires: O.Some<Montant<'€/an'>>
 }

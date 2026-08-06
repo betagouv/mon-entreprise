@@ -216,7 +216,7 @@ export function SimulationContainer({
 								width: ' 100%',
 								maxWidth: 'none',
 								flexBasis: 'auto',
-						  }
+							}
 						: {}
 				}
 				xl={9}

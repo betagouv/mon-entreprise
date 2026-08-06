@@ -59,7 +59,7 @@ export const prendLaProchaineQuestionMiddleware: Middleware<
 		engines = isComparateurConfig(config)
 			? (config.contextes.map(() =>
 					engine.shallowCopy()
-			  ) as NonEmptyArray<Engine>)
+				) as NonEmptyArray<Engine>)
 			: [engine]
 		lastSituationsAvecContextes = null
 	}

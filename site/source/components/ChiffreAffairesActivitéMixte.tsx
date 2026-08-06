@@ -116,7 +116,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 						? pipe(
 								(valeur as M.Montant | undefined) || M.eurosParAn(0),
 								O.fromNullable
-						  )
+							)
 						: pipe(engine.evaluate(règleCA), PublicodesAdapter.decode)
 
 				return nouvelleValeur as O.Option<M.Montant<UnitéMonétaireRécurrente>>

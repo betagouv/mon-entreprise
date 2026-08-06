@@ -33,8 +33,8 @@ export const CloseButton = styled(Button).attrs({
 			color === 'primary'
 				? (colorPalette as Palette)[700]
 				: color === 'error'
-				? colorPalette[400]
-				: colorPalette[600]
+					? colorPalette[400]
+					: colorPalette[600]
 
 		return css`
 			svg {

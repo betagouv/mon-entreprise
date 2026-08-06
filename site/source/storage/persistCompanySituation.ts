@@ -30,6 +30,6 @@ export function retrievePersistedCompanySituation() {
 	return serializedState && serializedState !== 'undefined'
 		? (sanitizePersistedSituation(
 				JSON.parse(serializedState)
-		  ) as SituationPublicodes)
+			) as SituationPublicodes)
 		: undefined
 }

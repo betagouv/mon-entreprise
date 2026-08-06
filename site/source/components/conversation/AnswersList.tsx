@@ -290,8 +290,8 @@ function AnswerElement(rule: RuleNode) {
 	const questionDottedName = rule.rawNode.question
 		? (rule.dottedName as DottedName)
 		: parentDottedName && engine.getRule(parentDottedName).rawNode.API
-		? parentDottedName
-		: undefined
+			? parentDottedName
+			: undefined
 	const ariaLabel = t('update-rule', 'Modifier {{title}}', {
 		title: rule.title,
 	})

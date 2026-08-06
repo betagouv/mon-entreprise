@@ -233,8 +233,8 @@ const uniformiseData = (data) =>
 					m_visits != null
 						? m_visits
 						: m_page_loads != null
-						? m_page_loads
-						: m_events,
+							? m_page_loads
+							: m_events,
 				...data,
 			})
 		)

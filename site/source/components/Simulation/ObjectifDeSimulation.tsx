@@ -45,7 +45,7 @@ export function ObjectifDeSimulation({
 			: Option.match(valeur, {
 					onNone: () => '—',
 					onSome: (montant) => montantToString(montant, displayedUnit),
-			  })
+				})
 
 	return (
 		<Appear unless={!appear || initialRender}>

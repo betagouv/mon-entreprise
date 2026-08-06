@@ -101,8 +101,8 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
 				? theme.colors.extended.dark[700]
 				: theme.colors.extended.dark[600]
 			: $isOpen
-			? theme.colors.extended.grey[200]
-			: theme.colors.extended.grey[100]};
+				? theme.colors.extended.grey[200]
+				: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 

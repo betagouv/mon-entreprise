@@ -19,8 +19,8 @@ const toEvaluate = function <T extends PublicodesTypes>(
 		rule instanceof String || rule instanceof Number
 			? rule
 			: (rule as Record<string, unknown>).valeur
-			? (rule as Record<string, unknown>).valeur
-			: JSON.stringify(rule, null, 2)
+				? (rule as Record<string, unknown>).valeur
+				: JSON.stringify(rule, null, 2)
 
 	if (pass) {
 		return {

@@ -6,8 +6,9 @@ import { Situation } from '@/domaine/Situation'
 import { EnfantsÀCharge, estEnfantsÀChargeValide } from './enfant'
 import { estSalariéesValide, SalariéeAMA, SalariéeGED } from './salariée'
 
-export interface SituationCMG<PrénomsEnfants extends string = string>
-	extends Situation {
+export interface SituationCMG<
+	PrénomsEnfants extends string = string,
+> extends Situation {
 	aPerçuCMG: O.Option<boolean>
 	plusDe2MoisDeDéclaration: O.Option<boolean>
 	parentIsolé: O.Option<boolean>

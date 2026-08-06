@@ -52,8 +52,8 @@ const ListItem = styled.li<{ $isFocused?: boolean; $isSelected?: boolean }>`
 				? theme.colors.bases.primary[200]
 				: theme.colors.extended.dark[100]
 			: $isSelected
-			? theme.colors.bases.primary[600]
-			: theme.colors.extended.grey[700]};
+				? theme.colors.bases.primary[600]
+				: theme.colors.extended.grey[700]};
 	background-color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.dark[500]

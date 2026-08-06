@@ -192,7 +192,7 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 					&:hover * {
 						cursor: default !important;
 					}
-			  `}
+				`}
 `
 
 const Label = styled.label<{ htmlFor?: string }>``

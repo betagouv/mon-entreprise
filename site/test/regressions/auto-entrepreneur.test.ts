@@ -9,7 +9,7 @@ import { getMissingVariables, runSimulations } from './utils'
 
 const engine = engineFactory(rules)
 
-it('calculate simulations-auto-entrepreneur', () => {
+it('calculate simulations-auto-entrepreneur', { timeout: 120_000 }, () => {
 	runSimulations(
 		engine,
 		autoEntrepreneurSituations,

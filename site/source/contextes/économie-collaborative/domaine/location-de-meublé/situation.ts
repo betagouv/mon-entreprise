@@ -9,38 +9,32 @@ interface SituationÉconomieCollaborativeBase extends Situation {
 	premièreAnnée: O.Option<boolean>
 }
 
-export interface SituationChambreDHôte
-	extends SituationÉconomieCollaborativeBase {
+export interface SituationChambreDHôte extends SituationÉconomieCollaborativeBase {
 	typeHébergement: 'chambre-hôte'
 	revenuNet: O.Option<Montant<'€/an'>>
 }
 
-interface SituationMeubléDeTourismeBase
-	extends SituationÉconomieCollaborativeBase {
+interface SituationMeubléDeTourismeBase extends SituationÉconomieCollaborativeBase {
 	typeHébergement: 'meublé-tourisme'
 	recettes: O.Option<Montant<'€/an'>>
 	autresRevenus: O.Option<Montant<'€/an'>>
 	classement: O.Option<Classement>
 }
 
-export interface SituationMeubléLongueDurée
-	extends SituationMeubléDeTourismeBase {
+export interface SituationMeubléLongueDurée extends SituationMeubléDeTourismeBase {
 	typeDurée: O.Some<'longue'>
 }
 
-export interface SituationMeubléCourteDurée
-	extends SituationMeubléDeTourismeBase {
+export interface SituationMeubléCourteDurée extends SituationMeubléDeTourismeBase {
 	typeDurée: O.Some<'courte'>
 }
 
-export interface SituationMeubléDuréeMixte
-	extends SituationMeubléDeTourismeBase {
+export interface SituationMeubléDuréeMixte extends SituationMeubléDeTourismeBase {
 	typeDurée: O.Some<'mixte'>
 	recettesCourteDurée: O.Option<Montant<'€/an'>>
 }
 
-export interface SituationMeubléDeTourismeIncomplète
-	extends SituationMeubléDeTourismeBase {
+export interface SituationMeubléDeTourismeIncomplète extends SituationMeubléDeTourismeBase {
 	typeDurée: O.None<TypeDurée>
 }
 
@@ -98,24 +92,20 @@ export const initialSituationChambreDHôte: SituationChambreDHôte = {
 export const initialSituationÉconomieCollaborative: SituationÉconomieCollaborative =
 	initialSituationMeubléDeTourisme
 
-export interface SituationMeubléLongueDuréeValide
-	extends SituationMeubléLongueDurée {
+export interface SituationMeubléLongueDuréeValide extends SituationMeubléLongueDurée {
 	recettes: O.Some<Montant<'€/an'>>
 }
 
-export interface SituationMeubléCourteDuréeValide
-	extends SituationMeubléCourteDurée {
+export interface SituationMeubléCourteDuréeValide extends SituationMeubléCourteDurée {
 	recettes: O.Some<Montant<'€/an'>>
 }
 
-export interface SituationMeubléDuréeMixteValide
-	extends SituationMeubléDuréeMixte {
+export interface SituationMeubléDuréeMixteValide extends SituationMeubléDuréeMixte {
 	recettes: O.Some<Montant<'€/an'>>
 	recettesCourteDurée: O.Some<Montant<'€/an'>>
 }
 
-export interface SituationMeubléDeTourismeIncomplèteValide
-	extends SituationMeubléDeTourismeIncomplète {
+export interface SituationMeubléDeTourismeIncomplèteValide extends SituationMeubléDeTourismeIncomplète {
 	recettes: O.Some<Montant<'€/an'>>
 }
 

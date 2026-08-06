@@ -45,15 +45,15 @@ const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 		typeof child === 'string' || typeof child === 'number'
 			? child
 			: isIterable(child)
-			? flatMapChildren(Array.from(child))
-			: typeof child === 'object' && 'props' in child
-			? ((child.props as { value?: string; children?: React.ReactNode })
-					?.value as string) ??
-			  flatMapChildren(
-					(child.props as { value?: string; children?: React.ReactNode })
-						?.children
-			  )
-			: ''
+				? flatMapChildren(Array.from(child))
+				: typeof child === 'object' && 'props' in child
+					? (((child.props as { value?: string; children?: React.ReactNode })
+							?.value as string) ??
+						flatMapChildren(
+							(child.props as { value?: string; children?: React.ReactNode })
+								?.children
+						))
+					: ''
 	)
 }
 
@@ -66,14 +66,14 @@ const Heading = ({ level, children, ...otherProps }: HeadingProps) =>
 		level === 1
 			? H1
 			: level === 2
-			? H2
-			: level === 3
-			? H3
-			: level === 4
-			? H4
-			: level === 5
-			? H5
-			: H6,
+				? H2
+				: level === 3
+					? H3
+					: level === 4
+						? H4
+						: level === 5
+							? H5
+							: H6,
 		otherProps,
 		children
 	)

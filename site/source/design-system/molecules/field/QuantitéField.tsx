@@ -76,15 +76,15 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			? {
 					style: 'percent',
 					maximumFractionDigits: 2,
-			  }
+				}
 			: nbDécimalesMax !== undefined
-			? {
-					style: 'decimal',
-					maximumFractionDigits: nbDécimalesMax,
-			  }
-			: {
-					style: 'decimal',
-			  }
+				? {
+						style: 'decimal',
+						maximumFractionDigits: nbDécimalesMax,
+					}
+				: {
+						style: 'decimal',
+					}
 	) satisfies Intl.NumberFormatOptions
 
 	// Pour les pourcentages, le format 'percent' multiplie par 100,
@@ -100,7 +100,7 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			: placeholder?.valeur
 
 	const displayedUnit = !isPercentage
-		? unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité
+		? (unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité)
 		: undefined
 
 	return (
@@ -124,7 +124,7 @@ export const QuantitéField = <U extends UnitéQuantité>({
 									key,
 									isPercentage ? quantité.valeur / 100 : quantité.valeur,
 								])
-						  )
+							)
 						: undefined
 				}
 			/>

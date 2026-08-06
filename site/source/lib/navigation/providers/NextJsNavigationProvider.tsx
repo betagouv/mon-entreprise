@@ -98,8 +98,8 @@ export function NextJsNavigationProvider({ children }: Props) {
 				typeof params === 'function'
 					? params(new URLSearchParams(searchParamsRef.current.toString()))
 					: params instanceof URLSearchParams
-					? params
-					: new URLSearchParams(params)
+						? params
+						: new URLSearchParams(params)
 
 			const hash = typeof window !== 'undefined' ? window.location.hash : ''
 			const queryString = newParams.toString()

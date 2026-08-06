@@ -466,7 +466,7 @@ function IntegrationCode({
 							: t(
 									'pages.développeur.code.copy-code',
 									'Copier le code dans le presse-papier'
-							  )
+								)
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}

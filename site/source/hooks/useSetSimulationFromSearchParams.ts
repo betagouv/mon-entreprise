@@ -62,9 +62,7 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			const newActiveTarget = pipe(
 				R.keys(newSituation),
-				A.findFirst((dottedName) =>
-					objectifs.includes(dottedName as DottedName)
-				)
+				A.findFirst((dottedName) => objectifs.includes(dottedName))
 			)
 
 			if (O.isSome(newActiveTarget)) {

@@ -40,7 +40,7 @@ exports[`e2e test mon-entreprise api > Test evaluate avocat (test units) 2`] = `
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -49,7 +49,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -58,7 +58,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -67,7 +67,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -76,7 +76,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -85,7 +85,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -94,7 +94,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -103,7 +103,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -112,7 +112,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -121,7 +121,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -130,7 +130,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -139,7 +139,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -148,7 +148,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -157,7 +157,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -166,7 +166,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité\\"
+➡️  Dans la règle "entreprise . activité"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -175,7 +175,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -184,7 +184,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -193,7 +193,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -202,7 +202,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -211,7 +211,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -220,7 +220,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -229,7 +229,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -238,7 +238,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité\\"
+➡️  Dans la règle "entreprise . activité"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -351,7 +351,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"salarié . contrat . salaire brut\\"
+➡️  Dans la règle "salarié . contrat . salaire brut"
 ⚠️  Dans l'expression '<', la partie gauche (unité: €) n'est pas compatible avec la partie droite (unité: €/mois)
 ℹ️  
 [ EngineError ]
@@ -360,7 +360,7 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"salarié . contrat . salaire brut\\"
+➡️  Dans la règle "salarié . contrat . salaire brut"
 ⚠️  Erreur lors de la conversion d'unité explicite
 ℹ️  
 [ EngineError ]
@@ -414,7 +414,7 @@ exports[`e2e test mon-entreprise api > Test evaluate micro entreprise 2`] = `
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -423,7 +423,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -432,7 +432,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -441,7 +441,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -450,7 +450,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -459,7 +459,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -468,7 +468,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -477,7 +477,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité\\"
+➡️  Dans la règle "entreprise . activité"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -486,7 +486,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -495,7 +495,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -504,7 +504,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -513,7 +513,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -522,7 +522,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -531,7 +531,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature libérale réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -540,7 +540,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale . réglementée\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale . réglementée"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -549,7 +549,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature . libérale\\"
+➡️  Dans la règle "entreprise . activité . nature . libérale"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -558,7 +558,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -567,7 +567,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -576,7 +576,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -585,7 +585,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -594,7 +594,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature\\"
+➡️  Dans la règle "entreprise . catégorie juridique . remplacements . profession libérale reglementée . entreprise activité nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -603,7 +603,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité . nature\\"
+➡️  Dans la règle "entreprise . activité . nature"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -612,7 +612,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"entreprise . activité\\"
+➡️  Dans la règle "entreprise . activité"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -621,7 +621,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"impôt . méthode de calcul\\"
+➡️  Dans la règle "impôt . méthode de calcul"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -630,7 +630,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"impôt . méthode de calcul\\"
+➡️  Dans la règle "impôt . méthode de calcul"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -639,7 +639,7 @@ Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il
     {
       "message": "
 [ Avertissement ]
-➡️  Dans la règle \\"impôt\\"
+➡️  Dans la règle "impôt"
 ⚠️  Cette règle est tagguée comme experimentale. 
 
 Cela veut dire qu'elle peut être modifiée, renommée, ou supprimée sans qu'il n'y ait de changement de version majeure dans l'API.
@@ -654,7 +654,7 @@ exports[`e2e test mon-entreprise api > Test openapi.json endpoint 2`] = `
   "components": {
     "parameters": {
       "modele": {
-        "description": "Le nom du modèle de règles à utiliser (\\"as\\" pour assimilé⋅es salarié⋅es ou \\"ti\\" pour travailleureuses indépendant⋅es)",
+        "description": "Le nom du modèle de règles à utiliser ("as" pour assimilé⋅es salarié⋅es ou "ti" pour travailleureuses indépendant⋅es)",
         "in": "path",
         "name": "modele",
         "required": true,

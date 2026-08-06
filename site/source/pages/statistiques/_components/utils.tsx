@@ -31,18 +31,18 @@ export function emojiSatisfaction(satisfaction: number) {
 	return satisfaction > 0.85
 		? '😀'
 		: satisfaction > 0.7
-		? '🙂'
-		: satisfaction > 0.5
-		? '😐'
-		: '😕'
+			? '🙂'
+			: satisfaction > 0.5
+				? '😐'
+				: '😕'
 }
 
 export function messageTypeSatisfaction(satisfaction: number) {
 	return satisfaction > 0.85
 		? 'success'
 		: satisfaction > 0.7
-		? 'primary'
-		: satisfaction > 0.5
-		? 'info'
-		: 'error'
+			? 'primary'
+			: satisfaction > 0.5
+				? 'info'
+				: 'error'
 }
