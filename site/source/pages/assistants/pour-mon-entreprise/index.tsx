@@ -44,8 +44,8 @@ import { companySituationSelector } from '@/store/selectors/company/companySitua
 import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
-import forms from './forms.svg'
-import growth from './growth.svg'
+import growth from '@/assets/images/illustrations/croissance.svg'
+import forms from '@/assets/images/illustrations/formes.svg'
 import { pourMonEntrepriseMetadata } from './metadata'
 import { configPourMonEntreprise } from './simulationConfig'
 

@@ -2,8 +2,6 @@ import { TFunction } from 'i18next'
 
 import { OpenGraph } from '@/components/utils/Meta'
 
-import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
-
 export function eirlOpenGraph(t: TFunction): OpenGraph {
 	return {
 		title: t(
@@ -14,6 +12,5 @@ export function eirlOpenGraph(t: TFunction): OpenGraph {
 			'pages.simulateurs.eirl.meta.ogDescription',
 			"Grâce au simulateur de revenu pour EIRL développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
 		),
-		image: AutoEntrepreneurPreview,
 	}
 }

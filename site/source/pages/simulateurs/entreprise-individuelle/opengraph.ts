@@ -2,7 +2,7 @@ import { TFunction } from 'i18next'
 
 import { OpenGraph } from '@/components/utils/Meta'
 
-import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
+import RémunérationIndépendantPreview from '../indépendant/RémunérationIndépendantPreview.png'
 
 export function entrepriseIndividuelleOpenGraph(t: TFunction): OpenGraph {
 	return {
@@ -14,6 +14,6 @@ export function entrepriseIndividuelleOpenGraph(t: TFunction): OpenGraph {
 			'pages.simulateurs.ei.meta.ogDescription',
 			"Grâce au simulateur de revenu pour entreprise individuelle développé par l'Urssaf, vous pourrez estimer le montant de vos revenus en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux gérer votre trésorerie. Ou dans le sens inverse : savoir quel montant facturer pour atteindre un certain revenu."
 		),
-		image: AutoEntrepreneurPreview,
+		image: RémunérationIndépendantPreview,
 	}
 }

@@ -2,7 +2,7 @@ import { TFunction } from 'i18next'
 
 import { OpenGraph } from '@/components/utils/Meta'
 
-import AutoEntrepreneurPreview from '../_images/AutoEntrepreneurPreview.png'
+import AutoEntrepreneurPreview from './AutoEntrepreneurPreview.png'
 
 export function autoEntrepreneurOpenGraph(t: TFunction): OpenGraph {
 	return {
