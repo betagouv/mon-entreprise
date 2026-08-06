@@ -7,7 +7,7 @@ import { Link } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModèle.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {
 	documentationPath?: string
@@ -30,9 +30,15 @@ export default function RuleLink({
 	const nomModèle = useSelector(nomModèleSelector)
 
 	const documentationIndex = useDocumentationPath(nomModèle)
-	const defaultEngine = useEngine()
+	const defaultEngine = useOptionalEngine()
 
 	const engineUsed = engine ?? defaultEngine
+
+	if (!engineUsed) {
+		throw new Error(
+			'RuleLink doit être utilisé avec un engine ou dans un EngineProvider'
+		)
+	}
 
 	try {
 		engineUsed.getRule(dottedName)

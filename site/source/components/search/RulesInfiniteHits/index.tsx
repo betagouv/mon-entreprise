@@ -61,7 +61,11 @@ const Hit = (hit: THit) => {
 			)}
 
 			<EngineProvider value={engine}>
-				<StyledRuleLink dottedName={hit.dottedName} aria-label={hit.ruleName}>
+				<StyledRuleLink
+					engine={engine}
+					dottedName={hit.dottedName}
+					aria-label={hit.ruleName}
+				>
 					<Body as="span" className="hit-ruleName">
 						{hit.ruleName}
 					</Body>
