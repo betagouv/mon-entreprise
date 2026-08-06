@@ -35,6 +35,16 @@ jobs:
       - uses: ./.github/actions/install
       - run: yarn test
 
+  build-api:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: ./.github/actions/install
+      - name: Build API
+        run: yarn workspace api build
+      - name: Smoke test de l'API compilée
+        run: yarn workspace api run test:smoke
+
   i18n:
     runs-on: ubuntu-22.04
     steps:
