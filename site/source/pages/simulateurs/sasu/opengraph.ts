@@ -2,7 +2,7 @@ import { TFunction } from 'i18next'
 
 import { OpenGraph } from '@/components/utils/Meta'
 
-import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
+import RémunérationSASUPreview from './RémunérationSASUPreview.png'
 
 export function sasuOpenGraph(t: TFunction): OpenGraph {
 	return {

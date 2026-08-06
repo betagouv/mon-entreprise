@@ -2,7 +2,7 @@ import { TFunction } from 'i18next'
 
 import { OpenGraph } from '@/components/utils/Meta'
 
-import RémunérationSASUPreview from '../_images/RémunérationSASUPreview.png'
+import RémunérationIndépendantPreview from '../indépendant/RémunérationIndépendantPreview.png'
 
 export function eurlOpenGraph(t: TFunction): OpenGraph {
 	return {
@@ -14,6 +14,6 @@ export function eurlOpenGraph(t: TFunction): OpenGraph {
 			'pages.simulateurs.eurl.meta.ogDescription',
 			'En tant que dirigeant assimilé-salarié, calculez immédiatement votre revenu net après impôt à partir du total alloué à votre rémunération.'
 		),
-		image: RémunérationSASUPreview,
+		image: RémunérationIndépendantPreview,
 	}
 }
