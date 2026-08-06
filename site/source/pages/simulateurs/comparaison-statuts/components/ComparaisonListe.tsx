@@ -43,6 +43,7 @@ import WarningTooltip from './WarningTooltip'
 export const Comparaison = () => {
 	const { t } = useTranslation()
 	const { situation } = useComparateur()
+	// TODO: découper en composant par Catégorie (retraite, maladie...)
 
 	return (
 		<Container

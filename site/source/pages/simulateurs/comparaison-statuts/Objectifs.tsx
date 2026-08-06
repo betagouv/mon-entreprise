@@ -21,12 +21,10 @@ export const Objectifs = () => {
 
 	const handleCAChange = (valeur: MontantRécurrent | undefined) => {
 		set.chiffreDAffaires(O.fromNullable(valeur))
-		// console.log(situation)
 	}
 
 	const handleChargesChange = (valeur: MontantRécurrent | undefined) => {
 		set.charges(O.fromNullable(valeur))
-		// console.log(situation)
 	}
 
 	const InputCA = ({ id, aria }: ChampSaisieProps) => (
