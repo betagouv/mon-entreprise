@@ -105,8 +105,8 @@ export default function Select({ onChange, value, id }: SelectCommuneProps) {
 								(e.key === 'ArrowDown'
 									? 1
 									: focusedElem === 0
-									? searchResults.length - 1
-									: -1)) %
+										? searchResults.length - 1
+										: -1)) %
 							searchResults.length
 					)
 					e.preventDefault()

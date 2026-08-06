@@ -10,7 +10,7 @@
  **/
 
 // @ts-ignore ignore file not exist error
-import simulationData from '@/public/simulation-data-title.json' assert { type: 'json' }
+import simulationData from '@/public/simulation-data-title.json' with { type: 'json' }
 import { hexToHSL } from '@/utils/hexToHSL'
 import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
 

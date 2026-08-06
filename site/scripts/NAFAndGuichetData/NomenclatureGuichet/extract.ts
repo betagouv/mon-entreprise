@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url'
 
 import parseCsv from 'csv-parser'
 
-import output from '../nombre-etablissements-par-code-ape/output.json' assert { type: 'json' }
+import output from '../nombre-etablissements-par-code-ape/output.json' with { type: 'json' }
 import { computeGuichet } from './compute-guichet.js'
 
 const FILENAME = 'NomenclatureGuichet_v1_34.csv'

@@ -209,8 +209,8 @@ export default function FeedbackForm({
 								const emailError = isEmailEmpty
 									? requiredEmailError
 									: isEmailInvalid
-									? invalidEmailError
-									: ''
+										? invalidEmailError
+										: ''
 
 								if (isMessageEmpty || isEmailEmpty) {
 									setSubmitError({

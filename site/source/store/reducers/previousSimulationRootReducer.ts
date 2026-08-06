@@ -16,7 +16,7 @@ export const createStateFromPreviousSimulation = (
 					questionsRépondues: state.previousSimulation.questionsRépondues,
 				} as Simulation,
 				previousSimulation: null,
-		  }
+			}
 		: {}
 
 export default (state: RootState, action: Action): RootState => {

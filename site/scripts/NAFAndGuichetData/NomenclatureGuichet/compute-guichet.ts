@@ -53,8 +53,8 @@ function getCatégorieActivité(
 	return formeActivité.includes('AGRICOLE')
 		? 'AGRICOLE'
 		: formeActivité === 'Non applicable'
-		? undefined
-		: (formeActivité as GuichetEntry['catégorieActivité'])
+			? undefined
+			: (formeActivité as GuichetEntry['catégorieActivité'])
 }
 
 function getTypeBénéfice(activity: Activity): GuichetEntry['typeBénéfice'] {
@@ -66,8 +66,8 @@ function getTypeBénéfice(activity: Activity): GuichetEntry['typeBénéfice'] {
 	return microBenefice.includes('BA')
 		? 'BA'
 		: microBenefice.includes('BNC')
-		? 'BNC'
-		: 'BIC'
+			? 'BNC'
+			: 'BIC'
 }
 
 export function computeGuichet(

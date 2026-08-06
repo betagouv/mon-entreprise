@@ -19,7 +19,7 @@ export function useUrl(options?: Options) {
 
 	const { path = '' } = options?.path
 		? { path: options.path as string }
-		: currentSimulatorMetadata ?? {}
+		: (currentSimulatorMetadata ?? {})
 
 	const situationEncodée = options?.situation
 		? null
@@ -30,7 +30,7 @@ export function useUrl(options?: Options) {
 			? searchParamsPublicodes
 			: new URLSearchParams({
 					[PARAMÈTRE_SITUATION]: situationEncodée,
-			  }).toString()
+				}).toString()
 
 	return siteUrl + path + '?' + queryString
 }

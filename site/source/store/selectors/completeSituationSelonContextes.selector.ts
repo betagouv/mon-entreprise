@@ -12,6 +12,6 @@ export const completeSituationsSelonContextesSelector = createSelector(
 			? contextes.map((contexte) => ({
 					...completeSituation,
 					...contexte,
-			  }))
+				}))
 			: [completeSituation]) as NonEmptyArray<SituationPublicodes>
 )

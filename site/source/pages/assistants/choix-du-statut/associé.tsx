@@ -243,8 +243,8 @@ function useAssociésSelection(): [
 					newState.question1 === 'seul'
 						? O.some('unique')
 						: newState.question1 === 'plusieurs'
-						? O.some('multiples')
-						: O.none(),
+							? O.some('multiples')
+							: O.none(),
 
 				'entreprise . catégorie juridique . EI':
 					newState.question2 === 'oui' || newState.question3 === 'oui'

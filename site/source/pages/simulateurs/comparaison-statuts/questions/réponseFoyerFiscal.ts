@@ -24,16 +24,16 @@ export const réponseFoyerFiscal = (engine: Engine, t: TFunction) => {
 			? t(
 					'pages.simulateurs.comparaison-statuts.réponses.foyer-fiscal.célibataire',
 					'Célibataire'
-			  )
+				)
 			: situationFamiliale.value === 'couple'
-			? t(
-					'pages.simulateurs.comparaison-statuts.réponses.foyer-fiscal.couple',
-					'Marié/Mariée ou pacsé/pacsée'
-			  )
-			: t(
-					'pages.simulateurs.comparaison-statuts.réponses.foyer-fiscal.veuf',
-					'Veuf/Veuve'
-			  )
+				? t(
+						'pages.simulateurs.comparaison-statuts.réponses.foyer-fiscal.couple',
+						'Marié/Mariée ou pacsé/pacsée'
+					)
+				: t(
+						'pages.simulateurs.comparaison-statuts.réponses.foyer-fiscal.veuf',
+						'Veuf/Veuve'
+					)
 
 	const enfants = PublicodesAdapter.decode(
 		engine.evaluate('impôt . foyer fiscal . enfants à charge')

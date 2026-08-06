@@ -2,12 +2,8 @@ import Router from '@koa/router'
 import { Context } from 'koa'
 
 import { analyticsMiddleware } from '../middlewares/analytics.js'
-import openapi from '../openapi.json' assert { type: 'json' }
+import openapi from '../openapi.json' with { type: 'json' }
 
-/**
- * @param openapi
- * @returns
- */
 export const openApiRoutes = () => {
 	const router = new Router()
 

@@ -70,7 +70,7 @@ export const décomposeCotisationMaladie = (
 		joursAffiliation < joursAnnée
 			? O.some(
 					arrondirÀLEuro(euros((annuel.valeur * joursAffiliation) / joursAnnée))
-			  )
+				)
 			: O.none()
 
 	return {

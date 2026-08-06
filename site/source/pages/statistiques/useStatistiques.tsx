@@ -154,9 +154,9 @@ function filterPage(
 					(!filter
 						? true
 						: filter === 'PAM'
-						? isPAM(p.page_chapter3)
-						: filter.chapter2 === p.page_chapter2 &&
-						  (!filter.chapter3 || filter.chapter3 === p.page_chapter3))
+							? isPAM(p.page_chapter3)
+							: filter.chapter2 === p.page_chapter2 &&
+								(!filter.chapter3 || filter.chapter3 === p.page_chapter3))
 			),
 			(p) => ('date' in p ? p.date : p.month.slice(0, 10))
 		)

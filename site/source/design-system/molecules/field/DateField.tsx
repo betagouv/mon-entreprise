@@ -187,7 +187,7 @@ export const DateField = (props: DateFieldProps) => {
 							? t(
 									'design-system.date-picker.error.invalid-date',
 									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
-							  )
+								)
 							: '')
 					}
 				/>

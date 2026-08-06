@@ -86,7 +86,7 @@ const getTextColorFromType = (type: ComponentType) => {
 
 	return type === 'error'
 		? colorPalette[100]
-		: (colorPalette as Palette)[700] ?? colorPalette[600]
+		: ((colorPalette as Palette)[700] ?? colorPalette[600])
 }
 
 const getBackgroundColorFromType = (type: ComponentType) => {

@@ -68,7 +68,7 @@ export function SimulationGoal({
 					: {
 							...montant,
 							unité: currentUnit as UnitéMonétaire,
-					  }
+						}
 
 			dispatch(
 				ajusteLaSituation({ [dottedName]: montantDansLaBonneUnité } as Record<
@@ -91,7 +91,7 @@ export function SimulationGoal({
 					!isTypeBoolean
 						? {
 								unité: currentUnit,
-						  }
+							}
 						: undefined
 				}
 				displayedUnit={displayedUnit}

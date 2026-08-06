@@ -7,16 +7,15 @@ import {
 	useTrackingChapters,
 } from './TrackingChaptersContext'
 
-// From https://github.com/nclsmitchell/at-internet
 export function toAtString(string: string): string {
 	string = string.replace(/ /g, '_').toLowerCase()
-	string = string.replace(/[\300-\306]|[\340-\346]/g, 'a')
-	string = string.replace(/[\310-\313]|[\350-\353]/g, 'e')
-	string = string.replace(/[\314-\317]|[\354-\357]/g, 'i')
-	string = string.replace(/[\322-\330]|[\362-\370]/g, 'o')
-	string = string.replace(/[\331-\334]|[\371-\374]/g, 'u')
-	string = string.replace(/[\307\347]/g, 'c')
-	string = string.replace(/[\321\361]/g, 'n')
+	string = string.replace(/[\xC0-\xC6]|[\xE0-\xE6]/g, 'a')
+	string = string.replace(/[\xC8-\xCB]|[\xE8-\xEB]/g, 'e')
+	string = string.replace(/[\xCC-\xCF]|[\xEC-\xEF]/g, 'i')
+	string = string.replace(/[\xD2-\xD8]|[\xF2-\xF8]/g, 'o')
+	string = string.replace(/[\xD9-\xDC]|[\xF9-\xFC]/g, 'u')
+	string = string.replace(/[\xC7\xE7]/g, 'c')
+	string = string.replace(/[\xD1\xF1]/g, 'n')
 	string = string.replace(/[^\w]/gi, '_')
 
 	return string

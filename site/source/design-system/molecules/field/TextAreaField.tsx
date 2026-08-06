@@ -167,8 +167,8 @@ export const StyledTextAreaContainer = styled.div.withConfig({
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
-				? theme.colors.bases.primary[100]
-				: theme.colors.bases.primary[700]};
+					? theme.colors.bases.primary[100]
+					: theme.colors.bases.primary[700]};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
@@ -223,10 +223,10 @@ export const StyledTextAreaContainer = styled.div.withConfig({
 			small
 				? css`
 						${theme.spacings.xxs} ${theme.spacings.xs}
-				  `
+					`
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
-				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
+					}) ${theme.spacings.sm} ${theme.spacings.xs}`};
 	}
 
 	${({ small }) =>

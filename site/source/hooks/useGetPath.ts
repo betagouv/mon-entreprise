@@ -61,7 +61,7 @@ export const useGetPath = () => {
 			? cheminComplet.replace(
 					cheminDeBaseDeLAssistant,
 					`/iframes/${currentSimulatorMetadata.iframePath}`
-			  )
+				)
 			: cheminComplet
 	}
 }

@@ -60,7 +60,7 @@ const engineOptions: EngineOptions = {
 			: {
 					experimentalRules: false,
 					deprecatedSyntax: false,
-			  },
+				},
 	logger,
 }
 

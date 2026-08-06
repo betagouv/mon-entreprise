@@ -81,7 +81,7 @@ export function Message({
 					<StyledIconWrapper $type={type}>
 						{typeof icon !== 'boolean'
 							? icon
-							: getIconFromType(type) ?? <ReturnIcon />}
+							: (getIconFromType(type) ?? <ReturnIcon />)}
 					</StyledIconWrapper>
 				)}
 				<Wrapper role={role} $withCloseButton={dismissible}>

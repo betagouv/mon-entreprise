@@ -30,11 +30,11 @@ export const réponseActivité = (engine: Engine, t: TFunction) => {
 			? t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.libérale-réglementée',
 					'Libérale réglementée'
-			  )
+				)
 			: t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.libérale-non-réglementée',
 					'Libérale non réglementée'
-			  )
+				)
 	}
 
 	const réponseActivité =
@@ -42,11 +42,11 @@ export const réponseActivité = (engine: Engine, t: TFunction) => {
 			? t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.artisanale',
 					'Artisanale'
-			  )
+				)
 			: t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.commerciale',
 					'Commerciale'
-			  )
+				)
 
 	const serviceOuVente = PublicodesAdapter.decode(
 		engine.evaluate('entreprise . activités . service ou vente')
@@ -61,10 +61,10 @@ export const réponseActivité = (engine: Engine, t: TFunction) => {
 			? t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.vente',
 					'vente'
-			  )
+				)
 			: t(
 					'pages.simulateurs.comparaison-statuts.réponses.activité.service',
 					'prestation de service'
-			  )
+				)
 	})`
 }

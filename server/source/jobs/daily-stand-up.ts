@@ -38,7 +38,7 @@ const nextDayMember =
 const nextDayStandup = nextDayMember
 	? `:arrow_forward: ${nextWorkingDay === 1 ? 'Lundi' : 'Demain'}, c'est @${
 			nextDayMember.username
-	  } qui anime le stand-up.`
+		} qui anime le stand-up.`
 	: ''
 
 const now = new Date()

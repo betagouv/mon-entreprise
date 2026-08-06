@@ -301,12 +301,12 @@ type SitePathBuilt<T extends SitePath, Root extends string = ''> = {
 				? '/'
 				: `${Root}${T[K]}`
 			: T extends { index: string }
-			? `${Root}${T['index']}/${T[K]}`
-			: `${Root}${T[K]}`
+				? `${Root}${T['index']}/${T[K]}`
+				: `${Root}${T[K]}`
 		: SitePathBuilt<
 				T[K] extends SitePath ? T[K] : never,
 				T extends { index: string } ? `${Root}${T['index']}/` : `${Root}`
-		  >
+			>
 }
 
 function constructAbsoluteSitePaths<T extends SitePath>(
@@ -392,7 +392,7 @@ export const alternatePathname = () => {
 									? { [obj.en as string]: (obj.fr || obj.en) as string }
 									: null),
 							},
-					  }
+						}
 					: buildPathname(obj, acc),
 			initialValue
 		)

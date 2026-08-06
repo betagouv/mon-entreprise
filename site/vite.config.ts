@@ -9,7 +9,7 @@ import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
-import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import { multipleSPA } from './build/multiple-SPA'
@@ -22,7 +22,7 @@ const branch = (mode: string) => getBranch(mode)
 const sentryReleaseName = (mode: string) =>
 	env(mode).VITE_GITHUB_SHA
 		? `${branch(mode).split('/').at(-1)}-` +
-		  env(mode).VITE_GITHUB_SHA?.substring(0, 7)
+			env(mode).VITE_GITHUB_SHA?.substring(0, 7)
 		: undefined
 
 export default defineConfig(({ command, mode }) => ({
@@ -46,6 +46,9 @@ export default defineConfig(({ command, mode }) => ({
 					}
 					if (id.includes('modele-ti')) {
 						return 'modele-ti'
+					}
+					if (id.includes('node_modules')) {
+						return 'vendor'
 					}
 				},
 				chunkFileNames: (chunkInfo) => {
@@ -116,9 +119,7 @@ export default defineConfig(({ command, mode }) => ({
 					legacy({
 						targets: ['defaults', 'not IE 11'],
 					}),
-			  ]),
-
-		splitVendorChunkPlugin(),
+				]),
 
 		...(command === 'build' && mode !== 'test'
 			? [
@@ -144,7 +145,7 @@ export default defineConfig(({ command, mode }) => ({
 							},
 						},
 					}),
-			  ]
+				]
 			: []),
 	],
 
@@ -178,8 +179,8 @@ export default defineConfig(({ command, mode }) => ({
 
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
-		include: ['@publicodes\\/react-ui > react/jsx-runtime'],
-		exclude: ['@publicodes\\/react-ui', 'publicodes'],
+		include: ['@publicodes/react-ui > react/jsx-runtime'],
+		exclude: ['@publicodes/react-ui', 'publicodes'],
 	},
 
 	ssr: {
@@ -190,11 +191,24 @@ export default defineConfig(({ command, mode }) => ({
 		noExternal: [/tslib/],
 	},
 	test: {
-		environmentMatchGlobs: [
-			// all tests in source with tsx will run in happy-dom (component tests)
-			['source/**/*.test.tsx', 'happy-dom'],
-		],
 		setupFiles: ['./vitest-setup.ts'],
+		projects: [
+			{
+				extends: true,
+				test: {
+					name: 'composants',
+					include: ['source/**/*.test.tsx'],
+					environment: 'happy-dom',
+				},
+			},
+			{
+				extends: true,
+				test: {
+					name: 'unitaires',
+					include: ['{source,test}/**/*.{test,spec}.{ts,js}'],
+				},
+			},
+		],
 	},
 }))
 

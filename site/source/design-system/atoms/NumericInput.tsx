@@ -58,7 +58,7 @@ export const NumericInput = (props: NumericInputProps) => {
 	const { locale } = useLocale()
 	const step = !props.step
 		? 10 **
-		  Math.max(
+			Math.max(
 				Math.floor(
 					Math.log10(
 						Math.abs(
@@ -67,7 +67,7 @@ export const NumericInput = (props: NumericInputProps) => {
 					)
 				) - 1,
 				0
-		  )
+			)
 		: 1
 
 	const ref = useRef<HTMLInputElement>(null!)
@@ -302,8 +302,8 @@ function useSimpleNumberFieldState(
 		rawInputValue === undefined && numberValue !== undefined
 			? formatter.format(numberValue)
 			: rawInputValue === '' || (!rawInputValue && props.placeholder == null)
-			? defaultInputValue
-			: rawInputValue ?? ''
+				? defaultInputValue
+				: (rawInputValue ?? '')
 
 	const updateInputValue = useCallback(
 		(value: number | undefined) => {

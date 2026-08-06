@@ -158,8 +158,8 @@ const DoubleRowContainer = styled.div<DoubleRowContainerProps>`
 		$double
 			? css`
 					grid-row: span 2;
-			  `
+				`
 			: css`
 					margin-bottom: ${({ theme }) => theme.spacings.lg};
-			  `}
+				`}
 `

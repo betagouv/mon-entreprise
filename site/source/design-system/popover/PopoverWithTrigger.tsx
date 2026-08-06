@@ -81,7 +81,7 @@ export function PopoverWithTrigger({
 						{typeof children === 'function'
 							? children(() => {
 									state.close()
-							  })
+								})
 							: children}
 					</Popover>
 				</ForceThemeProvider>

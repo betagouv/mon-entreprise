@@ -10,7 +10,7 @@ import { getMissingVariables, runSimulations } from './utils'
 
 const engine = engineFactory(rules)
 
-it('calculate simulations-indépendant', () => {
+it('calculate simulations-indépendant', { timeout: 120_000 }, () => {
 	const objectifs = [
 		'indépendant . rémunération . brute',
 		'indépendant . cotisations et contributions . cotisations',

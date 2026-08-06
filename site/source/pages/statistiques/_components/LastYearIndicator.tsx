@@ -108,8 +108,8 @@ export function LastYearIndicator({
 							cumulSatisfaction.total < 20
 								? 'error'
 								: cumulSatisfaction.total < 100
-								? 'info'
-								: 'primary'
+									? 'info'
+									: 'primary'
 						}
 					>
 						<Intro>

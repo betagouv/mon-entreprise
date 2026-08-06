@@ -52,11 +52,11 @@ export function vérifieActivitéNonProfessionnelle(
 			? {
 					montant: situation.revenuNet.value,
 					seuil: SEUIL_PROFESSIONNALISATION.CHAMBRE_HÔTE,
-			  }
+				}
 			: {
 					montant: situation.recettes.value,
 					seuil: SEUIL_PROFESSIONNALISATION.MEUBLÉ,
-			  }
+				}
 
 	return Either.left(
 		new AffiliationObligatoire({

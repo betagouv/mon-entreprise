@@ -35,13 +35,13 @@ const BaseListStyle = css<ListProps>`
 			? css`
 					font-size: ${({ theme }) => theme.fontSizes.min};
 					line-height: ${({ theme }) => theme.lineHeights.sm};
-			  `
+				`
 			: size === 'XL' &&
-			  css`
+				css`
 					font-size: ${({ theme }) => theme.fontSizes.xl};
 					line-height: ${({ theme }) => theme.lineHeights.lg};
 					padding-left: 2rem;
-			  `}
+				`}
 
 	> ${Li} {
 		position: relative;
@@ -90,12 +90,12 @@ export const Ol = styled.ol<ListProps>`
 			? css`
 					font-size: ${({ theme }) => theme.fontSizes.min};
 					line-height: ${({ theme }) => theme.lineHeights.sm};
-			  `
+				`
 			: size === 'XL' &&
-			  css`
+				css`
 					font-size: ${({ theme }) => theme.fontSizes.xl};
 					line-height: ${({ theme }) => theme.lineHeights.lg};
-			  `}
+				`}
 
 	${Li} {
 		counter-increment: step-counter;
@@ -105,11 +105,11 @@ export const Ol = styled.ol<ListProps>`
 			size === 'XS'
 				? css`
 						padding-left: ${theme.spacings.lg};
-				  `
+					`
 				: size === 'XL' &&
-				  css`
+					css`
 						padding-left: ${theme.spacings.xxl};
-				  `}
+					`}
 	}
 	${Li}::before {
 		content: counter(step-counter);
@@ -132,13 +132,13 @@ export const Ol = styled.ol<ListProps>`
 						font-size: ${({ theme }) => theme.fontSizes.min};
 						width: ${theme.spacings.md};
 						height: ${theme.spacings.md};
-				  `
+					`
 				: size === 'XL' &&
-				  css`
+					css`
 						font-size: ${({ theme }) => theme.fontSizes.xl};
 						width: ${theme.spacings.xl};
 						height: ${theme.spacings.xl};
-				  `}
+					`}
 		`}
 	}
 `

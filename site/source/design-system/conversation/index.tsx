@@ -57,9 +57,9 @@ export function Conversation({
 	const focusFirstElemInForm = useCallback(() => {
 		setTimeout(() => {
 			formRef.current
-				?.querySelector<HTMLInputElement | HTMLButtonElement | HTMLLinkElement>(
-					'input, button, a'
-				)
+				?.querySelector<
+					HTMLInputElement | HTMLButtonElement | HTMLLinkElement
+				>('input, button, a')
 				?.focus()
 		}, 5)
 	}, [])

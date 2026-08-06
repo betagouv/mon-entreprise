@@ -104,7 +104,7 @@ export const éligibilité = (situation: SituationCMG): FonctionÉligibilité =>
 				: E.right({
 						estÉligible: true,
 						montantCT: M.euros(0),
-				  } as Éligible)
+					} as Éligible)
 		),
 		E.mapLeft(A.dedupe)
 	)

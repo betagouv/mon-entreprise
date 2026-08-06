@@ -44,13 +44,13 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 			<td>
 				{partPatronale?.nodeValue
 					? signePlusOuMoins +
-					  formatValue(partPatronale, { displayedUnit: '€', language })
+						formatValue(partPatronale, { displayedUnit: '€', language })
 					: '–'}
 			</td>
 			<td>
 				{partSalariale?.nodeValue
 					? signePlusOuMoins +
-					  formatValue(partSalariale, { displayedUnit: '€', language })
+						formatValue(partSalariale, { displayedUnit: '€', language })
 					: '–'}
 			</td>
 		</tr>

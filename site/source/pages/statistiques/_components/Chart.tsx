@@ -281,11 +281,11 @@ export const formatLegend = (key: string) =>
 	key === ACCUEIL
 		? 'visites'
 		: key === SIMULATION_COMMENCEE
-		? 'simulation commencée'
-		: key === SIMULATION_TERMINEE
-		? 'simulation terminée'
-		: key === 'declaration_resultat'
-		? 'déclaration résultat'
-		: key === 'declaration_revenu'
-		? 'déclaration revenu'
-		: key.replace(/_/g, ' ')
+			? 'simulation commencée'
+			: key === SIMULATION_TERMINEE
+				? 'simulation terminée'
+				: key === 'declaration_resultat'
+					? 'déclaration résultat'
+					: key === 'declaration_revenu'
+						? 'déclaration revenu'
+						: key.replace(/_/g, ' ')

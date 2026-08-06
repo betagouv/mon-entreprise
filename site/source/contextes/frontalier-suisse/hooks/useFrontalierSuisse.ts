@@ -20,7 +20,7 @@ export const useFrontalierSuisse = () => {
 		? annéeDesRevenus(
 				situation.dateAffiliation.value,
 				Option.getOrUndefined(situation.dateFinAffiliation)
-		  )
+			)
 		: annéeDeSimulation()
 
 	const set = useMemo(

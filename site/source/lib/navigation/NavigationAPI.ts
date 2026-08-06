@@ -6,8 +6,10 @@ export type LinkTarget =
 	| string
 	| { pathname: string; search?: string; hash?: string }
 
-export interface LinkProps
-	extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href' | 'children'> {
+export interface LinkProps extends Omit<
+	AnchorHTMLAttributes<HTMLAnchorElement>,
+	'href' | 'children'
+> {
 	to: LinkTarget
 	children?: ReactNode
 }

@@ -6,8 +6,8 @@
 export type ImmutableType<T> = T extends (...args: unknown[]) => unknown
 	? T
 	: T extends object
-	? ImmutableIndex<T>
-	: T
+		? ImmutableIndex<T>
+		: T
 
 type ImmutableIndex<T> = Readonly<{
 	[K in keyof T]: ImmutableType<T[K]>
@@ -29,9 +29,8 @@ type PickType<T, K extends AllKeys<T>> = T extends { [k in K]: unknown }
 	? T[K]
 	: undefined
 
-type PickTypeOf<T, K extends string | number | symbol> = K extends AllKeys<T>
-	? PickType<T, K>
-	: never
+type PickTypeOf<T, K extends string | number | symbol> =
+	K extends AllKeys<T> ? PickType<T, K> : never
 
 /**
  * Transform undefined value of an object to optional value
