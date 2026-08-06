@@ -2,7 +2,6 @@ import { Either, Option } from 'effect'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import { useComparateur } from '@/contextes/comparateur'
 import {
 	Accordion,
@@ -259,7 +258,6 @@ export const Comparaison = () => {
 							'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.h4',
 							'Retraite complémentaire'
 						)}
-						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.body">
@@ -703,7 +701,6 @@ export const Comparaison = () => {
 							'pages.simulateurs.comparaison-statuts.items.gestion.création.h4',
 							'Coût de création'
 						)}
-						<ExplicableRule dottedName="entreprise . coût formalités . création" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.gestion.création.body">
