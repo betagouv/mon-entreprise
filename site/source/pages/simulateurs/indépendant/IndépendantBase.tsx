@@ -97,8 +97,7 @@ export default function IndépendantBase({
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur={id}
-						beta={metadata.beta}
+						metadata={metadata}
 						informationsComplémentaires={
 							<>
 								{confusionAEPossible.indexOf(id) > -1 && (

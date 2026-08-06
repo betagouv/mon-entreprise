@@ -38,8 +38,7 @@ const PageSimulateur = () => {
 			showDate={false}
 		>
 			<Simulateur
-				id={metadata.id}
-				beta={metadata.beta}
+				metadata={metadata}
 				situation={situation}
 				situationMinimaleSaisie={estSituationValide(situation)}
 				questionsPrincipalesRépondues={O.isSome(situation.dateAffiliation)}

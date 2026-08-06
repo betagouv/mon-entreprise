@@ -46,8 +46,7 @@ export default function LodeomSimulation() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur={metadata.id}
-						beta={metadata.beta}
+						metadata={metadata}
 						informationsComplémentaires={
 							<Body>
 								<Trans i18nKey="pages.simulateurs.lodeom.warning">

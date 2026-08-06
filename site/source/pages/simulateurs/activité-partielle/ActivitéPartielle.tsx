@@ -68,8 +68,7 @@ export function ActivitéPartielle() {
 					}
 				>
 					<SimulateurWarning
-						simulateur={metadata.id}
-						beta={metadata.beta}
+						metadata={metadata}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

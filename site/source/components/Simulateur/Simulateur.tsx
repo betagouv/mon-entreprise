@@ -6,7 +6,7 @@ import {
 	QuestionPublicodes,
 } from '@/domaine/questions'
 import { Situation } from '@/domaine/Situation'
-import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useTracking } from '@/hooks/useTracking'
 
 import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
@@ -22,8 +22,7 @@ import {
 import { ZoneDeSaisie } from './ZoneDeSaisie'
 
 type Props<S extends Situation> = {
-	id: SimulateurId
-	beta?: boolean
+	metadata: MergedSimulatorMetadata
 	montantsÀSaisir: React.ReactNode
 	questionsPublicodesPrincipales?: QuestionPublicodes[]
 	groupesDeQuestionsPublicodes?: Record<string, GroupeDeQuestionsPublicodes>
@@ -40,8 +39,7 @@ type Props<S extends Situation> = {
 }
 
 export const Simulateur = <S extends Situation = Situation>({
-	id,
-	beta,
+	metadata,
 	montantsÀSaisir,
 	questionsPublicodesPrincipales,
 	groupesDeQuestionsPublicodes,
@@ -66,8 +64,7 @@ export const Simulateur = <S extends Situation = Situation>({
 	return (
 		<Container>
 			<SimulateurWarning
-				simulateur={id}
-				beta={beta}
+				metadata={metadata}
 				informationsComplémentaires={avertissement}
 			/>
 
