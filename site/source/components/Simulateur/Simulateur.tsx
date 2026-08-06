@@ -29,7 +29,6 @@ type Props<S extends Situation> = {
 	questionsFourniesPrincipales?: ComposantQuestionFournie<S>[]
 	groupesDeQuestionsFournies?: Record<string, GroupeDeQuestionsFournies<S>>
 	situation?: S
-	situationMinimaleSaisie?: boolean
 	questionsPrincipalesRépondues?: boolean
 	onReset: () => void
 	avertissement?: React.ReactNode
@@ -46,7 +45,6 @@ export const Simulateur = <S extends Situation = Situation>({
 	questionsFourniesPrincipales,
 	groupesDeQuestionsFournies,
 	situation,
-	situationMinimaleSaisie,
 	questionsPrincipalesRépondues,
 	onReset,
 	avertissement,
@@ -86,7 +84,7 @@ export const Simulateur = <S extends Situation = Situation>({
 			<Actions
 				conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 				avecBoutonDétails={!!détail}
-				avecBoutonPartage={situationMinimaleSaisie}
+				avecBoutonPartage={simulationEstCommencée}
 			/>
 
 			{détail && (

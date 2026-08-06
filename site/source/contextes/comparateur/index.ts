@@ -14,7 +14,6 @@ export {
 	initialSituationComparée,
 	simulationEstCommencée,
 	type SituationComparée,
-	type SituationComparéeValide,
 } from './domaine/situation'
 export {
 	type ÉlémentComparé,
