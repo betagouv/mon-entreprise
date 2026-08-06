@@ -4,16 +4,16 @@ import {
 	NomModèle,
 	PublicodesSimulationConfig,
 } from '@/domaine/PublicodesSimulationConfig'
-import { PageMetadata } from '@/pages/simulateurs/_configs/types'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 
 import { useEngineFromModèle } from './useEngineFromModèle'
 import { useQuestionsPublicodes } from './useQuestionsPublicodes'
 import useSetSimulationFromSearchParams from './useSetSimulationFromSearchParams'
 import useSimulationConfig from './useSimulationConfig'
+import { MergedSimulatorMetadata } from './useSimulatorsMetadata'
 
 export default function useSimulationPublicodes(
-	{ id, path }: Pick<PageMetadata, 'id' | 'path'>,
+	{ id, path }: MergedSimulatorMetadata,
 	simulation: PublicodesSimulationConfig
 ) {
 	const nomModèle = simulation.nomModèle as NomModèle
