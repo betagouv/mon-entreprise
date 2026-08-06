@@ -1,3 +1,4 @@
+import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
 import rules from 'modele-as'
@@ -7,6 +8,7 @@ import { Trans } from 'react-i18next'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import {
+	estPositif,
 	euros,
 	eurosParAn,
 	eurosParJour,
@@ -46,15 +48,19 @@ const initEngine = () => {
 	return engine
 }
 
-const setRevenuBrut = () => {
-	if (O.isNone(chiffreDAffaires)) {
+const getRémunérationTotale = () => {
+	return pipe(
+		chiffreDAffaires,
+		O.map(moins(O.getOrElse(charges, () => eurosParAn(0))))
+	)
+}
+
+const setRémunérationTotale = () => {
+	const rémunérationTotale = getRémunérationTotale()
+
+	if (O.isNone(rémunérationTotale)) {
 		return
 	}
-
-	const revenuBrut = moins(
-		chiffreDAffaires.value,
-		O.getOrElse(charges, () => eurosParAn(0))
-	)
 
 	if (!engine) {
 		engine = initEngine()
@@ -62,12 +68,17 @@ const setRevenuBrut = () => {
 
 	engine.setSituation(
 		{
-			'assimilé salarié . rémunération . totale': PublicodesAdapter.encode(
-				O.some(revenuBrut)
-			),
+			'assimilé salarié . rémunération . totale':
+				PublicodesAdapter.encode(rémunérationTotale),
 		},
 		{ keepPreviousSituation: true }
 	)
+}
+
+const rémunérationEstPositive = () => {
+	const rémunérationTotale = getRémunérationTotale()
+
+	return O.isSome(rémunérationTotale) && estPositif(rémunérationTotale.value)
 }
 
 export const ModèleAssimiléSalarié: ModèleComparable = {
@@ -76,12 +87,12 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
 			chiffreDAffaires = montant
-			setRevenuBrut()
+			setRémunérationTotale()
 		},
 
 		charges: (montant: O.Option<MontantRécurrent>) => {
 			charges = montant
-			setRevenuBrut()
+			setRémunérationTotale()
 		},
 
 		réponse: (question, valeur) => {
@@ -210,13 +221,19 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 					eurosParMois(0)
 				) as MontantRécurrentDocumenté
 
-				const calculNetAprèsImpôt = engine.evaluate(
-					'assimilé salarié . rémunération . nette . après impôt'
-				)
-				revenuNetAprèsImpôt = O.getOrElse(
-					PublicodesAdapter.decode(calculNetAprèsImpôt),
-					() => eurosParMois(0)
-				) as MontantRécurrentDocumenté
+				if (!estPositif(bénéfice)) {
+					revenuNetAprèsImpôt = O.getOrElse(getRémunérationTotale(), () =>
+						eurosParMois(0)
+					) as MontantRécurrentDocumenté
+				} else {
+					const calculNetAprèsImpôt = engine.evaluate(
+						'assimilé salarié . rémunération . nette . après impôt'
+					)
+					revenuNetAprèsImpôt = O.getOrElse(
+						PublicodesAdapter.decode(calculNetAprèsImpôt),
+						() => eurosParMois(0)
+					) as MontantRécurrentDocumenté
+				}
 			}
 
 			bénéfice.documentationRule = 'assimilé salarié . rémunération . totale'
@@ -233,7 +250,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			let cotisations = eurosParMois(0) as MontantRécurrentDocumenté
 			let impôt = eurosParMois(0) as MontantRécurrentDocumenté
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculCotisations = engine.evaluate(
 					'assimilé salarié . cotisations'
 				)
@@ -265,7 +282,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			let pointsComplémentaire = pointsParAn(0) as QuantitéDocumentée
 			let valeurPointComplémentaire = eurosParAn(0) as MontantRécurrentDocumenté
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculTrimestres = engine.evaluate(
 					'protection sociale . retraite . base . trimestres'
 				)
@@ -334,7 +351,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			délaiAttente.documentationRule =
 				"protection sociale . maladie . arrêt maladie . délai d'attente"
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculIndemnitésArrêtMaladie = engine.evaluate(
 					'protection sociale . maladie . arrêt maladie'
 				)
@@ -391,7 +408,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 				0
 			) as MontantRécurrentDocumenté
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculIndemnitésMaternitéPaternitéAdoption = engine.evaluate(
 					'protection sociale . maladie . maternité paternité adoption'
 				)
@@ -417,7 +434,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			let pensionInvaliditéTotale = eurosParMois(0) as MontantRécurrentDocumenté
 			let renteIncapacitéATMP = eurosParMois(0) as MontantRécurrentDocumenté
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculPensionInvaliditéPartielle = engine.evaluate(
 					'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
 				)
@@ -463,7 +480,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			let capitalDécès = euros(0) as MontantDocumenté
 			let renteDécèsATMP = eurosParMois(0) as MontantRécurrentDocumenté
 
-			if (engine) {
+			if (engine && rémunérationEstPositive()) {
 				const calculPensionDeRéversion = engine.evaluate(
 					'protection sociale . invalidité et décès . pension de reversion'
 				)
