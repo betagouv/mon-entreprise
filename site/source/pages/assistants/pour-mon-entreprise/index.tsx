@@ -6,6 +6,8 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { useOverlayTriggerState } from 'react-stately'
 import { styled } from 'styled-components'
 
+import growth from '@/assets/images/illustrations/croissance.svg'
+import forms from '@/assets/images/illustrations/formes.svg'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
@@ -44,8 +46,6 @@ import { companySituationSelector } from '@/store/selectors/company/companySitua
 import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
-import growth from '@/assets/images/illustrations/croissance.svg'
-import forms from '@/assets/images/illustrations/formes.svg'
 import { pourMonEntrepriseMetadata } from './metadata'
 import { configPourMonEntreprise } from './simulationConfig'
 
