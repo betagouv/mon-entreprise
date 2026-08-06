@@ -89,8 +89,7 @@ export default function CoutCreationEntreprise() {
 					}
 				>
 					<SimulateurWarning
-						simulateur={metadata.id}
-						beta={metadata.beta}
+						metadata={metadata}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

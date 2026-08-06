@@ -101,8 +101,7 @@ export function AutoEntrepreneur() {
 					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
-						simulateur={metadata.id}
-						beta={metadata.beta}
+						metadata={metadata}
 						informationsComplémentaires={
 							<Ul>
 								<DarkLi>

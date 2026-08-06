@@ -4,25 +4,23 @@ import { Trans } from 'react-i18next'
 import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
 import Warning from '@/components/ui/WarningBlock'
 import { Body, Emoji, Strong } from '@/design-system'
-import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
+import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
 type SimulateurWarningProps = {
-	simulateur: SimulateurId
-	beta?: boolean
+	metadata: MergedSimulatorMetadata
 	informationsComplémentaires?: ReactNode
 }
 
 export default function SimulateurWarning({
-	simulateur,
-	beta,
+	metadata,
 	informationsComplémentaires,
 }: SimulateurWarningProps) {
 	return (
 		<>
 			<Warning
-				localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
+				localStorageKey={'app::simulateurs:warning-folded:v1:' + metadata.id}
 			>
-				{beta && (
+				{metadata.beta && (
 					<Body>
 						<Emoji emoji="🚧" />{' '}
 						<Trans i18nKey="simulateurs.warning.beta">
