@@ -23,6 +23,7 @@ import {
 } from '@/design-system'
 import {
 	arrondirÀLEuro,
+	estZéro,
 	MontantRécurrent,
 	montantToString,
 	plus,
@@ -103,12 +104,19 @@ export const Comparaison = () => {
 						élémentComparé="revenuNetAprèsImpôt"
 						convertisseur={toEurosParMois}
 						footer={(résultatModèle) => {
+							const revenu = résultatModèle.revenu()
+							const dépenses = résultatModèle.dépenses()
+
+							if (estZéro(revenu.bénéfice)) {
+								return
+							}
+
 							const revenuAvantImpôt = montantToString(
 								arrondirÀLEuro(
 									toEurosParMois(
 										plus(
-											résultatModèle.revenu().revenuNetAprèsImpôt,
-											résultatModèle.dépenses().impôt
+											revenu.revenuNetAprèsImpôt,
+											dépenses.impôt
 										) as MontantRécurrent
 									)
 								)
@@ -118,8 +126,8 @@ export const Comparaison = () => {
 								arrondirÀLUnité(
 									Either.getOrThrow(
 										pourcentageParRapportÀ(
-											résultatModèle.dépenses().cotisations,
-											résultatModèle.revenu().bénéfice
+											dépenses.cotisations,
+											revenu.bénéfice
 										)
 									)
 								)
@@ -128,7 +136,7 @@ export const Comparaison = () => {
 								arrondirÀLUnité(
 									Either.getOrThrow(
 										pourcentageParRapportÀ(
-											résultatModèle.dépenses().cotisations as MontantRécurrent,
+											dépenses.cotisations as MontantRécurrent,
 											Option.getOrThrow(situation.chiffreDAffaires)
 										)
 									)

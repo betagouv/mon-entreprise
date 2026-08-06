@@ -1,6 +1,11 @@
 import * as O from 'effect/Option'
 
-import { eurosParAn, Montant, MontantRécurrent } from '@/domaine/Montant'
+import {
+	estPositif,
+	eurosParAn,
+	Montant,
+	MontantRécurrent,
+} from '@/domaine/Montant'
 import { quantité, Quantité } from '@/domaine/Quantite'
 import { Situation } from '@/domaine/Situation'
 
@@ -59,7 +64,9 @@ export const initialSituationComparée: SituationComparée = {
 
 export const estSituationValide = (
 	situation: SituationComparée
-): situation is SituationComparéeValide => O.isSome(situation.chiffreDAffaires)
+): situation is SituationComparéeValide =>
+	O.isSome(situation.chiffreDAffaires) &&
+	estPositif(situation.chiffreDAffaires.value)
 
 export const simulationEstCommencée = (situation: SituationComparée): boolean =>
 	Object.keys(situation).some(
