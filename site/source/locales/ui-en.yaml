@@ -1570,7 +1570,6 @@ pages:
     commun:
       date: Date of regulations used for calculations
       documentation: Documentation
-      pas-défini: Not yet defined
       periode-calcul: Calculation period
       previousSimulationBanner:
         bouton:
@@ -1766,16 +1765,8 @@ pages:
       option-non-applicable: Option not applicable.
       option-sous-conditions: Option available subject to conditions.
       questions:
-        TVA:
-          libellé: Company subject to VAT
-          titre: VAT
         acre:
           libellé: Acre
-        activité:
-          principale: Main activity
-          réglementée: Regulated activity
-          titre: Activity
-          type: Type of activity
         activité-nature:
           artisanale:
             label: Handcrafted
@@ -1796,11 +1787,6 @@ pages:
           libellé: Other taxable income
         enfants:
           libellé: Dependent children
-        foyer-fiscal:
-          enfants: Dependent children
-          parent-isolé: Single parent
-          situation: Marital Status
-          titre: Tax Household
         groupe:
           TVA: VAT
           acre: Acre
@@ -1808,9 +1794,6 @@ pages:
           autres-revenus: Other taxable income
           foyer-fiscal: Tax Household
           impôt: Method for Calculating Income Tax
-        impôt:
-          méthode: Income tax calculation method
-          taux: Tax rates
         méthode-impôt:
           barème:
             label: using the standard scale
@@ -1835,7 +1818,6 @@ pages:
         activité:
           artisanale: Handcrafted
           commerciale: Sales
-          libérale: Liberal
           libérale-non-réglementée: Unregulated private practice
           libérale-réglementée: Regulated private practice
           service: service provision

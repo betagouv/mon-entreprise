@@ -8,6 +8,9 @@ import { EnfantsQuestion } from './EnfantsQuestion'
 import { MéthodeImpôtQuestion } from './MethodeImpotQuestion'
 import { NatureActivitéQuestion } from './NatureActivitéQuestion'
 import { ParentIsoléQuestion } from './ParentIsoleQuestion'
+import { RéponseActivité } from './ReponseActivite'
+import { RéponseFoyerFiscal } from './ReponseFoyerFiscal'
+import { RéponseImpôt } from './ReponseImpot'
 import { SituationFamilialeQuestion } from './SituationFamilialeQuestion'
 import { TauxImpositionQuestion } from './TauxImpositionQuestion'
 import { TVAQuestion } from './TVAQuestion'
@@ -30,7 +33,7 @@ export const groupesDeQuestions: Record<
 				'pages.simulateurs.comparaison-statuts.questions.groupe.activité',
 				'Activité'
 			),
-		// Réponse: RéponseAffiliation,
+		Réponse: RéponseActivité,
 		liste: [
 			NatureActivitéQuestion,
 			TypeActivitéQuestion,
@@ -53,7 +56,7 @@ export const groupesDeQuestions: Record<
 				'pages.simulateurs.comparaison-statuts.questions.groupe.impôt',
 				'Méthode de calcul de l’impôt sur le revenu'
 			),
-		// Réponse: RéponseImpôt,
+		Réponse: RéponseImpôt,
 		liste: [MéthodeImpôtQuestion, TauxImpositionQuestion],
 	},
 	foyerFiscal: {
@@ -62,7 +65,7 @@ export const groupesDeQuestions: Record<
 				'pages.simulateurs.comparaison-statuts.questions.groupe.foyer-fiscal',
 				'Foyer fiscal'
 			),
-		// Réponse: RéponseFoyerFiscal,
+		Réponse: RéponseFoyerFiscal,
 		liste: [SituationFamilialeQuestion, EnfantsQuestion, ParentIsoléQuestion],
 	},
 	autresRevenus: {

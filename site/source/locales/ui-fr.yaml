@@ -1654,7 +1654,6 @@ pages:
     commun:
       date: Date de la réglementation utilisée pour les calculs
       documentation: Documentation
-      pas-défini: Pas encore défini
       periode-calcul: Période de calcul
       previousSimulationBanner:
         bouton:
@@ -1855,16 +1854,8 @@ pages:
       option-non-applicable: Option non applicable.
       option-sous-conditions: Option applicable sous conditions.
       questions:
-        TVA:
-          libellé: Entreprise assujettie à la TVA
-          titre: TVA
         acre:
           libellé: Acre
-        activité:
-          principale: Activité principale
-          réglementée: Activité réglementée
-          titre: Activité
-          type: Type d’activité
         activité-nature:
           artisanale:
             label: Artisanale
@@ -1885,11 +1876,6 @@ pages:
           libellé: Autres revenus imposables
         enfants:
           libellé: Enfants à charge
-        foyer-fiscal:
-          enfants: Enfants à charge
-          parent-isolé: Parent isolé
-          situation: Situation de famille
-          titre: Foyer fiscal
         groupe:
           TVA: TVA
           acre: Acre
@@ -1897,9 +1883,6 @@ pages:
           autres-revenus: Autres revenus imposables
           foyer-fiscal: Foyer fiscal
           impôt: Méthode de calcul de l’impôt sur le revenu
-        impôt:
-          méthode: Méthode de calcul de l’impôt sur le revenu
-          taux: Taux d’imposition
         méthode-impôt:
           barème:
             label: avec le barème standard
@@ -1924,7 +1907,6 @@ pages:
         activité:
           artisanale: Artisanale
           commerciale: Commerciale
-          libérale: Libérale
           libérale-non-réglementée: Libérale non réglementée
           libérale-réglementée: Libérale réglementée
           service: prestation de service
