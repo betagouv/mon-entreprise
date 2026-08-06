@@ -5,6 +5,7 @@ assimilé salarié . cotisations:
   somme:
     - employeur
     - salarié
+  unité: €/mois
 
   avec:
     employeur:
