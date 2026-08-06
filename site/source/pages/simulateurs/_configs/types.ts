@@ -108,10 +108,10 @@ export interface PageMetadataParams {
 	language: string
 }
 
-export function parId<Base extends ImmutableType<PageMetadata>>(
-	base: ImmutableType<PageMetadata> & Base
+export function parId<Métadonnée extends ImmutableType<PageMetadata>>(
+	métadonnée: ImmutableType<PageMetadata> & Métadonnée
 ) {
 	return {
-		[base.id]: base,
-	} as ImmutableType<{ [k in Base['id']]: Base }>
+		[métadonnée.id]: métadonnée,
+	} as ImmutableType<{ [k in Métadonnée['id']]: Métadonnée }>
 }
