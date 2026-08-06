@@ -33,19 +33,9 @@ export type Question = keyof Omit<
 
 export type Réponse<T extends Question> = SituationComparée[T]
 
-interface SituationComparéeBarèmeValide extends SituationComparée {
+interface SituationComparéeValide extends SituationComparée {
 	chiffreDAffaires: O.Some<MontantRécurrent>
-	méthodeImposition: 'barème standard'
 }
-interface SituationComparéeTauxPersoValide extends SituationComparée {
-	chiffreDAffaires: O.Some<MontantRécurrent>
-	méthodeImposition: 'taux personnalisé'
-	tauxImposition: O.Some<Quantité<'%'>>
-}
-
-export type SituationComparéeValide =
-	| SituationComparéeBarèmeValide
-	| SituationComparéeTauxPersoValide
 
 export const initialSituationComparée: SituationComparée = {
 	_tag: 'Situation',
@@ -69,10 +59,11 @@ export const initialSituationComparée: SituationComparée = {
 
 export const estSituationValide = (
 	situation: SituationComparée
-): situation is SituationComparéeValide =>
-	O.isSome(situation.chiffreDAffaires) &&
-	(situation.méthodeImposition === 'barème standard' ||
-		O.isSome(situation.tauxImposition))
+): situation is SituationComparéeValide => O.isSome(situation.chiffreDAffaires)
 
 export const simulationEstCommencée = (situation: SituationComparée): boolean =>
-	O.isSome(situation.chiffreDAffaires) || O.isSome(situation.charges)
+	Object.keys(situation).some(
+		(élémentSituation) =>
+			situation[élémentSituation as keyof SituationComparée] !==
+			initialSituationComparée[élémentSituation as keyof SituationComparée]
+	)
