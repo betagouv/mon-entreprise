@@ -14,6 +14,7 @@
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"test": "vitest",
+		"test:smoke": "bash ./scripts/smoke-test.sh",
 		"test:type": "tsc --noEmit",
 		"postinstall": "yarn build:openapi",
 		"start": "yarn clean && yarn build:watch & wait-on ./dist && nodemon -d 1s ./dist/",
