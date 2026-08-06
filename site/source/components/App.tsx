@@ -1,7 +1,7 @@
 import { ErrorBoundary } from '@sentry/react'
 import { StrictMode } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { css, styled } from 'styled-components'
+import { styled } from 'styled-components'
 
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
@@ -9,7 +9,6 @@ import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
 import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
@@ -65,7 +64,6 @@ const App = () => {
 	useSaveAndRestoreScrollPosition()
 	usePlausibleTracking()
 
-	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
@@ -79,8 +77,8 @@ const App = () => {
 	const engineModèleAS = useEngineFromModèle('modele-as')
 
 	return (
-		<StyledLayout $isEmbedded={isEmbedded}>
-			{!isEmbedded && <Header />}
+		<StyledLayout>
+			<Header />
 
 			<main
 				role="main"
@@ -166,16 +164,10 @@ const App = () => {
 	)
 }
 
-const StyledLayout = styled.div<{
-	$isEmbedded: boolean
-}>`
-	${({ $isEmbedded }) =>
-		!$isEmbedded &&
-		css`
-			flex-direction: column;
-			display: flex;
-			height: 100%;
-		`}
+const StyledLayout = styled.div`
+	flex-direction: column;
+	display: flex;
+	height: 100%;
 
 	min-height: 100vh;
 `
