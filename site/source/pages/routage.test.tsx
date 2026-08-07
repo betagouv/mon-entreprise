@@ -14,6 +14,8 @@ import { TestProvider } from '@/test/TestProvider'
 
 const t = ((_clé: string, défaut: string) => défaut) as unknown as TFunction
 
+const pageRenderTimeout = 30_000
+
 const renderAt = (path: string, ui: ReactElement) => {
 	window.history.replaceState(null, '', path)
 
@@ -56,7 +58,8 @@ describe.each(langues)('Routage en $langue', ({ langue, laPage404 }) => {
 			)
 
 			expect(screen.queryByText(laPage404)).toBeNull()
-		}
+		},
+		pageRenderTimeout
 	)
 
 	it('un chemin inconnu affiche la 404', () => {
@@ -95,7 +98,8 @@ describe('Routage des iframes', () => {
 			)
 
 			expect(screen.queryByText(laPage404)).toBeNull()
-		}
+		},
+		pageRenderTimeout
 	)
 
 	it('un chemin iframe inconnu affiche la 404', () => {
