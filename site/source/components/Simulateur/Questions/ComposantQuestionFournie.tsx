@@ -4,7 +4,7 @@ import { TFunction } from 'i18next'
 import { Situation } from '@/domaine/Situation'
 
 export type ComposantQuestionFournie<S extends Situation> =
-	React.FunctionComponent & {
+	React.FunctionComponent<{ labelId?: string }> & {
 		_tag: 'QuestionFournie'
 		id: string
 		libellé: (t: TFunction) => string
