@@ -1,0 +1,43 @@
+name: Déploiement Next.js sur Clever Cloud
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - langue: fr
+            app_id_secret: CLEVER_APP_ID_NEXT_FR
+          - langue: en
+            app_id_secret: CLEVER_APP_ID_NEXT_EN
+    concurrency:
+      group: deploy-next-clevercloud-${{ matrix.langue }}
+      cancel-in-progress: false
+    env:
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+      CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
+      CLEVER_APP_ID: ${{ secrets[matrix.app_id_secret] }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: '24'
+      - name: Install clever-tools
+        run: npm install --global clever-tools@4.11.0
+      - name: Link Clever Cloud application
+        run: clever link --org "$CLEVER_ORGA_ID" "$CLEVER_APP_ID"
+      - name: Apply Clever Cloud configuration
+        run: clever env import < "clevercloud/next-${{ matrix.langue }}.env"
+      - name: Deploy
+        run: clever deploy --force --same-commit-policy rebuild

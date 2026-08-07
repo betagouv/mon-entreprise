@@ -15,6 +15,9 @@ storybook-static/
 # Local Netlify folder
 .netlify
 
+# Local Clever Cloud link
+.clever.json
+
 # IDE
 .idea/
 .vscode/
