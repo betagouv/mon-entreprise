@@ -29,7 +29,7 @@ describe('Montant', () => {
 	describe('constructeurs', () => {
 		it('crée correctement un montant en euros', () => {
 			const montant = euros(100)
-			expect(montantToString(montant)).toBe('100 €')
+			expect(montantToString(montant)).toBe('100\u00a0€')
 			expect(montant.unité).toBe('€')
 			expect(Equal.equals(montant, euros(100))).toBe(true)
 		})
@@ -37,13 +37,13 @@ describe('Montant', () => {
 		it('crée correctement un montant en euros par mois', () => {
 			const montant = eurosParMois(100)
 			expect(montant.unité).toBe('€/mois')
-			expect(montantToString(montant)).toBe('100 €/mois')
+			expect(montantToString(montant)).toBe('100\u00a0€/mois')
 		})
 
 		it('crée correctement un montant en euros annuels', () => {
 			const montant = eurosParAn(100)
 			expect(montant.unité).toBe('€/an')
-			expect(montantToString(montant)).toBe('100 €/an')
+			expect(montantToString(montant)).toBe('100\u00a0€/an')
 		})
 
 		it('arrondi automatiquement au centime', () => {
