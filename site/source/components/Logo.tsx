@@ -30,8 +30,8 @@ export function Logo() {
 						? logoSvgFRDark
 						: logoSvgFR
 					: isDarkModeEnabled
-					? logoSvgENDark
-					: logoSvgEN
+						? logoSvgENDark
+						: logoSvgEN
 			)}
 		/>
 	)

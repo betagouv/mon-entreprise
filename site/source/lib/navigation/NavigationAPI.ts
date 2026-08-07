@@ -26,11 +26,10 @@ export type NavLinkState = {
 	isTransitioning: boolean
 }
 
-export interface NavLinkProps
-	extends Omit<
-		AnchorHTMLAttributes<HTMLAnchorElement>,
-		'href' | 'style' | 'className' | 'children'
-	> {
+export interface NavLinkProps extends Omit<
+	AnchorHTMLAttributes<HTMLAnchorElement>,
+	'href' | 'style' | 'className' | 'children'
+> {
 	to: LinkTarget
 	end?: boolean
 	ref?: Ref<HTMLAnchorElement>
