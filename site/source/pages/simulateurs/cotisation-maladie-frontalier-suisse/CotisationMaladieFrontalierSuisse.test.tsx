@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it } from 'vitest'
 
@@ -11,10 +11,10 @@ const saisirDateAffiliation = async (
 	user: ReturnType<typeof userEvent.setup>,
 	dateAffiliation: string
 ) => {
-	const question = await screen.findByRole('group', {
+	const champ = await screen.findByRole('textbox', {
 		name: /date de début d.affiliation/i,
 	})
-	await user.type(within(question).getByRole('textbox'), dateAffiliation)
+	await user.type(champ, dateAffiliation)
 }
 
 const saisirSituationComplète = async (
@@ -55,10 +55,9 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		expect(
 			await screen.findByText(/Cotisation maladie annuelle/i)
 		).toBeInTheDocument()
-		const question = screen.getByRole('group', {
-			name: /date de début d.affiliation/i,
-		})
-		expect(within(question).getByRole('textbox')).toHaveValue('15/01/2026')
+		expect(
+			screen.getByRole('textbox', { name: /date de début d.affiliation/i })
+		).toHaveValue('15/01/2026')
 	})
 
 	it('affiche les trois champs de saisie au montage', async () => {
@@ -69,7 +68,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		)
 
 		expect(
-			await screen.findByRole('group', {
+			await screen.findByRole('textbox', {
 				name: /date de début d.affiliation/i,
 			})
 		).toBeInTheDocument()
@@ -84,7 +83,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await screen.findByRole('group', {
+		await screen.findByRole('textbox', {
 			name: /date de début d.affiliation/i,
 		})
 
@@ -146,7 +145,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await screen.findByRole('group', {
+		await screen.findByRole('textbox', {
 			name: /date de début d.affiliation/i,
 		})
 		expect(
@@ -168,7 +167,7 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 			</TestProvider>
 		)
 
-		await screen.findByRole('group', {
+		await screen.findByRole('textbox', {
 			name: /date de début d.affiliation/i,
 		})
 		expect(
@@ -206,10 +205,10 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		await user.click(
 			await screen.findByRole('button', { name: /modifier affiliation/i })
 		)
-		const questionFin = await screen.findByRole('group', {
+		const champFin = await screen.findByRole('textbox', {
 			name: /date de fin d.affiliation/i,
 		})
-		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
+		await user.type(champFin, '30/09/2026')
 
 		expect(await screen.findByText(/au prorata/i)).toBeInTheDocument()
 	})
@@ -246,10 +245,10 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		await user.click(
 			await screen.findByRole('button', { name: /modifier affiliation/i })
 		)
-		const questionFin = await screen.findByRole('group', {
+		const champFin = await screen.findByRole('textbox', {
 			name: /date de fin d.affiliation/i,
 		})
-		await user.type(within(questionFin).getByRole('textbox'), '30/09/2026')
+		await user.type(champFin, '30/09/2026')
 		await user.click(
 			screen.getByRole('button', { name: /revenir à la liste/i })
 		)
@@ -276,10 +275,10 @@ describe('Simulateur cotisation maladie frontalier suisse', () => {
 		await user.click(
 			await screen.findByRole('button', { name: /modifier affiliation/i })
 		)
-		const questionFin = await screen.findByRole('group', {
+		const champFin = await screen.findByRole('textbox', {
 			name: /date de fin d.affiliation/i,
 		})
-		await user.type(within(questionFin).getByRole('textbox'), '30/09/2025')
+		await user.type(champFin, '30/09/2025')
 
 		expect(
 			await screen.findByText(/antérieure à la date de début/i)

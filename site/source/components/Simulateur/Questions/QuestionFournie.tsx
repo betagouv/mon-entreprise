@@ -25,13 +25,15 @@ export const QuestionFournie = <S extends Situation>({
 		)
 	}
 
+	const labelId = `${Question.id}-label`
+
 	return (
 		<>
-			<LabelWithMargin as="label" htmlFor={Question.id}>
+			<LabelWithMargin as="label" id={labelId} htmlFor={Question.id}>
 				{Question.libellé(t)}
 			</LabelWithMargin>
 
-			<Question />
+			<Question labelId={labelId} />
 		</>
 	)
 }

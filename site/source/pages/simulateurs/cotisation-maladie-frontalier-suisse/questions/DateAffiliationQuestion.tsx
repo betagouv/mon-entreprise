@@ -12,7 +12,7 @@ import { DateField, ValeurDate } from '@/design-system'
 
 export const DateAffiliationQuestion: ComposantQuestionFournie<
 	SituationFrontalierSuisse
-> = () => {
+> = ({ labelId }: { labelId?: string }) => {
 	const { situation, set } = useFrontalierSuisse()
 	const { t } = useTranslation()
 
@@ -24,6 +24,7 @@ export const DateAffiliationQuestion: ComposantQuestionFournie<
 	return (
 		<DateField
 			id="date-affiliation"
+			aria-labelledby={labelId}
 			defaultSelected={O.getOrUndefined(situation.dateAffiliation)}
 			onChange={handleChange}
 			validation={(date) =>
