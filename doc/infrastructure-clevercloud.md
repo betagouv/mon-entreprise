@@ -61,7 +61,7 @@ Clever Cloud n'installe pas les `devDependencies` quand `NODE_ENV=production`. O
 - **Gestionnaire de paquets** : le `yarn.lock` racine et `packageManager: yarn@4.x` font détecter `yarn-berry` automatiquement. Pas de `CC_NODE_BUILD_TOOL` ni de `yarn install` en pré-build : Clever Cloud installe déjà les dépendances du workspace depuis la racine.
 - **Port et interface d'écoute** : `next start` lit la variable `PORT` (fixée à 8080 par Clever Cloud) et écoute sur `0.0.0.0` par défaut.
 
-Le build du monorepo (compilation des modèles publicodes, puis `next build` avec vérification TypeScript) est gourmand : Clever Cloud fixe `--max-old-space-size` au 3/4 de la RAM de l'instance, le `build-flavor` des applications doit être dimensionné en conséquence.
+Le `build-flavor` des applications doit être généreux : **XL**. Ce n'est pas `next build` qui impose cette taille, mais l'installation des dépendances — `yarn install` télécharge environ 330 Mo de paquets et déploie 1,8 Go de `node_modules`. Sur une instance trop petite, le déploiement échoue dès le *Fetch step* de yarn, sur un `Error happened while running yarn install` qui ne dit pas la cause. Le `flavor` d'exécution, lui, peut rester modeste : l'application ne fait que servir un serveur Next.
 
 ## Secrets GitHub
 
