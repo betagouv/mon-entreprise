@@ -32,6 +32,7 @@ const questionFournie = <S extends Situation>(
 	Question._tag = 'QuestionFournie'
 	Question.id = id
 	Question.libellé = () => id
+	Question.typeRadioGroup = false
 	Question.applicable = applicable
 	Question.Valeur = ValeurVide
 
