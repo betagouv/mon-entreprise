@@ -119,7 +119,7 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install
       - name: Build Next
-        run: yarn workspace site build:next
+        run: yarn workspace site build:next:fr
 
   build-storybook:
     needs: deploy-context
