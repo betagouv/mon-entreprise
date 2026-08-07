@@ -65,12 +65,16 @@ Le build du monorepo (compilation des modèles publicodes, puis `next build` ave
 
 ## Secrets GitHub
 
-| Secret                  | Contenu                                                  |
-| ----------------------- | -------------------------------------------------------- |
-| `CLEVER_TOKEN`          | Token, depuis `~/.config/clever-cloud/clever-tools.json` |
-| `CLEVER_SECRET`         | Secret, même fichier                                     |
-| `CLEVER_ORGA_ID`        | ID de l'organisation Clever Cloud                        |
-| `CLEVER_APP_ID_NEXT_FR` | ID de l'application FR                                   |
-| `CLEVER_APP_ID_NEXT_EN` | ID de l'application EN                                   |
+| Secret                  | Contenu                                      |
+| ----------------------- | -------------------------------------------- |
+| `CLEVER_TOKEN`          | `.profiles."0".token`                        |
+| `CLEVER_SECRET`         | `.profiles."0".secret`                       |
+| `CLEVER_ORGA_ID`        | ID de l'organisation Clever Cloud (`orga_…`) |
+| `CLEVER_APP_ID_NEXT_FR` | ID de l'application FR (`app_…`)             |
+| `CLEVER_APP_ID_NEXT_EN` | ID de l'application EN (`app_…`)             |
 
-Utiliser un compte dédié aux GitHub Actions plutôt que des identifiants personnels.
+Le token et le secret proviennent de `~/.config/clever-cloud/clever-tools.json`, écrit par `clever login`. Ce sont des identifiants OAuth1 : ils authentifient `clever deploy` lui-même, et c'est la méthode que clever-tools recommande pour la CI. À ne pas confondre avec les jetons de `clever tokens create`, qui sont des jetons Bearer destinés à interroger l'API REST via `api-bridge.clever-cloud.com` et ne conviennent pas ici.
+
+> ⚠️ Ces identifiants **expirent au bout d'un an** — le profil porte une `expirationDate`. À échéance, les deux déploiements échouent sur une authentification refusée : refaire un `clever login` et remplacer `CLEVER_TOKEN` et `CLEVER_SECRET`.
+
+La CI déploie sous le compte de la personne qui a fait le `clever login`. Un compte de service dédié aux GitHub Actions serait préférable — les déploiements cesseraient de dépendre d'un compte individuel.
