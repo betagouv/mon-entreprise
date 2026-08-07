@@ -19,9 +19,9 @@ jobs:
       matrix:
         include:
           - langue: fr
-            app_id_secret: CLEVER_APP_ID_NEXT_FR
+            app_id_secret: CLEVER_APP_ID_FR
           - langue: en
-            app_id_secret: CLEVER_APP_ID_NEXT_EN
+            app_id_secret: CLEVER_APP_ID_EN
     concurrency:
       group: deploy-next-clevercloud-${{ matrix.langue }}
       cancel-in-progress: false

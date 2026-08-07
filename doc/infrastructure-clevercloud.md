@@ -70,8 +70,8 @@ Le build du monorepo (compilation des modèles publicodes, puis `next build` ave
 | `CLEVER_TOKEN`          | `.profiles."0".token`                        |
 | `CLEVER_SECRET`         | `.profiles."0".secret`                       |
 | `CLEVER_ORGA_ID`        | ID de l'organisation Clever Cloud (`orga_…`) |
-| `CLEVER_APP_ID_NEXT_FR` | ID de l'application FR (`app_…`)             |
-| `CLEVER_APP_ID_NEXT_EN` | ID de l'application EN (`app_…`)             |
+| `CLEVER_APP_ID_FR`      | ID de l'application FR (`app_…`)             |
+| `CLEVER_APP_ID_EN`      | ID de l'application EN (`app_…`)             |
 
 Le token et le secret proviennent de `~/.config/clever-cloud/clever-tools.json`, écrit par `clever login`. Ce sont des identifiants OAuth1 : ils authentifient `clever deploy` lui-même, et c'est la méthode que clever-tools recommande pour la CI. À ne pas confondre avec les jetons de `clever tokens create`, qui sont des jetons Bearer destinés à interroger l'API REST via `api-bridge.clever-cloud.com` et ne conviennent pas ici.
 
