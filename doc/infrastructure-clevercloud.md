@@ -28,7 +28,7 @@ La langue est figée au moment du build via la variable `LANGUE`, d'où la néce
 
 Workflow : [`.github/workflows/deploy-next-clevercloud.yaml`](../.github/workflows/deploy-next-clevercloud.yaml)
 
-Déclencheurs : `workflow_dispatch`, qui permet de déployer n'importe quelle branche depuis l'interface GitHub, et push sur `master`.
+Déclencheurs : la fin en succès du workflow « Tests sur Master », et `workflow_dispatch`, qui permet de déployer n'importe quelle branche depuis l'interface GitHub. Comme pour le déploiement Netlify, l'enchaînement passe par `workflow_run` plutôt que par un `push` direct, pour ne jamais déployer un `master` dont les tests échouent.
 
 Étapes, pour chaque langue :
 
