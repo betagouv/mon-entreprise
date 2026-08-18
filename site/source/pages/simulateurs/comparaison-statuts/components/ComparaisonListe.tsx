@@ -291,7 +291,10 @@ export const Comparaison = () => {
 
 							return (
 								<BodyNoMargin>
-									<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point">
+									<Trans
+										i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point"
+										shouldUnescape
+									>
 										Valeur du point&nbsp;:{' '}
 										<Strong>{{ valeurPointComplémentaire }}</Strong>
 									</Trans>
