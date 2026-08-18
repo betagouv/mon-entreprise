@@ -799,19 +799,19 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4175
+salarié . coût total employeur: 3760
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 2570
-salarié . rémunération . net . à payer avant impôt: 2626"
+salarié . rémunération . net . payé après impôt: 2483
+salarié . rémunération . net . à payer avant impôt: 2537"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
 "salarié . contrat . salaire brut: 30000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 42334
+salarié . coût total employeur: 36889
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 17837
-salarié . rémunération . net . à payer avant impôt: 26706
+salarié . rémunération . net . payé après impôt: 17053
+salarié . rémunération . net . à payer avant impôt: 25463
 
 Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
