@@ -265,32 +265,6 @@ salarié . cotisations . retraite complémentaire:
 #       références:
 #         Bopfip § 120: https://bofip.impots.gouv.fr/bofip/5956-PGP.html
 
-salarié . cotisations . AGS:
-  titre: Régime de garanti des salaires (AGS)
-  description: >-
-    Cette cotisations permet de garantir les salaires des employés en cas de
-    difficultés de l'entreprise (sauvegarde, redressement, liquidation). Elle
-    paie les salaires sur les 60 derniers jours de travail. Elle permet de payer
-    des préavis et des indemnités de fin de contrat.
-  cotisation:
-    branche: chômage
-  références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
-    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F31409
-  produit:
-    - valeur: cotisations . assiette
-      plafond: 4 * temps de travail . plafond sécurité sociale
-    - taux
-
-  avec:
-    taux:
-      variations:
-        - si: date >= 07/2024
-          alors: 0.25%
-        - si: date >= 01/2024
-          alors: 0.2%
-        - sinon: 0.15%
-
 salarié . cotisations . allocations familiales:
   titre: famille
   cotisation:
@@ -379,6 +353,36 @@ salarié . cotisations . assurance chômage:
     - AGS
     - chômage
 
+salarié . cotisations . AGS:
+  titre: Régime de garantie des salaires (AGS)
+  description: >-
+    Cette cotisations permet de garantir les salaires des employés en cas de
+    difficultés de l'entreprise (sauvegarde, redressement, liquidation). Elle
+    paie les salaires sur les 60 derniers jours de travail. Elle permet de payer
+    des préavis et des indemnités de fin de contrat.
+  cotisation:
+    branche: chômage
+  références:
+    L’assurance chômage et l’assurance garantie des salaires (AGS): https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
+    Régime de garantie des salaires (AGS): https://entreprendre.service-public.gouv.fr/vosdroits/F31409
+  produit:
+    - valeur: cotisations . assiette
+      plafond:
+        variations:
+          - si: établissement . commune . département . outre-mer . Mayotte
+            alors: 4728 €/mois
+          - sinon: 4 * temps de travail . plafond sécurité sociale
+    - taux
+
+  avec:
+    taux:
+      variations:
+        - si: date < 01/2024
+          alors: 0.15%
+        - si: date < 07/2024
+          alors: 0.20%
+        - sinon: 0.25%
+
 salarié . cotisations . chômage:
   cotisation:
     dû par: employeur
@@ -386,9 +390,15 @@ salarié . cotisations . chômage:
   description: Cotisation d’assurance chômage
   références:
     L’assurance chômage et l’assurance garantie des salaires (AGS): https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/assurance-chomage-ags.html
+    Article 37 de l'arrêté du 19 décembre 2024 portant agrément de la convention du 15 novembre 2024 relative à l'assurance chômage à Mayotte et de leurs textes associés: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050865555
+    Article 38 de l'arrêté du 19 décembre 2024 portant agrément de la convention du 15 novembre 2024 relative à l'assurance chômage à Mayotte et de leurs textes associés: https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000050865563
   produit:
     - valeur: cotisations . assiette
-      plafond: 4 * temps de travail . plafond sécurité sociale
+      plafond:
+        variations:
+          - si: établissement . commune . département . outre-mer . Mayotte
+            alors: 4728 €/mois
+          - sinon: 4 * temps de travail . plafond sécurité sociale
     - taux
   avec:
     taux:
