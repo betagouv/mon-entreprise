@@ -17,11 +17,11 @@ export const QuestionFournie = <S extends Situation>({
 
 	if (Question.typeRadioGroup) {
 		return (
-			<fieldset>
+			<StyledFieldset>
 				<StyledLegend>{Question.libellé(t)}</StyledLegend>
 
 				<Question />
-			</fieldset>
+			</StyledFieldset>
 		)
 	}
 
@@ -37,6 +37,16 @@ export const QuestionFournie = <S extends Situation>({
 		</>
 	)
 }
+
+// Style nécessaire pour un affichage des marges et paddings uniformes dans les
+// différents navigateurs
+const StyledFieldset = styled.fieldset`
+	display: contents;
+
+	padding: 0;
+	margin: 0;
+	border: none;
+`
 
 const StyledLegend = styled.legend`
 	${H3Style}
