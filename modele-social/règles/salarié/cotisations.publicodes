@@ -296,7 +296,10 @@ salarié . cotisations . allocations familiales:
     dû par: employeur
     branche: divers
   produit:
-    - cotisations . assiette
+    - valeur: cotisations . assiette
+      plafond:
+        applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: temps de travail . plafond sécurité sociale
     - taux
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/cotisation-allocation-familiale.html
@@ -305,12 +308,13 @@ salarié . cotisations . allocations familiales:
   avec:
     taux:
       variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 5.40%
         - si: éligible taux réduit
           alors: taux réduit
-        - sinon: taux plein
+        - sinon: 5.25%
 
     taux réduit: 3.45%
-    taux plein: 5.25%
 
     éligible taux réduit:
       description: |
