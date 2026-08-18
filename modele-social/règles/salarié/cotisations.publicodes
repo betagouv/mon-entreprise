@@ -1010,6 +1010,7 @@ salarié . cotisations . vieillesse:
 
   avec:
     déplafonnée:
+      non applicable si: établissement . commune . département . outre-mer . Mayotte
       cotisation:
         branche: retraite
       titre: Sécurité Sociale Vieillesse déplafonnée
@@ -1040,17 +1041,18 @@ salarié . cotisations . vieillesse:
         - plafonnée
 
     employeur . déplafonnée:
+      non applicable si: établissement . commune . département . outre-mer . Mayotte
       produit:
         - cotisations . assiette
         - taux
       avec:
         taux:
           variations:
-            - si: date >= 01/2026
-              alors: 2.11%
-            - si: date >= 01/2024
+            - si: date < 01/2024
+              alors: 1.90%
+            - si: date < 01/2026
               alors: 2.02%
-            - sinon: 1.9%
+            - sinon: 2.11%
 
     employeur . plafonnée:
       produit:
@@ -1058,7 +1060,11 @@ salarié . cotisations . vieillesse:
           plafond: temps de travail . plafond sécurité sociale
         - taux
       avec:
-        taux: 8.55%
+        taux:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 5.40%
+            - sinon: 8.55%
 
     salarié:
       titre: part salarié
@@ -1067,6 +1073,7 @@ salarié . cotisations . vieillesse:
         - plafonnée
 
     salarié . déplafonnée:
+      non applicable si: établissement . commune . département . outre-mer . Mayotte
       produit:
         - cotisations . assiette
         - taux
@@ -1079,7 +1086,11 @@ salarié . cotisations . vieillesse:
           plafond: temps de travail . plafond sécurité sociale
         - taux
       avec:
-        taux: 6.90%
+        taux:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 5.54%
+            - sinon: 6.90%
 
 salarié . cotisations . taxe d'apprentissage:
   description:
