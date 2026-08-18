@@ -99,6 +99,7 @@ salarié . cotisations . CPF CDD:
   applicable si: contrat . CDD
   non applicable si:
     une de ces conditions:
+      - établissement . commune . département . outre-mer . Mayotte
       - contrat . CDD . motif = 'classique . saisonnier'
       - contrat . CDD . motif . contrat aidé
   produit:
@@ -830,6 +831,7 @@ salarié . cotisations . maladie:
 salarié . cotisations . CSA:
   titre: Contribution solidarité autonomie
   acronyme: CSA
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   produit:
     - cotisations . assiette
     - taux
