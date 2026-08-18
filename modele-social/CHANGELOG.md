@@ -2,6 +2,9 @@
 
 ## next
 
+### Nouveautés
+- Cotisations patronales et salariales pour Mayotte
+
 ### Corrections
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
 
