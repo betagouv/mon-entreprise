@@ -407,7 +407,10 @@ salarié . cotisations . ATMP:
   description: Cotisation due au titre des Accidents du Travail et Maladies
     Professionnelles.
   produit:
-    - cotisations . assiette
+    - valeur: cotisations . assiette
+      plafond:
+        applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: temps de travail . plafond sécurité sociale
     - taux
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/at-vieillesse-csa-dialoguesocial.html#ancre-cotisation-d-at-mp
