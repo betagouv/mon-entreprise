@@ -1592,7 +1592,7 @@ pages:
         CA:
           titre: Estimated revenue
         charges:
-          titre: Estimated Expenses
+          titre: Expenses (excluding executive compensation)
     comparaison-statuts:
       accordion-title: Compare...
       carte:
