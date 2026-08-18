@@ -18,6 +18,7 @@ export const ActivitéRéglementéeQuestion: ComposantQuestionFournie<
 
 	return (
 		<OuiNonInput
+			id="activité-réglementée"
 			value={toOuiNon(situation.activitéLibéraleRéglementée)}
 			onChange={handleChange}
 		/>

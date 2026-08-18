@@ -17,6 +17,7 @@ export const ParentIsoléQuestion: ComposantQuestionFournie<
 
 	return (
 		<OuiNonInput
+			id="parent-isolé"
 			value={toOuiNon(situation.parentIsolé)}
 			onChange={handleChange}
 		/>
