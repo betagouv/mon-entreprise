@@ -23,6 +23,7 @@ Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-cl�
   Aucun résultat ne correspond à votre recherche. Essayez avec d'autres
   mots-clés.
 Aucune donnée disponible.: Aucune donnée disponible.
+Avec <1>Acre</1>: Avec <1>Acre</1>
 Avec ACRE: Avec ACRE
 Budget: Budget
 Cette commune n’existe pas: Cette commune n’existe pas
@@ -94,7 +95,6 @@ Nombres: Nombres
 Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
-Option <1>Acre</1> activée: Option <1>Acre</1> activée
 Option ACRE non activée: Option ACRE non activée
 Options: Options
 Outils pour les développeurs: Outils pour les développeurs
@@ -1683,7 +1683,7 @@ pages:
       accordion-title: Comparer…
       carte:
         acre:
-          non: Option Acre non activée
+          non: Sans Acre
         imposition:
           IR: <0>Impôt sur le revenu</0> (IR)
           IS: <0>Impôt sur les sociétés</0> (IS)
