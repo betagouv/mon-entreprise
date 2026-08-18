@@ -11299,9 +11299,6 @@ salarié . cotisations . allocations familiales:
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
-    taux plein:
-      titre.en: '[automatic] full rate'
-      titre.fr: taux plein
     taux réduit:
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
