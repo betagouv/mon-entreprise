@@ -11004,8 +11004,8 @@ salarié . cotisations . AGS:
     en cas de difficultés de l'entreprise (sauvegarde, redressement,
     liquidation). Elle paie les salaires sur les 60 derniers jours de travail.
     Elle permet de payer des préavis et des indemnités de fin de contrat.
-  titre.en: '[automatic] Wage Guarantee Scheme (AGS)'
-  titre.fr: Régime de garanti des salaires (AGS)
+  titre.en: '[automatic] Wage Guarantee Program (AGS)'
+  titre.fr: Régime de garantie des salaires (AGS)
 salarié . cotisations . APEC:
   avec:
     employeur:
