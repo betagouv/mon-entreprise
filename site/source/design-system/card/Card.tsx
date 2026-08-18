@@ -5,7 +5,7 @@ import { css, IStyledComponent, styled } from 'styled-components'
 import { Link as BaseLink } from '@/lib/navigation'
 
 import { StyledButton } from '../buttons/Button'
-import { H3, H4, HeadingUnderline } from '../typography/heading'
+import { H3, H4 } from '../typography/heading'
 import {
 	NewWindowLinkIcon,
 	useButtonOrLink,
@@ -33,6 +33,7 @@ type CardProps = GenericCardProps & {
 	className?: string
 	compact?: boolean
 	ctaLabel?: React.ReactNode
+	softBackground?: boolean
 	role?: string
 	tabIndex?: number
 }
@@ -45,6 +46,7 @@ export function Card(props: CardProps) {
 		compact = false,
 		ctaLabel,
 		icon,
+		softBackground = false,
 		tabIndex,
 		title,
 		...ariaButtonProps
@@ -59,27 +61,26 @@ export function Card(props: CardProps) {
 
 	return (
 		<CardContainer
+			className={className}
 			compact={compact}
 			{...(!ctaLabel ? buttonOrLinkProps : {})}
+			softBackground={softBackground}
 			tabIndex={tabIndex}
-			className={className}
 		>
 			{icon && <IconContainer className="hide-mobile">{icon}</IconContainer>}
+
 			{title &&
-				(compact ? (
-					<CompactStyledHeader {...titleProps} />
-				) : (
-					<StyledHeader {...titleProps} />
-				))}
+				(compact ? <StyledH4 {...titleProps} /> : <StyledH3 {...titleProps} />)}
+
 			<div
 				style={{
 					flex: '1',
-					textAlign: 'center',
 					width: '100%',
 				}}
 			>
 				<Body as={bodyAs}>{children}</Body>
 			</div>
+
 			{ctaLabel && (
 				<CardButton
 					$size="XS"
@@ -118,18 +119,24 @@ export function getTitleProps(
 
 	return { as, children }
 }
-const CompactStyledHeader = styled(H4)`
+
+const StyledH3 = styled(H3)`
+	margin: ${({ theme }) => theme.spacings.md} 0 0 0;
+
 	text-align: center;
-`
-const StyledHeader = styled(H3)`
-	text-align: center;
-	${HeadingUnderline}
-	&::after {
-		margin: auto;
+
+	> div {
+		padding: ${({ theme }) => theme.spacings.xxs} 0 0 0;
 	}
 `
+
+const StyledH4 = styled(H4)`
+	text-align: center;
+`
+
 const CardButton = styled(StyledButton)`
 	margin: ${({ theme }) => theme.spacings.sm} 0;
+
 	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
 		width: initial;
 	}
@@ -150,44 +157,28 @@ const CardButton = styled(StyledButton)`
 `
 
 const IconContainer = styled.div`
-	transform: scale(2.3);
 	margin-top: ${({ theme }) => theme.spacings.md};
 	margin-bottom: 0;
+
+	transform: scale(2);
 `
 
 export const CardContainer = styled.div.withConfig({
-	shouldForwardProp: (prop) => !['compact', 'inert'].includes(prop),
+	shouldForwardProp: (prop) =>
+		!['compact', 'inert', 'softBackground'].includes(prop),
 })<{
 	compact?: boolean
 	inert?: boolean
+	softBackground?: boolean
 }>`
-	/* Hack to get state from link/button */
-	width: 100%;
-	height: 100%;
-	position: relative;
-
 	display: flex;
 	text-decoration: none;
 	flex-direction: column;
 	align-items: center;
-	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
-	background-color: ${({ theme, inert }) =>
-		theme.darkMode
-			? theme.colors.extended.dark[inert ? 700 : 600]
-			: theme.colors.extended.grey[inert ? 200 : 100]};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-	box-shadow: ${({ theme }) =>
-		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
-	&:hover {
-		box-shadow: ${({ theme, inert }) =>
-			!inert &&
-			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
-		background-color: ${({ theme, inert }) =>
-			!inert &&
-			(theme.darkMode
-				? theme.colors.extended.dark[500]
-				: theme.colors.bases.primary[100])};
-	}
+	position: relative;
+
+	width: 100%;
+	height: 100%;
 	padding: ${({ theme: { spacings }, compact = false }) =>
 		compact
 			? css`
@@ -196,7 +187,37 @@ export const CardContainer = styled.div.withConfig({
 			: css`
 					${spacings.md} ${spacings.lg}
 				`};
+	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
+	border-radius: ${({ theme }) => theme.box.borderRadius};
+	box-shadow: ${({ theme }) =>
+		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
+
+	background: ${({ theme, inert, softBackground }) =>
+		softBackground
+			? theme.darkMode
+				? theme.colors.extended.dark[700]
+				: theme.colors.bases.primary[100]
+			: theme.darkMode
+				? theme.colors.extended.dark[inert ? 800 : 600]
+				: theme.colors.extended.grey[inert ? 200 : 100]};
+
 	transition:
 		box-shadow 0.15s,
 		background-color 0.15s;
+
+	&:hover {
+		box-shadow: ${({ theme, inert }) =>
+			!inert &&
+			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
+
+		background: ${({ theme, inert, softBackground }) =>
+			!inert &&
+			(softBackground
+				? theme.darkMode
+					? theme.colors.bases.primary[800]
+					: theme.colors.bases.primary[200]
+				: theme.darkMode
+					? theme.colors.extended.dark[500]
+					: theme.colors.bases.primary[100])};
+	}
 `
