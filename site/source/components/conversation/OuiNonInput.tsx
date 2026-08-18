@@ -6,9 +6,9 @@ import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 interface OuiNonInputProps {
+	id: string
 	value?: OuiNon
 	onChange?: (value: OuiNon | undefined) => void
-	id?: string
 
 	aria?: {
 		labelledby?: string
@@ -17,9 +17,9 @@ interface OuiNonInputProps {
 }
 
 export function OuiNonInput({
+	id,
 	value,
 	onChange = NoOp,
-	id,
 	aria,
 }: OuiNonInputProps) {
 	const { handleChange, currentSelection } = useSelection({

@@ -13,7 +13,13 @@ export const TVAQuestion: ComposantQuestionFournie<SituationComparée> = () => {
 		[set]
 	)
 
-	return <OuiNonInput value={toOuiNon(situation.tva)} onChange={handleChange} />
+	return (
+		<OuiNonInput
+			id="tva"
+			value={toOuiNon(situation.tva)}
+			onChange={handleChange}
+		/>
+	)
 }
 
 const TVAValeur = () => {
