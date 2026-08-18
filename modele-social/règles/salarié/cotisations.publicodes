@@ -763,12 +763,13 @@ salarié . cotisations . maladie:
       avec:
         taux:
           variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 5.80%
             - si: éligible taux réduit
-              alors: 7%
+              alors: taux réduit
             - sinon: 13%
 
         taux réduit: 7%
-        taux plein: 13%
 
         éligible taux réduit:
           description: |
@@ -802,6 +803,11 @@ salarié . cotisations . maladie:
 
     salarié . taux:
       variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors:
+            somme:
+              - 0.75%
+              - 4.47%
         - si: régimes spécifiques . alsace moselle
           alors:
             variations:
