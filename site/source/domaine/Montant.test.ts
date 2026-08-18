@@ -15,6 +15,7 @@ import {
 	euros,
 	eurosParAn,
 	eurosParMois,
+	eurosParTitreRestaurant,
 	fois,
 	moins,
 	Montant,
@@ -104,6 +105,15 @@ describe('Montant', () => {
 				plus(euros(100), eurosParMois(10))
 				// @ts-expect-error mélange d’unités interdit
 				moins(eurosParAn(100), euros(10))
+			}
+
+			expect(vérificationsDeTypes).toBeDefined()
+		})
+
+		it('interdit à la compilation de sommer des euros avec des titres-restaurant', () => {
+			const vérificationsDeTypes = () => {
+				// @ts-expect-error unités ponctuelles hétérogènes interdites
+				sommeEnEuros([euros(100), eurosParTitreRestaurant(10)])
 			}
 
 			expect(vérificationsDeTypes).toBeDefined()
