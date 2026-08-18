@@ -14,7 +14,11 @@ export const AcreQuestion: ComposantQuestionFournie<SituationComparée> = () => 
 	)
 
 	return (
-		<OuiNonInput value={toOuiNon(situation.acre)} onChange={handleChange} />
+		<OuiNonInput
+			id="acre"
+			value={toOuiNon(situation.acre)}
+			onChange={handleChange}
+		/>
 	)
 }
 
