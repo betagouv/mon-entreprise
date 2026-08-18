@@ -72,6 +72,43 @@ describe('Montant', () => {
 			expect(resultat.unité).toBe('€/an')
 		})
 
+		it('additionne un montant récurrent d’une autre unité en le convertissant vers l’unité de la cible', () => {
+			const parAn = eurosParAn(1000)
+			const parMois = eurosParMois(100)
+
+			const enAnnuel = plus(parAn, parMois)
+			expect(Equal.equals(enAnnuel, eurosParAn(2200))).toBe(true)
+			expect(enAnnuel.unité).toBe('€/an')
+
+			const enMensuel = pipe(parMois, plus(parAn))
+			expect(Equal.equals(enMensuel, eurosParMois(183.33))).toBe(true)
+			expect(enMensuel.unité).toBe('€/mois')
+		})
+
+		it('soustrait un montant récurrent d’une autre unité en le convertissant vers l’unité de la cible', () => {
+			const chiffreDAffaires = eurosParMois(10000)
+			const charges = eurosParAn(24000)
+
+			const enMensuel = pipe(chiffreDAffaires, moins(charges))
+			expect(Equal.equals(enMensuel, eurosParMois(8000))).toBe(true)
+			expect(enMensuel.unité).toBe('€/mois')
+
+			const enAnnuel = moins(charges, chiffreDAffaires)
+			expect(Equal.equals(enAnnuel, eurosParAn(-96000))).toBe(true)
+			expect(enAnnuel.unité).toBe('€/an')
+		})
+
+		it('interdit à la compilation de mélanger montants ponctuels et récurrents', () => {
+			const vérificationsDeTypes = () => {
+				// @ts-expect-error mélange d’unités interdit
+				plus(euros(100), eurosParMois(10))
+				// @ts-expect-error mélange d’unités interdit
+				moins(eurosParAn(100), euros(10))
+			}
+
+			expect(vérificationsDeTypes).toBeDefined()
+		})
+
 		it('multiplie correctement un montant par un scalaire', () => {
 			const montant = euros(100)
 			const resultat = fois(montant, 2)

@@ -1,5 +1,6 @@
 import { Data, Either } from 'effect'
 import { dual, pipe } from 'effect/Function'
+import * as O from 'effect/Option'
 import { isObject } from 'effect/Predicate'
 
 import { pourcentage, Quantité } from './Quantite'
@@ -156,13 +157,68 @@ export const montant = <U extends UnitéMonétaire>(
 export const arrondirÀLEuro = <M extends Montant>(m: M): M =>
 	montant(Math.round(m.valeur), m.unité) as M
 
-export const plus = dual<
-	<M extends Montant<UnitéMonétaire>>(b: M) => (a: M) => M,
-	<M extends Montant<UnitéMonétaire>>(a: M, b: M) => M
->(
+type PaireMêmeUnitéPonctuelle = {
+	[U in UnitéMonétairePonctuelle]: [a: Montant<U>, b: Montant<U>]
+}[UnitéMonétairePonctuelle]
+
+type PaireDeMontantsCombinables =
+	| [a: MontantRécurrent, b: MontantRécurrent]
+	| PaireMêmeUnitéPonctuelle
+
+const paireDeRécurrentsÀAligner = (
+	paire: readonly [Montant, Montant]
+): paire is [MontantRécurrent, MontantRécurrent] =>
+	isMontantRécurrent(paire[0]) &&
+	isMontantRécurrent(paire[1]) &&
+	paire[0].unité !== paire[1].unité
+
+const convertisseurs: {
+	[U in UnitéMonétaireRécurrente]: (m: MontantRécurrent) => Montant<U>
+} = {
+	'€/mois': toEurosParMois,
+	'€/an': toEurosParAn,
+	'€/jour': toEurosParJour,
+	'€/heure': toEurosParHeure,
+}
+
+const aligneSur =
+	<U extends UnitéMonétaireRécurrente>(cible: Montant<U>) =>
+	(montantÀAligner: MontantRécurrent): Montant<U> =>
+		convertisseurs[cible.unité](montantÀAligner)
+
+const combinaison =
+	(opère: (a: number, b: number) => number) =>
+	(...paire: PaireDeMontantsCombinables): Montant => {
+		const [a, b] = paire
+
+		return pipe(
+			paire,
+			O.liftPredicate(paireDeRécurrentsÀAligner),
+			O.map(([cible, àAligner]) =>
+				pipe(àAligner, aligneSur(cible), (aligné) =>
+					opère(cible.valeur, aligné.valeur)
+				)
+			),
+			O.getOrElse(() => opère(a.valeur, b.valeur)),
+			(valeur) => montant(valeur, a.unité)
+		)
+	}
+
+type CombinaisonDataLast = {
+	(b: MontantRécurrent): <A extends MontantRécurrent>(a: A) => A
+	<U extends UnitéMonétairePonctuelle>(
+		b: Montant<U>
+	): (a: Montant<U>) => Montant<U>
+}
+
+type CombinaisonDataFirst = {
+	<A extends MontantRécurrent>(a: A, b: MontantRécurrent): A
+	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): Montant<U>
+}
+
+export const plus = dual<CombinaisonDataLast, CombinaisonDataFirst>(
 	2,
-	<M extends Montant<UnitéMonétaire>>(a: M, b: M): M =>
-		montant(a.valeur + b.valeur, a.unité) as M
+	combinaison((a, b) => a + b)
 )
 
 export const sommeEnEuros = (
@@ -177,13 +233,9 @@ export const sommeEnEurosParAn = (
 	montants: ReadonlyArray<MontantRécurrent>
 ): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
 
-export const moins = dual<
-	<M extends Montant>(b: M) => (a: M) => M,
-	<M extends Montant>(a: M, b: M) => M
->(
+export const moins = dual<CombinaisonDataLast, CombinaisonDataFirst>(
 	2,
-	<M extends Montant>(a: M, b: M): M =>
-		montant(a.valeur - b.valeur, a.unité) as M
+	combinaison((a, b) => a - b)
 )
 
 export const fois = dual<
