@@ -1820,8 +1820,12 @@ pages:
     comparaison-status:
       objectifs:
         CA:
+          description: Montant total des recettes brutes (hors taxe)
           titre: Chiffre d'affaires estimé
         charges:
+          description: Total des dépenses nécessaires à l’entreprise, en excluant les
+            cotisations et contributions sociales qui sont automatiquement
+            déduites par le simulateur
           titre: Charges (hors rémunération dirigeant)
     comparaison-statuts:
       accordion-title: Comparer…
@@ -1978,7 +1982,6 @@ pages:
           revenu, retraite et indemnités maladie
         title: Comparateur de statut juridique
       montants:
-        CA: Chiffre d’affaires estimé
         imposition:
           IR: Impôt sur le revenu
           IS: Impôt sur les sociétés
