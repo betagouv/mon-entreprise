@@ -392,9 +392,11 @@ salarié . cotisations . chômage:
   avec:
     taux:
       variations:
-        - si: date >= 05/2025
-          alors: 4.00%
-        - sinon: 4.05%
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 2.80%
+        - si: date < 05/2025
+          alors: 4.05%
+        - sinon: 4.00%
 
 salarié . cotisations . ATMP:
   cotisation:
