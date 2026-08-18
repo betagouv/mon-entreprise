@@ -9,6 +9,8 @@ type SimulateurCardProps = MergedSimulatorMetadata & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
+	softBackground?: boolean
+	streched?: boolean
 	titleLevel?: 'h3' | 'h4'
 }
 
@@ -22,6 +24,8 @@ export function SimulateurCard({
 	icône,
 	beta,
 	small = false,
+	softBackground = false,
+	streched = false,
 	fromGérer = false,
 	role,
 	titleLevel = 'h3',
@@ -44,7 +48,7 @@ export function SimulateurCard({
 			: t('pages.simulateurs.home.cta.simulateur', 'Lancer le simulateur')
 
 	return (
-		<Grid item xs={12} sm={6} md={6} lg={4} role={role}>
+		<Grid item xs={12} sm={6} md={6} lg={streched ? 6 : 4} role={role}>
 			{small ? (
 				<SmallCard
 					icon={<Emoji emoji={icône} />}
@@ -80,6 +84,7 @@ export function SimulateurCard({
 					}
 					icon={<Emoji emoji={icône} />}
 					ctaLabel={ctaLabel}
+					softBackground={softBackground}
 					aria-label={`${shortName}, ${ctaLabel}`}
 					to={{
 						pathname:
