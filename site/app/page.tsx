@@ -1,14 +1,24 @@
 'use client'
 
 import { Trans, useTranslation } from 'react-i18next'
+import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
 import { SimulateurCard } from '@/components/SimulateurCard'
-import { Body, Container, Grid, H2, H3, H4, Intro, Link, Spacing, Strong } from '@/design-system'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import {
+	Body,
+	Container,
+	Grid,
+	H2,
+	H3,
+	H4,
+	Intro,
+	Link,
+	Spacing,
+	Strong,
+} from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-
-import { styled } from 'styled-components'
 
 export default function Home() {
 	const simulators = useSimulatorsMetadata()
@@ -42,22 +52,21 @@ export default function Home() {
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<H2>
-					{t(
-						'landing.section.explore-status',
-						'Explorer les statuts'
-					)}
-				</H2>
+				<H2>{t('landing.section.explore-status', 'Explorer les statuts')}</H2>
 
-				<Grid
-					role="list"
-					container
-					spacing={4}
-				>
+				<Grid role="list" container spacing={4}>
 					<ForceThemeProvider forceTheme="default">
-						<SimulateurCard {...simulators['choix-statut']} role="listitem" />
+						<SimulateurCard
+							{...simulators['choix-statut']}
+							role="listitem"
+							streched
+						/>
 
-						<SimulateurCard {...simulators['comparaison-statuts']} role="listitem" />
+						<SimulateurCard
+							{...simulators['comparaison-statuts']}
+							role="listitem"
+							streched
+						/>
 					</ForceThemeProvider>
 				</Grid>
 
@@ -65,12 +74,7 @@ export default function Home() {
 			</Container>
 
 			<Container>
-				<H2>
-					{t(
-						'landing.section.by-status',
-						'Par statut'
-					)}
-				</H2>
+				<H2>{t('landing.section.by-status', 'Par statut')}</H2>
 
 				<section>
 					<H3>
@@ -80,11 +84,8 @@ export default function Home() {
 						)}
 					</H3>
 
-					<Grid
-						container
-						spacing={4}
-					>
-						<SimulateurCard {...simulators.salarié} />
+					<Grid container spacing={4}>
+						<SimulateurCard {...simulators.salarié} streched />
 					</Grid>
 				</section>
 
@@ -96,30 +97,36 @@ export default function Home() {
 						)}
 					</H3>
 
-					<Grid
-						role="list"
-						container
-						spacing={4}
-					>
-						<SimulateurCard {...simulators['auto-entrepreneur']} role="listitem" />
+					<Grid role="list" container spacing={4}>
+						<SimulateurCard
+							{...simulators['auto-entrepreneur']}
+							role="listitem"
+							softBackground
+						/>
 
-						<SimulateurCard {...simulators['entreprise-individuelle']} role="listitem" />
+						<SimulateurCard
+							{...simulators['entreprise-individuelle']}
+							role="listitem"
+							softBackground
+						/>
 
-						<SimulateurCard {...simulators.eurl} role="listitem" />
+						<SimulateurCard
+							{...simulators.eurl}
+							role="listitem"
+							softBackground
+						/>
 
-						<SimulateurCard {...simulators.sasu} role="listitem" />
+						<SimulateurCard
+							{...simulators.sasu}
+							role="listitem"
+							softBackground
+						/>
 					</Grid>
-
 				</section>
 			</Container>
 
 			<Container>
-				<H2>
-					{t(
-						'landing.section.by-occupation',
-						'Par profession'
-					)}
-				</H2>
+				<H2>{t('landing.section.by-occupation', 'Par profession')}</H2>
 
 				<Body>
 					{t(
@@ -128,68 +135,70 @@ export default function Home() {
 					)}
 				</Body>
 
-				<Grid
-					role="list"
-					container
-					spacing={4}
-				>
+				<Grid role="list" container spacing={4}>
 					<TemporaryCard role="listitem">
-						<H3>
-							Artisan commerçant
-						</H3>
+						<H3>Artisan</H3>
 					</TemporaryCard>
 
 					<TemporaryCard role="listitem">
-						<H3>
-							Professions libérales non réglementées
-						</H3>
+						<H3>Commerçant</H3>
 					</TemporaryCard>
 
 					<TemporaryCard role="listitem">
-						<H3>
-							Professions libérales réglementées
-						</H3>
+						<H3>Professions libérales non réglementées</H3>
 					</TemporaryCard>
 
-					<SimulateurCard {...simulators['artiste-auteur']} role="listitem" />
+					<TemporaryCard role="listitem">
+						<H3>Professions libérales réglementées</H3>
+					</TemporaryCard>
+
+					<SimulateurCard
+						{...simulators['artiste-auteur']}
+						role="listitem"
+						softBackground
+					/>
 				</Grid>
 			</Container>
 
 			<Container>
-				<H2>
-					{t(
-						'landing.section.other-tools',
-						'Autres outils'
-					)}
-				</H2>
+				<H2>{t('landing.section.other-tools', 'Autres outils')}</H2>
 
-				<Grid
-					role="list"
-					container
-					spacing={4}
-				>
-					<SimulateurCard {...simulators['activité-partielle']} role="listitem" />
+				<Grid role="list" container spacing={4}>
+					<SimulateurCard
+						{...simulators['activité-partielle']}
+						role="listitem"
+					/>
 
 					<SimulateurCard {...simulators.is} role="listitem" />
 
 					<SimulateurCard {...simulators.dividendes} role="listitem" />
 
-					<SimulateurCard {...simulators['coût-création-entreprise']} role="listitem" />
+					<SimulateurCard
+						{...simulators['coût-création-entreprise']}
+						role="listitem"
+					/>
 
-					<SimulateurCard {...simulators['recherche-code-ape']} role="listitem" />
+					<SimulateurCard
+						{...simulators['recherche-code-ape']}
+						role="listitem"
+					/>
 
-					<SimulateurCard {...simulators['cessation-activité']} role="listitem" />
+					<SimulateurCard
+						{...simulators['cessation-activité']}
+						role="listitem"
+					/>
 
 					<SimulateurCard {...simulators.lodeom} role="listitem" />
 
-					<SimulateurCard {...simulators['location-de-logement-meublé']} role="listitem" />
+					<SimulateurCard
+						{...simulators['location-de-logement-meublé']}
+						role="listitem"
+					/>
 				</Grid>
 			</Container>
 
 			<Container>
-				<H3 as="h2">
-					Rechercher votre entreprise
-				</H3>
+				<H3 as="h2">Rechercher votre entreprise</H3>
 
 				<Spacing xxl />
 			</Container>
@@ -203,10 +212,7 @@ export default function Home() {
 			>
 				<StyledAboutGrid container spacing={4}>
 					<StyledDecorativeImageHiddenOnMobile item xs={2} md={2}>
-						<img
-							src="/images/home-about-decorative.svg"
-							alt=""
-						/>
+						<img src="/images/home-about-decorative.svg" alt="" />
 					</StyledDecorativeImageHiddenOnMobile>
 
 					<Grid item xs={10} md={10}>
@@ -272,14 +278,16 @@ const TemporaryCard = styled.article`
 	width: 30%;
 	margin: ${({ theme }) => theme.spacings.md};
 	padding: ${({ theme }) => theme.spacings.lg};
-	border: ${({ theme }) => theme.spacings.xxxs} solid ${({ theme }) => theme.colors.bases.primary[400]};
+	border: ${({ theme }) => theme.spacings.xxxs} solid
+		${({ theme }) => theme.colors.bases.primary[400]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 
 	background: darkmagenta;
 
-	h3, h4 {
+	h3,
+	h4 {
 		margin: 0;
-		
+
 		color: white;
 	}
 `
