@@ -139,6 +139,8 @@ export function RuleField({
 	)
 }
 
+// Style nécessaire pour un affichage des marges et paddings uniformes dans les
+// différents navigateurs
 const StyledFieldset = styled.fieldset`
 	display: contents;
 
