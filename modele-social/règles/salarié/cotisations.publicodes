@@ -513,6 +513,7 @@ salarié . cotisations . CSG-CRDS:
     - ils sont domiciliés fiscalement en France, - ils sont à la charge d’un régime français d’assurance maladie obligatoire.
 
     Si l’un des deux critères n’est pas rempli, la CSG et la CRDS ne sont pas dues, à la condition d’en apporter la preuve (justificatif fiscal ou carte d’assuré social).
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   somme:
     - CSG
     - CRDS
