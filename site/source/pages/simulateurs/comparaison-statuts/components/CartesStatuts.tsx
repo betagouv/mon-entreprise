@@ -40,12 +40,12 @@ const CarteStatut = ({ statut }: Props) => {
 					<Li>
 						{situation.acre ? (
 							<Trans i18nkey="pages.simulateurs.comparaison-statuts.carte.acre.oui">
-								Option <Strong>Acre</Strong> activée
+								Avec <Strong>Acre</Strong>
 							</Trans>
 						) : (
 							t(
 								'pages.simulateurs.comparaison-statuts.carte.acre.non',
-								'Option Acre non activée'
+								'Sans Acre'
 							)
 						)}
 					</Li>
