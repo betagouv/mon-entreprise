@@ -1822,7 +1822,7 @@ pages:
         CA:
           titre: Chiffre d'affaires estimé
         charges:
-          titre: Charges estimé
+          titre: Charges (hors rémunération dirigeant)
     comparaison-statuts:
       accordion-title: Comparer…
       carte:

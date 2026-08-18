@@ -63,7 +63,7 @@ export const Objectifs = () => {
 				id="comparaison-status-charges"
 				titre={t(
 					'pages.simulateurs.comparaison-status.objectifs.charges.titre',
-					'Charges estimé'
+					'Charges (hors rémunération dirigeant)'
 				)}
 				valeur={charges}
 				rendreChampSaisie={InputCharges}
