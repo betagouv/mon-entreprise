@@ -3,6 +3,7 @@
 ## next
 
 ### Nouveautés
+- Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 
 ### Corrections
