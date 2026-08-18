@@ -57,6 +57,10 @@ export const Objectifs = () => {
 				)}
 				valeur={chiffreDAffaires}
 				rendreChampSaisie={InputCA}
+				description={t(
+					'pages.simulateurs.comparaison-status.objectifs.CA.description',
+					'Montant total des recettes brutes (hors taxe)'
+				)}
 			/>
 
 			<ObjectifSaisissableDeSimulation
@@ -67,6 +71,10 @@ export const Objectifs = () => {
 				)}
 				valeur={charges}
 				rendreChampSaisie={InputCharges}
+				description={t(
+					'pages.simulateurs.comparaison-status.objectifs.charges.description',
+					'Total des dépenses nécessaires à l’entreprise, en excluant les cotisations et contributions sociales qui sont automatiquement déduites par le simulateur'
+				)}
 			/>
 
 			<ChoixImposition />

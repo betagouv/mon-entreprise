@@ -1590,8 +1590,11 @@ pages:
     comparaison-status:
       objectifs:
         CA:
+          description: Total gross revenue (excluding tax)
           titre: Estimated revenue
         charges:
+          description: Total expenses incurred by the business, excluding social security
+            contributions, which are automatically deducted by the simulator
           titre: Expenses (excluding executive compensation)
     comparaison-statuts:
       accordion-title: Compare...
@@ -1744,7 +1747,6 @@ pages:
           income, pension and sickness benefits
         title: Legal status comparator
       montants:
-        CA: Estimated sales
         imposition:
           IR: Income Tax
           IS: Corporate Income Tax
