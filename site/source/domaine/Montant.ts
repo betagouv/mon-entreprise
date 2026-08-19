@@ -186,23 +186,29 @@ const aligneSur =
 	(montantÀAligner: MontantRécurrent): Montant<U> =>
 		convertisseurs[cible.unité](montantÀAligner)
 
+const valeursAlignées = (
+	...paire: PaireDeMontantsCombinables
+): [number, number] =>
+	pipe(
+		paire,
+		O.liftPredicate(paireDeRécurrentsÀAligner),
+		O.map(([cible, àAligner]): [number, number] => {
+			const aligné = pipe(àAligner, aligneSur(cible))
+
+			return [cible.valeur, aligné.valeur]
+		}),
+		O.getOrElse((): [number, number] => [paire[0].valeur, paire[1].valeur])
+	)
+
 const combinaison =
 	(opère: (a: number, b: number) => number) =>
-	(...paire: PaireDeMontantsCombinables): Montant => {
-		const [a, b] = paire
+	(...paire: PaireDeMontantsCombinables): Montant =>
+		montant(opère(...valeursAlignées(...paire)), paire[0].unité)
 
-		return pipe(
-			paire,
-			O.liftPredicate(paireDeRécurrentsÀAligner),
-			O.map(([cible, àAligner]) =>
-				pipe(àAligner, aligneSur(cible), (aligné) =>
-					opère(cible.valeur, aligné.valeur)
-				)
-			),
-			O.getOrElse(() => opère(a.valeur, b.valeur)),
-			(valeur) => montant(valeur, a.unité)
-		)
-	}
+const comparaison =
+	(compare: (a: number, b: number) => boolean) =>
+	(...paire: PaireDeMontantsCombinables): boolean =>
+		compare(...valeursAlignées(...paire))
 
 type CombinaisonDataLast = {
 	(b: MontantRécurrent): <A extends MontantRécurrent>(a: A) => A
@@ -300,76 +306,104 @@ export const diviséPar = dual<
  * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
  * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
  */
-export const parRapportÀ = dual<
-	<M extends Montant>(
-		diviseur: M
-	) => (a: M) => Either.Either<number, DivisionParZéro>,
-	<M extends Montant>(
-		a: M,
-		diviseur: M
-	) => Either.Either<number, DivisionParZéro>
->(
-	2,
-	<M extends Montant>(
-		a: M,
-		diviseur: M
-	): Either.Either<number, DivisionParZéro> => {
-		if (estZéro(diviseur)) {
-			return Either.left(new DivisionParZéro())
-		}
+type RapportDataLast = {
+	(
+		diviseur: MontantRécurrent
+	): (a: MontantRécurrent) => Either.Either<number, DivisionParZéro>
+	<U extends UnitéMonétairePonctuelle>(
+		diviseur: Montant<U>
+	): (a: Montant<U>) => Either.Either<number, DivisionParZéro>
+}
 
-		let numérateur = a.valeur
-		let dénominateur = diviseur.valeur
+type RapportDataFirst = {
+	(
+		a: MontantRécurrent,
+		diviseur: MontantRécurrent
+	): Either.Either<number, DivisionParZéro>
+	<U extends UnitéMonétairePonctuelle>(
+		a: Montant<U>,
+		diviseur: Montant<U>
+	): Either.Either<number, DivisionParZéro>
+}
 
-		if (a.unité !== '€') {
-			numérateur = toEurosParAn(a as MontantRécurrent).valeur
-			dénominateur = toEurosParAn(diviseur as MontantRécurrent).valeur
-		}
-
-		const rapport = numérateur / dénominateur
-
-		return Either.right(rapport)
+const rapport = (
+	...paire: PaireDeMontantsCombinables
+): Either.Either<number, DivisionParZéro> => {
+	if (estZéro(paire[1])) {
+		return Either.left(new DivisionParZéro())
 	}
-)
+
+	const [numérateur, dénominateur] = valeursAlignées(...paire)
+
+	return Either.right(numérateur / dénominateur)
+}
+
+export const parRapportÀ = dual<RapportDataLast, RapportDataFirst>(2, rapport)
+
+type PourcentageDataLast = {
+	(
+		diviseur: MontantRécurrent
+	): (a: MontantRécurrent) => Either.Either<Quantité<'%'>, DivisionParZéro>
+	<U extends UnitéMonétairePonctuelle>(
+		diviseur: Montant<U>
+	): (a: Montant<U>) => Either.Either<Quantité<'%'>, DivisionParZéro>
+}
+
+type PourcentageDataFirst = {
+	(
+		a: MontantRécurrent,
+		diviseur: MontantRécurrent
+	): Either.Either<Quantité<'%'>, DivisionParZéro>
+	<U extends UnitéMonétairePonctuelle>(
+		a: Montant<U>,
+		diviseur: Montant<U>
+	): Either.Either<Quantité<'%'>, DivisionParZéro>
+}
 
 export const pourcentageParRapportÀ = dual<
-	<M extends Montant>(
-		diviseur: M
-	) => (a: M) => Either.Either<Quantité<'%'>, DivisionParZéro>,
-	<M extends Montant>(
-		a: M,
-		diviseur: M
-	) => Either.Either<Quantité<'%'>, DivisionParZéro>
->(
-	2,
-	<M extends Montant>(
-		a: M,
-		diviseur: M
-	): Either.Either<Quantité<'%'>, DivisionParZéro> => {
-		return pipe(
-			a,
-			parRapportÀ(diviseur),
-			Either.map((rapport) => pourcentage(100 * rapport))
-		)
-	}
+	PourcentageDataLast,
+	PourcentageDataFirst
+>(2, (...paire: PaireDeMontantsCombinables) =>
+	pipe(
+		rapport(...paire),
+		Either.map((valeur) => pourcentage(100 * valeur))
+	)
 )
 
-export const estPlusGrandQue = dual<
-	<M extends Montant>(b: M) => (a: M) => boolean,
-	<M extends Montant>(a: M, b: M) => boolean
->(2, <M extends Montant>(a: M, b: M): boolean => a.valeur > b.valeur)
-export const estPlusPetitQue = dual<
-	<M extends Montant>(b: M) => (a: M) => boolean,
-	<M extends Montant>(a: M, b: M) => boolean
->(2, <M extends Montant>(a: M, b: M): boolean => a.valeur < b.valeur)
+type ComparateurDataLast = {
+	(b: MontantRécurrent): (a: MontantRécurrent) => boolean
+	<U extends UnitéMonétairePonctuelle>(
+		b: Montant<U>
+	): (a: Montant<U>) => boolean
+}
+
+type ComparateurDataFirst = {
+	(a: MontantRécurrent, b: MontantRécurrent): boolean
+	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): boolean
+}
+
+export const estPlusGrandQue = dual<ComparateurDataLast, ComparateurDataFirst>(
+	2,
+	comparaison((a, b) => a > b)
+)
+export const estPlusPetitQue = dual<ComparateurDataLast, ComparateurDataFirst>(
+	2,
+	comparaison((a, b) => a < b)
+)
 export const estPlusGrandOuÉgalÀ = dual<
-	<M extends Montant>(b: M) => (a: M) => boolean,
-	<M extends Montant>(a: M, b: M) => boolean
->(2, <M extends Montant>(a: M, b: M): boolean => a.valeur >= b.valeur)
+	ComparateurDataLast,
+	ComparateurDataFirst
+>(
+	2,
+	comparaison((a, b) => a >= b)
+)
 export const estPlusPetitOuÉgalÀ = dual<
-	<M extends Montant>(b: M) => (a: M) => boolean,
-	<M extends Montant>(a: M, b: M) => boolean
->(2, <M extends Montant>(a: M, b: M): boolean => a.valeur <= b.valeur)
+	ComparateurDataLast,
+	ComparateurDataFirst
+>(
+	2,
+	comparaison((a, b) => a <= b)
+)
 
 export const estPositif = (montant: Montant): boolean => montant.valeur > 0
 export const estNégatif = (montant: Montant): boolean => montant.valeur < 0
