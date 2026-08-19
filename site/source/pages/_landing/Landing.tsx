@@ -33,9 +33,9 @@ export default function Landing() {
 		<>
 			<TrackPage chapter1="informations" name={ACCUEIL} />
 			<Meta
-				title={t('landing.meta.title', 'Accueil')}
+				title={t('pages.landing.meta.title', 'Accueil')}
 				description={t(
-					'landing.description',
+					'pages.landing.description',
 					"L'assistant officiel des entrepreneurs"
 				)}
 				openGraph={{ image: '/logo-share.png' }}
@@ -44,17 +44,17 @@ export default function Landing() {
 			<Container>
 				<PageHeader
 					titre={
-						<Trans i18nKey="landing.title">
+						<Trans i18nKey="pages.landing.title">
 							L'assistant officiel des entrepreneurs
 						</Trans>
 					}
 					picture={illustrationSvg}
 				>
 					<Intro $xxl>
-						<Trans i18nKey="landing.subtitle">
-							Des assistants et simulateurs pour obtenir des{' '}
+						<Trans i18nKey="pages.landing.subtitle">
+							Des <Strong>assistants et simulateurs</Strong> pour obtenir des{' '}
 							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
-							<Strong>création et la gestion</Strong> de votre entreprise.
+							création et la gestion de votre entreprise.
 						</Trans>
 					</Intro>
 					<Spacing sm />
@@ -65,7 +65,7 @@ export default function Landing() {
 								light
 								to={absoluteSitePaths.simulateursEtAssistants}
 							>
-								<Trans i18nKey="landing.choice.simulators.title">
+								<Trans i18nKey="pages.landing.choice.simulators.title">
 									Découvrir la liste de tous les outils
 								</Trans>
 							</Button>
@@ -78,7 +78,7 @@ export default function Landing() {
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<Trans i18nKey="landing.outils">
+				<Trans i18nKey="pages.landing.outils">
 					<H2>Quelques simulateurs de référence</H2>
 				</Trans>
 				<Grid
@@ -130,7 +130,7 @@ export default function Landing() {
 						/>
 					</HideOnMobile>
 					<Grid item md={10}>
-						<Trans i18nKey="landing.aboutUs">
+						<Trans i18nKey="pages.landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
 
 							<Body>

@@ -179,27 +179,21 @@ aides différées, voir le détail du calcul pour aides différées: aides diff�
 api:
   description: Outils pour les développeurs
   title: Utiliser notre API REST
-app:
-  basculerDark: Basculer en mode dark
-  basculerLight: Basculer en mode light
-  description: Migration en cours. Cette page confirme que Next.js et le
-    design-system sont correctement configurés.
-  titre: Mon entreprise — Next.js
 aquoiserventmescotisations:
   en-savoir-plus: Pour en savoir plus, rendez-vous sur le site
     <2>aquoiserventlescotisations.urssaf.fr</2>
   h2: À quoi servent mes cotisations ?
 aria-label:
   aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre
-  beta-gouv: beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre
+  beta-gouv: manifeste beta.gouv.fr, nouvelle fenêtre
   cpam: CPAM, accéder à ameli.fr, nouvelle fenêtre
   dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
   economie-gouv: economie.gouv.fr, nouvelle fenêtre
   entreprendre-service-public: entreprendre.service-public.fr, nouvelle fenêtre
   ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
   service-public: service-public.fr, nouvelle fenêtre
-  urssaf: Urssaf, accéder à urssaf.fr, nouvelle fenêtre
-  équipe: équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre
+  urssaf: Urssaf, nouvelle fenêtre
+  équipe: petite équipe, nouvelle fenêtre
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -438,27 +432,8 @@ intégration:
 jours: jours
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 landing:
-  aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une petite <2>équipe</2>
-    autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à cœur
-    d’être au près de vos besoins afin d’améliorer en permanence ce site
-    conformément à l'approche <8>beta.gouv.fr</8>.</1><2>Nous avons développé ce
-    site pour accompagner les créateurs d’entreprise dans le développement de
-    leur activité.</2><3>Notre objectif est de lever toutes les incertitudes vis
-    à vis de l’administration afin que vous puissiez vous concentrer sur ce qui
-    compte : votre activité.</3>"
-  choice:
-    simulators:
-      title: Découvrir la liste de tous les outils
-  description: L'assistant officiel des entrepreneurs
-  meta:
-    title: Accueil
-  outils: <0>Quelques simulateurs de référence</0>
   searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
     simulateurs les plus pertinents pour votre activité</1>
-  subtitle: Des assistants et simulateurs pour obtenir des <2>réponses
-    personnalisées</2> à vos questions sur la <5>création et la gestion</5> de
-    votre entreprise.
-  title: L'assistant officiel des entrepreneurs
 legalNotice:
   accessibility:
     content: La plateforme est <2>partiellement conforme</2> aux normes
@@ -1277,6 +1252,38 @@ pages:
       ci-dessous.</3><4>Exemple</4><5>Vous pouvez trouver un exemple complet
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
+  landing:
+    aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une <2>petite équipe</2>
+      autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à
+      cœur d’être au près de vos besoins afin d’améliorer en permanence ce site
+      conformément au <8>manifeste beta.gouv.fr</8>.</1><2>Nous avons développé
+      ce site pour accompagner les créateurs d’entreprise dans le développement
+      de leur activité.</2><3>Notre objectif est de lever toutes les
+      incertitudes vis à vis de l’administration afin que vous puissiez vous
+      concentrer sur ce qui compte : votre activité.</3>"
+    choice:
+      simulators:
+        title: Découvrir la liste de tous les outils
+    description: L'assistant officiel des entrepreneurs
+    disclaimer: Tous les simulateurs sur ce site sont maintenus à jour avec les
+      dernières évolutions législatives.
+    meta:
+      title: Accueil
+    outils: <0>Quelques simulateurs de référence</0>
+    section:
+      by-occupation: Par profession
+      by-status: Par statut
+      explore-status: Explorer les statuts
+      other-tools: Autres outils
+    sub-section:
+      employees-and-employers: Travailleurs salariés et employeurs
+      self-employed: Travailleurs indépendants
+      self-employed-description: Calculez vos cotisations et votre revenu net après
+        impôt à partir du chiffre d'affaires et inversement
+    subtitle: Des <1>assistants et simulateurs</1> pour obtenir des <4>réponses
+      personnalisées</4> à vos questions sur la création et la gestion de votre
+      entreprise.
+    title: L'assistant officiel des entrepreneurs
   offline:
     description: Vous êtes actuellement hors ligne.
     title: Hors ligne
