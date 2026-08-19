@@ -24,7 +24,6 @@ import {
 import {
 	arrondirÀLEuro,
 	estZéro,
-	MontantRécurrent,
 	montantToString,
 	plus,
 	pourcentageParRapportÀ,
@@ -115,10 +114,7 @@ export const Comparaison = () => {
 							const revenuAvantImpôt = montantToString(
 								arrondirÀLEuro(
 									toEurosParMois(
-										plus(
-											revenu.revenuNetAprèsImpôt,
-											dépenses.impôt
-										) as MontantRécurrent
+										plus(revenu.revenuNetAprèsImpôt, dépenses.impôt)
 									)
 								)
 							)
@@ -137,7 +133,7 @@ export const Comparaison = () => {
 								arrondirÀLUnité(
 									Either.getOrThrow(
 										pourcentageParRapportÀ(
-											dépenses.cotisations as MontantRécurrent,
+											dépenses.cotisations,
 											Option.getOrThrow(situation.chiffreDAffaires)
 										)
 									)
