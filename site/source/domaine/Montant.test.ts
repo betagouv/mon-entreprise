@@ -20,7 +20,9 @@ import {
 	moins,
 	Montant,
 	montantToString,
+	parRapportÀ,
 	plus,
+	pourcentageParRapportÀ,
 	sommeEnEuros,
 	sommeEnEurosParAn,
 	sommeEnEurosParMois,
@@ -105,6 +107,23 @@ describe('Montant', () => {
 				plus(euros(100), eurosParMois(10))
 				// @ts-expect-error mélange d’unités interdit
 				moins(eurosParAn(100), euros(10))
+			}
+
+			expect(vérificationsDeTypes).toBeDefined()
+		})
+
+		it('calcule le rapport entre montants récurrents d’unités différentes', () => {
+			const rapport = parRapportÀ(eurosParMois(500), eurosParAn(12000))
+
+			expect(Either.getOrThrow(rapport)).toBeCloseTo(0.5, 5)
+		})
+
+		it('interdit à la compilation le rapport entre un montant ponctuel et un récurrent', () => {
+			const vérificationsDeTypes = () => {
+				// @ts-expect-error mélange d’unités interdit
+				parRapportÀ(euros(50), eurosParAn(100))
+				// @ts-expect-error mélange d’unités interdit
+				pourcentageParRapportÀ(eurosParMois(50), euros(100))
 			}
 
 			expect(vérificationsDeTypes).toBeDefined()
@@ -208,6 +227,29 @@ describe('Montant', () => {
 
 			const inférieur = pipe(montant2, estPlusPetitQue(montant1))
 			expect(inférieur).toBe(true)
+		})
+
+		it('compare des montants récurrents d’unités différentes en les convertissant', () => {
+			const milleParMois = eurosParMois(1000)
+			const sixMilleParAn = eurosParAn(6000)
+
+			expect(estPlusGrandQue(milleParMois, sixMilleParAn)).toBe(true)
+			expect(estPlusPetitQue(sixMilleParAn, milleParMois)).toBe(true)
+			expect(pipe(sixMilleParAn, estPlusPetitOuÉgalÀ(eurosParMois(500)))).toBe(
+				true
+			)
+			expect(estPlusGrandOuÉgalÀ(eurosParMois(500), sixMilleParAn)).toBe(true)
+		})
+
+		it('interdit à la compilation de comparer montants ponctuels et récurrents', () => {
+			const vérificationsDeTypes = () => {
+				// @ts-expect-error mélange d’unités interdit
+				estPlusGrandQue(euros(100), eurosParMois(10))
+				// @ts-expect-error mélange d’unités interdit
+				estPlusPetitQue(eurosParAn(100), euros(10))
+			}
+
+			expect(vérificationsDeTypes).toBeDefined()
 		})
 
 		it('vérifie correctement si un montant est positif, négatif ou zéro', () => {
