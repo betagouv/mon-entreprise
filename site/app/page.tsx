@@ -12,7 +12,6 @@ import {
 	Grid,
 	H2,
 	H3,
-	H4,
 	Intro,
 	Link,
 	Spacing,
@@ -28,11 +27,11 @@ export default function Home() {
 		<>
 			<Container>
 				<PageHeader
-					titre={t('landing.title', "L'assistant officiel des entrepreneurs")}
+					titre={t('pages.landing.title', "L'assistant officiel des entrepreneurs")}
 					picture="/images/home-banner-decorative.svg"
 				>
 					<Intro $xxl>
-						<Trans i18nKey="landing.subtitle">
+						<Trans i18nKey="pages.landing.subtitle">
 							Des <Strong>assistants et simulateurs</Strong> pour obtenir des{' '}
 							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
 							création et la gestion de votre entreprise.
@@ -41,7 +40,7 @@ export default function Home() {
 
 					<Body>
 						{t(
-							'landing.disclaimer',
+							'pages.landing.disclaimer',
 							'Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 						)}
 					</Body>
@@ -52,7 +51,7 @@ export default function Home() {
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<H2>{t('landing.section.explore-status', 'Explorer les statuts')}</H2>
+				<H2>{t('pages.landing.section.explore-status', 'Explorer les statuts')}</H2>
 
 				<Grid role="list" container spacing={4}>
 					<ForceThemeProvider forceTheme="default">
@@ -74,12 +73,12 @@ export default function Home() {
 			</Container>
 
 			<Container>
-				<H2>{t('landing.section.by-status', 'Par statut')}</H2>
+				<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
 
 				<section>
 					<H3>
 						{t(
-							'landing.sub-section.employees-and-employers',
+							'pages.landing.sub-section.employees-and-employers',
 							'Travailleurs salariés et employeurs'
 						)}
 					</H3>
@@ -92,7 +91,7 @@ export default function Home() {
 				<section>
 					<H3>
 						{t(
-							'landing.sub-section.self-employed',
+							'pages.landing.sub-section.self-employed',
 							'Travailleurs indépendants'
 						)}
 					</H3>
@@ -126,11 +125,11 @@ export default function Home() {
 			</Container>
 
 			<Container>
-				<H2>{t('landing.section.by-occupation', 'Par profession')}</H2>
+				<H2>{t('pages.landing.section.by-occupation', 'Par profession')}</H2>
 
 				<Body>
 					{t(
-						'landing.sub-section.self-employed-description ',
+						'pages.landing.sub-section.self-employed-description',
 						"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
 					)}
 				</Body>
@@ -161,7 +160,7 @@ export default function Home() {
 			</Container>
 
 			<Container>
-				<H2>{t('landing.section.other-tools', 'Autres outils')}</H2>
+				<H2>{t('pages.landing.section.other-tools', 'Autres outils')}</H2>
 
 				<Grid role="list" container spacing={4}>
 					<SimulateurCard
@@ -216,7 +215,7 @@ export default function Home() {
 					</StyledDecorativeImageHiddenOnMobile>
 
 					<Grid item xs={10} md={10}>
-						<Trans i18nKey="landing.aboutUs">
+						<Trans i18nKey="pages.landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
 
 							<Body>
