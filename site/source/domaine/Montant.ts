@@ -306,24 +306,14 @@ export const diviséPar = dual<
  * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
  * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
  */
-type RapportDataLast = {
-	(
-		diviseur: MontantRécurrent
-	): (a: MontantRécurrent) => Either.Either<number, DivisionParZéro>
-	<U extends UnitéMonétairePonctuelle>(
-		diviseur: Montant<U>
-	): (a: Montant<U>) => Either.Either<number, DivisionParZéro>
+type OpérationSurPaireDataLast<R> = {
+	(b: MontantRécurrent): (a: MontantRécurrent) => R
+	<U extends UnitéMonétairePonctuelle>(b: Montant<U>): (a: Montant<U>) => R
 }
 
-type RapportDataFirst = {
-	(
-		a: MontantRécurrent,
-		diviseur: MontantRécurrent
-	): Either.Either<number, DivisionParZéro>
-	<U extends UnitéMonétairePonctuelle>(
-		a: Montant<U>,
-		diviseur: Montant<U>
-	): Either.Either<number, DivisionParZéro>
+type OpérationSurPaireDataFirst<R> = {
+	(a: MontantRécurrent, b: MontantRécurrent): R
+	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): R
 }
 
 const rapport = (
@@ -338,31 +328,14 @@ const rapport = (
 	return Either.right(numérateur / dénominateur)
 }
 
-export const parRapportÀ = dual<RapportDataLast, RapportDataFirst>(2, rapport)
-
-type PourcentageDataLast = {
-	(
-		diviseur: MontantRécurrent
-	): (a: MontantRécurrent) => Either.Either<Quantité<'%'>, DivisionParZéro>
-	<U extends UnitéMonétairePonctuelle>(
-		diviseur: Montant<U>
-	): (a: Montant<U>) => Either.Either<Quantité<'%'>, DivisionParZéro>
-}
-
-type PourcentageDataFirst = {
-	(
-		a: MontantRécurrent,
-		diviseur: MontantRécurrent
-	): Either.Either<Quantité<'%'>, DivisionParZéro>
-	<U extends UnitéMonétairePonctuelle>(
-		a: Montant<U>,
-		diviseur: Montant<U>
-	): Either.Either<Quantité<'%'>, DivisionParZéro>
-}
+export const parRapportÀ = dual<
+	OpérationSurPaireDataLast<Either.Either<number, DivisionParZéro>>,
+	OpérationSurPaireDataFirst<Either.Either<number, DivisionParZéro>>
+>(2, rapport)
 
 export const pourcentageParRapportÀ = dual<
-	PourcentageDataLast,
-	PourcentageDataFirst
+	OpérationSurPaireDataLast<Either.Either<Quantité<'%'>, DivisionParZéro>>,
+	OpérationSurPaireDataFirst<Either.Either<Quantité<'%'>, DivisionParZéro>>
 >(2, (...paire: PaireDeMontantsCombinables) =>
 	pipe(
 		rapport(...paire),
@@ -370,36 +343,30 @@ export const pourcentageParRapportÀ = dual<
 	)
 )
 
-type ComparateurDataLast = {
-	(b: MontantRécurrent): (a: MontantRécurrent) => boolean
-	<U extends UnitéMonétairePonctuelle>(
-		b: Montant<U>
-	): (a: Montant<U>) => boolean
-}
-
-type ComparateurDataFirst = {
-	(a: MontantRécurrent, b: MontantRécurrent): boolean
-	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): boolean
-}
-
-export const estPlusGrandQue = dual<ComparateurDataLast, ComparateurDataFirst>(
+export const estPlusGrandQue = dual<
+	OpérationSurPaireDataLast<boolean>,
+	OpérationSurPaireDataFirst<boolean>
+>(
 	2,
 	comparaison((a, b) => a > b)
 )
-export const estPlusPetitQue = dual<ComparateurDataLast, ComparateurDataFirst>(
+export const estPlusPetitQue = dual<
+	OpérationSurPaireDataLast<boolean>,
+	OpérationSurPaireDataFirst<boolean>
+>(
 	2,
 	comparaison((a, b) => a < b)
 )
 export const estPlusGrandOuÉgalÀ = dual<
-	ComparateurDataLast,
-	ComparateurDataFirst
+	OpérationSurPaireDataLast<boolean>,
+	OpérationSurPaireDataFirst<boolean>
 >(
 	2,
 	comparaison((a, b) => a >= b)
 )
 export const estPlusPetitOuÉgalÀ = dual<
-	ComparateurDataLast,
-	ComparateurDataFirst
+	OpérationSurPaireDataLast<boolean>,
+	OpérationSurPaireDataFirst<boolean>
 >(
 	2,
 	comparaison((a, b) => a <= b)
