@@ -119,3 +119,4 @@ jobs:
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
             - API : ${{ needs.deploy-context.outputs.fr_url }}/api/v1/doc/
+            - Next.js sur Clever Cloud : https://mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}.cleverapps.io
