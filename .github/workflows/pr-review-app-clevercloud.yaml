@@ -42,21 +42,15 @@ jobs:
       CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
       APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
     steps:
-      - name: Checkout de la configuration de référence
+      - name: Checkout de la branche par défaut
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-        with:
-          path: base
       - name: Checkout du code de la PR
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: refs/pull/${{ needs.deploy-context.outputs.pr_number }}/merge
           path: pr
           fetch-depth: 0
-      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
-        with:
-          node-version: '24'
-      - name: Install clever-tools
-        run: npm install --global clever-tools@4.11.0
+      - uses: ./.github/actions/clever-tools
       - name: Créer l'application si elle n'existe pas
         working-directory: pr
         run: |
@@ -73,5 +67,5 @@ jobs:
         working-directory: pr
         run: |
           git switch -c "$APP_NAME"
-          clever env import < "$GITHUB_WORKSPACE/base/clevercloud/next-fr.env"
+          clever env import < "$GITHUB_WORKSPACE/clevercloud/next-fr.env"
           clever deploy --force --same-commit-policy rebuild

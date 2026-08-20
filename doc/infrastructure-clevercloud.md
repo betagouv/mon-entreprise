@@ -46,7 +46,7 @@ Le déclencheur est `workflow_run` sur « Vérification PR », et non `pull_requ
 
 C'est le commit de fusion (`refs/pull/<n>/merge`) qui est déployé, comme pour la preview Netlify : les deux previews montrent donc le même code, celui que « Vérification PR » a validé. Une PR en conflit n'a pas de commit de fusion et ne se déploie pas.
 
-Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code est checkouté dans `pr/`, tandis que la configuration est lue dans `base/`, un second checkout de la branche par défaut — une PR ne peut donc pas modifier les variables injectées dans son application.
+Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code de la PR est checkouté dans `pr/`, tandis que la racine du workspace porte la branche par défaut — d'où proviennent la configuration injectée dans l'application et l'action composite qui installe le CLI. Une PR ne peut donc influencer ni les variables de son application, ni ce que le runner exécute.
 
 Le lien vers la review app est ajouté au commentaire de PR écrit par [`pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), à côté des previews Netlify. Les deux workflows étant indépendants, le lien peut apparaître avant que l'application soit prête.
 
