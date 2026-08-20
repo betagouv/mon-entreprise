@@ -176,7 +176,7 @@ indépendant . profession libérale . réglementée . PAMC . CURPS:
             alors: 0.3%
           - sinon: 0.1%
     plafond:
-      valeur: 0.50% * plafond sécurité sociale . métropole
+      valeur: 0.50% * plafond sécurité sociale . cas général
     arrondi: oui
     unité: €/an
   références:

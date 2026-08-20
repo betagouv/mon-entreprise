@@ -7771,9 +7771,32 @@ impôt . taux personnalisé:
   titre.fr: Taux d’imposition personnalisé
 plafond sécurité sociale:
   avec:
-    N-1:
-      titre.en: '[automatic] N-1'
-      titre.fr: N-1
+    cas général:
+      description.en: >
+        [automatic] Social Security income limit applicable in mainland France
+        and in the overseas departments and regions (DROM), excluding
+
+        Mayotte.
+      description.fr: >
+        Plafond de sécurité sociale applicable en métropole et dans les DROM
+        hors
+
+        Mayotte.
+      titre.en: '[automatic] PSS'
+      titre.fr: PSS
+    cas général . N-1:
+      description.en: >
+        [automatic] Social Security ceiling for year N-1 applicable in mainland
+        France and in
+
+        the overseas departments and regions (DROM), excluding Mayotte.
+      description.fr: >
+        Plafond de sécurité sociale de l'année N-1 applicable en métropole et
+        dans
+
+        les DROM hors Mayotte.
+      titre.en: '[automatic] PSS N-1'
+      titre.fr: PSS N-1
     horaire:
       titre.en: '[automatic] schedule'
       titre.fr: horaire
