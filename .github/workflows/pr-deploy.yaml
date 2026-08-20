@@ -124,17 +124,15 @@ jobs:
           path: pr
           fetch-depth: 0
       - uses: ./.github/actions/clever-tools
-      - name: Créer l'application si elle n'existe pas
+      - name: Préparer l'application
         working-directory: pr
         run: |
-          if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
-            echo "Application $APP_NAME déjà existante"
-          else
+          if ! clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
             clever create --type node "$APP_NAME" --alias "$APP_NAME" --org "$CLEVER_ORGA_ID" --region par
             clever domain add "$APP_NAME.cleverapps.io"
-            clever scale --flavor XS
-            clever scale --build-flavor XL
           fi
+          clever scale --flavor XS
+          clever scale --build-flavor XL
       - name: Déployer la review app
         id: deploy
         working-directory: pr
