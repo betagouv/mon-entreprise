@@ -7803,6 +7803,11 @@ plafond sécurité sociale:
     journalier:
       titre.en: '[automatic] daily'
       titre.fr: journalier
+    mayotte:
+      description.en: '[automatic] Social Security income limit applicable in Mayotte.'
+      description.fr: Plafond de sécurité sociale applicable à Mayotte.
+      titre.en: '[automatic] Mahoran PSS'
+      titre.fr: PSS mahorais
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account for the calculation of certain
     contributions.'

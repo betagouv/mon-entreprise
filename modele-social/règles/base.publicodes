@@ -4,16 +4,20 @@ plafond sécurité sociale:
   acronyme: PSS
   variations:
     - si: établissement . commune . département . outre-mer . Mayotte
-      alors:
-        variations:
-          - si: date < 01/2026
-            alors: 2821 €/mois
-          - sinon: 3022 €/mois
+      alors: mayotte
     - sinon: cas général
   références:
     Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
   avec:
+    mayotte:
+      titre: PSS mahorais
+      description: Plafond de sécurité sociale applicable à Mayotte.
+      variations:
+        - si: date < 01/2026
+          alors: 2821 €/mois
+        - sinon: 3022 €/mois
+
     cas général:
       titre: PSS
       description: |
