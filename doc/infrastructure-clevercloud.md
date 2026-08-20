@@ -36,6 +36,18 @@ Déclencheurs : la fin en succès du workflow « Tests sur Master », et `workfl
 2. `clever env import` — applique la configuration depuis `clevercloud/next-<langue>.env`
 3. `clever deploy` — pousse le commit courant, ce qui déclenche le build sur Clever Cloud
 
+## Review apps par PR
+
+Workflow : [`.github/workflows/pr-review-app-clevercloud.yaml`](../.github/workflows/pr-review-app-clevercloud.yaml)
+
+Chaque PR obtient une application éphémère, en français seulement, servie sur `mon-entreprise-pr-<numéro>.cleverapps.io`. Elle est créée au premier déploiement, redéployée à chaque push, et supprimée à la fermeture de la PR par un job de [`pr-cleanup.yaml`](../.github/workflows/pr-cleanup.yaml).
+
+Le déclencheur est `workflow_run` sur « Vérification PR », et non `pull_request_target`. C'est ce qui rend les review apps sûres pour les contributions externes : une PR de fork n'exécute « Vérification PR » qu'après approbation d'un mainteneur, donc aucune application n'est créée tant que personne n'a regardé le code. Un workflow `pull_request_target` s'exécuterait au contraire sans approbation, puisqu'il tourne dans le contexte de la branche de base — n'importe qui pourrait alors faire construire et exécuter son code sur l'organisation Clever Cloud.
+
+Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code est checkouté dans `pr/`, tandis que la configuration est lue dans `base/`, un second checkout de la branche par défaut — une PR ne peut donc pas modifier les variables injectées dans son application.
+
+Le lien vers la review app est ajouté au commentaire de PR écrit par [`pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), à côté des previews Netlify. Les deux workflows étant indépendants, le lien peut apparaître avant que l'application soit prête.
+
 ## Configuration des applications
 
 La configuration est versionnée dans `clevercloud/next-fr.env` et `clevercloud/next-en.env`.
