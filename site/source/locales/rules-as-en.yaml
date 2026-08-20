@@ -979,20 +979,20 @@ assimilé salarié . exonérations . Acre:
   titre.fr: Acre
 assimilé salarié . exonérations . JEI:
   description.en: >-
-    [automatic] The status of “young innovative company” (JEI) was created by
-    the 2004 Finance Act and allows small and medium-sized enterprises (SMEs)
-    that are less than 8 years old and devote at least 20 percent of their
-    expenses to research and development to benefit from an exemption from
-    social security contributions.
+    [automatic] The status of “young innovative company” (JEI) was established
+    by the 2004 Finance Act and allows small and medium-sized enterprises (SMEs)
+    that are less than 8 years old and devote at least 20% of their expenses to
+    research and development to benefit from an exemption from social security
+    contributions.
 
 
-    The exemption may apply to compensation paid:
+    The exemption may apply to compensation paid to:
 
-    - to employees for whom the employer is subject to the obligation to provide
+    - employees for whom the employer is subject to the obligation to provide
     unemployment insurance
 
-    - to corporate officers who are primarily involved in the company’s research
-    and development project
+    - corporate officers who participate, as their primary occupation, in the
+    company’s research and development project
 
 
     For simplicity’s sake, an employee will be deemed eligible for the exemption
@@ -2534,6 +2534,11 @@ plafond sécurité sociale:
     journalier:
       titre.en: '[automatic] daily'
       titre.fr: journalier
+    mayotte:
+      description.en: '[automatic] Social Security income limit applicable in Mayotte.'
+      description.fr: Plafond de sécurité sociale applicable à Mayotte.
+      titre.en: '[automatic] Mahoran PSS'
+      titre.fr: PSS mahorais
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account when calculating certain
     contributions.'

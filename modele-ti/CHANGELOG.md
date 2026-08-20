@@ -5,6 +5,9 @@
 ### Breaking changes
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
 
+### Nouveautés
+- Crée la règle `plafond sécurité sociale . mayotte`
+
 ## 0.1.0
 
 ### Mises à jour
