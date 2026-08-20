@@ -370,7 +370,10 @@ salarié . cotisations . AGS:
       plafond:
         variations:
           - si: établissement . commune . département . outre-mer . Mayotte
-            alors: 4728 €/mois
+            alors:
+              produit:
+                - 4728 €/mois
+                - temps de travail . effectif . quotité
           - sinon: 4 * temps de travail . plafond sécurité sociale
     - taux
 
@@ -397,7 +400,10 @@ salarié . cotisations . chômage:
       plafond:
         variations:
           - si: établissement . commune . département . outre-mer . Mayotte
-            alors: 4728 €/mois
+            alors:
+              produit:
+                - 4728 €/mois
+                - temps de travail . effectif . quotité
           - sinon: 4 * temps de travail . plafond sécurité sociale
     - taux
   avec:
