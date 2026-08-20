@@ -74,7 +74,8 @@ indépendant . PASS proratisé . métropole:
   titre: plafond de la sécurité sociale proratisé (métropole)
   description: |
     Version métropole du plafond de la sécurité sociale, proratisé par la durée
-    d’activité pendant l’année (dans le cas d’activité créée ou cessée en cours d’année).
+    d’activité pendant l’année (dans le cas d’activité créée ou cessée en cours
+    d’année).
 
     Utile pour calculer les plafonds et tranches des barèmes de cotisations, les
     cotisations forfaitaires de début d’activité ou le montant de l’Acre.
@@ -82,7 +83,7 @@ indépendant . PASS proratisé . métropole:
     Pour certaines cotisations applicables à Mayotte, c’est quand même la valeur
     métropole du plafond de sécurité sociale qui est utilisé.
   produit:
-    - plafond sécurité sociale . métropole
+    - plafond sécurité sociale . cas général
     - entreprise . prorata temporis
   arrondi: oui
   unité: €/an

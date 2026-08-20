@@ -9,13 +9,16 @@ plafond sécurité sociale:
           - si: date < 01/2026
             alors: 2821 €/mois
           - sinon: 3022 €/mois
-    - sinon: métropole
+    - sinon: cas général
   références:
     Plafonds de la Sécurité sociale: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/plafonds-securite-sociale.html
 
   avec:
-    métropole:
-      titre: PSS métropole
+    cas général:
+      titre: PSS
+      description: |
+        Plafond de sécurité sociale applicable en métropole et dans les DROM hors
+        Mayotte.
       variations:
         - si: date < 01/2024
           alors: 3666 €/mois
@@ -25,9 +28,12 @@ plafond sécurité sociale:
           alors: 3925 €/mois
         - sinon: 4005 €/mois
 
-    métropole . N-1:
-      titre: PSS métropole N-1
-      valeur: plafond sécurité sociale . métropole
+    cas général . N-1:
+      titre: PSS N-1
+      description: |
+        Plafond de sécurité sociale de l'année N-1 applicable en métropole et dans
+        les DROM hors Mayotte.
+      valeur: plafond sécurité sociale . cas général
       contexte:
         date: période . début d'année . N-1
 

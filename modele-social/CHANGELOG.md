@@ -2,6 +2,9 @@
 
 ## next
 
+### Breaking changes
+- Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
+
 ### Nouveautés
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte

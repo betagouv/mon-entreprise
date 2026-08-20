@@ -2,6 +2,9 @@
 
 ## next
 
+### Breaking changes
+- Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
+
 ## 0.1.0
 
 ### Mises à jour

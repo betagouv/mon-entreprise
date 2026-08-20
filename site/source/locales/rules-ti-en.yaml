@@ -3,15 +3,20 @@ SMIC:
   titre.fr: SMIC
 SMIC . horaire:
   avec:
+    cas général:
+      description.en: >
+        [automatic] Minimum wage applicable in mainland France and in the
+        overseas departments and regions (DROM), excluding Mayotte.
+      description.fr: |
+        Smic applicable en métropole et dans les DROM hors Mayotte.
+      titre.en: '[automatic] general case'
+      titre.fr: cas général
+    cas général . début d'année:
+      titre.en: '[automatic] beginning of the year'
+      titre.fr: début d'année
     début d'année:
       titre.en: '[automatic] at the beginning of the year'
       titre.fr: en début d'année
-    métropole:
-      titre.en: '[automatic] metropolis'
-      titre.fr: métropole
-    métropole . début d'année:
-      titre.en: '[automatic] beginning of the year'
-      titre.fr: début d'année
   note.en: >
     [automatic] In principle, the SMIC (minimum wage) is revalued on January 1
     of each year.
@@ -1613,36 +1618,34 @@ indépendant . PASS proratisé:
   titre.fr: plafond de la sécurité sociale proratisé
 indépendant . PASS proratisé . métropole:
   description.en: >
-    [automatic] Version métropole of the social security ceiling, prorated by
-    the length of time
+    [automatic] Mainland France version of the social security contribution
+    ceiling, prorated based on the duration
 
-    of activity during the year (in the case of an activity created or ceased
-    during the year).
+    of employment during the year (in the case of employment that began or ended
+    during
 
-
-    Useful for calculating the ceilings and brackets of contribution scales, the
-
-    contributions or the amount of Acre.
+    the year).
 
 
-    For certain contributions applicable in Mayotte, the value of the social
-    security ceiling
+    Useful for calculating the ceilings and brackets of the contribution scales,
+    the
 
-    of the social security ceiling is used.
-  description.fr: >
+    flat-rate contributions at the start of employment, or the amount of the
+    Acre.
+
+
+    For certain contributions applicable in Mayotte, however, the
+
+    mainland value of the social security ceiling is used.
+  description.fr: |
     Version métropole du plafond de la sécurité sociale, proratisé par la durée
-
     d’activité pendant l’année (dans le cas d’activité créée ou cessée en cours
     d’année).
 
-
     Utile pour calculer les plafonds et tranches des barèmes de cotisations, les
-
     cotisations forfaitaires de début d’activité ou le montant de l’Acre.
 
-
     Pour certaines cotisations applicables à Mayotte, c’est quand même la valeur
-
     métropole du plafond de sécurité sociale qui est utilisé.
   titre.en: '[automatic] prorated social security ceiling (metropolitan France)'
   titre.fr: plafond de la sécurité sociale proratisé (métropole)
@@ -5789,18 +5792,38 @@ plafond sécurité sociale:
     annuel:
       titre.en: '[automatic] annual'
       titre.fr: annuel
+    cas général:
+      description.en: >
+        [automatic] Social Security ceiling applicable in mainland France and in
+        the overseas departments and regions (DROM), excluding
+
+        Mayotte.
+      description.fr: >
+        Plafond de sécurité sociale applicable en métropole et dans les DROM
+        hors
+
+        Mayotte.
+      titre.en: '[automatic] PSS'
+      titre.fr: PSS
+    cas général . N-1:
+      description.en: >
+        [automatic] Social Security ceiling for year N-1 applicable in mainland
+        France and in
+
+        the overseas departments and regions (DROM), excluding Mayotte.
+      description.fr: >
+        Plafond de sécurité sociale de l'année N-1 applicable en métropole et
+        dans
+
+        les DROM hors Mayotte.
+      titre.en: '[automatic] PSS N-1'
+      titre.fr: PSS N-1
     horaire:
       titre.en: '[automatic] schedule'
       titre.fr: horaire
     journalier:
       titre.en: '[automatic] daily'
       titre.fr: journalier
-    métropole:
-      titre.en: '[automatic] PSS Metropolitan Area'
-      titre.fr: PSS métropole
-    métropole . N-1:
-      titre.en: '[automatic] PSS Metropolitan Division N-1'
-      titre.fr: PSS métropole N-1
   description.en: '[automatic] The Social Security ceiling is the maximum amount
     of remuneration to be taken into account when calculating certain
     contributions.'
