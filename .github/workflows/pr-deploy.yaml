@@ -1,4 +1,7 @@
 name: Déploiement PR
+# Déclenché par workflow_run : les secrets sont disponibles, y compris pour les PR de
+# fork, qui n'exécutent « Vérification PR » qu'après approbation d'un mainteneur.
+# Le code d'une PR est checkouté dans pr/ pour être déployé, jamais exécuté ici.
 on:
   workflow_run:
     workflows: ['Vérification PR']
@@ -95,8 +98,55 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         timeout-minutes: 3
 
+  review-app-clevercloud:
+    needs: deploy-context
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    concurrency:
+      group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}
+      cancel-in-progress: false
+    outputs:
+      url: ${{ steps.deploy.outputs.url }}
+    env:
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+      CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
+      APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
+    steps:
+      - name: Checkout de la branche par défaut
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: Checkout du code de la PR
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: refs/pull/${{ needs.deploy-context.outputs.pr_number }}/merge
+          path: pr
+          fetch-depth: 0
+      - uses: ./.github/actions/clever-tools
+      - name: Créer l'application si elle n'existe pas
+        working-directory: pr
+        run: |
+          if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
+            echo "Application $APP_NAME déjà existante"
+          else
+            clever create --type node "$APP_NAME" --alias "$APP_NAME" --org "$CLEVER_ORGA_ID" --region par
+            clever domain add "$APP_NAME.cleverapps.io"
+            clever scale --flavor XS
+            clever scale --build-flavor XL
+          fi
+      - name: Déployer la review app
+        id: deploy
+        working-directory: pr
+        run: |
+          git switch -c "$APP_NAME"
+          clever env import < "$GITHUB_WORKSPACE/clevercloud/next-fr.env"
+          clever deploy --force --same-commit-policy rebuild
+          echo "url=https://$APP_NAME.cleverapps.io" >> "$GITHUB_OUTPUT"
+
   post-comment:
-    needs: [deploy-preview, deploy-context]
+    needs: [deploy-preview, deploy-context, review-app-clevercloud]
+    if: ${{ !cancelled() && needs.deploy-preview.result == 'success' }}
     runs-on: ubuntu-22.04
     steps:
       - name: Find Comment
@@ -119,4 +169,4 @@ jobs:
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
             - API : ${{ needs.deploy-context.outputs.fr_url }}/api/v1/doc/
-            - Next.js sur Clever Cloud : https://mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}.cleverapps.io
+            ${{ needs.review-app-clevercloud.outputs.url && format('- Next.js sur Clever Cloud : {0}', needs.review-app-clevercloud.outputs.url) || '' }}

@@ -38,7 +38,7 @@ Déclencheurs : la fin en succès du workflow « Tests sur Master », et `workfl
 
 ## Review apps par PR
 
-Workflow : [`.github/workflows/pr-review-app-clevercloud.yaml`](../.github/workflows/pr-review-app-clevercloud.yaml)
+Job `review-app-clevercloud` de [`.github/workflows/pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), aux côtés des previews Netlify — déployer les previews d'une PR est une seule et même responsabilité.
 
 Chaque PR obtient une application éphémère, en français seulement, servie sur `mon-entreprise-pr-<numéro>.cleverapps.io`. Elle est créée au premier déploiement, redéployée à chaque push, et supprimée à la fermeture de la PR par un job de [`pr-cleanup.yaml`](../.github/workflows/pr-cleanup.yaml).
 
@@ -48,7 +48,7 @@ C'est le commit de fusion (`refs/pull/<n>/merge`) qui est déployé, comme pour 
 
 Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code de la PR est checkouté dans `pr/`, tandis que la racine du workspace porte la branche par défaut — d'où proviennent la configuration injectée dans l'application et l'action composite qui installe le CLI. Une PR ne peut donc influencer ni les variables de son application, ni ce que le runner exécute.
 
-Le lien vers la review app est ajouté au commentaire de PR écrit par [`pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), à côté des previews Netlify. Les deux workflows étant indépendants, le lien peut apparaître avant que l'application soit prête.
+Le lien est ajouté au commentaire de PR, à côté des previews Netlify. Le job qui écrit ce commentaire dépend du déploiement : le lien n'apparaît qu'une fois l'application en ligne, et pas du tout si le déploiement a échoué.
 
 ## Configuration des applications
 
