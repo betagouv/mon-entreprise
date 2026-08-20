@@ -44,6 +44,8 @@ Chaque PR obtient une application éphémère, en français seulement, servie su
 
 Le déclencheur est `workflow_run` sur « Vérification PR », et non `pull_request_target`. C'est ce qui rend les review apps sûres pour les contributions externes : une PR de fork n'exécute « Vérification PR » qu'après approbation d'un mainteneur, donc aucune application n'est créée tant que personne n'a regardé le code. Un workflow `pull_request_target` s'exécuterait au contraire sans approbation, puisqu'il tourne dans le contexte de la branche de base — n'importe qui pourrait alors faire construire et exécuter son code sur l'organisation Clever Cloud.
 
+C'est le commit de fusion (`refs/pull/<n>/merge`) qui est déployé, comme pour la preview Netlify : les deux previews montrent donc le même code, celui que « Vérification PR » a validé. Une PR en conflit n'a pas de commit de fusion et ne se déploie pas.
+
 Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code est checkouté dans `pr/`, tandis que la configuration est lue dans `base/`, un second checkout de la branche par défaut — une PR ne peut donc pas modifier les variables injectées dans son application.
 
 Le lien vers la review app est ajouté au commentaire de PR écrit par [`pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), à côté des previews Netlify. Les deux workflows étant indépendants, le lien peut apparaître avant que l'application soit prête.
