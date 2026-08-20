@@ -44,4 +44,5 @@ jobs:
       - name: Apply Clever Cloud configuration
         run: clever env import < "clevercloud/next-${{ matrix.langue }}.env"
       - name: Deploy
+        timeout-minutes: 30
         run: clever deploy --force --same-commit-policy rebuild
