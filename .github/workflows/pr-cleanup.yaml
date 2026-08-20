@@ -1,7 +1,7 @@
 name: Nettoyage PR
 # Utilise pull_request_target (au lieu de pull_request) pour avoir accès aux secrets
-# même pour les PR de fork. Sûr car on ne checkout pas le code du fork — seuls les
-# scripts de master sont exécutés pour nettoyer l'index Algolia temporaire.
+# même pour les PR de fork. Ne jamais y checkouter le code d'une PR : il s'exécuterait
+# avec ces secrets. Les jobs ci-dessous n'exécutent que du code de la branche par défaut.
 on:
   pull_request_target:
     types: [closed]
@@ -30,3 +30,25 @@ jobs:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
           ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env-name }}-
+
+  clevercloud-review-app-rm:
+    runs-on: ubuntu-22.04
+    env:
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+      CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
+      APP_NAME: mon-entreprise-pr-${{ github.event.number }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: '24'
+      - name: Install clever-tools
+        run: npm install --global clever-tools@4.11.0
+      - name: Supprimer la review app
+        run: |
+          if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
+            clever delete --yes
+          else
+            echo "Aucune review app pour la PR ${{ github.event.number }}"
+          fi

@@ -1,0 +1,76 @@
+name: Review app Next.js sur Clever Cloud
+# Déclenché par workflow_run et non par pull_request_target, qui s'exécuterait sans
+# l'approbation exigée pour les PR de fork. Le code de la PR est checkouté dans pr/
+# mais jamais exécuté ici : seules des commandes clever et un git push tournent.
+on:
+  workflow_run:
+    workflows: ['Vérification PR']
+    types: [completed]
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  deploy-context:
+    if: >-
+      github.event.workflow_run.conclusion == 'success'
+      && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-22.04
+    outputs:
+      pr_number: ${{ steps.pr-context.outputs.pr_number }}
+    steps:
+      - name: Download PR context artifact
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: pr-context
+          run-id: ${{ github.event.workflow_run.id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Read PR context
+        id: pr-context
+        run: echo "pr_number=$(jq -r .pr_number pr-context.json)" >> $GITHUB_OUTPUT
+
+  review-app:
+    needs: deploy-context
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}
+      cancel-in-progress: false
+    env:
+      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+      CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
+      APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
+    steps:
+      - name: Checkout de la configuration de référence
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          path: base
+      - name: Checkout du code de la PR
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: refs/pull/${{ needs.deploy-context.outputs.pr_number }}/head
+          path: pr
+          fetch-depth: 0
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: '24'
+      - name: Install clever-tools
+        run: npm install --global clever-tools@4.11.0
+      - name: Créer l'application si elle n'existe pas
+        working-directory: pr
+        run: |
+          if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
+            echo "Application $APP_NAME déjà existante"
+          else
+            clever create --type node "$APP_NAME" --alias "$APP_NAME" --org "$CLEVER_ORGA_ID" --region par
+            clever domain add "$APP_NAME.cleverapps.io"
+            clever scale --flavor XS
+            clever scale --build-flavor XL
+          fi
+      - name: Déployer la review app
+        working-directory: pr
+        run: |
+          git switch -c "$APP_NAME"
+          clever env import < "$GITHUB_WORKSPACE/base/clevercloud/next-fr.env"
+          clever deploy --force --same-commit-policy rebuild
