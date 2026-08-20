@@ -33,6 +33,7 @@ jobs:
 
   clevercloud-review-app-rm:
     runs-on: ubuntu-22.04
+    timeout-minutes: 10
     env:
       CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
       CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
@@ -42,7 +43,6 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/clever-tools
       - name: Supprimer la review app
-        timeout-minutes: 5
         run: |
           if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
             clever delete --yes
