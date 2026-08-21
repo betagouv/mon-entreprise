@@ -11308,6 +11308,63 @@ salarié . cotisations . FNAL:
     le financement de l’allocation logement.
   titre.en: '[automatic] Contribution to the National Housing Assistance Fund'
   titre.fr: Contribution au Fonds National d’Aide au Logement
+salarié . cotisations . Mayotte:
+  description.en: >
+    [automatic] The employer and employee **social security contribution rates**
+    applicable in Mayotte are
+
+    accurately reflected by this calculator.
+
+
+    However, calculations related to the **RGDU** (Single Degressive General
+    Reduction)
+
+    and the **Lodeom** exemption, which differ for Mayotte, are
+
+    **not yet available** in this simulator.
+
+
+    > Please note: For the RGDU, the simulator applies the calculation rules
+    used in
+
+    mainland France.
+  description.fr: >
+    Les **taux de cotisations sociales** patronales et salariales applicables à
+    Mayotte sont
+
+    bien appliqués par ce simulateur.
+
+
+    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive
+    Unique)
+
+    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
+
+    **pas encore disponibles** dans ce simulateur.
+
+
+    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
+
+    métropole.
+  résumé.en: >
+    [automatic] This simulator correctly applies the **social security
+    contribution rates** applicable
+
+    in Mayotte.
+
+
+    However, calculations related to the **RGDU** and the **Lodeom** exemption
+    are
+
+    not yet available for this territory.
+  résumé.fr: |
+    Ce simulateur applique bien les **taux de cotisations sociales** applicables
+    à Mayotte.
+
+    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
+    sont pas encore disponibles pour ce territoire.
+  titre.en: '[automatic] Contributions in Mayotte'
+  titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
   description.en: '[automatic] Participation of employers in the construction effort'
   description.fr: Participation des employeurs à l'effort de construction
