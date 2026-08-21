@@ -4,6 +4,7 @@
 
 ### Breaking changes
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
+- Renomme `indépendant . cotisations et contributions . cotisations . exonérations . Mayotte` en `indépendant . cotisations et contributions . Mayotte`
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
