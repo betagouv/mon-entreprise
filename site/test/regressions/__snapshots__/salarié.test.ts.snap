@@ -802,7 +802,9 @@ salarié . contrat . salaire brut . équivalent temps plein: null
 salarié . coût total employeur: 3760
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2483
-salarié . rémunération . net . à payer avant impôt: 2537"
+salarié . rémunération . net . à payer avant impôt: 2537
+
+Notifications affichées : salarié . cotisations . Mayotte"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
@@ -813,7 +815,7 @@ salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 17437
 salarié . rémunération . net . à payer avant impôt: 26035
 
-Notifications affichées : salarié . contrat . salaire brut . contrôle salaire élevé"
+Notifications affichées : salarié . cotisations . Mayotte, salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
 
 exports[`calculate simulations-salarié > impôt sur le revenu 8`] = `
