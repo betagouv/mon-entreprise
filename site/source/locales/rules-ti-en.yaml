@@ -1935,6 +1935,39 @@ indépendant . cotisations et contributions . CSG-CRDS:
       titre.fr: taux
   titre.en: '[automatic] CSG-CRDS'
   titre.fr: CSG-CRDS
+indépendant . cotisations et contributions . Mayotte:
+  description.en: |
+    [automatic] As of January 1, 2025, Urssaf has taken over the collection of
+    social security contributions from self-employed workers
+    who carry out their activities in Mayotte.
+
+    This simulator correctly applies the contribution bases and rates
+    specific to Mayotte, including the 50% reduction
+    on the contribution bases for family allowances and the
+    additional health, maternity, and long-term care insurance contribution.
+    It also applies the **24-month Mayotte exemption** to
+    contributions for the first two years of business activity.
+  description.fr: |
+    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des
+    cotisations et contributions sociales des travailleurs et
+    travailleuses indépendantes qui exercent leur activité à Mayotte.
+
+    Ce simulateur applique bien les assiettes et taux de cotisations et
+    contributions spécifiques à Mayotte, y compris l’abattement de 50 %
+    sur les assiettes de la cotisation allocations familiales et de la
+    cotisation additionnelle d’assurance maladie-maternité et autonomie.
+    Il applique également l’**exonération 24 mois Mayotte** sur les
+    cotisations et contributions des 2 premières années d’activité.
+  résumé.en: >
+    [automatic] This simulator correctly applies the tax bases, contribution
+    rates, and
+
+    exemptions **specific to Mayotte**.
+  résumé.fr: |
+    Ce simulateur applique bien les assiettes, les taux de cotisations et
+    contributions et les exonérations **spécifiques à Mayotte**.
+  titre.en: '[automatic] Debt Collection in Mayotte'
+  titre.fr: Recouvrement Mayotte
 indépendant . cotisations et contributions . après réforme:
   titre.en: '[automatic] after reform'
   titre.fr: après réforme
@@ -2780,39 +2813,6 @@ indépendant . cotisations et contributions . cotisations . exonérations . DROM
     Ce simulateur ne prend pas en compte les exonérations DROM.
   titre.en: '[automatic] DROM exemption'
   titre.fr: exonération DROM
-indépendant . cotisations et contributions . cotisations . exonérations . Mayotte:
-  description.en: |
-    [automatic] As of January 1, 2025, Urssaf has taken over the collection of
-    social security contributions from self-employed workers
-    who carry out their activities in Mayotte.
-
-    This simulator correctly applies the contribution bases and rates
-    specific to Mayotte, including the 50% reduction
-    on the contribution bases for family allowances and the
-    additional health, maternity, and long-term care insurance contribution.
-    It also applies the **24-month Mayotte exemption** to
-    contributions for the first two years of business activity.
-  description.fr: |
-    Depuis le 1er janvier 2025, l’Urssaf a repris la collecte des
-    cotisations et contributions sociales des travailleurs et
-    travailleuses indépendantes qui exercent leur activité à Mayotte.
-
-    Ce simulateur applique bien les assiettes et taux de cotisations et
-    contributions spécifiques à Mayotte, y compris l’abattement de 50 %
-    sur les assiettes de la cotisation allocations familiales et de la
-    cotisation additionnelle d’assurance maladie-maternité et autonomie.
-    Il applique également l’**exonération 24 mois Mayotte** sur les
-    cotisations et contributions des 2 premières années d’activité.
-  résumé.en: >
-    [automatic] This simulator correctly applies the assessment bases,
-    contribution rates, and
-
-    exemptions **specific to Mayotte**.
-  résumé.fr: |
-    Ce simulateur applique bien les assiettes, les taux de cotisations et
-    contributions et les exonérations **spécifiques à Mayotte**.
-  titre.en: '[automatic] Mayotte collection'
-  titre.fr: Recouvrement Mayotte
 indépendant . cotisations et contributions . cotisations . exonérations . Mayotte 24 mois:
   description.en: >
     [automatic] Mahoran contributors who are just starting their business are
