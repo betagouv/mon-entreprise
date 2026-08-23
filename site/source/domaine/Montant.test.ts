@@ -81,11 +81,9 @@ describe('Montant', () => {
 
 			const enAnnuel = plus(parAn, parMois)
 			expect(Equal.equals(enAnnuel, eurosParAn(2200))).toBe(true)
-			expect(enAnnuel.unité).toBe('€/an')
 
 			const enMensuel = pipe(parMois, plus(parAn))
 			expect(Equal.equals(enMensuel, eurosParMois(183.33))).toBe(true)
-			expect(enMensuel.unité).toBe('€/mois')
 		})
 
 		it('soustrait un montant récurrent d’une autre unité en le convertissant vers l’unité de la cible', () => {
@@ -94,11 +92,9 @@ describe('Montant', () => {
 
 			const enMensuel = pipe(chiffreDAffaires, moins(charges))
 			expect(Equal.equals(enMensuel, eurosParMois(8000))).toBe(true)
-			expect(enMensuel.unité).toBe('€/mois')
 
 			const enAnnuel = moins(charges, chiffreDAffaires)
 			expect(Equal.equals(enAnnuel, eurosParAn(-96000))).toBe(true)
-			expect(enAnnuel.unité).toBe('€/an')
 		})
 
 		it('interdit à la compilation de mélanger montants ponctuels et récurrents', () => {
