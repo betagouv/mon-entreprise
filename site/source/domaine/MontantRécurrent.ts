@@ -1,20 +1,87 @@
 import { Either } from 'effect'
 import { dual, pipe } from 'effect/Function'
 
-import {
-	DivisionParZéro,
-	estZéro,
-	montant,
-	Montant,
-	toEurosParAn,
-	toEurosParHeure,
-	toEurosParJour,
-	toEurosParMois,
-} from './Montant'
+import { DivisionParZéro, estZéro, montant, Montant } from './Montant'
 import { pourcentage, Quantité } from './Quantite'
 import { UnitéMonétaireRécurrente } from './Unites'
 
 export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
+
+export const toEurosParMois = (
+	montantRécurrent: MontantRécurrent
+): Montant<'€/mois'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / 12
+			break
+		case '€/jour':
+			valeur = (valeur * 365) / 12
+			break
+		case '€/heure':
+			valeur = (valeur * 24 * 365) / 12
+			break
+	}
+
+	return montant(valeur, '€/mois')
+}
+
+export const toEurosParAn = (
+	montantRécurrent: MontantRécurrent
+): Montant<'€/an'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/mois':
+			valeur = valeur * 12
+			break
+		case '€/jour':
+			valeur = valeur * 365
+			break
+		case '€/heure':
+			valeur = valeur * 24 * 365
+			break
+	}
+
+	return montant(valeur, '€/an')
+}
+
+export const toEurosParJour = (
+	montantRécurrent: MontantRécurrent
+): Montant<'€/jour'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / 365
+			break
+		case '€/mois':
+			valeur = (valeur * 12) / 365
+			break
+		case '€/heure':
+			valeur = valeur * 24
+			break
+	}
+
+	return montant(valeur, '€/jour')
+}
+
+export const toEurosParHeure = (
+	montantRécurrent: MontantRécurrent
+): Montant<'€/heure'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / (365 * 24)
+			break
+		case '€/mois':
+			valeur = (valeur * 12) / (365 * 24)
+			break
+		case '€/jour':
+			valeur = valeur / 24
+			break
+	}
+
+	return montant(valeur, '€/heure')
+}
 
 export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
 	montant(valeur, '€/mois')
@@ -28,7 +95,7 @@ export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
 export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
 	montant(valeur, '€/heure')
 
-const convertisseurs: {
+export const convertitEn: {
 	[U in UnitéMonétaireRécurrente]: (m: MontantRécurrent) => Montant<U>
 } = {
 	'€/mois': toEurosParMois,
@@ -40,7 +107,7 @@ const convertisseurs: {
 const aligneSur =
 	<U extends UnitéMonétaireRécurrente>(cible: Montant<U>) =>
 	(montantÀAligner: MontantRécurrent): Montant<U> =>
-		convertisseurs[cible.unité](montantÀAligner)
+		convertitEn[cible.unité](montantÀAligner)
 
 const aligneLesValeurs = (
 	montantA: MontantRécurrent,

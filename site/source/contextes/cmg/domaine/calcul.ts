@@ -6,6 +6,7 @@ import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
 import * as MP from '@/domaine/MontantPonctuel'
+import * as MR from '@/domaine/MontantRécurrent'
 import { round } from '@/utils/number'
 
 import {
@@ -52,7 +53,7 @@ export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 				calculeCMGRLinéarisé(
 					d,
 					situation.enfantsÀCharge,
-					M.toEurosParMois(situation.ressources.value)
+					MR.toEurosParMois(situation.ressources.value)
 				).valeur
 		),
 		N.sumAll,
