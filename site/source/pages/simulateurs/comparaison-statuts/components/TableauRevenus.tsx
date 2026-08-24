@@ -5,12 +5,8 @@ import { styled } from 'styled-components'
 import { StatutTag } from '@/components/StatutTag'
 import { useComparateur } from '@/contextes/comparateur'
 import { Strong } from '@/design-system'
-import {
-	arrondirÀLEuro,
-	montantToString,
-	toEurosParAn,
-} from '@/domaine/Montant'
-import { eurosParAn, plus } from '@/domaine/MontantRécurrent'
+import { arrondirÀLEuro, montantToString } from '@/domaine/Montant'
+import { eurosParAn, plus, toEurosParAn } from '@/domaine/MontantRécurrent'
 
 export function TableauRevenus() {
 	const { situation, comparaison } = useComparateur()

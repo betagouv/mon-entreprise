@@ -3,6 +3,7 @@ import { css, styled } from 'styled-components'
 
 import * as M from '@/domaine/Montant'
 import { montant, Montant } from '@/domaine/Montant'
+import * as MR from '@/domaine/MontantRécurrent'
 import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unites'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
@@ -64,8 +65,8 @@ export const MontantField = <U extends UnitéMonétaire>({
 		const montantConverti =
 			unitéRécurrenteCible && M.isMontantRécurrent(montant)
 				? unitéRécurrenteCible === '€/mois'
-					? M.toEurosParMois(montant)
-					: M.toEurosParAn(montant)
+					? MR.toEurosParMois(montant)
+					: MR.toEurosParAn(montant)
 				: montant
 
 		return M.montantToNumber(montantConverti)
