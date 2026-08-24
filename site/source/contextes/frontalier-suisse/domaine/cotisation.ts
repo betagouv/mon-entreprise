@@ -4,13 +4,12 @@ import { PLAFOND_ANNUEL_SECURITE_SOCIALE } from '@/domaine/ConstantesSociales'
 import {
 	arrondirÀLEuro,
 	estNégatif,
-	euros,
-	eurosParAn,
 	fois,
 	Montant,
 	toEurosParMois,
 } from '@/domaine/Montant'
-import { moins, plus } from '@/domaine/MontantRécurrent'
+import { euros } from '@/domaine/MontantPonctuel'
+import { eurosParAn, moins, plus } from '@/domaine/MontantRécurrent'
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
 import { annéeDesRevenus } from './annee-de-simulation'

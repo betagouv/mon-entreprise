@@ -27,7 +27,7 @@ export const calculeComplémentTransitoire = (situation: SituationCMGValide) => 
 	const différence = MP.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
 
 	if (M.estNégatif(différence)) {
-		return M.euros(0)
+		return MP.euros(0)
 	}
 
 	return différence
@@ -37,10 +37,10 @@ export const moyenneCMGPerçus = (salariées: SituationCMGValide['salariées']) 
 	pipe(
 		salariées,
 		toutesLesDéclarations,
-		A.map((d) => O.getOrElse(d.CMGPerçu, () => M.euros(0)).valeur),
+		A.map((d) => O.getOrElse(d.CMGPerçu, () => MP.euros(0)).valeur),
 		N.sumAll,
 		(sum) => sum / 3,
-		M.euros
+		MP.euros
 	)
 
 export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
@@ -57,7 +57,7 @@ export const moyenneCMGRLinéarisés = (situation: SituationCMGValide) =>
 		),
 		N.sumAll,
 		(sum) => sum / 3,
-		M.euros
+		MP.euros
 	)
 
 export const calculeCMGRLinéarisé = (
@@ -69,7 +69,7 @@ export const calculeCMGRLinéarisé = (
 	const coûtMensuel = coûtMensuelDeLaGarde(déclarationDeGarde)
 	const coûtHoraireMédian = COÛT_HORAIRE_MÉDIAN[déclarationDeGarde.type]
 
-	return M.euros(
+	return MP.euros(
 		coûtMensuel.valeur * (1 - (revenuMensuel.valeur * teh) / coûtHoraireMédian)
 	)
 }
@@ -114,11 +114,11 @@ export const coûtMensuelDeLaGarde = (
 	déclarationDeGarde: DéclarationDeGarde
 ) => {
 	if (O.isNone(déclarationDeGarde.heuresDeGarde)) {
-		return M.euros(0)
+		return MP.euros(0)
 	}
 
 	const coûtHoraireNet = round(
-		O.getOrElse(déclarationDeGarde.rémunération, () => M.euros(0)).valeur /
+		O.getOrElse(déclarationDeGarde.rémunération, () => MP.euros(0)).valeur /
 			déclarationDeGarde.heuresDeGarde.value,
 		2
 	)
@@ -127,5 +127,5 @@ export const coûtMensuelDeLaGarde = (
 		COÛT_HORAIRE_MAXIMAL[déclarationDeGarde.type]
 	)
 
-	return M.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde.value)
+	return MP.euros(coûtHoraireAppliqué * déclarationDeGarde.heuresDeGarde.value)
 }

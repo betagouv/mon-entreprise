@@ -3,6 +3,7 @@ import Engine from 'publicodes'
 import { beforeAll, describe, expect, it } from 'vitest'
 
 import * as Montant from '@/domaine/Montant'
+import * as MontantRécurrent from '@/domaine/MontantRécurrent'
 import * as Quantité from '@/domaine/Quantite'
 
 import { PublicodesAdapter } from './PublicodesAdapter'
@@ -142,7 +143,7 @@ describe('PublicodesAdapter', () => {
 		})
 
 		it('encode un montant', () => {
-			const montant = Montant.eurosParMois(1500)
+			const montant = MontantRécurrent.eurosParMois(1500)
 			const result = PublicodesAdapter.encode(O.some(montant))
 
 			expect(result).toBe('1500 €/mois')

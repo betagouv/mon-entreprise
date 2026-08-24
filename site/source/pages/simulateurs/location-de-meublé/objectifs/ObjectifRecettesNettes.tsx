@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 export const ObjectifRecettesNettes = () => {

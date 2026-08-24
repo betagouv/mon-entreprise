@@ -6,13 +6,13 @@ import { Trans } from 'react-i18next'
 
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { euros } from '@/domaine/MontantPonctuel'
 import {
-	euros,
 	eurosParAn,
 	eurosParJour,
 	eurosParMois,
 	MontantRécurrent,
-} from '@/domaine/Montant'
+} from '@/domaine/MontantRécurrent'
 import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {

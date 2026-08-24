@@ -13,7 +13,8 @@ import {
 	SmallBody,
 	Strong,
 } from '@/design-system'
-import { euros, montantToString } from '@/domaine/Montant'
+import { montantToString } from '@/domaine/Montant'
+import { euros } from '@/domaine/MontantPonctuel'
 import { useGetPath } from '@/hooks/useGetPath'
 import { useNavigation } from '@/lib/navigation'
 

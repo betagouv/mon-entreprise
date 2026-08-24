@@ -1,9 +1,10 @@
 import { Either, Option, pipe } from 'effect'
 
-import { abattement, eurosParAn, fois, Montant } from '@/domaine/Montant'
+import { abattement, fois, Montant } from '@/domaine/Montant'
 import {
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
+	eurosParAn,
 	moins,
 } from '@/domaine/MontantRécurrent'
 

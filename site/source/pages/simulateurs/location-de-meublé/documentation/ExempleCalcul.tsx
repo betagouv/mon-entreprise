@@ -2,7 +2,8 @@ import { Trans } from 'react-i18next'
 
 import { ABATTEMENT_REGIME_GENERAL } from '@/contextes/économie-collaborative'
 import { ExemplePratique } from '@/design-system'
-import { eurosParAn, montantToString } from '@/domaine/Montant'
+import { montantToString } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 export const ExempleCalcul = () => {
 	const taux = ABATTEMENT_REGIME_GENERAL

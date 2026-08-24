@@ -9,7 +9,8 @@ import {
 	type MockInstance,
 } from 'vitest'
 
-import { eurosParMois, eurosParTitreRestaurant } from './Montant'
+import { eurosParTitreRestaurant } from './MontantPonctuel'
+import { eurosParMois } from './MontantRécurrent'
 import {
 	heuresParMois,
 	joursOuvrés,

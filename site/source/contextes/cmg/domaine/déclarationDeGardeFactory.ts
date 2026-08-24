@@ -1,6 +1,7 @@
 import * as O from 'effect/Option'
 
 import * as M from '@/domaine/Montant'
+import * as MP from '@/domaine/MontantPonctuel'
 
 import {
 	DéclarationDeGardeAMA,
@@ -10,8 +11,8 @@ import {
 export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 	private enfantsGardés
 	private heuresDeGarde = O.some(100)
-	private rémunération = O.some(M.euros(500))
-	private CMGPerçu = O.some(M.euros(200))
+	private rémunération = O.some(MP.euros(500))
+	private CMGPerçu = O.some(MP.euros(200))
 
 	constructor(prénoms: Prénom[]) {
 		this.enfantsGardés = prénoms
@@ -54,8 +55,8 @@ export class DéclarationsDeGardeAMAFactory<Prénom extends string = string> {
 
 export class DéclarationsDeGardeGEDFactory {
 	private heuresDeGarde = O.some(50)
-	private rémunération = O.some(M.euros(500))
-	private CMGPerçu = O.some(M.euros(200))
+	private rémunération = O.some(MP.euros(500))
+	private CMGPerçu = O.some(MP.euros(200))
 
 	avecNbHeures(nbHeures: number) {
 		this.heuresDeGarde = O.some(nbHeures)

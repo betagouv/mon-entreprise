@@ -1,13 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
+import { euros, eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
 import {
-	euros,
 	eurosParAn,
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
-	eurosParTitreRestaurant,
-} from '@/domaine/Montant'
+} from '@/domaine/MontantRécurrent'
 import {
 	annéeCivile,
 	employés,

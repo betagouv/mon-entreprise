@@ -1,5 +1,5 @@
 import { MontantField } from '@/design-system'
-import { euros } from '@/domaine/Montant'
+import { euros } from '@/domaine/MontantPonctuel'
 import { rémunérationBruteDottedName } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {

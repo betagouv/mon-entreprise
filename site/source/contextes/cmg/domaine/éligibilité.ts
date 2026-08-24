@@ -7,6 +7,7 @@ import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
+import * as MP from '@/domaine/MontantPonctuel'
 import * as MR from '@/domaine/MontantRécurrent'
 
 import { calculeComplémentTransitoire } from './calcul'
@@ -104,7 +105,7 @@ export const éligibilité = (situation: SituationCMG): FonctionÉligibilité =>
 				? E.left(SITUATION_INCOMPLÈTE)
 				: E.right({
 						estÉligible: true,
-						montantCT: M.euros(0),
+						montantCT: MP.euros(0),
 					} as Éligible)
 		),
 		E.mapLeft(A.dedupe)
@@ -123,7 +124,7 @@ const situationIncomplète = E.right(
 const éligible = E.right(
 	E.right({
 		estÉligible: true,
-		montantCT: M.euros(0),
+		montantCT: MP.euros(0),
 	})
 ) as FonctionÉligibilité
 const inéligible = (raison: RaisonInéligibilité) => E.left([raison])

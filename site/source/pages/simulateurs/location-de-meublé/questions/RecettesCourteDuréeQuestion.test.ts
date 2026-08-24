@@ -6,7 +6,7 @@ import {
 	SituationMeubléDuréeMixte,
 	TypeDurée,
 } from '@/contextes/économie-collaborative'
-import { eurosParAn } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 import { RecettesCourteDuréeQuestion } from './RecettesCourteDuréeQuestion'
 

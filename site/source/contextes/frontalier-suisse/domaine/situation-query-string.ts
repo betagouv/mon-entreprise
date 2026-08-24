@@ -1,7 +1,8 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
 
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 import {
 	initialSituationFrontalierSuisse,
