@@ -25,12 +25,11 @@ import {
 	arrondirÀLEuro,
 	estZéro,
 	montantToString,
-	plus,
-	pourcentageParRapportÀ,
 	toEurosParAn,
 	toEurosParJour,
 	toEurosParMois,
 } from '@/domaine/Montant'
+import { plus, pourcentageParRapportÀ } from '@/domaine/MontantRécurrent'
 import { arrondirÀLUnité, quantitéToString } from '@/domaine/Quantite'
 
 import { CartesStatuts } from './CartesStatuts'

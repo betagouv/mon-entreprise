@@ -5,6 +5,7 @@ import * as O from 'effect/Option'
 import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
+import * as MP from '@/domaine/MontantPonctuel'
 import { round } from '@/utils/number'
 
 import {
@@ -23,7 +24,7 @@ import { SituationCMGValide } from './situation'
 export const calculeComplémentTransitoire = (situation: SituationCMGValide) => {
 	const ancienCMGMensuelMoyen = moyenneCMGPerçus(situation.salariées)
 	const CMGRLinéariséMoyen = moyenneCMGRLinéarisés(situation)
-	const différence = M.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
+	const différence = MP.moins(ancienCMGMensuelMoyen, CMGRLinéariséMoyen)
 
 	if (M.estNégatif(différence)) {
 		return M.euros(0)

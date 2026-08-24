@@ -7,6 +7,7 @@ import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
+import * as MR from '@/domaine/MontantRécurrent'
 
 import { calculeComplémentTransitoire } from './calcul'
 import {
@@ -273,7 +274,7 @@ const ressourcesInférieuresAuPlafond = (
 ): boolean =>
 	pipe(
 		situation.ressources.value,
-		M.estPlusPetitOuÉgalÀ(
+		MR.estPlusPetitOuÉgalÀ(
 			plafondDeRessources(
 				situation.enfantsÀCharge.enfants.length,
 				situation.parentIsolé.value
@@ -284,7 +285,7 @@ const ressourcesInférieuresAuPlafond = (
 export const plafondDeRessources = (nbEnfants: number, parentIsolé: boolean) =>
 	pipe(
 		PLAFOND_DE_RESSOURCES_COUPLE_1_ENFANT,
-		M.plus(M.fois(MAJORATION_PAR_ENFANT, nbEnfants - 1)),
+		MR.plus(M.fois(MAJORATION_PAR_ENFANT, nbEnfants - 1)),
 		M.fois(parentIsolé ? MAJORATION_PARENT_ISOLÉ : 1)
 	)
 

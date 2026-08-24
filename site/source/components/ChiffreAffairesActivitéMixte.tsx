@@ -14,6 +14,7 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import * as M from '@/domaine/Montant'
+import * as MR from '@/domaine/MontantRécurrent'
 import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
@@ -105,8 +106,8 @@ function useAdjustProportions(CADottedName: DottedName) {
 				m: ReadonlyArray<M.MontantRécurrent>
 			): M.MontantRécurrent =>
 				currentUnit === '€/an'
-					? M.sommeEnEurosParAn(m)
-					: M.sommeEnEurosParMois(m)
+					? MR.sommeEnEurosParAn(m)
+					: MR.sommeEnEurosParMois(m)
 
 			const nouvelleValeurPour = (
 				règleCA: DottedName
@@ -138,7 +139,7 @@ function useAdjustProportions(CADottedName: DottedName) {
 						O.map((CA) =>
 							pipe(
 								CA,
-								M.parRapportÀ(nouveauCA),
+								MR.parRapportÀ(nouveauCA),
 								E.getOrElse(() => 0)
 							)
 						)
