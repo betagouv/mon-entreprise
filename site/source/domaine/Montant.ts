@@ -290,18 +290,6 @@ export const diviséPar = dual<
 	}
 )
 
-/**
- * Calcule la proportion d'un montant par rapport à un autre montant de même unité.
- * Retourne un nombre représentant le ratio (sans unité).
- *
- * @param a - Le montant numérateur
- * @param diviseur - Le montant dénominateur (ne peut pas être zéro)
- * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
- *
- * @example
- * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
- * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
- */
 type OpérationSurPaireDataLast<R> = {
 	(b: MontantRécurrent): (a: MontantRécurrent) => R
 	<U extends UnitéMonétairePonctuelle>(b: Montant<U>): (a: Montant<U>) => R
@@ -324,6 +312,18 @@ const rapport = (
 	return Either.right(numérateur / dénominateur)
 }
 
+/**
+ * Calcule la proportion d'un montant par rapport à un autre.
+ * Retourne un nombre représentant le ratio (sans unité).
+ *
+ * @param a - Le montant numérateur
+ * @param diviseur - Le montant dénominateur (ne peut pas être zéro)
+ * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
+ *
+ * @example
+ * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
+ * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
+ */
 export const parRapportÀ = dual<
 	OpérationSurPaireDataLast<Either.Either<number, DivisionParZéro>>,
 	OpérationSurPaireDataFirst<Either.Either<number, DivisionParZéro>>
