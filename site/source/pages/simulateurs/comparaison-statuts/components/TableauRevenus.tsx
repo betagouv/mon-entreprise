@@ -7,11 +7,10 @@ import { useComparateur } from '@/contextes/comparateur'
 import { Strong } from '@/design-system'
 import {
 	arrondirÀLEuro,
-	eurosParAn,
 	montantToString,
 	toEurosParAn,
 } from '@/domaine/Montant'
-import { plus } from '@/domaine/MontantRécurrent'
+import { eurosParAn, plus } from '@/domaine/MontantRécurrent'
 
 export function TableauRevenus() {
 	const { situation, comparaison } = useComparateur()

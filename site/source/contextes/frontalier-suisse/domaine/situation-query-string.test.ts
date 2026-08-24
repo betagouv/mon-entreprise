@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 import {
 	initialSituationFrontalierSuisse,

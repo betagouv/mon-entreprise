@@ -6,7 +6,6 @@ import {
 	estZéro,
 	montant,
 	Montant,
-	MontantRécurrent,
 	toEurosParAn,
 	toEurosParHeure,
 	toEurosParJour,
@@ -14,6 +13,20 @@ import {
 } from './Montant'
 import { pourcentage, Quantité } from './Quantite'
 import { UnitéMonétaireRécurrente } from './Unites'
+
+export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
+
+export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
+	montant(valeur, '€/mois')
+
+export const eurosParAn = (valeur: number): Montant<'€/an'> =>
+	montant(valeur, '€/an')
+
+export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
+	montant(valeur, '€/jour')
+
+export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
+	montant(valeur, '€/heure')
 
 const convertisseurs: {
 	[U in UnitéMonétaireRécurrente]: (m: MontantRécurrent) => Montant<U>

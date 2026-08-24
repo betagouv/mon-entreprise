@@ -1,6 +1,7 @@
 import * as O from 'effect/Option'
 
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 import { Situation } from '@/domaine/Situation'
 
 interface SituationÉconomieCollaborativeBase extends Situation {

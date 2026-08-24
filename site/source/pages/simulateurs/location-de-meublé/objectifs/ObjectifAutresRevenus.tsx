@@ -8,7 +8,8 @@ import {
 	useEconomieCollaborative,
 } from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
-import { eurosParAn, Montant } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 export const ObjectifAutresRevenus = () => {
 	const { situation, set } = useEconomieCollaborative()

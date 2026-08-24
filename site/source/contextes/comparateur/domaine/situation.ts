@@ -1,11 +1,7 @@
 import * as O from 'effect/Option'
 
-import {
-	estPositif,
-	eurosParAn,
-	Montant,
-	MontantRécurrent,
-} from '@/domaine/Montant'
+import { estPositif, Montant } from '@/domaine/Montant'
+import { eurosParAn, MontantRécurrent } from '@/domaine/MontantRécurrent'
 import { quantité, Quantité } from '@/domaine/Quantite'
 import { Situation } from '@/domaine/Situation'
 

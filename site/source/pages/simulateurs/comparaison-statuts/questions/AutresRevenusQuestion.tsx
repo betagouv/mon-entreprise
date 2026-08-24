@@ -3,7 +3,8 @@ import { useCallback } from 'react'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { SituationComparée, useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
-import { eurosParAn, Montant, montantToString } from '@/domaine/Montant'
+import { Montant, montantToString } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRécurrent'
 
 export const AutresRevenusQuestion: ComposantQuestionFournie<
 	SituationComparée

@@ -1,8 +1,8 @@
 import { Equal } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { euros, eurosParMois } from './Montant'
-import { moins } from './MontantPonctuel'
+import { euros, moins } from './MontantPonctuel'
+import { eurosParMois } from './MontantRécurrent'
 
 describe('MontantPonctuel', () => {
 	it('soustrait deux montants de même unité', () => {

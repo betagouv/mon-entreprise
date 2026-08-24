@@ -1,7 +1,8 @@
 import * as O from 'effect/Option'
 import { useMemo } from 'react'
 
-import { Montant, MontantRécurrent } from '@/domaine/Montant'
+import { Montant } from '@/domaine/Montant'
+import { MontantRécurrent } from '@/domaine/MontantRécurrent'
 import { Quantité } from '@/domaine/Quantite'
 
 import { NatureActivité, TypeActivité } from '../domaine/activite'

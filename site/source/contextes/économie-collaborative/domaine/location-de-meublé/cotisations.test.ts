@@ -1,8 +1,13 @@
 import { Either, Equal, pipe } from 'effect'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 
-import { abattement, eurosParAn, fois } from '@/domaine/Montant'
-import { estPlusGrandQue, moins, plus } from '@/domaine/MontantRécurrent'
+import { abattement, fois } from '@/domaine/Montant'
+import {
+	estPlusGrandQue,
+	eurosParAn,
+	moins,
+	plus,
+} from '@/domaine/MontantRécurrent'
 
 import { compareRégimes } from './comparateur-régimes'
 import { calculeCotisations } from './cotisations'
