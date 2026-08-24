@@ -413,9 +413,6 @@ intégration:
   title: Integration
 jours: days
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
-landing:
-  searchcompany: <0>Find your company </0><1>To access our simulators most
-    relevant to your business</1>
 legalNotice:
   accessibility:
     content: The platform is <2>partially compliant</2> with digital accessibility
@@ -1228,7 +1225,7 @@ pages:
     meta:
       title: Home
     outils: <0>Some reference simulators</0>
-    searchcompany: <0>Find your company </0><1>To access our simulators most
+    searchcompany: <0>Search for Your Company </0><1>To access our simulators most
       relevant to your business</1>
     section:
       by-occupation: By occupation

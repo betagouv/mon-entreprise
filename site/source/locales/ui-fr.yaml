@@ -431,9 +431,6 @@ intégration:
   title: Intégration
 jours: jours
 l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
-landing:
-  searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
-    simulateurs les plus pertinents pour votre activité</1>
 legalNotice:
   accessibility:
     content: La plateforme est <2>partiellement conforme</2> aux normes
@@ -1288,6 +1285,8 @@ pages:
     meta:
       title: Accueil
     outils: <0>Quelques simulateurs de référence</0>
+    searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
+      simulateurs les plus pertinents pour votre activité</1>
     section:
       by-occupation: Par profession
       by-status: Par statut
