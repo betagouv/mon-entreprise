@@ -158,11 +158,11 @@ export const arrondirÀLEuro = <M extends Montant>(m: M): M =>
 	montant(Math.round(m.valeur), m.unité) as M
 
 type PaireMêmeUnitéPonctuelle = {
-	[U in UnitéMonétairePonctuelle]: [a: Montant<U>, b: Montant<U>]
+	[U in UnitéMonétairePonctuelle]: [montantA: Montant<U>, montantB: Montant<U>]
 }[UnitéMonétairePonctuelle]
 
 type PaireDeMontantsCombinables =
-	| [a: MontantRécurrent, b: MontantRécurrent]
+	| [montantA: MontantRécurrent, montantB: MontantRécurrent]
 	| PaireMêmeUnitéPonctuelle
 
 const paireDeRécurrentsÀAligner = (
@@ -186,9 +186,9 @@ const aligneSur =
 	(montantÀAligner: MontantRécurrent): Montant<U> =>
 		convertisseurs[cible.unité](montantÀAligner)
 
-const valeursAlignées = (
+const aligneLesValeurs = (
 	...paire: PaireDeMontantsCombinables
-): [number, number] =>
+): [valeurA: number, valeurB: number] =>
 	pipe(
 		paire,
 		O.liftPredicate(paireDeRécurrentsÀAligner),
@@ -200,32 +200,30 @@ const valeursAlignées = (
 		O.getOrElse((): [number, number] => [paire[0].valeur, paire[1].valeur])
 	)
 
-const combinaison =
-	(opère: (a: number, b: number) => number) =>
-	(...paire: PaireDeMontantsCombinables): Montant =>
-		montant(opère(...valeursAlignées(...paire)), paire[0].unité)
-
-const comparaison =
-	(compare: (a: number, b: number) => boolean) =>
-	(...paire: PaireDeMontantsCombinables): boolean =>
-		compare(...valeursAlignées(...paire))
-
-type CombinaisonDataLast = {
-	(b: MontantRécurrent): <A extends MontantRécurrent>(a: A) => A
+type CombinaisonDeMontantsCompatiblesEnPipe = {
+	(montantB: MontantRécurrent): <A extends MontantRécurrent>(montantA: A) => A
 	<U extends UnitéMonétairePonctuelle>(
-		b: Montant<U>
-	): (a: Montant<U>) => Montant<U>
+		montantB: Montant<U>
+	): (montantA: Montant<U>) => Montant<U>
 }
 
-type CombinaisonDataFirst = {
-	<A extends MontantRécurrent>(a: A, b: MontantRécurrent): A
-	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): Montant<U>
+type CombinaisonDeMontantsCompatibles = {
+	<A extends MontantRécurrent>(montantA: A, montantB: MontantRécurrent): A
+	<U extends UnitéMonétairePonctuelle>(
+		montantA: Montant<U>,
+		montantB: Montant<U>
+	): Montant<U>
 }
 
-export const plus = dual<CombinaisonDataLast, CombinaisonDataFirst>(
-	2,
-	combinaison((a, b) => a + b)
-)
+export const plus = dual<
+	CombinaisonDeMontantsCompatiblesEnPipe,
+	CombinaisonDeMontantsCompatibles
+>(2, (...paire: PaireDeMontantsCombinables): Montant => {
+	const [montantA] = paire
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return montant(valeurA + valeurB, montantA.unité)
+})
 
 export const sommeEnEurosParMois = (
 	montants: ReadonlyArray<MontantRécurrent>
@@ -235,10 +233,15 @@ export const sommeEnEurosParAn = (
 	montants: ReadonlyArray<MontantRécurrent>
 ): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
 
-export const moins = dual<CombinaisonDataLast, CombinaisonDataFirst>(
-	2,
-	combinaison((a, b) => a - b)
-)
+export const moins = dual<
+	CombinaisonDeMontantsCompatiblesEnPipe,
+	CombinaisonDeMontantsCompatibles
+>(2, (...paire: PaireDeMontantsCombinables): Montant => {
+	const [montantA] = paire
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return montant(valeurA - valeurB, montantA.unité)
+})
 
 export const fois = dual<
 	<M extends Montant>(multiplicateur: number) => (a: M) => M,
@@ -290,24 +293,31 @@ export const diviséPar = dual<
 	}
 )
 
-type OpérationSurPaireDataLast<R> = {
-	(b: MontantRécurrent): (a: MontantRécurrent) => R
-	<U extends UnitéMonétairePonctuelle>(b: Montant<U>): (a: Montant<U>) => R
+type OpérationSurMontantsCompatiblesEnPipe<R> = {
+	(montantB: MontantRécurrent): (montantA: MontantRécurrent) => R
+	<U extends UnitéMonétairePonctuelle>(
+		montantB: Montant<U>
+	): (montantA: Montant<U>) => R
 }
 
-type OpérationSurPaireDataFirst<R> = {
-	(a: MontantRécurrent, b: MontantRécurrent): R
-	<U extends UnitéMonétairePonctuelle>(a: Montant<U>, b: Montant<U>): R
+type OpérationSurMontantsCompatibles<R> = {
+	(montantA: MontantRécurrent, montantB: MontantRécurrent): R
+	<U extends UnitéMonétairePonctuelle>(
+		montantA: Montant<U>,
+		montantB: Montant<U>
+	): R
 }
 
 const rapport = (
 	...paire: PaireDeMontantsCombinables
 ): Either.Either<number, DivisionParZéro> => {
-	if (estZéro(paire[1])) {
+	const [, diviseur] = paire
+
+	if (estZéro(diviseur)) {
 		return Either.left(new DivisionParZéro())
 	}
 
-	const [numérateur, dénominateur] = valeursAlignées(...paire)
+	const [numérateur, dénominateur] = aligneLesValeurs(...paire)
 
 	return Either.right(numérateur / dénominateur)
 }
@@ -325,13 +335,15 @@ const rapport = (
  * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
  */
 export const parRapportÀ = dual<
-	OpérationSurPaireDataLast<Either.Either<number, DivisionParZéro>>,
-	OpérationSurPaireDataFirst<Either.Either<number, DivisionParZéro>>
+	OpérationSurMontantsCompatiblesEnPipe<Either.Either<number, DivisionParZéro>>,
+	OpérationSurMontantsCompatibles<Either.Either<number, DivisionParZéro>>
 >(2, rapport)
 
 export const pourcentageParRapportÀ = dual<
-	OpérationSurPaireDataLast<Either.Either<Quantité<'%'>, DivisionParZéro>>,
-	OpérationSurPaireDataFirst<Either.Either<Quantité<'%'>, DivisionParZéro>>
+	OpérationSurMontantsCompatiblesEnPipe<
+		Either.Either<Quantité<'%'>, DivisionParZéro>
+	>,
+	OpérationSurMontantsCompatibles<Either.Either<Quantité<'%'>, DivisionParZéro>>
 >(2, (...paire: PaireDeMontantsCombinables) =>
 	pipe(
 		rapport(...paire),
@@ -340,33 +352,37 @@ export const pourcentageParRapportÀ = dual<
 )
 
 export const estPlusGrandQue = dual<
-	OpérationSurPaireDataLast<boolean>,
-	OpérationSurPaireDataFirst<boolean>
->(
-	2,
-	comparaison((a, b) => a > b)
-)
+	OpérationSurMontantsCompatiblesEnPipe<boolean>,
+	OpérationSurMontantsCompatibles<boolean>
+>(2, (...paire: PaireDeMontantsCombinables): boolean => {
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return valeurA > valeurB
+})
 export const estPlusPetitQue = dual<
-	OpérationSurPaireDataLast<boolean>,
-	OpérationSurPaireDataFirst<boolean>
->(
-	2,
-	comparaison((a, b) => a < b)
-)
+	OpérationSurMontantsCompatiblesEnPipe<boolean>,
+	OpérationSurMontantsCompatibles<boolean>
+>(2, (...paire: PaireDeMontantsCombinables): boolean => {
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return valeurA < valeurB
+})
 export const estPlusGrandOuÉgalÀ = dual<
-	OpérationSurPaireDataLast<boolean>,
-	OpérationSurPaireDataFirst<boolean>
->(
-	2,
-	comparaison((a, b) => a >= b)
-)
+	OpérationSurMontantsCompatiblesEnPipe<boolean>,
+	OpérationSurMontantsCompatibles<boolean>
+>(2, (...paire: PaireDeMontantsCombinables): boolean => {
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return valeurA >= valeurB
+})
 export const estPlusPetitOuÉgalÀ = dual<
-	OpérationSurPaireDataLast<boolean>,
-	OpérationSurPaireDataFirst<boolean>
->(
-	2,
-	comparaison((a, b) => a <= b)
-)
+	OpérationSurMontantsCompatiblesEnPipe<boolean>,
+	OpérationSurMontantsCompatibles<boolean>
+>(2, (...paire: PaireDeMontantsCombinables): boolean => {
+	const [valeurA, valeurB] = aligneLesValeurs(...paire)
+
+	return valeurA <= valeurB
+})
 
 export const estPositif = (montant: Montant): boolean => montant.valeur > 0
 export const estNégatif = (montant: Montant): boolean => montant.valeur < 0
