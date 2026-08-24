@@ -1,7 +1,8 @@
 import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
-import { estPlusGrandOuÉgalÀ, eurosParAn, Montant } from '@/domaine/Montant'
+import { eurosParAn, Montant } from '@/domaine/Montant'
+import { estPlusGrandOuÉgalÀ } from '@/domaine/MontantRécurrent'
 import {
 	TravailleurIndependantChiffreAffaireDansPublicodes,
 	TravailleurIndependantContexteDansPublicodes,
