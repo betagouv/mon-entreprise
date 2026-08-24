@@ -14,7 +14,6 @@ import {
 	H3,
 	Intro,
 	Link,
-	Spacing,
 	Strong,
 } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
@@ -47,7 +46,7 @@ export default function Home() {
 				</PageHeader>
 			</Container>
 
-			<Container
+			<ContainerWithXxlPaddingBottom
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
@@ -68,9 +67,7 @@ export default function Home() {
 						/>
 					</ForceThemeProvider>
 				</Grid>
-
-				<Spacing xxl />
-			</Container>
+			</ContainerWithXxlPaddingBottom>
 
 			<Container>
 				<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
@@ -196,13 +193,11 @@ export default function Home() {
 				</Grid>
 			</Container>
 
-			<Container>
+			<ContainerWithXxlPaddingBottom>
 				<H3 as="h2">Rechercher votre entreprise</H3>
+			</ContainerWithXxlPaddingBottom>
 
-				<Spacing xxl />
-			</Container>
-
-			<Container
+			<ContainerWithLgPaddingBottom
 				backgroundColor={(theme) =>
 					theme.darkMode
 						? theme.colors.extended.dark[700]
@@ -266,9 +261,7 @@ export default function Home() {
 						</Trans>
 					</Grid>
 				</StyledAboutGrid>
-
-				<Spacing lg />
-			</Container>
+			</ContainerWithLgPaddingBottom>
 		</>
 	)
 }
@@ -289,6 +282,14 @@ const TemporaryCard = styled.article`
 
 		color: white;
 	}
+`
+
+const ContainerWithXxlPaddingBottom = styled(Container)`
+	padding-bottom: ${({ theme }) => theme.spacings.xxl};
+`
+
+const ContainerWithLgPaddingBottom = styled(Container)`
+	padding-bottom: ${({ theme }) => theme.spacings.lg};
 `
 
 const StyledAboutGrid = styled(Grid)`
