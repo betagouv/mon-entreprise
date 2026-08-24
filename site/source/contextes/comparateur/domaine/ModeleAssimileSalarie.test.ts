@@ -1,8 +1,12 @@
 import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
-import { toEurosParAn } from '@/domaine/Montant'
-import { eurosParAn, eurosParMois, plus } from '@/domaine/MontantRécurrent'
+import {
+	eurosParAn,
+	eurosParMois,
+	plus,
+	toEurosParAn,
+} from '@/domaine/MontantRécurrent'
 
 import { ModèleAssimiléSalarié } from './ModeleAssimileSalarie'
 

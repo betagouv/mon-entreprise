@@ -4,6 +4,7 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 import { fois, Montant } from './Montant'
 import { euros } from './MontantPonctuel'
 import {
+	convertitEn,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	estPlusPetitOuÉgalÀ,
@@ -112,6 +113,17 @@ describe('MontantRécurrent', () => {
 			const resultat = plus(centEurosParMois, eurosParMois(50))
 
 			expectTypeOf<typeof resultat>().toMatchTypeOf<Montant<'€/mois'>>()
+		})
+	})
+
+	describe('conversions', () => {
+		it('convertit vers l’unité désignée par la clé', () => {
+			expect(
+				Equal.equals(convertitEn['€/mois'](eurosParAn(1200)), eurosParMois(100))
+			).toBe(true)
+			expect(
+				Equal.equals(convertitEn['€/an'](eurosParMois(100)), eurosParAn(1200))
+			).toBe(true)
 		})
 	})
 

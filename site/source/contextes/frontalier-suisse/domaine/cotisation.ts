@@ -1,15 +1,14 @@
 import * as O from 'effect/Option'
 
 import { PLAFOND_ANNUEL_SECURITE_SOCIALE } from '@/domaine/ConstantesSociales'
-import {
-	arrondirÀLEuro,
-	estNégatif,
-	fois,
-	Montant,
-	toEurosParMois,
-} from '@/domaine/Montant'
+import { arrondirÀLEuro, estNégatif, fois, Montant } from '@/domaine/Montant'
 import { euros } from '@/domaine/MontantPonctuel'
-import { eurosParAn, moins, plus } from '@/domaine/MontantRécurrent'
+import {
+	eurosParAn,
+	moins,
+	plus,
+	toEurosParMois,
+} from '@/domaine/MontantRécurrent'
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
 import { annéeDesRevenus } from './annee-de-simulation'
