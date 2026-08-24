@@ -6,7 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { eurosParMois, eurosParTitreRestaurant } from '@/domaine/Montant'
+import { eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
+import { eurosParMois } from '@/domaine/MontantRécurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	heuresParMois,

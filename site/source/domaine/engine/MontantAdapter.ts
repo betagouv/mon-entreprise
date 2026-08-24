@@ -2,15 +2,14 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
+import { Montant } from '@/domaine/Montant'
+import { euros, eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
 import {
-	euros,
 	eurosParAn,
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
-	eurosParTitreRestaurant,
-	Montant,
-} from '@/domaine/Montant'
+} from '@/domaine/MontantRécurrent'
 
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {

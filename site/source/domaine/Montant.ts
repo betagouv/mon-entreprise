@@ -14,14 +14,13 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly unité: T
 }
 
-export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
-
 export const isMontant = (something: unknown): something is Montant =>
 	isObject(something) && '_tag' in something && something._tag === 'Montant'
 
 export const isMontantRécurrent = (
 	montant: Montant
-): montant is MontantRécurrent => isUnitéMonétaireRécurrente(montant.unité)
+): montant is Montant<UnitéMonétaireRécurrente> =>
+	isUnitéMonétaireRécurrente(montant.unité)
 
 const makeMontant = Data.tagged<Montant>('Montant')
 
@@ -48,26 +47,8 @@ export const estEuroParHeure = (
 	montant: Montant
 ): montant is Montant<'€/heure'> => montant.unité === '€/heure'
 
-export const euros = (valeur: number): Montant<'€'> => montant(valeur, '€')
-
-export const eurosParTitreRestaurant = (
-	valeur: number
-): Montant<'€/titre-restaurant'> => montant(valeur, '€/titre-restaurant')
-
-export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
-	montant(valeur, '€/mois')
-
-export const eurosParAn = (valeur: number): Montant<'€/an'> =>
-	montant(valeur, '€/an')
-
-export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
-	montant(valeur, '€/jour')
-
-export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
-	montant(valeur, '€/heure')
-
 export const toEurosParMois = (
-	montantRécurrent: MontantRécurrent
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/mois'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -86,7 +67,7 @@ export const toEurosParMois = (
 }
 
 export const toEurosParAn = (
-	montantRécurrent: MontantRécurrent
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/an'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -105,7 +86,7 @@ export const toEurosParAn = (
 }
 
 export const toEurosParJour = (
-	montantRécurrent: MontantRécurrent
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/jour'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {
@@ -124,7 +105,7 @@ export const toEurosParJour = (
 }
 
 export const toEurosParHeure = (
-	montantRécurrent: MontantRécurrent
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
 ): Montant<'€/heure'> => {
 	let valeur = montantRécurrent.valeur
 	switch (montantRécurrent.unité) {

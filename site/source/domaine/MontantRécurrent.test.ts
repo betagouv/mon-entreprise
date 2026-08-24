@@ -1,12 +1,15 @@
 import { Either, Equal, pipe } from 'effect'
 import { describe, expect, expectTypeOf, it } from 'vitest'
 
-import { euros, eurosParAn, eurosParMois, fois, Montant } from './Montant'
+import { fois, Montant } from './Montant'
+import { euros } from './MontantPonctuel'
 import {
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	estPlusPetitOuÉgalÀ,
 	estPlusPetitQue,
+	eurosParAn,
+	eurosParMois,
 	moins,
 	parRapportÀ,
 	plus,

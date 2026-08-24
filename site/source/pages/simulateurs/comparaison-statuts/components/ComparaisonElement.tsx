@@ -17,9 +17,9 @@ import {
 	arrondirÀLEuro,
 	isMontant,
 	isMontantRécurrent,
-	MontantRécurrent,
 	montantToString,
 } from '@/domaine/Montant'
+import { MontantRécurrent } from '@/domaine/MontantRécurrent'
 import {
 	arrondirÀLUnité,
 	isQuantité,

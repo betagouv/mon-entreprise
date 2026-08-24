@@ -1,7 +1,8 @@
 import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
-import { euros, eurosParAn, eurosParMois } from '@/domaine/Montant'
+import { euros } from '@/domaine/MontantPonctuel'
+import { eurosParAn, eurosParMois } from '@/domaine/MontantRécurrent'
 import { testerEn } from '@/test/testerEn'
 
 import {

@@ -103,24 +103,24 @@ function useAdjustProportions(CADottedName: DottedName) {
 	return useCallback(
 		(name: DottedName, valeur?: ValeurPublicodes) => {
 			const somme = (
-				m: ReadonlyArray<M.MontantRécurrent>
-			): M.MontantRécurrent =>
+				m: ReadonlyArray<MR.MontantRécurrent>
+			): MR.MontantRécurrent =>
 				currentUnit === '€/an'
 					? MR.sommeEnEurosParAn(m)
 					: MR.sommeEnEurosParMois(m)
 
 			const nouvelleValeurPour = (
 				règleCA: DottedName
-			): O.Option<M.MontantRécurrent> => {
+			): O.Option<MR.MontantRécurrent> => {
 				const nouvelleValeur =
 					règleCA === name
 						? pipe(
-								(valeur as M.Montant | undefined) || M.eurosParAn(0),
+								(valeur as M.Montant | undefined) || MR.eurosParAn(0),
 								O.fromNullable
 							)
 						: pipe(engine.evaluate(règleCA), PublicodesAdapter.decode)
 
-				return nouvelleValeur as O.Option<M.MontantRécurrent>
+				return nouvelleValeur as O.Option<MR.MontantRécurrent>
 			}
 
 			const nouveauCA = pipe(

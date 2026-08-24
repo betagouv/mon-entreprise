@@ -7,15 +7,15 @@ import { Trans } from 'react-i18next'
 
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
+import { estPositif } from '@/domaine/Montant'
+import { euros } from '@/domaine/MontantPonctuel'
 import {
-	estPositif,
-	euros,
 	eurosParAn,
 	eurosParJour,
 	eurosParMois,
+	moins,
 	MontantRécurrent,
-} from '@/domaine/Montant'
-import { moins } from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRécurrent'
 import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {

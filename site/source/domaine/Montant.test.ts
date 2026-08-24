@@ -8,12 +8,11 @@ import {
 	estNégatif,
 	estPositif,
 	estZéro,
-	euros,
-	eurosParAn,
-	eurosParMois,
 	fois,
 	montantToString,
 } from './Montant'
+import { euros } from './MontantPonctuel'
+import { eurosParAn, eurosParMois } from './MontantRécurrent'
 
 describe('Montant', () => {
 	describe('constructeurs', () => {

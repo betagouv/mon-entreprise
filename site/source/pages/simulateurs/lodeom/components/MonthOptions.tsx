@@ -15,7 +15,7 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
-import { euros } from '@/domaine/Montant'
+import { euros } from '@/domaine/MontantPonctuel'
 import { heuresParMois } from '@/domaine/Quantite'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Options } from '@/pages/simulateurs/lodeom/utils'
