@@ -1,12 +1,10 @@
 import { Data, Either } from 'effect'
-import { dual, pipe } from 'effect/Function'
+import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-import { pourcentage, Quantité } from './Quantite'
 import {
 	isUnitéMonétaireRécurrente,
 	UnitéMonétaire,
-	UnitéMonétairePonctuelle,
 	UnitéMonétaireRécurrente,
 } from './Unites'
 
@@ -156,78 +154,6 @@ export const montant = <U extends UnitéMonétaire>(
 export const arrondirÀLEuro = <M extends Montant>(m: M): M =>
 	montant(Math.round(m.valeur), m.unité) as M
 
-const convertisseurs: {
-	[U in UnitéMonétaireRécurrente]: (m: MontantRécurrent) => Montant<U>
-} = {
-	'€/mois': toEurosParMois,
-	'€/an': toEurosParAn,
-	'€/jour': toEurosParJour,
-	'€/heure': toEurosParHeure,
-}
-
-const aligneSur =
-	<U extends UnitéMonétaireRécurrente>(cible: Montant<U>) =>
-	(montantÀAligner: MontantRécurrent): Montant<U> =>
-		convertisseurs[cible.unité](montantÀAligner)
-
-const aligneLesValeurs = (
-	montantA: Montant,
-	montantB: Montant
-): [valeurA: number, valeurB: number] => {
-	if (
-		montantA.unité !== montantB.unité &&
-		isMontantRécurrent(montantA) &&
-		isMontantRécurrent(montantB)
-	) {
-		const aligné = pipe(montantB, aligneSur(montantA))
-
-		return [montantA.valeur, aligné.valeur]
-	}
-
-	return [montantA.valeur, montantB.valeur]
-}
-
-type CombinaisonDeMontantsCompatiblesEnPipe = {
-	(montantB: MontantRécurrent): <A extends MontantRécurrent>(montantA: A) => A
-	<U extends UnitéMonétairePonctuelle>(
-		montantB: Montant<U>
-	): (montantA: Montant<U>) => Montant<U>
-}
-
-type CombinaisonDeMontantsCompatibles = {
-	<A extends MontantRécurrent>(montantA: A, montantB: MontantRécurrent): A
-	<U extends UnitéMonétairePonctuelle>(
-		montantA: Montant<U>,
-		montantB: Montant<U>
-	): Montant<U>
-}
-
-export const plus = dual<
-	CombinaisonDeMontantsCompatiblesEnPipe,
-	CombinaisonDeMontantsCompatibles
->(2, (montantA: Montant, montantB: Montant): Montant => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return montant(valeurA + valeurB, montantA.unité)
-})
-
-export const sommeEnEurosParMois = (
-	montants: ReadonlyArray<MontantRécurrent>
-): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)
-
-export const sommeEnEurosParAn = (
-	montants: ReadonlyArray<MontantRécurrent>
-): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
-
-export const moins = dual<
-	CombinaisonDeMontantsCompatiblesEnPipe,
-	CombinaisonDeMontantsCompatibles
->(2, (montantA: Montant, montantB: Montant): Montant => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return montant(valeurA - valeurB, montantA.unité)
-})
-
 export const fois = dual<
 	<M extends Montant>(multiplicateur: number) => (a: M) => M,
 	<M extends Montant>(a: M, multiplicateur: number) => M
@@ -277,106 +203,6 @@ export const diviséPar = dual<
 		return Either.right(montant(a.valeur / diviseur, a.unité) as M)
 	}
 )
-
-type OpérationSurMontantsCompatiblesEnPipe<R> = {
-	(montantB: MontantRécurrent): (montantA: MontantRécurrent) => R
-	<U extends UnitéMonétairePonctuelle>(
-		montantB: Montant<U>
-	): (montantA: Montant<U>) => R
-}
-
-type OpérationSurMontantsCompatibles<R> = {
-	(montantA: MontantRécurrent, montantB: MontantRécurrent): R
-	<U extends UnitéMonétairePonctuelle>(
-		montantA: Montant<U>,
-		montantB: Montant<U>
-	): R
-}
-
-/**
- * Calcule la proportion d'un montant par rapport à un autre.
- * Retourne un nombre représentant le ratio (sans unité).
- *
- * @param a - Le montant numérateur
- * @param diviseur - Le montant dénominateur (ne peut pas être zéro)
- * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
- *
- * @example
- * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
- * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
- */
-export const parRapportÀ = dual<
-	OpérationSurMontantsCompatiblesEnPipe<Either.Either<number, DivisionParZéro>>,
-	OpérationSurMontantsCompatibles<Either.Either<number, DivisionParZéro>>
->(
-	2,
-	(
-		montantA: Montant,
-		diviseur: Montant
-	): Either.Either<number, DivisionParZéro> => {
-		if (estZéro(diviseur)) {
-			return Either.left(new DivisionParZéro())
-		}
-
-		const [numérateur, dénominateur] = aligneLesValeurs(montantA, diviseur)
-
-		return Either.right(numérateur / dénominateur)
-	}
-)
-
-export const pourcentageParRapportÀ = dual<
-	OpérationSurMontantsCompatiblesEnPipe<
-		Either.Either<Quantité<'%'>, DivisionParZéro>
-	>,
-	OpérationSurMontantsCompatibles<Either.Either<Quantité<'%'>, DivisionParZéro>>
->(
-	2,
-	(
-		montantA: Montant,
-		diviseur: Montant
-	): Either.Either<Quantité<'%'>, DivisionParZéro> => {
-		if (estZéro(diviseur)) {
-			return Either.left(new DivisionParZéro())
-		}
-
-		const [numérateur, dénominateur] = aligneLesValeurs(montantA, diviseur)
-
-		return Either.right(pourcentage((100 * numérateur) / dénominateur))
-	}
-)
-
-export const estPlusGrandQue = dual<
-	OpérationSurMontantsCompatiblesEnPipe<boolean>,
-	OpérationSurMontantsCompatibles<boolean>
->(2, (montantA: Montant, montantB: Montant): boolean => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return valeurA > valeurB
-})
-export const estPlusPetitQue = dual<
-	OpérationSurMontantsCompatiblesEnPipe<boolean>,
-	OpérationSurMontantsCompatibles<boolean>
->(2, (montantA: Montant, montantB: Montant): boolean => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return valeurA < valeurB
-})
-export const estPlusGrandOuÉgalÀ = dual<
-	OpérationSurMontantsCompatiblesEnPipe<boolean>,
-	OpérationSurMontantsCompatibles<boolean>
->(2, (montantA: Montant, montantB: Montant): boolean => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return valeurA >= valeurB
-})
-export const estPlusPetitOuÉgalÀ = dual<
-	OpérationSurMontantsCompatiblesEnPipe<boolean>,
-	OpérationSurMontantsCompatibles<boolean>
->(2, (montantA: Montant, montantB: Montant): boolean => {
-	const [valeurA, valeurB] = aligneLesValeurs(montantA, montantB)
-
-	return valeurA <= valeurB
-})
 
 export const estPositif = (montant: Montant): boolean => montant.valeur > 0
 export const estNégatif = (montant: Montant): boolean => montant.valeur < 0

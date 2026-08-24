@@ -1,14 +1,11 @@
 import { Either, Option, pipe } from 'effect'
 
+import { abattement, eurosParAn, fois, Montant } from '@/domaine/Montant'
 import {
-	abattement,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
-	eurosParAn,
-	fois,
 	moins,
-	Montant,
-} from '@/domaine/Montant'
+} from '@/domaine/MontantRécurrent'
 
 import {
 	applicableSurRecettesCourteDurée,

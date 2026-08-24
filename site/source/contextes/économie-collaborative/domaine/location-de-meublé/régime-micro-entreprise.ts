@@ -1,12 +1,11 @@
 import { Either, Option, pipe } from 'effect'
 
 import { evalueAvecPublicodes } from '@/domaine/engine/engineSingleton'
+import { eurosParAn, Montant } from '@/domaine/Montant'
 import {
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
-	eurosParAn,
-	Montant,
-} from '@/domaine/Montant'
+} from '@/domaine/MontantRécurrent'
 import {
 	AutoEntrepreneurChiffreAffaireDansPublicodes,
 	AutoEntrepreneurContexteDansPublicodes,

@@ -9,9 +9,9 @@ import {
 	arrondirÀLEuro,
 	eurosParAn,
 	montantToString,
-	plus,
 	toEurosParAn,
 } from '@/domaine/Montant'
+import { plus } from '@/domaine/MontantRécurrent'
 
 export function TableauRevenus() {
 	const { situation, comparaison } = useComparateur()
