@@ -227,10 +227,6 @@ export const plus = dual<CombinaisonDataLast, CombinaisonDataFirst>(
 	combinaison((a, b) => a + b)
 )
 
-export const sommeEnEuros = (
-	montants: ReadonlyArray<Montant<'€'>>
-): Montant<'€'> => montants.reduce(plus)
-
 export const sommeEnEurosParMois = (
 	montants: ReadonlyArray<MontantRécurrent>
 ): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)

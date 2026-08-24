@@ -15,7 +15,6 @@ import {
 	euros,
 	eurosParAn,
 	eurosParMois,
-	eurosParTitreRestaurant,
 	fois,
 	moins,
 	Montant,
@@ -23,7 +22,6 @@ import {
 	parRapportÀ,
 	plus,
 	pourcentageParRapportÀ,
-	sommeEnEuros,
 	sommeEnEurosParAn,
 	sommeEnEurosParMois,
 } from './Montant'
@@ -125,26 +123,10 @@ describe('Montant', () => {
 			expect(vérificationsDeTypes).toBeDefined()
 		})
 
-		it('interdit à la compilation de sommer des euros avec des titres-restaurant', () => {
-			const vérificationsDeTypes = () => {
-				// @ts-expect-error unités ponctuelles hétérogènes interdites
-				sommeEnEuros([euros(100), eurosParTitreRestaurant(10)])
-			}
-
-			expect(vérificationsDeTypes).toBeDefined()
-		})
-
 		it('multiplie correctement un montant par un scalaire', () => {
 			const montant = euros(100)
 			const resultat = fois(montant, 2)
 			expect(Equal.equals(resultat, euros(200))).toBe(true)
-			expect(resultat.unité).toBe('€')
-		})
-
-		it('somme correctement plusieurs montants de même unité ponctuelle', () => {
-			const montants = [euros(200), euros(300), euros(500)]
-			const resultat = sommeEnEuros(montants)
-			expect(Equal.equals(resultat, euros(1000))).toBe(true)
 			expect(resultat.unité).toBe('€')
 		})
 
