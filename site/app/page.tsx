@@ -17,6 +17,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import SearchOrCreate from '@/pages/_landing/SearchOrCreate'
 
 export default function Home() {
 	const simulators = useSimulatorsMetadata()
@@ -156,7 +157,7 @@ export default function Home() {
 				</Grid>
 			</Container>
 
-			<Container>
+			<ContainerWithLgPaddingBottom>
 				<H2>{t('pages.landing.section.other-tools', 'Autres outils')}</H2>
 
 				<Grid role="list" container spacing={4}>
@@ -191,10 +192,10 @@ export default function Home() {
 						role="listitem"
 					/>
 				</Grid>
-			</Container>
+			</ContainerWithLgPaddingBottom>
 
 			<ContainerWithXxlPaddingBottom>
-				<H3 as="h2">Rechercher votre entreprise</H3>
+				<SearchOrCreate />
 			</ContainerWithXxlPaddingBottom>
 
 			<ContainerWithLgPaddingBottom
