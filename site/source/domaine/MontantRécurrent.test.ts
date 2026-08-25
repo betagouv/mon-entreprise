@@ -10,6 +10,8 @@ import {
 	estPlusPetitOuÉgalÀ,
 	estPlusPetitQue,
 	eurosParAn,
+	eurosParHeure,
+	eurosParJour,
 	eurosParMois,
 	moins,
 	parRapportÀ,
@@ -17,6 +19,10 @@ import {
 	pourcentageParRapportÀ,
 	sommeEnEurosParAn,
 	sommeEnEurosParMois,
+	toEurosParAn,
+	toEurosParHeure,
+	toEurosParJour,
+	toEurosParMois,
 } from './MontantRécurrent'
 
 describe('MontantRécurrent', () => {
@@ -128,6 +134,27 @@ describe('MontantRécurrent', () => {
 			).toBe(true)
 			expect(
 				Equal.equals(convertitEn['€/an'](eurosParMois(100)), eurosParAn(1200))
+			).toBe(true)
+			expect(
+				Equal.equals(convertitEn['€/jour'](eurosParMois(365)), eurosParJour(12))
+			).toBe(true)
+			expect(
+				Equal.equals(convertitEn['€/heure'](eurosParAn(8760)), eurosParHeure(1))
+			).toBe(true)
+		})
+
+		it('convertit selon les conventions de 365 jours par an et 24 heures par jour', () => {
+			expect(
+				Equal.equals(toEurosParJour(eurosParAn(365)), eurosParJour(1))
+			).toBe(true)
+			expect(
+				Equal.equals(toEurosParHeure(eurosParJour(24)), eurosParHeure(1))
+			).toBe(true)
+			expect(
+				Equal.equals(toEurosParAn(eurosParHeure(1)), eurosParAn(8760))
+			).toBe(true)
+			expect(
+				Equal.equals(toEurosParMois(eurosParJour(12)), eurosParMois(365))
 			).toBe(true)
 		})
 	})
