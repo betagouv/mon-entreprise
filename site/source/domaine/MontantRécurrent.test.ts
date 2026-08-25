@@ -99,6 +99,11 @@ describe('MontantRécurrent', () => {
 			expect(resultat.unité).toBe('€/an')
 		})
 
+		it('somme un tableau vide en zéro', () => {
+			expect(Equal.equals(sommeEnEurosParMois([]), eurosParMois(0))).toBe(true)
+			expect(Equal.equals(sommeEnEurosParAn([]), eurosParAn(0))).toBe(true)
+		})
+
 		it('permet la composition avec pipe', () => {
 			const montant = eurosParMois(100)
 
