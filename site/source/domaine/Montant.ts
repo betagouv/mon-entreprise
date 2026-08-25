@@ -85,7 +85,7 @@ export const abattement = dual<
  * @returns Un nouveau montant de même unité que le montant initial, ou une erreur DivisionParZéro
  *
  * @example
- * const résultat = diviséPar(euros(100), 2) // Right(euros(50))
+ * const résultat = diviséPar(montant(100, '€'), 2) // Right(montant(50, '€'))
  */
 export const diviséPar = dual<
 	<M extends Montant>(
