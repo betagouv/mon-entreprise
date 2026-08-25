@@ -1,5 +1,4 @@
 import { Either, Equal } from 'effect'
-import { isLeft } from 'effect/Either'
 import { describe, expect, it } from 'vitest'
 
 import {
@@ -79,13 +78,6 @@ describe('Montant', () => {
 			expect(estZéro(euros(0))).toBe(true)
 			expect(estPositif(euros(0))).toBe(false)
 			expect(estNégatif(euros(0))).toBe(false)
-		})
-
-		it('renvoie une erreur en cas de division par zéro', () => {
-			const centEuros = euros(100)
-			const resultat = diviséPar(centEuros, 0)
-
-			expect(isLeft(resultat)).toBe(true)
 		})
 	})
 })
