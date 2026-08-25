@@ -7,7 +7,7 @@ import { RaisonInéligibilité } from './éligibilité'
 export interface Résultat {
 	estÉligible: O.Option<boolean>
 	raisonsInéligibilité: Array<RaisonInéligibilité>
-	montantCT: O.Option<M.Montant<'€'>>
+	montantCT: O.Option<M.Montant<'€/mois'>>
 }
 
 export const initialRésultat: Résultat = {

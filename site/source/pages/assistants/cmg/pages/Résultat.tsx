@@ -14,7 +14,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { montantToString } from '@/domaine/Montant'
-import { euros } from '@/domaine/MontantPonctuel'
+import { eurosParMois } from '@/domaine/MontantRécurrent'
 import { useGetPath } from '@/hooks/useGetPath'
 import { useNavigation } from '@/lib/navigation'
 
@@ -31,7 +31,7 @@ export default function Résultat() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	const amount = montantToString(O.getOrElse(montantCT, () => euros(0)))
+	const amount = montantToString(O.getOrElse(montantCT, () => eurosParMois(0)))
 
 	return (
 		<>

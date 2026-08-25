@@ -5,7 +5,6 @@ import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
 import * as M from '@/domaine/Montant'
-import * as MP from '@/domaine/MontantPonctuel'
 import * as MR from '@/domaine/MontantRécurrent'
 
 import {
@@ -47,14 +46,14 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(31)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							avril: O.none(),
 							mai: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(35)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 						},
@@ -64,19 +63,19 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar'])
 									.avecNbHeures(150)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
 									.avecNbHeures(50)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeAMAFactory(['Oscar', 'Rose', 'Aurore'])
 									.avecNbHeures(50)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 						},
@@ -85,7 +84,7 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose'])
 									.avecNbHeures(150)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							mai: O.none(),
@@ -98,7 +97,7 @@ describe('CMG', () => {
 				E.right(
 					E.right({
 						estÉligible: true,
-						montantCT: MP.euros(70.28),
+						montantCT: MR.eurosParMois(70.28),
 					})
 				)
 			)
@@ -325,19 +324,19 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose'])
 									.avecNbHeures(150)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose', 'Aurore'])
 									.avecNbHeures(50)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose', 'Aurore'])
 									.avecNbHeures(50)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 						},
@@ -346,7 +345,7 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose'])
 									.avecNbHeures(150)
-									.avecCMG(MP.euros(400))
+									.avecCMG(MR.eurosParMois(400))
 									.build()
 							),
 							mai: O.none(),

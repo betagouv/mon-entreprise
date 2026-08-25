@@ -4,7 +4,6 @@ import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
 import * as M from '@/domaine/Montant'
-import * as MP from '@/domaine/MontantPonctuel'
 import * as MR from '@/domaine/MontantRécurrent'
 
 import {
@@ -45,15 +44,15 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
-									.avecCMG(MP.euros(200))
+									.avecRémunération(MR.eurosParMois(48))
+									.avecCMG(MR.eurosParMois(200))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
-									.avecCMG(MP.euros(70))
+									.avecRémunération(MR.eurosParMois(48))
+									.avecCMG(MR.eurosParMois(70))
 									.build()
 							),
 						},
@@ -63,15 +62,15 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
 									.avecNbHeures(100)
-									.avecRémunération(MP.euros(300))
-									.avecCMG(MP.euros(250))
+									.avecRémunération(MR.eurosParMois(300))
+									.avecCMG(MR.eurosParMois(250))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
 									.avecNbHeures(200)
-									.avecRémunération(MP.euros(300))
-									.avecCMG(MP.euros(140))
+									.avecRémunération(MR.eurosParMois(300))
+									.avecCMG(MR.eurosParMois(140))
 									.build()
 							),
 							mai: O.none(),
@@ -80,7 +79,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal(MP.euros(49.15))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(49.15))
 		})
 
 		it('calcule un complément transitoire nul pour la garde de Rose', () => {
@@ -105,15 +104,15 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
-									.avecCMG(MP.euros(70))
+									.avecRémunération(MR.eurosParMois(48))
+									.avecCMG(MR.eurosParMois(70))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
-									.avecCMG(MP.euros(70))
+									.avecRémunération(MR.eurosParMois(48))
+									.avecCMG(MR.eurosParMois(70))
 									.build()
 							),
 						},
@@ -123,15 +122,15 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Rose'])
 									.avecNbHeures(100)
-									.avecRémunération(MP.euros(300))
-									.avecCMG(MP.euros(100))
+									.avecRémunération(MR.eurosParMois(300))
+									.avecCMG(MR.eurosParMois(100))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
 									.avecNbHeures(100)
-									.avecRémunération(MP.euros(300))
-									.avecCMG(MP.euros(100))
+									.avecRémunération(MR.eurosParMois(300))
+									.avecCMG(MR.eurosParMois(100))
 									.build()
 							),
 							mai: O.none(),
@@ -140,7 +139,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal(MP.euros(0))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(0))
 		})
 	})
 
@@ -150,13 +149,19 @@ describe('CMG', () => {
 				GED: [
 					{
 						mars: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(MP.euros(120)).build()
+							new DéclarationsDeGardeGEDFactory()
+								.avecCMG(MR.eurosParMois(120))
+								.build()
 						),
 						avril: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(MP.euros(200)).build()
+							new DéclarationsDeGardeGEDFactory()
+								.avecCMG(MR.eurosParMois(200))
+								.build()
 						),
 						mai: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(MP.euros(70)).build()
+							new DéclarationsDeGardeGEDFactory()
+								.avecCMG(MR.eurosParMois(70))
+								.build()
 						),
 					},
 				],
@@ -164,34 +169,34 @@ describe('CMG', () => {
 					{
 						mars: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(250))
+								.avecCMG(MR.eurosParMois(250))
 								.build()
 						),
 						avril: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(140))
+								.avecCMG(MR.eurosParMois(140))
 								.build()
 						),
 						mai: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(200))
+								.avecCMG(MR.eurosParMois(200))
 								.build()
 						),
 					},
 					{
 						mars: O.some(
 							new DéclarationsDeGardeAMAFactory(['Martin'])
-								.avecCMG(MP.euros(200))
+								.avecCMG(MR.eurosParMois(200))
 								.build()
 						),
 						avril: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(230))
+								.avecCMG(MR.eurosParMois(230))
 								.build()
 						),
 						mai: O.some(
 							new DéclarationsDeGardeAMAFactory(['Martin'])
-								.avecCMG(MP.euros(150))
+								.avecCMG(MR.eurosParMois(150))
 								.build()
 						),
 					},
@@ -200,14 +205,14 @@ describe('CMG', () => {
 						avril: O.none(),
 						mai: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(100))
+								.avecCMG(MR.eurosParMois(100))
 								.build()
 						),
 					},
 				],
 			})
 
-			expect(résultat).to.be.deep.equal(MP.euros(553.33))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(553.33))
 		})
 
 		it('fait la moyenne de tous les CMG perçus pour la garde de Jules', () => {
@@ -216,10 +221,14 @@ describe('CMG', () => {
 					{
 						mars: O.none(),
 						avril: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(MP.euros(200)).build()
+							new DéclarationsDeGardeGEDFactory()
+								.avecCMG(MR.eurosParMois(200))
+								.build()
 						),
 						mai: O.some(
-							new DéclarationsDeGardeGEDFactory().avecCMG(MP.euros(70)).build()
+							new DéclarationsDeGardeGEDFactory()
+								.avecCMG(MR.eurosParMois(70))
+								.build()
 						),
 					},
 				],
@@ -227,12 +236,12 @@ describe('CMG', () => {
 					{
 						mars: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(250))
+								.avecCMG(MR.eurosParMois(250))
 								.build()
 						),
 						avril: O.some(
 							new DéclarationsDeGardeAMAFactory(['Jules'])
-								.avecCMG(MP.euros(140))
+								.avecCMG(MR.eurosParMois(140))
 								.build()
 						),
 						mai: O.none(),
@@ -240,7 +249,7 @@ describe('CMG', () => {
 				],
 			})
 
-			expect(résultat).to.be.deep.equal(MP.euros(220))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(220))
 		})
 	})
 
@@ -267,13 +276,13 @@ describe('CMG', () => {
 							avril: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
+									.avecRémunération(MR.eurosParMois(48))
 									.build()
 							),
 							mai: O.some(
 								new DéclarationsDeGardeGEDFactory()
 									.avecNbHeures(12)
-									.avecRémunération(MP.euros(48))
+									.avecRémunération(MR.eurosParMois(48))
 									.build()
 							),
 						},
@@ -283,13 +292,13 @@ describe('CMG', () => {
 							mars: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
 									.avecNbHeures(100)
-									.avecRémunération(MP.euros(300))
+									.avecRémunération(MR.eurosParMois(300))
 									.build()
 							),
 							avril: O.some(
 								new DéclarationsDeGardeAMAFactory(['Jules'])
 									.avecNbHeures(100)
-									.avecRémunération(MP.euros(300))
+									.avecRémunération(MR.eurosParMois(300))
 									.build()
 							),
 							mai: O.none(),
@@ -298,7 +307,7 @@ describe('CMG', () => {
 				},
 			})
 
-			expect(résultat).to.be.deep.equal(MP.euros(170.85))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(170.85))
 		})
 	})
 
@@ -307,7 +316,7 @@ describe('CMG', () => {
 			const résultat = calculeCMGRLinéarisé(
 				new DéclarationsDeGardeAMAFactory(['Rose'])
 					.avecNbHeures(100)
-					.avecRémunération(MP.euros(300))
+					.avecRémunération(MR.eurosParMois(300))
 					.build(),
 				{
 					enfants: [
@@ -320,14 +329,14 @@ describe('CMG', () => {
 				MR.eurosParMois(2500)
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(220.21))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(220.21))
 		})
 
 		it('calcule le CMG-R linéarisé pour 12h de garde GED à 48€', () => {
 			const résultat = calculeCMGRLinéarisé(
 				new DéclarationsDeGardeGEDFactory()
 					.avecNbHeures(12)
-					.avecRémunération(MP.euros(48))
+					.avecRémunération(MR.eurosParMois(48))
 					.build(),
 				{
 					enfants: [
@@ -340,7 +349,7 @@ describe('CMG', () => {
 				MR.eurosParMois(2500)
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(36.07))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(36.07))
 		})
 	})
 
@@ -514,44 +523,44 @@ describe('CMG', () => {
 			const résultat = coûtMensuelDeLaGarde(
 				new DéclarationsDeGardeAMAFactory(['Rose'])
 					.avecNbHeures(100)
-					.avecRémunération(MP.euros(700))
+					.avecRémunération(MR.eurosParMois(700))
 					.build()
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(700))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(700))
 		})
 
 		it('utilise le taux horaire plafond pour une garde AMA supérieure au plafond', () => {
 			const résultat = coûtMensuelDeLaGarde(
 				new DéclarationsDeGardeAMAFactory(['Rose'])
 					.avecNbHeures(100)
-					.avecRémunération(MP.euros(900))
+					.avecRémunération(MR.eurosParMois(900))
 					.build()
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(800))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(800))
 		})
 
 		it('utilise le coût de la garde renseigné pour une garde GED inférieure au plafond', () => {
 			const résultat = coûtMensuelDeLaGarde(
 				new DéclarationsDeGardeGEDFactory()
 					.avecNbHeures(100)
-					.avecRémunération(MP.euros(400))
+					.avecRémunération(MR.eurosParMois(400))
 					.build()
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(400))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(400))
 		})
 
 		it('utilise le taux horaire plafond pour une garde GED supérieure au plafond', () => {
 			const résultat = coûtMensuelDeLaGarde(
 				new DéclarationsDeGardeGEDFactory()
 					.avecNbHeures(100)
-					.avecRémunération(MP.euros(1600))
+					.avecRémunération(MR.eurosParMois(1600))
 					.build()
 			)
 
-			expect(résultat).to.be.deep.equal(MP.euros(1500))
+			expect(résultat).to.be.deep.equal(MR.eurosParMois(1500))
 		})
 	})
 })
