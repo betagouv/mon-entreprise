@@ -152,11 +152,12 @@ export const moins = dual<
 
 export const sommeEnEurosParMois = (
 	montants: ReadonlyArray<MontantRécurrent>
-): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)
+): Montant<'€/mois'> =>
+	montants.map(toEurosParMois).reduce(plus, eurosParMois(0))
 
 export const sommeEnEurosParAn = (
 	montants: ReadonlyArray<MontantRécurrent>
-): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
+): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus, eurosParAn(0))
 
 /**
  * Calcule la proportion d'un montant par rapport à un autre.
