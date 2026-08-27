@@ -1,9 +1,9 @@
+import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { Références } from '@/components/documentation/References/References'
-import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
+import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
 import RuleLink from '@/components/RuleLink'
-import { H3, InfoButton, Spacing } from '@/design-system'
+import { InfoButton, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
@@ -16,19 +16,20 @@ export function ExplicableRule<Names extends string = DottedName>({
 }) {
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
-	const références = useRéférencesÀAfficher(rule.rawNode.références)
 	const { t } = useTranslation()
+	const { Résumé, Références } = useMemo(
+		() => documentationPublicodes(() => engine, dottedName as DottedName),
+		[engine, dottedName]
+	)
 
 	if (rule.rawNode.description == null) {
 		return null
 	}
 
 	return (
-		<InfoButton
-			subject={rule.title}
-			popoverTitle={title}
-			description={rule.rawNode.description}
-		>
+		<InfoButton subject={rule.title} popoverTitle={title}>
+			<Résumé />
+
 			<RuleLink
 				dottedName={dottedName as DottedName}
 				aria-label={t(
@@ -43,12 +44,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 				)}
 			</RuleLink>
 
-			{références && Object.keys(références).length > 0 && (
-				<>
-					<H3>{t('components.règle.info.références', 'Liens utiles')}</H3>
-					<Références références={références} />
-				</>
-			)}
+			<Références />
 			<Spacing xxl />
 		</InfoButton>
 	)
