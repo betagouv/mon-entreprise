@@ -239,8 +239,8 @@ export default function Library() {
 							application
 						</Strong>
 						<br />
-						Vous le trouverez en cliquant sur la section « Réutiliser ce calcul
-						».
+						Vous le trouverez en cliquant sur la section «&nbsp;Réutiliser ce
+						calcul&nbsp;».
 						<br />
 					</Li>
 					<Li>
