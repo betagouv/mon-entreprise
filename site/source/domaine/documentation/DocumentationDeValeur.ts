@@ -1,6 +1,7 @@
-import type { ComponentType } from 'react'
+import type { ComponentType, PropsWithChildren } from 'react'
 
 export type DocumentationDeValeur = {
 	Résumé: ComponentType
 	Références: ComponentType
+	Lien: ComponentType<PropsWithChildren>
 }
