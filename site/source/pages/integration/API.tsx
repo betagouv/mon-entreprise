@@ -36,45 +36,123 @@ export default function API() {
 				<H2>Comment effectuer un calcul via l'API ?</H2>
 				<Body>
 					Pour effectuer un calcul, il vous suffit de faire un <Code>POST</Code>{' '}
-					sur la route <Code>/evaluate</Code> avec les paramètres suivants :
+					sur la route correspondant au modèle de règles que vous souhaitez
+					utiliser.
 				</Body>
+
+				<Body>
+					Trois modèles de règles sont actuellement utilisés par
+					mon-entreprise&nbsp;:
+				</Body>
+
 				<Ul>
 					<Li>
-						<Code>expressions</Code> : le nom des règles dont vous voulez
+						<Code>/evaluate</Code>&nbsp;: le modèle historique{' '}
+						<Code>modele-social</Code>
+					</Li>
+					<Li>
+						<Code>/modeles/as/evaluate</Code>&nbsp;: le modèle{' '}
+						<Code>modele-as</Code>, pour les assimilé·es salarié·es
+					</Li>
+					<Li>
+						<Code>/modeles/ti/evaluate</Code>&nbsp;: le modèle{' '}
+						<Code>modele-ti</Code>, pour les travailleurs/travailleuses
+						indépendantes
+					</Li>
+				</Ul>
+
+				<Body>
+					Quelle que soit la route utilisée, les paramètres de la requête sont
+					les mêmes&nbsp;:
+				</Body>
+
+				<Ul>
+					<Li>
+						<Code>expressions</Code>&nbsp;: le nom des règles dont vous voulez
 						calculer la valeur
 					</Li>
 					<Li>
-						<Code>situation</Code> : la situation pour le paramétrage du calcul
+						<Code>situation</Code>&nbsp;: la situation pour le paramétrage du
+						calcul
 					</Li>
 				</Ul>
+
 				<Body>
-					<Link href="/api/v1/doc/#/publicodes-api/evaluate">
-						Voir l'exemple dans le Swagger
+					<Link href="/api/v1/doc">Voir les exemples dans le Swagger</Link>
+				</Body>
+
+				<H2>Comment consulter les règles disponibles ?</H2>
+
+				<Body>
+					L'API permet également de consulter les règles utilisées par les
+					différents modèles.
+				</Body>
+
+				<H3>Consulter toutes les règles d'un modèle</H3>
+
+				<Ul>
+					<Li>
+						<Code>/rules</Code>&nbsp;: règles de <Code>modele-social</Code>
+					</Li>
+					<Li>
+						<Code>/modeles/as/rules</Code>&nbsp;: règles de{' '}
+						<Code>modele-as</Code>
+					</Li>
+					<Li>
+						<Code>/modeles/ti/rules</Code>&nbsp;: règles de{' '}
+						<Code>modele-ti</Code>
+					</Li>
+				</Ul>
+
+				<H3>Consulter une règle précise</H3>
+
+				<Ul>
+					<Li>
+						<Code>/rules/&#123;rule&#125;</Code>&nbsp;: règle de{' '}
+						<Code>modele-social</Code>
+					</Li>
+					<Li>
+						<Code>/modeles/as/rules/&#123;rule&#125;</Code>&nbsp;: règle de{' '}
+						<Code>modele-as</Code>
+					</Li>
+					<Li>
+						<Code>/modeles/ti/rules/&#123;rule&#125;</Code>&nbsp;: règle de{' '}
+						<Code>modele-ti</Code>
+					</Li>
+				</Ul>
+
+				<Body>
+					<Link href="/api/v1/doc">
+						Retrouver toutes les routes et leurs exemples dans le Swagger
 					</Link>
 				</Body>
 
-				<H3>Comment reproduire un calcul d'un simulateur ?</H3>
+				<H2>Comment reproduire un calcul d'un simulateur ?</H2>
+
 				<Body>
 					Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
-					bibliothèque, voici la marche à suivre :{' '}
+					bibliothèque, voici la marche à suivre&nbsp;:
 				</Body>
+
 				<Ol>
 					<StepByStep />
 					<Li>
 						<Strong>
-							Dans la section « Règle et situation », vous trouverez le nom de
-							la règle et la situation à utiliser comme paramètres d'appel à
-							<Code>/evaluate</Code>.
+							Dans la section «&nbsp;Règle et situation&nbsp;», vous trouverez
+							le nom de la règle, le modèle de règles et la situation à utiliser
+							pour effectuer le calcul via l'API.
 						</Strong>
-						<br />
-						Vous pouvez également retrouver la requête API à copier-coller sous
-						forme d'appel <Code>curl</Code> ou de <Code>fetch</Code>
-						JavaScript dans la section « Réutiliser ce calcul ».
-						<br />
+						<br /> Vous pouvez également retrouver la requête API à
+						copier-coller sous forme d'appel <Code>curl</Code> ou de{' '}
+						<Code>fetch</Code> JavaScript dans la section «&nbsp;Réutiliser ce
+						calcul&nbsp;».
 					</Li>
 				</Ol>
+
 				<CasParticuliers />
+
 				<H2>Exemple</H2>
+
 				<Body>
 					Voici un exemple d'utilisation des différentes routes, vous pouvez
 					explorer leur code dans le dossier <Code>example</Code>
