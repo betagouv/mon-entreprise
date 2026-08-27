@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { References } from '@/components/documentation/References/References'
-import { useReferences } from '@/components/documentation/References/useReferences'
+import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
 import RuleLink from '@/components/RuleLink'
 import { H3, InfoButton, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -16,7 +16,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 }) {
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
-	const références = useReferences(rule)
+	const références = useRéférencesÀAfficher(rule.rawNode.références)
 	const { t } = useTranslation()
 
 	if (rule.rawNode.description == null) {
