@@ -4,6 +4,7 @@ import rules from 'modele-ti'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
+import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { euros } from '@/domaine/MontantPonctuel'
@@ -44,6 +45,13 @@ const initEngine = () => {
 
 	return engine
 }
+
+const getEngine = () => engine ?? initEngine()
+
+const étiquette = 'EI'
+
+const documentation = (dottedName: DottedName) =>
+	documentationPublicodes(getEngine, dottedName, étiquette)
 
 export const ModèleTravailleurIndépendant: ModèleComparable = {
 	nom: nomModèle,
@@ -217,7 +225,7 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 		engine: () => engine ?? initEngine(),
 
 		statut: {
-			étiquette: 'EI',
+			étiquette,
 			nom: 'Entreprise individuelle',
 			régime: (t: TFunction) =>
 				t(
@@ -274,10 +282,15 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			bénéfice.documentationRule = 'indépendant . rémunération . brute'
-			revenuNet.documentationRule = 'indépendant . rémunération . nette'
-			revenuNetAprèsImpôt.documentationRule =
+			bénéfice.documentation = documentation(
+				'indépendant . rémunération . brute'
+			)
+			revenuNet.documentation = documentation(
+				'indépendant . rémunération . nette'
+			)
+			revenuNetAprèsImpôt.documentation = documentation(
 				'indépendant . rémunération . nette . après impôt'
+			)
 
 			return {
 				bénéfice,
@@ -306,9 +319,10 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			cotisations.documentationRule =
+			cotisations.documentation = documentation(
 				'indépendant . cotisations et contributions'
-			impôt.documentationRule = 'indépendant . rémunération . impôt'
+			)
+			impôt.documentation = documentation('indépendant . rémunération . impôt')
 
 			return {
 				cotisations,
@@ -358,17 +372,21 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			trimestres.documentationRule =
+			trimestres.documentation = documentation(
 				'protection sociale . retraite . base . trimestres'
-			revenuCotisé.documentationRule =
+			)
+			revenuCotisé.documentation = documentation(
 				'protection sociale . retraite . base . revenu cotisé'
-			pointsComplémentaire.documentationRule =
+			)
+			pointsComplémentaire.documentation = documentation(
 				'protection sociale . retraite . complémentaire . points acquis'
-			valeurPointComplémentaire.documentationRule =
+			)
+			valeurPointComplémentaire.documentation = documentation(
 				'protection sociale . retraite . complémentaire . valeur du point'
+			)
 
 			return {
-				documentationRule: 'protection sociale . retraite',
+				documentation: documentation('protection sociale . retraite'),
 				trimestres,
 				revenuCotisé,
 				pointsComplémentaire,
@@ -398,13 +416,15 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as QuantitéDocumentée
 			}
 
-			indemnitésArrêtMaladie.documentationRule =
+			indemnitésArrêtMaladie.documentation = documentation(
 				'protection sociale . maladie . arrêt maladie'
-			délaiAttente.documentationRule =
+			)
+			délaiAttente.documentation = documentation(
 				"protection sociale . maladie . arrêt maladie . délai d'attente"
+			)
 
 			return {
-				documentationRule: 'protection sociale . maladie',
+				documentation: documentation('protection sociale . maladie'),
 				indemnitésArrêtMaladie,
 				délaiAttente,
 			}
@@ -443,15 +463,18 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantDocumenté
 			}
 
-			indemnitésMaternitéPaternitéAdoption.documentationRule =
+			indemnitésMaternitéPaternitéAdoption.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption'
-			allocationNaissance.documentationRule =
+			)
+			allocationNaissance.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-			allocationAdoption.documentationRule =
+			)
+			allocationAdoption.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
+			)
 
 			return {
-				documentationRule: 'protection sociale . maladie',
+				documentation: documentation('protection sociale . maladie'),
 				indemnitésMaternitéPaternitéAdoption,
 				allocationNaissance,
 				allocationAdoption,
@@ -482,13 +505,17 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			pensionInvaliditéPartielle.documentationRule =
+			pensionInvaliditéPartielle.documentation = documentation(
 				'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
-			pensionInvaliditéTotale.documentationRule =
+			)
+			pensionInvaliditéTotale.documentation = documentation(
 				'protection sociale . invalidité et décès . pension invalidité . invalidité totale'
+			)
 
 			return {
-				documentationRule: 'protection sociale . invalidité et décès',
+				documentation: documentation(
+					'protection sociale . invalidité et décès'
+				),
 				pensionInvaliditéPartielle,
 				pensionInvaliditéTotale,
 			}
@@ -525,15 +552,20 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 				) as MontantDocumenté
 			}
 
-			pensionDeRéversion.documentationRule =
+			pensionDeRéversion.documentation = documentation(
 				'protection sociale . invalidité et décès . pension de reversion'
-			capitalDécès.documentationRule =
+			)
+			capitalDécès.documentation = documentation(
 				'protection sociale . invalidité et décès . capital décès'
-			capitalOrphelin.documentationRule =
+			)
+			capitalOrphelin.documentation = documentation(
 				'protection sociale . invalidité et décès . capital décès . orphelin'
+			)
 
 			return {
-				documentationRule: 'protection sociale . invalidité et décès',
+				documentation: documentation(
+					'protection sociale . invalidité et décès'
+				),
 				pensionDeRéversion,
 				capitalDécès,
 				capitalOrphelin,
