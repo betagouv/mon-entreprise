@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
 import { References } from '@/components/documentation/References/References'
+import { useReferences } from '@/components/documentation/References/useReferences'
 import RuleLink from '@/components/RuleLink'
 import { H3, InfoButton, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function ExplicableRule<Names extends string = DottedName>({
