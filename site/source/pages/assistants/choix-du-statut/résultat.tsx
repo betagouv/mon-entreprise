@@ -1,11 +1,11 @@
 import * as O from 'effect/Option'
-import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { References } from '@/components/documentation/References/References'
+import { useReferences } from '@/components/documentation/References/useReferences'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
@@ -195,26 +195,6 @@ function useSetStatutInSituation(dottedName: DottedName) {
 			dispatch(enregistreLesRéponsesAuxQuestions(setAllStatutTo(undefined)))
 		}
 	}, [])
-}
-
-// BPI agreed to use our assistant on their website, but only if we filter the
-// links to only show the ones that are relevant to their users.
-// They paid the extra development cost for this feature.
-const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
-
-export function useReferences(rule: RuleNode) {
-	const onBPISite = useIsEmbeddedOnBPISite()
-	if (!rule.rawNode.références) {
-		return {}
-	}
-
-	return Object.fromEntries(
-		Object.entries(rule.rawNode.références).filter(([, value]) => {
-			const whitelistedByBPI = BPIWhiteList.some((site) => value.includes(site))
-
-			return onBPISite ? whitelistedByBPI : !whitelistedByBPI
-		})
-	)
 }
 
 function useExternalGuideLink() {
