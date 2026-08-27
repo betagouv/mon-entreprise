@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,
@@ -124,13 +123,9 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 												{libellé}
 											</span>
 											<RuleLinkContainer>
-												<RuleLink
-													documentationPath={statut}
-													engine={résultatModèle.engine()}
-													dottedName={valeur.documentationRule}
-												>
+												<valeur.documentation.Lien>
 													<HelpIcon />
-												</RuleLink>
+												</valeur.documentation.Lien>
 											</RuleLinkContainer>
 											{warning?.(résultatModèle)}
 										</StyledDiv>

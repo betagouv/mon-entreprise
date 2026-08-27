@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import Engine from 'publicodes'
-import { ComponentType } from 'react'
+import { ComponentType, PropsWithChildren } from 'react'
 import { describe, expect, it } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -27,7 +27,10 @@ const règles = {
 
 const engine = () => new Engine(règles) as Engine<DottedName>
 
-const afficher = (Composant: ComponentType) => {
+const documentationDe = (dottedName: string) =>
+	documentationPublicodes(engine, dottedName as DottedName, 'EI')
+
+const afficher = (Composant: ComponentType<PropsWithChildren>) => {
 	render(
 		<TestProvider>
 			<div data-testid="documentation">
@@ -42,12 +45,7 @@ const afficher = (Composant: ComponentType) => {
 describe('documentationPublicodes', () => {
 	describe('Résumé', () => {
 		it('affiche la description de la règle', () => {
-			const { Résumé } = documentationPublicodes(
-				engine,
-				'entreprise . chiffre' as DottedName
-			)
-
-			afficher(Résumé)
+			afficher(documentationDe('entreprise . chiffre').Résumé)
 
 			expect(
 				screen.getByText(/Tout ce que votre entreprise encaisse/)
@@ -55,35 +53,41 @@ describe('documentationPublicodes', () => {
 		})
 
 		it("n'affiche rien lorsque la règle n'a pas de description", () => {
-			const { Résumé } = documentationPublicodes(
-				engine,
-				'entreprise . sans documentation' as DottedName
-			)
-
-			expect(afficher(Résumé)).toBeEmptyDOMElement()
+			expect(
+				afficher(documentationDe('entreprise . sans documentation').Résumé)
+			).toBeEmptyDOMElement()
 		})
 	})
 
 	describe('Références', () => {
 		it('affiche les références à afficher hors du site de la BPI', () => {
-			const { Références } = documentationPublicodes(
-				engine,
-				'entreprise . chiffre' as DottedName
-			)
-
-			afficher(Références)
+			afficher(documentationDe('entreprise . chiffre').Références)
 
 			expect(screen.getByText('Urssaf.fr')).toBeInTheDocument()
 			expect(screen.queryByText('BPI France')).not.toBeInTheDocument()
 		})
 
 		it("n'affiche rien lorsque la règle n'a pas de référence", () => {
-			const { Références } = documentationPublicodes(
-				engine,
-				'entreprise . sans documentation' as DottedName
+			expect(
+				afficher(documentationDe('entreprise . sans documentation').Références)
+			).toBeEmptyDOMElement()
+		})
+	})
+
+	describe('Lien', () => {
+		it("pointe vers la règle dans l'espace de documentation du modèle", () => {
+			const { Lien } = documentationDe('entreprise . chiffre')
+
+			render(
+				<TestProvider>
+					<Lien>vers la règle</Lien>
+				</TestProvider>
 			)
 
-			expect(afficher(Références)).toBeEmptyDOMElement()
+			expect(screen.getByRole('link')).toHaveAttribute(
+				'href',
+				'/EI/entreprise/chiffre'
+			)
 		})
 	})
 })
