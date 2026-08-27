@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { References } from '@/components/documentation/References/References'
+import { Références } from '@/components/documentation/References/References'
 import {
 	BodyStyle,
 	H1Style,
@@ -49,17 +49,21 @@ export default function DocumentationPageBody({
 		.replace(documentationPath, '')
 		.replace(/^\//, '')
 
-	const ReferencesWithEngine = ({
+	const RéférencesWithEngine = ({
 		references,
 		dottedName,
 	}: PublicodesReferencesProps) =>
-		References({ engine, references, dottedName: dottedName as DottedName })
+		Références({
+			engine,
+			références: references,
+			dottedName: dottedName as DottedName,
+		})
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
-		References: ReferencesWithEngine,
+		References: RéférencesWithEngine,
 		Accordion: DocumentationAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
 

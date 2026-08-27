@@ -3,19 +3,20 @@ import type { JSX } from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { ReferencesList } from './ReferencesList'
+import { ListeDeRéférences } from './ListeDeReferences'
+import type { Références as CollectionDeRéférences } from './references'
 
-export function References({
-	references,
+export function Références({
+	références,
 	dottedName,
 	engine,
 }: {
-	references?: Record<string, string>
+	références?: CollectionDeRéférences
 	dottedName?: DottedName | undefined
 	engine?: Engine<DottedName>
 }): JSX.Element | null {
-	if (references) {
-		return <ReferencesList references={references} />
+	if (références) {
+		return <ListeDeRéférences références={références} />
 	}
 
 	if (!dottedName || !engine) {
@@ -27,15 +28,15 @@ export function References({
 	if (!parentRule) {
 		return null
 	}
-	const parentRefences =
+	const référencesDeLaRègleParente =
 		engine.baseContext.parsedRules[parentRule].rawNode.références
 	/* TODO à remplacer une fois que https://github.com/publicodes/publicodes/issues/613
 	 *  par un truc plus propre du genre const parentReferences = engine.dev.getRule(parentRule).références
 	 */
 
-	if (!parentRefences) {
+	if (!référencesDeLaRègleParente) {
 		return null
 	}
 
-	return <ReferencesList references={parentRefences} />
+	return <ListeDeRéférences références={référencesDeLaRègleParente} />
 }
