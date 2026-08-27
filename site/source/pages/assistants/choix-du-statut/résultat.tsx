@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { References } from '@/components/documentation/References/References'
-import { useReferences } from '@/components/documentation/References/useReferences'
+import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
@@ -44,7 +44,7 @@ export default function Résultat() {
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
 	const statutLabel = rule.title
-	const références = useReferences(rule)
+	const références = useRéférencesÀAfficher(rule.rawNode.références)
 	const externalGuideLink = useExternalGuideLink()
 
 	return (
