@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { Body, H5, InfoButton, Link, Message } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useIsEmbeddedOnBPISite } from '@/hooks/useIsEmbeddedOnBPISite'
 import {
 	enregistreLaRéponseÀLaQuestion,
 	réinitialiseLaSimulation,
@@ -12,7 +13,6 @@ import {
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
-import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 
 export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
