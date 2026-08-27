@@ -4,6 +4,7 @@ import Engine from 'publicodes'
 import { ReactNode } from 'react'
 
 import { StatutType } from '@/components/StatutTag'
+import { DocumentationDeValeur } from '@/domaine/documentation/DocumentationDeValeur'
 import { Montant, MontantRécurrent } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
@@ -13,8 +14,7 @@ import { IRouIS } from './imposition'
 import { Question, Réponse } from './situation'
 
 type ValeurDocumentée = {
-	// TODO: remplacer documentationRule par DocumentationLink (un composant)
-	documentationRule: DottedName
+	documentation: DocumentationDeValeur
 	// TODO: déplacer les warnings ici
 	// warning?: ReactNode
 }
@@ -100,5 +100,5 @@ export type CatégorieComparée = keyof Omit<
 >
 export type ÉlémentComparé<K extends CatégorieComparée> = Exclude<
 	keyof ReturnType<ModèleComparable['get'][K]>,
-	'documentationRule'
+	'documentation'
 >
