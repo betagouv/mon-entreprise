@@ -2,6 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
+import { DocumentationBasePathProvider } from '@/components/documentation/DocumentationBasePathProvider'
 import {
 	ComparateurProvider,
 	ModèleAssimiléSalarié,
@@ -19,7 +20,11 @@ const DocumentationDuComparateur = () => {
 	const { absoluteSitePaths } = useSitePaths()
 
 	return (
-		<DocumentationRoutes basePath={absoluteSitePaths.simulateurs.comparaison} />
+		<DocumentationBasePathProvider
+			basePath={absoluteSitePaths.simulateurs.comparaison}
+		>
+			<DocumentationRoutes />
+		</DocumentationBasePathProvider>
 	)
 }
 
