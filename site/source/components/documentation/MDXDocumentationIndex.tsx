@@ -7,7 +7,7 @@ import {
 	Grid,
 	H1,
 	Link,
-	MDXContent,
+	MDXWrapper,
 	NavigationContainer,
 	Spacing,
 } from '@/design-system'
@@ -47,9 +47,9 @@ export const MDXDocumentationIndex = ({
 			<H1>{title}</H1>
 
 			{IndexComponent && (
-				<MDXContent>
+				<MDXWrapper>
 					<IndexComponent />
-				</MDXContent>
+				</MDXWrapper>
 			)}
 
 			<Spacing lg />

@@ -20,7 +20,10 @@ export const Li = styled.li``
 
 export const DarkLi = styled(Li)`
 	&::before {
-		color: ${({ theme }) => theme.colors.bases.tertiary[800]} !important;
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.extended.grey[100]
+				: theme.colors.bases.tertiary[800]} !important;
 	}
 `
 
