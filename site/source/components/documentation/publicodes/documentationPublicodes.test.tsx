@@ -74,19 +74,25 @@ describe('documentationPublicodes', () => {
 		})
 	})
 
-	describe('Lien', () => {
-		it("pointe vers la règle dans l'espace de documentation du modèle", () => {
-			const { Lien } = documentationDe('entreprise . chiffre')
-
-			render(
-				<TestProvider>
-					<Lien>vers la règle</Lien>
-				</TestProvider>
+	describe('chemin', () => {
+		it("désigne la règle dans l'espace de documentation du modèle", () => {
+			expect(documentationDe('entreprise . chiffre').chemin).toBe(
+				'EI/entreprise/chiffre'
 			)
+		})
 
-			expect(screen.getByRole('link')).toHaveAttribute(
-				'href',
-				'/EI/entreprise/chiffre'
+		it("se réduit à la règle lorsque le modèle n'a pas d'espace", () => {
+			expect(
+				documentationPublicodes(engine, 'entreprise . chiffre' as DottedName)
+					.chemin
+			).toBe('entreprise/chiffre')
+		})
+	})
+
+	describe('titre', () => {
+		it('reprend le titre de la règle', () => {
+			expect(documentationDe('entreprise . chiffre').titre()).toBe(
+				"Chiffre d'affaires"
 			)
 		})
 	})

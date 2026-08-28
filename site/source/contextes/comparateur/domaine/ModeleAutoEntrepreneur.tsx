@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import rules from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
@@ -56,7 +56,7 @@ const getEngine = () => engine ?? initEngine()
 
 const étiquette = 'AE'
 
-const documentation = (dottedName: DottedName) =>
+const documentation = (dottedName: RègleModèleSocial) =>
 	documentationPublicodes(getEngine, dottedName, étiquette)
 
 export const ModèleAutoEntrepreneur: ModèleComparable = {
