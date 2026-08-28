@@ -9,7 +9,10 @@ export const ExemplePratique = styled(ContenuInteractif)`
 		content: '📊 Exemple pratique';
 		display: block;
 		font-weight: 700;
-		color: ${({ theme }) => theme.colors.bases.secondary[700]};
+		color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.secondary[300]
+				: theme.colors.bases.secondary[700]};
 		margin-bottom: ${({ theme }) => theme.spacings.sm};
 		font-size: ${({ theme }) => theme.fontSizes.min};
 		text-transform: uppercase;
