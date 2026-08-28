@@ -6,6 +6,7 @@ import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
+import { documentationRoutesPublicodes } from '@/components/documentation/publicodes/documentationRoutesPublicodes'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { estPositif } from '@/domaine/Montant'
@@ -91,6 +92,8 @@ const rémunérationEstPositive = () => {
 
 export const ModèleAssimiléSalarié: ModèleComparable = {
 	nom: nomModèle,
+
+	DocumentationRoutes: documentationRoutesPublicodes(getEngine, nomModèle),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
@@ -200,8 +203,6 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? initEngine(),
-
 		statut: {
 			étiquette,
 			nom: 'Société par actions simplifiée unipersonnelle',
