@@ -5,6 +5,7 @@ import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
 import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
+import { documentationRoutesPublicodes } from '@/components/documentation/publicodes/documentationRoutesPublicodes'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { euros } from '@/domaine/MontantPonctuel'
@@ -55,6 +56,8 @@ const documentation = (dottedName: DottedName) =>
 
 export const ModèleTravailleurIndépendant: ModèleComparable = {
 	nom: nomModèle,
+
+	DocumentationRoutes: documentationRoutesPublicodes(getEngine, nomModèle),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
@@ -222,8 +225,6 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? initEngine(),
-
 		statut: {
 			étiquette,
 			nom: 'Entreprise individuelle',
