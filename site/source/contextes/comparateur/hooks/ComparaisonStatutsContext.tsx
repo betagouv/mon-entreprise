@@ -2,15 +2,24 @@ import React, {
 	createContext,
 	useCallback,
 	useContext,
+	useEffect,
 	useMemo,
 	useState,
 } from 'react'
 
+import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import { useNavigation } from '@/lib/navigation'
+
 import { ModèleComparable } from '../domaine/modeleComparable'
 import {
 	initialSituationComparée,
+	simulationEstCommencée,
 	SituationComparée,
 } from '../domaine/situation'
+import {
+	decodeSituation,
+	encodeSituation,
+} from '../domaine/situationQueryString'
 
 type SituationContextType = {
 	modèles: ModèleComparable[]
@@ -26,11 +35,35 @@ export const ComparateurProvider: React.FC<{
 	modèles: ModèleComparable[]
 	children: React.ReactNode
 }> = ({ modèles, children }) => {
-	// TODO: ajouter la gestion du lien de partage
+	const { searchParams, setSearchParams } = useNavigation()
 
-	const [situation, setSituation] = useState<SituationComparée>(
-		initialSituationComparée
-	)
+	const [situation, setSituation] = useState<SituationComparée>(() => {
+		const encodée = searchParams.get(PARAMÈTRE_SITUATION)
+
+		return encodée ? decodeSituation(encodée) : initialSituationComparée
+	})
+
+	useEffect(() => {
+		const encodée = simulationEstCommencée(situation)
+			? encodeSituation(situation)
+			: null
+		if (searchParams.get(PARAMÈTRE_SITUATION) === encodée) {
+			return
+		}
+		setSearchParams(
+			(précédents) => {
+				const suivants = new URLSearchParams(précédents)
+				if (encodée === null) {
+					suivants.delete(PARAMÈTRE_SITUATION)
+				} else {
+					suivants.set(PARAMÈTRE_SITUATION, encodée)
+				}
+
+				return suivants
+			},
+			{ replace: true }
+		)
+	}, [situation, searchParams, setSearchParams])
 
 	const updateSituation = useCallback(
 		(updater: (prev: SituationComparée) => SituationComparée) =>
