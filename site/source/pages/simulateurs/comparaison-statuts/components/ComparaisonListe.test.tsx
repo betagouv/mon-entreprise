@@ -3,6 +3,7 @@ import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { describe, expect, it } from 'vitest'
 
+import { DocumentationBasePathProvider } from '@/components/documentation/DocumentationBasePathProvider'
 import {
 	ComparateurProvider,
 	ModèleAssimiléSalarié,
@@ -28,15 +29,17 @@ const ComparaisonPourUnChiffreDAffaires = () => {
 const afficherLaComparaison = () =>
 	render(
 		<TestProvider>
-			<ComparateurProvider
-				modèles={[
-					ModèleAssimiléSalarié,
-					ModèleTravailleurIndépendant,
-					ModèleAutoEntrepreneur,
-				]}
-			>
-				<ComparaisonPourUnChiffreDAffaires />
-			</ComparateurProvider>
+			<DocumentationBasePathProvider basePath="/simulateurs/comparaison-régimes-sociaux">
+				<ComparateurProvider
+					modèles={[
+						ModèleAssimiléSalarié,
+						ModèleTravailleurIndépendant,
+						ModèleAutoEntrepreneur,
+					]}
+				>
+					<ComparaisonPourUnChiffreDAffaires />
+				</ComparateurProvider>
+			</DocumentationBasePathProvider>
 		</TestProvider>
 	)
 
@@ -50,9 +53,9 @@ describe('Comparaison', () => {
 		await waitFor(() => {
 			expect(liensAffichés()).toEqual(
 				expect.arrayContaining([
-					'/SASU/assimilé-salarié/rémunération/nette/après-impôt',
-					'/EI/indépendant/rémunération/nette/après-impôt',
-					'/AE/dirigeant/rémunération/net/après-impôt',
+					'/simulateurs/comparaison-régimes-sociaux/SASU/assimilé-salarié/rémunération/nette/après-impôt',
+					'/simulateurs/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette/après-impôt',
+					'/simulateurs/comparaison-régimes-sociaux/AE/dirigeant/rémunération/net/après-impôt',
 				])
 			)
 		})
