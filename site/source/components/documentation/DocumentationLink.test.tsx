@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { DocumentationDeValeur } from '@/domaine/documentation/DocumentationDeValeur'
 import { TestProvider } from '@/test/TestProvider'
 
+import { DocumentationBasePathProvider } from './DocumentationBasePathProvider'
 import { DocumentationLink } from './DocumentationLink'
 
 const RienÀAfficher = () => null
@@ -18,7 +19,11 @@ const documentation: DocumentationDeValeur = {
 const afficherLeLien = () =>
 	render(
 		<TestProvider>
-			<DocumentationLink vers={documentation}>en savoir plus</DocumentationLink>
+			<DocumentationBasePathProvider basePath="/simulateurs/comparaison-régimes-sociaux">
+				<DocumentationLink vers={documentation}>
+					en savoir plus
+				</DocumentationLink>
+			</DocumentationBasePathProvider>
 		</TestProvider>
 	)
 
@@ -28,7 +33,7 @@ describe('DocumentationLink', () => {
 
 		expect(screen.getByRole('link')).toHaveAttribute(
 			'href',
-			'/EI/indépendant/rémunération/nette'
+			'/simulateurs/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette'
 		)
 	})
 
