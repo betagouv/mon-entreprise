@@ -1,12 +1,10 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import Engine from 'publicodes'
-import { ReactNode } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 import { StatutType } from '@/components/StatutTag'
 import { DocumentationDeValeur } from '@/domaine/documentation/DocumentationDeValeur'
 import { Montant, MontantRécurrent } from '@/domaine/Montant'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { Quantité } from '@/domaine/Quantite'
 
@@ -26,6 +24,8 @@ export type QuantitéDocumentée = Quantité & ValeurDocumentée
 export interface ModèleComparable {
 	nom: NomModèle
 
+	DocumentationRoutes: ComponentType<{ basePath: string }>
+
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => void
 		charges: (montant: O.Option<MontantRécurrent>) => void
@@ -39,7 +39,6 @@ export interface ModèleComparable {
 	}
 
 	get: {
-		engine: () => Engine<DottedName>
 		statut: {
 			étiquette: StatutType
 			nom: string
@@ -96,7 +95,7 @@ export interface ModèleComparable {
 
 export type CatégorieComparée = keyof Omit<
 	ModèleComparable['get'],
-	'engine' | 'statut' | 'warning'
+	'statut' | 'warning'
 >
 export type ÉlémentComparé<K extends CatégorieComparée> = Exclude<
 	keyof ReturnType<ModèleComparable['get'][K]>,
