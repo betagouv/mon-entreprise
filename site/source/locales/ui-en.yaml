@@ -1162,14 +1162,14 @@ pages:
         use :</8><9><0><0><0>A csv</0> export of the table of collective net
         rates published in the Journal Officiel.</0></0><1><0><2>Cotisations
         AT/MP</2> documentation from the Assurance Maladie</0></1></9></4>"
-      StepByStep: <0><0><0>Choose the simulator according to the calculation you're
-        interested in</0><1></1>For example, the <4>employee simulator</4> to
-        calculate net income from gross income.</0></0><1><0><0>Run a simulation
-        with the data you wish to re-use</0><1></1>For example, <4>an executive
-        at €3,400 gross with luncheon vouchers</4>.</0></1><2><0><0>Go to the
-        documentation page for the data to be calculated</0><1></1>For example,
-        click on "Salaire net" in the simulator, or search for "Salaire net" in
-        the top-right search box.</0></2>
+      StepByStep: <0><0><0>Choose the simulator based on the calculation you
+        need</0><1></1>For example, the <4>employee simulator&lt;/4> to
+        calculate take-home pay from gross pay.</0></0><1><0><0>Run a simulation
+        using the data you want to reuse</0>:<1></1>For example, a <4>manager
+        earning €3,400 gross with meal vouchers</4>.</0></1><2><0><0>Go to the
+        documentation page for the data you want to calculate</0>:<1></1>For
+        example, by clicking on “Net Salary” in the simulator, or by searching
+        for “Net Salary” in the search bar at the top right.</0></2>
     couleur: "What color? "
     home:
       choice:

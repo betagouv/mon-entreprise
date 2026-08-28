@@ -8,7 +8,7 @@ import { Button, typography } from '@/design-system'
 
 import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './components/CasParticuliers'
-import StepByStep from './components/StepByStep'
+import ÉtapesPourReproduireUnCalcul from './components/EtapesPourReproduireUnCalcul'
 
 const { Body, Li, Link, Ul, H2, H3, Intro, Code, Ol, Strong } = typography
 
@@ -33,7 +33,9 @@ export default function API() {
 						Accéder au Swagger
 					</Button>
 				</PageHeader>
+
 				<H2>Comment effectuer un calcul via l'API ?</H2>
+
 				<Body>
 					Pour effectuer un calcul, il vous suffit de faire un <Code>POST</Code>{' '}
 					sur la route correspondant au modèle de règles que vous souhaitez
@@ -135,7 +137,7 @@ export default function API() {
 				</Body>
 
 				<Ol>
-					<StepByStep />
+					<ÉtapesPourReproduireUnCalcul />
 					<Li>
 						<Strong>
 							Dans la section «&nbsp;Règle et situation&nbsp;», vous trouverez

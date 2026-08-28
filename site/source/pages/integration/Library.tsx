@@ -23,7 +23,7 @@ import { useSitePaths } from '@/sitePaths'
 import Meta from '../../components/utils/Meta'
 import { StyledExempleIframe } from './API'
 import { CasParticuliers } from './components/CasParticuliers'
-import StepByStep from './components/StepByStep'
+import ÉtapesPourReproduireUnCalcul from './components/EtapesPourReproduireUnCalcul'
 
 export default function Library() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -232,7 +232,7 @@ export default function Library() {
 					bibliothèque, voici la marche à suivre :{' '}
 				</Body>
 				<Ol>
-					<StepByStep />
+					<ÉtapesPourReproduireUnCalcul />
 					<Li>
 						<Strong>
 							Copiez l'extrait de code personnalisé et intégrez-le dans votre
