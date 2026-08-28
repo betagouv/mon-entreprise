@@ -41,8 +41,6 @@ import {
 	URSSAF,
 } from '@/utils/logos'
 
-import cciLogo from './images/cci.png'
-
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
 	const simulatorsData = useSimulatorsMetadata()
@@ -264,7 +262,7 @@ export default function Integration() {
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
-							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
+							href="https://www.urssaf.fr/accueil/outils-documentation/simulateurs.html"
 							ctaLabel={t(
 								'pages.développeur.iframe.intégrations.urssaf.cta-label',
 								'Voir l’intégration'
@@ -275,22 +273,6 @@ export default function Integration() {
 							)}
 						>
 							<Logo src={URSSAF} alt="" />
-						</Article>
-					</Grid>
-					<Grid as="li" item xs={12} md={6} xl={4}>
-						<Article
-							title="CCI de France"
-							href="http://les-aides.fr/embauche"
-							ctaLabel={t(
-								'pages.développeur.iframe.intégrations.CCI.cta-label',
-								'Voir l’intégration'
-							)}
-							aria-label={t(
-								'pages.développeur.iframe.intégrations.CCI.aria-label',
-								'CCI de France, voir l’intégration, nouvelle fenêtre'
-							)}
-						>
-							<Logo src={cciLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
@@ -312,7 +294,7 @@ export default function Integration() {
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="France Travail"
-							href="https://entreprise.francetravail.fr/cout-salarie/"
+							href="https://pro.francetravail.fr/accueil/estimer-cout-salarie"
 							ctaLabel={t(
 								'pages.développeur.iframe.intégrations.france-travail.cta-label',
 								'Voir le simulateur'

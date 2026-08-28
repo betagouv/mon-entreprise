@@ -1204,9 +1204,6 @@ pages:
         content security policy via the HTTP <1>Content-Security-Policy</1>
         response header, a benign error may appear in the console. <3></3></3>
       intégrations:
-        CCI:
-          aria-label: CCI de France, see integration, new window
-          cta-label: See integration
         code-du-travail-numérique:
           aria-label: Code du travail numérique", view simulator, new window
           cta-label: See the simulator
