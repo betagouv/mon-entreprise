@@ -1,8 +1,10 @@
+import { useDocumentationBasePath } from '@/components/documentation/DocumentationBasePathProvider'
 import { useComparateur } from '@/contextes/comparateur'
 import { Popover } from '@/design-system'
 import { useNavigation } from '@/lib/navigation'
 
-export const DocumentationRoutes = ({ basePath }: { basePath: string }) => {
+export const DocumentationRoutes = () => {
+	const basePath = useDocumentationBasePath()
 	const { documentations } = useComparateur()
 	const { currentPath, matchPath, navigate } = useNavigation()
 
