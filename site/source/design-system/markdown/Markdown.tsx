@@ -1,8 +1,8 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
-import { styled } from 'styled-components'
 
 import {
 	Body,
+	Code,
 	H1,
 	H2,
 	H3,
@@ -12,6 +12,7 @@ import {
 	Li,
 	Message,
 	Ol,
+	Pre,
 	Strong,
 	U,
 	Ul,
@@ -72,33 +73,3 @@ export function Markdown({
 		</MarkdownToJsx>
 	)
 }
-
-const Code = styled.code`
-	overflow: auto;
-	padding: 0.25rem;
-	background-color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.dark[600]
-			: theme.colors.extended.grey[300]};
-	color: inherit;
-	border-radius: 0.25rem;
-`
-
-const Pre = styled.pre`
-	overflow: auto;
-	padding: 0.5rem;
-	background-color: ${({ theme }) =>
-		theme.darkMode
-			? theme.colors.extended.dark[600]
-			: theme.colors.extended.grey[300]};
-	color: inherit;
-	border-radius: 0.25rem;
-
-	& ${Code} {
-		overflow: initial;
-		padding: 0;
-		background-color: initial;
-		color: inherit;
-		border-radius: initial;
-	}
-`
