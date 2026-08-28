@@ -1267,9 +1267,6 @@ pages:
         réponse HTTP <1>Content-Security-Policy</1>, une erreur bénigne peut
         apparaître dans la console. <3></3></3>
       intégrations:
-        CCI:
-          aria-label: CCI de France, voir l’intégration, nouvelle fenêtre
-          cta-label: Voir l’intégration
         code-du-travail-numérique:
           aria-label: Code du travail numérique", voir le simulateur, nouvelle fenêtre
           cta-label: Voir le simulateur
