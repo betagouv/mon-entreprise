@@ -216,6 +216,9 @@ components:
       appropriate advisor for your request from among all our public and
       semi-public partners. He or she will contact you by telephone within 5
       days, and will provide you with assistance tailored to your situation.
+  documentation:
+    lien:
+      aria-label: "Documentation: {{ titre }}"
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
   feedback:

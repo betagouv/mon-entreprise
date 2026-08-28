@@ -1,6 +1,6 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import rules from 'modele-ti'
+import rules, { RègleModèleTravailleurIndépendant } from 'modele-ti'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
@@ -51,7 +51,7 @@ const getEngine = () => engine ?? initEngine()
 
 const étiquette = 'EI'
 
-const documentation = (dottedName: DottedName) =>
+const documentation = (dottedName: RègleModèleTravailleurIndépendant) =>
 	documentationPublicodes(getEngine, dottedName, étiquette)
 
 export const ModèleTravailleurIndépendant: ModèleComparable = {
