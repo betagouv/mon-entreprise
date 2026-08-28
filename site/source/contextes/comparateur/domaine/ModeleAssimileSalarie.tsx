@@ -1,7 +1,7 @@
 import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import rules from 'modele-as'
+import rules, { RègleModèleAssimiléSalarié } from 'modele-as'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
@@ -54,7 +54,7 @@ const getEngine = () => engine ?? initEngine()
 
 const étiquette = 'SASU'
 
-const documentation = (dottedName: DottedName) =>
+const documentation = (dottedName: RègleModèleAssimiléSalarié) =>
 	documentationPublicodes(getEngine, dottedName, étiquette)
 
 const getRémunérationTotale = () => {
