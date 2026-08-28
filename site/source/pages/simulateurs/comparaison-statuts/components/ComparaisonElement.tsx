@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { DocumentationLink } from '@/components/documentation/DocumentationLink'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,
@@ -122,11 +123,11 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 												{libellé && ' '}
 												{libellé}
 											</span>
-											<RuleLinkContainer>
-												<valeur.documentation.Lien>
+											<DocumentationLinkContainer>
+												<DocumentationLink vers={valeur.documentation}>
 													<HelpIcon />
-												</valeur.documentation.Lien>
-											</RuleLinkContainer>
+												</DocumentationLink>
+											</DocumentationLinkContainer>
 											{warning?.(résultatModèle)}
 										</StyledDiv>
 									)}
@@ -152,7 +153,7 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 	)
 }
 
-const RuleLinkContainer = styled.div`
+const DocumentationLinkContainer = styled.div`
 	display: inline-flex;
 	align-items: center;
 	a {
