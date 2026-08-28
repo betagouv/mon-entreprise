@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { DocumentationLink } from '@/components/documentation/DocumentationLink'
+import { DocumentationInfoButton } from '@/components/documentation/DocumentationInfoButton'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,
@@ -12,7 +12,7 @@ import {
 	QuantitéDocumentée,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { Grid, HelpIcon, StatusCard, Ul } from '@/design-system'
+import { Grid, StatusCard, Ul } from '@/design-system'
 import {
 	arrondirÀLEuro,
 	isMontant,
@@ -125,11 +125,9 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 												{libellé && ' '}
 												{libellé}
 											</span>
-											<DocumentationLinkContainer>
-												<DocumentationLink vers={valeur.documentation}>
-													<HelpIcon />
-												</DocumentationLink>
-											</DocumentationLinkContainer>
+											<DocumentationInfoButton
+												documentation={valeur.documentation}
+											/>
 											{warning?.(résultatModèle)}
 										</StyledDiv>
 									)}
@@ -154,18 +152,6 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 		</Grid>
 	)
 }
-
-const DocumentationLinkContainer = styled.div`
-	display: inline-flex;
-	align-items: center;
-	a {
-		display: inline-flex;
-		align-items: center;
-	}
-	&:hover {
-		opacity: 0.8;
-	}
-`
 
 const DisabledLabel = styled.span`
 	color: ${({ theme }) => theme.colors.extended.grey[800]}!important;

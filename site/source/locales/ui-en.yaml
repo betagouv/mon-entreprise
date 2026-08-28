@@ -219,6 +219,7 @@ components:
   documentation:
     lien:
       aria-label: "Documentation: {{ titre }}"
+    lire-la-documentation: Read the documentation
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
   feedback:
