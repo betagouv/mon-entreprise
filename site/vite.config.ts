@@ -78,7 +78,9 @@ export default defineConfig(({ command, mode }) => ({
 				preventAssignment: false,
 			}),
 
-		mdx(),
+		mdx({
+			providerImportSource: '@mdx-js/react',
+		}),
 		react(),
 
 		yaml({
