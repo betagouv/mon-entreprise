@@ -7,7 +7,7 @@ import {
 	eurosParAn,
 	moins,
 	plus,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 
 import { compareRégimes } from './comparateur-régimes'
 import { calculeCotisations } from './cotisations'

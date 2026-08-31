@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { Option } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { TestProvider } from '@/test/TestProvider'
 
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'

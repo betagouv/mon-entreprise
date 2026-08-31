@@ -1,7 +1,7 @@
 import { pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn, moins, plus } from '@/domaine/MontantRécurrent'
+import { eurosParAn, moins, plus } from '@/domaine/MontantRecurrent'
 
 import { estActiviteProfessionnelle } from './estActiviteProfessionnelle'
 import { situationMeubléDeTourismeBuilder } from './test/situationBuilder'

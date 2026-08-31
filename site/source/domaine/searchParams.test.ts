@@ -10,7 +10,7 @@ import {
 } from 'vitest'
 
 import { eurosParTitreRestaurant } from './MontantPonctuel'
-import { eurosParMois } from './MontantRécurrent'
+import { eurosParMois } from './MontantRecurrent'
 import {
 	heuresParMois,
 	joursOuvrés,

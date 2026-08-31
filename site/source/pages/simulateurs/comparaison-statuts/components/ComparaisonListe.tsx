@@ -28,7 +28,7 @@ import {
 	toEurosParAn,
 	toEurosParJour,
 	toEurosParMois,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 import { arrondirÀLUnité, quantitéToString } from '@/domaine/Quantite'
 
 import { CartesStatuts } from './CartesStatuts'

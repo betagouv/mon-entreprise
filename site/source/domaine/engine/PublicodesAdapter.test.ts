@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeAll, describe, expect, it } from 'vitest'
 
 import * as Montant from '@/domaine/Montant'
-import * as MontantRécurrent from '@/domaine/MontantRécurrent'
+import * as MontantRécurrent from '@/domaine/MontantRecurrent'
 import * as Quantité from '@/domaine/Quantite'
 
 import { PublicodesAdapter } from './PublicodesAdapter'

@@ -1,7 +1,7 @@
 import { Either, pipe } from 'effect'
 
 import { PLAFOND_ANNUEL_SECURITE_SOCIALE } from '@/domaine/ConstantesSociales'
-import { estPlusGrandOuÉgalÀ, eurosParAn } from '@/domaine/MontantRécurrent'
+import { estPlusGrandOuÉgalÀ, eurosParAn } from '@/domaine/MontantRecurrent'
 import { valeurCourante } from '@/domaine/ValeurAnnuelle'
 
 import { AffiliationObligatoire } from './erreurs'

@@ -6,7 +6,7 @@ import {
 	eurosParMois,
 	plus,
 	toEurosParAn,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 
 import { ModèleAssimiléSalarié } from './ModeleAssimileSalarie'
 

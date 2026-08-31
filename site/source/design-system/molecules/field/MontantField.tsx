@@ -3,7 +3,7 @@ import { css, styled } from 'styled-components'
 
 import * as M from '@/domaine/Montant'
 import { montant, Montant } from '@/domaine/Montant'
-import * as MR from '@/domaine/MontantRécurrent'
+import * as MR from '@/domaine/MontantRecurrent'
 import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unites'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'

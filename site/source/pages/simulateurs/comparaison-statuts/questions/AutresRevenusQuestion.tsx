@@ -4,7 +4,7 @@ import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/Comp
 import { SituationComparée, useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
 import { Montant, montantToString } from '@/domaine/Montant'
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 
 export const AutresRevenusQuestion: ComposantQuestionFournie<
 	SituationComparée

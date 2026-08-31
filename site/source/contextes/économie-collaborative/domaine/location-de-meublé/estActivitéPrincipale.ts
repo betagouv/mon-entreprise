@@ -1,6 +1,6 @@
 import { pipe } from 'effect'
 
-import { estPlusGrandOuÉgalÀ } from '@/domaine/MontantRécurrent'
+import { estPlusGrandOuÉgalÀ } from '@/domaine/MontantRecurrent'
 
 import { SituationMeubléAvecAutresRevenus } from './situation'
 
