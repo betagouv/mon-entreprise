@@ -1,7 +1,7 @@
 import { Either, pipe } from 'effect'
 
 import { Montant } from '@/domaine/Montant'
-import { moins } from '@/domaine/MontantRécurrent'
+import { moins } from '@/domaine/MontantRecurrent'
 
 import { calculeCotisations } from './cotisations'
 import { SimulationImpossible } from './erreurs'

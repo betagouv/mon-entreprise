@@ -4,7 +4,7 @@ import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
 import * as M from '@/domaine/Montant'
-import * as MR from '@/domaine/MontantRécurrent'
+import * as MR from '@/domaine/MontantRecurrent'
 
 import {
 	calculeCMGRLinéarisé,

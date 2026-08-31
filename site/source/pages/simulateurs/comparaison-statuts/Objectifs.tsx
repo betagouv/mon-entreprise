@@ -7,7 +7,7 @@ import {
 } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
 import { useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
-import { MontantRécurrent } from '@/domaine/MontantRécurrent'
+import { MontantRécurrent } from '@/domaine/MontantRecurrent'
 
 import { ChoixImposition } from './components/ChoixImposition'
 import { ChoixVersementLibératoire } from './components/ChoixVersementLiberatoire'

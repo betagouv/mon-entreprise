@@ -6,7 +6,7 @@ import {
 	estPlusGrandQue,
 	eurosParAn,
 	moins,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 
 import {
 	applicableSurRecettesCourteDurée,

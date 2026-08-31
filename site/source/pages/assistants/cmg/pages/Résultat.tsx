@@ -14,7 +14,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { montantToString } from '@/domaine/Montant'
-import { eurosParMois } from '@/domaine/MontantRécurrent'
+import { eurosParMois } from '@/domaine/MontantRecurrent'
 import { useGetPath } from '@/hooks/useGetPath'
 import { useNavigation } from '@/lib/navigation'
 

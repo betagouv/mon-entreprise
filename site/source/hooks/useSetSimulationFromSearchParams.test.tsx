@@ -7,7 +7,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
-import { eurosParMois } from '@/domaine/MontantRécurrent'
+import { eurosParMois } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
 	heuresParMois,

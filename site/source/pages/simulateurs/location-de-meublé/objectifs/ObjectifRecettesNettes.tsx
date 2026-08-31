@@ -5,7 +5,7 @@ import { ObjectifSaisissableDeSimulation } from '@/components/Simulation/Objecti
 import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
 import { MontantField } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { ChangeHandler } from '@/utils/ChangeHandler'
 
 export const ObjectifRecettesNettes = () => {

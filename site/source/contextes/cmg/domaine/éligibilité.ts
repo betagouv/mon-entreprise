@@ -7,7 +7,7 @@ import { and, not } from 'effect/Predicate'
 import * as R from 'effect/Record'
 
 import * as M from '@/domaine/Montant'
-import * as MR from '@/domaine/MontantRécurrent'
+import * as MR from '@/domaine/MontantRecurrent'
 
 import { calculeComplémentTransitoire } from './calcul'
 import {

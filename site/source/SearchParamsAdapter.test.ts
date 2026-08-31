@@ -6,7 +6,7 @@ import {
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 import {
 	annéeCivile,
 	employés,

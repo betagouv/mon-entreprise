@@ -9,7 +9,7 @@ import {
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {

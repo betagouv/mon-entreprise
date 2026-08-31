@@ -5,7 +5,7 @@ import { ReactNode } from 'react'
 
 import { StatutType } from '@/components/StatutTag'
 import { Montant } from '@/domaine/Montant'
-import { MontantRécurrent } from '@/domaine/MontantRécurrent'
+import { MontantRécurrent } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { Quantité } from '@/domaine/Quantite'

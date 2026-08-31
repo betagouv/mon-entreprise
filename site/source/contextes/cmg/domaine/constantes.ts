@@ -1,4 +1,4 @@
-import * as MR from '@/domaine/MontantRécurrent'
+import * as MR from '@/domaine/MontantRecurrent'
 
 import { TypologieDeGarde } from './typologie-de-garde'
 

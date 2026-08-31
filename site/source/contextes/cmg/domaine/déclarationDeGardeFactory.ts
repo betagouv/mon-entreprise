@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 
 import * as M from '@/domaine/Montant'
-import * as MR from '@/domaine/MontantRécurrent'
+import * as MR from '@/domaine/MontantRecurrent'
 
 import {
 	DéclarationDeGardeAMA,

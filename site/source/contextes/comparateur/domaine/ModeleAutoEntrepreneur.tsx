@@ -13,7 +13,7 @@ import {
 	eurosParJour,
 	eurosParMois,
 	MontantRécurrent,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 import { fromOuiNon, OuiNon, toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
