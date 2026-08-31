@@ -4,13 +4,21 @@ import { styled } from 'styled-components'
 import illustration from '@/assets/images/illustrations/api.svg'
 import PageHeader from '@/components/PageHeader'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Button, typography } from '@/design-system'
+import {
+	Body,
+	Button,
+	Code,
+	H2,
+	H3,
+	Intro,
+	Li,
+	Link,
+	Ul,
+} from '@/design-system'
 
 import Meta from '../../components/utils/Meta'
 import { CasParticuliers } from './components/CasParticuliers'
 import ÉtapesPourReproduireUnCalcul from './components/EtapesPourReproduireUnCalcul'
-
-const { Body, Li, Link, Ul, H2, H3, Intro, Code, Ol, Strong } = typography
 
 export default function API() {
 	const { t } = useTranslation()
@@ -136,20 +144,7 @@ export default function API() {
 					bibliothèque, voici la marche à suivre&nbsp;:
 				</Body>
 
-				<Ol>
-					<ÉtapesPourReproduireUnCalcul />
-					<Li>
-						<Strong>
-							Dans la section «&nbsp;Règle et situation&nbsp;», vous trouverez
-							le nom de la règle, le modèle de règles et la situation à utiliser
-							pour effectuer le calcul via l'API.
-						</Strong>
-						<br /> Vous pouvez également retrouver la requête API à
-						copier-coller sous forme d'appel <Code>curl</Code> ou de{' '}
-						<Code>fetch</Code> JavaScript dans la section «&nbsp;Réutiliser ce
-						calcul&nbsp;».
-					</Li>
-				</Ol>
+				<ÉtapesPourReproduireUnCalcul mode="api" />
 
 				<CasParticuliers />
 

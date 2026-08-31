@@ -11,10 +11,8 @@ import {
 	H3,
 	H4,
 	Intro,
-	Li,
 	Link,
 	Message,
-	Ol,
 	SmallBody,
 	Strong,
 } from '@/design-system'
@@ -231,37 +229,8 @@ export default function Library() {
 					Pour répliquer le calcul d’un simulateur de mon-entreprise dans la
 					bibliothèque, voici la marche à suivre :{' '}
 				</Body>
-				<Ol>
-					<ÉtapesPourReproduireUnCalcul />
-					<Li>
-						<Strong>
-							Copiez l'extrait de code personnalisé et intégrez-le dans votre
-							application
-						</Strong>
-						<br />
-						Vous le trouverez en cliquant sur la section «&nbsp;Réutiliser ce
-						calcul&nbsp;».
-						<br />
-					</Li>
-					<Li>
-						<Strong>
-							(facultatif) Modifiez les valeurs de la situation pour paramétrer
-							le calcul selon vos besoins
-						</Strong>
-						<br /> Vous pouvez modifier sans hésiter les valeurs de la
-						situation. Ces dernières acceptent n'importe quelle{' '}
-						<Link
-							href="https://publi.codes/docs/manuel/principe-de-base"
-							aria-label={t(
-								'pages.développeur.bibliothèque.aria-label.publicodes.expression',
-								'expression ou objet publicodes, en savoir plus, nouvelle fenêtre'
-							)}
-						>
-							expression ou objet publicodes
-						</Link>
-						.
-					</Li>
-				</Ol>
+
+				<ÉtapesPourReproduireUnCalcul mode="npm" />
 
 				<Body>
 					Voici ce que donne le calcul avec l'exemple cité ci-dessus :
