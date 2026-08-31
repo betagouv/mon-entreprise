@@ -210,6 +210,9 @@ codeApe:
 common:
   useful-resources: Useful resources
 components:
+  champ:
+    aide:
+      références: Useful Links
   conseillersEntreprises:
     description: Describe your project or problem and provide some background
       information. Conseillers-Entreprises Service Public will identify the
@@ -266,6 +269,8 @@ components:
       cotisations: Social security contributions
       salaire-brut: Gross salary
       salaire-net: Net salary
+  help-button:
+    aria-label: Help with {{ subject }}
   info:
     aria-label: About {{ subject }}
   recherche:
