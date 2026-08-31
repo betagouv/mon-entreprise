@@ -54,5 +54,17 @@ describe('ModèleAssimiléSalarié', () => {
 			toEurosParAn(référence.revenuNetAprèsImpôt).valeur,
 			-1
 		)
+
+		ModèleAssimiléSalarié.set.chiffreDAffaires(O.some(eurosParAn(120_000)))
+		ModèleAssimiléSalarié.set.charges(O.some(eurosParMois(2_000)))
+		const saisieMixteInverse = ModèleAssimiléSalarié.get.revenu()
+
+		expect(toEurosParAn(saisieMixteInverse.bénéfice).valeur).toBeCloseTo(
+			toEurosParAn(référence.bénéfice).valeur,
+			-1
+		)
+		expect(
+			toEurosParAn(saisieMixteInverse.revenuNetAprèsImpôt).valeur
+		).toBeCloseTo(toEurosParAn(référence.revenuNetAprèsImpôt).valeur, -1)
 	})
 })
