@@ -33,6 +33,12 @@ type PublicodesReferencesProps = {
 	dottedName?: string
 }
 
+const apiEvaluateUrl: Record<NomModèle, string> = {
+	'modele-as': 'modeles/as/evaluate',
+	'modele-social': 'evaluate',
+	'modele-ti': 'modeles/ti/evaluate',
+}
+
 export default function DocumentationPageBody({
 	documentationPath,
 	engine,
@@ -72,7 +78,7 @@ export default function DocumentationPageBody({
 				documentationPath={documentationPath}
 				renderers={renderers}
 				apiDocumentationUrl={absoluteSitePaths.développeur.api}
-				apiEvaluateUrl="https://mon-entreprise.urssaf.fr/api/v1/evaluate"
+				apiEvaluateUrl={`https://mon-entreprise.urssaf.fr/api/v1/${apiEvaluateUrl[nomModèle]}`}
 				npmPackage={nomModèle}
 				mobileMenuPortalId="mobile-menu-portal-id"
 			/>
