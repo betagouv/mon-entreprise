@@ -6,7 +6,6 @@ import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
 
 import ChoixDuStatut from './choix-du-statut'
-import CMG from './cmg'
 import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
 import AideDéclarationIndépendant from './declaration-revenu-independants'
 import DéclarationRevenusPAMC from './declaration-revenus-pamc'
@@ -56,7 +55,6 @@ export default function Assistants() {
 					path={assistants['choix-du-statut'].index + '/*'}
 					element={<ChoixDuStatut />}
 				/>
-				<Route path={assistants.cmg.index + '/*'} element={<CMG />} />
 				<Route
 					path={assistants['pour-mon-entreprise'].index + '/*'}
 					element={<PourMonEntreprise />}

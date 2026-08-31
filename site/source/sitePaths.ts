@@ -46,14 +46,6 @@ const rawSitePathsFr = {
 				association: 'association',
 			},
 		},
-		cmg: {
-			index: 'cmg',
-			informations: 'informations-générales',
-			enfants: 'enfants',
-			déclarations: 'déclarations',
-			inéligibilité: 'inéligible',
-			résultat: 'résultat',
-		},
 	},
 	simulateurs: {
 		index: 'simulateurs',
@@ -154,14 +146,6 @@ const rawSitePathsEn = {
 				SELASU: 'SELASU',
 				association: 'association',
 			},
-		},
-		cmg: {
-			index: 'cmg',
-			informations: 'general-information',
-			enfants: 'children',
-			déclarations: 'declarations',
-			inéligibilité: 'ineligible',
-			résultat: 'result',
 		},
 	},
 	simulateurs: {

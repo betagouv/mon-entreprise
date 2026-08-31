@@ -9,7 +9,6 @@ import {
 } from '@/hooks/useSimulatorsMetadata'
 import Page404 from '@/pages/404'
 import ChoixDuStatut from '@/pages/assistants/choix-du-statut'
-import CMG from '@/pages/assistants/cmg'
 import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import SearchCodeApePage from '@/pages/assistants/recherche-code-ape'
 import { ActivitéPartielle } from '@/pages/simulateurs/activité-partielle/ActivitéPartielle'
@@ -163,10 +162,6 @@ export default function Iframes() {
 						<SearchCodeApePage />
 					)}
 					<Route path="*" element={<Page404 />} />
-				</Route>
-
-				<Route element={<ChromeIframe avecLogo />}>
-					{routeIframe(simulateurs.cmg, <CMG />)}
 				</Route>
 			</Routes>
 		</>
