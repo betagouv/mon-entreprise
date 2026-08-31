@@ -1,5 +1,4 @@
 import { choixDuStatutMetadata } from '@/pages/assistants/choix-du-statut/metadata'
-import { CMGMetadata } from '@/pages/assistants/cmg/metadata'
 import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entreprise/metadata'
 import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
 import {
@@ -74,7 +73,6 @@ const getMetadataSrc = (params: PageMetadataParams) => {
 
 		// assistants :
 		...parId(choixDuStatutMetadata(params)),
-		...parId(CMGMetadata(params)),
 		...parId(pourMonEntrepriseMetadata(params)),
 		...parId(rechercheCodeApeMetadata(params)),
 	} as const satisfies ImmutableType<Record<string, PageMetadata>>
