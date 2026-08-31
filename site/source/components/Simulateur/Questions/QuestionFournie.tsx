@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { DocumentationHelpButton } from '@/components/documentation/DocumentationHelpButton'
 import { H3, H3Style } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 
@@ -18,7 +19,15 @@ export const QuestionFournie = <S extends Situation>({
 	if (Question.typeRadioGroup) {
 		return (
 			<StyledFieldset>
-				<StyledLegend>{Question.libellé(t)}</StyledLegend>
+				<StyledLegend>
+					{Question.libellé(t)}
+					{Question.documentation && (
+						<DocumentationHelpButton
+							sujet={Question.libellé(t)}
+							documentation={Question.documentation}
+						/>
+					)}
+				</StyledLegend>
 
 				<Question />
 			</StyledFieldset>
@@ -31,6 +40,12 @@ export const QuestionFournie = <S extends Situation>({
 		<>
 			<LabelWithMargin as="label" id={labelId} htmlFor={Question.id}>
 				{Question.libellé(t)}
+				{Question.documentation && (
+					<DocumentationHelpButton
+						sujet={Question.libellé(t)}
+						documentation={Question.documentation}
+					/>
+				)}
 			</LabelWithMargin>
 
 			<Question labelId={labelId} />
