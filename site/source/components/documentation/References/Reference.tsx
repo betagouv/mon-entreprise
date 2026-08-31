@@ -82,6 +82,7 @@ const referencesImages = {
 	'carcdsf.fr': CARCDSF,
 	'economie.gouv.fr': ECONOMIE_GOUV,
 	'entreprendre.service-public.fr': ENTREPRENDRE_SERVICE_PUBLIC,
+	'entreprendre.service-public.gouv.fr': ENTREPRENDRE_SERVICE_PUBLIC,
 	'francetravail.fr': FRANCE_TRAVAIL,
 	'impots.gouv.fr': IMPOTS_GOUV,
 	'lassuranceretraite.fr': ASSURANCE_RETRAITE,
