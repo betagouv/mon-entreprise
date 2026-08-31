@@ -4,7 +4,6 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 import { fois, Montant } from './Montant'
 import { euros } from './MontantPonctuel'
 import {
-	convertitEn,
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	estPlusPetitOuÉgalÀ,
@@ -128,21 +127,6 @@ describe('MontantRécurrent', () => {
 	})
 
 	describe('conversions', () => {
-		it('convertit vers l’unité désignée par la clé', () => {
-			expect(
-				Equal.equals(convertitEn['€/mois'](eurosParAn(1200)), eurosParMois(100))
-			).toBe(true)
-			expect(
-				Equal.equals(convertitEn['€/an'](eurosParMois(100)), eurosParAn(1200))
-			).toBe(true)
-			expect(
-				Equal.equals(convertitEn['€/jour'](eurosParMois(365)), eurosParJour(12))
-			).toBe(true)
-			expect(
-				Equal.equals(convertitEn['€/heure'](eurosParAn(8760)), eurosParHeure(1))
-			).toBe(true)
-		})
-
 		it('convertit selon les conventions de 365 jours par an et 24 heures par jour', () => {
 			expect(
 				Equal.equals(toEurosParJour(eurosParAn(365)), eurosParJour(1))

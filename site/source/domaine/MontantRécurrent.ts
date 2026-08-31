@@ -99,7 +99,7 @@ export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
 export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
 	montant(valeur, '€/heure')
 
-export const convertitEn: {
+const convertitEn: {
 	[U in UnitéMonétaireRécurrente]: (m: MontantRécurrent) => Montant<U>
 } = {
 	'€/mois': toEurosParMois,
@@ -108,19 +108,14 @@ export const convertitEn: {
 	'€/heure': toEurosParHeure,
 }
 
-const aligneSur =
-	<U extends UnitéMonétaireRécurrente>(cible: Montant<U>) =>
-	(montantÀAligner: MontantRécurrent): Montant<U> =>
-		convertitEn[cible.unité](montantÀAligner)
-
 const aligneLesValeurs = (
 	montantA: MontantRécurrent,
 	montantB: MontantRécurrent
 ): [valeurA: number, valeurB: number] => {
 	if (montantA.unité !== montantB.unité) {
-		const aligné = pipe(montantB, aligneSur(montantA))
+		const montantBAligné = convertitEn[montantA.unité](montantB)
 
-		return [montantA.valeur, aligné.valeur]
+		return [montantA.valeur, montantBAligné.valeur]
 	}
 
 	return [montantA.valeur, montantB.valeur]
