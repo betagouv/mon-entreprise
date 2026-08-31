@@ -214,15 +214,12 @@ export const pourcentageParRapportÀ = dual<
 	(
 		montantA: MontantRécurrent,
 		diviseur: MontantRécurrent
-	): Either.Either<Quantité<'%'>, DivisionParZéro> => {
-		if (estZéro(diviseur)) {
-			return Either.left(new DivisionParZéro())
-		}
-
-		const [numérateur, dénominateur] = aligneLesValeurs(montantA, diviseur)
-
-		return Either.right(pourcentage((100 * numérateur) / dénominateur))
-	}
+	): Either.Either<Quantité<'%'>, DivisionParZéro> =>
+		pipe(
+			montantA,
+			parRapportÀ(diviseur),
+			Either.map((rapport) => pourcentage(100 * rapport))
+		)
 )
 
 export const estPlusGrandQue = dual<
