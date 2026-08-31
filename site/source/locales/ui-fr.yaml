@@ -224,6 +224,9 @@ components:
     conseil: Conseil
     information: Information
     note: Note
+  champ:
+    aide:
+      références: Liens utiles
   conseillersEntreprises:
     description: Décrivez votre projet ou votre problème en donnant quelques
       éléments de contexte. Conseillers-Entreprises Service Public identifiera,
@@ -280,6 +283,8 @@ components:
       cotisations: Cotisations sociales
       salaire-brut: Salaire brut
       salaire-net: Salaire net
+  help-button:
+    aria-label: Aide sur {{ subject }}
   info:
     aria-label: Info sur {{ subject }}
   recherche:

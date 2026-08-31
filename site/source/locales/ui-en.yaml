@@ -212,6 +212,9 @@ components:
     conseil: Tip
     information: Information
     note: Note
+  champ:
+    aide:
+      références: Useful Links
   conseillersEntreprises:
     description: Describe your project or problem and provide some background
       information. Conseillers-Entreprises Service Public will identify the
@@ -267,6 +270,8 @@ components:
       cotisations: Social security contributions
       salaire-brut: Gross salary
       salaire-net: Net salary
+  help-button:
+    aria-label: Help with {{ subject }}
   info:
     aria-label: About {{ subject }}
   recherche:
