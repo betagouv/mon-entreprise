@@ -1,26 +1,9 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 
-import {
-	Body,
-	Code,
-	H1,
-	H2,
-	H3,
-	H4,
-	H5,
-	H6,
-	Li,
-	Message,
-	Ol,
-	Pre,
-	Strong,
-	U,
-	Ul,
-} from '@/design-system'
+import { Message } from '@/design-system'
 
-import ImgRenderer from './ImgRenderer'
-import LinkRenderer from './LinkRenderer'
-import TextRenderer from './TextRenderer'
+import { componentsRendering } from '../componentsRendering'
+import { TextRenderer } from './TextRenderer'
 
 export type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
@@ -45,26 +28,11 @@ export function Markdown({
 				forceBlock: true,
 				...otherProps.options,
 				overrides: {
-					h1: H1,
-					h2: H2,
-					h3: H3,
-					h4: H4,
-					h5: H5,
-					h6: H6,
-					p: Body,
-					strong: Strong,
-					u: U,
-					a: LinkRenderer,
-					ul: Ul,
-					ol: Ol,
-					li: Li,
-					code: Code,
-					pre: Pre,
+					...componentsRendering,
 					span: TextRenderer,
 					blockquote: (props) => (
 						<Message type="info" border={false} icon {...props} />
 					),
-					img: ImgRenderer,
 					...components,
 				},
 			}}
