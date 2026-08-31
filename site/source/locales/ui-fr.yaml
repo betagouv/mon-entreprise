@@ -1061,14 +1061,9 @@ pages:
       leurs exemples dans le Swagger</0></14><15>Comment reproduire un calcul
       d'un simulateur ?</15><16>Pour répliquer un calcul d'un simulateur de
       mon-entreprise dans la bibliothèque, voici la marche à suivre
-      :</16><17><0></0><1><0>Dans la section « Règle et situation », vous
-      trouverez le nom de la règle, le modèle de règles et la situation à
-      utiliser pour effectuer le calcul via l'API.</0><1></1> Vous pouvez
-      également retrouver la requête API à copier-coller sous forme d'appel
-      <3>curl</3> ou de <6>fetch</6> JavaScript dans la section « Réutiliser ce
-      calcul ».</1></17><18></18><19>Exemple</19><20>Voici un exemple
-      d'utilisation des différentes routes, vous pouvez explorer leur code dans
-      le dossier <1>example</1></20><21><0></0></21>"
+      :</16><17></17><18></18><19>Exemple</19><20>Voici un exemple d'utilisation
+      des différentes routes, vous pouvez explorer leur code dans le dossier
+      <1>example</1></20><21><0></0></21>"
     bibliothèque:
       aria-label:
         documentation: documentation en ligne, nouvelle fenêtre
@@ -1135,17 +1130,10 @@ pages:
         la simulation en cours.</21><22>Comment reproduire le calcul d’un
         simulateur ?</22><23>Pour répliquer le calcul d’un simulateur de
         mon-entreprise dans la bibliothèque, voici la marche à suivre :
-        </23><24><0></0><1><0>Copiez l'extrait de code personnalisé et
-        intégrez-le dans votre application</0><1></1>Vous le trouverez en
-        cliquant sur la section « Réutiliser ce calcul
-        ».<3></3></1><2><0>(facultatif) Modifiez les valeurs de la situation
-        pour paramétrer le calcul selon vos besoins</0><1></1> Vous pouvez
-        modifier sans hésiter les valeurs de la situation. Ces dernières
-        acceptent n'importe quelle <4>expression ou objet
-        publicodes</4>.</2></24><25>Voici ce que donne le calcul avec l'exemple
-        cité ci-dessus :</25><26><0></0></26><27><0>La situation contient les
-        données de votre simulation (cadre avec salaire à 3400 € brut), mais
-        également les données relatives au paramétrage du
+        </23><24></24><25>Voici ce que donne le calcul avec l'exemple cité
+        ci-dessus :</25><26><0></0></26><27><0>La situation contient les données
+        de votre simulation (cadre avec salaire à 3400 € brut), mais également
+        les données relatives au paramétrage du
         simulateur.</0></27><28></28><29>Faire des graphiques économiques
         <1></1></29><30>Il est aussi possible d'utiliser la bibliothèque pour
         des calculs d'analyse économique ou politique. Ici, on trace le prix du
@@ -1222,15 +1210,28 @@ pages:
         tableau des taux nets collectifs paru au Journal
         Officiel</0></0><1><0>La documentation <2>Cotisations AT/MP</2> de
         l’Assurance Maladie</0></1></9></4>"
-      StepByStep: <0><0><0>Choisir le simulateur en fonction du calcul qui nous
-        intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
-        calculer un net à partir du brut.</0></0><1><0><0>Effectuer une
-        simulation avec les données que l'on souhaite réutiliser</0><1></1>Par
-        exemple un ou une <4>cadre à 3 400 € brut avec des
-        titres-restaurants</4>.</0></1><2><0><0>Aller sur la page de
-        documentation de la donnée à calculer</0><1></1>Par exemple en cliquant
-        sur « Salaire net » dans le simulateur, ou en recherchant « Salaire net
-        » dans la recherche en haut à droite.</0></2>
+      StepByStep:
+        "1": <0>Choisir le simulateur en fonction du calcul qui nous
+          intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
+          calculer un net à partir du brut.
+        "2": <0>Effectuer une simulation avec les données que l'on souhaite
+          réutiliser</0><1></1>Par exemple un ou une <4>cadre à 3 400 € brut
+          avec des titres-restaurants</4>.
+        "3": <0>Aller sur la page de documentation de la donnée à calculer</0><1></1>Par
+          exemple en cliquant sur « Salaire net » dans le simulateur, ou en
+          recherchant « Salaire net » dans la recherche en haut à droite.
+        4-api: <0>Dans la section « Réutiliser ce calcul », vous trouverez la requête
+          API à copier-coller sous forme d'appel <2>curl</2> ou de <4>fetch</4>
+          JavaScript</0><1></1> Vous pouvez également retrouver le nom de la
+          règle et la situation à utiliser pour effectuer le calcul dans la
+          section « Règle et situation ».
+        4-npm: <0>Copiez l'extrait de code personnalisé et intégrez-le dans votre
+          application</0><1></1>Vous le trouverez en cliquant sur la section «
+          Réutiliser ce calcul ».
+        "5": <0>(facultatif) Modifiez les valeurs de la situation pour paramétrer le
+          calcul selon vos besoins</0><1></1>Vous pouvez modifier sans hésiter
+          les valeurs de la situation. Ces dernières acceptent n'importe quelle
+          <4>expression ou objet publicodes</4>.
     couleur: "Quelle couleur ? "
     home:
       choice:
