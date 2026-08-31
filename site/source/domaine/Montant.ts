@@ -2,11 +2,7 @@ import { Data, Either } from 'effect'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-import {
-	isUnitéMonétaireRécurrente,
-	UnitéMonétaire,
-	UnitéMonétaireRécurrente,
-} from './Unites'
+import { UnitéMonétaire } from './Unites'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
@@ -16,11 +12,6 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 
 export const isMontant = (something: unknown): something is Montant =>
 	isObject(something) && '_tag' in something && something._tag === 'Montant'
-
-export const isMontantRécurrent = (
-	montant: Montant
-): montant is Montant<UnitéMonétaireRécurrente> =>
-	isUnitéMonétaireRécurrente(montant.unité)
 
 const makeMontant = Data.tagged<Montant>('Montant')
 

@@ -3,9 +3,16 @@ import { dual, pipe } from 'effect/Function'
 
 import { DivisionParZéro, estZéro, montant, Montant } from './Montant'
 import { pourcentage, Quantité } from './Quantite'
-import { UnitéMonétaireRécurrente } from './Unites'
+import {
+	isUnitéMonétaireRécurrente,
+	UnitéMonétaireRécurrente,
+} from './Unites'
 
 export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
+
+export const isMontantRécurrent = (
+	montant: Montant
+): montant is MontantRécurrent => isUnitéMonétaireRécurrente(montant.unité)
 
 export const toEurosParMois = (
 	montantRécurrent: MontantRécurrent
