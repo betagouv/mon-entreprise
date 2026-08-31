@@ -3,10 +3,7 @@ import { dual, pipe } from 'effect/Function'
 
 import { DivisionParZéro, estZéro, montant, Montant } from './Montant'
 import { pourcentage, Quantité } from './Quantite'
-import {
-	isUnitéMonétaireRécurrente,
-	UnitéMonétaireRécurrente,
-} from './Unites'
+import { isUnitéMonétaireRécurrente, UnitéMonétaireRécurrente } from './Unites'
 
 export type MontantRécurrent = Montant<UnitéMonétaireRécurrente>
 
