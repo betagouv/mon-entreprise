@@ -1,12 +1,27 @@
-import { Link } from '@/design-system'
+import {
+	Body,
+	Code,
+	H1,
+	H2,
+	H3,
+	H4,
+	H5,
+	H6,
+	Li,
+	Link,
+	Ol,
+	Pre,
+	Strong,
+	U,
+	Ul,
+} from './typography'
 
-type Props = {
+type LinkRendererProps = {
 	href?: string
 	children: React.ReactNode
 	title?: string
 }
-
-export default function LinkRenderer({ href, children, ...otherProps }: Props) {
+const LinkRenderer = ({ href, children, ...otherProps }: LinkRendererProps) => {
 	if (otherProps.title?.startsWith('Nouvelle fenêtre')) {
 		return (
 			<Link target="_blank" rel="noreferrer" href={href} {...otherProps}>
@@ -49,4 +64,31 @@ export default function LinkRenderer({ href, children, ...otherProps }: Props) {
 			{children}
 		</Link>
 	)
+}
+
+type ImgRendererProps = {
+	src: string
+	alt?: string
+}
+const ImgRenderer = ({ src, alt }: ImgRendererProps) => (
+	<img src={src} alt={alt || ''} />
+)
+
+export const componentsRendering = {
+	h1: H1,
+	h2: H2,
+	h3: H3,
+	h4: H4,
+	h5: H5,
+	h6: H6,
+	p: Body,
+	strong: Strong,
+	u: U,
+	ul: Ul,
+	ol: Ol,
+	li: Li,
+	code: Code,
+	pre: Pre,
+	img: ImgRenderer,
+	a: LinkRenderer,
 }
