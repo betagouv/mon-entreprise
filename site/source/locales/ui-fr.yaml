@@ -2090,6 +2090,7 @@ pages:
           assiette: Assiette retenue
           base: Base de cotisation
           calcul: Calcul
+          disclaimer: Cette estimation ne saurait engager la responsabilité de l’Urssaf.
           incomplet: Renseignez votre situation (date d’affiliation et revenus) pour voir
             le calcul qui s’y applique.
           mensuelle: Cotisation mensuelle
