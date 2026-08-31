@@ -63,7 +63,7 @@ export const MontantField = <U extends UnitéMonétaire>({
 
 	const valeurConvertie = (montant: Montant<U>): number => {
 		const montantConverti =
-			unitéRécurrenteCible && M.isMontantRécurrent(montant)
+			unitéRécurrenteCible && MR.isMontantRécurrent(montant)
 				? unitéRécurrenteCible === '€/mois'
 					? MR.toEurosParMois(montant)
 					: MR.toEurosParAn(montant)

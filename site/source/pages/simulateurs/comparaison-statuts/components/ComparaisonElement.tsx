@@ -13,13 +13,11 @@ import {
 	useComparateur,
 } from '@/contextes/comparateur'
 import { Grid, HelpIcon, StatusCard, Ul } from '@/design-system'
+import { arrondirÀLEuro, isMontant, montantToString } from '@/domaine/Montant'
 import {
-	arrondirÀLEuro,
-	isMontant,
 	isMontantRécurrent,
-	montantToString,
-} from '@/domaine/Montant'
-import { MontantRécurrent } from '@/domaine/MontantRécurrent'
+	MontantRécurrent,
+} from '@/domaine/MontantRécurrent'
 import {
 	arrondirÀLUnité,
 	isQuantité,
