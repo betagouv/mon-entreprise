@@ -6,7 +6,7 @@ import {
 	estPlusGrandOuÉgalÀ,
 	estPlusGrandQue,
 	eurosParAn,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 import {
 	AutoEntrepreneurChiffreAffaireDansPublicodes,
 	AutoEntrepreneurContexteDansPublicodes,

@@ -11,7 +11,7 @@ import {
 	montantToString,
 } from './Montant'
 import { euros } from './MontantPonctuel'
-import { eurosParAn, eurosParMois } from './MontantRécurrent'
+import { eurosParAn, eurosParMois } from './MontantRecurrent'
 
 describe('Montant', () => {
 	describe('constructeurs', () => {

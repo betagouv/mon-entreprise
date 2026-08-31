@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 
 import {
 	Classement,

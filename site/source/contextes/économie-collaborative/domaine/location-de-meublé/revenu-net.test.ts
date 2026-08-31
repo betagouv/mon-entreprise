@@ -1,7 +1,7 @@
 import { Either, Equal, pipe } from 'effect'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn, moins } from '@/domaine/MontantRécurrent'
+import { eurosParAn, moins } from '@/domaine/MontantRecurrent'
 
 import { calculeCotisations } from './cotisations'
 import { calculeRevenuNet } from './revenu-net'

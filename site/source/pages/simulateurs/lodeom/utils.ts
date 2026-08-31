@@ -6,7 +6,7 @@ import Engine from 'publicodes'
 import { AnyAction, Dispatch } from 'redux'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { ajusteLaSituation } from '@/store/actions/actions'

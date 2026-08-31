@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { Option } from 'effect'
 
 import { BlocMontants } from '@/components/Simulateur/BlocMontants'
-import { eurosParAn } from '@/domaine/MontantRécurrent'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'
 

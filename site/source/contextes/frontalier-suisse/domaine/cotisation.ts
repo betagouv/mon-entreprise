@@ -8,7 +8,7 @@ import {
 	moins,
 	plus,
 	toEurosParMois,
-} from '@/domaine/MontantRécurrent'
+} from '@/domaine/MontantRecurrent'
 import { valeurPourAnnée } from '@/domaine/ValeurAnnuelle'
 
 import { annéeDesRevenus } from './annee-de-simulation'

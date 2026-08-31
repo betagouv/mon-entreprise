@@ -22,7 +22,7 @@ import {
 	toEurosParHeure,
 	toEurosParJour,
 	toEurosParMois,
-} from './MontantRécurrent'
+} from './MontantRecurrent'
 
 describe('MontantRécurrent', () => {
 	describe('opérations', () => {
