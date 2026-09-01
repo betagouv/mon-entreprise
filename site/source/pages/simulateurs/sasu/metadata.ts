@@ -24,7 +24,7 @@ export function sasuMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.sasu.meta.description',
-				'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
+				'Calcul du salaire net à partir du total alloué à la rémunération et inversement.'
 			),
 		},
 		codesCatégorieJuridique: ['5710'],

@@ -31,7 +31,7 @@ export function chirurgienDentisteMetadata({
 			),
 			description: t(
 				'pages.simulateurs.chirurgien-dentiste.meta.description',
-				'Calcul du revenu net après cotisations à partir du total des recettes.'
+				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
 			),
 		},
 		codesCatégorieJuridique: ['1000', '5410'],
