@@ -25,7 +25,7 @@ export function cipavMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.cipav.meta.description',
-				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour professions libérales rattaché à la CIPAV'
+				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour professions libérales rattachées à la Cipav.'
 			),
 		},
 		codesCatégorieJuridique: ['1000', '5410', '5499'],

@@ -1473,7 +1473,7 @@ pages:
           title: Le service en ligne Artiste-auteur
       meta:
         description: Estimez les cotisations sociales sur les droits d’auteur et sur le
-          revenu BNC
+          revenu BNC.
         ogDescription: Renseignez vos revenus (droits d’auteur et bnc) et découvrez
           immédiatement le montant des cotisations que vous aurez à payer sur
           l’année.
@@ -1532,8 +1532,7 @@ pages:
           title: Guides pratiques de l’auto-entrepreneur
       meta:
         description: Calculez votre revenu net après cotisations et impôts en tenant
-          compte de toutes les options, y compris ACRE et prélèvement
-          libératoire.
+          compte de toutes les options, y compris Acre et versement libératoire.
         ogDescription: Prenez le contrôle de vos finances en tant qu'auto-entrepreneur !
           Estimez instantanément votre revenu net après charges et découvrez
           comment gérer au mieux vos revenus. Notre simulateur, conçu avec
@@ -1599,7 +1598,8 @@ pages:
     auxiliaire-médical:
       meta:
         description: Calcul du revenu net après cotisations à partir du total des
-          recettes. Prise en compte des revenus non conventionnés.
+          recettes. Prise en compte des dépassements d'honoraires et des revenus
+          non conventionnés.
         title: "Auxiliaire médical : simulateur de revenus"
       professionnelles: auxiliaires médicales/médicaux
       shortname: Auxiliaire médical
@@ -1645,7 +1645,8 @@ pages:
         appelées,</1><2>ni des éventuelles dettes.</2></1></1>
     chirurgien-dentiste:
       meta:
-        description: Calcul du revenu net après cotisations à partir du total des recettes.
+        description: Calcul du revenu net après cotisations à partir du total des
+          recettes. Prise en compte des revenus non conventionnés.
         title: "Chirurgien-dentiste : simulateur de revenus"
       professionnelles: chirurgiennes/chirurgiens-dentistes
       shortname: Chirurgien-dentiste
@@ -1653,7 +1654,7 @@ pages:
     cipav:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
-          total des recettes pour professions libérales rattaché à la CIPAV
+          total des recettes pour professions libérales rattachées à la Cipav.
         title: "Professions libérales rattachées à la Cipav : simulateur de revenus"
       professionnelles: professions réglementées relevant de la Cipav
       shortname: Cipav
@@ -1842,7 +1843,7 @@ pages:
             travailleur-indépendant: Travailleur indépendant
       meta:
         description: Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de
-          revenu, retraite et indemnités maladie
+          revenu, retraite et indemnités maladie.
         title: Comparateur de statut juridique
       montants:
         imposition:
@@ -1998,7 +1999,7 @@ pages:
     coût-création-entreprise:
       meta:
         description: Estimez les coûts des formalités administratives obligatoires à la
-          création d'une entreprise
+          création d'une entreprise.
         title: Coût de création d'une entreprise
       shortName: Coût de création
       title: Simulateur de coût de création d'une entreprise
@@ -2064,7 +2065,7 @@ pages:
     ei:
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
-          des cotisations et des impôts
+          des cotisations et des impôts.
         ogDescription: "Grâce au simulateur de revenu pour entreprise individuelle
           développé par l'Urssaf, vous pourrez estimer le montant de vos revenus
           en fonction de votre chiffre d'affaires mensuel ou annuel pour mieux
@@ -2112,7 +2113,7 @@ pages:
         Limitée)</2>.</1>
       meta:
         description: Calcul du revenu à partir du chiffre d'affaires, après déduction
-          des cotisations et des impôts
+          des cotisations et des impôts.
         ogDescription: "Grâce au simulateur de revenu pour EIRL développé par l'Urssaf,
           vous pourrez estimer le montant de vos revenus en fonction de votre
           chiffre d'affaires mensuel ou annuel pour mieux gérer votre
@@ -2125,8 +2126,8 @@ pages:
       title: Simulateur de revenus pour EIRL
     eurl:
       meta:
-        description: Calcul du salaire net à partir du total alloué à la rémunération et
-          inversement
+        description: Calcul du revenu à partir du chiffre d'affaires, après déduction
+          des cotisations et des impôts.
         ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.
@@ -2150,7 +2151,7 @@ pages:
     impot-société:
       exercice: Exercice {{ year }}
       meta:
-        description: Calculez votre impôt sur les sociétés
+        description: Calculez votre impôt sur les sociétés.
         title: Impôt sur les sociétés
       montant: Montant de l’impôt sur les sociétés
       préremplir: Préremplir avec les dates de l’exercice {{ year }}
@@ -2234,7 +2235,7 @@ pages:
         rémunération-nette: Revenu net
       meta:
         description: Calcul du revenu net après impôt et des cotisations à partir du
-          chiffre d'affaires et inversement
+          chiffre d'affaires et inversement.
         title: "Indépendant : simulateur de revenus"
       retraite:
         simulateur-cnav:
@@ -2435,8 +2436,8 @@ pages:
     médecin:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
-          total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire
-          pris en compte
+          total des recettes. Secteur 1, secteur 2, dépassements d’honoraires et
+          revenus non conventionnés pris en compte.
         title: "Médecin : simulateur de revenus"
       professionnelles: médecins
       shortname: Médecin
@@ -2444,7 +2445,7 @@ pages:
     pamc:
       meta:
         description: Calcul du revenu net pour les professions libérales du régime PAMC
-          (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical)
+          (médecin, chirurgien-dentiste, sage-femme et auxiliaire médical).
         title: Simulateurs régime PAMC
       shortname: PAMC
       title: Simulateur de cotisations et de revenu pour les PAMC
@@ -2452,15 +2453,14 @@ pages:
     pharmacien:
       meta:
         description: Calcul du revenu net après déduction des cotisations à partir du
-          total des recettes pour pharmacien en libéral
+          total des recettes pour pharmacien en libéral.
         title: "Pharmacien : simulateur de revenus"
       professionnelles: pharmaciennes/pharmaciens
       shortname: Pharmacien
       title: Simulateur de revenus pour pharmacien en libéral
     profession-libérale:
       meta:
-        description: Calcul du revenu net pour les indépendants en libéral à l'impôt sur
-          le revenu (IR, BNC)
+        description: Calcul du revenu net pour les indépendants en libéral.
         title: "Professions libérale : le simulateur Urssaf"
       shortname: Profession libérale
       title: Simulateur de revenus pour profession libérale
@@ -2485,7 +2485,9 @@ pages:
         maintenance pour un très faible usage.
     sage-femme:
       meta:
-        description: Calcul du revenu net après cotisations à partir du total des recettes.
+        description: Calcul du revenu net après cotisations à partir du total des
+          recettes. Prise en compte des dépassements d'honoraires et des revenus
+          non conventionnés.
         title: "Sage-femme : simulateur de revenus"
       professionnelles: sages-femmes
       shortname: Sage-femme
@@ -2572,7 +2574,7 @@ pages:
     sasu:
       meta:
         description: Calcul du salaire net à partir du total alloué à la rémunération et
-          inversement
+          inversement.
         ogDescription: En tant que dirigeant assimilé-salarié, calculez immédiatement
           votre revenu net après impôt à partir du total alloué à votre
           rémunération.

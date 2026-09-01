@@ -6,7 +6,7 @@ export function lodeomMetadata({ t, sitePaths }: PageMetadataParams) {
 		pathId: 'simulateurs.lodeom',
 		path: sitePaths.simulateurs.lodeom,
 		iframePath: 'simulateur-lodeom',
-		icône: '🏷️',
+		icône: '🌎',
 		beta: true,
 		tracking: {
 			chapter1: 'simulateurs',

@@ -1403,7 +1403,8 @@ pages:
         "1":
           title: The Artist-Author online service
       meta:
-        description: Estimate social security contributions on royalties and BNC income
+        description: Estimate the social security contributions on copyright royalties
+          and BNC income.
         ogDescription: Enter your income (royalties and bnc) and find out immediately
           the amount of contributions you will have to pay for the year.
         ogTitle: "Artiste-auteur: estimate your Urssaf contributions"
@@ -1457,7 +1458,7 @@ pages:
           title: Practical guides for auto-entrepreneurs
       meta:
         description: Calculate your net income after contributions and taxes, taking
-          into account all options, including ACRE and prélèvement libératoire.
+          into account all options, including Acre and the lump-sum payment.
         ogDescription: Take control of your finances as an auto-entrepreneur! Instantly
           estimate your net income after charges and find out how best to manage
           your income. Our simulator, designed with the expertise of
@@ -1517,7 +1518,8 @@ pages:
     auxiliaire-médical:
       meta:
         description: Calculation of net income after contributions based on total
-          income. Non-contributory income taken into account.
+          revenue. Inclusion of fees in excess of the standard rate and
+          non-contractual income.
         title: "Medical auxiliary: income simulator"
       professionnelles: medical auxiliaries
       shortname: Medical Auxiliary
@@ -1561,15 +1563,16 @@ pages:
         already called,</1><2>or any debts.</2></1></1>
     chirurgien-dentiste:
       meta:
-        description: Calculation of net income after contributions based on total income.
+        description: Calculation of net income after contributions based on total
+          revenue. Inclusion of non-contractual income.
         title: "Dental surgeon: income simulator"
       professionnelles: dental surgeons
       shortname: Dental surgeon
       title: Income simulator for self-employed dentists
     cipav:
       meta:
-        description: Calculation of net income after deduction of contributions based on
-          total income for self-employed professionals covered by CIPAV
+        description: Calculation of net income after deducting contributions from total
+          revenue for self-employed professionals affiliated with Cipav.
         title: "Professions affiliated to Cipav: income simulator"
       professionnelles: regulated professions covered by Cipav
       shortname: Cipav
@@ -1750,8 +1753,8 @@ pages:
             auto-entrepreneur: Micro-Social Plan
             travailleur-indépendant: Self-employed person
       meta:
-        description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
-          income, pension and sickness benefits
+        description: Self-employed, EI/EURL, or SASU? Compare the differences in income,
+          retirement benefits, and sick pay.
         title: Legal status comparator
       montants:
         imposition:
@@ -1906,8 +1909,8 @@ pages:
       title: Health insurance contributions for cross-border workers in Switzerland
     coût-création-entreprise:
       meta:
-        description: Estimate the cost of the administrative formalities involved in
-          setting up a company
+        description: Estimate the costs of the mandatory administrative procedures
+          involved in starting a business.
         title: Cost of setting up a business
       shortName: Cost of creation
       title: Business start-up cost simulator
@@ -1970,8 +1973,8 @@ pages:
         "2": Tax on dividends is calculated in addition to tax on other taxable income.
     ei:
       meta:
-        description: Income calculation based on sales, after deduction of contributions
-          and taxes
+        description: Calculation of income based on revenue, after deducting
+          contributions and taxes.
         ogDescription: "With the income simulator for sole traders developed by Urssaf,
           you can estimate your income based on your monthly or annual sales, to
           help you manage your cash flow. Or the other way round: find out how
@@ -2014,8 +2017,8 @@ pages:
         Limitée) with <2>EURL (Entreprise Unipersonnelle à Responsabilité
         Limitée)</2>.</1>
       meta:
-        description: Income calculation based on sales, after deduction of contributions
-          and taxes
+        description: Calculation of income based on revenue, after deducting
+          contributions and taxes.
         ogDescription: "Thanks to the EIRL income simulator developed by Urssaf, you can
           estimate your income based on your monthly or annual sales, to help
           you manage your cash flow. Or the other way round: find out how much
@@ -2027,8 +2030,8 @@ pages:
       title: EIRL income simulator
     eurl:
       meta:
-        description: Calculation of net salary from the total allocated to remuneration
-          and vice versa
+        description: Calculation of income based on revenue, after deducting
+          contributions and taxes.
         ogDescription: As a salaried executive, you can immediately calculate your net
           income after tax from the total allocated to your remuneration.
         ogTitle: "EURL manager's remuneration: a simulator to find out your net salary"
@@ -2049,7 +2052,7 @@ pages:
     impot-société:
       exercice: Exercise {{ year }}
       meta:
-        description: Calculate your corporate income tax
+        description: Calculate your corporate income tax.
         title: Corporate income tax
       montant: Amount of corporate income tax
       préremplir: Pre-fill with exercise dates {{ year }}
@@ -2124,8 +2127,8 @@ pages:
           soumis-à-prélèvements-sociaux: Dividends less than 10% of previous year's net income
         rémunération-nette: Net income
       meta:
-        description: Calculating net income after tax and contributions from sales and
-          vice versa
+        description: Calculation of net income after taxes and contributions based on
+          revenue, and vice versa.
         title: "Self-employed: income simulator"
       retraite:
         simulateur-cnav:
@@ -2320,33 +2323,32 @@ pages:
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
-        description: Calculation of net income after deduction of contributions, based
-          on total revenue. Sector 1, sector 2 and excess fees taken into
-          account
+        description: Calculation of net income after deducting contributions from total
+          revenue. Sector 1, Sector 2, fees in excess of the standard rate, and
+          non-contractual income are taken into account.
         title: "Doctor: income simulator"
       professionnelles: doctors
       shortname: Doctor
       title: Income simulator for self-employed doctors
     pamc:
       meta:
-        description: Calculation of net income for liberal professions under the PAMC
-          scheme (doctors, dental surgeons, midwives and medical auxiliaries)
+        description: Calculation of Net Income for Self-Employed Professionals Under the
+          PAMC Plan (physicians, dentists, midwives, and medical assistants).
         title: PAMC plan simulators
       shortname: PAMC
       title: Contribution and income simulator for PAMC
       titre: What do you do for a living?
     pharmacien:
       meta:
-        description: Calculation of net income after deduction of contributions from
-          total revenues for self-employed pharmacists
+        description: Calculation of net income after deducting contributions from total
+          revenue for self-employed pharmacists.
         title: "Pharmacist: income simulator"
       professionnelles: pharmacists
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
     profession-libérale:
       meta:
-        description: Net income calculation for self-employed workers subject to income
-          tax (IR, BNC)
+        description: Calculating Net Income for Self-Employed Professionals.
         title: "Liberal professions: the Urssaf simulator"
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
@@ -2368,7 +2370,9 @@ pages:
         for very little use.
     sage-femme:
       meta:
-        description: Calculation of net income after contributions based on total income.
+        description: Calculation of net income after contributions based on total
+          revenue. Inclusion of fees in excess of the agreed amount and income
+          not covered by the agreement.
         title: "Midwife: income simulator"
       professionnelles: midwives
       shortname: Midwife
@@ -2450,8 +2454,8 @@ pages:
           one-off degressive general reduction (RGDU).
     sasu:
       meta:
-        description: Calculation of net salary from the total allocated to remuneration
-          and vice versa
+        description: Calculating net pay based on the total amount allocated to
+          compensation, and vice versa.
         ogDescription: As a salaried executive, you can immediately calculate your net
           income after tax from the total allocated to your remuneration.
         ogTitle: "SASU manager's remuneration: a simulator to find out your net salary"
