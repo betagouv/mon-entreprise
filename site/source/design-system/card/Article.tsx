@@ -8,7 +8,7 @@ import { ChevronIcon } from '../icons'
 import { H4 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
 import { Body } from '../typography/paragraphs'
-import { GenericCardProps, getTitleProps } from './Card'
+import { GenericCardProps } from './Card'
 
 type ArticleProps = GenericCardProps & {
 	ctaLabel: React.ReactNode
@@ -33,7 +33,6 @@ export function Article({
 		>,
 		ref
 	)
-	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps({
 		...(typeof title === 'string' ? { title } : {}),
 		...ariaButtonProps,
@@ -50,8 +49,8 @@ export function Article({
 
 	return (
 		<StyledArticle>
-			<StyledHeader as={titleProps.as}>
-				{titleProps.children} {icon}
+			<StyledHeader as="h3">
+				{title} {icon}
 			</StyledHeader>
 			<Content>{children}</Content>
 			<StyledBody {...elementPropsWithoutRole} as={elementType}>
