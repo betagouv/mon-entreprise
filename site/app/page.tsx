@@ -103,25 +103,25 @@ export default function Home() {
 						<SimulateurCard
 							{...simulators['auto-entrepreneur']}
 							role="listitem"
-							softBackground
+							darkerBackground
 						/>
 
 						<SimulateurCard
 							{...simulators['entreprise-individuelle']}
 							role="listitem"
-							softBackground
+							darkerBackground
 						/>
 
 						<SimulateurCard
 							{...simulators.eurl}
 							role="listitem"
-							softBackground
+							darkerBackground
 						/>
 
 						<SimulateurCard
 							{...simulators.sasu}
 							role="listitem"
-							softBackground
+							darkerBackground
 						/>
 					</Grid>
 				</section>
@@ -157,7 +157,7 @@ export default function Home() {
 					<SimulateurCard
 						{...simulators['artiste-auteur']}
 						role="listitem"
-						softBackground
+						darkerBackground
 					/>
 				</Grid>
 			</Container>
