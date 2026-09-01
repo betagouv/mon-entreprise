@@ -27,7 +27,10 @@ export default function Home() {
 		<>
 			<Container>
 				<PageHeader
-					titre={t('pages.landing.title', "L'assistant officiel des entrepreneurs")}
+					titre={t(
+						'pages.landing.title',
+						"L'assistant officiel des entrepreneurs"
+					)}
 					picture="/images/home-banner-decorative.svg"
 				>
 					<Intro $xxl>
@@ -51,7 +54,9 @@ export default function Home() {
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<H2>{t('pages.landing.section.explore-status', 'Explorer les statuts')}</H2>
+				<H2>
+					{t('pages.landing.section.explore-status', 'Explorer les statuts')}
+				</H2>
 
 				<Grid role="list" container spacing={4}>
 					<ForceThemeProvider forceTheme="default">
