@@ -11,7 +11,6 @@ type SimulateurCardProps = MergedSimulatorMetadata & {
 	role?: string
 	darkerBackground?: boolean
 	streched?: boolean
-	titleLevel?: 'h3' | 'h4'
 	sansDescription?: boolean
 	précision?: string
 }
@@ -28,7 +27,6 @@ export function SimulateurCard({
 	streched = false,
 	fromGérer = false,
 	role,
-	titleLevel = 'h3',
 	sansDescription = false,
 	précision,
 }: SimulateurCardProps) {
@@ -42,8 +40,6 @@ export function SimulateurCard({
 		)
 	}
 
-	const TitleTag = titleLevel
-
 	const ctaLabel =
 		pathId.startsWith('assistants') || pathId.startsWith('gérer')
 			? t('pages.simulateurs.home.cta.assistant', "Lancer l'assistant")
@@ -53,7 +49,7 @@ export function SimulateurCard({
 		<Grid item xs={12} sm={6} md={6} lg={streched ? 6 : 4} role={role}>
 			<Card
 				title={
-					<TitleTag>
+					<>
 						{shortName}
 						{beta && (
 							<div>
@@ -62,7 +58,7 @@ export function SimulateurCard({
 								</Chip>
 							</div>
 						)}
-					</TitleTag>
+					</>
 				}
 				icon={<Emoji emoji={icône} />}
 				ctaLabel={ctaLabel}

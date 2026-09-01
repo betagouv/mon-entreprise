@@ -270,6 +270,11 @@ components:
       salaire-net: Salaire net
   info:
     aria-label: Info sur {{ subject }}
+  more-infos-on-us:
+    budget: Le budget
+    code-source: " code source"
+    nouveautés: Les nouveautés
+    statistiques: Les statistiques
   recherche:
     button:
       aria-label: Ouvrir la boite de dialogue pour rechercher
@@ -486,7 +491,6 @@ nextSteps:
     body: Découvrez comment ajouter ce simulateur sur votre site internet en un
       clic, via un script clé en main.
     cta: Voir la documentation
-    title: Intégrer le module web
 nombres de votes: nombres de votes
 pages:
   "404":

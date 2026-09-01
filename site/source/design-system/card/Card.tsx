@@ -55,7 +55,6 @@ export function Card(props: CardProps) {
 		...ariaButtonProps
 	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const titleProps = getTitleProps(title, 'h3')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
 	const buttonOrLinkProps = useButtonOrLink(ariaButtonProps, ref)
@@ -79,9 +78,9 @@ export function Card(props: CardProps) {
 
 				{title &&
 					(compact ? (
-						<StyledH4 {...titleProps} />
+						<StyledH4 as="h3">{title}</StyledH4>
 					) : (
-						<StyledH3 {...titleProps} />
+						<StyledH3>{title}</StyledH3>
 					))}
 
 				{précision && (
@@ -116,29 +115,6 @@ export function Card(props: CardProps) {
 	)
 }
 
-/*
-Default header to "as". Otherwise, use the same header level as provided
-while keeping the same consistent style
-*/
-export function getTitleProps(
-	children: React.ReactNode,
-	as: keyof JSX.IntrinsicElements
-) {
-	if (
-		children &&
-		typeof children === 'object' &&
-		'type' in children &&
-		typeof children.type === 'string' &&
-		/^h[\d]$/.exec(children.type)
-	) {
-		as = children.type as keyof JSX.IntrinsicElements
-		children =
-			(children.props as { children?: React.ReactNode }).children ?? null
-	}
-
-	return { as, children }
-}
-
 export const CardContainer = styled.div.withConfig({
 	shouldForwardProp: (prop) =>
 		!['compact', 'inert', 'darkerBackground'].includes(prop),
@@ -153,7 +129,6 @@ export const CardContainer = styled.div.withConfig({
 	justify-content: space-between;
 	row-gap: ${({ theme }) => theme.spacings.md};
 	position: relative;
-	/* text-decoration: none; */
 
 	width: 100%;
 	height: 100%;

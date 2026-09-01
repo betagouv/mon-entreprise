@@ -15,9 +15,9 @@ import { useSitePaths } from '@/sitePaths'
 export default function MoreInfosOnUs() {
 	const { currentPath } = useNavigation()
 	const { absoluteSitePaths } = useSitePaths()
-	const { language } = useTranslation().i18n
+	const { t, i18n } = useTranslation()
 
-	if (language !== 'fr') {
+	if (i18n.language !== 'fr') {
 		return null
 	}
 
@@ -29,7 +29,10 @@ export default function MoreInfosOnUs() {
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
-							title={<h3>Les nouveautés</h3>}
+							title={t(
+								'components.more-infos-on-us.nouveautés',
+								'Les nouveautés'
+							)}
 							to={absoluteSitePaths.nouveautés.index}
 						>
 							Qu'avons-nous mis en production ces derniers mois ?
@@ -41,7 +44,10 @@ export default function MoreInfosOnUs() {
 						<SmallCard
 							icon={<Emoji emoji="📊" />}
 							to={absoluteSitePaths.stats}
-							title={<h3>Les statistiques</h3>}
+							title={t(
+								'components.more-infos-on-us.statistiques',
+								'Les statistiques'
+							)}
 						>
 							Quel est notre impact ?
 						</SmallCard>
@@ -52,7 +58,7 @@ export default function MoreInfosOnUs() {
 						<SmallCard
 							icon={<Emoji emoji="💶" />}
 							to={absoluteSitePaths.budget}
-							title={<h3>Le budget</h3>}
+							title={t('components.more-infos-on-us.budget', 'Le budget')}
 						>
 							Quelles sont nos ressources et comment sont-elles employées ?
 						</SmallCard>
@@ -62,7 +68,7 @@ export default function MoreInfosOnUs() {
 					<SmallCard
 						icon={<GithubIcon style={{ width: '2rem', height: '2rem' }} />}
 						href="https://github.com/betagouv/mon-entreprise"
-						title={<h3>Le code source</h3>}
+						title={t('components.more-infos-on-us.code-source', ' code source')}
 						aria-label="Voir le code source, nouvelle fenêtre"
 					>
 						Nos travaux sont ouverts et libres de droit, ça se passe sur GitHub
