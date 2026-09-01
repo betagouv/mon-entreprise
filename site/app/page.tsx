@@ -113,7 +113,7 @@ export default function Home() {
 							sansDescription
 							{...simulators['entreprise-individuelle']}
 							précision={t(
-								'pages.landing.précision.artiste-auteur',
+								'pages.landing.précision.ei',
 								'(hors auto-entrepreneur)'
 							)}
 						/>
@@ -146,21 +146,26 @@ export default function Home() {
 				</Body>
 
 				<Grid role="list" container spacing={4}>
-					<TemporaryCard role="listitem">
-						<H3>Artisan</H3>
-					</TemporaryCard>
+					<SimulateurCard
+						role="listitem"
+						darkerBackground
+						sansDescription
+						{...simulators.artisan}
+					/>
 
-					<TemporaryCard role="listitem">
-						<H3>Commerçant</H3>
-					</TemporaryCard>
+					<SimulateurCard
+						role="listitem"
+						darkerBackground
+						sansDescription
+						{...simulators.commerçant}
+					/>
 
-					<TemporaryCard role="listitem">
-						<H3>Professions libérales non réglementées</H3>
-					</TemporaryCard>
-
-					<TemporaryCard role="listitem">
-						<H3>Professions libérales réglementées</H3>
-					</TemporaryCard>
+					<SimulateurCard
+						role="listitem"
+						darkerBackground
+						sansDescription
+						{...simulators['profession-libérale']}
+					/>
 
 					<SimulateurCard
 						role="listitem"
@@ -284,24 +289,6 @@ export default function Home() {
 		</>
 	)
 }
-
-const TemporaryCard = styled.article`
-	width: 30%;
-	margin: ${({ theme }) => theme.spacings.md};
-	padding: ${({ theme }) => theme.spacings.lg};
-	border: ${({ theme }) => theme.spacings.xxxs} solid
-		${({ theme }) => theme.colors.bases.primary[400]};
-	border-radius: ${({ theme }) => theme.box.borderRadius};
-
-	background: darkmagenta;
-
-	h3,
-	h4 {
-		margin: 0;
-
-		color: white;
-	}
-`
 
 const ContainerWithXxlPaddingBottom = styled(Container)`
 	padding-bottom: ${({ theme }) => theme.spacings.xxl};
