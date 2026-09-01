@@ -33,7 +33,7 @@ type CardProps = GenericCardProps & {
 	className?: string
 	compact?: boolean
 	ctaLabel?: React.ReactNode
-	softBackground?: boolean
+	darkerBackground?: boolean
 	role?: string
 	tabIndex?: number
 }
@@ -46,7 +46,7 @@ export function Card(props: CardProps) {
 		compact = false,
 		ctaLabel,
 		icon,
-		softBackground = false,
+		darkerBackground = false,
 		tabIndex,
 		title,
 		...ariaButtonProps
@@ -64,7 +64,7 @@ export function Card(props: CardProps) {
 			className={className}
 			compact={compact}
 			{...(!ctaLabel ? buttonOrLinkProps : {})}
-			softBackground={softBackground}
+			darkerBackground={darkerBackground}
 			tabIndex={tabIndex}
 		>
 			{icon && <IconContainer className="hide-mobile">{icon}</IconContainer>}
@@ -165,11 +165,11 @@ const IconContainer = styled.div`
 
 export const CardContainer = styled.div.withConfig({
 	shouldForwardProp: (prop) =>
-		!['compact', 'inert', 'softBackground'].includes(prop),
+		!['compact', 'inert', 'darkerBackground'].includes(prop),
 })<{
 	compact?: boolean
 	inert?: boolean
-	softBackground?: boolean
+	darkerBackground?: boolean
 }>`
 	display: flex;
 	text-decoration: none;
@@ -192,8 +192,8 @@ export const CardContainer = styled.div.withConfig({
 	box-shadow: ${({ theme }) =>
 		theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]};
 
-	background: ${({ theme, inert, softBackground }) =>
-		softBackground
+	background: ${({ theme, inert, darkerBackground }) =>
+		darkerBackground
 			? theme.darkMode
 				? theme.colors.extended.dark[700]
 				: theme.colors.bases.primary[100]
@@ -210,9 +210,9 @@ export const CardContainer = styled.div.withConfig({
 			!inert &&
 			(theme.darkMode ? theme.elevationsDarkMode[3] : theme.elevations[3])};
 
-		background: ${({ theme, inert, softBackground }) =>
+		background: ${({ theme, inert, darkerBackground }) =>
 			!inert &&
-			(softBackground
+			(darkerBackground
 				? theme.darkMode
 					? theme.colors.bases.primary[800]
 					: theme.colors.bases.primary[200]

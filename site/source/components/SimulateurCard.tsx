@@ -9,7 +9,7 @@ type SimulateurCardProps = MergedSimulatorMetadata & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
-	softBackground?: boolean
+	darkerBackground?: boolean
 	streched?: boolean
 	titleLevel?: 'h3' | 'h4'
 }
@@ -24,7 +24,7 @@ export function SimulateurCard({
 	icône,
 	beta,
 	small = false,
-	softBackground = false,
+	darkerBackground = false,
 	streched = false,
 	fromGérer = false,
 	role,
@@ -84,7 +84,7 @@ export function SimulateurCard({
 					}
 					icon={<Emoji emoji={icône} />}
 					ctaLabel={ctaLabel}
-					softBackground={softBackground}
+					darkerBackground={darkerBackground}
 					aria-label={`${shortName}, ${ctaLabel}`}
 					to={{
 						pathname:
