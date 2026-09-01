@@ -35,6 +35,9 @@ import { salariéMetadata } from '@/pages/simulateurs/salarié/metadata'
 import { sasuMetadata } from '@/pages/simulateurs/sasu/metadata'
 import { ImmutableType } from '@/types/utils'
 
+import { artisanMetadata } from '../simulateurs/artisan/metadata'
+import { commerçantMetadata } from '../simulateurs/commercant/metadata'
+
 /**
  * Contient les métadonnées (données pures, sans composant React) de tous les
  * simulateurs et assistants utilisées pour : plan du site, recherche, cards, statistiques,
@@ -50,6 +53,8 @@ const getMetadataSrc = (params: PageMetadataParams) => {
 		...parId(eurlMetadata(params)),
 		...parId(autoEntrepreneurMetadata(params)),
 		...parId(indépendantMetadata(params)),
+		...parId(artisanMetadata(params)),
+		...parId(commerçantMetadata(params)),
 		...parId(artisteAuteurMetadata(params)),
 		...parId(activitéPartielleMetadata(params)),
 		...parId(comparaisonStatutsMetadata(params)),

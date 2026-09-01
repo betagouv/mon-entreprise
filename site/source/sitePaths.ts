@@ -49,6 +49,8 @@ const rawSitePathsFr = {
 	},
 	simulateurs: {
 		index: 'simulateurs',
+		artisan: 'artisan',
+		commerçant: 'commerçant',
 		'coût-création-entreprise': 'cout-creation-entreprise',
 		'auto-entrepreneur': 'auto-entrepreneur',
 		'entreprise-individuelle': 'entreprise-individuelle',
@@ -150,6 +152,8 @@ const rawSitePathsEn = {
 	},
 	simulateurs: {
 		index: 'calculators',
+		artisan: 'artisan',
+		commerçant: 'commerçant',
 		'coût-création-entreprise': 'coût-création-entreprise',
 		indépendant: 'independant',
 		'entreprise-individuelle': 'sole-proprietorship',
