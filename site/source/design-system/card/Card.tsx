@@ -1,3 +1,4 @@
+import * as Array from 'effect/Array'
 import React, { ComponentPropsWithRef, JSX, useRef } from 'react'
 import { AriaButtonProps } from 'react-aria'
 import { css, IStyledComponent, styled } from 'styled-components'
@@ -36,6 +37,7 @@ type CardProps = GenericCardProps & {
 	darkerBackground?: boolean
 	role?: string
 	tabIndex?: number
+	précision?: string
 }
 
 export function Card(props: CardProps) {
@@ -49,6 +51,7 @@ export function Card(props: CardProps) {
 		darkerBackground = false,
 		tabIndex,
 		title,
+		précision,
 		...ariaButtonProps
 	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -59,6 +62,10 @@ export function Card(props: CardProps) {
 	// @ts-ignore
 	delete buttonOrLinkProps.title
 
+	const withChildren = Array.isArray(children)
+		? Array.some(children, (child) => !!child)
+		: !!children
+
 	return (
 		<CardContainer
 			className={className}
@@ -67,19 +74,31 @@ export function Card(props: CardProps) {
 			darkerBackground={darkerBackground}
 			tabIndex={tabIndex}
 		>
-			{icon && <IconContainer className="hide-mobile">{icon}</IconContainer>}
+			<ContentContainer>
+				{icon && <IconContainer>{icon}</IconContainer>}
 
-			{title &&
-				(compact ? <StyledH4 {...titleProps} /> : <StyledH3 {...titleProps} />)}
+				{title &&
+					(compact ? (
+						<StyledH4 {...titleProps} />
+					) : (
+						<StyledH3 {...titleProps} />
+					))}
 
-			<div
-				style={{
-					flex: '1',
-					width: '100%',
-				}}
-			>
-				<Body as={bodyAs}>{children}</Body>
-			</div>
+				{précision && (
+					<CenteredBodyWithoutMargin>{précision}</CenteredBodyWithoutMargin>
+				)}
+
+				{withChildren && (
+					<div
+						style={{
+							flex: '1',
+							width: '100%',
+						}}
+					>
+						<Body as={bodyAs}>{children}</Body>
+					</div>
+				)}
+			</ContentContainer>
 
 			{ctaLabel && (
 				<CardButton
@@ -120,49 +139,6 @@ export function getTitleProps(
 	return { as, children }
 }
 
-const StyledH3 = styled(H3)`
-	margin: ${({ theme }) => theme.spacings.md} 0 0 0;
-
-	text-align: center;
-
-	> div {
-		padding: ${({ theme }) => theme.spacings.xxs} 0 0 0;
-	}
-`
-
-const StyledH4 = styled(H4)`
-	text-align: center;
-`
-
-const CardButton = styled(StyledButton)`
-	margin: ${({ theme }) => theme.spacings.sm} 0;
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		width: initial;
-	}
-
-	/* Hack to transmit state (hover, focused) to card */
-	&::before {
-		bottom: 0;
-		content: '';
-		display: block;
-		height: 100%;
-		left: 0;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 100%;
-		z-index: 1;
-	}
-`
-
-const IconContainer = styled.div`
-	margin-top: ${({ theme }) => theme.spacings.md};
-	margin-bottom: 0;
-
-	transform: scale(2);
-`
-
 export const CardContainer = styled.div.withConfig({
 	shouldForwardProp: (prop) =>
 		!['compact', 'inert', 'darkerBackground'].includes(prop),
@@ -172,10 +148,12 @@ export const CardContainer = styled.div.withConfig({
 	darkerBackground?: boolean
 }>`
 	display: flex;
-	text-decoration: none;
 	flex-direction: column;
 	align-items: center;
+	justify-content: space-between;
+	row-gap: ${({ theme }) => theme.spacings.md};
 	position: relative;
+	/* text-decoration: none; */
 
 	width: 100%;
 	height: 100%;
@@ -185,7 +163,7 @@ export const CardContainer = styled.div.withConfig({
 					${spacings.sm} ${spacings.md}
 				`
 			: css`
-					${spacings.md} ${spacings.lg}
+					${spacings.lg}
 				`};
 	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -219,5 +197,60 @@ export const CardContainer = styled.div.withConfig({
 				: theme.darkMode
 					? theme.colors.extended.dark[500]
 					: theme.colors.bases.primary[100])};
+	}
+`
+
+const ContentContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	row-gap: ${({ theme }) => theme.spacings.xs};
+`
+
+const IconContainer = styled.div`
+	margin-bottom: ${({ theme }) => theme.spacings.xs};
+	margin-top: ${({ theme }) => theme.spacings.md};
+	transform: scale(2);
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
+	}
+`
+
+const StyledH3 = styled(H3)`
+	margin: 0;
+	text-align: center;
+
+	> div {
+		padding: ${({ theme }) => theme.spacings.xxs} 0 0 0;
+	}
+`
+
+const StyledH4 = styled(H4)`
+	text-align: center;
+`
+
+const CenteredBodyWithoutMargin = styled(Body)`
+	margin-top: 0;
+	margin-bottom: 0;
+	text-align: center;
+`
+
+const CardButton = styled(StyledButton)`
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		width: initial;
+	}
+
+	/* Hack to transmit state (hover, focused) to card */
+	&::before {
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+		z-index: 1;
 	}
 `
