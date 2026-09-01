@@ -29,7 +29,7 @@ export function coûtCréationEntrepriseMetadata({
 			),
 			description: t(
 				'pages.simulateurs.coût-création-entreprise.meta.description',
-				"Estimez les coûts des formalités administratives obligatoires à la création d'une entreprise"
+				"Estimez les coûts des formalités administratives obligatoires à la création d'une entreprise."
 			),
 		},
 	} as const
