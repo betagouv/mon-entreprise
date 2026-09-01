@@ -36,9 +36,9 @@ export const SmallSimulateurCard = ({
 				}}
 				onPress={handlePress}
 				title={
-					<span>
+					<>
 						{shortName} {tooltip && <InfoBulle description={tooltip} />}
-					</span>
+					</>
 				}
 			/>
 		</Grid>
