@@ -51,7 +51,11 @@ export function SmallCard({
 					{titleProps.children}
 					{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				</H6>
-				{children && <SmallBody>{children}</SmallBody>}
+				{children && (
+					<SmallBodyWithoutBottomMargin>
+						{children}
+					</SmallBodyWithoutBottomMargin>
+				)}
 			</Content>
 		</Container>
 	)
@@ -109,4 +113,8 @@ const Content = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	margin-left: 1rem;
+`
+
+const SmallBodyWithoutBottomMargin = styled(SmallBody)`
+	margin-bottom: 0;
 `
