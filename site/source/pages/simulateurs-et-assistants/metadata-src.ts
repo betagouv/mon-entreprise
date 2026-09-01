@@ -7,6 +7,7 @@ import {
 	parId,
 } from '@/pages/simulateurs/_configs/types'
 import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
+import { artisanMetadata } from '@/pages/simulateurs/artisan/metadata'
 import { artisteAuteurMetadata } from '@/pages/simulateurs/artiste-auteur/metadata'
 import { autoEntrepreneurMetadata } from '@/pages/simulateurs/auto-entrepreneur/metadata'
 import { auxiliaireMédicalMetadata } from '@/pages/simulateurs/auxiliaire-médical/metadata'
@@ -14,6 +15,7 @@ import { avocatMetadata } from '@/pages/simulateurs/avocat/metadata'
 import { cessationActivitéMetadata } from '@/pages/simulateurs/cessation-activité/metadata'
 import { chirurgienDentisteMetadata } from '@/pages/simulateurs/chirurgien-dentiste/metadata'
 import { cipavMetadata } from '@/pages/simulateurs/cipav/metadata'
+import { commerçantMetadata } from '@/pages/simulateurs/commercant/metadata'
 import { comparaisonStatutsMetadata } from '@/pages/simulateurs/comparaison-statuts/metadata'
 import { cotisationMaladieFrontalierSuisseMetadata } from '@/pages/simulateurs/cotisation-maladie-frontalier-suisse/metadata'
 import { coûtCréationEntrepriseMetadata } from '@/pages/simulateurs/cout-creation-entreprise/metadata'
@@ -50,6 +52,8 @@ const getMetadataSrc = (params: PageMetadataParams) => {
 		...parId(eurlMetadata(params)),
 		...parId(autoEntrepreneurMetadata(params)),
 		...parId(indépendantMetadata(params)),
+		...parId(artisanMetadata(params)),
+		...parId(commerçantMetadata(params)),
 		...parId(artisteAuteurMetadata(params)),
 		...parId(activitéPartielleMetadata(params)),
 		...parId(comparaisonStatutsMetadata(params)),

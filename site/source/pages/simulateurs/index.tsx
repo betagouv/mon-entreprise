@@ -10,6 +10,7 @@ import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
+import { Artisan } from './artisan/Artisan'
 import { ArtisteAuteur } from './artiste-auteur/ArtisteAuteur'
 import { AutoEntrepreneur } from './auto-entrepreneur/AutoEntrepreneur'
 import { AuxiliaireMédical } from './auxiliaire-médical/AuxiliaireMédical'
@@ -17,6 +18,7 @@ import { Avocat } from './avocat/Avocat'
 import { CessationActivitéSimulation } from './cessation-activité/CessationActivité'
 import { ChirurgienDentiste } from './chirurgien-dentiste/ChirurgienDentiste'
 import { Cipav } from './cipav/Cipav'
+import { Commerçant } from './commercant/Commercant'
 import { ComparateurDeStatuts } from './comparaison-statuts/ComparateurDeStatuts'
 import CotisationMaladieFrontalierSuisse from './cotisation-maladie-frontalier-suisse/CotisationMaladieFrontalierSuisse'
 import CoutCreationEntreprise from './cout-creation-entreprise'
@@ -101,6 +103,8 @@ export default function Simulateurs() {
 					path={simulateurs.indépendant + '/*'}
 					element={<Indépendant />}
 				/>
+				<Route path={simulateurs.artisan + '/*'} element={<Artisan />} />
+				<Route path={simulateurs.commerçant + '/*'} element={<Commerçant />} />
 				<Route
 					path={simulateurs['artiste-auteur'] + '/*'}
 					element={<ArtisteAuteur />}

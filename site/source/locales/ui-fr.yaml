@@ -1283,6 +1283,9 @@ pages:
     meta:
       title: Accueil
     outils: <0>Quelques simulateurs de référence</0>
+    précision:
+      artiste-auteur: (hors intermittents du spectacle)
+      ei: (hors auto-entrepreneur)
     searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
       simulateurs les plus pertinents pour votre activité</1>
     section:
@@ -1473,6 +1476,13 @@ pages:
         "2": De même, il ne prend pas en compte les indemnités complémentaire d’activité
           partielle prévue par une convention/accord collectif ou une décision
           unilatérale de l’employeur.
+    artisan:
+      meta:
+        description: Calcul du revenu net après impôt et des cotisations à partir du
+          chiffre d'affaires et inversement pour les artisans indépendants.
+        title: "Artisans : simulateur de revenus"
+      shortname: Artisan
+      title: Simulateur de revenus pour artisans
     artiste-auteur:
       explications:
         cotisations:
@@ -1674,6 +1684,13 @@ pages:
       professionnelles: professions réglementées relevant de la Cipav
       shortname: Cipav
       title: Simulateur de revenus pour professions libérales Cipav
+    commerçant:
+      meta:
+        description: Calcul du revenu net après impôt et des cotisations à partir du
+          chiffre d'affaires et inversement pour les commerçants indépendants.
+        title: "Commerçants : simulateur de revenus"
+      shortname: Commerçant
+      title: Simulateur de revenus pour commerçants
     commun:
       date: Date de la réglementation utilisée pour les calculs
       documentation: Documentation
