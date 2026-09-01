@@ -26,7 +26,7 @@ export function autoEntrepreneurMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.auto-entrepreneur.meta.description',
-				'Calculez votre revenu net après cotisations et impôts en tenant compte de toutes les options, y compris ACRE et prélèvement libératoire.'
+				'Calculez votre revenu net après cotisations et impôts en tenant compte de toutes les options, y compris Acre et versement libératoire.'
 			),
 		},
 		codesCatégorieJuridique: ['1000'],

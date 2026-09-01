@@ -24,7 +24,7 @@ export function eurlMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.eurl.meta.description',
-				'Calcul du salaire net à partir du total alloué à la rémunération et inversement'
+				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts."
 			),
 		},
 		codesCatégorieJuridique: [

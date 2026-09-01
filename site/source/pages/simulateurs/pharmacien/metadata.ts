@@ -24,7 +24,7 @@ export function pharmacienMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.pharmacien.meta.description',
-				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour pharmacien en libéral'
+				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour pharmacien en libéral.'
 			),
 		},
 		codesCatégorieJuridique: ['1000', '5410', '5499'],
