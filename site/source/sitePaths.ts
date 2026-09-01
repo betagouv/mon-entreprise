@@ -258,7 +258,8 @@ const encodedAbsoluteSitePaths = {
 	en: constructAbsoluteSitePaths(rawSitePathsEn),
 }
 
-export const relativeSitePaths = encodedRelativeSitePaths
+const relativeSitePaths = encodedRelativeSitePaths
+
 export const absoluteSitePaths = encodedAbsoluteSitePaths
 
 export type RelativeSitePaths =
