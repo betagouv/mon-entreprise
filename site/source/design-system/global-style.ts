@@ -144,9 +144,6 @@ figure {
 	html {
 		font-size: 0.9rem;
 	}
-	.hide-mobile {
-		display: none;
-	}
 }
 
 // Cache le slider opacité du ColorPicker
