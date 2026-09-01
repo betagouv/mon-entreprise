@@ -777,8 +777,8 @@ pages:
             to improve your reimbursement for healthcare costs.</1>
           title: Your Health Benefits
       meta:
-        description: SAS, EURL, EI, auto-entrepreneur... This simulator will help you
-          choose the legal status best suited to your business project.
+        description: SAS, EURL, EI, auto-entrepreneur…  This guide helps you choose the
+          legal structure best suited to your business venture.
         title: Help in choosing legal status
       modifier-options:
         acre:
@@ -1192,22 +1192,22 @@ pages:
       <2>Google Sheets</2> by clicking on "Create a copy" (you can check the
       scripts with "View Apps script file").</5>
   landing:
-    aboutUs: "<0>Who are we?</0><1>We are a <2>small team</2>
-      autonomous and multidisciplinary within <5>Urssaf</5>. We are committed to listening to your
-      needs, and to constantly improving this site in line with the <8>beta.gouv.fr manifesto</8>.</1>
-      <2>We have developed this site to support entrepreneurs in the development of their business.</2>
-      <3>Our aim is to remove any uncertainties with regard to the administration, so that you can
-      concentrate on what matters: your business.</3>"
+    aboutUs: "<0>Who are we?</0><1>We are a <2>small team</2> autonomous and
+      multidisciplinary within <5>Urssaf</5>. We are committed to listening to
+      your needs, and to constantly improving this site in line with the
+      <8>beta.gouv.fr manifesto</8>.</1> <2>We have developed this site to
+      support entrepreneurs in the development of their business.</2> <3>Our aim
+      is to remove any uncertainties with regard to the administration, so that
+      you can concentrate on what matters: your business.</3>"
     choice:
       simulators:
         title: Discover the list of all tools
     description: The official assistant to entrepreneurs
-    disclaimer: All the simulators on this website are kept up to date with the latest legislative changes.
+    disclaimer: All the simulators on this website are kept up to date with the
+      latest legislative changes.
     meta:
       title: Home
     outils: <0>Some reference simulators</0>
-    searchcompany: <0>Find your company </0><1>To access our simulators most
-      relevant to your business</1>
     section:
       by-occupation: By occupation
       by-status: By status
@@ -1216,10 +1216,10 @@ pages:
     sub-section:
       employees-and-employers: Employees and employers
       self-employed: Self-employed
-      self-employed-description: Calculate your contributions and your net income after
-        tax based on your turnover, and vice versa
-    subtitle: <1>Assistants and simulators</1> to get <4>personalised</4> answers to your questions 
-      about setting up and running your business.
+      self-employed-description: Calculate your contributions and your net income
+        after tax based on your turnover, and vice versa
+    subtitle: <1>Assistants and simulators</1> to get <4>personalised</4> answers to
+      your questions about setting up and running your business.
     title: Official tools for entrepreneurs
   offline:
     description: You are currently offline.
