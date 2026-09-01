@@ -7,11 +7,10 @@
 - Renomme `indépendant . cotisations et contributions . cotisations . exonérations . Mayotte` en `indépendant . cotisations et contributions . Mayotte`
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 - Renomme `protection sociale . retraite . complémentaire . RCI . valeur de service du point` en `[...] . valeur du point`
+- Renomme `indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire` en ` [...] . dépassements d'honoraires`
 
 ### Nouveautés
 - Ajoute la règle `protection sociale . retraite . complémentaire . valeur du point` regroupant RCI et Cipav
-
-### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
 
 ### Corrections

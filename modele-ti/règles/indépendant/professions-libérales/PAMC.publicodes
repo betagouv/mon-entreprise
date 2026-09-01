@@ -52,7 +52,7 @@ indépendant . profession libérale . réglementée . PAMC . recettes activité 
   par défaut: entreprise . chiffre d'affaires
   plafond: entreprise . chiffre d'affaires
 
-indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
+indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraires:
   question: Quel est le montant de vos dépassements d'honoraires ?
   par défaut: 0 €/an
   plafond: recettes activité conventionnée
@@ -95,7 +95,7 @@ indépendant . profession libérale . réglementée . PAMC . assiette participat
     - sinon:
         produit:
           - assiette sociale conventionnée
-          - (recettes activité conventionnée - dépassements d'honoraire) / recettes activité conventionnée
+          - (recettes activité conventionnée - dépassements d'honoraires) / recettes activité conventionnée
   références:
     Les cotisations d’un médecin de secteur 1: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-medecin-secteur-1.html#ancre-la-participation-de-la-cpam
     Les cotisations d’un chirurgien-dentiste: https://www.urssaf.fr/accueil/independant/praticien-auxiliaire-medical/cotisations-chirurgien-dentiste.html#ancre-la-participation-de-la-cpam
