@@ -15,6 +15,7 @@ import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetails
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
+import { SmallSimulateurCard } from '@/components/SmallSimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import {
@@ -188,11 +189,10 @@ function PourMonEntreprise() {
 										}}
 									>
 										<Grid container spacing={3} columns={2}>
-											<SimulateurCard fromGérer {...simulateurs.is} small />
-											<SimulateurCard
+											<SmallSimulateurCard fromGérer {...simulateurs.is} />
+											<SmallSimulateurCard
 												fromGérer
 												{...simulateurs.dividendes}
-												small
 											/>
 										</Grid>
 									</Grid>
