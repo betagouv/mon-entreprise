@@ -61,15 +61,15 @@ export default function Home() {
 				<Grid role="list" container spacing={4}>
 					<ForceThemeProvider forceTheme="default">
 						<SimulateurCard
-							{...simulators['choix-statut']}
 							role="listitem"
 							streched
+							{...simulators['choix-statut']}
 						/>
 
 						<SimulateurCard
-							{...simulators['comparaison-statuts']}
 							role="listitem"
 							streched
+							{...simulators['comparaison-statuts']}
 						/>
 					</ForceThemeProvider>
 				</Grid>
@@ -87,7 +87,7 @@ export default function Home() {
 					</H3>
 
 					<Grid container spacing={4}>
-						<SimulateurCard {...simulators.salarié} streched />
+						<SimulateurCard streched {...simulators.salarié} />
 					</Grid>
 				</section>
 
@@ -101,27 +101,35 @@ export default function Home() {
 
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
 							{...simulators['auto-entrepreneur']}
-							role="listitem"
-							darkerBackground
 						/>
 
 						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
 							{...simulators['entreprise-individuelle']}
-							role="listitem"
-							darkerBackground
+							précision={t(
+								'pages.landing.précision.artiste-auteur',
+								'(hors auto-entrepreneur)'
+							)}
 						/>
 
 						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
 							{...simulators.eurl}
-							role="listitem"
-							darkerBackground
 						/>
 
 						<SimulateurCard
-							{...simulators.sasu}
 							role="listitem"
 							darkerBackground
+							sansDescription
+							{...simulators.sasu}
 						/>
 					</Grid>
 				</section>
@@ -155,9 +163,14 @@ export default function Home() {
 					</TemporaryCard>
 
 					<SimulateurCard
-						{...simulators['artiste-auteur']}
 						role="listitem"
 						darkerBackground
+						sansDescription
+						{...simulators['artiste-auteur']}
+						précision={t(
+							'pages.landing.précision.artiste-auteur',
+							'(hors intermittents du spectacle)'
+						)}
 					/>
 				</Grid>
 			</Container>
@@ -167,34 +180,34 @@ export default function Home() {
 
 				<Grid role="list" container spacing={4}>
 					<SimulateurCard
+						role="listitem"
 						{...simulators['activité-partielle']}
-						role="listitem"
 					/>
 
-					<SimulateurCard {...simulators.is} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators.is} />
 
-					<SimulateurCard {...simulators.dividendes} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators.dividendes} />
 
 					<SimulateurCard
+						role="listitem"
 						{...simulators['coût-création-entreprise']}
-						role="listitem"
 					/>
 
 					<SimulateurCard
+						role="listitem"
 						{...simulators['recherche-code-ape']}
-						role="listitem"
 					/>
 
 					<SimulateurCard
+						role="listitem"
 						{...simulators['cessation-activité']}
-						role="listitem"
 					/>
 
-					<SimulateurCard {...simulators.lodeom} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators.lodeom} />
 
 					<SimulateurCard
-						{...simulators['location-de-logement-meublé']}
 						role="listitem"
+						{...simulators['location-de-logement-meublé']}
 					/>
 				</Grid>
 			</ContainerWithLgPaddingBottom>

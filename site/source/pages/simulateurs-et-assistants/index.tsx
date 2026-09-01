@@ -4,6 +4,7 @@ import illustration from '@/assets/images/illustrations/simulateur.svg'
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
+import { SmallSimulateurCard } from '@/components/SmallSimulateurCard'
 import Meta from '@/components/utils/Meta'
 import {
 	Body,
@@ -57,10 +58,10 @@ export default function SimulateursEtAssistants() {
 					spacing={3}
 					aria-labelledby="salarie-employeurs"
 				>
-					<SimulateurCard {...simulators.salarié} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators.salarié} />
 					<SimulateurCard
-						{...simulators['activité-partielle']}
 						role="listitem"
+						{...simulators['activité-partielle']}
 					/>
 				</Grid>
 
@@ -76,22 +77,19 @@ export default function SimulateursEtAssistants() {
 					role="list"
 					aria-labelledby="revenu-dirigeant"
 				>
-					<SimulateurCard
-						small
+					<SmallSimulateurCard
+						role="listitem"
 						{...simulators['auto-entrepreneur']}
-						role="listitem"
 					/>
-					<SimulateurCard
-						small
+					<SmallSimulateurCard
+						role="listitem"
 						{...simulators['entreprise-individuelle']}
-						role="listitem"
 					/>
-					<SimulateurCard small {...simulators.sasu} role="listitem" />
-					<SimulateurCard small {...simulators.eurl} role="listitem" />
-					<SimulateurCard
-						small
-						{...simulators['comparaison-statuts']}
+					<SmallSimulateurCard role="listitem" {...simulators.sasu} />
+					<SmallSimulateurCard role="listitem" {...simulators.eurl} />
+					<SmallSimulateurCard
 						role="listitem"
+						{...simulators['comparaison-statuts']}
 					/>
 				</Grid>
 
@@ -108,11 +106,11 @@ export default function SimulateursEtAssistants() {
 					role="list"
 					aria-labelledby="travailleurs-ns"
 				>
-					<SimulateurCard {...simulators.indépendant} role="listitem" />
-					<SimulateurCard {...simulators['artiste-auteur']} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators.indépendant} />
+					<SimulateurCard role="listitem" {...simulators['artiste-auteur']} />
 					<SimulateurCard
-						{...simulators['profession-libérale']}
 						role="listitem"
+						{...simulators['profession-libérale']}
 					/>
 				</Grid>
 				<>
@@ -125,30 +123,26 @@ export default function SimulateursEtAssistants() {
 						role="list"
 						aria-labelledby="professions-lib"
 					>
-						<SimulateurCard
-							small
+						<SmallSimulateurCard
+							role="listitem"
 							{...simulators['auxiliaire-médical']}
-							role="listitem"
 						/>
-						<SimulateurCard
-							small
+						<SmallSimulateurCard
+							role="listitem"
 							{...simulators['chirurgien-dentiste']}
-							role="listitem"
 						/>
-						<SimulateurCard small {...simulators.médecin} role="listitem" />
-						<SimulateurCard
-							small
+						<SmallSimulateurCard role="listitem" {...simulators.médecin} />
+						<SmallSimulateurCard
+							role="listitem"
 							{...simulators['sage-femme']}
-							role="listitem"
 						/>
-						<SimulateurCard small {...simulators.pharmacien} role="listitem" />
-						<SimulateurCard small {...simulators.avocat} role="listitem" />
-						<SimulateurCard
-							small
+						<SmallSimulateurCard role="listitem" {...simulators.pharmacien} />
+						<SmallSimulateurCard role="listitem" {...simulators.avocat} />
+						<SmallSimulateurCard
+							role="listitem"
 							{...simulators['expert-comptable']}
-							role="listitem"
 						/>
-						<SimulateurCard small {...simulators.cipav} role="listitem" />
+						<SmallSimulateurCard role="listitem" {...simulators.cipav} />
 					</Grid>
 				</>
 
@@ -156,16 +150,16 @@ export default function SimulateursEtAssistants() {
 					{t('pages.simulateurs.accueil.3.h2', 'Autres outils')}
 				</H2>
 				<Grid container spacing={3} role="list" aria-labelledby="autres-outils">
-					<SimulateurCard {...simulators['choix-statut']} role="listitem" />
-					<SimulateurCard {...simulators.is} role="listitem" />
-					<SimulateurCard {...simulators.dividendes} role="listitem" />
+					<SimulateurCard role="listitem" {...simulators['choix-statut']} />
+					<SimulateurCard role="listitem" {...simulators.is} />
+					<SimulateurCard role="listitem" {...simulators.dividendes} />
 					<SimulateurCard
-						{...simulators['location-de-logement-meublé']}
 						role="listitem"
+						{...simulators['location-de-logement-meublé']}
 					/>
 					{/* <SimulateurCard
-						{...simulators['cotisation-maladie-frontalier-suisse']}
 						role="listitem"
+						{...simulators['cotisation-maladie-frontalier-suisse']}
 					/> */}
 
 					<SimulateurCard
