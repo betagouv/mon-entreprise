@@ -25,7 +25,7 @@ export function médecinMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.médecin.meta.description',
-				'Calcul du revenu net après déduction des cotisations à partir du total des recettes. Secteur 1, secteur 2, et dépassement d’honoraire pris en compte'
+				'Calcul du revenu net après déduction des cotisations à partir du total des recettes. Secteur 1, secteur 2, dépassements d’honoraires et revenus non conventionnés pris en compte.'
 			),
 		},
 		codesCatégorieJuridique: ['1000', '5410'],

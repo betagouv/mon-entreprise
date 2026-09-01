@@ -21,7 +21,7 @@ export function eirlMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.eirl.meta.description',
-				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
+				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts."
 			),
 		},
 		codesCatégorieJuridique: ['1000'],

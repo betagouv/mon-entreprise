@@ -26,7 +26,7 @@ export function impôtSociétéMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.impot-société.meta.description',
-				'Calculez votre impôt sur les sociétés'
+				'Calculez votre impôt sur les sociétés.'
 			),
 		},
 	} as const
