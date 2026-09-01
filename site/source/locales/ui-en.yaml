@@ -1208,6 +1208,9 @@ pages:
     meta:
       title: Home
     outils: <0>Some reference simulators</0>
+    précision:
+      artiste-auteur: (excluding freelance entertainment workers)
+      ei: (excluding sole proprietors)
     section:
       by-occupation: By occupation
       by-status: By status
@@ -1389,6 +1392,13 @@ pages:
         "2": Similarly, it does not take into account any additional partial activity
           indemnities provided for by a collective agreement or unilateral
           decision by the employer.
+    artisan:
+      meta:
+        description: Calculation of net income after taxes and contributions based on
+          gross revenue, and vice versa, for self-employed artisans.
+        title: "Artisans: Income Simulator"
+      shortname: Artisan
+      title: Income Calculator for Artisans
     artiste-auteur:
       explications:
         cotisations:
@@ -1577,6 +1587,13 @@ pages:
       professionnelles: regulated professions covered by Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
+    commerçant:
+      meta:
+        description: Calculation of net income after taxes and contributions based on
+          revenue, and vice versa, for independent retailers.
+        title: "Retailers: Revenue Simulator"
+      shortname: Retailer
+      title: Revenue Simulator for Retailers
     commun:
       date: Date of regulations used for calculations
       documentation: Documentation
