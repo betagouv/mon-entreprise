@@ -12,7 +12,7 @@ import {
 	ModèleTravailleurIndépendant,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { eurosParAn } from '@/domaine/Montant'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { TestProvider } from '@/test/TestProvider'
 
 import { Comparaison } from './ComparaisonListe'
