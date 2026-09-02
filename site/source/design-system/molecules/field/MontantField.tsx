@@ -1,8 +1,14 @@
-import * as R from 'effect/Record'
+import * as Record from 'effect/Record'
 import { css, styled } from 'styled-components'
 
-import * as M from '@/domaine/Montant'
-import { montant, Montant } from '@/domaine/Montant'
+import {
+	isMontantRécurrent,
+	montant,
+	Montant,
+	montantToNumber,
+	toEurosParAn,
+	toEurosParMois,
+} from '@/domaine/Montant'
 import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unites'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
@@ -62,18 +68,19 @@ export const MontantField = <U extends UnitéMonétaire>({
 
 	const valeurConvertie = (montant: Montant<U>): number => {
 		const montantConverti =
-			unitéRécurrenteCible && M.isMontantRécurrent(montant)
+			unitéRécurrenteCible && isMontantRécurrent(montant)
 				? unitéRécurrenteCible === '€/mois'
-					? M.toEurosParMois(montant)
-					: M.toEurosParAn(montant)
+					? toEurosParMois(montant)
+					: toEurosParAn(montant)
 				: montant
 
-		return M.montantToNumber(montantConverti)
+		return montantToNumber(montantConverti)
 	}
 
 	const valeur = currentValue && valeurConvertie(currentValue)
 	const placeholderValue = placeholder && valeurConvertie(placeholder)
-	const suggestionsValue = suggestions && R.map(suggestions, valeurConvertie)
+	const suggestionsValue =
+		suggestions && Record.map(suggestions, valeurConvertie)
 
 	return (
 		<Container $noPadding={unité !== '€'}>

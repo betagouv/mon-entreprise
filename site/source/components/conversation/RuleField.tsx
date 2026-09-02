@@ -17,7 +17,7 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import RuleInput from './RuleInput'
 
-const AMOUNT_FIELD = '<AmountField />'
+const CHAMP_MONTANT = '<ChampMontant />'
 const QUANTITY_FIELD = '<QuantityField />'
 const RADIO_GROUP = '<RadioGroup />'
 const SELECT_ATMP = '<SelectAtmp />'
@@ -49,7 +49,7 @@ function getRuleFieldNature(
 	const unitéPublicodes = rule.rawNode.unité
 
 	if ((value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes))
-		return AMOUNT_FIELD
+		return CHAMP_MONTANT
 
 	if ((value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes))
 		return QUANTITY_FIELD
