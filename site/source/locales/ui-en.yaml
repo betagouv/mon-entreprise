@@ -985,36 +985,38 @@ pages:
       title: Documentation
     title: Documentation
   développeur:
-    api: "<0><0>You can easily reuse mon-entreprise's calculations on your website
+    api: "<0><0>You can easily reuse mycompanyinfrance's calculations on your website
       or service using our open, authentication-free REST API.</0><1>Access
       Swagger</1></0><1>How do I perform a calculation using the API?</1><2>To
-      perform a calculation, simply make a <1>POST</1> request to the
-      endpoint corresponding to the rules template you wish to use.</2><3>Three
+      perform a calculation, simply send a <1>POST</1> request to the
+      endpoint corresponding to the rules template you want to use.</2><3>Three
       rule templates are currently used by
-      mon-entreprise:</3><4><0><0>/evaluate</0> : the historical
-      <3>“modele-social”</3> model</0><1><0>/modeles/as/evaluate</0> : the
-      <3>modele-as</3> model, for workers treated as
-      employees</1><2><0>/modeles/ti/evaluate</0> : the <3>modele-ti</3>
-      model, for self-employed workers</2></4><5>Regardless of the path used,
-      the query parameters are the same:</5><6><0><0>expressions</0> : the
-      names of the rules whose values you want to
-      calculate</0><1><0>situation</0> : the situation for configuring the
+      mycompanyinfrance:</3><4><0><0>/evaluate</0>: the historical
+      <3>modele-social</3> model</0><1><0>/modeles/as/evaluate</0>: the
+      <3>modele-as</3> model, for assimilated-to-employees managers
+      (“assimilés salariés”)</1><2><0>/modeles/ti/evaluate</0>: the
+      <3>modele-ti</3> model, for self-employed workers (“travailleurs
+      indépendants”)</2></4><5>Regardless of the path used,
+      the query parameters are the same:</5><6><0><0>expressions</0>: the
+      names of the rules for which you want to calculate the
+      value</0><1><0>situation</0>: the situation for configuring the
       calculation</1></6><7><0>See the examples in Swagger</0></7><8>How do I
       view the available rules?</8><9>The API also allows you to view the rules
       used by the various models.</9><10>View all rules for a
-      model</10><11><0><0>/rules</0> : <2>modele-social</2>
-      rules</0><1><0>/modeles/as/rules</0> : rules for <3>the social
-      model</3></1><2><0>/modeles/ti/rules</0> : rules for <3>the ti
-      model</3></2></11><12>View a specific
-      rule</12><13><0><0>/rules/{rule}</0> : <3>social-model</3>
-      rule</0><1><0>/models/as/rules/{rule}</0> : <3>AS model</3>
-      rule</1><2><0>/modeles/ti/rules/{rule}</0> : <3>ti-model</3>
+      model</10><11><0><0>/rules</0>: <2>modele-social</2>
+      rules</0><1><0>/modeles/as/rules</0>: <3>modele-as</3>
+      rules</1><2><0>/modeles/ti/rules</0>: <3>modele-ti</3>
+      rules</2></11><12>View a specific
+      rule</12><13><0><0>/rules/{rule}</0>: <3>modele-social</3>
+      rule</0><1><0>/modeles/as/rules/{rule}</0>: <3>modele-as</3>
+      rule</1><2><0>/modeles/ti/rules/{rule}</0>: <3>modele-ti</3>
       rule</2></13><14><0>Find all routes and their examples in
-      Swagger</0></14><15>How do I replicate a simulator calculation?</15><16>To
-      replicate a calculation from a “my-company” simulator in the library,
-      follow these steps:</16><17></17><18></18><19>Example</19><20>Here is an
-      example of how to use the different routes; you can explore their code in
-      the <1>example</1> folder</20><21><0></0></21>"
+      Swagger</0></14><15>How do I replicate a calculation from a
+      simulator?</15><16>To replicate a calculation from a mycompanyinfrance
+      simulator using the API, follow these
+      steps:</16><17></17><18></18><19>Example</19><20>Here is an example of how
+      to use the different routes; you can explore their code in the
+      <1>example</1> folder</20><21><0></0></21>"
     bibliothèque:
       aria-label:
         documentation: online documentation, new window
@@ -1022,7 +1024,6 @@ pages:
         modele-social: social model, see the npm page (opens in a new window)
         modele-ti: modele-ti, see the npm page, new window
         publicodes:
-          expression: publicodes expression or object, learn more, new window
           npm: publicodes, see the npm page (opens in a new window)
           site: Learn more about publicodes (opens in a new window)
       exemples:
@@ -1030,55 +1031,56 @@ pages:
           libraries"
         lancement: "Integration example on codesandbox.io: running a calculation"
         paramétrage: "Integration example on codesandbox.io: configuring the calculation"
-      texte: "<0><0>You can easily reuse the calculations from mon-entreprise on your
-        website or service using the open-source JavaScript libraries available
-        on npm.</0></0><1>Which library should you choose?</1><3>modele-as This
-        library contains the rules and calculations for executives
-        <2>assimilated-to-employees</2> and female executives treated as
-        employees, such as the executives of SAS and SASU companies. This is the
-        library used in the <5>income simulator for SAS(U)
-        executives</5>.</3><4>modele-ti</4><5>This library contains the rules
-        and calculations for <2>self-employed individuals</2> and
-        self-employed women, such as the managers of sole proprietorships
-        (excluding “auto-entreprise” entities), EURLs, and members of the
-        liberal professions. This is the library used in the <5>income simulator
-        for self-employed individuals</5> and its
-        variants.</5><7>modele-socialThis is the historical library, which still
-        contains the rules for employees and employers (including Lodeom),
-        auto-entrepreneurs, dividend recipients, corporate income tax
-        calculations, and the costs of starting a business. It is used in all
-        mon-entreprise simulators and wizards except those for SAS(U) and
-        self-employed individuals</7><8>. Please note: although they are still
-        present, the rules in this library concerning employees treated as such
-        and self-employed individuals are no longer maintained.</8><9>How to use
-        these libraries?</9><10>Installation</10><11><0>npm install --save
-        publicodes modele-xx</0></11><12>Replace <1>modele-xx</1> with
-        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7>
-        depending on the calculations you wish to perform.</12><13>To run your
-        own calculations, you must install the package
-        <2><0>publicodes</0></2> containing the publicodes interpreter, as
-        well as the package of your choice— <6><0>modele-as</0></6>,
-        <9><0>modele-ti</0></9> or <13><0>modele-social</0></13>—which
-        contain the rules for the mon-entreprise simulators.</13><14><0>What is
+      texte: "<0><0>You can easily reuse the calculations from mycompanyinfrance
+        on your website or service using the open-source JavaScript libraries
+        available on npm.</0></0><1>Which library should you choose?</1>
+        <2>modele-as</2><3>This library contains the rules and calculations for
+        <2>assimilated-to-employees</2> managers (“assimilés salariés”), such
+        as the managers of SAS and SASU companies. This is the library used in
+        the <5>income simulator for SAS(U) managers</5>.</3><4>modele-ti</4><5>
+        This library contains the rules and calculations for
+        <2>self-employed individuals</2> (“travailleurs indépendants”), such as the
+        managers of sole proprietorships (excluding “auto-entreprise” entities) or
+        EURLs, and members of the liberal professions. This is the library used in
+        the <5>income simulator for the self-employed</5> and its
+        variants.</5><6>modele-social</6><7>This
+        is the historical library, which still contains the rules for employees
+        and employers (including Lodeom), auto-entrepreneurs, dividend
+        recipients, corporate income tax calculations, and the costs of starting
+        a business. It is used in all mycompanyinfrance simulators and wizards
+        except those for SAS(U) and self-employed individuals</7><8>Please
+        note: although they are still present, the rules in this library
+        concerning assimilated-to-employees managers (“assimilés salariés”) and
+        self-employed individuals (“travailleurs indépendants”) are no longer
+        maintained.</8><9>How to use these
+        libraries?</9><10>Installation</10><11><0>npm install --save publicodes
+        modele-xx</0></11><12>Replace <1>modele-xx</1> with
+        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7> depending on
+        the calculations you wish to perform.</12><13>To run your own
+        calculations, you must install the package <2><0>publicodes</0></2>
+        containing the publicodes interpreter, as well as the package of your
+        choice— <6><0>modele-as</0></6>, <9><0>modele-ti</0></9> or
+        <13><0>modele-social</0></13>—which contain the rules for the
+        mycompanyinfrance simulators.</13><14><0>What is
         Publicodes?</0><1>Publicodes is a declarative language developed by
         beta.gouv.fr and Urssaf to code algorithms for the public interest. It
         is the language that powers the calculations for most of the
-        “mon-entreprise” simulators.</1><2><0>Learn more about
-        Publicodes</0></2></14><16>Usage: To run a calculation, you must
+        my-company-in-france simulators.</1><2><0>Learn more about
+        Publicodes</0></2></14><15>Usage</15><16>To run a calculation, you must
         configure the engine with the rules from the package
-        <1>modele-social</1> and call the function <4>evaluate</4> with
-        the rule whose value you wish to calculate. Here is an example for the
-        gross/net calculation using the package <7>modele-social</7>
+        <1>modele-social</1> and call the function <4>evaluate</4> with the rule
+        whose value you wish to calculate. Here is an example for the gross/net
+        calculation using the package <7>modele-social</7>
         :</16><17><0></0></17><18>Configuring the</18><19>Calculation: As you
         saw in the previous example, the formula for a calculation is simple:
         input variables (gross salary) and one or more output variables (net
         salary).</19><20>However, the calculation can be configured with all the
-        options available in the “mon-entreprise” simulators!</20><21>All
+        options available in the mycompanyinfrance simulators!</20><21>All
         available rules are listed and explained in the <2>online
         documentation</2>. This documentation is auto-generated from the
         publicodes rule files and populated by the current
         simulation.</21><22>How do you replicate a simulator’s
-        calculation?</22><23>To replicate the calculation of a “mon-entreprise”
+        calculation?</22><23>To replicate the calculation of a mycompanyinfrance
         simulator in the library, follow these steps: </23><24></24><25>Here is
         the result of the calculation using the example cited
         above:</25><26><0></0></26><27><0>The scenario contains your simulation
@@ -1137,7 +1139,7 @@ pages:
         <1>supplied in return for your call to</1><2>evaluateExperimental rules
         also contain a warning in the \"Reuse this calculation\" section of the
         documentation.</2></4></3><4><0>Reusing data from external
-        APIs</0><1>Some of the data in the mon-entreprise simulators comes from
+        APIs</0><1>Some of the data in the mycompanyinfrance simulators comes from
         external APIs. You'll need to retrieve the value yourself and enter it
         in the input situation.</1><2>Mobility payment</2><3><0><0>establishment
         . municipality . mobility payment rate</0></0></3><4>In the
@@ -1153,27 +1155,30 @@ pages:
         use :</8><9><0><0><0>A csv</0> export of the table of collective net
         rates published in the Journal Officiel.</0></0><1><0><2>Cotisations
         AT/MP</2> documentation from the Assurance Maladie</0></1></9></4>"
-      StepByStep:
-        "1": <0>Choose the simulator based on the calculation you need</0><1></1>. For
-          example, the <4>employee simulator</4> to calculate take-home pay
+      étapes-pour-reproduire-un-calcul:
+        "1": <0>Choose the simulator based on the calculation you need</0><1></1>For
+          example, the <4>employee simulator</4> to calculate net pay
           from gross pay.
-        "2": <0>Run a simulation using the data you want to reuse</0>:<1></1>For
-          example, a <4>manager earning €3,400 gross with meal vouchers</4>.
+        "2": <0>Run a simulation using the data you want to reuse</0><1></1>For
+          example, a <4>manager (“cadre”) earning €3,400 gross with meal vouchers</4>.
         "3": <0>Go to the documentation page for the data you want to
-          calculate</0>:<1></1>For example, by clicking on “Net Pay” in the
-          simulator, or by searching for “Net Pay” in the search bar in the
-          upper-right corner.
-        4-api: "<0>In the “Reuse this calculation” section, you’ll find the API request
-          to copy and paste as a curl call: <2></2> or as a JavaScript fetch
-          call: <4></4> </0><1> </1> You can also find the rule name and
-          the scenario to use for performing the calculation in the “Rule and
-          scenario” section."
+          calculate</0><1></1> For example, by clicking on “Net salary” in the
+          simulator.
+        4-api: <0>In the “Réutiliser ce calcul” section, you’ll find the API request
+          to copy and paste as a <2>curl</2> call or a JavaScript <4>fetch</4>
+          </0><1></1> You can also find the rule name and the
+          situation to use for performing the calculation in the “Règle et
+          situation” section.
         4-npm: <0>Copy the custom code snippet and embed it in your application</0>
-          at<1></1>. You can find it by clicking on the "Reuse this calculation"
+          at<1></1>. You can find it by clicking on the “Reuse this calculation”
           section.
-        "5": <0>(optional) Modify the scenario values to configure the calculation
-          according to your needs</0><1></1>. Feel free to modify the scenario
-          values. They accept any <4>expression or Publicodes object</4>.
+        "5": <0>(optional) Modify the situation values to configure the calculation
+          according to your needs</0><1></1> Feel free to modify the situation
+          values. These values can be any <4>Publicodes expression or object</4>.
+        aria-label:
+          exemple-simulation: A manager (“cadre”) earning €3,400 gross with meal vouchers; access
+            the employee simulator with the data pre-filled
+          expression-publicodes: publicodes expression or object; learn more; new window
     couleur: "What color? "
     home:
       choice:
@@ -1264,7 +1269,7 @@ pages:
         the Agence centrale des organismes de sécurité sociale, also known as
         "Acoss" or "Urssaf Caisse nationale". <1></1>The platform offers
         simulators to help entrepreneurs develop their business.
-      title: Who is responsible for my-company?
+      title: Who is responsible for mycompanyinfrance?
     recipients:
       table:
         caption: List of subcontractors receiving personal data

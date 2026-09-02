@@ -67,7 +67,7 @@ export default function Library() {
 					Cette librairie contient les règles et calculs pour les{' '}
 					<Strong>travailleurs indépendants</Strong> et travailleuses
 					indépendantes, comme les dirigeantes et dirigeants d'entreprise
-					individuelle (hors auto-entreprise) et d’EURL et les professions
+					individuelle (hors auto-entreprise) ou d’EURL, et les professions
 					libérales. C’est la librairie utilisée dans le{' '}
 					<Link to={absoluteSitePaths.simulateurs.indépendant}>
 						simulateur de revenus pour indépendant

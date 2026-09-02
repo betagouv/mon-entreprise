@@ -62,7 +62,8 @@ export default function API() {
 					</Li>
 					<Li>
 						<Code>/modeles/as/evaluate</Code>&nbsp;: le modèle{' '}
-						<Code>modele-as</Code>, pour les assimilé·es salarié·es
+						<Code>modele-as</Code>, pour les assimilés salariés/assimilées
+						salariées
 					</Li>
 					<Li>
 						<Code>/modeles/ti/evaluate</Code>&nbsp;: le modèle{' '}
@@ -140,8 +141,8 @@ export default function API() {
 				<H2>Comment reproduire un calcul d'un simulateur ?</H2>
 
 				<Body>
-					Pour répliquer un calcul d'un simulateur de mon-entreprise dans la
-					bibliothèque, voici la marche à suivre&nbsp;:
+					Pour répliquer un calcul d'un simulateur de mon-entreprise avec l'API,
+					voici la marche à suivre&nbsp;:
 				</Body>
 
 				<ÉtapesPourReproduireUnCalcul mode="api" />
