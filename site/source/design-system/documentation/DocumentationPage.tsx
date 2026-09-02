@@ -2,9 +2,7 @@ import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
-import { Link } from '@/design-system'
-
-import { DocumentationMDXContainer } from './DocumentationMDXContainer'
+import { Link, MDXWrapper } from '@/design-system'
 
 export interface DocumentationPageProps {
 	title: string
@@ -40,15 +38,11 @@ export const DocumentationPage = ({
 				</NavigationContainer>
 			)}
 
-			<MDXContent>{children}</MDXContent>
+			<MDXWrapper>{children}</MDXWrapper>
 		</>
 	)
 }
 
 export const NavigationContainer = styled.nav`
 	margin-bottom: 2rem;
-`
-
-export const MDXContent = styled(DocumentationMDXContainer)`
-	max-width: 45rem;
 `
