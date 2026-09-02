@@ -11,28 +11,21 @@ import {
 import { ModèleAssimiléSalarié } from './ModeleAssimileSalarie'
 
 describe('ModèleAssimiléSalarié', () => {
-	it('préserve les unités du moteur : net après impôt + impôt = net à payer avant impôt', () => {
+	it('préserve les unités : bénéfice = net après impôt + impôt + cotisations', () => {
 		ModèleAssimiléSalarié.set.chiffreDAffaires(O.some(eurosParAn(120_000)))
 		ModèleAssimiléSalarié.set.charges(O.some(eurosParAn(20_000)))
 
-		const { revenuNetAprèsImpôt } = ModèleAssimiléSalarié.get.revenu()
-		const { impôt } = ModèleAssimiléSalarié.get.dépenses()
+		const { bénéfice, revenuNetAprèsImpôt } = ModèleAssimiléSalarié.get.revenu()
+		const { cotisations, impôt } = ModèleAssimiléSalarié.get.dépenses()
 
-		const avantImpôtReconstitué = plus(
+		const bénéficeReconstitué = plus(
 			toEurosParAn(revenuNetAprèsImpôt),
-			toEurosParAn(impôt)
+			plus(toEurosParAn(impôt), toEurosParAn(cotisations))
 		)
 
-		const avantImpôtSelonLeMoteur = ModèleAssimiléSalarié.get
-			.engine()
-			.evaluate({
-				valeur: 'assimilé salarié . rémunération . nette . à payer avant impôt',
-				unité: '€/an',
-			}).nodeValue as number
-
-		expect(avantImpôtSelonLeMoteur).toBeGreaterThan(0)
-		expect(avantImpôtReconstitué.valeur).toBeCloseTo(
-			avantImpôtSelonLeMoteur,
+		expect(toEurosParAn(bénéfice).valeur).toBeGreaterThan(0)
+		expect(bénéficeReconstitué.valeur).toBeCloseTo(
+			toEurosParAn(bénéfice).valeur,
 			-1
 		)
 	})
