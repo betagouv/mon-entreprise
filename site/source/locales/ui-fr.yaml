@@ -1040,8 +1040,8 @@ pages:
       souhaitez utiliser.</2><3>Trois modèles de règles sont actuellement
       utilisés par mon-entreprise :</3><4><0><0>/evaluate</0> : le modèle
       historique <3>modele-social</3></0><1><0>/modeles/as/evaluate</0> : le
-      modèle <3>modele-as</3>, pour les assimilé·es
-      salarié·es</1><2><0>/modeles/ti/evaluate</0> : le modèle <3>modele-ti</3>,
+      modèle <3>modele-as</3>, pour les assimilés salariés/assimilées
+      salariées</1><2><0>/modeles/ti/evaluate</0> : le modèle <3>modele-ti</3>,
       pour les travailleurs/travailleuses indépendantes</2></4><5>Quelle que
       soit la route utilisée, les paramètres de la requête sont les mêmes
       :</5><6><0><0>expressions</0> : le nom des règles dont vous voulez
@@ -1060,7 +1060,7 @@ pages:
       : règle de <3>modele-ti</3></2></13><14><0>Retrouver toutes les routes et
       leurs exemples dans le Swagger</0></14><15>Comment reproduire un calcul
       d'un simulateur ?</15><16>Pour répliquer un calcul d'un simulateur de
-      mon-entreprise dans la bibliothèque, voici la marche à suivre
+      mon-entreprise avec l'API, voici la marche à suivre
       :</16><17></17><18></18><19>Exemple</19><20>Voici un exemple d'utilisation
       des différentes routes, vous pouvez explorer leur code dans le dossier
       <1>example</1></20><21><0></0></21>"
@@ -1071,7 +1071,6 @@ pages:
         modele-social: modele-social, voir la page npm, nouvelle fenêtre
         modele-ti: modele-ti, voir la page npm, nouvelle fenêtre
         publicodes:
-          expression: expression ou objet publicodes, en savoir plus, nouvelle fenêtre
           npm: publicodes, voir la page npm, nouvelle fenêtre
           site: En savoir plus sur publicodes, nouvelle fenêtre
       exemples:
@@ -1089,7 +1088,7 @@ pages:
         SAS(U)</5>.</3><4>modele-ti</4><5>Cette librairie contient les règles et
         calculs pour les <2>travailleurs indépendants</2> et travailleuses
         indépendantes, comme les dirigeantes et dirigeants d'entreprise
-        individuelle (hors auto-entreprise) et d’EURL et les professions
+        individuelle (hors auto-entreprise) ou d’EURL, et les professions
         libérales. C’est la librairie utilisée dans le <5>simulateur de revenus
         pour indépendant</5> et ses variantes.</5><6>modele-social</6><7>C’est
         la librairie historique, qui contient encore les règles pour les
@@ -1210,16 +1209,15 @@ pages:
         tableau des taux nets collectifs paru au Journal
         Officiel</0></0><1><0>La documentation <2>Cotisations AT/MP</2> de
         l’Assurance Maladie</0></1></9></4>"
-      StepByStep:
+      étapes-pour-reproduire-un-calcul:
         "1": <0>Choisir le simulateur en fonction du calcul qui nous
-          intéresse</0><1></1>Par exemple le <4>simulateur salarié</4> pour
+          intéresse</0><1></1>Par exemple, le <4>simulateur salarié</4> pour
           calculer un net à partir du brut.
         "2": <0>Effectuer une simulation avec les données que l'on souhaite
-          réutiliser</0><1></1>Par exemple un ou une <4>cadre à 3 400 € brut
+          réutiliser</0><1></1>Par exemple, un ou une <4>cadre à 3 400 € brut
           avec des titres-restaurants</4>.
         "3": <0>Aller sur la page de documentation de la donnée à calculer</0><1></1>Par
-          exemple en cliquant sur « Salaire net » dans le simulateur, ou en
-          recherchant « Salaire net » dans la recherche en haut à droite.
+          exemple, en cliquant sur « Salaire net » dans le simulateur.
         4-api: <0>Dans la section « Réutiliser ce calcul », vous trouverez la requête
           API à copier-coller sous forme d'appel <2>curl</2> ou de <4>fetch</4>
           JavaScript</0><1></1> Vous pouvez également retrouver le nom de la
@@ -1231,7 +1229,11 @@ pages:
         "5": <0>(facultatif) Modifiez les valeurs de la situation pour paramétrer le
           calcul selon vos besoins</0><1></1>Vous pouvez modifier sans hésiter
           les valeurs de la situation. Ces dernières acceptent n'importe quelle
-          <4>expression ou objet publicodes</4>.
+          <4>expression ou objet Publicodes</4>.
+        aria-label:
+          exemple-simulation: un cadre à 3400 € brut avec des titres-restaurants, accéder
+            au simulateur salarié avec les données pré-remplies
+          expression-publicodes: expression ou objet publicodes, en savoir plus, nouvelle fenêtre
     couleur: "Quelle couleur ? "
     home:
       choice:
