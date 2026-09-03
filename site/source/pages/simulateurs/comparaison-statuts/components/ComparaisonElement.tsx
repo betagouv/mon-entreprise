@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { DocumentationInfoButton } from '@/components/documentation/DocumentationInfoButton'
+import { DocumentationLink } from '@/components/documentation/DocumentationLink'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,
@@ -12,7 +12,7 @@ import {
 	QuantitéDocumentée,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { Grid, StatusCard, Ul } from '@/design-system'
+import { Grid, InfoIcon, StatusCard, Ul } from '@/design-system'
 import { arrondirÀLEuro, isMontant, montantToString } from '@/domaine/Montant'
 import {
 	isMontantRécurrent,
@@ -123,9 +123,11 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 												{libellé && ' '}
 												{libellé}
 											</span>
-											<DocumentationInfoButton
-												documentation={valeur.documentation}
-											/>
+											<DocumentationLinkContainer>
+												<DocumentationLink vers={valeur.documentation}>
+													<InfoIcon />
+												</DocumentationLink>
+											</DocumentationLinkContainer>
 											{warning?.(résultatModèle)}
 										</StyledDiv>
 									)}
@@ -150,6 +152,18 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 		</Grid>
 	)
 }
+
+const DocumentationLinkContainer = styled.div`
+	display: inline-flex;
+	align-items: center;
+	a {
+		display: inline-flex;
+		align-items: center;
+	}
+	&:hover {
+		opacity: 0.8;
+	}
+`
 
 const DisabledLabel = styled.span`
 	color: ${({ theme }) => theme.colors.extended.grey[800]}!important;
