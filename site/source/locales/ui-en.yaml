@@ -1176,7 +1176,7 @@ pages:
           according to your needs</0><1></1> Feel free to modify the situation
           values. These values can be any <4>Publicodes expression or object</4>.
         aria-label:
-          exemple-simulation: A manager (“cadre”) earning €3,400 gross with meal vouchers; access
+          exemple-simulation: manager (“cadre”) earning €3,400 gross with meal vouchers; access
             the employee simulator with the data pre-filled
           expression-publicodes: publicodes expression or object; learn more; new window
     couleur: "What color? "

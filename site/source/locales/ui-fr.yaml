@@ -1231,7 +1231,7 @@ pages:
           les valeurs de la situation. Ces dernières acceptent n'importe quelle
           <4>expression ou objet Publicodes</4>.
         aria-label:
-          exemple-simulation: un cadre à 3400 € brut avec des titres-restaurants, accéder
+          exemple-simulation: cadre à 3400 € brut avec des titres-restaurants, accéder
             au simulateur salarié avec les données pré-remplies
           expression-publicodes: expression ou objet publicodes, en savoir plus, nouvelle fenêtre
     couleur: "Quelle couleur ? "

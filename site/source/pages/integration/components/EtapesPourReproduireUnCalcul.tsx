@@ -44,7 +44,7 @@ export default function ÉtapesPourReproduireUnCalcul({ mode }: Props) {
 							}}
 							aria-label={t(
 								'pages.développeur.components.étapes-pour-reproduire-un-calcul.aria-label.exemple-simulation',
-								'un cadre à 3400 € brut avec des titres-restaurants, accéder au simulateur salarié avec les données pré-remplies'
+								'cadre à 3400 € brut avec des titres-restaurants, accéder au simulateur salarié avec les données pré-remplies'
 							)}
 						>
 							cadre à 3&nbsp;400&nbsp;€ brut avec des titres-restaurants
