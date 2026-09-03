@@ -1,5 +1,4 @@
-import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen, waitFor } from '@testing-library/react'
 import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { describe, expect, it } from 'vitest'
@@ -44,39 +43,21 @@ const afficherLaComparaison = () =>
 		</TestProvider>
 	)
 
-const documentationsAccessibles = async (
-	user: ReturnType<typeof userEvent.setup>
-) => {
-	const infoBulles = await screen.findAllByRole('button', {
-		name: /^Info sur/,
-	})
-	const chemins: string[] = []
-
-	for (const infoBulle of infoBulles) {
-		await user.click(infoBulle)
-		await screen.findByRole('dialog')
-		chemins.push(
-			...screen
-				.queryAllByRole('link')
-				.map((lien) => lien.getAttribute('href') ?? '')
-		)
-		await user.keyboard('{Escape}')
-	}
-
-	return chemins
-}
+const liensAffichés = () =>
+	screen.getAllByRole('link').map((lien) => lien.getAttribute('href'))
 
 describe('Comparaison', () => {
 	it('renvoie chaque valeur comparée vers la documentation de son modèle', async () => {
-		const user = userEvent.setup()
 		afficherLaComparaison()
 
-		expect(await documentationsAccessibles(user)).toEqual(
-			expect.arrayContaining([
-				'/simulateurs/comparaison-régimes-sociaux/SASU/assimilé-salarié/rémunération/nette/après-impôt',
-				'/simulateurs/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette/après-impôt',
-				'/simulateurs/comparaison-régimes-sociaux/AE/dirigeant/rémunération/net/après-impôt',
-			])
+		await waitFor(() =>
+			expect(liensAffichés()).toEqual(
+				expect.arrayContaining([
+					'/simulateurs/comparaison-régimes-sociaux/SASU/assimilé-salarié/rémunération/nette/après-impôt',
+					'/simulateurs/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette/après-impôt',
+					'/simulateurs/comparaison-régimes-sociaux/AE/dirigeant/rémunération/net/après-impôt',
+				])
+			)
 		)
-	}, 20_000)
+	})
 })

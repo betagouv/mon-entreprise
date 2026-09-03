@@ -7,7 +7,6 @@ import { InfoButton, Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-/** @deprecated Utiliser DocumentationInfoButton. */
 export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
 	title,
