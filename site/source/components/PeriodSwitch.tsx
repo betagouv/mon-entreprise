@@ -39,7 +39,10 @@ export default function PeriodSwitch({ periods }: Props) {
 
 	return (
 		<SimulationGoalRadio
-			titre={t('pages.simulateurs.commun.periode-calcul', 'Période de calcul')}
+			titre={t(
+				'pages.simulateurs.commun.periode-calcul.titre',
+				'Période de calcul'
+			)}
 			value={currentUnit}
 			options={periodsValue.map(({ label, unit }) => ({
 				key: unit,
