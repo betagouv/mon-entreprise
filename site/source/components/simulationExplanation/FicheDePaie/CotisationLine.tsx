@@ -18,18 +18,22 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 	const language = useTranslation().i18n.language
 	const engine = useEngine()
 
-	const partSalariale = engine.evaluate(
-		findReferenceInNode(
-			dottedName,
-			engine.getRule(`${namespace} . cotisations . salarié`)
-		) ?? '0'
-	)
-	const partPatronale = engine.evaluate(
-		findReferenceInNode(
-			dottedName,
-			engine.getRule(`${namespace} . cotisations . employeur`)
-		) ?? '0'
-	)
+	const partSalariale = engine.evaluate({
+		valeur:
+			findReferenceInNode(
+				dottedName,
+				engine.getRule(`${namespace} . cotisations . salarié`)
+			) ?? '0',
+		unité: '€/mois',
+	})
+	const partPatronale = engine.evaluate({
+		valeur:
+			findReferenceInNode(
+				dottedName,
+				engine.getRule(`${namespace} . cotisations . employeur`)
+			) ?? '0',
+		unité: '€/mois',
+	})
 
 	const isExoneration = (
 		dottedName: RègleModèleSocial | RègleModèleAssimiléSalarié
