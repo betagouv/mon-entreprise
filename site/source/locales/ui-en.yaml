@@ -1592,7 +1592,10 @@ pages:
     commun:
       date: Date of regulations used for calculations
       documentation: Documentation
-      periode-calcul: Calculation period
+      periode-calcul:
+        annuelle: Annual Amount
+        mensuelle: Monthly amount
+        titre: Calculation Period
       previousSimulationBanner:
         bouton:
           aria-label: Find my previous simulation, load data from my previous simulation.
