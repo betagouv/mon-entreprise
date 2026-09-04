@@ -1672,7 +1672,10 @@ pages:
     commun:
       date: Date de la réglementation utilisée pour les calculs
       documentation: Documentation
-      periode-calcul: Période de calcul
+      periode-calcul:
+        annuelle: Montant annuel
+        mensuelle: Montant mensuel
+        titre: Période de calcul
       previousSimulationBanner:
         bouton:
           aria-label: Retrouver ma précédente simulation, charger les données de ma
