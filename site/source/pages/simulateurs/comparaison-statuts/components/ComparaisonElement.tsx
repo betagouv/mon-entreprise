@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
+import { DocumentationLink } from '@/components/documentation/DocumentationLink'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,
@@ -12,7 +12,7 @@ import {
 	QuantitéDocumentée,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { Grid, HelpIcon, StatusCard, Ul } from '@/design-system'
+import { Grid, InfoIcon, StatusCard, Ul } from '@/design-system'
 import { arrondirÀLEuro, isMontant, montantToString } from '@/domaine/Montant'
 import {
 	isMontantRécurrent,
@@ -123,15 +123,11 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 												{libellé && ' '}
 												{libellé}
 											</span>
-											<RuleLinkContainer>
-												<RuleLink
-													documentationPath={statut}
-													engine={résultatModèle.engine()}
-													dottedName={valeur.documentationRule}
-												>
-													<HelpIcon />
-												</RuleLink>
-											</RuleLinkContainer>
+											<DocumentationLinkContainer>
+												<DocumentationLink vers={valeur.documentation}>
+													<InfoIcon />
+												</DocumentationLink>
+											</DocumentationLinkContainer>
 											{warning?.(résultatModèle)}
 										</StyledDiv>
 									)}
@@ -157,7 +153,7 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 	)
 }
 
-const RuleLinkContainer = styled.div`
+const DocumentationLinkContainer = styled.div`
 	display: inline-flex;
 	align-items: center;
 	a {

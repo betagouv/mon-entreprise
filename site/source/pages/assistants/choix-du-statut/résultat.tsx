@@ -1,11 +1,11 @@
 import * as O from 'effect/Option'
-import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
-import { References } from '@/components/documentation/References/References'
+import { Références } from '@/components/documentation/References/References'
+import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
@@ -23,12 +23,12 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useIsEmbeddedOnBPISite } from '@/hooks/useIsEmbeddedOnBPISite'
 import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
 import { lastPathSegment } from './_components/useSteps'
 
 export default function Résultat() {
@@ -44,7 +44,7 @@ export default function Résultat() {
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
 	const statutLabel = rule.title
-	const références = useReferences(rule)
+	const références = useRéférencesÀAfficher(rule.rawNode.références)
 	const externalGuideLink = useExternalGuideLink()
 
 	return (
@@ -143,7 +143,7 @@ export default function Résultat() {
 						{ statutLabel }
 					)}
 				</H3>
-				<References dottedName={dottedName} references={références} />
+				<Références dottedName={dottedName} références={références} />
 				<H3>
 					{t(
 						'pages.assistants.choix-statut.résultat.simulateur',
@@ -195,26 +195,6 @@ function useSetStatutInSituation(dottedName: DottedName) {
 			dispatch(enregistreLesRéponsesAuxQuestions(setAllStatutTo(undefined)))
 		}
 	}, [])
-}
-
-// BPI agreed to use our assistant on their website, but only if we filter the
-// links to only show the ones that are relevant to their users.
-// They paid the extra development cost for this feature.
-const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
-
-export function useReferences(rule: RuleNode) {
-	const onBPISite = useIsEmbeddedOnBPISite()
-	if (!rule.rawNode.références) {
-		return {}
-	}
-
-	return Object.fromEntries(
-		Object.entries(rule.rawNode.références).filter(([, value]) => {
-			const whitelistedByBPI = BPIWhiteList.some((site) => value.includes(site))
-
-			return onBPISite ? whitelistedByBPI : !whitelistedByBPI
-		})
-	)
 }
 
 function useExternalGuideLink() {
