@@ -29,7 +29,7 @@ export function comparaisonStatutsMetadata({
 			),
 			description: t(
 				'pages.simulateurs.comparaison-statuts.meta.description',
-				'Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de revenu, retraite et indemnités maladie'
+				'Auto-entrepreneur, EI/EURL ou SASU ? Simulez les différences de revenu, retraite et indemnités maladie.'
 			),
 		},
 	} as const

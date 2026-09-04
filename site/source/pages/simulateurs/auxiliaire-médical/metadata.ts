@@ -35,7 +35,7 @@ export function auxiliaireMédicalMetadata({
 			),
 			description: t(
 				'pages.simulateurs.auxiliaire-médical.meta.description',
-				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
+				"Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des dépassements d'honoraires et des revenus non conventionnés."
 			),
 		},
 		codesCatégorieJuridique: ['1000', '5410'],

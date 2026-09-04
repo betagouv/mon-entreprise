@@ -27,7 +27,7 @@ export function entrepriseIndividuelleMetadata({
 			),
 			description: t(
 				'pages.simulateurs.ei.meta.description',
-				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts"
+				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts."
 			),
 		},
 		codesCatégorieJuridique: ['1000'],

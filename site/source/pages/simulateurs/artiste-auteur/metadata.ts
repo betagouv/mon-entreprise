@@ -26,7 +26,7 @@ export function artisteAuteurMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.artiste-auteur.meta.description',
-				'Estimez les cotisations sociales sur les droits d’auteur et sur le revenu BNC'
+				'Estimez les cotisations sociales sur les droits d’auteur et sur le revenu BNC.'
 			),
 		},
 		codesCatégorieJuridique: ['1000'],

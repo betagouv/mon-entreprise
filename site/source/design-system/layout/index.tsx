@@ -32,7 +32,6 @@ export function Spacing(props: SpacingProps) {
 	)
 }
 
-const SpacingStyled = styled.span<{ $size: keyof Theme['spacings'] }>`
-	display: block;
+const SpacingStyled = styled.div<{ $size: keyof Theme['spacings'] }>`
 	min-height: ${({ theme, $size }) => theme.spacings[$size]};
 `

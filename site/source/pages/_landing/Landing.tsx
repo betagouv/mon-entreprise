@@ -33,9 +33,9 @@ export default function Landing() {
 		<>
 			<TrackPage chapter1="informations" name={ACCUEIL} />
 			<Meta
-				title={t('landing.meta.title', 'Accueil')}
+				title={t('pages.landing.meta.title', 'Accueil')}
 				description={t(
-					'landing.description',
+					'pages.landing.description',
 					"L'assistant officiel des entrepreneurs"
 				)}
 				openGraph={{ image: '/logo-share.png' }}
@@ -44,17 +44,17 @@ export default function Landing() {
 			<Container>
 				<PageHeader
 					titre={
-						<Trans i18nKey="landing.title">
+						<Trans i18nKey="pages.landing.title">
 							L'assistant officiel des entrepreneurs
 						</Trans>
 					}
 					picture={illustrationSvg}
 				>
 					<Intro $xxl>
-						<Trans i18nKey="landing.subtitle">
-							Des assistants et simulateurs pour obtenir des{' '}
+						<Trans i18nKey="pages.landing.subtitle">
+							Des <Strong>assistants et simulateurs</Strong> pour obtenir des{' '}
 							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
-							<Strong>création et la gestion</Strong> de votre entreprise.
+							création et la gestion de votre entreprise.
 						</Trans>
 					</Intro>
 					<Spacing sm />
@@ -65,7 +65,7 @@ export default function Landing() {
 								light
 								to={absoluteSitePaths.simulateursEtAssistants}
 							>
-								<Trans i18nKey="landing.choice.simulators.title">
+								<Trans i18nKey="pages.landing.choice.simulators.title">
 									Découvrir la liste de tous les outils
 								</Trans>
 							</Button>
@@ -78,7 +78,7 @@ export default function Landing() {
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
-				<Trans i18nKey="landing.outils">
+				<Trans i18nKey="pages.landing.outils">
 					<H2>Quelques simulateurs de référence</H2>
 				</Trans>
 				<Grid
@@ -130,40 +130,40 @@ export default function Landing() {
 						/>
 					</HideOnMobile>
 					<Grid item md={10}>
-						<Trans i18nKey="landing.aboutUs">
+						<Trans i18nKey="pages.landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
 
 							<Body>
-								Nous sommes une petite{' '}
+								Nous sommes une{' '}
 								<Link
 									aria-label={t(
 										'aria-label.équipe',
-										'équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre'
+										'petite équipe, nouvelle fenêtre'
 									)}
 									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
 								>
-									équipe
+									petite équipe
 								</Link>{' '}
 								autonome et pluridisciplinaire au sein de l’
 								<Link
 									href="https://www.urssaf.fr"
 									aria-label={t(
 										'aria-label.urssaf',
-										'Urssaf, accéder à urssaf.fr, nouvelle fenêtre'
+										'Urssaf, nouvelle fenêtre'
 									)}
 								>
 									Urssaf
 								</Link>
 								. Nous avons à cœur d’être au près de vos besoins afin
-								d’améliorer en permanence ce site conformément à l'approche{' '}
+								d’améliorer en permanence ce site conformément au{' '}
 								<Link
 									href="https://beta.gouv.fr/manifeste"
 									aria-label={t(
 										'aria-label.beta-gouv',
-										'beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre'
+										'manifeste beta.gouv.fr, nouvelle fenêtre'
 									)}
 								>
-									beta.gouv.fr
+									manifeste beta.gouv.fr
 								</Link>
 								.
 							</Body>

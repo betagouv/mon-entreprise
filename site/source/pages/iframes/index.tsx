@@ -12,6 +12,7 @@ import ChoixDuStatut from '@/pages/assistants/choix-du-statut'
 import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import SearchCodeApePage from '@/pages/assistants/recherche-code-ape'
 import { ActivitéPartielle } from '@/pages/simulateurs/activité-partielle/ActivitéPartielle'
+import { Artisan } from '@/pages/simulateurs/artisan/Artisan'
 import { ArtisteAuteur } from '@/pages/simulateurs/artiste-auteur/ArtisteAuteur'
 import { AutoEntrepreneur } from '@/pages/simulateurs/auto-entrepreneur/AutoEntrepreneur'
 import { AuxiliaireMédical } from '@/pages/simulateurs/auxiliaire-médical/AuxiliaireMédical'
@@ -19,6 +20,7 @@ import { Avocat } from '@/pages/simulateurs/avocat/Avocat'
 import { CessationActivitéSimulation } from '@/pages/simulateurs/cessation-activité/CessationActivité'
 import { ChirurgienDentiste } from '@/pages/simulateurs/chirurgien-dentiste/ChirurgienDentiste'
 import { Cipav } from '@/pages/simulateurs/cipav/Cipav'
+import { Commerçant } from '@/pages/simulateurs/commercant/Commercant'
 import { ComparateurDeStatuts } from '@/pages/simulateurs/comparaison-statuts/ComparateurDeStatuts'
 import CotisationMaladieFrontalierSuisse from '@/pages/simulateurs/cotisation-maladie-frontalier-suisse/CotisationMaladieFrontalierSuisse'
 import CoutCreationEntreprise from '@/pages/simulateurs/cout-creation-entreprise'
@@ -102,6 +104,8 @@ export default function Iframes() {
 					{routeIframe(simulateurs.eurl, <EURL />)}
 					{routeIframe(simulateurs['auto-entrepreneur'], <AutoEntrepreneur />)}
 					{routeIframe(simulateurs.indépendant, <Indépendant />)}
+					{routeIframe(simulateurs.artisan, <Artisan />)}
+					{routeIframe(simulateurs.commerçant, <Commerçant />)}
 					{routeIframe(simulateurs['artiste-auteur'], <ArtisteAuteur />)}
 					{routeIframe(
 						simulateurs['activité-partielle'],
