@@ -9,6 +9,9 @@
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 
+### Mises à jour
+- Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+
 ### Corrections
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
