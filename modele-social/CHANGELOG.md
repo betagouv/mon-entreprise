@@ -13,6 +13,7 @@
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
 
 ### Corrections
+- Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte
 - Supprime les cotisations retraite complémentaires obligatoires pour Mayotte
 - Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
