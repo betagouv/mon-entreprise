@@ -799,10 +799,10 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3895
+salarié . coût total employeur: 3715
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 2483
-salarié . rémunération . net . à payer avant impôt: 2537
+salarié . rémunération . net . payé après impôt: 2601
+salarié . rémunération . net . à payer avant impôt: 2657
 
 Notifications affichées : salarié . cotisations . Mayotte"
 `;
@@ -810,10 +810,10 @@ Notifications affichées : salarié . cotisations . Mayotte"
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
 "salarié . contrat . salaire brut: 30000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 36121
+salarié . coût total employeur: 32806
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 17437
-salarié . rémunération . net . à payer avant impôt: 26035
+salarié . rémunération . net . payé après impôt: 18919
+salarié . rémunération . net . à payer avant impôt: 28247
 
 Notifications affichées : salarié . cotisations . Mayotte, salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
