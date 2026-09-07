@@ -13,6 +13,7 @@
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
 
 ### Corrections
+- Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 
