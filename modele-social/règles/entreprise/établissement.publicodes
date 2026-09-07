@@ -27,7 +27,7 @@
             - département = 'Martinique'
             - département = 'Guyane'
             - département = 'La Réunion'
-            - département . outre-mer . Mayotte
+            - département = 'Mayotte'
 
           avec:
             Guadeloupe Réunion Martinique:
