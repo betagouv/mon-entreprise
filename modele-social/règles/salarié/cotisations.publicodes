@@ -1082,7 +1082,7 @@ salarié . cotisations . vieillesse:
         taux:
           variations:
             - si: établissement . commune . département . outre-mer . Mayotte
-              alors: 5.40%
+              alors: 9.90%
             - sinon: 8.55%
 
     salarié:
