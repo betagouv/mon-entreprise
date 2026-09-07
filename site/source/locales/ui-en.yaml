@@ -2319,9 +2319,10 @@ pages:
         progressive: Progressive regularization
         type: What type of regulation would you like?
       répartition:
+        CSSM: CSSM
         chômage: of which unemployment
         retraite: IRC
-        urssaf: URSSAF
+        urssaf: Urssaf
       shortname: Lodeom exemption
       title: Lodeom exemption simulator
       warning: <0></0> Derogatory contribution rates and breakdowns are not taken into
