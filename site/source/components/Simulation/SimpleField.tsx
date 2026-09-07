@@ -21,10 +21,17 @@ type SimpleFieldProps = {
 	labelStyle?: IStyledComponent<'web', object>
 	errorMessage?: string
 	validation?: DateFieldProps['validation']
+	onChange?: (value: ValeurPublicodes | undefined) => void
 }
 
-export function SimpleField(props: SimpleFieldProps) {
-	const { dottedName, question, labelStyle, errorMessage, validation } = props
+export function SimpleField({
+	dottedName,
+	question,
+	labelStyle,
+	errorMessage,
+	validation,
+	onChange,
+}: SimpleFieldProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
 	const evaluation = engine.evaluate(dottedName)
@@ -33,8 +40,9 @@ export function SimpleField(props: SimpleFieldProps) {
 	const dispatchValue = useCallback(
 		(value: ValeurPublicodes | undefined, dottedName: DottedName) => {
 			dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
+			onChange?.(value)
 		},
-		[dispatch]
+		[dispatch, onChange]
 	)
 
 	const labelId = useId()

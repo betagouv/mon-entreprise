@@ -48,7 +48,7 @@ export default function LodeomSimulationGoals() {
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
-	const withRépartitionAndRégularisation = currentZone === 'zone un'
+	const withRépartitionAndRégularisation = currentZone !== 'zone deux'
 
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
 		initialRéductionMoisParMois
@@ -167,7 +167,7 @@ export default function LodeomSimulationGoals() {
 				<>
 					<ZoneSwitch />
 					<BarèmeSwitch />
-					{currentZone === 'zone un' && (
+					{currentZone !== 'zone deux' && (
 						<>
 							<RégularisationSwitch
 								régularisationMethod={régularisationMethod}

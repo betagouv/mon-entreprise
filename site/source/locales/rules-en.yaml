@@ -11841,6 +11841,9 @@ salarié . cotisations . exonérations . lodeom . code régularisation:
     pour régulariser l’exonération.
   titre.en: '[automatic] regularization code'
   titre.fr: code régularisation
+salarié . cotisations . exonérations . lodeom . mayotte:
+  titre.en: '[automatic] Mayotte'
+  titre.fr: mayotte
 salarié . cotisations . exonérations . lodeom . montant:
   avec:
     coefficient:
@@ -11864,6 +11867,9 @@ salarié . cotisations . exonérations . lodeom . montant:
     seuil sortie:
       titre.en: '[automatic] output threshold'
       titre.fr: seuil sortie
+    smic:
+      titre.en: '[automatic] minimum wage'
+      titre.fr: smic
   titre.en: '[automatic] exemption amount'
   titre.fr: montant de l’exonération
 salarié . cotisations . exonérations . lodeom . régularisation:
@@ -12882,10 +12888,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
       question.fr: Quel barème envisagez-vous ?
       titre.en: '[automatic] scales'
       titre.fr: barèmes
-  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
-  titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
+  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
+  titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
 salarié . cotisations . exonérations . zones lodeom:
   avec:
+    mayotte:
+      titre.en: '[automatic] Mayotte'
+      titre.fr: Mayotte
     zone deux:
       titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
       titre.fr: Saint-Barthélémy, Saint-Martin

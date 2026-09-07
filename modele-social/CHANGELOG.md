@@ -6,6 +6,7 @@
 - Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
 
 ### Nouveautés
+- Calcul de la Lodeom à Mayotte
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 

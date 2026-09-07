@@ -107,6 +107,19 @@ salarié . cotisations . exonérations . T:
           - allocations familiales . taux
           - vieillesse . employeur . déplafonnée . taux
           - vieillesse . employeur . plafonnée . taux
+    # Sans cette variation, la non applicabilité de certaines cotisations à Mayotte
+    # empêche le moteur Publicodes de calculer correctement le coefficient T
+    - si: lodeom . mayotte
+      alors:
+        somme:
+          - maladie . employeur . taux
+          - allocations familiales . taux
+          - vieillesse . employeur . plafonnée . taux
+          - ATMP . taux minimum
+          - FNAL . taux
+          - chômage . taux
+        contexte:
+          établissement . commune . département: "'Mayotte'"
     - sinon:
         somme:
           - sécurité sociale et chômage

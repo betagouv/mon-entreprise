@@ -15,7 +15,7 @@ const barèmes = [
 export type BarèmeLodeom = (typeof barèmes)[number]
 
 export const barèmeLodeomDottedName = (zone: ZoneLodeom) =>
-	`salarié . cotisations . exonérations . lodeom . ${zone} . barèmes` as DottedName
+	`salarié . cotisations . exonérations . lodeom . ${zone === 'mayotte' ? 'zone un' : zone} . barèmes` as DottedName
 
 export const useBarèmeLodeom = (): BarèmeLodeom | undefined => {
 	const zone = useZoneLodeom()
