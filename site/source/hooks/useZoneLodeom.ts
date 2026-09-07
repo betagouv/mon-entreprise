@@ -1,7 +1,7 @@
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-export const zones = ['zone un', 'zone deux']
+export const zones = ['zone un', 'mayotte', 'zone deux']
 
 export type ZoneLodeom = (typeof zones)[number]
 
