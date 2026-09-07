@@ -287,13 +287,19 @@ salarié . cotisations . allocations familiales:
   avec:
     taux:
       variations:
-        - si: établissement . commune . département . outre-mer . Mayotte
-          alors: 5.40%
         - si: éligible taux réduit
           alors: taux réduit
-        - sinon: 5.25%
+        - sinon:
+            variations:
+              - si: établissement . commune . département . outre-mer . Mayotte
+                alors: 5.40%
+              - sinon: 5.25%
 
-    taux réduit: 3.45%
+    taux réduit:
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 3.55%
+        - sinon: 3.45%
 
     éligible taux réduit:
       description: |
@@ -794,13 +800,19 @@ salarié . cotisations . maladie:
       avec:
         taux:
           variations:
-            - si: établissement . commune . département . outre-mer . Mayotte
-              alors: 5.80%
             - si: éligible taux réduit
               alors: taux réduit
-            - sinon: 13%
+            - sinon:
+                variations:
+                  - si: établissement . commune . département . outre-mer . Mayotte
+                    alors: 5.80%
+                  - sinon: 13%
 
-        taux réduit: 7%
+        taux réduit:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 3.12%
+            - sinon: 7%
 
         éligible taux réduit:
           description: |
