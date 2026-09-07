@@ -2,11 +2,15 @@ salarié . cotisations . exonérations . zones lodeom:
   question: Quelle est votre localisation ?
   une possibilité:
     - zone un
+    - mayotte
     - zone deux
   avec:
     zone un:
       valeur: zones lodeom = 'zone un'
       titre: Guadeloupe, Guyane, Martinique, La Réunion
+    mayotte:
+      valeur: zones lodeom = 'mayotte'
+      titre: Mayotte
     zone deux:
       valeur: zones lodeom = 'zone deux'
       titre: Saint-Barthélémy, Saint-Martin
@@ -58,14 +62,16 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
     Secteurs d’activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
 
 salarié . cotisations . exonérations . lodeom . zone un:
-  titre: Guadeloupe, Guyane, Martinique, La Réunion
-  icônes: 🇬🇵 🇬🇫 🇲🇶 🇷🇪
+  titre: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
+  icônes: 🇬🇵 🇬🇫 🇲🇶 🇾🇹 🇷🇪
   par défaut: non
   une de ces conditions:
     - zones lodeom = 'zone un'
+    - zones lodeom = 'mayotte'
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
+    - établissement . commune . département = 'Mayotte'
     - établissement . commune . département = 'Guyane'
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
@@ -284,6 +290,12 @@ salarié . cotisations . exonérations . lodeom . zone un:
       références:
         Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d’application du barème d’innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
+
+salarié . cotisations . exonérations . lodeom . mayotte:
+  par défaut: non
+  une de ces conditions:
+    - zones lodeom = 'mayotte'
+    - établissement . commune . département = 'Mayotte'
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
@@ -510,9 +522,9 @@ salarié . cotisations . exonérations . lodeom . montant:
   avec:
     coefficient:
       variations:
-        - si: rémunération . brut <= seuil inflexion * temps de travail . SMIC
+        - si: rémunération . brut <= seuil inflexion * smic
           alors: T
-        - si: rémunération . brut >= seuil sortie * temps de travail . SMIC
+        - si: rémunération . brut >= seuil sortie * smic
           alors: 0
         - si:
             une de ces conditions:
@@ -523,13 +535,20 @@ salarié . cotisations . exonérations . lodeom . montant:
             variations:
               - si:
                   toutes ces conditions:
-                    - rémunération . brut > seuil inflexion * temps de travail . SMIC
-                    - rémunération . brut < seuil intermédiaire * temps de travail . SMIC
-                alors: seuil inflexion * T * temps de travail . SMIC / rémunération . brut
-              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
-        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
+                    - rémunération . brut > seuil inflexion * smic
+                    - rémunération . brut < seuil intermédiaire * smic
+                alors: seuil inflexion * T * smic / rémunération . brut
+              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * smic / rémunération . brut - 1)
+        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * smic / rémunération . brut - 1)
       unité: ''
       arrondi: 4 décimales
+
+    smic:
+      valeur: temps de travail . SMIC
+      contexte:
+        établissement . commune . département:
+          applicable si: lodeom . mayotte
+          valeur: "'Mayotte'"
 
     seuil inflexion:
       variations:
@@ -571,14 +590,21 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 4.5
 
     imputation retraite complémentaire:
-      non applicable si: lodeom . zone deux
+      non applicable si:
+        une de ces conditions:
+          - lodeom . zone deux
+          - lodeom . mayotte
       valeur: lodeom . montant - imputation sécurité sociale
 
     imputation sécurité sociale:
       non applicable si: lodeom . zone deux
-      produit:
-        - lodeom . montant
-        - T . sécurité sociale et chômage / T
+      variations:
+        - si: lodeom . mayotte
+          alors: lodeom . montant
+        - sinon:
+            produit:
+              - lodeom . montant
+              - T . sécurité sociale et chômage / T
 
     imputation chômage:
       non applicable si: lodeom . zone deux
