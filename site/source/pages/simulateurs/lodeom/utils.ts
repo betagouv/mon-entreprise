@@ -331,31 +331,6 @@ const reevaluateRéductionMoisParMois = (
 	return reevaluatedData
 }
 
-export const getOptionsFromSituations = (
-	previousSituation: SituationType,
-	newSituation: SituationType
-): Partial<Options> => {
-	const options = {} as Partial<Options>
-
-	const previousHeuresSupplémentaires =
-		previousSituation[heuresSupplémentairesDottedName]?.nodeValue
-	const newHeuresSupplémentaires =
-		newSituation[heuresSupplémentairesDottedName]?.nodeValue
-	if (newHeuresSupplémentaires !== previousHeuresSupplémentaires) {
-		options.heuresSupplémentaires = newHeuresSupplémentaires || 0
-	}
-
-	const previousHeuresComplémentaires =
-		previousSituation[heuresComplémentairesDottedName]?.valeur
-	const newHeuresComplémentaires =
-		newSituation[heuresComplémentairesDottedName]?.valeur
-	if (newHeuresComplémentaires !== previousHeuresComplémentaires) {
-		options.heuresComplémentaires = newHeuresComplémentaires || 0
-	}
-
-	return options
-}
-
 const getMonthlyRéduction = (
 	year: number,
 	monthIndex: number,

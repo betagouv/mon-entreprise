@@ -1,14 +1,19 @@
+import { Option, pipe } from 'effect'
 import { sumAll } from 'effect/Number'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
 import { Body, Message } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { Quantité, quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
@@ -19,7 +24,6 @@ import {
 	getDataAfterGlobalOptionsChange,
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
-	getOptionsFromSituations,
 	heuresComplémentairesDottedName,
 	heuresSupplémentairesDottedName,
 	initialRéductionMoisParMois,
@@ -28,7 +32,6 @@ import {
 	Options,
 	RégularisationMethod,
 	rémunérationBruteDottedName,
-	SituationType,
 } from '@/pages/simulateurs/lodeom/utils'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
@@ -43,8 +46,7 @@ export default function LodeomSimulationGoals() {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const year = useYear()
-	const situation = useSelector(situationSelector) as SituationType
-	const previousSituation = useRef(situation)
+	const situation = useSelector(situationSelector)
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
@@ -69,11 +71,25 @@ export default function LodeomSimulationGoals() {
 		situation[heuresSupplémentairesDottedName]
 	const heuresComplémentairesGlobales =
 		situation[heuresComplémentairesDottedName]
-	const globalOptions = useMemo(
-		() => getOptionsFromSituations(previousSituation.current, situation),
+	const globalOptions = useMemo(() => {
+		const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
+			pipe(
+				engine.evaluate(dottedName),
+				PublicodesAdapter.decode as () => Option.Option<Quantité>,
+				Option.map(quantitéToNumber),
+				Option.getOrElse(() => 0)
+			)
+
+		return {
+			heuresSupplémentaires: getNumberFromQuantitéPublicodes(
+				heuresSupplémentairesDottedName
+			),
+			heuresComplémentaires: getNumberFromQuantitéPublicodes(
+				heuresComplémentairesDottedName
+			),
+		} satisfies Partial<Options>
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[heuresSupplémentairesGlobales, heuresComplémentairesGlobales]
-	)
+	}, [heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
 
 	useEffect(() => {
 		setData((previousData) =>
@@ -91,8 +107,6 @@ export default function LodeomSimulationGoals() {
 		régularisationMethod,
 		year,
 		withRépartitionAndRégularisation,
-		heuresSupplémentairesGlobales,
-		heuresComplémentairesGlobales,
 		globalOptions,
 	])
 
