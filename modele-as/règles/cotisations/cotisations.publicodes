@@ -20,7 +20,7 @@ assimilé salarié . cotisations:
         - allocations familiales
         - Apec . employeur
         - autres employeur
-        - prévoyances . incapacité invalidité décès . employeur
+        - prévoyances . incapacité invalidité décès
       abattement: exonérations . employeur
 
     salarié:
@@ -34,7 +34,6 @@ assimilé salarié . cotisations:
         - Apec . salarié
         - CSG-CRDS . CSG . déductible
         - CSG-CRDS . sur revenus imposables non déductible
-        - prévoyances . incapacité invalidité décès . salarié
       abattement: exonérations . salarié
 
 assimilé salarié . cotisations . catégories:
@@ -583,35 +582,12 @@ assimilé salarié . cotisations . prévoyances:
       cotisation:
         branche: facultatives
       titre: Prévoyance, Incapacité, Invalidité, Décès, Autres
-      somme:
-        - employeur
-        - salarié
-      avec:
-        employeur:
-          somme:
-            - conventionnelle . employeur
-            - employeur . cadres
-        salarié:
-          valeur: conventionnelle . salarié
-
-    conventionnelle:
-      somme:
-        - employeur
-        - salarié
-
-    conventionnelle . employeur:
-      titre: part employeur
-      non applicable si: oui
-
-    conventionnelle . salarié:
-      titre: part salarié
-      non applicable si: oui
+      valeur: employeur . cadres
 
     employeur:
       titre: part employeur
       somme:
         - santé . employeur
-        - conventionnelle . employeur
         - cadres
 
       avec:
@@ -624,13 +600,11 @@ assimilé salarié . cotisations . prévoyances:
             valeur: employeur
             contexte:
               non déductible socialement: 0€
-
           abattement:
             somme:
               - 6% * plafond sécurité sociale
               - 1.5% * rémunération . brute
             plafond: 12% * plafond sécurité sociale
-        # TODO: autre
 
     employeur . cadres:
       description: prévoyance obligatoire pour les cadres
@@ -643,8 +617,6 @@ assimilé salarié . cotisations . prévoyances:
       titre: part salarié
       somme:
         - santé . salarié
-        - conventionnelle . salarié
-        # TODO: autre
 
       avec:
         non déductible:
