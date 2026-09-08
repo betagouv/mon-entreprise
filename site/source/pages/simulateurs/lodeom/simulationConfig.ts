@@ -40,8 +40,8 @@ export const configLodeom: PublicodesSimulationConfig = {
 			'salarié . rémunération . avantages en nature',
 			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
+			'salarié . convention collective', // provoque un bug
 		],
-		'non prioritaires': ['salarié . convention collective'],
 	},
 	'unité par défaut': '€',
 	situation: {
