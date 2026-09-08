@@ -111,7 +111,6 @@ const ShowMoreIcon = () => {
 }
 
 const Container = styled.div`
-	z-index: 2;
 	position: relative;
 	padding: ${({ theme }) => `${theme.spacings.sm} ${theme.spacings.lg}`};
 	background-color: ${({ theme }) =>
@@ -127,7 +126,6 @@ const Container = styled.div`
 
 const EntrepriseRecap = styled.div`
 	position: relative;
-	z-index: 1;
 `
 
 const TitleBody = styled(Body)`
