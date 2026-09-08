@@ -286,8 +286,7 @@ const reevaluateRéductionMoisParMois = (
 
 	const reevaluatedData = data.reduce(
 		(reevaluatedData: MonthState[], monthState, monthIndex) => {
-			const rémunérationBrute = monthState.rémunérationBrute
-			const options = monthState.options
+			const { rémunérationBrute, options } = monthState
 			const réduction = {
 				value: 0,
 				répartition: emptyRépartition,
@@ -297,20 +296,14 @@ const reevaluateRéductionMoisParMois = (
 				répartition: emptyRépartition,
 			}
 
-			const pasDeRémunération = !rémunérationBrute
-			if (pasDeRémunération) {
-				return [
-					...reevaluatedData,
-					{
-						rémunérationBrute,
-						options,
-						réduction,
-						régularisation,
-					},
-				]
-			}
+			// S'il n'y a pas de rémunération, il n'y a pas de réduction.
+			// Ceci est valable en régularisation progressive ou sans régularisation
+			// (pour Saint-Barthélémy et Saint-Martin).
+			// Mais en régularisation annuelle, au mois de décembre il faut calculer la
+			// régularisation éventuelle même en l'absence de rémunération.
 
-			if (régularisationMethod === 'progressive') {
+			const décembre = monthIndex === data.length - 1
+			if (régularisationMethod === 'progressive' && rémunérationBrute) {
 				// La régularisation progressive du mois N est la différence entre la réduction
 				// calculée pour la rémunération totale jusqu'à N (comparée au SMIC équivalent pour ces N mois)
 				// et la somme des N-1 réductions déjà accordées (en incluant les régularisations).
@@ -324,20 +317,58 @@ const reevaluateRéductionMoisParMois = (
 							monthData.réduction.value + monthData.régularisation.value
 					)
 				)
-				régularisation.value = réductionTotale - réductionCumulée
 
-				if (régularisation.value > 0) {
-					réduction.value = régularisation.value
+				if (réductionTotale > réductionCumulée) {
+					// Si la réduction totale est *supérieure* à la somme des réductions
+					// accordées, il y a une *réduction* ce mois-ci aussi.
+					réduction.value = réductionTotale - réductionCumulée
 					réduction.répartition = withRépartition
 						? getRépartition(rémunérationBrute, réduction.value, engine)
 						: defaultRépartition
-					régularisation.value = 0
-				} else if (régularisation.value < 0) {
+				} else if (réductionTotale < réductionCumulée) {
+					// Si la réduction totale est *inférieure* à la somme des réductions
+					// accordées, c'est qu'il y a un trop-perçu de réductions et il y a
+					// alors une *régularisation* ce mois-ci
+					régularisation.value = réductionTotale - réductionCumulée
 					régularisation.répartition = withRépartition
 						? getRépartition(rémunérationBrute, régularisation.value, engine)
 						: defaultRépartition
 				}
-			} else {
+			} else if (régularisationMethod === 'annuelle' && décembre) {
+				// La régularisation annuelle suit la même logique que la progressive mais
+				// elle n'est calculée qu'au mois de décembre en comparant la somme des
+				// réductions accordées et la réduction calculée pour la rémunération
+				// annuelle.
+				const réductionTotale = getTotalRéduction(
+					paramètresRéductionParMois,
+					engine
+				)
+				const currentRéductionGénéraleCumulée = sumAll(
+					reevaluatedData.map((monthData) => monthData.réduction.value)
+				)
+
+				if (réductionTotale > currentRéductionGénéraleCumulée) {
+					// Si la réduction totale est *supérieure* à la somme des réductions
+					// accordées, il y a une *réduction* ce mois-ci aussi.
+					réduction.value = réductionTotale - currentRéductionGénéraleCumulée
+					réduction.répartition = withRépartition
+						? getRépartition(rémunérationBrute, réduction.value, engine)
+						: emptyRépartition
+				} else if (réductionTotale < currentRéductionGénéraleCumulée) {
+					// Si la réduction totale est *inférieure* à la somme des réductions
+					// accordées, c'est qu'il y a un trop-perçu de réductions et il y a
+					// alors une *régularisation* ce mois-ci
+					régularisation.value =
+						réductionTotale - currentRéductionGénéraleCumulée
+					régularisation.répartition = withRépartition
+						? getRépartition(rémunérationBrute, régularisation.value, engine)
+						: emptyRépartition
+				}
+			} else if (rémunérationBrute) {
+				// Cas :
+				// - régularisation annuelle pour les mois avant décembre
+				// - pas de régularisation (Saint-Barthélémy, Saint-Martin)
+				// (et avec rémunération, sinon pas de réduction)
 				réduction.value = getMonthlyRéduction(
 					year,
 					monthIndex,
@@ -345,44 +376,9 @@ const reevaluateRéductionMoisParMois = (
 					options,
 					engine
 				)
-
-				if (
-					régularisationMethod === 'annuelle' &&
-					monthIndex === data.length - 1
-				) {
-					// La régularisation annuelle est la différence entre la réduction calculée
-					// pour la rémunération annuelle (comparée au SMIC annuel) et la somme des réductions
-					// déjà accordées.
-					const réductionTotale = getTotalRéduction(
-						paramètresRéductionParMois,
-						engine
-					)
-					const currentRéductionGénéraleCumulée =
-						réduction.value +
-						sumAll(
-							reevaluatedData.map((monthData) => monthData.réduction.value)
-						)
-					régularisation.value =
-						réduction.value +
-						(réductionTotale - currentRéductionGénéraleCumulée)
-
-					if (régularisation.value > 0) {
-						réduction.value = régularisation.value
-						réduction.répartition = withRépartition
-							? getRépartition(rémunérationBrute, réduction.value, engine)
-							: defaultRépartition
-						régularisation.value = 0
-					} else if (régularisation.value < 0) {
-						régularisation.répartition = withRépartition
-							? getRépartition(rémunérationBrute, régularisation.value, engine)
-							: defaultRépartition
-						réduction.value = 0
-					}
-				} else {
-					réduction.répartition = withRépartition
-						? getRépartition(rémunérationBrute, réduction.value, engine)
-						: defaultRépartition
-				}
+				réduction.répartition = withRépartition
+					? getRépartition(rémunérationBrute, réduction.value, engine)
+					: emptyRépartition
 			}
 
 			return [
