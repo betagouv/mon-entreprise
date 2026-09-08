@@ -5,6 +5,8 @@
 ### Breaking changes
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
+- Supprime les règles vides `assimilé salarié . cotisations . prévoyances . conventionnelle`
+- Supprime les règles enfants de `assimilé salarié . cotisations . prévoyances . incapacité invalidité décès`
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
