@@ -37,6 +37,7 @@ export const configLodeom: PublicodesSimulationConfig = {
 			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
 			'entreprise . salariés . effectif . seuil',
 			'salarié . contrat . CDD . motif',
+			'salarié . rémunération . brut',
 			'salarié . rémunération . primes . activité . base',
 			'salarié . rémunération . avantages en nature',
 			"entreprise . chiffre d'affaires",
