@@ -1,34 +1,24 @@
-import React, { ForwardedRef, forwardRef, useCallback } from 'react'
-import { PressEvent } from 'react-aria'
+import React, { ForwardedRef, forwardRef } from 'react'
 import { css, styled } from 'styled-components'
 
-import { useTracking } from '@/hooks/useTracking'
-import { Palette } from '@/types/styled'
 import { omit, wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
-import { getColorPalette } from '../theme'
 import {
 	GenericButtonOrNavLinkProps,
 	useButtonOrLink,
 } from '../typography/link'
 
-export type Size = 'XL' | 'MD' | 'XS' | 'XXS'
-type ButtonColor = 'primary' | 'secondary' | 'tertiary' | 'error' | 'success'
-
-type ButtonTracking = {
-	feature: string
-	action: string
-	simulateur?: string
-}
+type Size = 'XL' | 'MD' | 'XS' | 'XXS'
+type Color = 'primary' | 'secondary' | 'tertiary'
 
 type ButtonProps = GenericButtonOrNavLinkProps & {
-	color?: ButtonColor
+	color?: Color
 	children: React.ReactNode
 	size?: Size
 	light?: boolean
 	lang?: string
-	tracking?: ButtonTracking
+	underline?: boolean
 }
 
 export const Button = forwardRef(function Button(
@@ -36,34 +26,16 @@ export const Button = forwardRef(function Button(
 		size = 'MD',
 		light = false,
 		color = 'primary' as const,
+		underline,
 		isDisabled,
-		tracking,
+
 		lang,
 		...ariaButtonProps
 	}: ButtonProps,
 	forwardedRef: ForwardedRef<HTMLAnchorElement | HTMLButtonElement | null>
 ) {
-	const { trackClick } = useTracking()
-
-	const originalOnPress = ariaButtonProps.onPress
-	const onPressWithTracking = useCallback(
-		(e: PressEvent) => {
-			if (tracking) {
-				trackClick(tracking)
-			}
-			originalOnPress?.(e)
-		},
-		[tracking, trackClick, originalOnPress]
-	)
-
 	const buttonOrLinkProps = useButtonOrLink(
-		{
-			...wrapperDebounceEvents({
-				...ariaButtonProps,
-				onPress: onPressWithTracking,
-			}),
-			isDisabled,
-		},
+		{ ...wrapperDebounceEvents(ariaButtonProps), isDisabled },
 		forwardedRef
 	)
 
@@ -82,6 +54,7 @@ export const Button = forwardRef(function Button(
 			$light={light}
 			$color={color}
 			disabled={isDisabled}
+			$underline={underline}
 			lang={lang}
 		/>
 	)
@@ -89,36 +62,41 @@ export const Button = forwardRef(function Button(
 
 type StyledButtonProps = {
 	disabled?: boolean
-	$color: ButtonColor
+	$color: Color
 	$size: Size
 	$light: boolean
+	$underline?: boolean
 }
 
 export const StyledButton = styled.button<StyledButtonProps>`
 	width: fit-content;
-	display: flex;
-	align-items: center;
-	gap: 0 ${({ theme }) => theme.spacings.xs};
+	display: inline-block;
 	text-decoration: none;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 500;
 
 	padding: ${({ $size }) => {
-		switch ($size) {
-			case 'XL':
-				return '1.25rem 2rem'
-			case 'MD':
-				return '0.875rem 2rem'
-			case 'XS':
-				return '0.5rem 1.5rem'
-			case 'XXS':
-				return '0.25rem 1rem'
+		if ($size === 'XL') {
+			return '1.25rem 2rem'
+		}
+		if ($size === 'MD') {
+			return '0.875rem 2rem'
+		}
+		if ($size === 'XS') {
+			return '0.5rem 2rem'
+		}
+		if ($size === 'XXS') {
+			return '0.25rem 1rem'
 		}
 	}};
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		width: 100%;
+		text-align: center;
+	}
 	border-radius: 2.5rem;
 	transition: all 0.15s;
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	border: 2px solid transparent;
 
 	${({ disabled }) =>
@@ -133,7 +111,7 @@ export const StyledButton = styled.button<StyledButtonProps>`
 			disabled
 				? css`
 						outline: initial;
-					`
+				  `
 				: ''}
 	}
 
@@ -141,147 +119,121 @@ export const StyledButton = styled.button<StyledButtonProps>`
 		${FocusStyle}
 	}
 
-	${({ theme, $color, $light, disabled }) => {
-		const colorPalette = getColorPalette($color)
+	/* Primary, secondary & tertiary colors */
+	${({ theme, $color }) =>
+		!theme.darkMode &&
+		css`
+			border-color: ${theme.colors.bases[$color][
+				$color === 'primary' ? 700 : $color === 'tertiary' ? 600 : 300
+			]};
 
-		return css`
-			/* Regular button colors (same for dark & light mode, except for Primary) */
-			${() => {
-				const backgroundColor =
-					$color === 'primary'
-						? (colorPalette as Palette)[700]
-						: $color === 'error'
-							? colorPalette[400]
-							: colorPalette[300]
-				const color =
-					theme.colors.extended.grey[
-						$color === 'primary' || $color === 'error' ? 100 : 800
-					]
+			background-color: ${theme.colors.bases[$color][
+				$color === 'primary' ? 700 : 300
+			]};
+			color: ${theme.colors.extended.grey[$color === 'primary' ? 100 : 800]};
+		`}
 
-				return css`
-					background-color: ${backgroundColor};
-					color: ${color};
-					svg {
-						fill: ${color};
-					}
-				`
-			}}
+	/* Primary, secondary & tertiary light colors */
+	${({ $light, $color, theme }) =>
+		$light &&
+		!theme.darkMode &&
+		css`
+			color: ${theme.colors.bases[$color][$color === 'primary' ? 700 : 700]};
+			background-color: ${theme.colors.extended.grey[100]};
+			${($color === 'secondary' || $color === 'tertiary') &&
+			css`
+				border-color: ${theme.colors.bases[$color][500]};
+			`};
+		`}
 
-			/* Light button colors */
-			${() => {
-				const color =
-					$color === 'error'
-						? colorPalette[500]
-						: $color === 'success'
-							? colorPalette[600]
-							: (colorPalette as Palette)[700]
-				const borderColor =
-					$color === 'primary'
-						? (colorPalette as Palette)[700]
-						: $color === 'error'
-							? colorPalette[400]
-							: colorPalette[600]
+	@media not print {
+		/* White color (dark background mode) */
+		${({ theme }) =>
+			theme.darkMode &&
+			css`
+				color: ${theme.colors.bases.primary[700]};
+				background-color: ${theme.colors.extended.grey[100]};
+			`}
 
-				return (
-					$light &&
-					!theme.darkMode &&
-					css`
-						color: ${color};
-						background-color: ${theme.colors.extended.grey[100]};
-						border-color: ${borderColor};
-						svg {
-							fill: ${color};
-						}
-					`
-				)
-			}}
+		/* White color and light mode (dark background mode) */
+		${({ $light, theme }) =>
+			theme.darkMode &&
+			$light &&
+			css`
+				background-color: transparent;
+				border-color: ${theme.colors.extended.grey[100]};
+				color: ${theme.colors.extended.grey[100]};
+			`}
+	}
 
-			/* HOVER STYLE */
+	/////////////////////
+
+	/* HOVER STYLE */
+	&:hover {
+		${({ theme, $color, disabled, $light }) =>
+			disabled || theme.darkMode
+				? ''
+				: /* Primary, secondary & tertiary light colors */
+				$light
+				? css`
+						background-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 200 : $color === 'secondary' ? 100 : 100
+						]};
+				  `
+				: /* Primary, secondary & tertiary colors */
+				  css`
+						background-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 800 : 400
+						]};
+						border-color: ${theme.colors.bases[$color][
+							$color === 'primary' ? 800 : 400
+						]};
+				  `}
+	}
+
+	/* Dark mode */
+	@media not print {
+		&:hover {
+			${({ $light, theme, disabled }) =>
+				disabled || !theme.darkMode
+					? ''
+					: /* White color and light mode (dark background mode) */
+					$light
+					? css`
+							color: rgba(255, 255, 255, 75%);
+							background-color: inherit;
+							opacity: 1;
+					  `
+					: /* White color (dark background mode) */
+					  css`
+							opacity: 80%;
+					  `}
+		}
+	}
+
+	${({ $underline }) =>
+		$underline &&
+		css`
+			background-color: transparent;
+			padding: 0;
+			border: none;
+			color: ${({ theme }) => theme.colors.bases.primary[700]};
+			border-radius: 0;
+			display: flex;
+			align-items: center;
+			text-decoration: underline;
+			svg {
+				margin-right: ${({ theme }) => theme.spacings.xxs};
+				fill: ${({ theme }) => theme.colors.bases.primary[700]};
+			}
 			&:hover {
-				${() => {
-					const backgroundColor =
-						$color === 'primary'
-							? (colorPalette as Palette)[800]
-							: $color === 'error'
-								? colorPalette[500]
-								: colorPalette[400]
-
-					/* Regular button (same for dark & light mode, except for Primary) */
-					return (
-						!disabled &&
-						!$light &&
-						css`
-							background-color: ${backgroundColor};
-						`
-					)
-				}}
-
-				/* Light button */
-				${() =>
-					!disabled &&
-					!theme.darkMode &&
-					$light &&
-					css`
-						background-color: ${colorPalette[100]};
-					`}
+				border: none;
+				background-color: transparent;
+				text-decoration: underline;
 			}
 
-			/* DARK MODE */
-			@media not print {
-				/* Regular button Primary */
-				${() =>
-					theme.darkMode &&
-					$color === 'primary' &&
-					css`
-						color: ${(colorPalette as Palette)[700]};
-						background-color: ${theme.colors.extended.grey[100]};
-						svg {
-							fill: ${(colorPalette as Palette)[700]};
-						}
-					`}
-
-				/* Light button colors */
-				${() => {
-					const color =
-						$color === 'primary'
-							? theme.colors.extended.grey[100]
-							: $color === 'error'
-								? colorPalette[200]
-								: colorPalette[400]
-
-					return (
-						theme.darkMode &&
-						$light &&
-						css`
-							background-color: transparent;
-							border-color: ${color};
-							color: ${color};
-							svg {
-								fill: ${color};
-							}
-						`
-					)
-				}}
-
-				&:hover {
-					${() => {
-						if (!disabled && theme.darkMode) {
-							/* Light button */
-							if ($light) {
-								return css`
-									background-color: ${theme.colors.extended.dark[700]};
-								`
-							} else {
-								/* Regular button Primary */
-								if ($color === 'primary') {
-									return css`
-										background-color: ${theme.colors.extended.grey[300]};
-									`
-								}
-							}
-						}
-					}}
+			&:focus {
+				${FocusStyle}
 			}
-		`
-	}}
+		`}
 `

@@ -2,8 +2,7 @@ import { URSSAF } from '@/utils/logos'
 
 // TODO: gérer les traductions
 export const serviceExpertComptable = {
-	associatedRule:
-		"indépendant . profession libérale . réglementée . métier = 'expert-comptable'",
+	associatedRule: "dirigeant . indépendant . PL . métier = 'expert-comptable'",
 	url: 'https://www.urssaf.fr/accueil/services/services-tiers-declarants/service-expert-comptable.html',
 	title: 'Le service en ligne Expert-comptable',
 	description:

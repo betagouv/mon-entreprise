@@ -1,13 +1,14 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
 import { configProfessionLibérale } from '../profession-libérale/simulationConfig'
 
-export const cipavSimulationConfig: PublicodesSimulationConfig = {
+const cipavSimulationConfig: SimulationConfig = {
 	...configProfessionLibérale,
 	situation: {
 		...configProfessionLibérale.situation,
-		'entreprise . activité . libérale . réglementée': 'oui',
-		'indépendant . profession libérale . réglementée . métier':
-			"'rattaché Cipav'",
+		'entreprise . activité . nature . libérale . réglementée': 'oui',
+		'dirigeant . indépendant . PL . métier': "'rattaché CIPAV'",
 	},
 }
+
+export default cipavSimulationConfig

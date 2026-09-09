@@ -1,29 +1,23 @@
-import * as O from 'effect/Option'
+import { Option } from 'effect'
 import React, { useState } from 'react'
 import { styled } from 'styled-components'
 
-import { Grid, InfoBulle, TitreObjectifSaisissable } from '@/design-system'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { Body, Grid, TitreObjectifSaisissable } from '@/design-system'
 import { Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
-export interface ChampSaisieProps {
-	id: string
-	aria: {
-		labelledby: string
-		describedby?: string
-	}
-}
-
 export type ObjectifSaisissableDeSimulationProps = {
 	id: string
 	titre: React.ReactNode
 	description?: React.ReactNode
 	explication?: React.ReactNode
-	valeur: O.Option<Montant>
-	rendreChampSaisie: (props: ChampSaisieProps) => React.ReactNode
+	valeur: Option.Option<Montant>
+	rendreChampSaisie: () => React.ReactNode
+	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
 	onFocus?: () => void
@@ -34,8 +28,10 @@ export function ObjectifSaisissableDeSimulation({
 	id,
 	titre,
 	description,
+	explication,
 	valeur,
 	rendreChampSaisie,
+	small = false,
 	appear = true,
 	onFocus,
 	onBlur,
@@ -53,34 +49,43 @@ export function ObjectifSaisissableDeSimulation({
 		onBlur?.()
 	}
 
-	const montantAnimation = O.isSome(valeur) ? valeur.value : undefined
+	const montantAnimation = Option.isSome(valeur) ? valeur.value : undefined
 
 	return (
 		<Appear unless={!appear || initialRender}>
-			<StyledGoal>
+			<StyledGoal $small={small}>
 				<GridCentered container spacing={2}>
 					<Grid item>
 						<TitreObjectifSaisissable
 							id={`${id}-label`}
 							htmlFor={`${id}-input`}
+							noWrap={false}
 						>
 							{titre}
 						</TitreObjectifSaisissable>
 
-						{description && <InfoBulle description={description} />}
+						{explication && (
+							<BiggerForceThemeProvider forceTheme="default">
+								{explication}
+							</BiggerForceThemeProvider>
+						)}
+
+						{description && (
+							<StyledBody
+								className={small ? 'sr-only' : ''}
+								id={`${id}-description`}
+							>
+								{description}
+							</StyledBody>
+						)}
 					</Grid>
 
 					<Grid item>
-						{!isFocused && montantAnimation !== undefined && (
+						{!isFocused && !small && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
 						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
-							{rendreChampSaisie({
-								id: `${id}-input`,
-								aria: {
-									labelledby: `${id}-label`,
-								},
-							})}
+							{rendreChampSaisie()}
 						</LargeInputContainer>
 					</Grid>
 				</GridCentered>
@@ -91,7 +96,7 @@ export function ObjectifSaisissableDeSimulation({
 
 const GridCentered = styled(Grid)`
 	display: grid;
-	grid-template-columns: 1.15fr 1fr;
+	grid-template-columns: 1.25fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
 
 	& > div {
@@ -131,14 +136,22 @@ const GridCentered = styled(Grid)`
 	}
 `
 
-const StyledGoal = styled.div`
+const StyledGoal = styled.div<{ $small: boolean }>`
 	position: relative;
-	padding: ${({ theme }) => theme.spacings.xs} 0;
+	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'xs']} 0;
 	z-index: 1;
 
 	@media print {
 		padding: 0;
 	}
+`
+
+const StyledBody = styled(Body)`
+	margin-bottom: 0;
+`
+
+const BiggerForceThemeProvider = styled(ForceThemeProvider)`
+	font-size: 1rem;
 `
 
 const LargeInputContainer = styled.div`

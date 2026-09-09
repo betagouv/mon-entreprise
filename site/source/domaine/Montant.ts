@@ -2,7 +2,12 @@ import { Data, Either } from 'effect'
 import { dual } from 'effect/Function'
 import { isObject } from 'effect/Predicate'
 
-import { UnitéMonétaire } from './Unites'
+import {
+	isUnitéMonétaireRécurrente,
+	UnitéMonétaire,
+	UnitéMonétairePonctuelle,
+	UnitéMonétaireRécurrente,
+} from './Unités'
 
 export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 	readonly _tag: 'Montant'
@@ -13,9 +18,20 @@ export interface Montant<T extends UnitéMonétaire = UnitéMonétaire> {
 export const isMontant = (something: unknown): something is Montant =>
 	isObject(something) && '_tag' in something && something._tag === 'Montant'
 
+export const isMontantRécurrent = (
+	montant: Montant
+): montant is Montant<UnitéMonétaireRécurrente> =>
+	isUnitéMonétaireRécurrente(montant.unité)
+
 const makeMontant = Data.tagged<Montant>('Montant')
 
 export class DivisionParZéro extends Data.TaggedError('DivisionParZéro') {}
+export class ConversionImpossible extends Data.TaggedError(
+	'ConversionImpossible'
+)<{
+	readonly source: UnitéMonétaire
+	readonly cible: UnitéMonétaire
+}> {}
 
 const arrondirAuCentime = (valeur: number): number =>
 	Math.round(valeur * 100) / 100
@@ -38,6 +54,100 @@ export const estEuroParHeure = (
 	montant: Montant
 ): montant is Montant<'€/heure'> => montant.unité === '€/heure'
 
+export const euros = (valeur: number): Montant<'€'> => montant(valeur, '€')
+
+export const eurosParTitreRestaurant = (
+	valeur: number
+): Montant<'€/titre-restaurant'> => montant(valeur, '€/titre-restaurant')
+
+export const eurosParMois = (valeur: number): Montant<'€/mois'> =>
+	montant(valeur, '€/mois')
+
+export const eurosParAn = (valeur: number): Montant<'€/an'> =>
+	montant(valeur, '€/an')
+
+export const eurosParJour = (valeur: number): Montant<'€/jour'> =>
+	montant(valeur, '€/jour')
+
+export const eurosParHeure = (valeur: number): Montant<'€/heure'> =>
+	montant(valeur, '€/heure')
+
+export const toEurosParMois = (
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+): Montant<'€/mois'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / 12
+			break
+		case '€/jour':
+			valeur = (valeur * 365) / 12
+			break
+		case '€/heure':
+			valeur = (valeur * 24 * 365) / 12
+			break
+	}
+
+	return montant(valeur, '€/mois')
+}
+
+export const toEurosParAn = (
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+): Montant<'€/an'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/mois':
+			valeur = valeur * 12
+			break
+		case '€/jour':
+			valeur = valeur * 365
+			break
+		case '€/heure':
+			valeur = valeur * 24 * 365
+			break
+	}
+
+	return montant(valeur, '€/an')
+}
+
+export const toEurosParJour = (
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+): Montant<'€/jour'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / 365
+			break
+		case '€/mois':
+			valeur = (valeur * 12) / 365
+			break
+		case '€/heure':
+			valeur = valeur * 24
+			break
+	}
+
+	return montant(valeur, '€/jour')
+}
+
+export const toEurosParHeure = (
+	montantRécurrent: Montant<UnitéMonétaireRécurrente>
+): Montant<'€/heure'> => {
+	let valeur = montantRécurrent.valeur
+	switch (montantRécurrent.unité) {
+		case '€/an':
+			valeur = valeur / (365 * 24)
+			break
+		case '€/mois':
+			valeur = (valeur * 12) / (365 * 24)
+			break
+		case '€/jour':
+			valeur = valeur / 24
+			break
+	}
+
+	return montant(valeur, '€/heure')
+}
+
 export const montant = <U extends UnitéMonétaire>(
 	valeur: number,
 	unité: U
@@ -47,8 +157,35 @@ export const montant = <U extends UnitéMonétaire>(
 		unité,
 	}) as Montant<U>
 
-export const arrondirÀLEuro = <M extends Montant>(m: M): M =>
-	montant(Math.round(m.valeur), m.unité) as M
+export const plus = dual<
+	<M extends Montant<UnitéMonétaire>>(b: M) => (a: M) => M,
+	<M extends Montant<UnitéMonétaire>>(a: M, b: M) => M
+>(
+	2,
+	<M extends Montant<UnitéMonétaire>>(a: M, b: M): M =>
+		montant(a.valeur + b.valeur, a.unité) as M
+)
+
+export const sommeEnEuros = (
+	montants: ReadonlyArray<Montant<UnitéMonétairePonctuelle>>
+): Montant<UnitéMonétairePonctuelle> => montants.reduce(plus)
+
+export const sommeEnEurosParMois = (
+	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+): Montant<'€/mois'> => montants.map(toEurosParMois).reduce(plus)
+
+export const sommeEnEurosParAn = (
+	montants: ReadonlyArray<Montant<UnitéMonétaireRécurrente>>
+): Montant<'€/an'> => montants.map(toEurosParAn).reduce(plus)
+
+export const moins = dual<
+	<M extends Montant>(b: M) => (a: M) => M,
+	<M extends Montant>(a: M, b: M) => M
+>(
+	2,
+	<M extends Montant>(a: M, b: M): M =>
+		montant(a.valeur - b.valeur, a.unité) as M
+)
 
 export const fois = dual<
 	<M extends Montant>(multiplicateur: number) => (a: M) => M,
@@ -76,7 +213,7 @@ export const abattement = dual<
  * @returns Un nouveau montant de même unité que le montant initial, ou une erreur DivisionParZéro
  *
  * @example
- * const résultat = diviséPar(montant(100, '€'), 2) // Right(montant(50, '€'))
+ * const résultat = diviséPar(euros(100), 2) // Right(euros(50))
  */
 export const diviséPar = dual<
 	<M extends Montant>(
@@ -100,18 +237,80 @@ export const diviséPar = dual<
 	}
 )
 
+/**
+ * Calcule la proportion d'un montant par rapport à un autre montant de même unité.
+ * Retourne un nombre représentant le ratio (sans unité).
+ *
+ * @param a - Le montant numérateur
+ * @param diviseur - Le montant dénominateur (ne peut pas être zéro)
+ * @returns Un nombre représentant le ratio a/diviseur, ou une erreur DivisionParZéro
+ *
+ * @example
+ * // 20€ par rapport à 100€ donne 0.25 (soit 25%)
+ * const résultat = parRapportÀ(euros(25), euros(100)) // Right(0.25)
+ */
+export const parRapportÀ = dual<
+	<M extends Montant>(
+		diviseur: M
+	) => (a: M) => Either.Either<number, DivisionParZéro>,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	) => Either.Either<number, DivisionParZéro>
+>(
+	2,
+	<M extends Montant>(
+		a: M,
+		diviseur: M
+	): Either.Either<number, DivisionParZéro> => {
+		if (estZéro(diviseur)) {
+			return Either.left(new DivisionParZéro())
+		}
+
+		let numérateur = a.valeur
+		let dénominateur = diviseur.valeur
+
+		if (a.unité !== '€') {
+			numérateur = toEurosParAn(a as Montant<UnitéMonétaireRécurrente>).valeur
+			dénominateur = toEurosParAn(
+				diviseur as Montant<UnitéMonétaireRécurrente>
+			).valeur
+		}
+
+		const rapport = numérateur / dénominateur
+
+		return Either.right(rapport)
+	}
+)
+
+export const estPlusGrandQue = dual<
+	<M extends Montant>(b: M) => (a: M) => boolean,
+	<M extends Montant>(a: M, b: M) => boolean
+>(2, <M extends Montant>(a: M, b: M): boolean => a.valeur > b.valeur)
+
+export const estPlusPetitQue = dual<
+	<M extends Montant>(b: M) => (a: M) => boolean,
+	<M extends Montant>(a: M, b: M) => boolean
+>(2, <M extends Montant>(a: M, b: M): boolean => a.valeur < b.valeur)
+export const estPlusGrandOuÉgalÀ = dual<
+	<M extends Montant>(b: M) => (a: M) => boolean,
+	<M extends Montant>(a: M, b: M) => boolean
+>(2, <M extends Montant>(a: M, b: M): boolean => a.valeur >= b.valeur)
+export const estPlusPetitOuÉgalÀ = dual<
+	<M extends Montant>(b: M) => (a: M) => boolean,
+	<M extends Montant>(a: M, b: M) => boolean
+>(2, <M extends Montant>(a: M, b: M): boolean => a.valeur <= b.valeur)
+
 export const estPositif = (montant: Montant): boolean => montant.valeur > 0
 export const estNégatif = (montant: Montant): boolean => montant.valeur < 0
 export const estZéro = (montant: Montant): boolean => montant.valeur === 0
 
 export const montantToNumber = (montant: Montant): number => montant.valeur
 
-export const montantToString = (
-	montant: Montant,
-	displayedUnit?: string
-): string => {
-	// eslint-disable-next-line no-irregular-whitespace
-	return `${montant.valeur.toLocaleString('fr-FR')} ${
+export const toString = (montant: Montant, displayedUnit?: string): string => {
+	return `${montant.valeur.toLocaleString('fr-FR')} ${
 		displayedUnit ?? montant.unité
 	}`
 }
+
+export const montantToString = toString

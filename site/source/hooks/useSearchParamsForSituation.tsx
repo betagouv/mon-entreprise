@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux'
 
 import { getSearchParamsFromSituation } from '@/domaine/searchParams'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
-import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
+import {
+	companySituationSelector,
+	situationSelector,
+	targetUnitSelector,
+} from '@/store/selectors/simulationSelectors'
 
 export const useSearchParamsForSituation = (
 	situation?: SituationPublicodes

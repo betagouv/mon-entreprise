@@ -2,6 +2,7 @@ import { URSSAF } from '@/utils/logos'
 
 // TODO: gérer les traductions
 export const serviceAutoEntrepreneur = {
+	associatedRule: 'dirigeant . auto-entrepreneur',
 	url: 'https://www.urssaf.fr/accueil/services/services-independants/service-autoentrepreneur.html',
 	title: 'Le service en ligne Auto-entrepreneur',
 	description:

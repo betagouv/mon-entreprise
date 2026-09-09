@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { getIframeOffset } from '@/utils'
 
 export const useIFrameOffset = () => {
-	const [offsetTop, setOffset] = useState<number>()
-	const isEmbedded = useIsEmbedded()
-
+	const [offsetTop, setOffset] = useState<number | null | undefined>(
+		window.parent !== window ? undefined : null
+	)
 	useEffect(() => {
-		if (!isEmbedded) {
+		if (window.parent === window) {
 			return
 		}
 		void getIframeOffset().then(setOffset)
-	}, [isEmbedded])
+	}, [])
 
 	return offsetTop
 }

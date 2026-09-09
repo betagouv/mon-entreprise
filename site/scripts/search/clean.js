@@ -14,16 +14,5 @@ const client = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_ADMIN_KEY)
 const rulesIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}rules`)
 const simulateursIndex = client.initIndex(`${ALGOLIA_INDEX_PREFIX}simulateurs`)
 
-try {
-	await Promise.all([rulesIndex.delete(), simulateursIndex.delete()])
-} catch (error) {
-	console.error(
-		'Algolia clean failed:',
-		JSON.stringify(
-			{ name: error.name, message: error.message, status: error.status },
-			null,
-			2
-		)
-	)
-	throw error
-}
+rulesIndex.delete()
+simulateursIndex.delete()

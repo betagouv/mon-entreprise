@@ -1,3 +1,4 @@
+import { useProgressBar } from '@react-aria/progress'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -5,25 +6,46 @@ import { Body } from '@/design-system'
 
 type ProgressProps = {
 	progress: number
+	minValue?: number
 	maxValue?: number
+	step?: number
 }
 
-export default function Progress({ progress, maxValue = 1 }: ProgressProps) {
+export default function Progress({
+	progress,
+	minValue = 0,
+	maxValue = 1,
+}: ProgressProps) {
 	const { t } = useTranslation()
+	const propsBar = {
+		showValueLabel: false,
+		label: 'Questions répondues pour améliorer la précision de la simulation',
+		minValue,
+		maxValue,
+		value: progress,
+	}
 
+	const { progressBarProps, labelProps } = useProgressBar(propsBar)
 	const total = Math.min(progress, maxValue).toString()
 
 	return (
 		<div style={{ position: 'relative' }}>
-			<ProgressBar style={{ width: `${(progress * 100) / maxValue}%` }} />
-
-			<StyledBody role="status">
+			<ProgressContainer {...progressBarProps}>
+				<ProgressBar
+					style={{ width: `${(progress * 100) / (maxValue || 1)}%` }}
+				/>
+			</ProgressContainer>
+			<StyledBody {...labelProps}>
 				{t('Étape {{ total }} sur {{ maxValue }}', { total, maxValue })}
 			</StyledBody>
 		</div>
 	)
 }
 
+const ProgressContainer = styled.div`
+	width: 100%;
+	background-color: ${({ theme }) => theme.colors.bases.primary[100]};
+`
 const ProgressBar = styled.div`
 	width: 0;
 	transition: width 0.5s;

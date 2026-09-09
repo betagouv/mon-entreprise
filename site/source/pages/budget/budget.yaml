@@ -7,13 +7,33 @@
 
     [➡ Voir la convention](https://static.data.gouv.fr/resources/conventions-de-partenariat/20190423-181035/convention-du-15-avril-2019.pdf)
 
-    <ul>
-      <li>Financement DINSIC : 150 000 € HT</li>
-      <li>Financement Acoss initial : 100 000 € HT</li>
-      <li>Rallonge Acoss fin d’année : 12 500 € HT</li>
-      <li><b>Total HT</b> : 262 500 € HT</li>
-      <li><b>Total TTC</b> : 315 000 € HT</li>
-    </ul>
+    <table style="text-align: left">
+      <caption class="sr-only">Montants des financements répartis par financeurs et le total des financements</caption>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+      <tr>
+        <th scope="row" style="font-weight: 400;">Financement DINSIC</th>
+        <td style="text-align: right;">150 000 € HT</td>
+      </tr>
+      <tr>
+        <th scope="row" style="font-weight: 400;">Financement Acoss initial</th>
+        <td style="text-align: right;">100 000 € HT</td>
+      </tr>
+      <tr>
+        <th scope="row" style="font-weight: 400;">Rallonge Acoss fin d’année</th>
+        <td style="text-align: right;">12 500 € HT</td>
+      </tr>
+      <tr>
+        <th scope="row" style="font-weight: 700;">Total HT</th>
+        <td style="text-align: right; font-weight: 700;">262 500 € HT</td>
+      </tr>
+      <tr>
+        <th scope="row" style="font-weight: 700;">Total TTC</th>
+        <td style="text-align: right; font-weight: 700;">315 000 € TTC</td>
+      </tr>
+    </table>
 
     En fin d’année une rallonge est attribuée pour la réalisation d’un nouveau
     simulateur et une expérimentation sur la paie.
@@ -148,35 +168,3 @@
     Logiciels et hébergement: 1950
     Portage: 6633
     Déplacements: 750
-2025:
-  description: |
-    En 2025, en plus du financement de
-    l’<a href="https://www.urssaf.org/accueil.html" aria-label="Site de l'Urssaf Caisse Nationale, nouvelle fenêtre">Urssaf Caisse Nationale</a>,
-    un budget supplémentaire de 49 000 € est alloué à mon-entreprise par la
-    <abbr title="Direction Interministérielle du Numérique">DINUM</abbr> pour la
-    mise en conformité d’accessibilité de la démarche essentielle
-    <a href="https://www.plus.transformation.gouv.fr/" aria-label="Site de Services Publics+, nouvelle fenêtre">Services Publics+</a>
-    « simulateur d’embauche ».
-  T1:
-    Développement: 52241
-    Logiciels et hébergement: 1989
-    Accessibilité: 7000
-    Portage: 6735
-    Déplacements: 1012
-  T2:
-    Développement: 70303
-    Logiciels et hébergement: 2290
-    Accessibilité: 18317
-    Portage: 10000
-    Déplacements: 1099
-  T3:
-    Développement: 52800
-    Logiciels et hébergement: 2801
-    Accessibilité: 15000
-    Portage: 7766
-    Déplacements: 660
-  T4:
-    Développement: 67525
-    Logiciels et hébergement: 3094
-    Accessibilité: 7500
-    Portage: 8593

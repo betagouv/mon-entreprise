@@ -12,7 +12,7 @@ export default {
 
 	// Default value to give to empty keys
 	defaultValue(locale, namespace, key, value) {
-		return key === value || (key && value === '') ? key : value
+		return key === value || (key && value === '') ? 'NO_TRANSLATION' : value
 	},
 
 	indentation: 2,
@@ -78,7 +78,6 @@ export default {
 
 	input: [
 		'../../source/**/*.{jsx,tsx,js,ts}',
-		'../../app/**/*.{jsx,tsx,js,ts}',
 		'!../../source/components/ATInternetTracking/piano-analytics.js',
 	],
 	// An array of globs that describe where to look for source files

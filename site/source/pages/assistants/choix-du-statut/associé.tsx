@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -6,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
-	InfoButton,
+	HelpButtonWithPopover,
 	Message,
 	Radio,
 	RadioCard,
@@ -16,9 +17,7 @@ import {
 	typography,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { OuiNon } from '@/domaine/OuiNon'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { batchUpdateSituation } from '@/store/actions/actions'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -27,8 +26,8 @@ const { Body, H4, H3, Li, Strong, Ul } = typography
 
 type State = {
 	question1: 'seul' | 'plusieurs' | undefined
-	question2: OuiNon | undefined
-	question3: OuiNon | undefined
+	question2: 'oui' | 'non' | undefined
+	question3: 'oui' | 'non' | undefined
 }
 
 export default function Associés() {
@@ -41,13 +40,14 @@ export default function Associés() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="pages.assistants.choix-statut.associés.title">
-						Je gère cette entreprise…
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.associés.help.title',
+					<Trans i18nKey="choix-statut.associés.title">
+						Je gère cette entreprise...
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.associés.help.title',
 								'Être plusieurs associé(e)s ou actionnaires'
 							)}
+							type="info"
 						>
 							<Body>
 								Vous <Strong>partagez la propriété de votre entreprise </Strong>
@@ -60,13 +60,13 @@ export default function Associés() {
 								SAS), on parle d’
 								<Strong>actionnaires</Strong>.
 							</Body>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</Trans>
 				}
 			>
 				<RadioCardGroup
 					aria-label={t(
-						'pages.assistants.choix-statut.associés.question1.label',
+						'choix-statut.associés.question1.label',
 						'Comment gérez-vous cette entreprise ?'
 					)}
 					onChange={(value) =>
@@ -76,15 +76,12 @@ export default function Associés() {
 				>
 					<RadioCard
 						value={'seul'}
-						label={t(
-							'pages.assistants.choix-statut.associés.question1.seul',
-							'Seul / seule'
-						)}
+						label={t('choix-statut.associés.question1.seul', 'Seul / seule')}
 					/>
 					<RadioCard
 						value={'plusieurs'}
 						label={t(
-							'pages.assistants.choix-statut.associés.question1.plusieurs',
+							'choix-statut.associés.question1.plusieurs',
 							'À plusieurs'
 						)}
 					/>
@@ -94,10 +91,10 @@ export default function Associés() {
 						<Spacing md />
 						<Message type="secondary" border={false}>
 							<H4 as="h3" id="question2">
-								{t(
-									'pages.assistants.choix-statut.associés.question2',
-									'Envisagez-vous d’ajouter des associé(e)s dans un second temps ?'
-								)}
+								<Trans i18nKey="choix-statut.associés.question2">
+									Envisagez-vous d’ajouter des associé(e)s dans un second temps
+									?
+								</Trans>
 							</H4>
 							<ToggleGroup
 								aria-labelledby="question2"
@@ -107,10 +104,10 @@ export default function Associés() {
 								value={question2}
 							>
 								<Radio id="question-2-oui" value={'oui'}>
-									{t('global.oui', 'Oui')}
+									<Trans>Oui</Trans>
 								</Radio>
 								<Radio id="question-2-non" value={'non'}>
-									{t('global.non', 'Non')}
+									<Trans>Non</Trans>
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
@@ -122,18 +119,15 @@ export default function Associés() {
 						<Spacing md />
 						<Message type="secondary" border={false}>
 							<H4 as="h3" id="question3">
-								<Trans i18nKey="pages.assistants.choix-statut.associés.question3.label">
+								<Trans i18nKey="choix-statut.associés.question3.label">
 									Voulez-vous exercer votre activité sous la forme d'une société
-									uniquement&nbsp;?
-									<InfoButton
-										subject={t(
-											'pages.assistants.choix-statut.associés.question3.help.subject',
-											'entreprise individuelle ou société'
-										)}
-										popoverTitle={t(
-											'pages.assistants.choix-statut.associés.question3.help.title',
+									uniquement ?
+									<HelpButtonWithPopover
+										title={t(
+											'choix-statut.associés.question3.help.title',
 											'Choisir entre une entreprise individuelle et une société'
 										)}
+										type="info"
 									>
 										<H3>Entreprise individuelle</H3>
 										<Ul>
@@ -178,7 +172,7 @@ export default function Associés() {
 												<Strong>plus complexes et plus coûteuses</Strong>.
 											</Li>
 										</Ul>
-									</InfoButton>
+									</HelpButtonWithPopover>
 								</Trans>
 							</H4>
 							<ToggleGroup
@@ -189,10 +183,10 @@ export default function Associés() {
 								value={question3}
 							>
 								<Radio id="question-3-oui" value={'oui'}>
-									{t('global.oui', 'Oui')}
+									<Trans>Oui</Trans>
 								</Radio>
 								<Radio id="question-3-non" value={'non'}>
-									{t('global.non', 'Non')}
+									<Trans>Non</Trans>
 								</Radio>
 							</ToggleGroup>
 							<Spacing md />
@@ -204,7 +198,7 @@ export default function Associés() {
 						<Spacing lg />
 						<Message type="info" icon>
 							<Body>
-								<Trans i18nKey="pages.assistants.choix-statut.associés.plusieurs.avertissement">
+								<Trans i18nKey="choix-statut.associés.plusieurs.avertissement">
 									Cet assistant ne gère pas encore le cas des gérant associés
 									égalitaire ou minoritaire. Il s'adresse uniquement aux
 									personnes possédant <Strong>au minimum 51 % des parts</Strong>{' '}
@@ -239,13 +233,13 @@ function useAssociésSelection(): [
 		const newState = { ...state, ...value }
 		setState(newState)
 		dispatch(
-			enregistreLesRéponsesAuxQuestions({
+			batchUpdateSituation({
 				'entreprise . associés':
 					newState.question1 === 'seul'
 						? O.some('unique')
 						: newState.question1 === 'plusieurs'
-							? O.some('multiples')
-							: O.none(),
+						? O.some('multiples')
+						: O.none(),
 
 				'entreprise . catégorie juridique . EI':
 					newState.question2 === 'oui' || newState.question3 === 'oui'

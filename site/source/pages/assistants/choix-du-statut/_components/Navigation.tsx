@@ -1,16 +1,16 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { Button, Grid, Spacing } from '@/design-system'
+import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
 
-import {
-	useCurrentStep,
-	useNextStep,
-	usePreviousStep,
-	useStepPaths,
-	type Statuts,
-} from './useSteps'
+import { useCurrentStep, useNextStep, usePreviousStep } from './useSteps'
+
+type Statuts = Exclude<
+	keyof RelativeSitePaths['assistants']['choix-du-statut']['résultat'],
+	'index'
+>
 
 export default function Navigation({
 	currentStepIsComplete,
@@ -29,10 +29,12 @@ export default function Navigation({
 	children?: React.ReactNode
 	small?: boolean
 }) {
+	const { t } = useTranslation()
 	const nextStep = useNextStep()
 	const currentStep = useCurrentStep()
 	const previousStep = usePreviousStep()
-	const { toStep, toResult } = useStepPaths()
+	const choixDuStatutPath =
+		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
 
 	return (
 		<>
@@ -56,7 +58,7 @@ export default function Navigation({
 							light
 							size={small ? 'XS' : 'MD'}
 							color={'secondary'}
-							to={toStep(previousStep)}
+							to={choixDuStatutPath[previousStep]}
 							onPress={onPreviousStep}
 						>
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
@@ -67,8 +69,11 @@ export default function Navigation({
 							<Button
 								size={small ? 'XS' : 'MD'}
 								onPress={onNextStep}
-								to={toStep(nextStep)}
+								to={choixDuStatutPath[nextStep]}
 								isDisabled={!currentStepIsComplete}
+								aria-label={t(
+									"Suivant, enregistrer et passer à l'étape suivante"
+								)}
 							>
 								{nextStepLabel || <Trans>Enregistrer et continuer</Trans>}{' '}
 								<span aria-hidden>→</span>
@@ -77,7 +82,10 @@ export default function Navigation({
 					)}
 					{assistantIsCompleted && (
 						<Grid item xs={12} sm="auto">
-							<Button to={toResult(assistantIsCompleted)}>
+							<Button
+								to={choixDuStatutPath['résultat'][assistantIsCompleted]}
+								aria-label={t('Suivant, voir le résultat')}
+							>
 								{nextStepLabel || (
 									<Trans>Enregistrer et voir le résultat</Trans>
 								)}{' '}

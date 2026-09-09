@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { FromTop } from '@/components/ui/animate'
 import { usePersistingState } from '@/components/utils/persistState'
 import {
@@ -245,10 +245,7 @@ export default function SearchCodeAPE({
 				<FromTop>
 					<Message border={false} icon mini style={{ margin: '.5rem 0' }}>
 						<SmallBody>
-							<Trans
-								i18nKey="pages.assistants.recherche-code-ape.alternative"
-								shouldUnescape
-							>
+							<Trans i18nKey="search-code-ape.alternative" shouldUnescape>
 								Vous pouvez essayer "
 								{{ proposal: alternative.proposal.join('", "') }}" au lieu de "
 								{{ match: alternative.match }}"
@@ -267,7 +264,7 @@ export default function SearchCodeAPE({
 						onChange={setSelected}
 						isDisabled={disabled}
 						aria-label={t(
-							'pages.assistants.recherche-code-ape.radio-card-group.aria-label',
+							'search-code-ape.radio-card-group.aria-label',
 							'Liste des activités'
 						)}
 					>

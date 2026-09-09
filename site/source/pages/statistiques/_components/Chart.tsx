@@ -20,7 +20,7 @@ import {
 	ACCUEIL,
 	SIMULATION_COMMENCEE,
 	SIMULATION_TERMINEE,
-} from '@/components/PianoAnalytics'
+} from '@/components/ATInternetTracking'
 import { Body, Li, Strong, Ul } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { StyledLegend } from '@/pages/statistiques/_components/PagesCharts'
@@ -135,6 +135,7 @@ export default function VisitsChart({
 					{dataKeys.map((k, i) =>
 						isBarChart ? (
 							<Bar
+								layout={layout}
 								key={k}
 								dataKey={k}
 								name={formatLegend(k)}
@@ -281,11 +282,11 @@ export const formatLegend = (key: string) =>
 	key === ACCUEIL
 		? 'visites'
 		: key === SIMULATION_COMMENCEE
-			? 'simulation commencée'
-			: key === SIMULATION_TERMINEE
-				? 'simulation terminée'
-				: key === 'declaration_resultat'
-					? 'déclaration résultat'
-					: key === 'declaration_revenu'
-						? 'déclaration revenu'
-						: key.replace(/_/g, ' ')
+		? 'simulation commencée'
+		: key === SIMULATION_TERMINEE
+		? 'simulation terminée'
+		: key === 'declaration_resultat'
+		? 'déclaration résultat'
+		: key === 'declaration_revenu'
+		? 'déclaration revenu'
+		: key.replace(/_/g, ' ')

@@ -7,8 +7,6 @@ import logoSvgENDark from '@/assets/images/logo-mycompany_white.svg'
 import logoSvgEN from '@/assets/images/logo-mycompany.svg'
 import { Link } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { environnement } from '@/services/environnement/environnement'
-import { urlAsset } from '@/utils/asset'
 
 /* Figma source: https://www.figma.com/file/YJUpRNO12lcPUDsEYEXzT9/logo-monentreprisee-urssaf-edition */
 
@@ -24,15 +22,15 @@ export function Logo() {
 		<StyledLogo
 			data-test-id="logo img"
 			alt={t('navbar.logo', 'Urssaf Mon entreprise')}
-			src={urlAsset(
+			src={
 				language === 'fr'
 					? isDarkModeEnabled
 						? logoSvgFRDark
 						: logoSvgFR
 					: isDarkModeEnabled
-						? logoSvgENDark
-						: logoSvgEN
-			)}
+					? logoSvgENDark
+					: logoSvgEN
+			}
 		/>
 	)
 }
@@ -46,7 +44,7 @@ export function LogoWithLink() {
 
 	return (
 		<LogoContainer
-			href={environnement.urls.fr}
+			href={import.meta.env.VITE_FR_BASE_URL}
 			target="_blank"
 			rel="noreferrer"
 			aria-label={t('Accéder au site mon-entreprise, nouvelle fenêtre')}

@@ -1,30 +1,54 @@
 import { pipe } from 'effect'
-import { dedupe, filter, map } from 'effect/Array'
+import { dedupe, filter } from 'effect/Array'
 import { isNotUndefined, isUndefined, Predicate } from 'effect/Predicate'
 import { fromEntries } from 'effect/Record'
+import { DottedName } from 'modele-social'
 import {
 	FunctionComponent,
 	useCallback,
 	useEffect,
 	useMemo,
-	useRef,
 	useState,
 } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { Raccourci } from '@/components/Simulation/Raccourcis'
-import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/components/utils/EngineContext'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { ignoreLaQuestion } from '@/store/actions/actions'
+import { estCeQueLaQuestionPublicodesEstRépondue } from '@/domaine/useQuestions/estCeQueLaQuestionPublicodesEstRépondue'
+import { vaÀLaQuestionSuivante } from '@/store/actions/actions'
+import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
+import { listeNoireSelector } from '@/store/selectors/listeNoire.selector'
+import { questionsRéponduesSelector } from '@/store/selectors/questionsRépondues.selector'
+import { questionsSuivantesSelector } from '@/store/selectors/questionsSuivantes.selector'
+import { raccourcisSelector } from '@/store/selectors/raccourcis.selector'
 
-export interface QuestionPublicodes<S extends Situation> {
+interface QuestionPublicodes<S extends Situation> {
 	_tag: 'QuestionPublicodes'
 	id: DottedName
 	applicable: Predicate<S | undefined>
 	répondue: Predicate<S | undefined>
 }
+
+const fromQuestionPublicodeRépondue = <S extends Situation>(
+	q: QuestionRépondue,
+	estRépondue: (dottedName: DottedName) => boolean
+): QuestionPublicodes<S> => ({
+	_tag: 'QuestionPublicodes',
+	id: q.règle,
+	applicable: () => q.applicable,
+	répondue: () => estRépondue(q.règle),
+})
+const fromQuestionsPublicodesSuivante = <S extends Situation>(
+	dottedName: DottedName,
+	estRépondue: (dottedName: DottedName) => boolean
+): QuestionPublicodes<S> => ({
+	_tag: 'QuestionPublicodes',
+	id: dottedName,
+	applicable: () => true,
+	répondue: () => estRépondue(dottedName),
+})
 
 type QuestionFournie<S extends Situation> = Omit<
 	ComposantQuestion<S>,
@@ -33,7 +57,6 @@ type QuestionFournie<S extends Situation> = Omit<
 	répondue: Predicate<S | undefined>
 	applicable: Predicate<S | undefined>
 } & FunctionComponent
-
 const fromQuestionFournie = <S extends Situation>(
 	q: ComposantQuestion<S>
 ): QuestionFournie<S> => {
@@ -52,6 +75,10 @@ export type Question<S extends Situation> =
 	| QuestionFournie<S>
 	| QuestionPublicodes<S>
 
+export interface Raccourci {
+	id: string
+	libellé: string
+}
 const fromRaccourciPublicodes = (
 	quickLink: RaccourciPublicodes
 ): Raccourci => ({
@@ -61,168 +88,150 @@ const fromRaccourciPublicodes = (
 
 export interface UseQuestionsProps<S extends Situation = Situation> {
 	questions?: Array<ComposantQuestion<S>>
-	questionsPublicodes?: Array<QuestionPublicodes<S>>
-	raccourcisPublicodes?: Array<RaccourciPublicodes>
 	situation?: S
+	avecQuestionsPublicodes?: boolean
 }
 
 export function useQuestions<S extends Situation>({
 	questions = [],
-	questionsPublicodes = [],
-	raccourcisPublicodes = [],
 	situation,
+	avecQuestionsPublicodes = true,
 }: UseQuestionsProps<S>) {
 	const dispatch = useDispatch()
+	const engine = useEngine()
+	const publicodesQuestionsSuivantes = useSelector(questionsSuivantesSelector)
+	const publicodesQuestionsRépondues = useSelector(questionsRéponduesSelector)
+	const publicodesListeNoire = useSelector(listeNoireSelector)
+	const publicodesRaccourcis = useSelector(raccourcisSelector)
+
+	const publicodesQuestionsRéponduesFiltrées = useMemo(
+		() =>
+			publicodesQuestionsRépondues.filter(
+				(q) => !publicodesListeNoire.includes(q.règle)
+			),
+		[publicodesQuestionsRépondues, publicodesListeNoire]
+	)
+
+	const estQuestionPublicodesRépondue = useMemo(
+		() =>
+			estCeQueLaQuestionPublicodesEstRépondue(
+				engine,
+				publicodesQuestionsRéponduesFiltrées
+			),
+		[engine, publicodesQuestionsRéponduesFiltrées]
+	)
 
 	// TODO: ajouter et gérer les raccourcis de questions fournies
 	const raccourcis = useMemo(
-		() => raccourcisPublicodes.map(fromRaccourciPublicodes),
-		[raccourcisPublicodes]
+		() => publicodesRaccourcis.map(fromRaccourciPublicodes),
+		[publicodesRaccourcis]
 	)
+
+	const toutesLesQuestionsPublicodes = useMemo(() => {
+		const questionsRépondues = publicodesQuestionsRéponduesFiltrées.map((q) =>
+			fromQuestionPublicodeRépondue(q, estQuestionPublicodesRépondue)
+		)
+
+		const questionsSuivantes = publicodesQuestionsSuivantes.map((dottedName) =>
+			fromQuestionsPublicodesSuivante(dottedName, estQuestionPublicodesRépondue)
+		)
+
+		const toutesLesQuestions = [...questionsRépondues, ...questionsSuivantes]
+		const questionsParId = fromEntries(toutesLesQuestions.map((q) => [q.id, q]))
+
+		return Object.values(questionsParId)
+	}, [
+		publicodesQuestionsRéponduesFiltrées,
+		publicodesQuestionsSuivantes,
+		estQuestionPublicodesRépondue,
+	])
 
 	const toutesLesQuestionsApplicables = useMemo(
 		() =>
 			pipe(
 				[
 					...questions.map(fromQuestionFournie),
-					...questionsPublicodes,
+					...(avecQuestionsPublicodes ? toutesLesQuestionsPublicodes : []),
 				] as Question<S>[],
 				filter((q: Question<S>): boolean => q.applicable(situation))
 			),
-		[questions, questionsPublicodes, situation]
+		[
+			questions,
+			avecQuestionsPublicodes,
+			toutesLesQuestionsPublicodes,
+			situation,
+		]
 	)
-	const toutesLesQuestionsApplicablesRef = useRef(toutesLesQuestionsApplicables)
 
 	const questionsParId = useMemo(
 		() => fromEntries(toutesLesQuestionsApplicables.map((q) => [q.id, q])),
 		[toutesLesQuestionsApplicables]
 	)
+
 	const idsDesQuestions = useMemo(
 		() => dedupe(Object.keys(questionsParId)),
 		[questionsParId]
 	)
 
-	const questionsNonRépondues = useMemo(
-		() => toutesLesQuestionsApplicables.filter((q) => !q.répondue(situation)),
-		[situation, toutesLesQuestionsApplicables]
-	)
-	const idsDesQuestionsNonRépondues = useMemo(
-		() =>
-			pipe(
-				questionsNonRépondues,
-				map((q) => [q.id, q]),
-				Object.fromEntries,
-				Object.keys,
-				dedupe
-			),
-		[questionsNonRépondues]
-	)
-
-	const [questionCouranteId, setQuestionCouranteId] = useState<
+	const [activeQuestionId, setActiveQuestionId] = useState<
 		Question<S>['id'] | undefined
 	>(idsDesQuestions[0])
 	const [finished, setFinished] = useState(false)
 
 	useEffect(() => {
-		const laListeDesQuestionsAChangé =
-			toutesLesQuestionsApplicablesRef.current.length !==
-				toutesLesQuestionsApplicables.length ||
-			toutesLesQuestionsApplicables.find(
-				(question, index) =>
-					question.id !== toutesLesQuestionsApplicablesRef.current[index].id
-			)
-
-		if (laListeDesQuestionsAChangé) {
-			const laQuestionCouranteNEstPasRépondue =
-				questionCouranteId &&
-				idsDesQuestionsNonRépondues.includes(questionCouranteId)
-			const laQuestionCouranteNestPasLaPremièreQuestionNonRépondue =
-				questionCouranteId !== idsDesQuestionsNonRépondues[0]
-			const nouvellePremièreQuestionNonRépondue =
-				laQuestionCouranteNEstPasRépondue &&
-				laQuestionCouranteNestPasLaPremièreQuestionNonRépondue
-
-			if (nouvellePremièreQuestionNonRépondue) {
-				setQuestionCouranteId(idsDesQuestionsNonRépondues[0])
-			}
-
-			toutesLesQuestionsApplicablesRef.current = toutesLesQuestionsApplicables
-		}
-	}, [
-		questionCouranteId,
-		idsDesQuestionsNonRépondues,
-		toutesLesQuestionsApplicables,
-	])
-
-	useEffect(() => {
-		const laQuestionCouranteNEstPlusApplicable =
-			questionCouranteId && !idsDesQuestions.includes(questionCouranteId)
-		const pasDeQuestionCouranteMaisIlYADesQuestionsApplicables =
-			!questionCouranteId && idsDesQuestions.length
-
+		const laQuestionActiveNEstPlusApplicable =
+			activeQuestionId && !idsDesQuestions.includes(activeQuestionId)
+		const pasDeQuestionActiveMaisIlYADesQuestionsApplicables =
+			!activeQuestionId && idsDesQuestions.length
 		if (
-			laQuestionCouranteNEstPlusApplicable ||
-			pasDeQuestionCouranteMaisIlYADesQuestionsApplicables
+			laQuestionActiveNEstPlusApplicable ||
+			pasDeQuestionActiveMaisIlYADesQuestionsApplicables
 		) {
-			setQuestionCouranteId(idsDesQuestionsNonRépondues[0])
+			setActiveQuestionId(idsDesQuestions[0])
 		}
-	}, [questionCouranteId, idsDesQuestions, idsDesQuestionsNonRépondues])
+	}, [activeQuestionId, idsDesQuestions])
 
-	const QuestionCourante = isUndefined(questionCouranteId)
+	const QuestionCourante = isUndefined(activeQuestionId)
 		? undefined
-		: questionsParId[questionCouranteId]
+		: questionsParId[activeQuestionId]
 
 	const goToNext = useCallback(() => {
-		if (!questionCouranteId) {
+		if (!activeQuestionId) {
 			return
 		}
 
-		// TODO: gérer le cas "ignorer la question" pour une question fournie
-		const questionCourante = questionsParId[questionCouranteId]
-		const laQuestionCouranteNEstPasRépondue =
-			idsDesQuestionsNonRépondues.includes(questionCouranteId)
-		if (
-			questionCourante?._tag === 'QuestionPublicodes' &&
-			laQuestionCouranteNEstPasRépondue
-		) {
-			dispatch(ignoreLaQuestion(questionCouranteId as DottedName))
+		const questionCourante = questionsParId[activeQuestionId]
+		if (questionCourante?._tag === 'QuestionPublicodes') {
+			dispatch(vaÀLaQuestionSuivante())
 		}
 
-		const currentIndex = idsDesQuestions.indexOf(questionCouranteId)
-		const laQuestionCouranteNEstPasLaDernièreQuestion =
-			currentIndex < idsDesQuestions.length - 1
-		if (laQuestionCouranteNEstPasLaDernièreQuestion) {
+		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
+		if (currentIndex < idsDesQuestions.length - 1) {
 			const nextId = idsDesQuestions[currentIndex + 1]
-			setQuestionCouranteId(nextId)
+			setActiveQuestionId(nextId)
 		} else {
 			setFinished(true)
 		}
-	}, [
-		questionCouranteId,
-		questionsParId,
-		idsDesQuestionsNonRépondues,
-		idsDesQuestions,
-		dispatch,
-	])
+	}, [activeQuestionId, questionsParId, idsDesQuestions, dispatch])
 
 	const goToPrevious = useCallback(() => {
 		if (finished) {
-			setQuestionCouranteId(idsDesQuestions[idsDesQuestions.length - 1])
+			setActiveQuestionId(idsDesQuestions[idsDesQuestions.length - 1])
 			setFinished(false)
 
 			return
 		}
 
-		if (!questionCouranteId) {
+		if (!activeQuestionId) {
 			return
 		}
 
-		const currentIndex = idsDesQuestions.indexOf(questionCouranteId)
+		const currentIndex = idsDesQuestions.indexOf(activeQuestionId)
 		if (currentIndex > 0) {
 			const prevId = idsDesQuestions[currentIndex - 1]
-			setQuestionCouranteId(prevId)
+			setActiveQuestionId(prevId)
 		}
-	}, [questionCouranteId, finished, idsDesQuestions])
+	}, [activeQuestionId, finished, idsDesQuestions])
 
 	const goTo = useCallback(
 		(id: string) => {
@@ -230,7 +239,7 @@ export function useQuestions<S extends Situation>({
 				return
 			}
 
-			setQuestionCouranteId(id)
+			setActiveQuestionId(id)
 		},
 		[idsDesQuestions]
 	)
@@ -241,8 +250,8 @@ export function useQuestions<S extends Situation>({
 		q.répondue(situation)
 	).length
 
-	const questionCouranteIndex = questionCouranteId
-		? idsDesQuestions.indexOf(questionCouranteId)
+	const activeQuestionIndex = activeQuestionId
+		? idsDesQuestions.indexOf(activeQuestionId)
 		: -1
 
 	const questionCouranteRépondue =
@@ -251,7 +260,7 @@ export function useQuestions<S extends Situation>({
 	return {
 		nombreDeQuestions,
 		nombreDeQuestionsRépondues,
-		questionCouranteIndex,
+		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
 		raccourcis,

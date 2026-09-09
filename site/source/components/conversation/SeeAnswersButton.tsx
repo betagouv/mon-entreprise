@@ -8,9 +8,8 @@ import {
 	FocusStyle,
 	PopoverWithTrigger,
 } from '@/design-system'
-import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 
-import { AnswersList } from './AnswersList'
+import Answers from './AnswerList'
 
 export default function SeeAnswersButton({
 	children,
@@ -19,21 +18,11 @@ export default function SeeAnswersButton({
 	children?: React.ReactNode
 	label?: React.ReactNode
 }) {
-	const { key: simulateur } = useCurrentSimulatorMetadata()
-
 	return (
 		<>
 			<PopoverWithTrigger
 				trigger={(buttonProps) => (
-					<StyledButton
-						{...buttonProps}
-						aria-haspopup="dialog"
-						tracking={{
-							feature: 'modifier_reponses',
-							action: 'ouvre',
-							simulateur,
-						}}
-					>
+					<StyledButton {...buttonProps} aria-haspopup="dialog">
 						{label ?? (
 							<>
 								<EditIcon /> <Trans>Modifier mes réponses</Trans>
@@ -43,7 +32,7 @@ export default function SeeAnswersButton({
 				)}
 				ariaLabel="Modifier mes réponses"
 			>
-				{(close) => <AnswersList onClose={close}>{children}</AnswersList>}
+				{(close) => <Answers onClose={close}>{children}</Answers>}
 			</PopoverWithTrigger>
 		</>
 	)
@@ -75,6 +64,5 @@ const StyledButton = styled(Button)`
 
 	&:focus {
 		${FocusStyle}
-		border-radius: ${({ theme }) => theme.box.borderRadius};
 	}
 `

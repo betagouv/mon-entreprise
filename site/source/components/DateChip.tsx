@@ -1,24 +1,31 @@
 import { useTranslation } from 'react-i18next'
 
 import { Chip, Emoji } from '@/design-system'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
+import useDate from '@/hooks/useDate'
 
-type Props = {
-	date: string
-}
+export default function DateChip() {
+	const { currentSimulatorData } = useCurrentSimulatorData()
+	const showDate = !currentSimulatorData?.hideDate
 
-export const DateChip = ({ date }: Props) => {
+	const engineDate = useDate()
+	const date = engineDate?.toString().slice(-7)
+
 	const { t } = useTranslation()
 
 	return (
-		<Chip
-			type="secondary"
-			icon={<Emoji emoji="📆" />}
-			title={t(
-				'pages.simulateurs.commun.date',
-				'Date de la réglementation utilisée pour les calculs'
-			)}
-		>
-			{date}
-		</Chip>
+		showDate &&
+		date && (
+			<Chip
+				type="secondary"
+				icon={<Emoji emoji="📆" />}
+				title={t(
+					'pages.simulateurs.date',
+					'Date de la réglementation utilisée pour les calculs'
+				)}
+			>
+				{date}
+			</Chip>
+		)
 	)
 }

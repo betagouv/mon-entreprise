@@ -1,13 +1,7 @@
-name: Nettoyage PR
-# Utilise pull_request_target (au lieu de pull_request) pour avoir accès aux secrets
-# même pour les PR de fork. Ne jamais y checkouter le code d'une PR : il s'exécuterait
-# avec ces secrets. Les jobs ci-dessous n'exécutent que du code de la branche par défaut.
+name: PR clean up
 on:
-  pull_request_target:
+  pull_request:
     types: [closed]
-
-permissions:
-  contents: read
 
 jobs:
   deploy-context:
@@ -16,36 +10,26 @@ jobs:
       env-name: ${{ steps.deploy-env.outputs.name }}
     steps:
       - id: deploy-env
-        run: echo "name=${{ github.event.number }}" >> $GITHUB_OUTPUT
+        run: echo "name=${{ github.event.number || '${GITHUB_REF#refs/*/}' }}" >> $GITHUB_OUTPUT
 
   algolia-rm-temp-index:
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
     needs: deploy-context
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/checkout@v3
       - uses: ./.github/actions/install
+        env:
+          # Secrets of all kinds for fetching stats & releases
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
+          ATINTERNET_API_SECRET_KEY: ${{ secrets.ATINTERNET_API_SECRET_KEY }}
+          ATINTERNET_API_ACCESS_KEY: ${{ secrets.ATINTERNET_API_ACCESS_KEY }}
+          CRISP_API_IDENTIFIER: ${{ secrets.CRISP_API_IDENTIFIER }}
+          CRISP_API_KEY: ${{ secrets.CRISP_API_KEY }}
+          CRISP_WEBSITE_ID: ${{ secrets.CRISP_WEBSITE_ID }}
       - name: Remove temporary Algolia index
         run: yarn workspace site algolia:clean
         env:
           ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
           ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-          ALGOLIA_INDEX_PREFIX: monentreprise-${{ needs.deploy-context.outputs.env-name }}-
-
-  clevercloud-review-app-rm:
-    runs-on: ubuntu-22.04
-    timeout-minutes: 10
-    env:
-      CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
-      CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
-      CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
-      APP_NAME: mon-entreprise-pr-${{ github.event.number }}
-    steps:
-      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: ./.github/actions/clever-tools
-      - name: Supprimer la review app
-        run: |
-          if clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
-            clever delete --yes
-          else
-            echo "Aucune review app pour la PR ${{ github.event.number }}"
-          fi
+          ALGOLIA_INDEX_PREFIX: monentreprise-${{needs.deploy-context.outputs.env-name}}-

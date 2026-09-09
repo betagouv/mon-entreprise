@@ -12,7 +12,7 @@ export const Liseré = styled.div.withConfig({
 	position: relative;
 	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.md}`};
 
-	${({ theme, label, couleur = '#795548' }) =>
+	${({ label, couleur = '#795548' }) =>
 		label &&
 		`
 		&::before {
@@ -25,7 +25,7 @@ export const Liseré = styled.div.withConfig({
 			left: -1px;
 			border-bottom-right-radius: 0.3rem;
 			font-weight: 600;
-			font-size: ${theme.fontSizes.min};
+			font-size: 0.875rem;
 			text-transform: capitalize;
 		}
 	`}

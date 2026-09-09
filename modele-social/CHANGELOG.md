@@ -2,99 +2,20 @@
 
 ## next
 
-### Breaking changes
-- Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
-
-### Nouveautés
-- Plafond de sécurité sociale mahorais
-- Cotisations patronales et salariales pour Mayotte
-
-### Corrections
-- Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
-- Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
-
-## 11.1.0
-
-### Mises à jour
-- Mise à jour de la date (01/07/2026)
-
-### Corrections
-- L'application de la réforme de l'Acre dépend de la date de création de l'entreprise
-
-## 11.0.0
-
-### Breaking changes
-- Suppression des règles `salarié . cotisations . exonérations . réduction générale` (utiliser `... . RGDU` à la place)
-- Suppression des règles `déclaration revenus PAMC` et `déclaration charge sociales`
-- Suppression de la règle dépréciée `salarié . contrat . apprentissage . diplôme préparé`
-- Renomme `salarié . coût total employeur . aides . embauche . apprentis` en `salarié . coût total employeur . aides . embauche . apprentissage`
-- Renomme `salarié . coût total employeur . aides . embauche . senior professionnalisation` en `salarié . coût total employeur . aides . embauche . professionnalisation`
-
-### Nouveautés
-- Ajout des règles de calcul de la réduction générale dégressive unique (RGDU)
-- Ajout de la participation employeur pour les contrats d’apprentissage
-- Ajout du contrôle de rémunération minimale pour l’alternance
-
-### Mises à jour
-- Augmentation du taux patronal de la cotisation d'assurance vieillesse déplafonné
-- Hausse de la CSG non déductible sur les dividendes
-- Mise à jour du taux de cotisations pour les BNC Cipav bénéficiant de l'Acre (13,4% depuis le 01/01/2026)
-- Suppression des taux réduits de cotisations allocations familiales et assurance maladie sauf pour Lodeom
-- Extension de la déduction forfaitaire patronale sur les heures supplémentaires aux entreprises de plus de 250 employé⋅es
-- Barème de l'impôt sur le revenu et autres éléments de calcul de l'impôt
-- Mise à jour des aides à l'embauche pour les apprenti⋅es (y compris RQTH)
-- Élargissement de la taxe d'apprentissage aux associations à partir de mars 2026
-- Mise à jour du taux horaire minimum de l'allocation d'activité partielle
-- Mise à jour des cotisations aux caisses de retraite spécifiques aux professions libérales réglementées
-- Mise à jour des plafonds de chiffre d'affaires au régime micro-fiscal
-- Mise à jour du guide de la retraite des artistes-auteurs
-- Augmentation du Smic au 1er juin 2026
-
-### Corrections
-- Remet la règle `salarié . coût total employeur . aides . emploi franc . éligible` qui avait été supprimée dans la version précédente
-- Corrige l'unité de `dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentiste . taux Urssaf` en `%`
-- Ajout de la CET dans la réduction de cotisations salariales sur les heures supplémentaires
-- Corrige des fautes dans des questions de `salarié . rémunération`
-- Modifie la description de `artiste-auteur . cotisations . IRCEC`
-- Changement de la nature par défaut de l'activité artisanale
-
-## 10.0.1
-
-### Mises à jour
-- Mise à jour de la date (01/01/2026)
-- Mise à jour du Smic
-- Mise à jour du plafond de la Sécurité sociale
-- Mise à jour des taux de cotisation et de la répartition des cotisations pour les auto-entrepreneurs et auto-entrepreneurs BNC et BNC Cipav
-- Mise à jour des taux de cotisation pour les auto-entrepreneurs et auto-entrepreneurs BNC Cipav dans les Drom
-- Mise à jour des suggestions de montant de l'abonnement de transports publics
-- Mise à jour des taux de cotisation ATMP
-- Mise à jour du plafond du versement libératoire pour les auto-entrepreneurs et auto-entrepreneuses
-- Mise à jour de la valeur d'acquisition du point Agirc-Arrco
-- Mise à jour de la valeur d'acquisition et de la valeur du point RCI
-- Mise à jour de la valeur du point de retraite de base CNAVPL
-- Mise à jour du montant de chiffre d'affaires d'auto-entreprise pour l'acquisition de trimestres de retraite Cipav
-- Mise à jour du montant forfaitaire de l'avantage en nature repas
-- Mise à jour du plafond déductible du titre-restaurant
-
-### Corrections
-- Correction de l'exonération de cotisations sociales sur la prise en charge par l'employeur des frais de transport
-
 ## 10.0.0
 
 ### Breaking changes
-- Renomme la règle `entreprise . activités . revenus mixtes` en `entreprise . activité . revenus mixtes`
-- Supprime la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
-- Supprime la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
-- Supprime la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
-- Supprime la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
-- Supprime la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
+- Suppression de la règle dépréciée `dirigeant . indépendant . PL . métier . avocat`
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . notaire . par défaut`
+- Suppression de la règle `dirigeant . indépendant . PL . catégorie . juridique . métier . officier . par défaut`
+- Suppression de la règle `dirigeant . indépendant . PL . métier . santé . vétérinaire` (caisse de retraite non implémentée)
+- Suppression de la règle `dirigeant . indépendant . PL . métier . agents généraux d'assurances` (caisse de retraite non implémentée)
 - Supprime la règle `salarié . contrat . ancienneté`, utiliser `salarié . ancienneté` à la place
 
 ### Nouveautés
 - Les possibilités de métier juridique `notaire` et `officier` sont désormais applicables
 
 ### Mises à jour
-- Mise à jour des coûts de création
 - Renomme chômage partiel en activité partielle
 
 ### Corrections

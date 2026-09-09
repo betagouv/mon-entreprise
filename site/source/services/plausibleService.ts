@@ -1,6 +1,5 @@
 import Plausible from 'plausible-tracker'
 
-import { environnement } from '@/services/environnement/environnement'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 
 class PlausibleService {
@@ -15,13 +14,19 @@ class PlausibleService {
 
 		if (this.plausible || this.isTrackingDisabled) return
 
-		const { domaine, hôteApi, suivreLocalhost } =
-			environnement.tracking.plausible
+		const domain: string =
+			(import.meta.env.VITE_PLAUSIBLE_DOMAIN as string | undefined) ||
+			(IS_PRODUCTION ? 'mon-entreprise.urssaf.fr' : 'dev.mon-entreprise.fr')
+		const apiHost =
+			(import.meta.env.VITE_PLAUSIBLE_API_HOST as string | undefined) ||
+			'https://plausible.io'
+		const trackLocalhost =
+			import.meta.env.VITE_PLAUSIBLE_TRACK_LOCALHOST === 'true'
 
 		this.plausible = Plausible({
-			domain: domaine,
-			apiHost: hôteApi,
-			trackLocalhost: suivreLocalhost,
+			domain,
+			apiHost,
+			trackLocalhost,
 		})
 
 		this.plausible.enableAutoPageviews()

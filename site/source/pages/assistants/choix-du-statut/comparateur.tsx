@@ -1,13 +1,13 @@
 import { flow, pipe } from 'effect'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { useMemo, useRef } from 'react'
+import { useMemo } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
-import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
+import { useEngine, useRawSituation } from '@/components/utils/EngineContext'
 import {
 	Button,
 	Container,
@@ -17,30 +17,26 @@ import {
 	Strong,
 } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
-import { toOuiNon } from '@/domaine/OuiNon'
-import { useNavigation } from '@/lib/navigation'
+import Détails from '@/pages/simulateurs/comparaison-statuts/components/Détails'
+import ModifierOptions from '@/pages/simulateurs/comparaison-statuts/components/ModifierOptions'
+import RevenuEstimé from '@/pages/simulateurs/comparaison-statuts/components/RevenuEstimé'
+import StatutChoice from '@/pages/simulateurs/comparaison-statuts/components/StatutChoice'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
+import { useSitePaths } from '@/sitePaths'
 import { SituationPublicodes } from '@/store/reducers/rootReducer'
-import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
 
-import { Comparaison } from './_components/Comparaison'
-import ModifierOptions from './_components/ModifierOptions'
-import RevenuEstimé from './_components/RevenuEstimé'
-import StatutChoice from './_components/StatutChoice'
-import { usePreviousStep, useStepPaths } from './_components/useSteps'
+import { usePreviousStep } from './_components/useSteps'
 
 export default function Comparateur() {
 	const namedEngines = useStatutComparaison()
+	const { absoluteSitePaths } = useSitePaths()
 	const previousStep = usePreviousStep()
-	const { toStep } = useStepPaths()
-	const { currentPath } = useNavigation()
-	const initialPath = useRef(currentPath)
+	const choixDuStatutPath = absoluteSitePaths.assistants['choix-du-statut']
 
 	return (
 		<>
 			<TrackPage chapter3="pas_a_pas" name="comparateur" />
-			<Trans i18nKey="pages.assistants.choix-statut.commune.description">
+			<Trans i18nKey="choix-statut.commune.description">
 				<Intro>
 					Vous allez maintenant pouvoir entrer dans le détail et comparer{' '}
 					<Strong>les revenus</Strong>, la <Strong>couverture sociale</Strong>{' '}
@@ -50,7 +46,7 @@ export default function Comparateur() {
 			</Trans>
 			<RevenuEstimé />
 			<Spacing xl />
-			<Comparaison namedEngines={namedEngines} />
+			<Détails namedEngines={namedEngines} />
 
 			<Container
 				backgroundColor={(theme) =>
@@ -66,7 +62,11 @@ export default function Comparateur() {
 				<Spacing xl />
 				<Grid container spacing={3}>
 					<Grid item xs={12} sm="auto">
-						<Button light color={'secondary'} to={toStep(previousStep)}>
+						<Button
+							light
+							color={'secondary'}
+							to={choixDuStatutPath[previousStep]}
+						>
 							{' '}
 							<span aria-hidden>←</span> <Trans>Précédent</Trans>
 						</Button>
@@ -79,7 +79,7 @@ export default function Comparateur() {
 
 			<EngineDocumentationRoutes
 				namedEngines={namedEngines}
-				basePath={initialPath.current}
+				basePath={absoluteSitePaths.assistants['choix-du-statut'].comparateur}
 			/>
 		</>
 	)
@@ -91,7 +91,7 @@ export default function Comparateur() {
  */
 function useStatutComparaison(): EngineComparison {
 	const possibleStatuts = usePossibleStatuts()
-	const situation = useSelector(completeSituationSelector)
+	const situation = useRawSituation()
 	const engine = useEngine()
 
 	const namedEngines = useMemo(
@@ -143,17 +143,16 @@ function getSituationFromStatut(statut: StatutType): SituationPublicodes {
 				statut === 'SASU'
 					? 'SAS'
 					: statut === 'EURL'
-						? 'SARL'
-						: statut === 'AE'
-							? 'EI'
-							: statut === 'SELARLU'
-								? 'SELARL'
-								: statut === 'SELASU'
-									? 'SELAS'
-									: statut,
-			'entreprise . catégorie juridique . EI . auto-entrepreneur': toOuiNon(
-				statut === 'AE'
-			),
+					? 'SARL'
+					: statut === 'AE'
+					? 'EI'
+					: statut === 'SELARLU'
+					? 'SELARL'
+					: statut === 'SELASU'
+					? 'SELAS'
+					: statut,
+			'entreprise . catégorie juridique . EI . auto-entrepreneur':
+				statut === 'AE' ? 'oui' : 'non',
 			'entreprise . associés': ['SARL', 'SAS', 'SELAS', 'SELARL'].includes(
 				statut
 			)

@@ -14,7 +14,7 @@ salarié . ancienneté:
 salarié . convention collective:
   experimental: oui
   par défaut: "'droit commun'"
-  question: Quelle convention collective est applicable à l'entreprise ?
+  question: "Quelle convention collective est applicable à l'entreprise ?"
   une possibilité:
     - HCR
     - BTP
@@ -545,58 +545,22 @@ salarié . régimes spécifiques . taxe sur les salaires:
   avec:
     assiette: cotisations . CSG-CRDS . assiette de base
 
-salarié . régimes spécifiques . apprentissage:
-  applicable si: contrat . apprentissage
-
-salarié . régimes spécifiques . apprentissage . handicap:
-  question: L’apprenti/apprentie est-il/elle en situation de handicap ?
-  par défaut: non
-
-salarié . régimes spécifiques . apprentissage . participation employeur:
-  description: |
-    Pour les contrats d’apprentissage préparant à un diplôme ou un titre
-    professionnel au moins égal à Bac +3 (niveaux 6 et 7 du cadre national des
-    certifications professionnelles), l’entreprise participe au financement de la
-    formation en versant une somme forfaitaire de **750 € par contrat**, quelle que
-    soit sa durée.
-
-    Si le contrat est rompu au cours des **45 premiers jours de formation pratique**
-    (période pendant laquelle le contrat peut être librement rompu par
-    l’apprenti/apprentie ou l’employeur), l’entreprise est redevable de **50 %** du
-    financement dû par l’OPCO pour la période effectuée, dans la limite de 750 €.
-
-    Lorsqu’une entreprise accueille un ou une apprentie dont le contrat
-    initial a été rompu, cette nouvelle entreprise ne verse qu’une participation
-    réduite, de **200 €**.
-  applicable si:
-    toutes ces conditions:
-      - contrat . apprentissage . diplôme = 'niveau 6 ou 7'
-      - contrat . date d'embauche >= 01/07/2025
-  valeur: 750 €/an
-  références:
-    Quand l’entreprise doit-elle verser une participation forfaitaire pour un contrat d’apprentissage ?: https://entreprendre.service-public.gouv.fr/vosdroits/F39190
-
 salarié . coût total employeur:
   identifiant court: cout-total-employeur
   synonymes: [salaire chargé]
   résumé: Dépensé par l'entreprise
+  question: Quel est le coût total de cette embauche ?
   description: |
-    Coût total d'embauche d'un salarié en incluant, en plus des éléments de
-    rémunération, les aides différées.
-    > C'est donc aussi une mesure de la valeur apportée par le salarié à
-    > l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du
-    > travail fourni.
+    Coût total d'embauche d'un salarié en incluant, en plus des éléments de rémunération, les aides différées.
+    > C'est donc aussi une mesure de la valeur apportée par le salarié à l'entreprise : l'employeur est prêt à verser cette somme en contrepartie du travail fourni.
 
-    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à
-    votre entreprise : recherche du bon candidat, poste de travail, équipement,
-    formation initiale, médecine du travail, etc.
+    À ce coût total, il ne faut pas oublier d'ajouter les dépenses spécifiques à votre entreprise : recherche du bon candidat, poste de travail, équipement, formation initiale, médecine du travail, etc.
+
   somme:
     - rémunération . brut
-    - rémunération . frais professionnels . déductible
     - cotisations . employeur
     - activité partielle . indemnités
     - régimes spécifiques . taxe sur les salaires
-    - régimes spécifiques . apprentissage . participation employeur
   abattement: aides
-  plancher: 0 €/an
   unité: €/mois
+  plancher: 0€/an

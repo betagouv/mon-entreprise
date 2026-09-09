@@ -8,6 +8,7 @@ import { DesignSystemThemeProvider } from '../root'
 import { StatusCard } from './StatusCard'
 
 const meta: Meta<typeof StatusCard> = {
+	title: 'Design System/Card/StatusCard',
 	component: StatusCard,
 	decorators: [
 		(Story) => (
@@ -124,47 +125,6 @@ export const PlusieursÉtiquettes: Story = {
 			<StatusCard.Titre>2 003 €/mois</StatusCard.Titre>
 			<StatusCard.ValeurSecondaire>
 				Soit 2 087 € avant impôts
-			</StatusCard.ValeurSecondaire>
-		</StatusCard>
-	),
-}
-
-export const OptionApplicable: Story = {
-	render: () => (
-		<StatusCard status="applicable">
-			<StatusCard.Étiquette>
-				<Tag color="tertiary">AE</Tag>
-			</StatusCard.Étiquette>
-			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
-			<StatusCard.ValeurSecondaire>Applicable</StatusCard.ValeurSecondaire>
-		</StatusCard>
-	),
-}
-
-export const OptionSousConditions: Story = {
-	render: () => (
-		<StatusCard status="sousConditions">
-			<StatusCard.Étiquette>
-				<Tag color="tertiary">AE</Tag>
-			</StatusCard.Étiquette>
-			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
-			<StatusCard.ValeurSecondaire>
-				Indiquez le classement du logement pour savoir si ce régime est
-				applicable
-			</StatusCard.ValeurSecondaire>
-		</StatusCard>
-	),
-}
-
-export const OptionNonApplicable: Story = {
-	render: () => (
-		<StatusCard status="nonApplicable">
-			<StatusCard.Étiquette>
-				<Tag color="tertiary">AE</Tag>
-			</StatusCard.Étiquette>
-			<StatusCard.Titre>Auto-entrepreneur</StatusCard.Titre>
-			<StatusCard.ValeurSecondaire>
-				Non applicable avec vos recettes actuelles
 			</StatusCard.ValeurSecondaire>
 		</StatusCard>
 	),

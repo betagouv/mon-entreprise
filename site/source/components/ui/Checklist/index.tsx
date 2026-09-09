@@ -115,18 +115,12 @@ export function Checklist({
 				throw new Error('Invalid child passed to Checklist')
 			}
 
-			const typedChild = child as React.ReactElement<{
-				name: string
-				defaultChecked?: boolean
-				onChange?: (isSelected: boolean) => void
-			}>
-
-			return React.cloneElement(typedChild, {
+			// @ts-ignore
+			return React.cloneElement<{ name: string }>(child, {
 				onChange: (isSelected: boolean) =>
-					onItemCheck?.(typedChild.props.name, isSelected),
+					onItemCheck?.(child.props.name, isSelected),
 				defaultChecked:
-					typedChild.props.defaultChecked ||
-					defaultChecked?.[typedChild.props.name],
+					child.props.defaultChecked || defaultChecked?.[child.props.name],
 			})
 		})
 

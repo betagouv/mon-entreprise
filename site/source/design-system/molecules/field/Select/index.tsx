@@ -1,13 +1,11 @@
+import { useButton } from '@react-aria/button'
+import { useFocusRing } from '@react-aria/focus'
+import { useSelect } from '@react-aria/select'
+import { mergeProps } from '@react-aria/utils'
+import { useSelectState } from '@react-stately/select'
+import type { AriaSelectProps } from '@react-types/select'
 import { useEffect, useRef } from 'react'
-import {
-	mergeProps,
-	useButton,
-	useFocusRing,
-	useSelect,
-	type AriaSelectProps,
-} from 'react-aria'
 import { useTranslation } from 'react-i18next'
-import { useSelectState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import { omit } from '@/utils'
@@ -17,7 +15,7 @@ import { CarretDownIcon } from '../../../icons'
 import { ListBox } from './ListBox'
 import { Popover } from './PopOver'
 
-const Label = styled.label`
+export const Label = styled.label`
 	display: block;
 	text-align: left;
 	top: 0%;
@@ -50,8 +48,8 @@ const Button = styled.button`
 	justify-content: space-between;
 	text-align: left;
 	appearance: none;
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	border: none;
 	width: 100%;
 	background: none;
@@ -74,8 +72,8 @@ const Button = styled.button`
 const Value = styled.span`
 	display: inline-flex;
 	align-items: center;
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	margin-top: 1rem;
 `
 
@@ -101,8 +99,8 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
 				? theme.colors.extended.dark[700]
 				: theme.colors.extended.dark[600]
 			: $isOpen
-				? theme.colors.extended.grey[200]
-				: theme.colors.extended.grey[100]};
+			? theme.colors.extended.grey[200]
+			: theme.colors.extended.grey[100]};
 	align-items: center;
 	transition: all 0.2s;
 
@@ -111,8 +109,8 @@ const Wrapper = styled.div<{ $isOpen: boolean }>`
 	}
 
 	${Button}:not(:focus):placeholder-shown + ${Button} {
-		font-size: ${({ theme }) => theme.fontSizes.base};
-		line-height: ${({ theme }) => theme.lineHeights.base};
+		font-size: 1rem;
+		line-height: 1.5rem;
 		top: 50%;
 		transform: translateY(-50%);
 	}

@@ -1,11 +1,10 @@
+import { DottedName } from 'modele-social'
 import { ASTNode, formatValue } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { keyframes, styled } from 'styled-components'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/utils/publicodes/EngineContext'
-
 import RuleLink from '../RuleLink'
+import { useEngine } from '../utils/EngineContext'
 import { ValueProps } from './types'
 
 export default function Value<Names extends string>({
@@ -53,7 +52,7 @@ export default function Value<Names extends string>({
 				dottedName={dottedName}
 				documentationPath={documentationPath}
 				aria-label={t(
-					'components.engine-value.voir-la-documentation',
+					'composants.engine-value.voir-la-documentation',
 					'Voir la documentation du calcul de {{valeur}}',
 					{ valeur: value.replace(/(\d)\s+(\d)/g, '$1$2') }
 				)}

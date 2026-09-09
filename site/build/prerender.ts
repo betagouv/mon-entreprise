@@ -37,6 +37,8 @@ export const pagesToPrerender: {
 		'/iframes/medecin',
 		'/iframes/choix-statut-juridique',
 		sitePathFr.assistants['choix-du-statut'].index,
+		sitePathFr.assistants['déclaration-charges-sociales-indépendant'],
+		sitePathFr.assistants['déclaration-revenus-pamc'],
 		sitePathFr.assistants['recherche-code-ape'],
 		sitePathFr.index,
 		sitePathFr.simulateursEtAssistants,
@@ -65,6 +67,7 @@ export const pagesToPrerender: {
 		sitePathFr.simulateurs['profession-libérale'].médecin,
 		sitePathFr.simulateurs['profession-libérale'].pharmacien,
 		sitePathFr.simulateurs['profession-libérale']['sage-femme'],
+		sitePathFr.simulateurs['réduction-générale'],
 	].map((val) => encodeURI(val)),
 	infrance: [
 		sitePathEn.index,
@@ -83,7 +86,7 @@ const redirects = await Promise.all(
 			}) as Promise<string>)
 
 			// eslint-disable-next-line no-console
-			console.log(`prerendering ${url} done, adding redirect`)
+			console.log(`preredering ${url} done, adding redirect`)
 
 			return `
 [[redirects]]

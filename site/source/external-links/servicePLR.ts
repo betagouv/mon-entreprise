@@ -4,9 +4,10 @@ import { URSSAF } from '@/utils/logos'
 export const servicePLR = {
 	associatedRule: {
 		'toutes ces conditions': [
-			'indépendant . profession libérale . réglementée',
-			"indépendant . profession libérale . réglementée . métier != 'expert-comptable'",
-			'indépendant . profession libérale . réglementée . PAMC = non',
+			'dirigeant . indépendant . PL',
+			'entreprise . activité . nature . libérale . réglementée',
+			"dirigeant . indépendant . PL . métier != 'expert-comptable'",
+			'dirigeant . indépendant . PL . PAMC = non',
 		],
 	},
 	url: 'https://www.urssaf.fr/accueil/services/services-independants/service-plr.html',

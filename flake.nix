@@ -2,7 +2,7 @@
   description = "Mon Entreprise";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   };
 
   outputs = { self, nixpkgs }:
@@ -18,10 +18,9 @@
         {
           default = pkgs.mkShell {
             nativeBuildInputs = with pkgs; [
-              nodejs_24
+              nodejs-18_x
               yarn
               cypress
-              scalingo
             ];
 
             shellHook = ''

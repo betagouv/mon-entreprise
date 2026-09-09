@@ -1,13 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
-import styled from 'styled-components'
 
-import {
-	ArrowDownIcon,
-	EditIcon,
-	LinkIcon,
-	PhoneIcon,
-	ReturnLeftIcon,
-} from '../icons'
 import { Button } from './'
 
 const meta: Meta<typeof Button> = {
@@ -21,104 +13,18 @@ export default meta
 
 type Story = StoryObj<typeof Button>
 
-export const Tailles: Story = {
-	render: () => (
-		<Ligne>
-			<Button size="XL">Bouton XL</Button>
-			<Button size="MD">Bouton MD</Button>
-			<Button size="XS">Bouton XS</Button>
-			<Button size="XXS">Bouton XXS</Button>
-		</Ligne>
-	),
+export const Primary: Story = {
+	args: {
+		size: 'XL',
+		color: 'primary',
+		children: 'Primary XL button',
+	},
 }
 
-export const Couleurs: Story = {
-	render: () => (
-		<>
-			<Ligne>
-				<Button color="primary">Primary</Button>
-				<Button color="secondary">Secondary</Button>
-				<Button color="tertiary">Tertiary</Button>
-				<Button color="error">Error</Button>
-				<Button color="success">Success</Button>
-			</Ligne>
-			<br />
-			<Ligne>
-				<Button color="primary" light>
-					Primary light
-				</Button>
-				<Button color="secondary" light>
-					Secondary light
-				</Button>
-				<Button color="tertiary" light>
-					Tertiary light
-				</Button>
-				<Button color="error" light>
-					Error light
-				</Button>
-				<Button color="success" light>
-					Success light
-				</Button>
-			</Ligne>
-		</>
-	),
+export const Secondary: Story = {
+	args: {
+		size: 'XS',
+		color: 'secondary',
+		children: 'Secondary XS button',
+	},
 }
-
-export const AvecIcône: Story = {
-	render: () => (
-		<>
-			<Ligne>
-				<Button color="primary">
-					<ArrowDownIcon /> Primary
-				</Button>
-				<Button color="secondary">
-					<LinkIcon /> Secondary
-				</Button>
-				<Button color="tertiary">
-					<PhoneIcon /> Tertiary
-				</Button>
-				<Button color="error">
-					<ReturnLeftIcon /> Error
-				</Button>
-				<Button color="success">
-					<EditIcon /> Success
-				</Button>
-			</Ligne>
-			<br />
-			<Ligne>
-				<Button color="primary" light>
-					<ArrowDownIcon /> Primary light
-				</Button>
-				<Button color="secondary" light>
-					<LinkIcon /> Secondary light
-				</Button>
-				<Button color="tertiary" light>
-					<PhoneIcon /> Tertiary light
-				</Button>
-				<Button color="error" light>
-					<ReturnLeftIcon /> Error light
-				</Button>
-				<Button color="success" light>
-					<EditIcon /> Success light
-				</Button>
-			</Ligne>
-		</>
-	),
-}
-
-export const Disabled: Story = {
-	render: () => (
-		<Ligne>
-			<Button isDisabled>Bouton désactivé</Button>
-			<Button isDisabled light>
-				Bouton light désactivé
-			</Button>
-		</Ligne>
-	),
-}
-
-const Ligne = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-`

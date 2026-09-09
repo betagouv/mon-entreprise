@@ -1,26 +1,29 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import { Action, enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
+import {
+	Action,
+	enregistreLaRéponse as updateSituationAction,
+} from '@/store/actions/actions'
 import { simulationReducer } from '@/store/reducers/simulation.reducer'
-import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulation.selector'
+import { PreviousSimulation } from '@/store/selectors/previousSimulationSelectors'
 import situationReducer from '@/store/slices/simulateursSlice'
-import { simulationSourceReducer } from '@/store/slices/simulationSource.slice'
 
+import choixStatutJuridique from './choixStatutJuridiqueReducer'
 import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
-export type { PublicodesSimulationConfig, SituationPublicodes }
+export type { SimulationConfig, SituationPublicodes }
 
 function activeTargetInput(state: DottedName | null = null, action: Action) {
 	switch (action.type) {
-		case 'SET_ACTIVE_TARGET':
+		case 'SET_ACTIVE_TARGET_INPUT':
 			return action.name
-		case 'RÉINITIALISE_LA_SIMULATION':
+		case 'RESET_SIMULATION':
 			return null
 		default:
 			return state
@@ -28,7 +31,7 @@ function activeTargetInput(state: DottedName | null = null, action: Action) {
 }
 
 function batchUpdateSituationReducer(state: RootState, action: Action) {
-	if (action.type !== 'ENREGISTRE_LES_RÉPONSES_AUX_QUESTIONS') {
+	if (action.type !== 'BATCH_UPDATE_SITUATION') {
 		return state
 	}
 
@@ -36,10 +39,7 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 		(newState, [fieldName, value]) =>
 			mainReducer(
 				newState ?? undefined,
-				enregistreLaRéponseÀLaQuestion(
-					fieldName as DottedName,
-					O.getOrUndefined(value)
-				)
+				updateSituationAction(fieldName as DottedName, O.getOrUndefined(value))
 			),
 		state
 	)
@@ -50,8 +50,8 @@ const mainReducer = combineReducers({
 	companySituation,
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
+	choixStatutJuridique,
 	situation: situationReducer,
-	simulationSource: simulationSourceReducer,
 })
 
 export default reduceReducers<RootState>(

@@ -1,8 +1,15 @@
-import React, { ForwardedRef, useCallback, useRef } from 'react'
-import { AriaButtonOptions, AriaButtonProps, useButton } from 'react-aria'
+import { useButton } from '@react-aria/button'
+import { AriaButtonProps } from '@react-types/button'
+import React, {
+	ComponentProps,
+	ComponentPropsWithRef,
+	ForwardedRef,
+	useCallback,
+	useRef,
+} from 'react'
+import { NavLink } from 'react-router-dom'
 import { css, styled } from 'styled-components'
 
-import { NavLinkProps, useNavigation } from '@/lib/navigation'
 import { omit } from '@/utils'
 
 export const StyledLinkHover = css`
@@ -13,12 +20,12 @@ export const StyledLinkHover = css`
 			: theme.colors.bases.primary[800]};
 `
 
-export type StyledLinkProps = {
+interface StyledLinkProps {
 	$isDisabled?: boolean
 	$noUnderline?: boolean
 }
 
-export const StyledLinkStyle = css<StyledLinkProps>`
+export const StyledLink = styled.a<StyledLinkProps>`
 	color: ${({ theme, $isDisabled }) =>
 		$isDisabled
 			? theme.colors.extended.grey[600]
@@ -40,7 +47,9 @@ export const StyledLinkStyle = css<StyledLinkProps>`
 	font-weight: 700;
 	text-decoration: ${({ $noUnderline }) =>
 		$noUnderline ? 'none' : 'underline'};
+	padding: 0;
 	font-size: inherit;
+	background: none;
 	border: none;
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	&:hover {
@@ -51,12 +60,9 @@ export const StyledLinkStyle = css<StyledLinkProps>`
 			$isDisabled
 				? css`
 						outline: none;
-					`
+				  `
 				: ''}
 	}
-`
-export const StyledLink = styled.a<StyledLinkProps>`
-	${StyledLinkStyle}
 `
 
 export const Link = React.forwardRef<
@@ -111,7 +117,6 @@ export function useExternalLinkProps({
 		children: children && (
 			<>
 				{children}
-				{'\u00A0'}
 				<NewWindowLinkIcon />
 			</>
 		),
@@ -125,13 +130,12 @@ export function useExternalLinkProps({
  * they are functions and we pass them to NavLink here
  */
 const CustomNavLink = React.forwardRef(function CustomNavLink(
-	props: NavLinkProps & {
-		_style?: NavLinkProps['style']
-		_className?: NavLinkProps['className']
+	props: ComponentProps<typeof NavLink> & {
+		_style?: ComponentProps<typeof NavLink>['style']
+		_className?: ComponentProps<typeof NavLink>['className']
 	},
 	forwardedRef: ForwardedRef<HTMLAnchorElement | null>
 ) {
-	const { NavLink } = useNavigation()
 	const navLinkProps = { ...props }
 	delete navLinkProps._style
 	delete navLinkProps._className
@@ -163,7 +167,7 @@ const CustomNavLink = React.forwardRef(function CustomNavLink(
 
 export type GenericButtonOrNavLinkProps = (
 	| AriaButtonProps<'a'>
-	| (AriaButtonProps<'a'> & NavLinkProps)
+	| (AriaButtonProps<typeof NavLink> & ComponentPropsWithRef<typeof NavLink>)
 	| AriaButtonProps<'button'>
 ) & {
 	openInSameWindow?: true
@@ -177,10 +181,7 @@ export function useButtonOrLink(
 		'href' in props ? 'a' : 'to' in props ? CustomNavLink : 'button'
 
 	const defaultRef = useRef<HTMLAnchorElement | HTMLButtonElement | null>(null)
-	const { buttonProps } = useButton(
-		{ elementType, ...props } as AriaButtonOptions<typeof elementType>,
-		defaultRef
-	)
+	const { buttonProps } = useButton({ elementType, ...props }, defaultRef)
 
 	const ref = useCallback(
 		(instance: HTMLAnchorElement | HTMLButtonElement | null) => {

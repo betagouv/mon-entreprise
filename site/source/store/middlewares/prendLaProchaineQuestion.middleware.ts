@@ -9,117 +9,108 @@ import { Dispatch, Middleware } from 'redux'
 
 import { isComparateurConfig } from '@/domaine/ComparateurConfig'
 import { détermineLesProchainesQuestions } from '@/domaine/engine/détermineLesProchainesQuestions'
-import { getOrCreateEnginePromise } from '@/domaine/engine/engineCache'
 import {
 	Action,
 	applicabilitéDesQuestionsRépondues,
-	metÀJourLesQuestionsSuivantes,
+	questionsSuivantes,
 } from '@/store/actions/actions'
 import {
-	PublicodesSimulationConfig,
 	RootState,
+	SimulationConfig,
 	SituationPublicodes,
 } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
-import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
-import { completeSituationsSelonContextesSelector } from '@/store/selectors/completeSituationSelonContextes.selector'
+import {
+	completeSituationSelector,
+	rawSituationsSelonContextesSelector,
+} from '@/store/selectors/simulationSelectors'
 import { complement } from '@/utils/complement'
-import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
 let lastSimulation: Simulation | null = null
-let lastConfig: PublicodesSimulationConfig | null = null
+let lastConfig: SimulationConfig | null = null
 let lastSituationsAvecContextes: NonEmptyArray<SituationPublicodes> | null =
 	null
 let engines: NonEmptyArray<Engine> | null = null
 
-export const prendLaProchaineQuestionMiddleware: Middleware<
-	object,
-	RootState,
-	Dispatch<Action>
-> = (store) => (next) => async (action: Action) => {
-	const result = next(action)
+export const prendLaProchaineQuestionMiddleware =
+	(engine: Engine): Middleware<object, RootState, Dispatch<Action>> =>
+	(store) =>
+	(next) =>
+	(action) => {
+		const result = next(action)
 
-	const newState = store.getState()
+		const newState = store.getState()
 
-	const simulation = newState.simulation
-	const situation = completeSituationSelector(newState)
-	const questionsRépondues = simulation?.questionsRépondues
-	const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
+		const simulation = newState.simulation
+		const config = simulation?.config
+		const situation = completeSituationSelector(newState)
+		const questionsRépondues = simulation?.questionsRépondues
+		const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
 
-	const config = simulation?.config
+		const configHasChanged = lastConfig !== config
 
-	if (!config) {
-		return result
-	}
+		if (config && configHasChanged) {
+			engines = isComparateurConfig(config)
+				? (config.contextes.map(() =>
+						engine.shallowCopy()
+				  ) as NonEmptyArray<Engine>)
+				: [engine]
+			lastSituationsAvecContextes = null
+		}
 
-	const engine = await getOrCreateEnginePromise(config.nomModèle!)
-	const configHasChanged = lastConfig !== config
+		if (action.type === 'SET_SIMULATION') {
+			lastConfig = null
+			lastSituationsAvecContextes = null
+			lastSimulation = null
+		}
 
-	if (config && configHasChanged) {
-		engines = isComparateurConfig(config)
-			? (config.contextes.map(() =>
-					engine.shallowCopy()
-				) as NonEmptyArray<Engine>)
-			: [engine]
-		lastSituationsAvecContextes = null
-	}
+		if (situation && config && engines && simulation !== lastSimulation) {
+			const situationsAvecContextes =
+				rawSituationsSelonContextesSelector(newState)
 
-	if (action.type === 'CONFIGURE_LA_SIMULATION') {
-		lastConfig = null
-		lastSituationsAvecContextes = null
-		lastSimulation = null
-	}
+			const situationAChangé =
+				!!lastSituationsAvecContextes &&
+				!deepEql<
+					NonEmptyArray<SituationPublicodes>,
+					NonEmptyArray<SituationPublicodes>
+				>(situationsAvecContextes, lastSituationsAvecContextes)
 
-	if (situation && config && engines && simulation !== lastSimulation) {
-		const situationsAvecContextes =
-			completeSituationsSelonContextesSelector(newState)
+			if (!lastSituationsAvecContextes || situationAChangé) {
+				lastSituationsAvecContextes = situationsAvecContextes
 
-		const situationAChangé =
-			!!lastSituationsAvecContextes &&
-			!deepEql<
-				NonEmptyArray<SituationPublicodes>,
-				NonEmptyArray<SituationPublicodes>
-			>(situationsAvecContextes, lastSituationsAvecContextes)
+				engines.forEach((engine, index) => {
+					engine.setSituation(situationsAvecContextes[index])
+				})
 
-		if (!lastSituationsAvecContextes || situationAChangé) {
-			lastSituationsAvecContextes = situationsAvecContextes
+				lastSimulation = simulation
+				lastConfig = config
 
-			engines.forEach((engine, index) => {
-				safeSetSituation(
-					(s) => engine.setSituation(s),
-					situationsAvecContextes[index]
+				store.dispatch(
+					applicabilitéDesQuestionsRépondues(
+						(questionsRépondues || []).map((question) => ({
+							...question,
+							applicable:
+								engine.evaluate({ 'est applicable': question.règle })
+									.nodeValue === true,
+						}))
+					)
 				)
-			})
 
-			lastSimulation = simulation
-			lastConfig = config
-
-			store.dispatch(
-				applicabilitéDesQuestionsRépondues(
-					(questionsRépondues || []).map((question) => ({
-						...question,
-						applicable:
-							engine.evaluate({ 'est applicable': question.règle })
-								.nodeValue === true,
-					}))
+				const prochainesQuestions = détermineLesProchainesQuestions(
+					engines,
+					config,
+					questionsRépondues
 				)
-			)
 
-			const prochainesQuestions = détermineLesProchainesQuestions(
-				engines,
-				config,
-				questionsRépondues
-			)
-
-			if (
-				arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
-			) {
-				store.dispatch(metÀJourLesQuestionsSuivantes(prochainesQuestions))
+				if (
+					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
+				) {
+					store.dispatch(questionsSuivantes(prochainesQuestions))
+				}
 			}
 		}
-	}
 
-	return result
-}
+		return result
+	}
 
 const arraysAreDifferent = complement(Array.getEquivalence(String.Equivalence))

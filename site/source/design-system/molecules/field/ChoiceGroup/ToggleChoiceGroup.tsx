@@ -1,4 +1,5 @@
 import { Key } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Radio, ToggleGroup } from '../Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -11,7 +12,7 @@ export interface ToggleChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -23,13 +24,17 @@ export default function ToggleChoiceGroup({
 	autoFocus,
 	defaultValue,
 	options,
-	aria,
+	aria = {},
 }: ToggleChoiceGroupProps) {
+	const { t } = useTranslation()
+
 	return (
 		<ToggleGroup
-			aria-label=""
-			aria-labelledby={aria?.labelledby}
-			aria-describedby={aria?.describedby}
+			aria-label={
+				aria.label ||
+				t('conversation.multiple-answer.aria-label', 'Choix multiples')
+			}
+			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}
 		>

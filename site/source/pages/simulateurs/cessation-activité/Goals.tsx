@@ -1,102 +1,49 @@
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
 import ChiffreAffairesActivitéMixte from '@/components/ChiffreAffairesActivitéMixte'
 import { Condition } from '@/components/EngineValue/Condition'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
-import { DateCessationQuestion } from '@/pages/simulateurs/cessation-activité/components/DateCessationQuestion'
-import { RégimeImpositionQuestion } from '@/pages/simulateurs/cessation-activité/components/RégimeImpositionQuestion'
-import { useEngine } from '@/utils/publicodes/EngineContext'
-
-import { AvertissementAnnéeDeSimulationModifiée } from './components/AvertissementAnnéeDeSimulationModifiée'
+import { CessationActivitéToggles } from '@/pages/simulateurs/cessation-activité/Toggles'
 
 export const CessationActivitéGoals = () => {
-	const engine = useEngine()
-	const dividendesValue = engine.evaluate('indépendant . dividendes')
-		.nodeValue as number
-	const dividendesVersés = dividendesValue > 0
 	const { t } = useTranslation()
 
 	return (
-		<SimulationGoals
-			toggles={
-				<LeftAlignedContainer>
-					<DateCessationQuestion />
-					<RégimeImpositionQuestion />
-					<AvertissementAnnéeDeSimulationModifiée />
-				</LeftAlignedContainer>
-			}
-		>
+		<SimulationGoals toggles={<CessationActivitéToggles />}>
 			<Condition expression="entreprise . imposition = 'IR'">
-				<Condition expression="entreprise . imposition . IR . régime micro-fiscal = non">
+				<Condition expression="entreprise . imposition . régime . micro-entreprise = non">
 					<SimulationGoal
 						appear={false}
 						dottedName="entreprise . chiffre d'affaires"
-						label={t(
-							'pages.simulateurs.cessation-activité.label.chiffre-affaires',
-							"Chiffre d'affaires pour l'année de cessation"
-						)}
+						label={t("Chiffre d'affaires pour l'année de cessation")}
 					/>
+				</Condition>
+				<Condition expression="entreprise . imposition . régime . micro-entreprise">
+					<ChiffreAffairesActivitéMixte dottedName="entreprise . chiffre d'affaires" />
+				</Condition>
+				<Condition expression="entreprise . imposition . régime . micro-entreprise != oui">
 					<SimulationGoal appear={false} dottedName="entreprise . charges" />
 				</Condition>
-
-				<Condition expression="entreprise . imposition . IR . régime micro-fiscal">
-					<ChiffreAffairesActivitéMixte
-						dottedName="entreprise . chiffre d'affaires"
-						label={t(
-							'pages.simulateurs.cessation-activité.label.chiffre-affaires',
-							"Chiffre d'affaires pour l'année de cessation"
-						)}
-					/>
-				</Condition>
-
-				<SimulationGoal
-					small
-					editable={false}
-					dottedName="indépendant . cotisations et contributions"
-					label={t(
-						'pages.simulateurs.cessation-activité.label.cotisations',
-						"Total des cotisations à devoir pour l'année de cessation d'activité"
-					)}
-				/>
 			</Condition>
-
 			<Condition expression="entreprise . imposition = 'IS'">
 				<SimulationGoal
 					appear={false}
-					dottedName="indépendant . rémunération . brute"
-					label={t(
-						'pages.simulateurs.cessation-activité.label.rémunération',
-						"Rémunération brute pour l'année de cessation"
-					)}
+					dottedName="dirigeant . rémunération . totale"
+					label={t("Rémunération totale pour l'année de cessation")}
 				/>
+			</Condition>
 
-				<SimulationGoal
-					appear={false}
-					dottedName="indépendant . dividendes . soumis à prélèvements sociaux"
-				/>
-				<SimulationGoal
-					appear={false}
-					dottedName="indépendant . dividendes . soumis à cotisations sociales"
-				/>
-
-				<SimulationGoal
-					small={!dividendesVersés}
-					editable={false}
-					dottedName="indépendant . cotisations et contributions . avec dividendes"
-					label={t(
-						'pages.simulateurs.cessation-activité.label.cotisations',
-						"Total des cotisations à devoir pour l'année de cessation d'activité"
-					)}
-				/>
+			<SimulationGoal
+				small
+				editable={false}
+				dottedName="dirigeant . indépendant . cotisations et contributions"
+				label={t(
+					"Total des cotisations à devoir pour l'année de cessation d'activité"
+				)}
+			/>
+			<Condition expression="entreprise . imposition . régime . micro-entreprise">
+				<SimulationGoal appear={false} dottedName="entreprise . charges" />
 			</Condition>
 		</SimulationGoals>
 	)
 }
-
-const LeftAlignedContainer = styled.div`
-	text-align: left;
-	display: flex;
-	flex-direction: column;
-	row-gap: ${({ theme }) => theme.spacings.sm};
-`

@@ -1,17 +1,22 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
+import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Body, H3, InfoButton, MontantField, Strong } from '@/design-system'
+import {
+	Body,
+	H3,
+	HelpButtonWithPopover,
+	MontantField,
+	Strong,
+} from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { Montant } from '@/domaine/Montant'
-import { eurosParAn } from '@/domaine/MontantRecurrent'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { eurosParAn, Montant } from '@/domaine/Montant'
+import { batchUpdateSituation } from '@/store/actions/actions'
 import { debounce } from '@/utils'
-import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -37,17 +42,14 @@ function RémunérationEntrepriseUnipersonnelle() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="pages.assistants.choix-statut.rémunération.CA.title">
-						La première année, j'estime mon chiffre d'affaires à…
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.rémunération.CA.help.subject',
-								'le chiffre d’affaires'
+					<Trans i18nKey="choix-statut.rémunération.CA.title">
+						La première année, j'estime mon chiffre d'affaires à...
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.rémunération.CA.help.title',
+								'Estimer mon chiffre d’affaire'
 							)}
-							popoverTitle={t(
-								'pages.assistants.choix-statut.rémunération.CA.help.title',
-								'Estimer mon chiffre d’affaires'
-							)}
+							type="info"
 						>
 							<Body>
 								Le chiffre d’affaires est la{' '}
@@ -55,7 +57,7 @@ function RémunérationEntrepriseUnipersonnelle() {
 								votre exercice comptable (un an) :{' '}
 								<pre>CA = prix de vente × quantités vendues</pre>.
 							</Body>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</Trans>
 				}
 			>
@@ -66,23 +68,20 @@ function RémunérationEntrepriseUnipersonnelle() {
 						setState({ CA: m })
 					}}
 					label={t(
-						'pages.assistants.choix-statut.rémunération.CA.label',
+						'choix-statut.rémunération.CA.label',
 						"Montant du chiffre d'affaires HT"
 					)}
 					id="CA"
 				/>
-				<Trans i18nKey="pages.assistants.choix-statut.rémunération.charges.title">
+				<Trans i18nKey="choix-statut.rémunération.charges.title">
 					<H3 as="h2">
-						J'estime mes charges professionnelles à…
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.rémunération.charges.help.subject',
-								'les charges'
-							)}
-							popoverTitle={t(
-								'pages.assistants.choix-statut.rémunération.charges.help.title',
+						J'estime mes charges professionnelles à...
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.rémunération.charges.help.title',
 								'Définir vos charges professionnelles'
 							)}
+							type="info"
 						>
 							<Body>
 								Ce sont{' '}
@@ -93,14 +92,14 @@ function RémunérationEntrepriseUnipersonnelle() {
 								: expertise-comptable, abonnement téléphonique, abonnement
 								internet, mutuelle, prévoyance, outils de travail, etc.
 							</Body>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</H3>
 				</Trans>
 				<MontantField
 					value={charges}
 					unité="€/an"
 					label={t(
-						'pages.assistants.choix-statut.rémunération.charges.label',
+						'choix-statut.rémunération.charges.label',
 						'Montant des charges HT'
 					)}
 					onChange={(m) => setState({ charges: m })}
@@ -122,14 +121,15 @@ function RémunérationSociétéAssociésMultiples() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="pages.assistants.choix-statut.rémunération.totale.title">
+					<Trans i18nKey="choix-statut.rémunération.totale.title">
 						En tant que dirigeant, je souhaite que l'entreprise me rémunère en
-						dépensant au total…
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.rémunération.totale.help.title',
+						dépensant au total...
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.rémunération.totale.help.title',
 								'Rémunération totale du dirigeant'
 							)}
+							type="info"
 						>
 							<Body>
 								C'est ce que l'entreprise dépense en tout pour la rémunération
@@ -137,7 +137,7 @@ function RémunérationSociétéAssociésMultiples() {
 								cotisations sociales à payer. On peut aussi considérer que c'est
 								la valeur monétaire du travail du dirigeant.
 							</Body>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</Trans>
 				}
 			>
@@ -150,7 +150,7 @@ function RémunérationSociétéAssociésMultiples() {
 					unité="€/an"
 					onChange={(m) => setState({ rémunérationTotale: m?.valeur })}
 					label={t(
-						'pages.assistants.choix-statut.rémunération.rémunérationTotale.label',
+						'choix-statut.rémunération.rémunérationTotale.label',
 						'Montant de la rémunération totale'
 					)}
 					id="rémunérationTotale"
@@ -182,7 +182,7 @@ function useChiffreAffairesState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: CAState) => {
 			dispatch(
-				enregistreLesRéponsesAuxQuestions({
+				batchUpdateSituation({
 					"entreprise . chiffre d'affaires": O.some(newState.CA),
 					'entreprise . charges': O.some(newState.charges),
 					'dirigeant . rémunération . totale': O.none(),
@@ -231,7 +231,7 @@ function useRémunérationTotaleState(): [
 	const debouncedUpdateSituation = useCallback(
 		debounce(1000, (newState: RémunérationState) => {
 			dispatch(
-				enregistreLesRéponsesAuxQuestions({
+				batchUpdateSituation({
 					"entreprise . chiffre d'affaires": O.none(),
 					'entreprise . charges': O.none(),
 					'dirigeant . rémunération . totale': O.fromNullable(

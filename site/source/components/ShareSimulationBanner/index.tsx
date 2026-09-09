@@ -8,10 +8,9 @@ import {
 	PopoverWithTrigger,
 	Spacing,
 } from '@/design-system'
-import { useTracking } from '@/hooks/useTracking'
 import { useUrl } from '@/hooks/useUrl'
 
-import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/BoutonConseillersEntreprises'
+import { useTracking } from '../ATInternetTracking'
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
@@ -23,16 +22,16 @@ export interface CustomSimulationButton {
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
-	conseillersEntreprisesVariant,
+	conseillersEntreprises,
 	customSimulationbutton,
 }: {
 	share?: boolean
 	print?: boolean
-	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
+	conseillersEntreprises?: boolean
 	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
-	const { trackClick } = useTracking()
+	const tracker = useTracking()
 	const shareAPIAvailable = !!window?.navigator?.share
 	const url = useUrl()
 	const startSharing = async () => {
@@ -89,14 +88,15 @@ export default function ShareOrSaveSimulationBanner({
 									light
 									size="XS"
 									onPress={(e) => {
-										trackClick({
-											action: 'démarré',
-											feature: 'feature:partage',
+										tracker?.sendEvent('click.action', {
+											click_chapter1: 'feature:partage',
+											click: 'démarré',
 										})
 										startSharing().catch(
 											// eslint-disable-next-line no-console
 											(err) => console.error(err)
 										)
+
 										buttonProps?.onPress?.(e)
 									}}
 									aria-haspopup="dialog"
@@ -134,11 +134,9 @@ export default function ShareOrSaveSimulationBanner({
 					</Grid>
 				)}
 
-				{conseillersEntreprisesVariant && (
+				{conseillersEntreprises && (
 					<Grid as="li" item xs={12} sm="auto">
-						<ConseillersEntreprisesButton
-							variant={conseillersEntreprisesVariant}
-						/>
+						<ConseillersEntreprisesButton variant="recrutement" />
 					</Grid>
 				)}
 			</Grid>

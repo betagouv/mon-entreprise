@@ -1,34 +1,34 @@
 import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { useSetupSafeSituation } from '@/hooks/useSetupSafeSituation'
 import {
-	chargeLaSimulationPrécédente,
-	configureLaSimulation,
+	useEngine,
+	useSetupSafeSituation,
+} from '@/components/utils/EngineContext'
+import {
+	loadPreviousSimulation,
+	setSimulationConfig,
 } from '@/store/actions/actions'
-import { PublicodesSimulationConfig } from '@/store/reducers/rootReducer'
-import { configSelector } from '@/store/selectors/simulation/config/config.selector'
-import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { configSelector } from '@/store/selectors/config.selector'
 
 export default function useSimulationConfig({
 	key,
-	url,
 	config,
+	autoloadLastSimulation = false,
 }: {
 	key: string
-	url: string
-	config?: PublicodesSimulationConfig
+	config?: SimulationConfig
+	autoloadLastSimulation?: boolean
 }) {
-	const autoloadLastSimulation = config?.autoloadLastSimulation ?? false
 	const dispatch = useDispatch()
 
 	// Initialize redux store in SSR mode
 	if (import.meta.env.SSR) {
-		dispatch(configureLaSimulation(config ?? {}, url, key))
+		dispatch(setSimulationConfig(config ?? {}, key))
 	}
 
 	const lastConfig = useSelector(configSelector)
-	const lastKey = useSelector(simulationKeySelector)
 
 	// useLayoutEffect like useEffect does nothing in SSR mode but triggers a warning,
 	// so we replace it with useEffect which does not trigger any warning
@@ -37,13 +37,13 @@ export default function useSimulationConfig({
 		: useLayoutEffect
 
 	useLayoutEffectWithoutWarnInSSR(() => {
-		if (key !== lastKey || (config && lastConfig !== config)) {
-			dispatch(configureLaSimulation(config ?? {}, url, key))
+		if (config && lastConfig !== config) {
+			dispatch(setSimulationConfig(config ?? {}, key))
 		}
 		if (autoloadLastSimulation) {
-			dispatch(chargeLaSimulationPrécédente())
+			dispatch(loadPreviousSimulation())
 		}
 	}, [config, dispatch, lastConfig, key])
 
-	useSetupSafeSituation(config?.nomModèle)
+	useSetupSafeSituation(useEngine())
 }

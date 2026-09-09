@@ -26,20 +26,17 @@ export type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	components?: MarkdownToJSX.Overrides
 	renderers?: Record<string, unknown>
 	as?: string
-	htmlFor?: string
 }
 
 export function Markdown({
 	children,
 	components = {},
 	as,
-	htmlFor,
 	...otherProps
 }: MarkdownProps) {
 	return (
 		<MarkdownToJsx
 			as={as}
-			htmlFor={htmlFor}
 			options={{
 				forceBlock: true,
 				...otherProps.options,

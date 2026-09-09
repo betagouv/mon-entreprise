@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const ISSimulationConfig: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+const ISSimulationConfig: SimulationConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		salarié: 'non',
@@ -10,3 +9,5 @@ export const ISSimulationConfig: PublicodesSimulationConfig = {
 		'entreprise . TVA . franchise de TVA': 'non',
 	},
 }
+
+export default ISSimulationConfig

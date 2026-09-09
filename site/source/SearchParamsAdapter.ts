@@ -1,7 +1,7 @@
 import { isMontant, montant, Montant } from '@/domaine/Montant'
-import { isQuantité, Quantité, quantité } from '@/domaine/Quantite'
+import { isQuantité, Quantité, quantité } from '@/domaine/Quantité'
 
-import { isUnitéMonétaire, isUnitéQuantité } from './domaine/Unites'
+import { isUnitéMonétaire, isUnitéQuantité } from './domaine/Unités'
 
 export type ValeurDomaine = string | Montant | Quantité | number
 

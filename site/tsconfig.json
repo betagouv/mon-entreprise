@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"lib": ["ESNext", "DOM", "WebWorker"],
 		"baseUrl": "source",
-		"moduleResolution": "bundler",
+		"moduleResolution": "node",
 		"module": "esnext",
 		"target": "esnext",
 		"esModuleInterop": true,
@@ -23,22 +23,13 @@
 			"./types"
 		],
 		"noEmit": true,
-		"strict": true,
-		"skipLibCheck": true,
-		"incremental": true,
-		"plugins": [
-			{
-				"name": "next"
-			}
-		]
+		"strict": true
 	},
 	"ts-node": {
 		"transpileOnly": true
 	},
 	"include": [
 		"source",
-		"app",
-		"instrumentation.ts",
 		"scripts",
 		"build",
 		"test/**/*.ts",
@@ -48,9 +39,6 @@
 		"build/vite-build-simulation-data.config.ts",
 		"build/prerender.ts",
 		"vite-pwa-options.ts",
-		"vitest-setup.ts",
-		".next/types/**/*.ts",
-		".next/dev/types/**/*.ts"
-	],
-	"exclude": ["node_modules"]
+		"vitest-setup.ts"
+	]
 }

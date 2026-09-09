@@ -1,140 +1,150 @@
 médecin:
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
+  - dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 50000 €/an
   - # Secteur 2 dépassement honoraire
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 10000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 50000 €/an
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
+    dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 20%
   - # Secteur 2 avec dépassement honoraire et grosse rémunération
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 300000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 150000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 300000 €/an
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
+    dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
   - # Secteur 2 avec grosse rémunération et activité non conventionnée
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 400000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'S2'"
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 80000 €/an
-    indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée: 160000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 400000 €/an
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'S2'"
+    dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 50%
+    dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée: 40%
   - # Non conventionné
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 120000 €/an
-    indépendant . profession libérale . réglementée . métier . santé . médecin . secteur: "'non conventionné'"
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 120000 €/an
+    dirigeant . indépendant . PL . métier . santé . médecin . secteur: "'non conventionné'"
   - # < 2 ans exercice
-    entreprise . imposition: "'IS'"
-    entreprise . date de création: 01/01/2025
-    indépendant . profession libérale . réglementée . métier: "'santé . médecin'"
-    indépendant . rémunération . brute: 50000 €/an
+    entreprise . date de création: 01/01/2023
+    dirigeant . indépendant . PL . métier: "'santé . médecin'"
+    dirigeant . rémunération . totale: 50000 €/an
 
 sage-femme:
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 50000 €/an
+  - dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 50000 €/an
   - # Réduction retraite complémentaire
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 20000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 20000 €/an
   - # Exonération RID
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . sage-femme'"
-    indépendant . rémunération . brute: 4000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 4000 €/an
+  - # Classe A
+    dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 20000 €/an
+    dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe: "'A'"
+  - # Classe B
+    dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 20000 €/an
+    dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe: "'B'"
+  - # Classe C
+    dirigeant . indépendant . PL . métier: "'santé . sage-femme'"
+    dirigeant . rémunération . totale: 20000 €/an
+    dirigeant . indépendant . PL . CARCDSF . sage-femme . RID . classe: "'C'"
 
 auxiliaire médical:
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 30000 €/an
+  - dirigeant . indépendant . PL . métier: "'santé . auxiliaire médical'"
+    dirigeant . rémunération . totale: 30000 €/an
   - # Dépassement honoraire
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 30000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 15000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . auxiliaire médical'"
+    dirigeant . rémunération . totale: 30000 €/an
+    dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 20%
   - # Grosse rémunération
-    entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'santé . auxiliaire médical'"
-    indépendant . rémunération . brute: 300000 €/an
-    indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire: 300000 €/an
+    dirigeant . indépendant . PL . métier: "'santé . auxiliaire médical'"
+    dirigeant . rémunération . totale: 300000 €/an
+    dirigeant . indépendant . PL . PAMC . dépassement d'honoraire moyen: 100%
 
 avocat:
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
-    indépendant . rémunération . brute: 50000 €/an
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'juridique . avocat'"
-    indépendant . rémunération . brute: 50000 €/an
+  - dirigeant . indépendant . PL . métier: "'avocat'"
+    dirigeant . rémunération . totale: 50000 €/an
+  - dirigeant . indépendant . PL . métier: "'avocat'"
+    dirigeant . rémunération . totale: 50000 €/an
     entreprise . durée d'activité . en fin d'année: 6 ans
 
 expert-comptable:
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
-    indépendant . rémunération . brute: 20000 €/an
-  - entreprise . imposition: "'IS'"
-    indépendant . profession libérale . réglementée . métier: "'expert-comptable'"
-    indépendant . rémunération . brute: 50000 €/an
+  - dirigeant . indépendant . PL . métier: "'expert-comptable'"
+    dirigeant . rémunération . totale: 20000 €/an
+  - dirigeant . indépendant . PL . métier: "'expert-comptable'"
+    dirigeant . rémunération . totale: 50000 €/an
 
 CIPAV échelle de revenu:
-  - indépendant . rémunération . nette: 500 €/an
-  - indépendant . rémunération . nette: 1000 €/an
-  - indépendant . rémunération . nette: 1500 €/an
-  - indépendant . rémunération . nette: 2000 €/an
-  - indépendant . rémunération . nette: 5000 €/an
-  - indépendant . rémunération . nette: 10000 €/an
-  - indépendant . rémunération . nette: 100000 €/an
-  - indépendant . rémunération . nette: 1000000 €/an
+  - dirigeant . rémunération . net: 500 €/an
+  - dirigeant . rémunération . net: 1000 €/an
+  - dirigeant . rémunération . net: 1500 €/an
+  - dirigeant . rémunération . net: 2000 €/an
+  - dirigeant . rémunération . net: 5000 €/an
+  - dirigeant . rémunération . net: 10000 €/an
+  - dirigeant . rémunération . net: 100000 €/an
+  - dirigeant . rémunération . net: 1000000 €/an
+
+CIPAV réduction et surcotisation:
+  - dirigeant . rémunération . net: 10000 €/an
+    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
+  - dirigeant . rémunération . net: 50000 €/an
+    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
+  - dirigeant . rémunération . net: 100000 €/an
+    dirigeant . indépendant . PL . CIPAV . retraite complémentaire . option surcotisation: oui
 
 CIPAV exonération incapacité:
-  - indépendant . rémunération . nette: 40000 €/an
-    indépendant . profession libérale . CNAVPL . exonération incapacité: oui
+  - dirigeant . rémunération . net: 40000 €/an
+    dirigeant . indépendant . PL . CNAVPL . exonération incapacité: oui
 
 CIPAV conjoint collaborateur:
   - &CNAVPL-conjoint-collaborateur
-    indépendant . rémunération . nette: 60000 €/an
-    indépendant . conjoint collaborateur: oui
+    dirigeant . rémunération . net: 60000 €/an
+    dirigeant . indépendant . conjoint collaborateur: oui
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu sans partage'"
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu sans partage'"
+    dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
   - <<: *CNAVPL-conjoint-collaborateur
-    indépendant . conjoint collaborateur . choix assiette: "'revenu avec partage'"
-    indépendant . rémunération . nette: 1000 €/an
+    dirigeant . indépendant . conjoint collaborateur . assiette: "'revenu avec partage'"
+    dirigeant . rémunération . net: 1000 €/an
+    dirigeant . indépendant . PL . CNAVPL . conjoint collaborateur . proportion: "'moitié'"
+  - <<: *CNAVPL-conjoint-collaborateur
+    dirigeant . indépendant . PL . CIPAV . conjoint collaborateur . proportion: "'moitié'"
 
-CIPAV Acre:
-  - &CNAVPL-Acre
-    indépendant . rémunération . nette: 5000 €/an
-    indépendant . cotisations et contributions . cotisations . exonérations . Acre: oui
-    entreprise . date de création: 11/11/2025
-  - <<: *CNAVPL-Acre
-    indépendant . rémunération . nette: 20000 €/an
-  - <<: *CNAVPL-Acre
-    indépendant . rémunération . nette: 50000 €/an
+CIPAV ACRE:
+  - &CNAVPL-ACRE
+    dirigeant . rémunération . net: 5000 €/an
+    dirigeant . exonérations . ACRE: oui
+    entreprise . date de création: 11/11/2023
+  - <<: *CNAVPL-ACRE
+    dirigeant . rémunération . net: 20000 €/an
+  - <<: *CNAVPL-ACRE
+    dirigeant . rémunération . net: 50000 €/an
 
 CIPAV années précédentes:
-  - indépendant . rémunération . nette: 60000 €/an
-    date: 01/2025
-  - indépendant . rémunération . nette: 50000 €/an
+  - dirigeant . rémunération . net: 60000 €/an
     date: 01/2024
-  - indépendant . rémunération . nette: 40000 €/an
+  - dirigeant . rémunération . net: 50000 €/an
     date: 01/2023
+  - dirigeant . rémunération . net: 40000 €/an
+    date: 01/2022
 
 CIPAV année incomplète:
   - &AnnéeIncomplete
-    entreprise . date de création: 01/05/2025
-    entreprise . date de cessation: 31/08/2025
-    indépendant . rémunération . nette: 2000 €/an
+    entreprise . date de création: 01/05/2024
+    entreprise . date de cessation: 31/08/2024
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 5000 €/an
+    dirigeant . rémunération . net: 2000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 10000 €/an
+    dirigeant . rémunération . net: 5000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 100000 €/an
+    dirigeant . rémunération . net: 10000 €/an
   - <<: *AnnéeIncomplete
-    indépendant . rémunération . nette: 1000000 €/an
+    dirigeant . rémunération . net: 100000 €/an
+  - <<: *AnnéeIncomplete
+    dirigeant . rémunération . net: 1000000 €/an

@@ -19,7 +19,7 @@ salarié . rémunération . brut:
     - indemnités CDD
     - heures supplémentaires
     - heures complémentaires
-    - frais professionnels . non déductible
+    - frais professionnels
 
   abattement: activité partielle . retrait absence
 
@@ -35,14 +35,14 @@ salarié . rémunération . net:
 
   avec:
     sans revenus de remplacement:
-      somme:
-        - brut
-        - frais professionnels . déductible
+      valeur: brut
       abattement: cotisations . salarié
 
 salarié . rémunération . net . à payer avant impôt:
   titre: Salaire net
+  identifiant court: salaire-net
   unité: €/mois
+  question: Quel est votre salaire net ?
   résumé: Salaire net avant impôt
   description: >-
     C'est le montant que le salarié touche à la fin du mois avant de payer
@@ -124,7 +124,9 @@ salarié . rémunération . net . imposable:
 
 salarié . rémunération . net . payé après impôt:
   titre: Salaire net après impôt
+  identifiant court: salaire-net-apres-impot
   résumé: Le salaire net payé
+  question: Quel est le revenu net du salarié après impôt ?
   type: salaire
   unité: €/mois
   description: |
@@ -171,58 +173,12 @@ salarié . rémunération . assiette de vérification du SMIC:
     Assiette minimale de cotisations: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/la-base-de-calcul/lassiette-minimale-des-cotisatio/lassiette-minimale-soumise-a-cot.html
     Comment vérifier que le SMIC est atteint ?: https://travail-emploi.gouv.fr/droit-du-travail/la-remuneration/article/le-smic
 
-salarié . rémunération . contrôle minimum:
-  variations:
-    - si: contrat . stage
-      alors: stage
-    - si: contrat . apprentissage
-      alors: apprentissage
-    - si: contrat . professionnalisation
-      alors: professionnalisation
-    - sinon: smic
-
   avec:
-    stage:
-      applicable si: contrat . stage
+    contrôle:
       type: notification
       sévérité: avertissement
-      valeur: contrat . salaire brut < contrat . stage . gratification minimale
-      description: >-
-        La rémunération du stage est inférieure à la [gratification
-        minimale](https://entreprendre.service-public.gouv.fr/vosdroits/F32131).
-
-    apprentissage:
-      applicable si: contrat . apprentissage
-      type: notification
-      sévérité: avertissement
-      valeur: contrat . salaire brut < contrat . apprentissage . rémunération minimale
-      description: |
-        Le salaire saisi est inférieur à la rémunération minimale d’un contrat
-        d’apprentissage.
-      références:
-        Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
-
-    professionnalisation:
-      applicable si: contrat . professionnalisation
-      type: notification
-      sévérité: avertissement
-      valeur: contrat . salaire brut < contrat . professionnalisation . rémunération minimale
-      description: |
-        Le salaire saisi est inférieur à la rémunération minimale d’un contrat de
-        professionnalisation.
-      références:
-        Contrat de professionnalisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15478
-
-    smic:
-      non applicable si:
-        une de ces conditions:
-          - contrat . stage
-          - contrat . apprentissage
-          - contrat . professionnalisation
-      type: notification
-      sévérité: avertissement
-      valeur: assiette de vérification du SMIC < contrat . temps de travail . SMIC
       description: Le salaire saisi est inférieur au SMIC.
+      valeur: assiette de vérification du SMIC < contrat . temps de travail . SMIC
 
 salarié . rémunération . primes:
   description: |
@@ -416,27 +372,22 @@ salarié . rémunération . frais professionnels:
   titre: remboursement de frais
   unité: €/mois
   possiblement non applicable: oui
-  description: |
+  description: >-
     Les frais professionnels correspondent à des dépenses engagées par le
     salarié pour les besoins de son activité professionnelle. Ces frais sont
     ensuite remboursés par l’employeur.
 
 
-    Le dédommagement de ces frais peut prendre la forme :
+    Le dédommagement de ces frais peut prendre la forme :
 
-      - d’un remboursement des dépenses réelles sur justificatifs ;
+      - d’un remboursement des dépenses réelles sur justificatifs ;
 
-      - d’un versement d’allocations forfaitaires ;
+      - d’un versement d’allocations forfaitaires ;
 
-      - de l’application d’une déduction forfaitaire spécifique sur le salaire
-      soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines
-      professions.
+      - de l’application d’une déduction forfaitaire spécifique sur le salaire soumis à cotisations ; cette possibilité n’étant ouverte qu’à certaines professions.
 
 
-    Les frais professionnels sont généralement exclus de la base de calcul des
-    cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement
-    de plafond pour les remboursements forfaitaires (frais de panier,
-    titres-restaurant, forfait mobilités durables…).
+    Les frais professionnels sont généralement exclus de la base de calcul des cotisations de sécurité sociale et de la CSG-CRDS, sauf en cas de dépassement de plafond pour les remboursements forfaitaires ( frais de panier, titres-restaurant, forfait mobilités durables...).
   somme:
     - titres-restaurant . employeur
     - trajets domicile travail . employeur
@@ -450,7 +401,6 @@ salarié . rémunération . frais professionnels:
       somme:
         - titres-restaurant . déductible
         - trajets domicile travail . déductible
-      unité: €/mois
 
     non déductible:
       titre: Part non déductible
@@ -475,10 +425,9 @@ salarié . rémunération . frais professionnels:
           - de fruits et légumes.
 
         Ce titre peut être émis sur support papier ou sous forme dématérialisée.
+
       question: Le salarié reçoit-il des titres-restaurant ?
       par défaut: non
-      références:
-        Le titre-restaurant: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-titre-restaurant
 
       avec:
         déductible:
@@ -488,19 +437,29 @@ salarié . rémunération . frais professionnels:
             produit:
               - nombre
               - plafond unitaire
+          références:
+            Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
         déductible . plafond unitaire:
           variations:
-            - si: date >= 01/2026
-              alors: 7.32 €/titres-restaurant
             - si: date >= 01/2025
               alors: 7.26 €/titres-restaurant
             - si: date >= 01/2024
               alors: 7.18 €/titres-restaurant
             - si: date >= 01/2023
               alors: 6.91 €/titres-restaurant
+            # En 2022, la participation de l’employeur au financement
+            # d'un titre restaurant exonérée de cotisations sociales est
+            # fixée de façon rétroactive à 6,50 €
+            # (article 4 de la loi de Finances pour 2023)
             - si: date >= 01/2022
               alors: 6.50€/titres-restaurant
+            # - si: date >= 09/2022
+            #   alors: 5.92 €/titres-restaurant
+            # - si: date >= 01/2022
+            #   alors: 5.69 €/titres-restaurant
+            - si: date >= 01/2021
+              alors: 5.55 €/titres-restaurant
         employeur: montant * taux employeur
 
         montant:
@@ -617,7 +576,14 @@ salarié . rémunération . frais professionnels:
               produit:
                 - montant
                 - valeur: taux employeur
-                  plafond: 75%
+                  plafond:
+                    variations:
+                      - si:
+                          toutes ces conditions:
+                            - date >= 01/2022
+                            - date < 01/2025
+                        alors: 75%
+                      - sinon: 50%
 
             employeur:
               applicable si: montant > 0
@@ -653,12 +619,12 @@ salarié . rémunération . frais professionnels:
                 Remboursement des frais de transport: https://www.service-public.fr/particuliers/vosdroits/F19846/personnalisation/resultat?lang=&quest0=0
                 "Transports en commun : prise en charge obligatoire des abonnements": https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/frais-professionnels.html#ancre-frais-de-transport
               suggestions:
-                Navigo: 90.80 €/mois
-                TCL: 74.10 €/mois
+                Navigo: 88.80 €/mois
+                Técély: 74.10 €/mois
                 RTM: 40 €/mois
-                Tisséo: 50.50 €/mois
-                Ilévia: 56.50 €/mois
-                TBM: 45.80 €/mois
+                Tisséo: 48.90 €/mois
+                Ilévia: 55 €/mois
+                TBM: 44.40 €/mois
 
             taux employeur:
               question: Quel est le taux de prise en charge par l’employeur aux frais de
@@ -667,7 +633,7 @@ salarié . rémunération . frais professionnels:
               plancher: 50%
               suggestions:
                 Minimum (50%): 50%
-                Maximum déductible (75%): 75%
+                Maximum déductible (50%): 50%
                 Totale (100%): 100%
 
         prime de transport:
@@ -727,8 +693,8 @@ salarié . rémunération . frais professionnels:
                 Article 81 du code des impôts (19° ter b.): https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042910732
 
             véhicule electrique hybride hydrogène:
-              question: Le salarié utilise-t-il un véhicule électrique, hybride
-                rechargeable ou à hydrogène ?
+              question: Le salarié utilise-t-il un véhicules électriques, hybrides
+                rechargeables ou à hydrogène ?
               par défaut: non
 
         forfait mobilités durables:
@@ -772,12 +738,24 @@ salarié . rémunération . avantages en nature:
 
     L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au niveau du salaire brut pour être soumis à cotisations. Après détermination du salaire net imposable, il sera déduit du salaire net à verser.
   question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement…) ?
+    téléphone, réductions, logement...) ?
   par défaut: non
-  références:
-    Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
   avec:
+    autres:
+      question: >
+        Y a-t-il d'autres avantages en natures (logement, véhicule,
+        réduction...) ?
+      par défaut: non
+      avec:
+        montant:
+          titre: autres
+          question: >
+            Quel est le montant de ces autres avantages ?
+          par défaut: 0 €/mois
+          suggestions:
+            🚗 véhicule: 260 €/mois
+
     montant:
       titre: Avantages en nature
       description: >
@@ -806,9 +784,6 @@ salarié . rémunération . avantages en nature:
         Lorsque l'entreprise donne une allocation pour les repas pendant les
         déplacements professionnels ce n'est pas un avantage en nature, mais un
         frais professionnels.
-      références:
-        Avantages en nature repas: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-repas
-
       avec:
         montant:
           titre: nourriture
@@ -816,6 +791,8 @@ salarié . rémunération . avantages en nature:
           produit:
             - repas par mois
             - repas forfaitaire
+          références:
+            Les avantages en nature: https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html
 
         repas par mois:
           question: >
@@ -828,8 +805,6 @@ salarié . rémunération . avantages en nature:
         montant . repas forfaitaire:
           titre: montant forfaitaire
           variations:
-            - si: date >= 01/2026
-              alors: 5.50 €/repas
             - si: date >= 01/2025
               alors: 5.45 €/repas
             - si: date >= 01/2024
@@ -847,12 +822,9 @@ salarié . rémunération . avantages en nature:
 
         La réalité de l’usage privé peut résulter soit d’un document écrit (contrat de travail, accord d’entreprise, règlement intérieur, courrier de la direction de l’entreprise autorisant le salarié à faire un usage privé des outils), soit de l’existence de factures détaillées permettant d’établir une utilisation privée.
       question: >
-        L'entreprise fournit-elle gratuitement un outil issu des NTIC
+        L'entreprise fournit-elle gratuitement un outil issus des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
-      références:
-        'Avantages en nature : ordinateurs, téléphones': https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-ordinateurs-telephones
-
       avec:
         abonnements:
           question:
@@ -878,11 +850,7 @@ salarié . rémunération . avantages en nature:
         montant:
           titre: outils NTIC
           description: |
-            Pour les avantages en nature de type NTIC (ordinateurs, smartphones,
-            tablettes…), il y a une évaluation forfaitaire annuelle correspondant
-            à 10 % du prix d'achat. Par exemple, pour un téléphone acheté à 850 €
-            TTC avec un abonnement de 30 €/mois, l'avantage en nature à reporter
-            sur le bulletin de paie sera de :
+            Pour les avantages en nature de type NTIC (ordinateurs, smartphones, tablettes...), il y a une évaluation forfaitaire annuelle correspondant à 10% du prix d'achat. Par exemple, pour un téléphone acheté à 850€ TTC avec un abonnement de 30€ / mois, l'avantage en nature à reporter sur le bulletin de paie sera de :
 
             ```
             [10% x (850€ + (30€ x 12 mois)) ] / 12 mois
@@ -895,20 +863,6 @@ salarié . rémunération . avantages en nature:
             - 10% /an
           références:
             urssaf.fr: https://www.urssaf.fr/portail/home/employeur/calculer-les-cotisations/les-elements-a-prendre-en-compte/les-avantages-en-nature/les-outils-issus-des-nouvelles-t/dans-quel-cas-la-mise-a-disposit/levaluation-forfaitaire.html
-
-    autres:
-      question: >
-        Y a-t-il d'autres avantages en nature (logement, véhicule,
-        réduction…) ?
-      par défaut: non
-      avec:
-        montant:
-          titre: autres
-          question: >
-            Quel est le montant de ces autres avantages ?
-          par défaut: 0 €/mois
-          suggestions:
-            🚗 véhicule: 260 €/mois
 
 salarié . rémunération . montant net social:
   experimental: oui
@@ -929,9 +883,11 @@ salarié . rémunération . montant net social:
     - indemnités CDD
     - heures supplémentaires
     - heures complémentaires
-    - frais professionnels . non déductible
+    - frais professionnels
   abattement:
       somme:
+        - valeur: frais professionnels . déductible
+          unité: €/mois
         - activité partielle . retrait absence
         - salarié . cotisations . salarié
   références :

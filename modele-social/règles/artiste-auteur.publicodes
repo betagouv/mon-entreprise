@@ -180,20 +180,16 @@ artiste-auteur . cotisations . formation professionnelle:
 artiste-auteur . cotisations . IRCEC:
   titre: Retraite complémentaire
   description: |
-    Si vous exercez une activité rémunérée en droits d’auteur et assimilés,
-    l’IRCEC est l’organisme de sécurité sociale qui assure la gestion de votre
-    retraite complémentaire obligatoire.
-
-    Le rattachement auprès d’un ou plusieurs régimes (RAAP, RACD et/ou RACL)
-    dépend de la nature et du montant de vos revenus artistiques.
+    Si vous êtes artiste-auteur professionnel et que vous êtes rémunéré en
+    droits d’auteur, l’IRCEC est l’organisme de Sécurité sociale qui assure la
+    gestion de votre retraite complémentaire obligatoire.
   formule:
     somme:
       - cotisation RAAP
       - cotisation RACD
       - cotisation RACL
   références:
-    Guide de la retraite des artistes-auteurs (2026): https://www.ircec.fr/wp-content/uploads/2026/02/guide-de-la-retraite-ircec.pdf
-    Guide de la retraite des artistes-auteurs (2025): https://www.ircec.fr/wp-content/uploads/2025/03/guide-ircec-2025-web.pdf
+    Guide de la retraite complémentaire des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP:
   applicable si: assiette >= seuil d'affiliation
@@ -224,8 +220,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP:
                 plafond: 3 * plafond sécurité sociale
     arrondi: oui
   références:
-    Guide de la retraite des artistes-auteurs (2026): https://www.ircec.fr/wp-content/uploads/2026/02/guide-de-la-retraite-ircec.pdf
-    Guide de la retraite des artistes-auteurs (2025): https://www.ircec.fr/wp-content/uploads/2025/03/guide-ircec-2025-web.pdf
+    Guide de la retraite des artistes-auteurs 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . cotisation RAAP . seuil d'affiliation:
   valeur: 900 * SMIC . horaire . début d'année N-1
@@ -243,8 +238,7 @@ artiste-auteur . cotisations . IRCEC . cotisation RAAP . taux réduit:
     cotisé. En réduisant votre cotisation vous réduisez donc le nombre de points
     acquis.
   références:
-    Guide de la retraite des artistes-auteurs (2026): https://www.ircec.fr/wp-content/uploads/2026/02/guide-de-la-retraite-ircec.pdf
-    Guide de la retraite des artistes-auteurs (2025): https://www.ircec.fr/wp-content/uploads/2025/03/guide-ircec-2025-web.pdf
+    Guide IRCEC 2024: https://www.ircec.fr/wp-content/uploads/2024/03/guideircec2024.pdf
 
 artiste-auteur . cotisations . IRCEC . profession:
   question: Exercez-vous l'une de professions suivantes ?

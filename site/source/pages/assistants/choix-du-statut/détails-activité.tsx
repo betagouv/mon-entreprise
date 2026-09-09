@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -24,12 +25,10 @@ import {
 	Ul,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { toOuiNon } from '@/domaine/OuiNon'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
 import { useSitePaths } from '@/sitePaths'
-import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
+import { batchUpdateSituation } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 
 import {
@@ -79,7 +78,7 @@ export default function DétailsActivité() {
 	const isIdle = useIsIdle()
 
 	const title = t(
-		'pages.assistants.choix-statut.détails-activité.title',
+		'créer.choix-statut.détails-activité.title',
 		'Précisions sur votre activité'
 	)
 	if (!isIdle) {
@@ -115,10 +114,7 @@ export default function DétailsActivité() {
 					currentStepIsComplete={!!guichet && !estNonDisponible(guichet)}
 					nextStepLabel={
 						guichetEntries?.length === 1 &&
-						t(
-							'pages.assistants.activité-détails.next1',
-							'Continuer avec cette activité'
-						)
+						t('créer.activité-détails.next1', 'Continuer avec cette activité')
 					}
 				>
 					<AvertissementActivitéNonDisponible guichet={guichet} />
@@ -129,11 +125,12 @@ export default function DétailsActivité() {
 }
 
 function CodeAPENonConnu() {
-	const { relativeSitePaths } = useSitePaths()
+	const { absoluteSitePaths } = useSitePaths()
 
 	return (
+		// For now, we don't handle the case where the user doesn't find his code APE
 		<Navigate
-			to={`../${relativeSitePaths.assistants['choix-du-statut']['recherche-activité']}`}
+			to={absoluteSitePaths.assistants['choix-du-statut']['recherche-activité']}
 			replace
 		/>
 	)
@@ -159,7 +156,7 @@ function GuichetSelection({
 			{showCCIOrCMAHelp && (
 				<Message>
 					<Body>
-						<Trans i18nKey="pages.assistants.choix-statut.détails-activité.aide-cci-cma">
+						<Trans i18nKey="créer.choix-statut.détails-activité.aide-cci-cma">
 							Si vous hésitez entre une activité artisanale ou commerciale, vous
 							pouvez consulter les sites de la{' '}
 							<Link href="https://www.cci.fr/">CCI</Link> ou de la{' '}
@@ -170,7 +167,7 @@ function GuichetSelection({
 			)}
 			{showBNCorBICHelp && (
 				<Message>
-					<Trans i18nKey="pages.assistants.choix-statut.détails-activité.aide-bnc-bic">
+					<Trans i18nKey="crée.choix-statut.détails-activité.aide-bnc-bic">
 						<Body>
 							Le choix entre exercer une activité à titre{' '}
 							<Strong>commercial</Strong> (avec des revenus de type BIC) ou à
@@ -245,7 +242,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			)
 			if (!guichet) {
 				dispatch(
-					enregistreLesRéponsesAuxQuestions({
+					batchUpdateSituation({
 						'entreprise . activités . principale . code guichet': O.none(),
 						'entreprise . imposition . IR . type de bénéfices': O.none(),
 						'entreprise . activités . libérale': O.none(),
@@ -264,7 +261,7 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 			const PLRMétier = guichetToPLMétier(guichet)
 			const activité = getActivitéFromGuichet(guichet)
 			dispatch(
-				enregistreLesRéponsesAuxQuestions({
+				batchUpdateSituation({
 					'entreprise . activités . principale . code guichet': O.some(
 						guichet.code
 					),
@@ -275,13 +272,15 @@ function useUpdateSituationWithGuichet(guichetEntries: GuichetEntry[] | null) {
 						? {
 								'entreprise . activité . nature': O.some(activité),
 								[`entreprise . activités . ${activité}`]: O.some('oui'),
-							}
+						  }
 						: {}),
 					'entreprise . activité . nature . libérale . réglementée': O.some(
-						toOuiNon(!!PLRMétier)
+						PLRMétier ? 'oui' : 'non'
 					),
 					'dirigeant . indépendant . PL . métier': O.fromNullable(PLRMétier),
-					'artiste-auteur': O.some(toOuiNon(guichet.artisteAuteurPossible)),
+					'artiste-auteur': O.some(
+						guichet.artisteAuteurPossible ? 'oui' : 'non'
+					),
 				} as Record<DottedName, O.Option<ValeurPublicodes>>)
 			)
 		},
@@ -293,12 +292,12 @@ function getActivitéFromGuichet(guichet: GuichetEntry) {
 	return guichet.catégorieActivité.includes('LIBERALE')
 		? 'libérale'
 		: guichet.catégorieActivité.includes('ARTISANALE')
-			? 'artisanale'
-			: guichet.catégorieActivité.includes('COMMERCIALE')
-				? 'commerciale'
-				: guichet.catégorieActivité.includes('AGRICOLE')
-					? 'agricole'
-					: undefined
+		? 'artisanale'
+		: guichet.catégorieActivité.includes('COMMERCIALE')
+		? 'commerciale'
+		: guichet.catégorieActivité.includes('AGRICOLE')
+		? 'agricole'
+		: undefined
 }
 
 function choixEntreArtisanaleOuCommerciale(entries: GuichetEntry[]): boolean {

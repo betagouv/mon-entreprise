@@ -1,12 +1,12 @@
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { Emoji, Item, Select } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 import { getFilter } from '../StatsPage'
 import { Filter } from '../types'
 
 export function SelectedSimulator(props: { filter: Filter | '' }) {
-	const simulateur = Object.values(useSimulatorsMetadata()).find(
+	const simulateur = Object.values(useSimulatorsData()).find(
 		(s) => JSON.stringify(getFilter(s)) === JSON.stringify(props.filter)
 	)
 	if (!simulateur) {
@@ -19,18 +19,17 @@ export function SimulateursChoice(props: {
 	onChange: (ch: Filter | '') => void
 	value: Filter | ''
 }) {
-	const simulateurs = useSimulatorsMetadata()
+	const simulateurs = useSimulatorsData()
 	const choices = Object.values(simulateurs)
 		.filter((s) => getFilter(s))
 		.sort((a, b) => (a.shortName < b.shortName ? -1 : 1))
 	const defaultSelectedKey = !props.value
 		? ''
 		: props.value === 'api-rest'
-			? 'api-rest'
-			: (Object.entries(simulateurs).find(
-					([, s]) =>
-						JSON.stringify(getFilter(s)) === JSON.stringify(props.value)
-				)?.[0] ?? '')
+		? 'api-rest'
+		: Object.entries(simulateurs).find(
+				([, s]) => JSON.stringify(getFilter(s)) === JSON.stringify(props.value)
+		  )?.[0] ?? ''
 
 	return (
 		<Select

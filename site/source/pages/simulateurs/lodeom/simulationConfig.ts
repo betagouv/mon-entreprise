@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configLodeom: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+export const configLodeom: SimulationConfig = {
 	objectifs: ['salarié . cotisations . exonérations . lodeom . montant'],
 	questions: {
 		raccourcis: [

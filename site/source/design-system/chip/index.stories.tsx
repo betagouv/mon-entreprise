@@ -14,43 +14,48 @@ export default meta
 
 type Story = StoryObj<typeof Chip>
 
-export const Couleurs: Story = {
-	render: () => (
-		<>
-			<Chip type="primary">Primary</Chip>
-			<Chip type="secondary">Secondary</Chip>
-			<Chip type="error">Error</Chip>
-			<Chip type="info">Info</Chip>
-			<Chip type="success">Success</Chip>
-		</>
-	),
+export const Notification: Story = {
+	args: {
+		children: '4',
+		type: 'info',
+	},
 }
 
-export const Icones: Story = {
-	render: () => (
+export const DifferentChips: Story = {
+	render: (args) => (
 		<>
-			<Chip type="error" icon>
-				Error
+			<Chip {...args} type="error">
+				Panique !
 			</Chip>
-			<Chip type="info" icon>
-				Info
+			<Chip {...args} type="info">
+				Attention
 			</Chip>
-			<Chip type="success" icon>
-				Success
+			<Chip {...args} type="success">
+				Ouiiiiiii
+			</Chip>
+			<Chip {...args} type="primary">
+				4 messages non lus
+			</Chip>
+			<Chip {...args} type="secondary">
+				SASU
 			</Chip>
 		</>
 	),
+	args: {
+		icon: true,
+	},
 }
 
-export const IconesPersonnalisées: Story = {
-	render: () => (
+export const ChipWithCustomIcon: Story = {
+	render: (args) => (
 		<>
-			<Chip icon={<Emoji emoji="🚧" />} type="info">
+			<Chip {...args} icon={<Emoji emoji="🚧" />} type="info">
 				Bêta
 			</Chip>
-			<Chip type="secondary" icon={<Emoji emoji="😃" />}>
+			<Chip {...args} type="secondary" icon={<Emoji emoji="😃" />}>
 				Everything is awesome
 			</Chip>
 		</>
 	),
+	args: {},
 }

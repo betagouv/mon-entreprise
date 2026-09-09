@@ -1,8 +1,8 @@
 import { writeInDataDir } from './utils.js'
 
-const CURRENT_YEAR = 2026
+const CURRENT_YEAR = 2025
 const CSV_URL =
-	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20260710.csv'
+	'https://fichierdirect.declaration.urssaf.fr/static/tauxTransport.20250128.csv'
 
 const INDEX = {
 	TAUX: 2,
@@ -26,10 +26,10 @@ const data = rawCSV
 		+a[INDEX.CODE_COMMUNE] < +b[INDEX.CODE_COMMUNE]
 			? -1
 			: +a[INDEX.CODE_COMMUNE] > +b[INDEX.CODE_COMMUNE]
-				? 1
-				: a[INDEX.DATE_EFFET] > b[INDEX.DATE_EFFET]
-					? -1
-					: 1
+			? 1
+			: a[INDEX.DATE_EFFET] > b[INDEX.DATE_EFFET]
+			? -1
+			: 1
 	)
 	.reduce(
 		(acc, r) => ({

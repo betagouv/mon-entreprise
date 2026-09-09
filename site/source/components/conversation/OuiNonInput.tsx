@@ -6,21 +6,25 @@ import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
 interface OuiNonInputProps {
-	id: string
 	value?: OuiNon
 	onChange?: (value: OuiNon | undefined) => void
+	defaultValue?: OuiNon
+	id?: string
+	autoFocus?: boolean
 
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 }
 
 export function OuiNonInput({
-	id,
 	value,
 	onChange = NoOp,
-	aria,
+	defaultValue,
+	id,
+	autoFocus,
+	aria = {},
 }: OuiNonInputProps) {
 	const { handleChange, currentSelection } = useSelection({
 		value,
@@ -34,23 +38,34 @@ export function OuiNonInput({
 		currentSelection === undefined
 			? undefined
 			: currentSelection === 'oui'
-				? 'oui'
-				: 'non'
+			? 'oui'
+			: 'non'
 
 	const { t } = useTranslation()
 
 	return (
 		<ToggleGroup
-			aria-label=""
-			aria-labelledby={aria?.labelledby}
-			aria-describedby={aria?.describedby}
+			aria-label={
+				aria.label || t('conversation.yes-no.aria-label', 'Oui ou non')
+			}
+			aria-labelledby={aria.labelledby}
 			onChange={handleToggleGroupChange}
 			value={currentValueAsString}
 		>
-			<Radio value="oui" id={`input-oui-${id || ''}`}>
+			<Radio
+				value="oui"
+				id={`input-oui-${id || ''}`}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={autoFocus && defaultValue === 'oui'}
+			>
 				{t('conversation.yes', 'Oui')}
 			</Radio>
-			<Radio value="non" id={`input-non-${id || ''}`}>
+			<Radio
+				value="non"
+				id={`input-non-${id || ''}`}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={autoFocus && defaultValue === 'non'}
+			>
 				{t('conversation.no', 'Non')}
 			</Radio>
 		</ToggleGroup>

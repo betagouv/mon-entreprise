@@ -1,9 +1,13 @@
+import isbot from 'isbot'
 import { ReactNode } from 'react'
-import { I18nProvider, OverlayProvider } from 'react-aria'
-import { css, styled, ThemeProvider } from 'styled-components'
+import {
+	css,
+	styled,
+	StyleSheetManager,
+	ThemeProvider,
+} from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 
 import { GlobalStyle } from './global-style'
 import { theme as urssafTheme } from './theme'
@@ -14,23 +18,21 @@ type SystemRootProps = {
 }
 
 const SystemRoot = ({ children, forceDarkMode }: SystemRootProps) => {
+	const userAgent = typeof navigator !== 'undefined' && navigator.userAgent
 	const [contextDarkMode] = useDarkMode()
-	const isInIframe = useIsEmbedded()
 
 	const darkMode =
 		typeof forceDarkMode === 'boolean' ? forceDarkMode : contextDarkMode
 
 	return (
-		<I18nProvider locale="fr-FR">
-			<ThemeProvider theme={{ ...urssafTheme, darkMode, isInIframe }}>
-				<OverlayProvider>
-					<BackgroundStyle $darkMode={darkMode}>
-						<GlobalStyle />
-						{children}
-					</BackgroundStyle>
-				</OverlayProvider>
+		<StyleSheetManager disableCSSOMInjection={isbot(userAgent)}>
+			<ThemeProvider theme={{ ...urssafTheme, darkMode }}>
+				<BackgroundStyle $darkMode={darkMode}>
+					<GlobalStyle />
+					{children}
+				</BackgroundStyle>
 			</ThemeProvider>
-		</I18nProvider>
+		</StyleSheetManager>
 	)
 }
 

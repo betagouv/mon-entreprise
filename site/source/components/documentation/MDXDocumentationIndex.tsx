@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/ATInternetTracking'
 import Meta from '@/components/utils/Meta'
 import {
 	Card,

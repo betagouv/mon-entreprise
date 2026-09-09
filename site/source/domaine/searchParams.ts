@@ -1,20 +1,12 @@
 import * as R from 'effect/Record'
+import { DottedName } from 'modele-social'
+import { Names } from 'modele-social/dist/names'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { isExpressionAvecUnité } from '@/domaine/ExpressionPublicodes'
-import { isMontant } from '@/domaine/Montant'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { isQuantité } from '@/domaine/Quantite'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { SearchParamsAdapter, ValeurDomaine } from '@/SearchParamsAdapter'
 
 export const TARGET_UNIT_PARAM = 'unité'
-
-const isEncodable = (value: unknown): value is ValeurDomaine =>
-	typeof value === 'string' ||
-	typeof value === 'number' ||
-	isMontant(value) ||
-	isQuantité(value)
 
 export const getSearchParamsFromSituation = (
 	situation: SituationPublicodes,
@@ -23,17 +15,13 @@ export const getSearchParamsFromSituation = (
 	const searchParams = new URLSearchParams()
 	searchParams.set(TARGET_UNIT_PARAM, targetUnit)
 
-	R.map(situation as Record<DottedName, unknown>, (value, dottedName) => {
-		if (isEncodable(value)) {
-			searchParams.set(dottedName as string, SearchParamsAdapter.encode(value))
-
-			return
-		}
-		if (isExpressionAvecUnité(value)) {
-			searchParams.set(
-				dottedName as string,
-				SearchParamsAdapter.encode(`${value.valeur} ${value.unité}`)
-			)
+	R.map(situation as Record<Names, ValeurDomaine>, (value, dottedName) => {
+		try {
+			const encodedValue = SearchParamsAdapter.encode(value)
+			searchParams.set(dottedName as string, encodedValue)
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.error(error)
 		}
 	})
 
@@ -44,12 +32,12 @@ export const getSearchParamsFromSituation = (
 
 export const getSituationFromSearchParams = (
 	searchParams: URLSearchParams,
-	rules: DottedName[]
+	rules: Names[]
 ): Record<DottedName, ValeurPublicodes> => {
 	const situation = {} as Record<DottedName, ValeurPublicodes>
 
 	searchParams.forEach((value, paramName) => {
-		const dottedName = paramName as DottedName
+		const dottedName = paramName as Names
 		if (rules.includes(dottedName)) {
 			situation[dottedName] = SearchParamsAdapter.decode(value)
 		}
@@ -57,23 +45,6 @@ export const getSituationFromSearchParams = (
 
 	return situation
 }
-
-const PARAMS_RÉSERVÉS = new Set([
-	TARGET_UNIT_PARAM,
-	'integratorUrl',
-	'lang',
-	'couleur',
-])
-
-export const getRèglesIgnoréesFromSearchParams = (
-	searchParams: URLSearchParams,
-	rules: DottedName[]
-): DottedName[] =>
-	[...searchParams.keys()]
-		.filter(
-			(key) => !PARAMS_RÉSERVÉS.has(key) && !rules.includes(key as DottedName)
-		)
-		.map((key) => key as DottedName)
 
 export const getTargetUnitFromSearchParams = (
 	searchParams: URLSearchParams

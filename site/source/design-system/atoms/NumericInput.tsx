@@ -1,4 +1,8 @@
 import { NumberFormatter, NumberParser } from '@internationalized/number'
+import { useLocale } from '@react-aria/i18n'
+import { useNumberField } from '@react-aria/numberfield'
+import { NumberFieldState } from '@react-stately/numberfield'
+import { AriaNumberFieldProps } from '@react-types/numberfield'
 import {
 	ChangeEvent,
 	ChangeEventHandler,
@@ -6,7 +10,6 @@ import {
 	InputHTMLAttributes,
 	KeyboardEvent,
 	KeyboardEventHandler,
-	ReactNode,
 	RefObject,
 	useCallback,
 	useEffect,
@@ -14,8 +17,6 @@ import {
 	useRef,
 	useState,
 } from 'react'
-import { AriaNumberFieldProps, useLocale, useNumberField } from 'react-aria'
-import { NumberFieldState } from 'react-stately'
 import { styled } from 'styled-components'
 
 import { omit } from '@/utils'
@@ -37,7 +38,7 @@ import { InputSuggestions, InputSuggestionsRecord } from '../suggestions'
  */
 type NumericInputProps = Omit<
 	AriaNumberFieldProps,
-	'placeholder' | 'onBlur' | 'onFocus' | 'errorMessage' | 'description'
+	'placeholder' | 'onBlur' | 'onFocus'
 > & {
 	name?: string
 	small?: boolean
@@ -46,8 +47,6 @@ type NumericInputProps = Omit<
 	onSubmit?: (source?: string) => void
 	suggestions?: InputSuggestionsRecord<number>
 	displayedUnit?: string
-	errorMessage?: ReactNode
-	description?: ReactNode
 
 	// API of react-aria types is broken, we need to use the HTMLAttributes version
 	onFocus?: React.HTMLAttributes<HTMLInputElement>['onFocus']
@@ -58,7 +57,7 @@ export const NumericInput = (props: NumericInputProps) => {
 	const { locale } = useLocale()
 	const step = !props.step
 		? 10 **
-			Math.max(
+		  Math.max(
 				Math.floor(
 					Math.log10(
 						Math.abs(
@@ -67,10 +66,10 @@ export const NumericInput = (props: NumericInputProps) => {
 					)
 				) - 1,
 				0
-			)
+		  )
 		: 1
 
-	const ref = useRef<HTMLInputElement>(null!)
+	const ref = useRef<HTMLInputElement>(null)
 	const state = useSimpleNumberFieldState({
 		...props,
 		step,
@@ -107,10 +106,12 @@ export const NumericInput = (props: NumericInputProps) => {
 					{...(omit(
 						props as typeof props & {
 							dottedName?: string
+							hideDefaultValue?: boolean
 						},
 						'label',
 						'small',
 						'formatOptions',
+						'hideDefaultValue',
 						'dottedName',
 						'suggestions',
 						'onSubmit',
@@ -171,8 +172,8 @@ const StyledNumberInput = styled(StyledInput)`
 `
 
 const Unit = styled.span<{ $small?: boolean }>`
-	font-size: ${({ theme, $small }) => theme.fontSizes[$small ? 'min' : 'base']};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: ${({ $small }) => ($small ? '0.875rem' : '1rem')};
+	line-height: 1.5rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 	color: ${({ theme }) =>
 		theme.darkMode
@@ -302,8 +303,8 @@ function useSimpleNumberFieldState(
 		rawInputValue === undefined && numberValue !== undefined
 			? formatter.format(numberValue)
 			: rawInputValue === '' || (!rawInputValue && props.placeholder == null)
-				? defaultInputValue
-				: (rawInputValue ?? '')
+			? defaultInputValue
+			: rawInputValue ?? ''
 
 	const updateInputValue = useCallback(
 		(value: number | undefined) => {

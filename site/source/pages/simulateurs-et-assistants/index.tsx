@@ -1,8 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import illustration from '@/assets/images/illustrations/simulateur.svg'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import Meta from '@/components/utils/Meta'
 import {
@@ -16,13 +15,15 @@ import {
 	Strong,
 	Ul,
 } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
+
+import simulatorSvg from './illustration-simulateur.svg'
 
 export default function SimulateursEtAssistants() {
 	const { t } = useTranslation()
 	const { absoluteSitePaths } = useSitePaths()
-	const simulators = useSimulatorsMetadata()
+	const simulators = useSimulatorsData()
 	const titre = t(
 		'pages.simulateurs.accueil.titre',
 		'Simulateurs et Assistants'
@@ -37,9 +38,9 @@ export default function SimulateursEtAssistants() {
 					'pages.simulateurs.accueil.description',
 					'Tous les simulateurs et assistants sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 				)}
-				openGraph={{ image: illustration }}
+				ogImage={simulatorSvg}
 			/>
-			<PageHeader titre={titre} picture={illustration}>
+			<PageHeader titre={titre} picture={simulatorSvg}>
 				<Intro>
 					{t(
 						'pages.simulateurs.accueil.header',
@@ -152,6 +153,25 @@ export default function SimulateursEtAssistants() {
 					</Grid>
 				</>
 
+				<H3 id="assistants">
+					{t(
+						'pages.simulateurs.accueil.2.h3.2',
+						'Assistants à la déclaration de revenus des indépendants'
+					)}
+				</H3>
+				<Grid container spacing={3} role="list" aria-labelledby="assistants">
+					<SimulateurCard
+						{...simulators['déclaration-charges-sociales-indépendant']}
+						role="listitem"
+						titleLevel="h4"
+					/>
+					<SimulateurCard
+						{...simulators['déclaration-revenus-pamc']}
+						role="listitem"
+						titleLevel="h4"
+					/>
+				</Grid>
+
 				<H2 id="autres-outils">
 					{t('pages.simulateurs.accueil.3.h2', 'Autres outils')}
 				</H2>
@@ -159,14 +179,6 @@ export default function SimulateursEtAssistants() {
 					<SimulateurCard {...simulators['choix-statut']} role="listitem" />
 					<SimulateurCard {...simulators.is} role="listitem" />
 					<SimulateurCard {...simulators.dividendes} role="listitem" />
-					<SimulateurCard
-						{...simulators['location-de-logement-meublé']}
-						role="listitem"
-					/>
-					{/* <SimulateurCard
-						{...simulators['cotisation-maladie-frontalier-suisse']}
-						role="listitem"
-					/> */}
 
 					<SimulateurCard
 						{...simulators['coût-création-entreprise']}

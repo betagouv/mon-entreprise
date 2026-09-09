@@ -11,8 +11,8 @@ import {
 	SmallBody,
 	SmallCard,
 } from '@/design-system'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
-import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
+import { useSitePaths } from '@/sitePaths'
 
 import { FromTop } from '../ui/animate'
 import { Highlight } from './Hightlight'
@@ -20,27 +20,31 @@ import { Highlight } from './Hightlight'
 type AlgoliaSimulatorHit = Hit<{
 	icône: string
 	title: string
-	path: MergedSimulatorMetadata['path']
-	pathId: MergedSimulatorMetadata['pathId']
-	tooltip?: MergedSimulatorMetadata['tooltip']
+	pathId: MergedSimulatorDataValues['pathId']
 }>
 
 type SimulatorHitsProps = {
 	hits: Array<AlgoliaSimulatorHit>
 }
 
-const SimulateurCardHit = ({ hit }: { hit: AlgoliaSimulatorHit }) => {
-	const [, setNavigationOrigin] = useNavigationOrigin()
-
+const SimulateurCardHit = ({
+	hit,
+	path,
+	tooltip,
+}: {
+	path: MergedSimulatorDataValues['path'] | '/'
+	tooltip?: MergedSimulatorDataValues['tooltip']
+	hit: AlgoliaSimulatorHit
+}) => {
 	return (
 		<StyledSmallCard
 			icon={<Emoji emoji={hit.icône} />}
-			to={{ pathname: hit.path ?? '/' }}
-			onPress={() => setNavigationOrigin({ fromSimulateurs: true })}
+			to={{ pathname: path }}
+			state={{ fromSimulateurs: true }}
 			title={
 				<p>
 					<Highlight hit={hit} attribute="title" />{' '}
-					{hit.tooltip && <InfoBulle description={hit.tooltip} />}
+					{tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 				</p>
 			}
 		/>
@@ -54,37 +58,51 @@ const StyledSmallCard = styled(SmallCard)`
 export const SimulatorHits = connectHits<
 	{ hits: AlgoliaSimulatorHit[] },
 	AlgoliaSimulatorHit
->(({ hits }: SimulatorHitsProps) => (
-	<>
-		<H3 as="h2">
-			<Trans>Simulateurs</Trans>
-		</H3>
-		{!hits.length && (
-			<FromTop>
-				<SmallBody $grey>
-					<Trans>
-						Aucun résultat ne correspond à votre recherche. Essayez avec
-						d'autres mots-clés.
-					</Trans>
-				</SmallBody>
-			</FromTop>
-		)}
-		<Grid container spacing={2} as="ul" style={{ padding: 0 }}>
-			{hits.map(
-				(hit) =>
-					hit.pathId && (
-						<Grid
-							item
-							key={hit.objectID}
-							xs={12}
-							lg={6}
-							as="li"
-							style={{ listStyle: 'none' }}
-						>
-							<SimulateurCardHit hit={hit} />
-						</Grid>
-					)
+>(({ hits }: SimulatorHitsProps) => {
+	const { absoluteSitePaths } = useSitePaths()
+
+	const getPath = (hit: AlgoliaSimulatorHit) =>
+		hit.pathId
+			.split('.')
+			.reduce<Record<string, unknown> | null>(
+				(acc, curr) =>
+					(acc && curr in acc && (acc[curr] as Record<string, unknown>)) ||
+					null,
+				absoluteSitePaths
+			) as MergedSimulatorDataValues['path'] | null
+
+	return (
+		<>
+			<H3 as="h2">
+				<Trans>Simulateurs</Trans>
+			</H3>
+			{!hits.length && (
+				<FromTop>
+					<SmallBody $grey>
+						<Trans>
+							Aucun résultat ne correspond à votre recherche. Essayez avec
+							d'autres mots-clés.
+						</Trans>
+					</SmallBody>
+				</FromTop>
 			)}
-		</Grid>
-	</>
-))
+			<Grid container spacing={2} as="ul" style={{ padding: 0 }}>
+				{hits.map(
+					(hit) =>
+						hit.pathId && (
+							<Grid
+								item
+								key={hit.objectID}
+								xs={12}
+								lg={6}
+								as="li"
+								style={{ listStyle: 'none' }}
+							>
+								<SimulateurCardHit hit={hit} path={getPath(hit) ?? '/'} />
+							</Grid>
+						)
+				)}
+			</Grid>
+		</>
+	)
+})

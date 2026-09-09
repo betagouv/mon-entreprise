@@ -38,7 +38,7 @@ dirigeant . indépendant . PL . PAMC . proportion recette activité non conventi
 
     - Toutes les rémunérations forfaitaires versées par l’assurance maladie
     (aide à la télétransmission, indemnisation, indemnisation de la formation
-    continue, prime à l’installation…)
+    continue, prime à l’installation, ...)
 
 dirigeant . indépendant . PL . PAMC . proportion recette activité non conventionnée . notification:
   type: notification
@@ -120,7 +120,7 @@ dirigeant . indépendant . PL . PAMC . revenus activité conventionnée:
     honoraires et des rémunérations forfaitaires versées par la CPAM.
   note: |
     Pour éviter d’avoir à ventiler les charges entre celles issues de
-    l’activité conventionnée et celles qui ne le sont pas (ce qui aboutirait à
+    l’activités conventionnées et celles qui ne le sont pas (ce qui aboutirait à
     deux comptabilités distinct), on peut le calculer à partir du revenu
     professionnel que l’on ajuste en fonction de la part du chiffre d’affaires
     provenant des actes conventionnés.
@@ -271,15 +271,15 @@ dirigeant . indépendant . PL . PAMC . assiette participation chirurgien-dentist
     Plus le taux est faible, plus la participation CPAM est importante et donc
     la part à la charge du praticien est faible.
 
-    ### Calcul du taux
+    ## Calcul du taux
 
     La formule de calcul du taux de dépassement est la suivante :
 
     > Taux Urssaf = (dépassements - montants remboursés forfaits CMU) / (montants
     > remboursables actes + montants remboursés forfaits CMU)
   question: Quel est votre « taux Urssaf » ?
-  unité: '%'
-  par défaut: 100%
+  unité: ''
+  par défaut: 1
   références:
     Article 51 de la convention nationale organisant les rapports entre les chirurgiens-dentistes libéraux et l’assurance maladie: https://www.ameli.fr/sites/default/files/Documents/CONVENTION-NATIONALE-DENTAIRE-CONSOLIDEE-AVENANT2.pdf#page=63
 

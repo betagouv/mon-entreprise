@@ -2,14 +2,13 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 import { EvaluatedNode, PublicodesExpression, serializeUnit } from 'publicodes'
 
-import { Montant } from '@/domaine/Montant'
-import { euros, eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
 import {
+	euros,
 	eurosParAn,
-	eurosParHeure,
-	eurosParJour,
 	eurosParMois,
-} from '@/domaine/MontantRecurrent'
+	eurosParTitreRestaurant,
+	Montant,
+} from '@/domaine/Montant'
 
 export const MontantAdapter = {
 	decode: (node: EvaluatedNode): O.Option<Montant> => {
@@ -39,10 +38,6 @@ export const MontantAdapter = {
 				return O.some(eurosParAn(numberValue))
 			case '€/mois':
 				return O.some(eurosParMois(numberValue))
-			case '€/jour':
-				return O.some(eurosParJour(numberValue))
-			case '€/heure':
-				return O.some(eurosParHeure(numberValue))
 			case '€/titre-restaurant':
 				return O.some(eurosParTitreRestaurant(numberValue))
 			default:

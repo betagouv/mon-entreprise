@@ -1,8 +1,8 @@
-import rules, { RègleModèleSocial } from 'modele-social'
+import rules, { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import { ISSimulationConfig } from '@/pages/simulateurs/impot-societe/simulationConfig'
+import ISSimulationConfig from '@/pages/simulateurs/impot-societe/simulationConfig'
 
 const situationParDéfaut = {
 	...ISSimulationConfig.situation,
@@ -11,7 +11,7 @@ const situationParDéfaut = {
 }
 
 describe('entreprise . imposition', () => {
-	let engine: Engine<RègleModèleSocial>
+	let engine: Engine<DottedName>
 	beforeEach(() => {
 		engine = new Engine(rules)
 	})

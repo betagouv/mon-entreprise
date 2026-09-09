@@ -1,4 +1,5 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import Engine, { Evaluation } from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -10,12 +11,14 @@ import {
 	getOnePossibilityOptions,
 	isOnePossibility,
 } from '@/components/conversation/getOnePossibilityOptions'
+import { useEngine } from '@/components/utils/EngineContext'
 import {
 	ChoiceDisplayType,
 	InputSuggestionsRecord,
 	MontantField,
 	NumberField,
 	QuantitéField,
+	Spacing,
 	type DateFieldProps,
 } from '@/design-system'
 import { isIsoDate } from '@/domaine/Date'
@@ -26,23 +29,22 @@ import {
 	ValeurPublicodes,
 } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, Montant } from '@/domaine/Montant'
-import { OuiNon, toOuiNon } from '@/domaine/OuiNon'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { isQuantité, Quantité } from '@/domaine/Quantite'
+import { OuiNon } from '@/domaine/OuiNon'
+import { isQuantité, Quantité } from '@/domaine/Quantité'
 import {
 	isUnitéMonétaire,
 	isUnitéMonétaireRécurrente,
 	isUnitéQuantité,
 	UnitéMonétaire,
 	UnitéQuantité,
-} from '@/domaine/Unites'
-import { enregistreLesRéponsesÀLaQuestion } from '@/store/actions/actions'
-import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
-import { getMeta } from '@/utils/publicodes/publicodes'
+} from '@/domaine/Unités'
+import { enregistreLesRéponses } from '@/store/actions/actions'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
+import { getMeta } from '@/utils/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import { DateInput } from './DateInput'
+import { DefaultValue } from './DefaultValue'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
@@ -139,11 +141,11 @@ interface RuleInputProps {
 	missing?: boolean
 	onSubmit?: (source?: string) => void
 	engine?: Engine<DottedName>
+	showSuggestions?: boolean
+	hideDefaultValue?: boolean
 	inputType?: ChoiceDisplayType
 	modifiers?: Record<string, string>
 	required?: boolean
-	errorMessage?: string
-	validation?: DateFieldProps['validation']
 
 	className?: string
 	autoFocus?: boolean
@@ -154,21 +156,21 @@ interface RuleInputProps {
 
 	id?: string
 	'aria-labelledby'?: string
-	'aria-describedby'?: string
+	'aria-label'?: string
 }
 
 export default function RuleInput({
 	dottedName,
 	onChange,
+	showSuggestions = true,
 	onSubmit = () => null,
+	hideDefaultValue = false,
 	missing,
 	inputType,
 	modifiers = {},
 	engine,
 	small,
 	displayedUnit,
-	errorMessage,
-	validation,
 	...accessibilityProps
 }: RuleInputProps) {
 	const dispatch = useDispatch()
@@ -193,14 +195,14 @@ export default function RuleInput({
 
 	const estUnMontant = Boolean(
 		(value && isMontant(value)) ||
-		(defaultValue && isMontant(defaultValue)) ||
-		isUnitéMonétaire(unitéPublicodes)
+			(defaultValue && isMontant(defaultValue)) ||
+			isUnitéMonétaire(unitéPublicodes)
 	)
 
 	const estUneQuantité = Boolean(
 		(value && isQuantité(value)) ||
-		(defaultValue && isQuantité(defaultValue)) ||
-		isUnitéQuantité(unitéPublicodes)
+			(defaultValue && isQuantité(defaultValue)) ||
+			isUnitéQuantité(unitéPublicodes)
 	)
 
 	const inputNature = getRuleInputNature(
@@ -219,15 +221,17 @@ export default function RuleInput({
 
 	if (inputNature === PLUSIEURS_POSSIBILITES) {
 		return (
-			<PlusieursPossibilités
-				règle={dottedName}
-				onChange={(choixSélectionnés: DottedName[]) => {
-					const toutesLesPossibilités = getMultiplePossibilitiesOptions(
-						engineValue,
-						dottedName
-					)
-					const valeurs = toutesLesPossibilités.reduce<Record<string, OuiNon>>(
-						(acc, possibilité) => {
+			<>
+				<PlusieursPossibilités
+					règle={dottedName}
+					onChange={(choixSélectionnés: DottedName[]) => {
+						const toutesLesPossibilités = getMultiplePossibilitiesOptions(
+							engineValue,
+							dottedName
+						)
+						const valeurs = toutesLesPossibilités.reduce<
+							Record<string, OuiNon>
+						>((acc, possibilité) => {
 							const suffixe = possibilité.dottedName.replace(
 								`${dottedName} . `,
 								''
@@ -235,23 +239,23 @@ export default function RuleInput({
 
 							return {
 								...acc,
-								[suffixe]: toOuiNon(
-									choixSélectionnés.includes(possibilité.dottedName)
-								),
+								[suffixe]: choixSélectionnés.includes(possibilité.dottedName)
+									? 'oui'
+									: 'non',
 							}
-						},
-						{}
-					)
+						}, {})
 
-					dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, valeurs))
-				}}
-				engine={engineValue}
-				id={inputId}
-				aria={{
-					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
-				}}
-			/>
+						dispatch(enregistreLesRéponses(dottedName, valeurs))
+					}}
+					engine={engineValue}
+					id={inputId}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
+				/>
+				<Spacing md />
+			</>
 		)
 	}
 
@@ -264,33 +268,46 @@ export default function RuleInput({
 				: 'radio')
 
 		return (
-			<UnePossibilité
-				dottedName={dottedName}
-				value={value || defaultValue}
-				onChange={(value) => onChange(value, dottedName)}
-				id={inputId}
-				title={rule.title}
-				description={rule.rawNode.description}
-				choices={getOnePossibilityOptions(engineValue, dottedName)}
-				variant={type}
-				aria={{
-					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
-				}}
-			/>
+			<>
+				<UnePossibilité
+					dottedName={dottedName}
+					value={value}
+					defaultValue={defaultValue}
+					onChange={(value) => onChange(value, dottedName)}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					id={inputId}
+					title={rule.title}
+					description={rule.rawNode.description}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					choices={getOnePossibilityOptions(engineValue, dottedName)}
+					variant={type}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
+				/>
+				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
+			</>
 		)
 	}
 
 	// Gestion des API spécifiques
 	if (inputNature === SELECT_COMMUNE) {
 		return (
-			<SelectCommune
-				id={inputId}
-				onChange={(c) => {
-					dispatch(enregistreLesRéponsesÀLaQuestion(dottedName, c))
-				}}
-				value={value as Evaluation<string>}
-			/>
+			<>
+				<SelectCommune
+					id={inputId}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					missing={missing ?? dottedName in evaluation.missingVariables}
+					onChange={(c) => {
+						dispatch(enregistreLesRéponses(dottedName, c))
+					}}
+					value={value as Evaluation<string>}
+				/>
+				<Spacing md />
+			</>
 		)
 	}
 
@@ -311,6 +328,8 @@ export default function RuleInput({
 						dottedName
 					)
 				}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={accessibilityProps.autoFocus}
 				onSubmit={onSubmit}
 			/>
 		)
@@ -322,39 +341,39 @@ export default function RuleInput({
 			<DateInput
 				id={inputId}
 				dottedName={rule.dottedName}
-				value={
-					isIsoDate(value)
-						? value
-						: isIsoDate(defaultValue)
-							? defaultValue
-							: undefined
-				}
+				value={isIsoDate(value) ? value : undefined}
 				onChange={(value) => onChange(value, dottedName)}
+				missing={missing ?? dottedName in evaluation.missingVariables}
 				title={rule.title}
+				hideDefaultValue={hideDefaultValue}
 				onSubmit={onSubmit}
-				suggestions={rule.suggestions}
+				suggestions={showSuggestions ? rule.suggestions : {}}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
+					label: accessibilityProps['aria-label'],
 				}}
 				type={rule.rawNode.type as DateFieldProps['type']}
-				errorMessage={errorMessage}
-				validation={validation}
 			/>
 		)
 	}
 
 	if (inputNature === OUI_NON_INPUT) {
 		return (
-			<OuiNonInput
-				id={inputId}
-				value={(value || defaultValue) as OuiNon | undefined}
-				onChange={(value) => onChange(value, dottedName)}
-				aria={{
-					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
-				}}
-			/>
+			<>
+				<OuiNonInput
+					id={inputId}
+					value={value as 'oui' | 'non' | undefined}
+					onChange={(value) => onChange(value, dottedName)}
+					defaultValue={defaultValue as OuiNon | undefined}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={accessibilityProps.autoFocus}
+					aria={{
+						labelledby: accessibilityProps['aria-labelledby'],
+						label: accessibilityProps['aria-label'],
+					}}
+				/>
+				{!hideDefaultValue && <DefaultValue dottedName={dottedName} />}
+			</>
 		)
 	}
 
@@ -364,12 +383,15 @@ export default function RuleInput({
 				id={inputId}
 				value={value}
 				onChange={(value) => onChange(value, dottedName)}
+				missing={missing ?? dottedName in evaluation.missingVariables}
 				title={rule.title}
 				description={rule.rawNode.description}
+				/* eslint-disable-next-line jsx-a11y/no-autofocus */
+				autoFocus={accessibilityProps.autoFocus}
 				onSubmit={onSubmit}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
+					label: accessibilityProps['aria-label'],
 				}}
 			/>
 		)
@@ -386,7 +408,7 @@ export default function RuleInput({
 				: unitéDeBase
 		const unité = isUnitéMonétaire(displayedUnit)
 			? displayedUnit
-			: (unitéConvertie ?? undefined)
+			: unitéConvertie ?? undefined
 		const unitéRécurrenteCible = isUnitéMonétaireRécurrente(targetUnit)
 			? targetUnit
 			: undefined
@@ -401,11 +423,13 @@ export default function RuleInput({
 					onChange(value, dottedName)
 				}}
 				onSubmit={onSubmit}
-				suggestions={suggestions as Record<string, Montant>}
+				suggestions={
+					showSuggestions ? (suggestions as Record<string, Montant>) : {}
+				}
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
+					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
 				avecCentimes={!!accessibilityProps.formatOptions?.maximumFractionDigits}
 			/>
@@ -428,11 +452,15 @@ export default function RuleInput({
 					onChange(value, dottedName)
 				}}
 				onSubmit={onSubmit}
-				suggestions={suggestions as Record<string, Quantité>}
+				suggestions={
+					showSuggestions
+						? (suggestions as Record<string, Quantité>)
+						: undefined
+				}
 				id={inputId}
 				aria={{
 					labelledby: accessibilityProps['aria-labelledby'],
-					describedby: accessibilityProps['aria-describedby'],
+					label: accessibilityProps['aria-label'] ?? rule.title,
 				}}
 				small={small}
 			/>
@@ -447,12 +475,16 @@ export default function RuleInput({
 				onChange(value, dottedName)
 			}}
 			onSubmit={onSubmit}
-			suggestions={suggestions as InputSuggestionsRecord<number>}
+			suggestions={
+				showSuggestions
+					? (suggestions as InputSuggestionsRecord<number>)
+					: undefined
+			}
 			id={inputId}
 			formatOptions={accessibilityProps.formatOptions}
 			aria={{
 				labelledby: accessibilityProps['aria-labelledby'],
-				describedby: accessibilityProps['aria-describedby'],
+				label: accessibilityProps['aria-label'] ?? rule.title,
 			}}
 		/>
 	)

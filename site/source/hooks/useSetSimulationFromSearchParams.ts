@@ -2,37 +2,33 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
+import { DottedName } from 'modele-social'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
+import { useEngine } from '@/components/utils/EngineContext'
 import {
-	getRèglesIgnoréesFromSearchParams,
 	getSituationFromSearchParams,
 	getTargetUnitFromSearchParams,
 	TARGET_UNIT_PARAM,
 } from '@/domaine/searchParams'
-import { useNavigation } from '@/lib/navigation'
 import { ValeurDomaine } from '@/SearchParamsAdapter'
 import {
-	enregistreLesRéponsesAuxQuestions,
+	batchUpdateSituation,
 	setActiveTarget,
 	updateUnit,
 } from '@/store/actions/actions'
-import { configObjectifsSelector } from '@/store/selectors/simulation/config/configObjectifs.selector'
-import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.slice'
+import { configObjectifsSelector } from '@/store/selectors/simulationSelectors'
 
-import { useEngineFromModèle } from './useEngineFromModèle'
-
-export default function useSetSimulationFromSearchParams(nomModèle: NomModèle) {
-	const { searchParams, setSearchParams } = useNavigation()
+export default function useSetSimulationFromSearchParams() {
+	const [searchParams, setSearchParams] = useSearchParams()
 	// saves params for development, as strict mode is running twice
 	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
 
-	const engine = useEngineFromModèle(nomModèle)
+	const engine = useEngine()
 	const rules = useMemo(() => R.keys(engine.getParsedRules()), [engine])
 
 	const setNewTargetUnit = useCallback(() => {
@@ -46,7 +42,7 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			if (!R.isEmptyReadonlyRecord(newSituation)) {
 				dispatch(
-					enregistreLesRéponsesAuxQuestions(
+					batchUpdateSituation(
 						pipe(
 							newSituation,
 							R.map((valeur) => O.fromNullable(valeur))
@@ -62,7 +58,9 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
 			const newActiveTarget = pipe(
 				R.keys(newSituation),
-				A.findFirst((dottedName) => objectifs.includes(dottedName))
+				A.findFirst((dottedName) =>
+					objectifs.includes(dottedName as DottedName)
+				)
 			)
 
 			if (O.isSome(newActiveTarget)) {
@@ -91,15 +89,6 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		setNewTargetUnit()
 		setNewSituation(newSituation)
 		setNewActiveTarget(newSituation)
-
-		const règlesIgnorées = getRèglesIgnoréesFromSearchParams(
-			initialSearchParams,
-			rules
-		)
-
-		if (!R.isEmptyReadonlyRecord(newSituation) || règlesIgnorées.length > 0) {
-			dispatch(simulationChargéeDepuisLien(règlesIgnorées))
-		}
 
 		resetSearchParams()
 		// eslint-disable-next-line react-hooks/exhaustive-deps

@@ -3,6 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Tableau } from './index'
 
 const meta = {
+	title: 'Design System/Documentation/Tableau',
 	component: Tableau,
 	parameters: {
 		layout: 'padded',

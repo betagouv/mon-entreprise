@@ -1,25 +1,21 @@
 import { Option } from 'effect'
 import React, { ReactNode } from 'react'
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
 import ShareOrSaveSimulationBanner, {
 	CustomSimulationButton,
 } from '@/components/ShareSimulationBanner'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { Button, Grid, H3, Spacing } from '@/design-system'
-import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
-import { QuestionPublicodes } from '@/hooks/useQuestions'
-import { useNavigation } from '@/lib/navigation'
 import { Action } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { firstStepCompletedSelector } from '@/store/selectors/simulation/firstStepCompleted.selector'
+import { firstStepCompletedSelector } from '@/store/selectors/simulationSelectors'
 
-import { Feedback } from '../Feedback/Feedback'
-import { shouldAskFeedback } from '../Feedback/utils'
-import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../PianoAnalytics'
+import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../ATInternetTracking'
+import { Feedback, getShouldAskFeedback } from '../Feedback/Feedback'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
 import EntrepriseSelection from './EntrepriseSelection'
@@ -27,6 +23,7 @@ import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
+export { Questions } from './Questions'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
@@ -73,13 +70,10 @@ type SimulationProps<S extends Situation = Situation> = {
 	id?: string
 	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
-	simulationEstCommencée?: (situation?: S) => boolean
-	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
-	questionsPublicodes?: Array<QuestionPublicodes<S>>
-	raccourcisPublicodes?: Array<RaccourciPublicodes>
+	avecQuestionsPublicodes?: boolean
 }
 
 export default function Simulation<S extends Situation = Situation>({
@@ -94,25 +88,18 @@ export default function Simulation<S extends Situation = Situation>({
 	id,
 	customSimulationbutton,
 	entrepriseSelection = true,
-	simulationEstCommencée,
-	conseillersEntreprisesVariant,
 	situation,
 	questions,
-	questionsPublicodes,
-	raccourcisPublicodes,
+	avecQuestionsPublicodes = true,
 }: SimulationProps<S>) {
 	const isFirstStepCompleted = useSelector(firstStepCompletedSelector)
-	const laSimulationEstCommencée = simulationEstCommencée
-		? simulationEstCommencée(situation)
-		: isFirstStepCompleted
-	const { currentPath } = useNavigation()
-	const shouldShowFeedback = shouldAskFeedback(currentPath)
-	const showQuestions = showQuestionsFromBeginning || laSimulationEstCommencée
+	const shouldShowFeedback = getShouldAskFeedback(useLocation().pathname)
+	const showQuestions = showQuestionsFromBeginning || isFirstStepCompleted
 
 	return (
 		<>
-			{!laSimulationEstCommencée && <TrackPage name={ACCUEIL} />}
-			{laSimulationEstCommencée && <TrackPage name={SIMULATION_COMMENCEE} />}
+			{!isFirstStepCompleted && <TrackPage name={ACCUEIL} />}
+			{isFirstStepCompleted && <TrackPage name={SIMULATION_COMMENCEE} />}
 
 			<SimulationContainer fullWidth={fullWidth} id={id}>
 				<PrintExportRecover />
@@ -128,26 +115,20 @@ export default function Simulation<S extends Situation = Situation>({
 							<Questions
 								situation={situation}
 								questions={questions}
-								questionsPublicodes={questionsPublicodes}
-								raccourcisPublicodes={raccourcisPublicodes}
+								avecQuestionsPublicodes={avecQuestionsPublicodes}
 								customEndMessages={customEndMessages}
-								showModifierMesRéponses={!!questionsPublicodes?.length}
 							/>
 						</>
 					)}
 					<Spacing md />
 
-					{!entrepriseSelection && questionsPublicodes?.length && (
-						<SimulationPréremplieBanner />
-					)}
+					{!entrepriseSelection && <SimulationPréremplieBanner />}
 
-					{!showQuestions && questionsPublicodes?.length && (
-						<PreviousSimulationBanner />
-					)}
+					{!showQuestions && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 
-					{laSimulationEstCommencée && !hideDetails && (
+					{isFirstStepCompleted && !hideDetails && (
 						<>
 							{customSimulationbutton && (
 								<>
@@ -164,18 +145,14 @@ export default function Simulation<S extends Situation = Situation>({
 								</>
 							)}
 
-							<ShareOrSaveSimulationBanner
-								share
-								print
-								conseillersEntreprisesVariant={conseillersEntreprisesVariant}
-							/>
+							<ShareOrSaveSimulationBanner share print conseillersEntreprises />
 							<Spacing lg />
 						</>
 					)}
 				</FromTop>
 			</SimulationContainer>
-			{laSimulationEstCommencée && !hideDetails && explanations}
-			{laSimulationEstCommencée && !hideDetails && shouldShowFeedback && (
+			{isFirstStepCompleted && !hideDetails && explanations}
+			{isFirstStepCompleted && !hideDetails && shouldShowFeedback && (
 				<div
 					style={{
 						textAlign: 'center',
@@ -216,7 +193,7 @@ export function SimulationContainer({
 								width: ' 100%',
 								maxWidth: 'none',
 								flexBasis: 'auto',
-							}
+						  }
 						: {}
 				}
 				xl={9}

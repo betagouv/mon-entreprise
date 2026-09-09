@@ -1,19 +1,19 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { Commune as CommuneType } from '@/api/commune'
 import SelectCommune from '@/components/conversation/select/SelectCommune'
+import { useEngine } from '@/components/utils/EngineContext'
 import { usePersistingState } from '@/components/utils/persistState'
-import { Body, InfoButton } from '@/design-system'
+import { Body, HelpButtonWithPopover } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import {
-	enregistreLesRéponsesÀLaQuestion,
-	enregistreLesRéponsesAuxQuestions,
+	batchUpdateSituation,
+	enregistreLesRéponses,
 } from '@/store/actions/actions'
-import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
@@ -26,17 +26,14 @@ export default function Commune() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey="pages.assistants.choix-statut.commune.title">
+					<Trans i18nKey="choix-statut.commune.title">
 						Dans quelle commune voulez-vous créer votre entreprise ?
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.commune.help.subject',
-								'la commune de l’entreprise'
-							)}
-							popoverTitle={t(
-								'pages.assistants.choix-statut.commune.help.title',
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.commune.help.title',
 								'Chaque territoire a ses spécificités'
 							)}
+							type="info"
 						>
 							<Body>
 								Certains dispositifs législatifs sont spécifiques à des régions
@@ -46,7 +43,7 @@ export default function Commune() {
 								Par ailleurs, certaines communes ont des dispositifs d'aide à la
 								création d'entreprise (ZRR, ZFU, etc).
 							</Body>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</Trans>
 				}
 			>
@@ -76,25 +73,18 @@ function useCommuneSelection(): [
 
 	const handleChange = (commune: CommuneType) => {
 		setState({ commune })
-		dispatch(
-			enregistreLesRéponsesÀLaQuestion('établissement . commune', commune)
-		)
+		dispatch(enregistreLesRéponses('établissement . commune', commune))
 	}
 
 	useEffect(() => {
 		state.commune &&
-			dispatch(
-				enregistreLesRéponsesÀLaQuestion(
-					'établissement . commune',
-					state.commune
-				)
-			)
+			dispatch(enregistreLesRéponses('établissement . commune', state.commune))
 	}, [])
 
 	const reset = () => {
 		setState({ commune: undefined })
 		dispatch(
-			enregistreLesRéponsesAuxQuestions({
+			batchUpdateSituation({
 				'établissement . commune . code postal': O.none(),
 				'établissement . commune . département': O.none(),
 				'établissement . commune . nom': O.none(),

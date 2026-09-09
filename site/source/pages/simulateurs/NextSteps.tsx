@@ -1,31 +1,38 @@
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
+import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Grid, H2, Spacing, Ul } from '@/design-system'
-import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
-import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
 import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
-import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
+import { useSitePaths } from '@/sitePaths'
 
+import { AnnuaireEntreprises } from '../assistants/pour-mon-entreprise/AnnuaireEntreprises'
 import { ExternalLink } from './_configs/types'
 import ExternalLinkCard from './cards/ExternalLinkCard'
 
 interface NextStepsProps {
-	simulateur?: SimulateurId
-	nextSteps?: SimulateurId[]
-	externalLinks?: ExternalLink[]
+	iframePath?: MergedSimulatorDataValues['iframePath']
+	nextSteps: MergedSimulatorDataValues['nextSteps']
+	externalLinks: MergedSimulatorDataValues['externalLinks']
 }
 
 export default function NextSteps({
-	simulateur,
+	iframePath,
 	nextSteps,
 	externalLinks,
 }: NextStepsProps) {
-	const existingCompany = !!useSelector(companySirenSelector)
+	const { absoluteSitePaths } = useSitePaths()
+	const engine = useEngine()
 
-	if (!simulateur && !nextSteps && !externalLinks) {
+	const relevantExternalLinks = externalLinks?.filter(
+		({ associatedRule }: ExternalLink) =>
+			!associatedRule || engine.evaluate(associatedRule).nodeValue
+	)
+
+	if (!iframePath && !nextSteps && !externalLinks) {
 		return null
 	}
 
@@ -35,11 +42,11 @@ export default function NextSteps({
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid as={Ul} container spacing={3}>
-				{existingCompany && (
+				<WhenAlreadyDefined dottedName="entreprise . SIREN">
 					<GridItem>
 						<AnnuaireEntreprises />
 					</GridItem>
-				)}
+				</WhenAlreadyDefined>
 
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
@@ -48,16 +55,19 @@ export default function NextSteps({
 						</GridItem>
 					))}
 
-				{externalLinks &&
-					externalLinks.map((externalLink, index) => (
+				{relevantExternalLinks &&
+					relevantExternalLinks.map((externalLink, index) => (
 						<GridItem key={index}>
 							<ExternalLinkCard externalLink={externalLink} />
 						</GridItem>
 					))}
 
-				{simulateur && (
+				{iframePath && (
 					<GridItem>
-						<IframeIntegrationCard simulateur={simulateur} />
+						<IframeIntegrationCard
+							iframePath={iframePath}
+							sitePaths={absoluteSitePaths}
+						/>
 					</GridItem>
 				)}
 			</Grid>

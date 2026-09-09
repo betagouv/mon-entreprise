@@ -1,9 +1,10 @@
+import { useOverlayTrigger } from '@react-aria/overlays'
+import { useOverlayTriggerState } from '@react-stately/overlays'
+import { AriaButtonProps } from '@react-types/button'
 import React, { ReactElement, Ref, RefObject, useEffect, useRef } from 'react'
-import { AriaButtonProps, useOverlayTrigger } from 'react-aria'
-import { useOverlayTriggerState } from 'react-stately'
+import { useLocation } from 'react-router-dom'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { useNavigation } from '@/lib/navigation'
 import { omit } from '@/utils'
 
 import { Button } from '../buttons'
@@ -51,14 +52,14 @@ export function PopoverWithTrigger({
 		...omit(triggerProps, 'onPress'),
 	})
 
-	const { currentPath } = useNavigation()
-	const pathnameRef = useRef(currentPath)
+	const { pathname } = useLocation()
+	const pathnameRef = useRef(pathname)
 	useEffect(() => {
-		if (currentPath !== pathnameRef.current) {
-			pathnameRef.current = currentPath
+		if (pathname !== pathnameRef.current) {
+			pathnameRef.current = pathname
 			state.close()
 		}
-	}, [currentPath, state])
+	}, [pathname, state])
 
 	return (
 		<>
@@ -81,7 +82,7 @@ export function PopoverWithTrigger({
 						{typeof children === 'function'
 							? children(() => {
 									state.close()
-								})
+							  })
 							: children}
 					</Popover>
 				</ForceThemeProvider>

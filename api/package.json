@@ -14,7 +14,6 @@
 	"types": "./dist/index.d.ts",
 	"scripts": {
 		"test": "vitest",
-		"test:smoke": "bash ./scripts/smoke-test.sh",
 		"test:type": "tsc --noEmit",
 		"postinstall": "yarn build:openapi",
 		"start": "yarn clean && yarn build:watch & wait-on ./dist && nodemon -d 1s ./dist/",
@@ -38,12 +37,10 @@
 		"got": "^13.0.0",
 		"ioredis": "^5.3.2",
 		"ioredis-mock": "^8.8.3",
-		"koa": "^2.16.3",
+		"koa": "^2.14.2",
 		"koa-body": "^6.0.1",
 		"koa-static": "^5.0.0",
-		"modele-as": "workspace:^",
 		"modele-social": "workspace:^",
-		"modele-ti": "workspace:^",
 		"nodemon": "^3.0.1",
 		"piano-analytics-js": "^6.13.0",
 		"publicodes": "^1.8.1",
@@ -58,12 +55,10 @@
 		"@types/koa__router": "^12.0.1",
 		"@types/node": "^20.6.3",
 		"@types/swagger-ui-dist": "^3.30.1",
-		"chai": "^6",
-		"chai-http": "^5",
+		"chai-http": "^4.4.0",
 		"ts-node": "^10.9.1",
-		"typescript": "^5.9.3",
-		"vite": "^7.3.1",
-		"vitest": "^4.0.18",
-		"wait-on": "^9.0.5"
+		"typescript": "^5.2.2",
+		"vitest": "^0.34.4",
+		"wait-on": "^7.0.1"
 	}
 }

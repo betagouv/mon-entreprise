@@ -10,21 +10,13 @@ interface ImportMetaEnv {
 
 	VITE_AT_INTERNET_SITE_ID: string
 
-	VITE_PLAUSIBLE_DOMAIN?: string
-	VITE_PLAUSIBLE_API_HOST?: string
-	VITE_PLAUSIBLE_TRACK_LOCALHOST?: string
-
 	VITE_ALGOLIA_INDEX_PREFIX: string
 	VITE_ALGOLIA_SEARCH_KEY: string
 	VITE_ALGOLIA_APP_ID: string
 
-	VITE_REDUX_TRACE?: string
+	VITE_COMPANY_SEARCH_HOST?: string
 
-	/**
-	 * Feature toggle pour activer/désactiver le calcul des cotisations en économie collaborative
-	 * Par défaut: 'false' - seule l'applicabilité des régimes est affichée
-	 */
-	VITE_ENABLE_ECONOMIE_COLLABORATIVE_COTISATIONS?: string
+	VITE_REDUX_TRACE?: string
 
 	/**
 	 * @deprecated Use global variable IS_PRODUCTION, IS_STAGING or IS_DEVELOPMENT instead
@@ -60,8 +52,6 @@ declare const IS_STAGING: boolean
  * This variable is statically replaced during the build
  */
 declare const IS_DEVELOPMENT: boolean
-
-declare const ENVIRONNEMENT: import('../domaine/EnvironnementDeploye').EnvironnementDéployé
 
 /**
  * This variable is statically replaced during the build

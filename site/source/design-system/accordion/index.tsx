@@ -1,9 +1,10 @@
 import { useAccordion, useAccordionItem } from '@react-aria/accordion'
+import { TreeState, useTreeState } from '@react-stately/tree'
 import { AriaAccordionProps } from '@react-types/accordion'
+import { Node } from '@react-types/shared'
 import { ReactNode, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
-import { Node, TreeState, useTreeState } from 'react-stately'
 import useMeasure from 'react-use-measure'
 import { css, styled } from 'styled-components'
 
@@ -22,7 +23,6 @@ export const Accordion = <T extends object>(
 		title?: ReactNode
 		isFoldable?: boolean
 		shouldSaveState?: boolean
-		banner?: ReactNode
 	}
 ) => {
 	const { title, isFoldable, shouldSaveState } = props
@@ -103,6 +103,7 @@ export const Accordion = <T extends object>(
 					{isFoldable && (
 						<Grid item>
 							<StyledFoldButton
+								underline
 								onPress={() => (allItemsOpen ? closeAll() : openAll())}
 							>
 								<StyledChevronIcon $isOpen={allItemsOpen} />
@@ -116,9 +117,6 @@ export const Accordion = <T extends object>(
 					)}
 				</StyledGrid>
 			)}
-
-			{props.banner}
-
 			<StyledAccordionGroup
 				{...accordionProps}
 				$variant={props.variant}
@@ -215,7 +213,7 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 	justify-content: space-between;
 	${({ theme }) => css`
 		font-family: ${theme.fonts.main};
-		font-size: ${theme.fontSizes.base};
+		font-size: ${theme.baseFontSize};
 		color: ${theme.colors.bases.primary[700]};
 		padding: ${theme.spacings.lg};
 		background-color: ${theme.colors.bases.primary[100]};
@@ -229,7 +227,6 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 	}
 	&:focus {
 		${FocusStyle}
-		border-radius: ${({ theme }) => theme.box.borderRadius};
 	}
 
 	${({ $variant }) =>
@@ -272,22 +269,14 @@ const StyledGrid = styled(Grid)`
 `
 
 const StyledFoldButton = styled(Button)`
+	text-decoration: none;
 	background-color: transparent;
-	padding: 0;
-	border: none;
-	border-radius: ${({ theme }) => theme.box.borderRadius};
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.bases.primary[700]};
-	svg {
-		margin-right: ${({ theme }) => theme.spacings.xxs};
-	}
 	&:hover {
-		background-color: transparent;
-	}
-	&:focus {
-		${FocusStyle}
+		text-decoration: none;
 	}
 `
 

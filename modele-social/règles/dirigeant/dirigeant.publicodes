@@ -38,7 +38,7 @@ dirigeant . rémunération . totale:
     C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant. Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer. On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   titre global: Rémunération totale dirigeant
   unité: €/an
-  résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
+  résumé: Total payé par l’entreprise pour la rémunération du dirigeant
   variations:
     - si: assimilé salarié
       alors:
@@ -108,7 +108,7 @@ dirigeant . assimilé salarié:
   rend non applicable:
     - salarié . rémunération . primes
     - salarié . rémunération . frais professionnels
-    - salarié . rémunération . contrôle minimum
+    - salarié . rémunération . assiette de vérification du SMIC . contrôle
 
     - salarié . activité partielle
     - salarié . contrat . temps de travail . temps partiel
@@ -116,7 +116,7 @@ dirigeant . assimilé salarié:
 
     - salarié . cotisations . chômage
     - salarié . cotisations . exonérations . lodeom
-    - salarié . cotisations . exonérations . RGDU
+    - salarié . cotisations . exonérations . réduction générale
     - salarié . cotisations . AGS
     - salarié . cotisations . APEC
     - salarié . cotisations . contribution au dialogue social

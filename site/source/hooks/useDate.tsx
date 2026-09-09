@@ -1,7 +1,7 @@
-import { useEngine } from '../utils/publicodes/EngineContext'
+import { useEngine } from '../components/utils/EngineContext'
 
-export const useDate = () => {
+export default function useDate() {
 	const date = useEngine().evaluate('date')
 
-	return date.nodeValue as string
+	return date.nodeValue
 }

@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next'
 
 import { Card, Chip, Emoji, Grid, InfoBulle, SmallCard } from '@/design-system'
+import { MergedSimulatorDataValues } from '@/hooks/useCurrentSimulatorData'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
-import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
-type SimulateurCardProps = MergedSimulatorMetadata & {
+type SimulateurCardProps = MergedSimulatorDataValues & {
 	small?: boolean
 	fromGérer?: boolean
 	role?: string
@@ -28,13 +27,6 @@ export function SimulateurCard({
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
-	const [, setNavigationOrigin] = useNavigationOrigin()
-
-	const handlePress = () => {
-		setNavigationOrigin(
-			fromGérer ? { fromGérer: true } : { fromSimulateurs: true }
-		)
-	}
 
 	const TitleTag = titleLevel
 
@@ -52,10 +44,10 @@ export function SimulateurCard({
 						pathname:
 							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 					}}
-					onPress={handlePress}
+					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 					title={
 						<span>
-							{shortName} {tooltip && <InfoBulle description={tooltip} />}
+							{shortName} {tooltip && <InfoBulle>{tooltip}</InfoBulle>}
 							{beta && (
 								<Chip type="info" icon={<Emoji emoji="🚧" />}>
 									Bêta
@@ -70,11 +62,9 @@ export function SimulateurCard({
 						<TitleTag>
 							{shortName}
 							{beta && (
-								<div>
-									<Chip type="info" icon={<Emoji emoji="🚧" />}>
-										Bêta
-									</Chip>
-								</div>
+								<Chip type="info" icon={<Emoji emoji="🚧" />}>
+									Bêta
+								</Chip>
 							)}
 						</TitleTag>
 					}
@@ -85,7 +75,7 @@ export function SimulateurCard({
 						pathname:
 							(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 					}}
-					onPress={handlePress}
+					state={fromGérer ? { fromGérer: true } : { fromSimulateurs: true }}
 				>
 					{meta?.description}
 				</Card>

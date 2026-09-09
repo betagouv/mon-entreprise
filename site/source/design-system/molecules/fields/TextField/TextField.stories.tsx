@@ -3,6 +3,7 @@ import { Meta, StoryObj } from '@storybook/react'
 import { TextField } from './TextField'
 
 export default {
+	title: 'Design System/molecules/fields/TextField',
 	component: TextField,
 	decorators: [
 		(Story) => (
@@ -31,16 +32,16 @@ export const WithInitialValue: Story = {
 export const WithPlaceholder: Story = {
 	args: {
 		type: 'email',
-		label: 'Adresse e-mail (au format "mon-adresse@example.com")',
+		label: 'Adresse email (au format "mon-adresse@example.com")',
 		placeholder: 'Votre adresse email',
 	},
 }
 
 export const WithDescription: Story = {
 	args: {
-		type: 'email',
-		label: 'Adresse e-mail',
-		description: 'Au format "mon-adresse@exemple.com"',
+		type: 'password',
+		label: 'Mot de passe',
+		description: '8 caractères minimum',
 	},
 }
 

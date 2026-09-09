@@ -1,7 +1,25 @@
+(embauche, absences, départ...): (hiring, absences, departures...)
+"404":
+  action: Back to safety
+  message: This page does not exist or no longer exists
+<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour les indépendants, vous pouvez calculer le montant de vos charges sociales déductibles grâce à notre assistant dédié :</1><2>Assistant déclaration charges sociales indépendant</2></0>:
+  <0><0>The latter was not as successful as we'd hoped. We therefore decided to
+  remove it from the site. It was too difficult to keep the information and
+  calculations up to date.</0><1>For the self-employed, you can calculate the
+  amount of your deductible social security contributions using our dedicated
+  assistant:</1><2>Self-employed social charges declaration wizard</2></0>
+<0><0>Ce dernier n'a pas rencontré le succès escompté. Nous avons donc décidé de le retirer du site. En effet, il était trop difficile de maintenir à jour les informations et les calculs.</0><1>Pour retrouver les informations à jours, vous pouvez vous rendre sur le site de l'Urssaf :</1><2>Activités relevant de l’économie collaborative</2></0>:
+  <0><0>The latter was not as successful as we had hoped. We therefore decided
+  to remove it from the site. It was too difficult to keep the information and
+  calculations up to date.</0><1>To find up-to-date information, please visit
+  the Urssaf website:</1><2>Collaborative economy activities</2></0>
+<0><0>Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l'écraser ?</0></0><1><0><0>Ecraser</0></0><1><0>Annuler</0></1></1>:
+  <0><0>We've detected an old situation. Are you sure you want to overwrite
+  it?</0></0><1><0><0>Overwrite</0></0><1><0>Cancel</0></1></1>
 <0>Activité mixte</0>: <0>Mixed activity</0>
 <0>Impôt sur le revenu</0> (IR): <0>Income tax</0> (IR)
 <0>Impôt sur les sociétés</0> (IS): <0>Corporate income tax</0> (IS)
-<0>Le montant demandé n'est <1>pas calculable…</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
+<0>Le montant demandé n'est <1>pas calculable...</1></0><1>Il n'est pas possible d'obtenir ce montant dans la vraie vie à cause d'un effet de seuil dans le calcul des cotisations ou de l'impôt. Vous pouvez réessayer en modifiant la valeur renseignée.</1>:
   <0>The amount requested <1>cannot be calculated...</1></0><1>It is not
   possible to obtain this amount in real life due to a threshold effect in the
   calculation of contributions or tax. You can try again by modifying the value
@@ -11,6 +29,7 @@ API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
+Activités relevant de l’économie collaborative, voir la page: Collaborative economy activities, see page
 Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
 Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
@@ -21,33 +40,49 @@ Aucun: No
 Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Aucune donnée disponible.: No data available.
-Avec <1>Acre</1>: With <1>Acre</1>
 Avec ACRE: With ACRE
+Bonjour, je suis boulanger et je n'ai pas trouvé en cherchant "pain" ou "viennoiserie".:
+  Hello, I'm a baker and I couldn't find "bread" or "viennoiserie" when I
+  searched.
 Budget: Budget
+Bénéfice: Profit
+Cacher le message: Hide message
 Cette commune n’existe pas: This commune does not exist
 Cette opération n'est pas réversible.: This operation is not reversible.
 Charger plus de résultats: Load more results
 Charges: Charges
 Chiffre d'affaires: Sales figures
+Chiffre d'affaires estimé: Estimated sales
+Chiffre d'affaires pour l'année de cessation: Sales for the year of cessation
 Comment ça marche ? Voir la page explicative sur la page du dépôt github, nouvelle fenêtre:
   How does it work? See the explanatory page on the github repository page, new
   window
 Commune ou code postal: Town or zip code
 Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
-Contactez-nous: Contact us
 Cotisations: Contributions
+Cotisations sociales: Social security contributions
 "Crée le :": "Created on:"
+Dividendes nets: Net dividends
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
+Décrivez votre projet ou votre problème en donnant quelques éléments de contexte: >-
+  Describe your project or problem and provide some background information.
+    Our partner Conseillers-Entreprises.Service-Public.fr will identify, from among all our public and semi-public partners,
+    the right advisor for your request.
+    He or she will contact you by telephone within 5 days, and will provide you with assistance tailored to your situation.
+Déficit: Deficit
 Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
 En savoir plus: Read more
-"En savoir plus sur ": "Find out more about "
+En savoir plus sur impots:
+  gouv:
+    fr, nouvelle fenêtre: More information on impots.gouv.fr, new window
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
+Entreprise créée le <2><0></0></2> et domiciliée à <6><0></0></6>: Company founded on <2><0></0></2> and domiciled at <6><0></0></6>
 EntrepriseSearchField:
   description: "The Siret number is a 14-digit number unique to each company.
     Example: 40123778000127"
@@ -55,7 +90,9 @@ EntrepriseSearchField:
   placeholder: "Example: Café de la gare or 40123778000127"
 ExportSimulation:
   Banner: Print or save as PDF
+Fermer: Close
 Fiche de paie: Pay slip
+Frais de transport: Transport costs
 Graphique détaillant la part des visites par simulateur (alternative accessible avec l'interrupteur en début de section):
   Graph detailing the number of visits per simulator (alternative accessible via
   the switch at the start of the section)
@@ -65,61 +102,102 @@ Graphique détaillant la satisfaction des utilisateurs (alternative accessible a
 Graphique détaillant le nombre de visites (alternative accessible avec l'interrupteur en début de section):
   Graph detailing number of visits (alternative accessible via the switch at the
   start of the section)
+Impôt: Tax
 Impôt au barème: Tax scale
+Impôt sur le revenu: Income tax
 Impôts: Taxes
+Info sur {{ title }}: Info on {{ title }}
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
+J'ai compris: I understand
+J'ai compris, fermer le message condensé.: I get it, close the condensed message.
+Je donne mon avis, donner mon avis sur jedonnemonavis:
+  numerique:
+    gouv:
+      fr, nouvelle fenêtre: I give my opinion, give my opinion on
+        jedonnemonavis.numerique.gouv.fr, new window
 Jours: Days
-Le montant demandé n'est <2>pas calculable…</2>: The amount requested <2>cannot be calculated...</2>
+Le montant demandé n'est <2>pas calculable...</2>: The amount requested <2>cannot be calculated.</2>..
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Simulation data is automatically updated when you modify a field. <2>A panel
   will open to allow you to add details to the simulation, and detailed results
   will be displayed below the form and updated when you modify it.</2>
+"Lire la documentation au sujet de :": "Read the documentation about :"
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
+Lire les précisions, ouvrir le message condensé.: Read the details, open the condensed message.
+Liste des intégrations: List of integrations
 Ma situation: My situation
 Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
-"Mettre la valeur :": "Set value to:"
 Modifier mes réponses: Modify my answers
+Moins de 50 salariés: Less than 50 employees
 Mois: Month
 Mon entreprise: My company
+Mon entreprise recrute ! Voir les offres d'emplois de mon-entreprise:
+  urssaf:
+    fr: My company is recruiting! See job offers on mon-entreprise.urssaf.fr
 Montant annuel: Annual amount
 Montant mensuel: Monthly amount
+Montant net des HC/HS exonérées: Net amount of exempt HC/HS
+Montant net imposable: Net taxable amount
+Montant net social: Net corporate amount
+Montant net à payer: Net amount payable
+Montant net à payer avant impôt sur le revenu: Net amount payable before income tax
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
+Non: No
 Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
 Nouveautés: News
 Option ACRE non activée: ACRE option not activated
 Options: Options
+Oui: Yes
 Outils pour les développeurs: Tools for developers
+Ouvrir la boite de dialogue pour rechercher: Open the dialog box to search
 PFU (<1>"flat tax"</1>): PFU (<1>"flat tax"</1>)
 Page d'accueil: Home page
 "Par exemple : coiffure, boulangerie ou restauration": "For example: hairdressing, bakery or catering"
 Passer: Pass
 Personnalisez l'intégration: Customize integration
 Plan du site: Site map
+Plus d'informations sur {{ title }}: More information on {{ title }}
+Plus d'infos sur {{ title }}: More info on {{ title }}
+Plus de 50 salariés: More than 50 employees
+Pour en savoir plus, rendez-vous sur le site <2>aquoiserventlescotisations:
+  urssaf:
+    fr</2>: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
 Pourcentage: Percentage
 Prochaines questions: Next questions
 Précédent: Previous
 Prévisualisation: Preview
+Période de calcul: Calculation period
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
+Recherche sur le site: Site search
 Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
+Remboursements et déductions diverses: Reimbursements and miscellaneous deductions
 Replier: Fold
+Retour à la création: Back to creation
 Retour à mon activité: Back to my activity
+Retrouver ma précédente simulation, charger les données de ma précédente simulation.: Find my previous simulation, load data from my previous simulation.
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
+Revenu disponible: Disposable income
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
+Rémunération totale pour l'année de cessation: Total compensation for the year of termination
+Résultat fiscal: Taxable income
 Saisissez votre domaine d'activité: Enter your field of activity
+Salaire brut: Gross salary
+Salaire net: Net salary
+Salariés et embauche: Employees and hiring
 Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
   If your company does not appear using your SIREN/SIRET, it may be that you
   have opted not to have <2>your company information made public</2>, in which
@@ -132,20 +210,29 @@ Simulation en cours: Simulation in progress
 "Siège :": "Headquarters:"
 Statistiques: Statistics
 Suivant: Next
+Suivant, enregistrer et passer à l'étape suivante: Next, save and go to the next step
+Suivant, voir le résultat: Next, see the result
+Supprimer: Delete
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
   Table showing user satisfaction with {{percentOrVotes}} on the mon-entreprise
   site, by month.
 Tableau indiquant le nombre de visites par {{period}}.: Table showing the number of visits per {{period}}.
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
+Titres-restaurant: Meal vouchers
+Total des cotisations et contributions: Total contributions
+Total des cotisations à devoir pour l'année de cessation d'activité: Total contributions due for the year of cessation of activity
 Tout déplier: Unfold all
 Tout plier: Fold everything
 Tout réinitialiser: Reset all
 Trimestre: Quarter
 URL de votre simulation: URL of your simulation
 Un avis sur cette page ?: What do you think of this page?
+Urssaf, voir le site urssaf:
+  fr, nouvelle fenêtre: Urssaf, see the urssaf.fr website, new window
 Utiliser avec un tableur: Using a spreadsheet
 Utiliser les calculs des simulateurs dans votre application: Use simulator calculations in your application
-Version bêta: Beta version
+Voir la fiche Urssaf: See the Urssaf sheet
+Voir la fiche de paie: View pay slip
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
 Voir les simulateurs personnalisés: See customized simulators
@@ -165,58 +252,164 @@ accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
   title: Accessibility
+aide: assistance
+aide-déclaration-indépendant:
+  results:
+    title: Amounts to report on your tax return
 aides différées, voir le détail du calcul pour aides différées: deferred aid, see detailed calculation for deferred aid
+août: August
 api:
   description: Tools for developers
   title: Use our REST API
-app:
-  basculerDark: Switch to dark mode
-  basculerLight: Switch to light mode
-  description: Migration in progress. This page confirms that Next.js and the
-    design-system are correctly configured.
-  titre: My company - Next.js
-aquoiserventmescotisations:
-  en-savoir-plus: To find out more, visit <2>aquoiserventlescotisations.urssaf.fr</2>
-  h2: What are my contributions used for?
-aria-label:
-  aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, new window
-  beta-gouv: beta.gouv.fr, go to beta.gouv.fr, new window
-  cpam: CPAM, access to ameli.fr, new window
-  dgfip: DGFiP, access to impots.gouv.fr, new window
-  economie-gouv: economie.gouv.fr, new window
-  entreprendre-service-public: entreprendre.service-public.fr, new window
-  ircec: Ircec, access to ircec.fr, new window
-  service-public: service-public.fr, new window
-  urssaf: Urssaf, access to urssaf.fr, new window
-  équipe: team, access our team presentation page, new window
+assistants:
+  pour-mon-entreprise:
+    annuaire-entreprises:
+      aria-label: Annuaire-entreprise, Visit the site
+      body: Find all public information about your company at
+      cta: Visit the site
+      title: View your public data
+  warning:
+    cmg: <0><0>Calculations are indicative.</0> They are based on the information
+      you have entered and on the applicable regulations, but they do not take
+      account of your entire situation.<2></2>They have no contractual value and
+      cannot engage the responsibility of Urssaf, Caf or MSA.</0><1>No element
+      of this simulation will be kept.</1><2><0>What do you need?</0> Your
+      taxable income for 2023, as well as the number of hours of childcare, the
+      amount of remuneration and the CMG received for the months of March, April
+      and May 2025, for each of your employees.</2>
+avril: April
+betawarning: "<0><0>This tool is in beta version</0>: we are working on
+  <3>validating the information and calculations</3>, but <6>errors may</6>
+  still occur.</0>"
 cards:
   simulator-resource:
     cta: Access the simulator
+certains critères, en savoir plus sur service-public:
+  fr, nouvelle fenêtre: certain criteria, find out more on service-public.fr, new window
 checklist:
   showmore:
     closed: Read more
     open: Hide details
+choix-statut:
+  activité:
+    help:
+      title: Choosing the right status for your situation
+    title: My main activity is...<1><0>The choice of status and contributions
+      depends on your professional activity. Entering your occupation will give
+      you a clearer idea of the possible statuses and enable you to simulate
+      your income more accurately.</0><1><0>Do you combine several
+      activities?</0><1>Your company must still declare one main activity to the
+      authorities. To find out how to do this, <2>see this
+      guide</2>.</1></1></1>
+  association:
+    help:
+      title: What is an association, or non-profit organization?
+    question:
+      gagner-argent:
+        label: To <1>earn</1> money
+      label: Why are you creating this company?
+      non-lucratif:
+        description:
+          disabled: This option is not available because your business cannot be run as an
+            association.
+          label: For example, by creating an association
+        label: <1>Not for profit</1>
+    title: "I am creating this activity...<1><0>It enables you to <2>share a common
+      project in the general interest, without making a profit</2>: promoting a
+      sporting activity, the integration of people in difficulty, local
+      development, etc...</0></1>"
+  associés:
+    help:
+      title: Several partners or shareholders
+    plusieurs:
+      avertissement: This assistant does not yet cover the case of managing partners
+        with equal or minority shares. It is intended only for people who own
+        <1>at least 51% of</1> their company's <1>shares</1>.
+    question1:
+      label: How do you manage this business?
+      plusieurs: Several
+      seul: Alone
+    question2: Do you plan to add partners at a later stage?
+    question3:
+      help:
+        title: Choosing between a sole proprietorship and a company
+      label: Do you want to run your business as a company only?<1><0>Sole
+        proprietorship</0><1><0>You are <2>responsible for all your business
+        assets</2> (equipment, premises, tools, etc.). </0><1>Your <2>personal
+        assets can be seized</2> if you fail to meet your tax and social
+        security obligations.</1><2>You can <2>waive the separation of your
+        assets</2>, for example to secure a bank loan.</2><3>The formalities
+        involved in setting up and running a company are <2>simpler and less
+        costly</2>.</3></1><2>Company</2><3><0>You are <2>liable</2> only for
+        <2>the amount of your contribution to the share capital</2> and the
+        assets held by the company.</0><1>Set-up and management formalities are
+        <2>more complex and costly</2>.</1></3></1>
+    title: I manage this business...<1><0>You <1>share ownership of your business
+      </1>with other people, who may be <4>natural persons</4> (individuals) or
+      <7>legal entities</7> (companies).</0><1>In the case of <1>joint-stock
+      companies</1> (SASU, SAS), these are referred to
+      as<3>shareholders</3>.</1></1>
+  commune:
+    description: <0>You can now go into more detail and compare <2>income</2>,
+      <4>social security coverage</4> and <7>accounting and legal management</7>
+      before making your choice.</0>
+    help:
+      title: Each region has its own specific features
+    title: In which commune would you like to set up your business?<1><0>Some laws
+      are specific to certain regions or departments (Alsace-Moselle, DOM
+      exemption, etc.).</0><1>In addition, some communes have special incentives
+      for business start-ups (ZRR, ZFU, etc.).</1></1>
+  home:
+    estimated-duration: "Estimated duration: 10 minutes."
+    find-statut: Finding the right status
+    intro: The first step in setting up your own business is to <2>choose the legal
+      status best suited to your activity</2>. The administrative procedures
+      vary according to the legal status chosen.
+    warning-entreprise-existante: <0>A company has already been entered</0><1>To
+      access the wizard, you need to reset the data</1>
+  rémunération:
+    CA:
+      help:
+        title: Estimate my sales
+      label: Sales (excl. VAT)
+      title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
+        of all sales made during</2> your accounting period (one year): <6>Sales
+        = selling price × quantities sold</6>.</0></1>"
+    charges:
+      help:
+        title: Define your business expenses
+      label: Amount of charges excl.
+      title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
+        expenses necessary for the smooth running of your business</2>:
+        accountancy, telephone subscription, internet subscription, health
+        insurance, provident fund, work tools, etc.</0></1></0>"
+    rémunérationTotale:
+      label: Total compensation
+    totale:
+      help:
+        title: Total executive compensation
+      title: As a manager, I want the company to pay me a total of...<1><0>This is the
+        total amount the company spends on the executive's remuneration. This
+        "super-gross" remuneration includes all social security contributions
+        payable. It can also be considered as the monetary value of the
+        executive's work.</0></1>
 code {{ code }}: code {{ code }}
 codeApe:
-  catégorie-guichet: <0>Guichet unique categories<1><0>The <2>Guichet électronique
-    des formalités d'entreprises</2> (Guichet unique) is a secure internet
-    portal, through which all companies are required to declare their creation,
-    as of January 1, 2023.</0><1>It uses a different activity classification
-    from that used by INSEE for the APE code.</1></1></0>
-  guichet-unique:
-    subject: one-stop shop
-    title: What is the one-stop shop?
+  catégorie-guichet: <0>Guichet unique categories<1></1></0>
 common:
   useful-resources: Useful resources
+comparaisonRégimes:
+  description: When you set up your company, the choice of legal status will
+    <2>determine which social security scheme the manager is affiliated to</2>.
+    There are <4>three different</4> types, each with its own advantages and
+    disadvantages. Use this comparison to find the one that suits you best.
+  notif: <0><0>Find out which status is <2>best for your business</2> with the
+    <5>new status selection wizard</5>!</0></0>
+  warning-libéral-reglementé: "<0>This simulator does not take into account
+    regulated liberal professions. </0><1>These are subject to specific rules,
+    and have access to dedicated statutes: liberal practice companies
+    (SEL).</1><2><0>To find out more</0> </2>"
 components:
-  conseillersEntreprises:
-    description: Describe your project or problem and provide some background
-      information. Conseillers-Entreprises Service Public will identify the
-      appropriate advisor for your request from among all our public and
-      semi-public partners. He or she will contact you by telephone within 5
-      days, and will provide you with assistance tailored to your situation.
-  engine-value:
-    voir-la-documentation: See the documentation for the calculation of {{valeur}}
   feedback:
     form:
       email:
@@ -234,76 +427,10 @@ components:
       share:
         checkbox: I'd like to share my latest simulation with you to help you respond
           better.
-  fiche-de-paie:
-    cotisations:
-      aria-label-total: "See calculation details for : Total contributions"
-      employeur: Employer
-      salarie: Employee
-      total: Total contributions
-    salaire-brut:
-      frais-pro: Non-deductible business expenses
-    salaire-net:
-      avantages:
-        titre: Benefits in kind
-      impôt:
-        PAS: Income tax deducted at source
-        heures-sup: Net amount of exempt HC/HS
-        net-imposable: Net taxable amount
-        titre: Income tax
-      mns: Net corporate amount
-      net-après-impôt: Net amount payable
-      net-avant-impôt: Net amount payable before income tax
-      remboursements:
-        titre: Reimbursements and miscellaneous deductions
-        titres-restaurant: Meal vouchers
-        transport: Transport costs
-    titres:
-      cotisations: Social security contributions
-      salaire-brut: Gross salary
-      salaire-net: Net salary
-  info:
-    aria-label: About {{ subject }}
-  recherche:
-    button:
-      aria-label: Open the search dialog box
-      text: Search
-    input:
-      placeholder: Keyword or acronym (e.g. CSG)
-    modale:
-      title: Site search
-  règle:
-    info:
-      lien-documentation:
-        aria-label: Read the documentation on {{ règle }}
-        texte: Read the documentation
-      références: Useful links
-  simulateur:
-    conseillers-entreprise:
-      bouton: Talk to an advisor
-      description: Describe your project or problem and provide some background
-        information. Conseillers-Entreprises Service Public will identify the
-        appropriate advisor for your request from among all our public and
-        semi-public partners. He or she will contact you by telephone within 5
-        days, and will provide you with assistance tailored to your situation.
-      title: Talk to an advisor
-    partage:
-      bouton: Generate a share link
-      modale:
-        titre: Your share link
-    questions:
-      modifier: Edit {{ règle }}
-    voir-le-détail: See details
-    zone-de-saisie:
-      info-mise-à-jour: Simulation data is automatically updated when a field is modified.
-      montants:
-        titre: Amounts
-      situation:
-        questions-principales:
-          bouton: Specify your situation
-          texte: For a better simulation, you can specify your situation.
-        retour-liste: Back to list
-        réinitialiser: Default values
-        titre: Situation
+composants:
+  engine-value:
+    voir-la-documentation: See the documentation for the calculation of {{valeur}}
+    voir-les-details-du-calcul: See details of the calculation of {{title}}
 contact:
   email: "<0>You can contact us via our returns module using the 👋 button at the
     top right of your screen or directly by e-mail at the following address:
@@ -316,11 +443,37 @@ contact:
     any action, please <2>contact an Urssaf advisor who</2>will be able to help
     you.
 conversation:
+  multiple-answer:
+    aria-label: Multiple choice
   no: No
   yes: Yes
   yes-no:
     aria-label: Yes or no
 copied: Copy
+cotisations:
+  employeur: employer
+  salarie: employee
+crée:
+  choix-statut:
+    détails-activité:
+      aide-bnc-bic: <0>Whether you choose to work on a <2>commercial</2> basis
+        (earning BIC-type income) or on a <4>self-employed</4> basis (earning
+        BNC-type income) depends mainly on the nature of your work:</0><1><0>If
+        you sell goods or services on a regular basis and act as a merchant,
+        you're likely to be covered by the <1>BIC regime</1>.</0><1>On the other
+        hand, if your activity is based on professional, intellectual or
+        artistic skills, such as medicine, consulting or writing, you'll
+        probably come under the <1>BNC regime</1>.</1></1><2>To find out more,
+        visit the <2>URSSAF</2> website.</2>
+créer:
+  activité-détails:
+    next1: Continue with this activity
+  choix-statut:
+    détails-activité:
+      aide-cci-cma: If you're not sure whether to choose a craft or commercial
+        activity, you can consult the <2>CCI</2> or <5>CMA</5> websites.
+      title: Details of your business
+d'aides: aids
 design-system:
   date-picker:
     close: Close
@@ -333,8 +486,9 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
-entreprise:
-  détails: Company created on <1> </1> and domiciled at <3></3>.
+décembre: December
+en incluant: including
+en titres-restaurant: in meal vouchers
 error:
   back: Back to home page
   body0: <0>If you would like to help us correct this problem, please describe the
@@ -361,9 +515,6 @@ feedback:
       try again or contact us by e-mail at
       <4>contact@mon-entreprise.beta.gouv.fr</4>.
     title: <0>An error has occurred while sending the message</0>
-  jedonnemonavis:
-    aria-label: I'm giving my opinion, give my opinion on
-      jedonnemonavis.numerique.gouv.fr, new window
   reportError: Make a suggestion
   success:
     body1: Our team will take care of your return.
@@ -372,31 +523,29 @@ feedback:
     title: Thank you for your message!
   thanks: Thank you for your feedback!
 footer:
+  accessibilité: "Accessibility: partially compliant"
+  accessibilitéAriaLabel: "Accessibility: partially compliant, find out more"
   github:
-    aria-label: View the source code on GitHub (opens in a new window)
+    new-window: View source code on Github, new window
     text: View source code on Github
-  urssaf:
-    aria-label: Urssaf, visit the urssaf.fr website (opens in a new window)
+février: February
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
-global:
-  fermer: Close
-  mois:
-    août: August
-    avril: April
-    décembre: December
-    février: February
-    janvier: January
-    juillet: July
-    juin: June
-    mai: May
-    mars: March
-    novembre: November
-    octobre: October
-    septembre: September
-  non: No
-  oui: Yes
-  retour: Back
 gérer:
+  choix:
+    chomage-partiel:
+      body: Calculate the amount remaining to be paid after government reimbursement
+        when you activate the scheme for an employee.
+      cta: See the simulator
+      title: Partial activity
+    déclaration:
+      body: Easily calculate the amount of social security contributions to include in
+        your tax return
+      cta: Fill in my declaration
+      title: Income tax return (self-employed)
+    is:
+      body: Calculate your corporate income tax liability based on your profit.
+      cta: Launch simulator
+      title: Estimate corporate tax liability
   ressources:
     annuaire-entreprises:
       aria-label: Company directory, new window
@@ -414,16 +563,22 @@ header:
 iframe:
   description: Tools for developers
   title: Integrate a simulator
+impôt sur le revenu: income tax
+impôt sur le revenu prélevé à la source: income tax deducted at source
+info: info
 intégration:
   description: Tools for developers
   title: Integration
+janvier: January
 jours: days
+juillet: July
+juin: June
 l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 landing:
-  aboutUs: "<0>Who are we?</0><1>We are a small <2>team</2> autonomous and
-    multidisciplinary within<5>Urssaf</5>. We are committed to listening to your
-    needs, and to constantly improving this site in line with the
-    <8>beta.gouv.fr</8> approach.</1><2>We have developed this site to support
+  aboutUs: "<0>Who are we?</0><1>We're a small, independent, multi-disciplinary
+    <2>team</2> within <6>Urssaf</6>. We are committed to being close to your
+    needs, in order to constantly improve this site in line with the
+    <9>beta.gouv.fr</9> approach.</1><2>We have developed this site to support
     entrepreneurs in the development of their business.</2><3>Our aim is to
     remove any uncertainties with regard to the administration, so that you can
     concentrate on what matters: your business.</3>"
@@ -439,10 +594,13 @@ landing:
   subtitle: Wizards and simulators for <2>personalized answers</2> to your
     questions about <5>setting up and running</5> your business.
   title: Official tools for entrepreneurs
+le portail officiel, accéder à aides-entreprises:
+  fr, nouvelle fenêtre: the official portal, access to aides-entreprises.fr, new window
 legalNotice:
   accessibility:
     content: The platform is <2>partially compliant</2> with digital accessibility
       standards. We strive to make this platform accessible to all.
+    label: Go to https://mon-entreprise.urssaf.fr/accessibilit%C3%A9, new tab
     title: Accessibility
   contact:
     content: <0>contact@mon-entreprise.beta.gouv.fr</0>
@@ -468,14 +626,10 @@ legalNotice:
 library:
   description: Tools for developers
   title: Calculation library
+loading: Loading in progress...
+mai: May
 main-menu: Main menu
-messages:
-  loading: Loading in progress...
-  masquer-message: Hide message
-metadata:
-  description: "The official assistant for entrepreneurs in France: contribution
-    simulators, status choice, and more."
-  titre: My company in France
+mars: March
 moins: less
 mois: month
 navbar:
@@ -492,11 +646,11 @@ nextSteps:
     cta: See the documentation
     title: Integrate the web module
 nombres de votes: number of votes
+novembre: November
+octobre: October
 pages:
   "404":
-    action: Back to safety
     description: The page you are looking for does not exist or no longer exists
-    message: This page does not exist or no longer exists
     title: Page not found
   accessibilité: "<0>Accessibility</0><1></1><2></2><3>This page is not a help
     page, but a declaration of compliance with <2>RGAA</2> 4.1, which aims to
@@ -504,68 +658,80 @@ pages:
     with regulations. This page is mandatory to comply with RGAA 4.1.</3><4>What
     is digital accessibility?</4><5>An accessible website is one that enables
     all Internet users to access its content without difficulty, including
-    people with disabilities who use specialized software or hardware.</5><6>An
-    accessible site enables, for example :</6><7><0>Navigate with voice
+    people with disabilities who use specialized software or hardware.</5><6>For
+    example, an accessible site enables :</6><7><0>Navigate with voice
     synthesizers or Braille displays (used in particular by blind or
     partially-sighted Internet users).</0><1>Customize the site's display
     according to your needs (enlarging characters, changing colors,
     etc.).</1><2>Navigate without using the mouse, with the keyboard only or via
-    a touch screen.</2></7><8>Accessibility</8><9>statementAcoss is committed to
-    making its internet, extranet and intranet sites accessible, in accordance
-    with article 47 of law no. 2005-102 of February 11, 2005, and</9><10>has
-    drawn up a <2>strategy and action plan for</2> this purpose.</10><11>This
-    accessibility statement applies to
-    <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance statusMy
-    company</12><13>- <1>https://mon-entreprise.urssaf.fr/</1> is partially
-    compliant with the RGAA <5>(référentiel général d'amélioration de
+    a touch screen.</2></7><8>Accessibility statement</8><9>Acoss undertakes to
+    make its internet, extranet and intranet sites accessible in accordance with
+    article 47 of law no. 2005-102 of February 11, 2005.</9><10>To this end, it
+    will draw up <2>a strategy and action plan to be
+    implemented</2>.</10><11>This declaration of accessibility applies to
+    <2>https://mon-entreprise.urssaf.fr.</2></11><12>Compliance
+    status</12><13>Mon-entreprise - <1>https://mon-entreprise.urssaf.fr/</1> is
+    partially compliant with the RGAA <5>(référentiel général d'amélioration de
     l'accessibilité)</5>, version 4.1, due to the non-conformities and
-    derogations listed below.</13><14>Test resultsThe</14><15>compliance audit
-    carried out by <2>boscop</2> reveals that :</15><16><0>93.65% of RGAA
-    criteria are met.</0><1>The site's average compliance rate is 98%.</1><2>The
-    \"Simulateur de revenus pour salarié\" page has a compliance rate of
-    100%.</2></16><17>Number of applicable criteria: 63; Number of compliant
-    criteria: 59; Number of non-compliant criteria:</17><18>4Non-accessible
-    contentList of</18><19>non-compliant criteria:<1><0>Some links are not
-    explicit.</0><1>Some scripts are not compatible with assistive
-    technologies.</1><2>For some scripts that initiate a context switch, the
-    user is not warned or has no control over it.</2><3>For certain forms,
-    certain legends associated with a grouping of fields of the same nature are
-    not relevant.</3></1></19><20>Derogation
-    for</20><21>disproportionate</21><20>burdenNothingContents</20><22>not
-    subject to the accessibility</22><23>obligationNothing</23><24>Establishment
-    of this accessibility declaration</24> <26>This accessibility declaration
-    was established on May 15, 2025. It has been updated on January 13, 2026.
-    </26><27>Technologies used to create the site</27><28><0>HTML
+    derogations listed below.</13><14>Test results</14><15>The compliance audit
+    carried out by <2>boscop</2> revealed that :</15><16><0>77.78% of RGAA
+    criteria are met.</0><1>The site's average compliance rate is 94%.</1><2>The
+    \"Income simulator for employees\" page has a compliance rate of
+    91%.</2></16><17>Number of applicable criteria: 63; Number of compliant
+    criteria: 49; Number of non-compliant criteria: 14</17><18>Content not
+    accessible</18><19>List of non-compliant criteria :<1><0>For some web pages,
+    information is provided by color only.</0><1>For some web pages, the
+    contrast between text color and background color is not sufficiently
+    high.</1><2>Some links are not self-explanatory.</2><3>Some scripts are not
+    compatible with assistive technologies.</3><4>For some scripts that initiate
+    a context switch, the user is not warned or has no control over
+    it.</4><5>For some web pages, information is not structured by the
+    appropriate use of headings.</5><6>For some web pages, certain lists are not
+    correctly structured.</6><7>Some form fields have no label.</7><8>Some
+    labels associated with a form field are irrelevant.</8><9>For some forms,
+    some field labels and their associated fields are not attached.</9><10>For
+    some forms, fields of the same nature are not grouped together, if
+    necessary.</10><11>For some forms, certain legends associated with a
+    grouping of fields of the same nature are not relevant.</11><12>For some
+    forms, certain input controls are not used appropriately.</12><13>Some
+    content grouping zones present on several web pages (header, main
+    navigation, main content, footer and search engine zones) cannot be reached
+    or avoided.</13></1></19><20>Derogation for disproportionate
+    burden</20><21>None</21><22>Content not subject to accessibility
+    requirements</22><23>None</23><24>Drawing up this accessibility
+    declaration</24> <26>This accessibility declaration was drawn up on May 15,
+    2025.</26><27>Technologies used to create the site</27><28><0>HTML
     5</0><1>CSS</1><2>JavaScript</2><3>SVG</3><4>Aria</4></28><29>Test
-    environmentThe</29><30>content rendering checks were carried out on the
-    basis of the combination provided by the RGAA 4.1 reference database, with
-    the following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and
-    Firefox</1><2>Voiceover and Safari</2></31><32>Tools used in the
-    evaluation</32><33><0><0>Colour Contrast Analyser</0> </0>;<1>Extension \"
-    <1>Web Developer</1> \" ;</1><2>Extension \"RGAA Wizard\" ;</2><3>Extension
-    \" <1>WCAG Contrast checker</1> \" ;</3><4>Extension \" <1>ARC Toolkit</1>
-    \" ;</4><5>Extension \" <1>HeadingsMap</1> \" ;</5><6>Firefox
-    browser-integrated developer tools ;</6><7>W3C HTML
-    Validator.</7></33><34>Site pages checked for compliance</34><35><0><0>Home
+    environment</29><30>Content rendering checks were carried out on the basis
+    of the combination provided by the RGAA 4.1 reference database, with the
+    following versions: </30><31><0>NVDA and Firefox</0><1>Jaws and
+    Firefox</1><2>Voiceover and Safari</2></31><32>Tools used during the
+    evaluation</32><33><0><0>Colour Contrast Analyser</0>;</0><1><1>Web
+    Developer</1> extension;</1><2>RGAA Assistant\" extension;</2><3><1>WCAG
+    Contrast checker</1> extension;</3><4><1>ARC Toolkit</1>
+    extension;</4><5><1>HeadingsMap</1> \" extension;</5><6>Developer tools
+    integrated into the Firefox browser;</6><7>W3C HTML
+    validator.</7></33><34>Site pages checked for compliance</34><35><0><0>Home
     page</0> </0><1>Accessibility page</1><2><0>Site map
-    page</0></2><3><0>Statistics page</0> </3><4><0>Documentation\"
+    page</0></2><3><0>Statistics page</0> </3><4><0>Documentation
     page</0></4><5><0>Simulators\" page</0></5><6><0>Income simulator for
     employees\" page</0></6><7><0>Assistant for determining deductible social
     charges\" page</0></7><8><0>Self-employed income simulator\"
-    page</0></8><9><0>Choose status\" page</0></9><10><0>What's new\"
-    page</0></10><11><0>Tools for developers\" page</0></11><12><0>Calculation
-    library\" page</0></12><13><0>Budget\" page</0> </13></35><36>Right
-    to</36><37>compensationPending full compliance, you can obtain an accessible
-    version of documents or the information contained therein by sending an
-    e-mail to <2>accessibilite@acoss.fr</2> indicating the name of the document
+    page</0></8><9><0>Choose status\" page</0></9><10><0>PAMC income declaration
+    wizard\" page</0></10><11><0>What's new\" page</0></11><12><0>Tools for
+    developers\" page</0></12><13><0>Calculation library\"
+    page</0></13><14><0>Budget\" page</0> </14></35><36>Right to
+    compensation</36><37>Pending full compliance, you can obtain an accessible
+    version of documents or information contained therein by sending an e-mail
+    to <2>accessibilite@acoss.fr</2>, indicating the name of the document
     concerned and/or the information you would like to obtain. The requested
     information will be sent to you as soon as possible.</37><38>Improvement and
-    contactYou</38><39>can help us improve the accessibility of the site by
-    notifying us of any problems you encounter. To do so, send us an e-mail
-    to</39><40>accessibilite@acoss.fr.Voies. This</40><41>procedure is to be
-    used in the following case:</41><42>You have notified the website manager of
-    a lack of accessibility that is preventing you from accessing content or
-    services on the portal, and you have not received a satisfactory
+    contact</38><39>You can help us to improve the accessibility of the site by
+    notifying us of any problems you encounter. To do so, send us an e-mail to
+    <2>accessibilite@acoss.fr.</2></39><40>Recourse</40><41>This procedure
+    should be used in the following cases.</41><42>You have notified the website
+    manager of a lack of accessibility that is preventing you from accessing
+    content or services on the portal, and you have not received a satisfactory
     response.</42><43><0>Write a message to the Défenseur des
     droits<1>(https://formulaire.defenseurdesdroits.fr/)</1></0><1>Contact the
     Rights Defender delegate in your
@@ -573,348 +739,296 @@ pages:
     a letter by post (free of charge, do not use a stamp) to:<1></1>Défenseur
     des droits<3></3>Libre réponse 71120<5></5>75342 Paris CEDEX
     07</2><3>Contact the D&eacute;fenseur des droits by telephone: <2>+33 9 69
-    39 00 00</2></3></43>"
+    39 00 00</2></3></43><44>Updated on May 27, 2025</44>"
+  assistant:
+    recherche-code-ape:
+      seo explanation: "<0>How does the APE code search work?</0><1>To find your
+        company's APE code, enter one or two key words that describe the
+        business activity. For example: \"catering\" or \"sports coach\". The
+        search uses the Insee and Guichet Unique databases to find matching
+        activities. In addition, the most popular results (with the most
+        companies created) are displayed first.</1><2>If you can't find the APE
+        code corresponding to your activity, please let us know using the \"I
+        can't find my activity\" button. This will enable us to improve the
+        search by adding keywords as we receive your
+        feedback.</2><3>Source</3><4>The data used for this search engine is
+        taken from INSEE's PDF of French activity nomenclatures, available on
+        <2>this page</2>.</4>"
   assistants:
-    activité-détails:
-      next1: Continue with this activity
-    choix-statut:
-      accordion-title: Compare…
-      activité:
-        help:
-          subject: core business
-          title: Choosing the right status for your situation
-        title: My main activity is...<1><0>The choice of status and contributions
-          depends on your professional activity. Entering your occupation will
-          give you a clearer idea of the possible statuses and enable you to
-          simulate your income more accurately.</0><1><0>Do you combine several
-          activities?</0><1>Your company must still declare one main activity to
-          the authorities. To find out how, <2>see this guide</2>.</1></1></1>
-      association:
-        help:
-          subject: the nonprofit association or organization
-          title: What is an association, or non-profit organization?
-        question:
-          gagner-argent:
-            label: To <1>earn money</1>
-          label: Why are you setting up this company?
-          non-lucratif:
-            description:
-              disabled: This option is not available because your business cannot be run as an
-                association.
-              label: For example, by creating an association
-            label: <1>Not for profit</1>
-        title: "I'm starting this business...<1><0>It enables <2>to share a common
-          project in the general interest, without making a profit</2> :
-          promoting a sporting activity, the integration of people in
-          difficulty, local development, etc...</0></1>"
-      associés:
-        help:
-          title: Several partners or shareholders
-        plusieurs:
-          avertissement: This assistant does not yet cover the case of managing partners
-            with equal or minority shares. It is intended only for people who
-            own <1>at least 51% of the shares</1> in their company.
-        question1:
-          label: How do you manage this business?
-          plusieurs: Several
-          seul: Alone
-        question2: Do you plan to add partners at a later stage?
-        question3:
-          help:
-            subject: sole proprietorship or corporation
-            title: Choosing between a sole proprietorship and a company
-          label: Do you want to run your business as a company only?<1><0>Sole
-            proprietorship</0><1><0>You are <2>responsible for all your business
-            assets</2> (equipment, premises, tools, etc.). </0><1>Your
-            <2>personal assets may be seized</2> if you fail to meet your tax
-            and social security obligations.</1><2>You can <2>waive the
-            separation of your assets</2>, for example to secure a bank
-            loan.</2><3>The formalities involved in setting up and running a
-            company are <2>simpler and less
-            costly.</2></3></1><2>Company</2><3><0>You are only <2>liable for
-            the amount of your contribution to the share capital</2> and the
-            assets held by the company.</0><1>Set-up and management formalities
-            are <2>more complex and costly</2>.</1></3></1>
-        title: I run this business<0>...</0><1><0>You <1>share ownership of your
-          business </1>with other people, who may be <4>physiques</4>
-          (individuals) or <7>morales</7> (companies).</0><1>In the case of
-          <1>sociétés par actions</1> (SASU, SAS), these are known
-          as<3>shareholders</3>.</1></1>
-      commune:
-        description: <0>You can now go into more detail and compare <2>income</2>,
-          <4>social coverage</4> and <7>accounting and legal management</7>
-          before making your choice.</0>
-        help:
-          subject: the company's municipality
-          title: Each region has its own specific features
-        title: In which commune would you like to set up your business?<1><0>Some laws
-          are specific to certain regions or departments (Alsace-Moselle, DOM
-          exemption, etc.).</0><1>In addition, some communes have special
-          incentives for business start-ups (ZRR, ZFU, etc.).</1></1>
-      détails-activité:
-        aide-bnc-bic: <0>The choice between working as a <2>commercial</2> (with
-          BIC-type income) or as a <4>independent</4> (with BNC-type income)
-          depends mainly on the nature of your work:</0><1><0>If you sell goods
-          or services on a regular basis and act like a trader, you're likely to
-          fall under the <1>BIC regime.</1></0><1>On the other hand, if your
-          activity is based on professional, intellectual or artistic skills,
-          such as medicine, consulting or writing, you'll probably come under
-          the <1>BNC regime.</1></1></1><2>To find out more, visit the
-          <2>URSSAF</2> website.</2>
-        aide-cci-cma: If you're not sure whether to choose a craft or commercial
-          activity, you can consult the websites of the <2>CCI</2> or the
-          <5>CMA</5>.
-        title: Details of your business
-      home:
-        estimated-duration: "Estimated duration: 10 minutes."
-        find-statut: Finding the right status
-        intro: The first step in setting up your own business is to <2>choose the legal
-          status best suited to your activity</2>. The administrative procedures
-          vary according to the legal status chosen.
-        warning-entreprise-existante:
-          popover:
-            bouton:
-              aria-label: Reset registered situation
-              texte: Reset
-            titre: Are you sure you want to reset the registered situation?
-          titre: <0>A company has already been entered</0><1>To access the wizard, you
-            need to reset the data.</1>
-      items:
-        gestion:
-          conjoint:
-            body: "Whether you are married, in a civil partnership, or cohabiting: there are
-              <1>3 possible statuses</1> for your spouse (<3>employee</3>,
-              <6>partner</6> or <9>staff member</9>)."
-            h4: Spousal Status
-          création:
-            body: The formalities involved in starting a business vary depending on the
-              articles of incorporation and the nature of the business. This
-              guide focuses on the <1>mandatory procedures</1> (registration,
-              legal notices, drafting the articles of incorporation, etc.).
-            h4: Setup Cost
-          title: Legal and Accounting Management
-        parentalité:
-          adoption:
-            body: In addition to daily benefits, you may also be eligible for an
-              <2>additional lump-sum parental leave allowance</2>.
-            h4: Adoption
-            label: paid in a single lump sum
-          body: <0>All employment statuses entitle you to <2>daily benefits</2> for
-            maternity, paternity, and adoption leave.</0><1>To be eligible, you
-            must have made contributions <2>for at least 6 months</2>.</1>
-          maternité:
-            body: In addition to daily benefits, you may also be eligible for an
-              <2>additional lump-sum maternity leave allowance</2>.
-            h4: Maternity
-            label: paid in two installments
-          title: Maternity, Paternity, and Adoption
-        prévoyance:
-          body: All membership categories contribute to the <2>disability-and-death
-            pension</2> , which <5>protects you in the event of
-            disability</5> and provides your loved ones with a <8>survivor’s
-            pension and a lump-sum payment in the event of your death</8>.
-          décès:
-            body:
-              "1": Social Security provides a <2>death benefit for your beneficiaries</2>
-                (dependents) under certain conditions.
-              "2": In addition to the death benefit, a <2>survivor's pension</2> may be
-                paid to your spouse. It corresponds to the <5>retirement
-                benefits you will have accrued</5> during your working life.
-              "3": If a death occurs as a result of a <2>work-related accident</2>, your
-                spouse may be eligible for a <4>death benefit</4>.
-              "4": In the event of death, an <1>“orphan” benefit</1> is paid to<3> your
-                children</3>, subject to certain conditions.
-            h4: Death
-            label:
-              "1": for your loved ones
-              "2": maximum
-              "3": in the event of a work-related accident
-          invalidité:
-            body:
-              "1": "<0>You may be eligible for a disability pension <2>if an illness or
-                accident leaves you unable to continue working</2>.</0><1>To be
-                eligible, you must meet <2>certain requirements</2>:
-                <2><1></1>.</2></1>"
-              "2": If your disability is caused by a <2>work-related accident</2>, you may be
-                eligible for a <4>disability pension</4>.
-            evolution-label: (total disability)
-            h4: Disability
-            label: (partial disability)
-          title: Your disability and death coverage
-        retraite:
-          base:
-            body: Each year, depending on your income, you can accrue <2>up to 4
-              quarters</2> toward your basic pension. The total number of
-              quarters accrued determines your eligibility for a full pension.
-            h4: Basic Pension
-            revenu-cotisé:
-              body: The amount of your pension also depends on <2>your contributory
-                income</2>—that is, the portion of your income on which you make
-                contributions to the basic pension plan.
-            unit: quarter(s) earned per year
-          complémentaire:
-            body: Each year, based on your earnings, <2>you earn supplemental retirement
-              points</2>. At the end of your career, your points are converted
-              into a monthly pension that is added to your basic retirement
-              pension.
-            h4: Supplemental Retirement Plan
-            unit: points earned per year
-            valeur-du-point: "Point value: <2><0></0></2>"
-          lien-assurance-retraite:
-            aria-label: Access the Pension Insurance Simulator (opens in a new window)
-            message: To estimate the amount of your future retirement pension, use the
-              <2>Pension Insurance simulator</2>.
-          title: Your Retirement Rights
-        revenus:
-          détails:
-            "1": Let <2><0></0> </2> before taxes
-            "2": With <2><0></0> </2> in social security contributions based on revenue
-              (i.e., <6><0></0> </6> of profit)
-            "3": With <2><0></0> </2> on social security contributions on profits
-          h4: Monthly Net Income After Taxes
-          info:
-            subject: income
-            title: Calculate Your Income
-          title: Your Income
-          warning: You are about to exceed the micro-enterprise <2> revenue</2> cap
-            <2>(<1> </1> ).</2>
-        santé:
-          arrêt:
-            body: "Regardless of your employment status, you will have a <2>3-day waiting
-              period</2>. In the event of a sick leave, your health insurance
-              will pay you:"
-            footer: To be eligible, you must have made contributions for at least
-              <2><0></0></2>
-            h4: Sick Leave
-            warning: Your <1>compensation</1> is <4>too low</4> to qualify for sick
-              leave.
-          atmp:
-            body: "In the event<1>of a work-related accident</1>, a <4>occupational
-              illness</4> , or a <7>commuting accident</7>, you will receive
-              compensation in the amount of:"
-            evolution-label: starting on the 29th day
-            h4: Work-Related Accidents and Occupational Diseases
-          body: <0>All membership statuses entitle you to <2>reimbursement for medical
-            care.</2></0><1>For all categories, it is recommended that you
-            enroll in a <2>supplemental health insurance plan (mutuelle)</2>
-            to improve your reimbursement for healthcare costs.</1>
-          title: Your Health Benefits
-      meta:
-        description: SAS, EURL, EI, auto-entrepreneur... This simulator will help you
-          choose the legal status best suited to your business project.
-        title: Help in choosing legal status
-      modifier-options:
-        acre:
-          body: Assistance for starting or taking over a business (Acre) consists of a
-            <2>partial exemption from social security contributions</2>—known as
-            the “start-up exemption”— <4>for 12 months</4>.
-          info-title: Take Advantage of the Acre Program
-          label: Enable the acre in the simulation
-          title: Acre
-        confirm-label: Save Options
-        imposition:
-          body: You can <2>choose between corporate and income taxation</2> during the
-            first 5 years.
-          body-ae: As a sole proprietorship (AE), the<1>income tax</1> is automatically
-            applied. In certain situations, you can also opt for the
-            <4><0>lump-sum payment</0></4>.
-          hors-ae:
-            disclaimer: As of now, this comparison tool does not take into account income
-              tax calculations for SAS(U)s.
-            label: Taxation Method (excluding AE)
-          title: Taxation
-          versement-libératoire:
-            title: Final Payment (for AE)
-        title: Change My Settings
-        versement-libératoire:
-          label: Enable the lump-sum payment in the simulation
-      revenu-table:
-        net: Table showing the details of the net income calculation for each status
-        net-après-impôt: Table showing the breakdown of the calculation of net income
-          after taxes for each status
-      rémunération:
-        CA:
-          help:
-            subject: revenue
-            title: Estimate my revenue
-          label: Sales (excl. VAT)
-          title: "In the first year, I estimate my sales at...<1><0>Sales are the <2>sum
-            of sales made during</2> your accounting period (one year): <6>Sales
-            = sales price × quantities sold</6>.</0></1>"
-        charges:
-          help:
-            subject: expenses
-            title: Define your business expenses
-          label: Amount of charges excl.
-          title: "<0>I estimate my business expenses at...<1><0>These are <2>all the
-            expenses necessary for the smooth running of your business</2> :
-            chartered accountancy, telephone subscription, internet
-            subscription, health insurance, provident fund, work tools,
-            etc.</0></1></0>"
-        rémunérationTotale:
+    cmg:
+      déclarations:
+        AMA:
+          h2: Approved childminders
+          h3_many: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
+          h3_one: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
+          h3_other: Assistante maternelle {{ count }} - Declaration(s) for the reference
+            period
+        CMG-perçu:
+          label: CMG Remuneration received
+        GED:
+          h2: Home childcare
+          h3_many: Garde à domicile {{ count }} - Declaration(s) for the reference period
+          h3_one: Garde à domicile {{ count }} - Declaration(s) for the reference period
+          h3_other: Garde à domicile {{ count }} - Declaration(s) for the reference period
+        add-button-label: Registering an employee
+        aise-saisie:
+          CMG:
+            contenu: <0>Where can I find the information?</0><1></1>on the monthly
+              statement<3></3><4>Expected amount:</4><5></5>CMG amount
+              Remuneration.
+            titre: CMG Remuneration received
+          enfants:
+            contenu: Indicate the child(ren) cared for during these reference months.
+            titre: Children in care
+          heures-de-garde:
+            contenu: <0>Where can I find this information?</0><1></1>on the
+              payslip<3></3><4>Expected amount:</4><5></5>Sum of the number of
+              normal hours + number of overtime hours or hours with bonus.
+            titre: Number of on-call hours
+          rémunération:
+            contenu: <0>Where can I find the information?</0><1></1>on the monthly
+              statement<3></3><4>Expected amount:</4><5></5>Salary amount
+              (including allowances and deposit).
+            titre: Total compensation
+        enfants-gardés:
+          legend: Child(ren) in care
+        erreurs:
+          aucune-déclaration: Each employee must have at least one declaration.
+          aucune-salariée: There must be at least one employee.
+          déclarations-AMA-invalides: Each childminder declaration must have at least one
+            child in care, a number of hours of care and a remuneration.
+          déclarations-GED-invalides: Each home childcare declaration must include a
+            number of hours of care and a remuneration.
+        heures-de-garde:
+          label: Number of on-call hours
+        modes-de-garde:
+          AMA:
+            label: Certified childminder
+          GED:
+            label: Home care
+          label: "Indicate the type(s) of childcare for the reference period March, April,
+            May 2025 :"
+        mois-identiques: Enter the same information for April and May
+        rémunération:
           label: Total compensation
-        totale:
-          help:
-            title: Total executive compensation
-          title: As a manager, I want the company to pay me a total of...<1><0>This is the
-            total amount the company spends on the executive's remuneration.
-            This "super-gross" remuneration includes all social security
-            contributions payable. It can also be considered as the monetary
-            value of the executive's work.</0></1>
-      résultat:
-        démarches:
-          cta: Go to site
-          texte: Register your company online, securely and free of charge, on the
-            official website formalites.entreprises.gouv.fr.
-        guide:
-          cta: Read the guide
-          texte: Let us guide you step by step through the process of setting up your
-            business, from the idea stage to the launch.
-        intro: Congratulations! The time has come to gather all the information you need
-          to set up your business. Here are a few pointers.
-        recommencer: Restart wizard
-        références: "{{statutLabel}} to find out more"
-        simulateur: Simulate your future income
-        titre: "You have chosen :"
-      seo explanation: <0>Why is the choice of legal status essential?</0><1>Your
-        legal status determines the structure of your company, its tax and
-        social security obligations, and your responsibility as a manager. It
-        can have a direct impact on your profitability, social security
-        coverage, financing possibilities and much more.</1><2>How do I choose
-        the right status?</2><3>Our status selection wizard is designed to
-        simplify this complex process. It asks simple questions about your
-        business, your objectives and your personal situation. It will help you
-        select the status best suited to your situation.</3><4>The benefits of
-        our assistant :</4><5><0><0>Personalized:</0> Our recommendations are
-        tailored to your specific situation.</0><1><0>Informed :</0> We
-        regularly update our information to reflect the latest regulations and
-        tax laws.</1><2><0>Simple:</0> You don't need to be a legal expert. Our
-        assistant makes the process as simple as possible.</2><3><0>Trust:</0>
-        Our recommendations are based on thorough, unbiased analysis.</3></5>
-      shortname: Choice of status
-      title: Choose your status
-      warning:
-        réforme:
-          aria-label: Read the page dedicated to the reform of the contribution base and
-            contribution schedule on the Urssaf website (opens in a new window)
-          texte: <2>Reform of the Contribution Base and Rate</2> has not yet been
-            implemented on this comparison tool.
+      démarrer: Start a simulation
+      enfants:
+        add-button-label: Add a child
+        date-de-naissance:
+          label: Date of birth in DD/MM/YYYY format
+        erreurs:
+          AeeH-invalide: There cannot be more children eligible for the AeeH than there
+            are dependent children.
+          AeeH-obligatoire: The AeeH question is compulsory.
+          doublon-prénom: Each child must have a different first name.
+          enfants-invalides: Each child must have a first name and a date of birth before
+            01/06/2025.
+        h2: Dependent children
+        perçoit-AeeH:
+          label: Do you receive the AeeH (education allowance for disabled children)?
+        prénom:
+          label: First name
+        question: Who were your dependent children in March, April and May 2025?
+      informations-générales:
+        CMG-perçu:
+          label: Have you received CMG for declarations made between March and May 2025?
+        erreurs: All questions are mandatory.
+        mois-déclarations:
+          label: Have you declared at least 2 months between March and May 2025?
+        ressources:
+          description: Enter the reference tax income shown on the tax notice(s) of the
+            members of your household.
+          label: What is your household income for 2023?
+        situation-familiale:
+          couple:
+            label: In couple
+          label: What is your family situation?
+          parent-isolé:
+            label: Alone
+      meta:
+        description: This simulator enables you to estimate the amount of the
+          transitional supplement to the CMG Remuneration.
+        titre: CMG transitional top-up simulator
+      non-éligible:
+        one: "Based on the information provided, you are not eligible for the
+          transitional supplement for the following reason:"
+        other: "Based on the information provided, you are not eligible for the
+          transitional supplement for the following reasons:"
+      nouvelle-simulation: Make a new simulation
+      questions:
+        AeeH:
+          label: Number of children concerned
+      raisons-inéligibilité:
+        CMG-perçu: You were not eligible for CMG between March and May 2025.
+        déclarations: You have not entered enough declarations between March and May 2025.
+        enfants-gardés: None of your children qualify for the transitional supplement.
+        enfants-à-charge: None of your dependent children qualify for the transitional
+          supplement.
+        heures-de-garde: You did not declare enough on-call hours between March and May 2025.
+        ressources: Your income exceeds the ceiling.
+        réforme-avantageuse: The reform of the CMG benefits you (you will receive at
+          least as much for the same situation).
+      résultat: "<0>For an <1>identical situation</1>, the <4>indicative</4> amount of
+        your transitional supplement would be : <6>{{amount}}</6>.<8></8>This
+        supplement to the CMG prevents a significant variation in your
+        out-of-pocket expenses.</0><1><0>The result of this simulation is given
+        as an indication only.<1></1>No element entered during this simulation
+        is valid as a declaration of a change in situation or as a claim for
+        benefit.<3></3>No element of this simulation will be kept.</0></1>"
+      shortname: Transitional supplement to CMG
+      title: CMG transitional top-up simulator
     declaration-charges-sociales-independant:
-      aria-label: Read the dedicated page on the Urssaf website, new window
-      header: The wizard for determining deductible social security charges is no
-        longer available
+      description: <0><0>This tool is designed to help <2>self-employed workers</2>
+        file their tax returns. It enables you to find out the amount of
+        deductible social charges.</0><1>You remain entirely responsible for any
+        omissions or inaccuracies in your declaration.</1></0><1><0><0>This tool
+        is for you if you are in one of the following situations:</0></0><1>You
+        contribute to the general scheme for self-employed workers.</1><2><0>It
+        does not concern you if you are in one of the following
+        situations:</0></2><3><0>You are a self-employed worker covered by a
+        self-employed pension scheme on an accrual basis.</0><1>Your company is
+        domiciled in the French overseas
+        departments</1></3></1><2>Taxation</2><3>These few questions will help
+        you determine the type of declaration you need to complete, and how your
+        social security contributions are calculated.</3>
+      entreprise:
+        formulaire:
+          "1": Company and activity
+          "2": This declaration aid is only available to companies already in business in
+            {{year}}
+          "3": Personal situation
+          "4": Exemptions
+          "5": International
+          "6": Social security contributions in {{year}}
+        imposition:
+          "1": What are your sales before tax at {{year}}?
+          "2": Indicate the amount of your gross sales or revenue (before deduction of the
+            fixed allowance for expenses and charges) and before deduction of
+            any tax exemptions from which you have benefited.
+          "3": What is your taxable income for the year {{year}}?<4></4><5>Social security
+            charges and tax exemptions not included</5>.<5> <2></2></5>
+          "4": Taxable income corresponds to income less expenses. It can be positive
+            (profit) or negative (deficit).
+          "5": What is your net remuneration at {{year}}?<3></3><4>Excluding social
+            security contributions</4>
+          explications:
+            intro: <0>To calculate the amount of taxable income before deduction of
+              exemptions and social security charges to be entered in this
+              simulator, you can use your tax return, taking the amounts shown
+              in the tax lines of the table below, depending on whether you are
+              subject to standard or simplified taxation.</0><1>To do this,
+              proceed as follows:</1><2><0>Determine the taxable income in your
+              tax return, without deducting your social security contributions.
+              Take the corresponding taxable income <1>(1)</1></0><1>Add
+              exemptions <1>(2)</1></1></2>
+            tableCaption: Table displaying the lines of your tax return associated with the
+              tax exemptions in place for each type of activity. The first
+              column shows the different types of activity (BIC, BNC). The
+              second column shows the lines in your tax return that enable you
+              to determine your taxable income, for each type of activity. The
+              other columns show the exemptions in place, as well as the lines
+              in your tax return where you can add your exemptions, for each
+              type of activity.
+            th:
+              "1": Tax system
+              "2": Taxable income <1>(1)</1>
+              "3": Zone/activity exemptions
+              "4": Madelin exemptions and retirement savings plans
+              "5": Short-term capital gains exemptions
+              "6": Suramortissement productif
+              "7": BIC réel normal
+        titre: <0><0>Company and activity</0></0>
+      meta:
+        description: Calculate the amount of social security contributions to include in
+          your tax return
+        title: Determining deductible social security charges
+      shortname: Determining deductible social security charges
+      title: Assistance in determining deductible social charges
     declaration-revenus-pamc:
-      aria-label: Read the dedicated page on the Urssaf website, new window
-      header: No more PAMC tax return wizard
-    déclaration-indépendant: The latter was not as successful as we'd hoped. We
-      therefore decided to remove it from the site. It was too difficult to keep
-      the information and calculations up to date.
+      buttons:
+        reset: Reset
+        results: See results
+      description: <0>This tool is designed to help you complete the social section of
+        your tax return for <2>practitioners and medical auxiliaries under
+        contract (PAMC)</2>. Its purpose is to help you complete the social
+        section of your tax return on <5>impots.gouv.fr</5>.</0><1>You remain
+        entirely responsible for any omissions or inaccuracies in your
+        declaration.</1>
+      externalLinks:
+        "1":
+          description: Who has to declare self-employed income and how to do it.
+          title: Everything you need to know about the social security and tax returns for
+            self-employed workers
+        "2":
+          description: Declaration and payment of social security contributions for
+            practitioners and auxiliaries under agreement (PAM-C).
+          title: I am covered by the PAM-C scheme for my self-employed activity
+      formulaire:
+        "0": Required fields are marked with an asterisk.
+        "1": Profession
+        "10": Amount of your optional contributions
+        "11": Replacement income
+        "2": Tax system
+        "3": Recipes
+        "4":
+          remplacant: Fee retrocessions received
+          titulaire: SNIR survey data
+        "5": Care facilities
+        "6": Deductions and exemptions
+        "7": Other self-employed income
+        "8": Covered procedures
+        "9": Optional contributions
+        conseil:
+          IR: To make filling in the form easier, bring along appendices A and B of your
+            2035 tax form.
+          IS: To make filling in the form easier, please have your 2065 tax form ready.
+          MF: <0>To facilitate filling, prepare :</0><1><0>all revenues
+            received,</0><1>details of contributions paid to
+            Urssaf,</1><2>details of contributions paid to your pension
+            fund.</2></1>
+      meta:
+        description: Calculate the amounts of your income to report on your tax return.
+        title: PAMC tax return
+      resultats:
+        déclarant:
+          "1": Declarant 1
+          "2": Declarant 2
+          label: Which registrant are you?
+        label:
+          "1": Situation on January 1 or on the date of commencement of activity
+          "10": Of which net income from activities carried out in care facilities
+          "11": Of which optional contributions linked to the activity covered by the
+            agreement
+          "12": Of which voluntary contributions related to other self-employed activities
+          "2": You are a holder
+          "3": You are a replacement
+          "4": Total gross revenue from self-employed activities
+          "5": Sector 1 doctor - 3% additional deduction
+          "6": Tax-deductible vacation vouchers
+          "7": Compulsory social security contributions deducted from taxable income
+          "8": "Net income from contract activity :"
+          "9": "Net income from other self-employed activities :"
+        title:
+          "1": Amounts to report on your tax return
+          "2": Replacement income
+          "3": Deductions and exemptions
+          "4": Compulsory social security contributions
+          "5": Breakdown of net income
+          "6": Optional contributions
+          "7": Data provided by Assurance Maladie
+      shortname: PAMC tax return assistant
+      title: PAMC tax return assistant
+      warning: <0>This wizard does <1>not allow</1> you to submit your tax
+        return.</0><1><0>In the event of a deficit</0>, enter a "-" in front of
+        the amount.</1><2><0>The wizard does not take the following situations
+        into account:</0><1><0>foreign income,</0><1>non-professional
+        income,</1><2>change of tax regime during the year,</2><3>commitment
+        accounting,</3><4>doctors enrolled in the RSPM scheme.</4></1>If you
+        find yourself in one of these situations, we invite you to contact your
+        Urssaf office for assistance.</2>
     pour-mon-entreprise:
-      annuaire-entreprises:
-        aria-label: Annuaire-entreprise, Visit the site
-        body: Find all public information about your company at
-        cta: Visit the site
-        title: View your public data
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
         a new simulator, please let us know by clicking on the "<1></1>" button
@@ -922,20 +1036,23 @@ pages:
       description: Do you want to earn an income or hire someone? You'll have to pay
         contributions and taxes. Use our simulators to find out how much you'll
         have to pay.
-      embauche: Employees and hiring
+      info:
+        PdE: "<0>Talk to an advisor who can help you with your specific
+          needs</0><1><0>You want to:</0><1><0>recruit or train
+          employees</0><1>finance your investment projects</1><2>solve a
+          cash-flow problem</2><3>receive advice on employment law</3><4>develop
+          your commercial activity</4><5>sell on the internet</5><6>selling or
+          taking over a business</6><7>improving health and safety in the
+          workplace</7><8>embracing ecological transition &amp;
+          CSR</8></1></1><2><0>Quick and easy public service: you'll be called
+          back by THE advisor who can help you.</0></2><3>More than 40
+          public-sector partners are mobilized to help you with your specific
+          needs.<1></1>The right advisor near you will call you back within 5
+          days.</3>"
       meta:
         description: Simulators and wizards for your business
-      questions: "Answer the following questions to find out which simulators and
-        wizards are right for you:"
-      simulateurs: Simulators for your business
-      situation-overwrite:
-        annuler: Cancel
-        question: We've detected an old situation. Are you sure you want to squash it?
-        écraser: Crush
       title: Assistants for my business
     recherche-code-ape:
-      alternative: You can try "{{proposal}}" instead of "{{match}}".
-      cant-find-my-activity: I can't find my activity
       description: <0>This wizard enables you to quickly find the APE (activité
         principale exercée) code that corresponds to your activity. This code is
         assigned by INSEE to each company in France, in order to categorize
@@ -944,154 +1061,100 @@ pages:
         employees.</0></1><2><0>Find out more about the APE code on
         <2>entreprendre.service-public.fr</2> and
         <6>economie.gouv.</6>fr.</0></2>
-      feedback:
-        description: Tell us about your business and any search terms you've used that
-          didn't give good results.<1></1>We'll use this information to improve
-          this tool.
-        info: We are unable to answer questions about your company's APE code.
-        placeholder: Hello, I'm a baker and I couldn't find "bread" or "viennoiserie"
-          when I searched.
       meta:
         description: Wizard to find the APE code corresponding to your activity.
         title: APE code search
-      radio-card-group:
-        aria-label: List of activities
-      seo explanation: "<0>How does the APE code search work?</0><1>To find your
-        company's APE code, enter one or two keywords that describe the business
-        activity. For example: \"catering\" or \"sports coach\". The search uses
-        the Insee and Guichet Unique databases to find matching activities. In
-        addition, the most popular results (with the most companies created) are
-        displayed first.</1><2>If you can't find the APE code corresponding to
-        your activity, please let us know using the \"I can't find my activity\"
-        button. This will enable us to improve the search by adding keywords as
-        we receive your feedback.</2><3>Source</3><4>The data used for this
-        search engine is taken from INSEE's PDF of French activity
-        nomenclatures, available on <2>this page</2>.</4>"
       shortname: APE code search
       title: "Which APE code for my business? "
-    économie-collaborative:
-      aria-label: Collaborative economy activities, see page
-      texte: <0>The latter was not as successful as we'd hoped. We therefore decided
-        to remove it from the site. It was too difficult to keep the information
-        and calculations up to date.</0><1>To find up-to-date information,
-        please visit the Urssaf website:</1><2>Collaborative economy
-        activities</2>
+  choix-statut:
+    meta:
+      description: SAS, EURL, EI, auto-entrepreneur...  This simulator will help you
+        choose the legal status best suited to your business project.
+      title: Help in choosing legal status
+    seo explanation: <0>Why is the choice of legal status essential?</0><1>Your
+      legal status determines the structure of your company, its tax and social
+      security obligations, and your responsibility as a manager. It can have a
+      direct impact on your profitability, social security coverage, financing
+      possibilities and much more.</1><2>How do I choose the right
+      status?</2><3>Our status selection wizard is designed to simplify this
+      complex process. It will ask you simple questions about your business,
+      your objectives and your personal situation. It will help you select the
+      status best suited to your situation.</3><4>The benefits of our
+      assistant:</4> <5><0><0>Personalized:</0> Our recommendations are tailored
+      to your specific situation.</0><1><0>Informed:</0> We regularly update our
+      information to reflect the latest regulations and tax
+      laws.</1><2><0>Simple:</0> You don't need to be a legal expert. Our
+      assistant makes the process as simple as
+      possible.</2><3><0>Confidence:</0> Our recommendations are based on a
+      thorough and impartial analysis.</3></5>
+    shortname: Choice of status
+    title: Choose your status
   documentation:
     back: Back to simulation
-    body: Explore all the rules of documentation
     meta:
       description: Documentation of calculation rules for our simulators and wizards
       descriptionBis: Explore all the rules of documentation
       title: Documentation
     title: Documentation
   développeur:
-    api: "<0><0>You can easily reuse mycompanyinfrance's calculations on your website
-      or service using our open, authentication-free REST API.</0><1>Access
-      Swagger</1></0><1>How do I perform a calculation using the API?</1><2>To
-      perform a calculation, simply send a <1>POST</1> request to the
-      endpoint corresponding to the rules template you want to use.</2><3>Three
-      rule templates are currently used by
-      mycompanyinfrance:</3><4><0><0>/evaluate</0>: the historical
-      <3>modele-social</3> model</0><1><0>/modeles/as/evaluate</0>: the
-      <3>modele-as</3> model, for assimilated-to-employees managers
-      (“assimilés salariés”)</1><2><0>/modeles/ti/evaluate</0>: the
-      <3>modele-ti</3> model, for self-employed workers (“travailleurs
-      indépendants”)</2></4><5>Regardless of the path used,
-      the query parameters are the same:</5><6><0><0>expressions</0>: the
-      names of the rules for which you want to calculate the
-      value</0><1><0>situation</0>: the situation for configuring the
-      calculation</1></6><7><0>See the examples in Swagger</0></7><8>How do I
-      view the available rules?</8><9>The API also allows you to view the rules
-      used by the various models.</9><10>View all rules for a
-      model</10><11><0><0>/rules</0>: <2>modele-social</2>
-      rules</0><1><0>/modeles/as/rules</0>: <3>modele-as</3>
-      rules</1><2><0>/modeles/ti/rules</0>: <3>modele-ti</3>
-      rules</2></11><12>View a specific
-      rule</12><13><0><0>/rules/{rule}</0>: <3>modele-social</3>
-      rule</0><1><0>/modeles/as/rules/{rule}</0>: <3>modele-as</3>
-      rule</1><2><0>/modeles/ti/rules/{rule}</0>: <3>modele-ti</3>
-      rule</2></13><14><0>Find all routes and their examples in
-      Swagger</0></14><15>How do I replicate a calculation from a
-      simulator?</15><16>To replicate a calculation from a mycompanyinfrance
-      simulator using the API, follow these
-      steps:</16><17></17><18></18><19>Example</19><20>Here is an example of how
-      to use the different routes; you can explore their code in the
-      <1>example</1> folder</20><21><0></0></21>"
-    bibliothèque:
-      aria-label:
-        documentation: online documentation, new window
-        modele-as: modele-as, see the npm page, new window
-        modele-social: social model, see the npm page (opens in a new window)
-        modele-ti: modele-ti, see the npm page, new window
-        publicodes:
-          npm: publicodes, see the npm page (opens in a new window)
-          site: Learn more about publicodes (opens in a new window)
-      exemples:
-        association: "Integration example on codesandbox.io: integration with other
-          libraries"
-        lancement: "Integration example on codesandbox.io: running a calculation"
-        paramétrage: "Integration example on codesandbox.io: configuring the calculation"
-      texte: "<0><0>You can easily reuse the calculations from mycompanyinfrance
-        on your website or service using the open-source JavaScript libraries
-        available on npm.</0></0><1>Which library should you choose?</1>
-        <2>modele-as</2><3>This library contains the rules and calculations for
-        <2>assimilated-to-employees</2> managers (“assimilés salariés”), such
-        as the managers of SAS and SASU companies. This is the library used in
-        the <5>income simulator for SAS(U) managers</5>.</3><4>modele-ti</4><5>
-        This library contains the rules and calculations for
-        <2>self-employed individuals</2> (“travailleurs indépendants”), such as the
-        managers of sole proprietorships (excluding “auto-entreprise” entities) or
-        EURLs, and members of the liberal professions. This is the library used in
-        the <5>income simulator for the self-employed</5> and its
-        variants.</5><6>modele-social</6><7>This
-        is the historical library, which still contains the rules for employees
-        and employers (including Lodeom), auto-entrepreneurs, dividend
-        recipients, corporate income tax calculations, and the costs of starting
-        a business. It is used in all mycompanyinfrance simulators and wizards
-        except those for SAS(U) and self-employed individuals</7><8>Please
-        note: although they are still present, the rules in this library
-        concerning assimilated-to-employees managers (“assimilés salariés”) and
-        self-employed individuals (“travailleurs indépendants”) are no longer
-        maintained.</8><9>How to use these
-        libraries?</9><10>Installation</10><11><0>npm install --save publicodes
-        modele-xx</0></11><12>Replace <1>modele-xx</1> with
-        <3>modele-as</3>,<5>modele-ti</5> or <7>modele-social</7> depending on
-        the calculations you wish to perform.</12><13>To run your own
-        calculations, you must install the package <2><0>publicodes</0></2>
-        containing the publicodes interpreter, as well as the package of your
-        choice— <6><0>modele-as</0></6>, <9><0>modele-ti</0></9> or
-        <13><0>modele-social</0></13>—which contain the rules for the
-        mycompanyinfrance simulators.</13><14><0>What is
-        Publicodes?</0><1>Publicodes is a declarative language developed by
-        beta.gouv.fr and Urssaf to code algorithms for the public interest. It
-        is the language that powers the calculations for most of the
-        my-company-in-france simulators.</1><2><0>Learn more about
-        Publicodes</0></2></14><15>Usage</15><16>To run a calculation, you must
-        configure the engine with the rules from the package
-        <1>modele-social</1> and call the function <4>evaluate</4> with the rule
-        whose value you wish to calculate. Here is an example for the gross/net
-        calculation using the package <7>modele-social</7>
-        :</16><17><0></0></17><18>Configuring the</18><19>Calculation: As you
-        saw in the previous example, the formula for a calculation is simple:
-        input variables (gross salary) and one or more output variables (net
-        salary).</19><20>However, the calculation can be configured with all the
-        options available in the mycompanyinfrance simulators!</20><21>All
-        available rules are listed and explained in the <2>online
-        documentation</2>. This documentation is auto-generated from the
-        publicodes rule files and populated by the current
-        simulation.</21><22>How do you replicate a simulator’s
-        calculation?</22><23>To replicate the calculation of a mycompanyinfrance
-        simulator in the library, follow these steps: </23><24></24><25>Here is
-        the result of the calculation using the example cited
-        above:</25><26><0></0></26><27><0>The scenario contains your simulation
-        data (manager with a gross salary of €3,400), as well as data related to
-        the simulator’s settings.</0></27><28></28><29>Creating Economic Charts
-        <1></1></29><30>It is also possible to use the library for economic or
-        political analysis calculations. Here, we plot labor costs and net pay
-        as a function of gross pay.</30><31>We can see the progressive nature of
-        total pay, which is a lower percentage for the minimum wage than for
-        high incomes. In other words, high earners pay a portion of the social
-        security contributions for low-wage earners.</31><32><0></0></32>"
+    api: "<0><0>You can easily reuse mon-entreprise calculations on your website or
+      service thanks to our open, authentication-free REST API.</0><1>Access the
+      Swagger</1></0><1>How do I perform a calculation via the API?</1><2>To
+      perform a calculation, simply <1>POST</1> the <4>/evaluate</4> route with
+      the following parameters:</2><3><0><0>expressions</0>: the names of the
+      rules whose values you wish to calculate</0><1><0>situation</0>: the
+      situation for setting the calculation parameters</1></3><4><0>See the
+      example in the Swagger</0></4><5>How to replicate a simulator
+      calculation?</5><6>To replicate a calculation from a mon-entreprise
+      simulator in the library, follow these steps: </6><7><0></0><1><0>In the
+      \"Rule and situation\" section, you'll find the name of the rule and the
+      situation to be used as call parameters <1> to/evaluate</1>.</0><1></1>You
+      can also find the API request to copy and paste as a <3>curl</3> call or
+      <5>fetchJavaScript</5>in the \"Reuse this calculation\"
+      section.<7></7></1></7><8></8><9>Example</9><10>Here's an example of how
+      to use the various routes. You can explore their code in the
+      <1>example</1> folder</10><11><0></0></11>"
+    bibliothèque: "<0><0>You can reuse the mon-entreprise calculations on your site
+      or service very easily thanks to the open-source JavaScript library
+      available on npm.</0></0><1>How to use this
+      library</1><2>Installation</2><3><0>npm install --save publicodes
+      modele-social</0></3><4>To run your own calculations, you need to install
+      the <2><0>publicodes</0></2> package, containing the publicodes
+      interpreter, and the <6><0>modele-social</0></6>package, which contains
+      the rules for the mon-entreprise simulators.</4><5><0>What is
+      publicodes?</0><1>Publicodes is a declarative language developed by
+      beta.gouv.fr and Urssaf to encode algorithms of public interest. It is the
+      language that powers all the calculations in the mon-entreprise
+      simulators.</1><2><0>Find out more about publicodes</0></2></5><6>Launch
+      the calculation</6><7>To launch the calculation, you need to parameterize
+      the engine with the rules in the <1>modele-social</1> package and call the
+      <4>evaluate</4> function with the rule whose value you wish to calculate.
+      Here's an example of a gross/net calculation</7><8><0></0></8><9>Setting
+      up the calculation</9><10>As you will have seen from the previous example,
+      the recipe for a calculation is simple: input variables (gross salary),
+      one or more output variables (net salary).</10><11>However, the
+      calculation can be parameterized using all the possibilities offered by
+      mon-entreprise's simulators!</11><12>All available rules are listed and
+      explained in the <2>online documentation</2>. This documentation is
+      auto-generated from the publicodes rule files, and fed by the current
+      simulation.</12><13>How do I reproduce a simulator calculation?</13><14>To
+      replicate a calculation from a mon-entreprise simulator in the library,
+      follow these steps: </14><15><0></0><1><0>Copy the customized code snippet
+      and integrate it into your application</0><1></1>You'll find it by
+      clicking on the \"Reuse this calculation\"
+      section.<3></3></1><2><0>(optional) Modify the situation values to tailor
+      the calculation to your needs</0><1></1> You can modify the situation
+      values without hesitation. They accept any <4>expression or publicodes
+      object.</4></2></15><16>Here's how the calculation works with the above
+      example:</16><17><0></0></17><18><0>The situation contains the data from
+      your simulation (executive with a salary of €3,400 gross), but also data
+      relating to the simulator settings.</0></18><19></19><20>Creating economic
+      graphs <1></1></20><21>You can also use the library for economic or
+      political analysis calculations. Here, we plot the price of labor and the
+      net wage as a function of the gross wage.</21><22>You can see how
+      progressive the total wage is, being lower in percentage terms for a
+      minimum wage than for a high income. In other words, high earners pay part
+      of the social contributions of low earners.</22><23><0></0></23>"
     choice:
       github:
         body: All our tools are open and publicly developed on GitHub.
@@ -1116,16 +1179,16 @@ pages:
         in the past?</0><1>Since the end of 2021, simulator calculation rules
         have been historicized. This means that you can run a simulation using
         the legislation in force at an earlier date. To do so, simply enter the
-        parameter <2><0>date</2></0> in the
+        parameter <2><0>date</0></2> parameter in the
         situation.</1></1><2><0><1>MissingVariables</1></0><1>In return for your
         call to <1>evaluate</1>, you'll get a <3>missingVariables</3> object.
         This contains a list of all the rules used in the calculation whose
         value is missing from the input situation. A <6>default value</6> has
-        been used instead.</1><2>To customize your simulation even further, you
-        can enter their value.</2><3><0>The number associated with them
-        corresponds to the importance of the rule for the calculation: the
-        higher the number, the more the rule has been used by other rules during
-        the calculation.</0></3></2><3><0>Rules tagged as
+        been used instead.</1><2>To further customize your simulation, you can
+        enter their value.</2><3><0>The number associated with them corresponds
+        to the importance of the rule for the calculation: the higher the
+        number, the more the rule has been used by other rules during the
+        calculation.</0></3></2><3><0>Rules tagged as
         <1>experimental</1></0><1>Our APIs follow <2>semantic version
         management</2>. This means that all modifications are
         backward-compatible, except in the case of major version
@@ -1133,13 +1196,13 @@ pages:
         specification. This means they can be deleted, modified or moved,
         invisibly for the API user.</2><3><0>We therefore advise you to be very
         careful when using these rules, and always check their existence before
-        including them in your application code.</0></3><4><0>How do I know if a
-        rule is experimental?</0><1>You can find out if you're using an
-        experimental rule by consulting the <1>warnings</1> </1> object
-        <1>supplied in return for your call to</1><2>evaluateExperimental rules
-        also contain a warning in the \"Reuse this calculation\" section of the
+        including them in your application code.</0></3><4><0>How can I tell if
+        a rule is experimental?</0><1>You can tell if you're using an
+        experimental rule by looking at the <1>warnings</1> object supplied in
+        return for your call to <3>evaluate</3>.</1><2>Experimental rules also
+        contain a warning in the \"Reuse this calculation\" section of the
         documentation.</2></4></3><4><0>Reusing data from external
-        APIs</0><1>Some of the data in the mycompanyinfrance simulators comes from
+        APIs</0><1>Some of the data in the mon-entreprise simulators comes from
         external APIs. You'll need to retrieve the value yourself and enter it
         in the input situation.</1><2>Mobility payment</2><3><0><0>establishment
         . municipality . mobility payment rate</0></0></3><4>In the
@@ -1152,33 +1215,17 @@ pages:
         <2>dedicated service on urssaf.fr</2></0></1></1></5><6>The collective
         AT/MP rate</6><7><0><0>establishment . rate ATMP . collective
         rate</0></0></7><8>This collective rate must be found manually. You can
-        use :</8><9><0><0><0>A csv</0> export of the table of collective net
-        rates published in the Journal Officiel.</0></0><1><0><2>Cotisations
-        AT/MP</2> documentation from the Assurance Maladie</0></1></9></4>"
-      étapes-pour-reproduire-un-calcul:
-        "1": <0>Choose the simulator based on the calculation you need</0><1></1>For
-          example, the <4>employee simulator</4> to calculate net pay
-          from gross pay.
-        "2": <0>Run a simulation using the data you want to reuse</0><1></1>For
-          example, a <4>manager (“cadre”) earning €3,400 gross with meal vouchers</4>.
-        "3": <0>Go to the documentation page for the data you want to
-          calculate</0><1></1> For example, by clicking on “Net salary” in the
-          simulator.
-        4-api: <0>In the “Réutiliser ce calcul” section, you’ll find the API request
-          to copy and paste as a <2>curl</2> call or a JavaScript <4>fetch</4>
-          </0><1></1> You can also find the rule name and the
-          situation to use for performing the calculation in the “Règle et
-          situation” section.
-        4-npm: <0>Copy the custom code snippet and embed it in your application</0>
-          at<1></1>. You can find it by clicking on the “Reuse this calculation”
-          section.
-        "5": <0>(optional) Modify the situation values to configure the calculation
-          according to your needs</0><1></1> Feel free to modify the situation
-          values. These values can be any <4>Publicodes expression or object</4>.
-        aria-label:
-          exemple-simulation: manager (“cadre”) earning €3,400 gross with meal vouchers; access
-            the employee simulator with the data pre-filled
-          expression-publicodes: publicodes expression or object; learn more; new window
+        use :</8><9><0><0><0>a csv export</0> of the table of collective net
+        rates published in the Journal Officiel</0></0><1><0>Assurance Maladie's
+        \" <2>Cotisations AT/MP\"</2> documentation</0></1></9></4>"
+      StepByStep: <0><0><0>Choose the simulator according to the calculation you're
+        interested in</0><1></1>For example, the <4>employee simulator</4> to
+        calculate net income from gross income.</0></0><1><0><0>Run a simulation
+        with the data you wish to re-use</0><1></1>For example, <4>an executive
+        at €3,400 gross with luncheon vouchers</4>.</0></1><2><0><0>Go to the
+        documentation page for the data to be calculated</0><1></1>For example,
+        click on "Salaire net" in the simulator, or search for "Salaire net" in
+        the top-right search box.</0></2>
     couleur: "What color? "
     home:
       choice:
@@ -1212,21 +1259,7 @@ pages:
         theme.</2></0><1></1><2></2><3>Please note that if your site uses a
         content security policy via the HTTP <1>Content-Security-Policy</1>
         response header, a benign error may appear in the console. <3></3></3>
-      intégrations:
-        code-du-travail-numérique:
-          aria-label: Code du travail numérique", view simulator, new window
-          cta-label: See the simulator
-        france-travail:
-          aria-label: France Travail, see the simulator, new window
-          cta-label: See the simulator
-        suggestion: Do you have a project or an idea to share?
-        titre: List of integrations
-        urssaf:
-          aria-label: Urssaf, see integration, new window
-          cta-label: See integration
     module: Which module?
-    recrutement:
-      aria-label: My company is hiring! View job openings at mon-entreprise.urssaf.fr
     spreadsheet: <0>Using a spreadsheet</0><1>Would you like to use a simulator in a
       Google Sheets or Excel spreadsheet? Our <2>REST API</2> makes it
       possible!</1><2>Integrate a simulator in Excel/Sheets</2><3>Eventually,
@@ -1239,92 +1272,6 @@ pages:
   offline:
     description: You are currently offline.
     title: Offline
-  privacyPolicy:
-    data:
-      content: "mon-entreprise.urssaf.fr does not process any personal data via the
-        simulators or by depositing cookies or tracers. There is no such thing
-        as an account; only the anonymous information entered during the
-        simulations is automatically saved in your browser.
-        <1></1><2></2>However, if a user wishes to become a \"beta tester\" to
-        receive information on new products, give his/her opinion and take part
-        in workshops to improve our services, he/she can register via the link
-        in the footer of the \"Become a beta tester\" page. The following data
-        is then processed: e-mail address, type of company, type of activity,
-        type of taxation, postal code, age group, etc. This data is kept for a
-        maximum of 2 years.<4></4><5></5>The Urssaf Caisse Nationale is
-        committed to ensuring that the collection and processing of your data
-        complies with regulations on the protection of personal data. In this
-        respect, Urssaf Caisse Nationale informs you of :<7><0>The legal basis
-        for this processing, i.e. your consent for us to store the
-        above-mentioned data;</0><1>The identity and contact details of the
-        party responsible for processing your data: Urssaf Caisse Nationale,
-        domiciled at 36 rue de Valmy - 93108 Montreuil Cedex, represented by its
-        Director, Mr Damien IENTILE;</1><2>Contact details for the Data
-        Protection Officer: Mme la Déléguée à la Protection des données de
-        l'Urssaf Caisse nationale, 36 rue de Valmy - 93108 Montreuil Cedex -
-        informatiqueetlibertes.acoss@acoss.fr.</2></7>"
-      title: What personal data is collected?
-    liability:
-      content: The mon-entreprise.urssaf.fr platform is under the responsibility of
-        the Agence centrale des organismes de sécurité sociale, also known as
-        "Acoss" or "Urssaf Caisse nationale". <1></1>The platform offers
-        simulators to help entrepreneurs develop their business.
-      title: Who is responsible for mycompanyinfrance?
-    recipients:
-      table:
-        caption: List of subcontractors receiving personal data
-        country: Destination country
-        mailer: Sending e-mails
-        processing: Treatment performed
-        provider: Subcontractor
-        security: Warranties
-        support: Support tool
-      title: Who will receive your data?
-    rights:
-      content: "In accordance with the French Data Protection Act, you have the
-        following rights:<1><0>The right to ask whether the Urssaf Caisse
-        Nationale holds any information about you, and to request that the
-        Urssaf Caisse Nationale communicate all such data to you (right of
-        access);</0><1>The right to restrict the processing of your personal
-        data if you agree that the processing is unlawful or excessive (right to
-        restrict processing);</1><2>the right to request rectification of
-        inaccurate information concerning you (right of
-        rectification);</2><3>the right to object, where appropriate and for
-        legitimate reasons (right to object);</3><4>The possibility of
-        requesting, where appropriate and if there are no legal obligations to
-        the contrary, that your data be deleted by the Urssaf Caisse Nationale
-        (right to be forgotten);</4><5>the possibility of defining what happens
-        to your data after your death.</5></1>All these rights may be exercised
-        by contacting the Data Protection Officer of the Urssaf Caisse
-        Nationale, by email at <4>informatiqueetlibertes.acoss@acoss.fr</4> or
-        by post at the following address: Urssaf Caisse nationale, Informatique
-        et Libertés, 36 rue de Valmy, 93108 Montreuil Cedex; in both cases
-        providing proof of identity in accordance with article 77 of decree no.
-        2019-536 of May 29, 2019.<7></7>For further information or to make a
-        complaint, please contact the Commission Nationale de l'Informatique et
-        des Libertés (CNIL)."
-      title: What rights to information and freedom do you have?
-    security:
-      content: Your personal data collected as part of the services offered on
-        mon-entreprise.urssaf.fr are processed using secure computer and
-        physical protocols.
-      title: How is the security of your data ensured?
-    title: Privacy policy
-    tracking:
-      ariaLabel: CNIL recommendations, see more information on the CNIL website, new
-        window
-      content: mon-entreprise.urssaf.fr does not use cookies or other tracking
-        devices. However, the platform uses Piano Analytics, an audience
-        measurement solution configured in "exempted" mode, which does not
-        require the consent of the persons concerned, in accordance with the
-        <2>recommendations of the CNIL</2>.
-      optOut:
-        checkboxLabel: I do not want to send anonymous data about my use of the platform
-          for audience measurement purposes.
-        confirmation: Your preferences have been saved
-        content: "You can opt out of this platform usage measure by checking the
-          appropriate box below:"
-      title: Cookies and trackers
   simulateurs:
     accueil:
       "1":
@@ -1334,6 +1281,7 @@ pages:
         h2: Self-employed workers (TNS)
         h3:
           "1": Liberal professions
+          "2": Self-employed tax return assistants
       "3":
         h2: Other tools
       description: All the simulators and wizards on this site are kept up to date
@@ -1405,59 +1353,17 @@ pages:
           indemnities provided for by a collective agreement or unilateral
           decision by the employer.
     artiste-auteur:
-      explications:
-        cotisations:
-          précompte: For your salary and wage income, these contributions are
-            "précomptée", i.e. paid at source by the broadcaster.
-          titre: Your contributions
-        institutions:
-          urssaf: Urssaf collects contributions used to finance social security (health
-            insurance, family allowances, long-term care and retirement <2> </2>
-            ).
       externalLinks:
         "1":
           title: The Artist-Author online service
       meta:
-        description: Estimate social security contributions on royalties and BNC income
-        ogDescription: Enter your income (royalties and bnc) and find out immediately
-          the amount of contributions you will have to pay for the year.
-        ogTitle: "Artiste-auteur: estimate your Urssaf contributions"
+        description: Estimate social security contributions on copyright and BNC income
         title: "Artiste-auteur: calculating Urssaf contributions"
       shortname: Artist-author
       title: Artist contribution simulator
       warning: This simulator allows you to estimate the amount of your contributions
         based on your projected income.
-    assimilé-salarié:
-      explications:
-        répartition:
-          cotisations: Contributions
-          impôt: Tax
-          revenu: Disposable income
     auto-entrepreneur:
-      explications:
-        institutions:
-          urssaf: Urssaf collects social security contributions (health insurance, family
-            allowances, dependence<1> and retirement</1>).
-        retraite:
-          droits: "<0>Rights acquired over the year</0><1><0>The calculation of pension
-            rights has not yet been implemented for cases including disability
-            pensions.</0></1><2><0><0>DROM exemptions have no impact on the
-            calculation of basic and supplementary pension rights for
-            auto-entrepreneurs.</0></0><1><0>The Acre exemption has no impact on
-            the determination of basic and supplementary pension entitlements
-            for auto-entrepreneurs.</0></1><2><0>Basic pension :
-            <2></2></0><1>Income contributed to basic pension :
-            <2></2></1><2><0>Supplementary pension points acquired (Cipav) :
-            <2></2></0></2><3><0>Acquired supplementary pension points :
-            <2><0></0></2></0></3></2></2><3><0>To estimate the amount of your
-            future retirement pension, use the <2>Assurance Retraite
-            simulator</2>.</0></3>"
-          titre: Your pension
-        répartition:
-          cotisations: Contributions
-          h2: Sales breakdown
-          impôt: Tax
-          revenu: Income (including activity-related expenses)
       externalLinks:
         "1":
           ariaLabel: Visit auto-entrepreneur.urssaf.fr, new window.
@@ -1481,6 +1387,11 @@ pages:
         ogTitle: "Self-employed entrepreneurs: quickly calculate your net income from
           sales and vice versa"
         titre: "Self-employed entrepreneurs: income simulator"
+      répartition:
+        cotisations: Contributions
+        h2: Sales breakdown
+        impôt: Tax
+        revenu: Income (including activity-related expenses)
       seo explanation: <0>How do you calculate the net income of an
         auto-entrepreneur?</0><1>An auto-entrepreneur must pay social security
         contributions to the authorities. These contributions are used to
@@ -1529,56 +1440,40 @@ pages:
           made for professional expenses. Actual expenses cannot be deducted in
           addition. Your net income is therefore your sales minus all expenses
           incurred for the company.
-    auxiliaire-médical:
+    auxiliaire:
+      shortname: Medical Auxiliary
+      title: Income simulator for self-employed medical assistants
+      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
+    auxiliaire-medical:
       meta:
         description: Calculation of net income after contributions based on total
           income. Non-contributory income taken into account.
         title: "Medical auxiliary: income simulator"
-      professionnelles: medical auxiliaries
-      shortname: Medical Auxiliary
-      title: Income simulator for self-employed medical assistants
-      tooltip: Nurses, physiotherapists, chiropodists, speech therapists and orthoptists
     avocat:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Lawyer: income simulator"
-      professionnelles: lawyers
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
-      date-modifiée: The simulation year has been changed to {{ année }}.
       externalLinks:
         "1":
           description: Urssaf will be with you every step of the way when you decide to
             stop working.
           title: Termination of activity service
-      label:
-        chiffre-affaires: Sales for the year of cessation
-        cotisations: Total contributions due for the year of cessation of activity
-        rémunération: Gross compensation for the year of termination
       meta:
         description: Estimate your contributions for the year in which you cease
           self-employed activity.
         ogDescription: Estimate your contributions for the year in which you cease
           self-employed activity.
-        ogTitle: Retirement simulator
-        titre: Retirement simulator
-      régime-imposition:
-        question: How are you taxed?
+        ogTitle: "Self-employed : Estimated contributions for the year of cessation"
+        titre: "Self-employed : Estimated contributions for the year of cessation"
       shortname: Cessation of activity
-      title: Retirement simulator
-      warning: <0>You are self-employed and would like to estimate <2>the
-        contributions due before you stop working</2>. This simulator is here to
-        help you. Please note that the amount indicated by this simulator is an
-        estimate. Only the "real Urssaf statement" will tell you the exact
-        amount. </0><1><0>This simulator does not take into
-        account</0><1><0>payments already made,</0><1>provisional contributions
-        already called,</1><2>or any debts.</2></1></1>
+      title: "Self-employed : Estimated contributions for the year of cessation"
     chirurgien-dentiste:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Dental surgeon: income simulator"
-      professionnelles: dental surgeons
       shortname: Dental surgeon
       title: Income simulator for self-employed dentists
     cipav:
@@ -1586,61 +1481,24 @@ pages:
         description: Calculation of net income after deduction of contributions based on
           total income for self-employed professionals covered by CIPAV
         title: "Professions affiliated to Cipav: income simulator"
-      professionnelles: regulated professions covered by Cipav
       shortname: Cipav
       title: Cipav income simulator for self-employed professionals
-    commun:
-      date: Date of regulations used for calculations
-      documentation: Documentation
-      periode-calcul: Calculation period
-      previousSimulationBanner:
-        bouton:
-          aria-label: Find my previous simulation, load data from my previous simulation.
-          texte: Find my previous simulation
-        titre: "Your previous simulation has been saved:"
-      print-info:
-        date: This simulation was carried out on
-        recover: You'll find this simulation and other tools to help you set up and run
-          your business on <2>mon-entreprise.urssaf.fr.</2>
-      raccourcis:
-        aria-label: "Go to question : {{question}}"
-        titre: "Go to question :"
-      select-year:
-        access: Access the simulator {{year}}
-        back: Back to simulator {{year}}
-        info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
-    comparaison-status:
-      objectifs:
-        CA:
-          description: Total gross revenue (excluding tax)
-          titre: Estimated revenue
-        charges:
-          description: Total expenses incurred by the business, excluding social security
-            contributions, which are automatically deducted by the simulator
-          titre: Expenses (excluding executive compensation)
     comparaison-statuts:
       accordion-title: Compare...
-      carte:
-        acre:
-          non: Without Acre
-        imposition:
-          IR: <0>Income Tax</0> (IR)
-          IS: <0>Corporate Income Tax</0> (IS)
-          versement-libératoire: <0>Final Payment</0> of Income Tax
-        régime:
-          assimilé-salarié: General Plan
-      description: When you start your business, the legal structure you choose will
-        <2>determine which social security system the business owner is enrolled
-        in</2>. There are <4>three different</4> options, each with its own
-        advantages and disadvantages. Use this comparison to find the one that
-        best suits your needs.
-      détail:
-        aucun: Please enter a revenue amount to view the details.
       items:
         gestion:
           conjoint:
-            assimilé-salarié: Spouse who is a partner or employee
-            auto-entrepreneur: Spouse who is a co-worker
+            body: Whether you're married, in a civil partnership or in a common-law
+              relationship, there are <1>3 possible statuses</1> for your
+              spouse<3>(associate</3>, <6>partner</6> or <9>employee</9>).
+            h4: Spouse's status
+          création:
+            body: The formalities involved in setting up a business vary according to the
+              type of company and the nature of the activity. The calculation
+              here focuses on the <1>mandatory procedures</1> (registration,
+              legal announcements, drafting of articles of association, etc.).
+            h4: Cost of creation
+          title: Legal and accounting management
         parentalité:
           adoption:
             body: In addition to your daily allowance, you may also be entitled to an
@@ -1661,264 +1519,118 @@ pages:
             <5>protects</5> you <5>in the event of disability</5> and provides
             your loved ones with a <8>survivor's pension and a lump-sum payment
             in the event of death</8>.
-          capital-orphelin:
-            body: In the event of death, an <1>“orphan” benefit</1> is paid to<3> your
-              children</3>, subject to certain conditions.
-            unit: € per child
           décès:
-            capital-décès:
-              body: Social Security provides a <2>death benefit for your beneficiaries</2>
-                (dependents) under certain conditions.
-              label: for your loved ones
+            body:
+              "1": Under certain conditions, Social Security guarantees a <2>lump-sum death
+                benefit for your dependants</2>.
+              "2": In addition to the lump-sum death benefit, a <2>reversionary pension</2>
+                may be paid to your spouse. This corresponds to the <5>pension
+                rights you acquired</5> during your spouse's working life.
+              "3": If you die as a result of an <2>accident at work</2>, your spouse may be
+                entitled to a <4>death pension</4>.
+              "4": In the event of your death, an <1>orphan's benefit</1> is paid to<3> your
+                children</3>, subject to certain conditions.
             h4: Deaths
+            label:
+              "1": for your loved ones
+              "2": maximum
+              "3": in the event of a work-related accident
           invalidité:
-            body: "<0>You may be eligible for a disability pension <2>if an illness or
-              accident leaves you unable to continue working</2>.</0><1>To be
-              eligible, you must meet <2>certain requirements</2>:
-              <2><1></1>.</2></1>"
+            body:
+              "1": <0>You may be entitled to a disability pension in the <2>event of illness
+                or accident leading to an inability to continue
+                working</2>.</0><1>To qualify, you must comply with <2>certain
+                rules<1></1></2>.</1>
+              "2": If you are disabled as a result of an <2>accident at work</2>, you may be
+                entitled to a <4>disability pension</4>.
             evolution-label: (total disability)
             h4: Disability
             label: (partial disability)
-          invalidité-ATMP:
-            body: If your disability is caused by a <2>work-related accident</2>, you may be
-              eligible for a <4>disability pension</4>.
-          pension-réversion:
-            body: In addition to the death benefit, a <2>survivor's pension</2> may be
-              paid to your spouse. It corresponds to the <5>pension benefits you
-              will have accrued</5> during your working life.
-            label: maximum
-          rente-décès:
-            body: If a death occurs as a result of a <2>work-related accident</2>, your
-              spouse may be eligible for a <4>death benefit</4>.
-            label: in the event of a work-related accident
           title: Your disability and death coverage
         retraite:
           base:
-            body: Each year, depending on your earnings, you can validate <2>up to 4
-              quarters</2> for your basic pension. The total number of validated
-              quarters determines your entitlement to a full pension.
+            body: The pension calculated corresponds to <2>your best 25 years</2>, assuming
+              that you have contributed enough quarters (4 quarters per year)
+              and that you retire at the age required to obtain a full pension.
+            evolution-label: at full rate
             h4: Basic pension
-            revenu-cotisé:
-              body: The amount of your pension also depends on the <2>income you
-                contribute</2>, i.e. the portion of your income on which you
-                contribute to the basic pension.
-            unit: quarter(s) acquired per year
-            unité: € in contributions per year
+          body: The amount of your pension is made up of <2>your basic pension + your
+            supplementary pension</2>.
           complémentaire:
-            body: Every year, depending on your salary, <2>you earn supplementary pension
-              points</2>. At the end of your career, your points are converted
-              into a monthly pension, which is added to your basic pension.
+            body: "Every year, depending on how much you earn, <2>you earn points that make
+              up your supplementary pension</2>. At the end of your career, your
+              points are converted into <5>an amount which is added each month
+              to your basic pension</5>. This value is calculated over the long
+              term. For example, after 10 years, you would be entitled to :"
+            evolution-label: after 10 years
             h4: Supplementary pension
-            unité: points earned per year
-            valeur-du-point: "Point value: <2>{{valeurPointComplémentaire}}</2>"
-          lien-assurance-retraite:
-            aria-label: Access the Retirement Insurance simulator, new window
-            message: To estimate the amount of your future retirement pension, use the
-              <2>Retirement Insurance simulator</2>.
           title: Your pension rights
         revenus:
+          button-title: Calculate your income
           détails:
-            "1": <1>{{revenuAvantImpôt}} </1> before taxes
-            "2": With <1>{{pourcentageSurCA}} </1> of social security contributions based
-              on revenue (i.e., <4>{{pourcentageSurBénéfice}} </4> of profit)
-            "3": With <1>{{pourcentageSurBénéfice}} </1> on social security contributions
-              on profits
+            "1": Or <2><0></0></2> before tax
+            "2": With <2><0></0></2> social security contributions on sales (i.e.
+              <6><0></0></6> of profit)
+            "3": With <2><0></0></2> social security contributions on profits
           h4: Net monthly income after tax
-          info:
-            subject: Your Income
-          tableau:
-            caption:
-              "1": Table showing the details of the net income calculation for each status
-              "2": Table showing the breakdown of the calculation of net income after taxes
-                for each status
-            moins: at least
-            th:
-              CA: Revenue
-              charges: Expenses
-              cotisations: Dues
-              impôts: Taxes
-              revenu-après-impôt: After-Tax Income
-              revenu-avant-impôt: Pre-tax income
-              statut: Type of structure
           title: Your income
+          warning: You will exceed the micro-business limit <2>(<1></1> sales).</2>
         santé:
           arrêt:
             body: "For all statuses, there is a <2>3-day waiting period</2>. In the event of
               sick leave, the health insurance will pay you :"
-            footer: To be eligible, you must have made contributions for at least
-              <2>{{délaiAttente}}</2>
+            footer: To qualify, you must have contributed at least <2><0></0></2>
             h4: Sick leave
             warning: Your <1>salary</1> is <4>too low</4> to benefit from sick leave.
           atmp:
             body: "In the event of an<1>accident at work</1>, <4>occupational illness</4> or
               an <7>accident on the way to or from work</7>, you will receive
               compensation of :"
+            evolution-label: from day 29
             h4: Occupational injury and disease
-            secondary-label: starting on the 29th day
           body: <0>All statuses entitle you to <2>reimbursement of healthcare
             costs.</2></0><1>For all types of status, it is advisable to take
             out a <2>supplementary insurance policy (mutuelle)</2> to improve
             reimbursement of healthcare costs.</1>
           title: Your health benefits
-        statut:
-          régime:
-            auto-entrepreneur: Micro-Social Plan
-            travailleur-indépendant: Self-employed person
       meta:
         description: Auto-entrepreneur, EI/EURL or SASU? Simulate the differences in
           income, pension and sickness benefits
         title: Legal status comparator
-      montants:
-        imposition:
-          IR: Income Tax
-          IS: Corporate Income Tax
-          disclaimer: As of now, this comparison tool does not take into account the
-            calculation of income tax for SAS(U)s.
-          info-bulle: You can <2>choose between corporate and income tax</2> during the
-            first 5 years.
-          titre: Taxation Method (excluding sole proprietorships)
-        versement-libératoire:
-          info-bulle: As a sole proprietorship, the<1>income tax</1> is automatically
-            applied. In certain situations, you may opt for the <4>withholding
-            tax</4>.
-          titre: Lump-Sum Payment (for Sole Proprietorships)
-      notif: <0><0>Find out which business structure is the <2>best fit for your
-        business</2> with the help of the <5>new business structure selection
-        wizard</5> !</0></0>
-      option-applicable: Applicable option.
-      option-non-applicable: Option not applicable.
-      option-sous-conditions: Option available subject to conditions.
-      questions:
+      modifier-options:
         acre:
-          libellé: Acre
-        activité-nature:
-          artisanale:
-            label: Handcrafted
-          commerciale:
-            label: Sales
-          libellé: Primary Activity
-          libérale:
-            label: Liberal
-        activité-réglementée:
-          libellé: Regulated Activity
-        activité-type:
-          libellé: Type of Activity
-          service:
-            label: Service Provision
-          vente:
-            label: Retail, Food Service, or Lodging
-        autres-revenus:
-          libellé: Other taxable income
-        enfants:
-          libellé: Dependent children
-        groupe:
-          TVA: VAT
-          acre: Acre
-          activité: Activity
-          autres-revenus: Other taxable income
-          foyer-fiscal: Tax Household
-          impôt: Method for Calculating Income Tax
-        méthode-impôt:
-          barème:
-            label: using the standard scale
-          libellé: Method for Calculating Income Tax
-          taux:
-            label: with a personalized rate
-        parent-isolé:
-          libellé: Single parent
-        situation-familiale:
-          couple:
-            label: Married or in a civil partnership
-          célibataire:
-            label: Single, divorced, or in a common-law relationship
-          libellé: Marital Status
-          veuf:
-            label: Widower/Widow
-        taux-imposition:
-          libellé: Tax Rates
-        tva:
-          libellé: VAT-registered business
-      réponses:
-        activité:
-          artisanale: Handcrafted
-          commerciale: Sales
-          libérale-non-réglementée: Unregulated private practice
-          libérale-réglementée: Regulated private practice
-          service: service provision
-          vente: sale
-        foyer-fiscal:
-          couple: Married or in a civil partnership
-          célibataire: Single
-          enfant_many: "{{ count }} children"
-          enfant_one: "{{ count }} child"
-          enfant_other: "{{ count }} children"
-          parent-isolé: single parent
-          veuf: Widower/Widow
-        impôt:
-          barème: Standard Scale
-          taux: Custom Rate
+          body: Assistance for setting up or taking over a business (Acre) consists of a
+            <2>partial exemption from social security contributions</2>, known
+            as the "start-up exemption", for a <4>period of 12 months</4>.
+          body-ae: <2>Conditions of access to</2> Acre are more restrictive for
+            auto-enterprises.
+          info-title: Benefit from Acre
+          label: Activate Acre in simulation
+          title: Acre
+        confirm-label: Save options
+        imposition:
+          body: You can <2>choose between corporate and income taxation</2> for the first
+            5 years.
+          body-ae: As an auto-entrepreneur (AE),<1>income tax</1> is applied
+            automatically. In certain situations, you can also opt for the
+            <4><0>versement libératoire</0></4>.
+          hors-ae:
+            disclaimer: At present, this comparator does not include income tax calculations
+              for SAS(U).
+            label: Taxation method (excluding AE)
+          title: Taxation
+          versement-libératoire:
+            title: Payment in full discharge (for AE)
+        title: Modify my options
+        versement-libératoire:
+          label: Activate final payment in simulation
+        éligible-acre: I'm eligible for Acre for my self-employed business
+      revenu-table:
+        net: Table showing net income calculation details for each status
+        net-après-impôt: Table showing detailed calculation of net income after tax for
+          each status
       shortname: Status comparison
       title: Legal status comparator
-      warning:
-        PLR: "<0>This simulator does not take into account regulated professional
-          practices. </0><1>This is because these professions are subject to
-          specific rules and have access to a dedicated legal structure:
-          professional service companies (SEL).</1><2><0>Learn more</0> </2>"
-        auto-entrepreneur: You are about to exceed the micro-enterprise threshold
-          ({{montant}} in revenue).
-    cotisation-maladie-frontalier-suisse:
-      documentation:
-        décomposition:
-          abattement: Allowance
-          annuelle: Annual contribution
-          assiette: Income base
-          base: Contribution base
-          calcul: Calculation
-          incomplet: Enter your situation (affiliation date and income) to see the
-            calculation that applies to it.
-          mensuelle: Monthly contribution
-          montant: Amount
-          prorata: Prorated contribution for {{année}}
-          étape: Step
-        meta-description: Understanding How Health Insurance Contributions Are
-          Calculated for Cross-Border Workers in Switzerland
-        meta-titre: Documentation - Health Insurance Contributions for Swiss
-          Cross-Border Workers
-        titre: Understanding How Your Health Insurance Contribution Is Calculated
-      meta:
-        description: Estimate the cost of your French health insurance contributions as
-          a cross-border worker in Switzerland.
-        title: Swiss cross-border health insurance contribution
-      objectifs:
-        autres-revenus: Other income received in {{annéeRevenus}}
-        salaires: Salaries in {{annéeRevenus}}
-      questions:
-        date-affiliation:
-          erreur: The affiliation start date cannot be later than the end date.
-          libellé: Affiliation start date
-        date-fin-affiliation:
-          erreur: The affiliation end date cannot be earlier than the start date.
-          libellé: Affiliation end date
-        groupe-affiliation:
-          réponse-depuis: since <1></1>
-          réponse-période: from <1></1> to <3></3>
-          titre: Affiliation
-      résultat:
-        annuel: Annual health contribution
-        avertissement-futur: Since your affiliation is in the future, this estimate
-          assumes that the contribution rate and ceiling will remain unchanged
-          until then.
-        estimation: |-
-          Estimate based on your income {{annéeRevenus}},
-          applicable to your contribution {{annéeApplication}}.
-        mensuel: Monthly health contribution
-        prorata:
-          depuis: starting on {{date}}
-          jusquà: until {{date}}
-          période: from {{début}} to {{fin}}
-          titre: Prorated contribution for {{année}}
-      shortname: Swiss cross-border health insurance contribution
-      title: Health insurance contributions for cross-border workers in Switzerland
     coût-création-entreprise:
       meta:
         description: Estimate the cost of the administrative formalities involved in
@@ -1935,53 +1647,45 @@ pages:
           packing.
         pas-reprise: This simulator calculates start-up costs for new businesses. It
           does not take into account takeovers of existing companies.
+    date: Date of regulations used for calculations
     demande-mobilité:
       aria-label: International Mobility Service, new window
       href: https://www.urssaf.fr/en/accueil/services/travail-etranger-mobilite.html
       intro: From now on, for all your international mobility requests, the forms
         corresponding to your situation are available on the <2>International
-        Mobility service</2> page.
+        Mobility Service</2> page.
+      meta:
+        description: Interactive form to be completed when working abroad
+        title: "Self-employed workers: applying for mobility in Europe"
+      shortname: International mobility request
       title: International mobility request
     dividendes:
       meta:
         description: Calculate the amount of tax and contributions on dividends paid by
           your company.
         title: Dividends
-      répartition:
-        cotisations: Contributions
-        impôt: Tax
-        revenu: Net dividends
-      seo:
-        aria-label: certain criteria; learn more at entreprendre.service-public.gouv.fr
-          (opens in a new window)
-        text: <0>Dividends and Distributions</0><1>At the end of a company’s fiscal
-          year, the net income from the previous fiscal year may be retained as
-          retained earnings (for future investments) or paid out as dividends.
-          From the beneficiaries’ perspective, these are investment income,
-          subject to specific social security contributions and
-          taxation.</1><2>This simulator only takes into account scenarios
-          involving individual recipients and dividends declared by the
-          company.</2><3>How are withholding taxes on dividends
-          calculated?</3><4>Dividends may be subject to a single flat-rate
-          withholding tax of 30%, which includes both income tax and social
-          security contributions (also known as the <1> flat tax</1>).
-          Alternatively, the standard tax schedule may be chosen. This simulator
-          can be used to compare the two systems.</4><5>An advance tax payment
-          (12.8%) is withheld at the time the dividends are paid, unless the
-          recipient meets <2>certain criteria</2>.</5><6>Special Case for
-          Non-Salaried Executives</6><7>For self-employed individuals, the
-          portion of dividends exceeding 10% of the share capital will be
-          subject to social security contributions and other taxes under the
-          same terms as their compensation as a director.</7><8>For this
-          scenario, please use the <2>income simulator for self-employed
-          individuals</2>.</8>
+      seo: <0>Dividends and distributions</0><1>At the end of a company's financial
+        year, the previous year's earnings can be kept in reserve (for future
+        investment) or paid out as dividends. From the beneficiaries' point of
+        view, this is income from movable capital, subject to specific
+        contributions and taxation.</1><2>This simulator only takes into account
+        the case of an individual beneficiary and dividends decided by the
+        company.</2><3>How are dividend withholdings calculated?</3><4>Dividends
+        may be subject to a flat-rate withholding tax of 30%, including tax and
+        social security contributions (also known as<1> flat tax</1>).
+        Alternatively, you can opt for the tax scale. This simulator can be used
+        to compare the two systems.</4><5>An advance payment of 12.8% is
+        deducted at the time of dividend payment, unless the beneficiary meets
+        <2>certain criteria</2>.</5><6>Special case of self-employed
+        executives</6><7>For the self-employed worker, the portion of dividends
+        exceeding 10% of the share capital will be subject to contributions and
+        levies in the same way as his or her executive remuneration.</7><8>This
+        situation has not yet been taken into account by this simulator.</8>
       shortName: Dividends
       title: Dividend payment simulator
       warning:
-        "1": This simulation applies only to French companies subject to corporate
-          income tax (IS), and <2>does not apply to self-employed
-          individuals</2> such as <5>majority managers of SARLs</5>, sole
-          partners of <7>EURLs</7> , or <10>partners in SNCs</10>.
+        "1": This simulation applies only to French companies subject to corporation tax
+          (IS), and does not concern self-employed workers.
         "2": Tax on dividends is calculated in addition to tax on other taxable income.
     ei:
       meta:
@@ -1994,37 +1698,36 @@ pages:
         ogTitle: "Sole proprietorship: quickly calculate your net income from sales and
           vice versa"
         titre: "Sole proprietorship: income simulator"
-      seo explanation: <0>How to calculate a sole trader's net income</0><1>A sole
-        trader must pay social security contributions to the authorities. These
+      seo explanation: <0>How do you calculate the net income of a sole
+        trader?</0><1>The manager of a sole proprietorship is required to pay
+        social security contributions to the tax authorities. These
         contributions are used to finance the social security system, and give
         entitlement to pension and health insurance benefits. They are also used
-        to finance vocational training.</1><2><0></0> <2>See details of how
-        contributions are calculatedDon</2></2><3>'t forget to deduct all
-        expenses incurred in the course of your business (equipment, raw
-        materials, premises, transport). These are deductible from the company's
-        income, which means you won't pay tax or social security contributions
-        on their amount (unless you have opted for the micro-tax
-        option).</3><4>The complete calculation formula is therefore:</4><5>Net
-        income = Sales - Professional expenses - Social security
-        contributionsHow do you</5><6>calculate social security contributions
-        for a sole proprietorship?</6><7>The manager of a sole proprietorship
-        pays social security contributions, proportional to the company's
-        <2>résultat fiscal</2> if he or she has opted for income tax, or to his
-        or her <6>revenu professionnel</6> if he or she has opted for
-        corporation tax. Their amount also varies according to the type of
-        activity (liberal profession, craftsman, shopkeeper, etc.), or any
-        exemptions granted (Acre, ZFU, RSA, etc.).</7><8> As a company's income
-        is only known at the end of the accounting year, the manager pays
-        provisional contributions which will then be regularized once the actual
-        income has been declared, the following year.</8><9>This simulator
-        calculates the exact amount of social security contributions based on a
-        desired net income or sales figure. You can specify your situation by
-        answering the questions displayed below the simulation.</9>
+        to finance professional training.</1><2><0></0> <2>See how contributions
+        are calculated</2></2><3>Don't forget to deduct all expenses incurred in
+        the course of your business (equipment, raw materials, premises,
+        transport). These are deductible from the company's income, which means
+        you won't pay tax or contributions on their amount (unless you've opted
+        for the micro-tax option).</3><4>The complete calculation formula is as
+        follows</4><5>Net income = Sales - Professional expenses - Social
+        security contributions</5><6>How do you calculate social security
+        contributions for a sole proprietorship?</6><7>The manager of a sole
+        proprietorship pays social security contributions, which are
+        proportional to the company's <2>taxable income</2>. Their amount also
+        varies according to the type of activity (liberal profession, craftsman,
+        shopkeeper, etc.), or any exemptions granted (ACRE, ZFU, RSA,
+        etc.).</7><8> As a company's income is only known at the end of the
+        accounting year, the manager pays provisional contributions, which will
+        be adjusted once the actual income has been declared, the following
+        year.</8><9>This simulator enables you to calculate the exact amount of
+        social security contributions, based on your desired sales or net
+        income. You can specify your situation by answering the questions
+        displayed below the simulation.</9>
       shortname: Sole proprietorship
       title: Simulator for sole proprietorships
     eirl:
       avertissement: <0>It has no longer been possible to create an EIRL since May
-        2022. The status of <1>Sole Proprietorship</1> replaces it.</0><1>Be
+        2022. The status of<1>Sole Proprietorship</1> replaces it.</0><1>Be
         careful not to confuse EIRL (Entreprise Individuelle à Responsabilité
         Limitée) with <2>EURL (Entreprise Unipersonnelle à Responsabilité
         Limitée)</2>.</1>
@@ -2054,7 +1757,6 @@ pages:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Chartered accountant: income simulator"
-      professionnelles: chartered accountants
       shortname: Chartered Accountant
       title: Income simulator for independent accountants and auditors
     home:
@@ -2087,118 +1789,57 @@ pages:
         included in the simulator.</5>
       title: Corporate tax simulator
     indépendant:
-      explications:
-        cotisations:
-          fiche: See the Urssaf sheet
-          forfaitaires: "Flat-rate contributions :"
-          invalidité: The calculation of lump-sum contributions at the start of employment
-            has not yet been implemented for cases involving a disability
-            pension.
-          régularisation:
-            description: <0>Contributions are calculated provisionally on the basis of the
-              last income declared (or the lump sum if no income has yet been
-              declared). Once the year is over and the professional income is
-              known, contributions are adjusted.</0><1>This simulator calculates
-              contributions <2>after regularization</2>. It therefore enables
-              you to anticipate the amount of this regularization and plan your
-              cash flow accordingly.</1><2>If your business income changes
-              significantly from the previous year, you can provide Urssaf with
-              a <2>forecast amount for the current year, which will be used as
-              the basis for calculation</2>(although you will be required to
-              make a precise estimate).</2>
-            titre: How does the adjustment of provisional contributions work?
-        institutions:
-          cpam: As an approved healthcare professional, part of your contributions are
-            reimbursed by the Assurance Maladie.
-          urssaf: Urssaf collects social security contributions (health insurance, family
-            allowances, dependence<1> and retirement</1>).
-        retraite:
-          droits: "<0>Rights acquired over the year</0><1><0>The calculation of pension
-            entitlements has not yet been implemented for cases involving a
-            disability pension.</0></1><2><0><0>The ACRE exemption has no impact
-            on the determination of basic and supplementary pension
-            rights.</0></0><1><0>Basic pension : <2></2></0><1><0>Basic pension
-            points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed
-            to basic pension : <2></2></0></2><3><0><0>Supplementary pension
-            points acquired (Cipav) : <2></2></0></0><1><0>Supplementary pension
-            points acquired : <2><0></0></2><3><0>not known</0><1><0>This
-            simulator does not manage acquired supplementary pension rights for
-            regulated liberal professions outside
-            Cipav.</0></1></3></0></1></3></1></2><3><0>To estimate the amount
-            of your future retirement pension, use the <2>Assurance Retraite
-            simulator</2>.</0></3>"
-          titre: Your retirement
-        répartition:
-          cotisations: Contributions
-          impôt: Tax
-          revenu: Disposable income
-          titre: Income breakdown
-      label:
-        dividendes:
-          soumis-à-cotisations-sociales: Dividends exceeding 10% of previous year's net income
-          soumis-à-prélèvements-sociaux: Dividends less than 10% of previous year's net income
-        rémunération-nette: Net income
+      cotisations-forfaitaires: "Flat-rate contributions : "
       meta:
         description: Calculating net income after tax and contributions from sales and
           vice versa
         title: "Self-employed: income simulator"
-      retraite:
-        simulateur-cnav:
-          aria-label: Access the Retirement Insurance simulator, new window
+      retraite-droits-acquis: "<0><0><0>Retirement: rights acquired over the
+        year</0><1><0>DROM exemptions have no impact on determining basic and
+        supplementary pension rights for auto-entrepreneurs</0></1><2><0>The
+        ACRE exemption has no impact on the calculation of basic and
+        supplementary pension rights for auto-entrepreneurs.</0></2><3><0>The
+        calculation of open pension rights has not yet been implemented for
+        cases involving contribution exemptions (ACRE, disability pension,
+        etc.).</0></3><4><0><0>Basic pension : <2></2></0><1><0>Basic pension
+        points acquired (CNAVPL) : <2></2></0></1><2><0>Income contributed to
+        basic pension : <2></2></0></2><3><0>Supplementary pension points
+        acquired (Cipav) : <2></2></0></3><4><0>Supplementary pension points
+        acquired : <2><0></0></2><3><0>not known</0><1><0>This simulator does
+        not manage acquired supplementary pension rights for the liberal
+        professions.</0></1></3></0></4></0></4></0><1><0><0>Projecting your
+        retirement amount</0><1><0></0><1></1></1></0></1></0>"
+      régularisation:
+        description: <0>Contributions are calculated provisionally on the basis of the
+          last income declared (or the lump sum if no income has yet been
+          declared). Once the year is over and the professional income is known,
+          contributions are adjusted.</0><1>This simulator calculates
+          contributions <2>after regularization</2>. It therefore enables you to
+          anticipate the amount of this regularization and plan your cash flow
+          accordingly.</1><2>If your business income changes significantly from
+          the previous year, you can provide Urssaf with a <2>forecast amount
+          for the current year, which will be used as the basis for
+          calculation</2>(although you will be required to make a precise
+          estimate).</2>
+        title: How does the adjustment of provisional contributions work?
       shortname: Independent
       title: Income simulator for the self-employed
-      warning:
-        année-courante: The amount calculated corresponds to <2>contributions for the
-          year {{year}} </2> (for an income of {{year}}).
-        auto-entrepreneur: This simulator <1>does not apply to auto-entrepreneurs</1> ,
-          who have their own dedicated <4>income simulator</4> .
-        double-régime: This simulator does not take into account the situation of users
-          who have <2>two different tax regimes</2> (actual and micro-tax
-          regimes) in the same year.
+      warning: The amount calculated corresponds to the contributions for the year
+        {{year}} (for an income {{year}}).
     is:
       warning: "This simulator is designed for <2>very small businesses</2>: it takes
         into account reduced corporate tax rates."
     location-de-logement-meublé:
-      affiliation:
-        indéterminée:
-          texte: "To determine whether you should join, we need to know :"
-          titre: The obligation to affiliate depends on your situation
-        non-obligatoire:
-          affiliation-volontaire: However, you can choose to join voluntarily.
-          lien-urssaf: Find out more about collaborative economy schemes
-          texte: You are not obliged to join a social security scheme and pay no social
-            security contributions.
-          titre: No compulsory membership
-        obligatoire:
-          texte: You must declare your income and social security contributions are due.
-          titre: Mandatory membership
-      chambre-hôtes:
-        non-pris-en-charge: This simulator does not yet cover the case of bed and breakfasts.
-      comparateur:
-        applicable: Applicable
-        et: " and "
-        indiquez: Enter
-        non-applicable: Not applicable
-        pour-savoir: to find out if this plan applies to your situation
-        sur-recettes-courte-durée: On short-term revenues only
-      conditions:
-        autresRevenus: the amount of your other income
-        classement: housing classification
-        recettesCourteDurée: short-term income
-        typeDurée: type of duration
-      documentation:
-        exemple:
-          abattement: "{{pourcentage}}% allowance: <4>{{abattement}}</4>"
-          base: "Taxable base: <2>{{baseImposable}}</2>"
-          recettes: "For {{recettes}} of income from a standard rental:"
-        recettes-déclarées: You have declared <2>{{recettes}}</2> of income.
-        remplir-simulateur: Fill in the simulator for more information
-        seuils:
-          abattement: Flat-rate allowance
-          classique: Standard furnished rental
-          plafond: Annual ceiling
-          tourisme: Classified tourist furnished rental
-          type: Type of rental
+      avertissement:
+        dépassement-du-plafond: You exceed the authorized ceiling (<1></1>) for
+          declaring your income from the collaborative economy with a social
+          status under the general regime. You should consider the status of
+          auto-entrepreneur or self-employed worker.
+        pas-de-cotisation: Your revenue is less than <2></2> and your activity is not
+          considered professional. You are not obliged to join the social
+          security system. However, you may do so if you wish to benefit from
+          social protection (health insurance, retirement, etc.) in return for
+          paying social security contributions.
       externalLinks:
         "1":
           description: Do you rent out furnished accommodation or goods? The Collaborative
@@ -2206,121 +1847,40 @@ pages:
             contributions.
           title: The Collaborative Economy Department
       meta:
-        description: Find out whether you need to register with the social security
-          system for your furnished rental income, and which schemes apply.
-        ogDescription: Find out whether you need to register with the social security
-          system for your furnished rental income, and which schemes apply.
-        ogTitle: "Furnished rentals: Choosing the social security system"
-        titre: "Furnished rentals: Choosing the social security system"
+        description: This simulator calculates the income generated by the rental of
+          furnished accommodation. It helps owners anticipate their earnings and
+          optimize their tax situation in this specific context.
+        ogDescription: This simulator calculates the income generated by the rental of
+          furnished accommodation. It helps owners anticipate their earnings and
+          optimize their tax situation in this specific context.
+        ogTitle: Income simulator for renting furnished accommodation
+        titre: Income simulator for renting furnished accommodation
       objectifs:
-        autres-revenus:
-          aria-label: Other annual income
-          titre: Other annual income
         cotisations: Social security contributions
-        recettes:
-          titre: Recipes
-        recettes-nettes:
-          aria-label: Net revenue
-          titre: Net income
         revenu-net: Net income
       questions:
-        alsace-moselle:
-          libellé: Is your accommodation located in Alsace-Moselle?
-        classement:
-          classé:
-            description: Your accommodation is classified as furnished tourist accommodation
-              (1 to 5 stars).
-            label: Classified
-          libellé: Is your accommodation classified as furnished tourist accommodation?
-          mixte:
-            description: You offer both classified and unclassified accommodation.
-            label: Mixed
-          non-classé:
-            description: Your accommodation has no official classification.
-            label: Uncategorized
-        premiere-annee:
-          libellé: Is this your first year in business?
-        recettes-courte-durée:
-          aria-label: Short-term rental revenue
-          libellé: How much of your revenue comes from short-term rentals?
-        type-durée:
-          courte:
-            description: You only offer short-term rentals (Airbnb type, less than 3
-              months).
-            label: Short-term rental only
-          libellé: Do you offer short- or long-term rentals?
-          longue:
-            description: You only offer long-term rentals (principal residence lease, more
-              than 3 months).
-            label: Long-term rental only
-          mixte:
-            description: You offer both short-term and long-term rentals.
-            label: Mixed (short- and long-term)
-      régimes:
-        micro-entreprise:
-          libellé: Self-employed contractor
-          lien: Find out more at autoentrepreneur.urssaf.fr
-        régime-général:
-          libellé: Simplified general scheme
-          lien: Find out more on Urssaf.fr
-        titre: Social security schemes
-        travailleur-indépendant:
-          libellé: Self-employed (excluding auto-entrepreneur)
-          lien: Find out more on urssaf.fr
-      shortname: "Furnished rentals: Choosing the social security system"
-      title: "Furnished rentals: Choosing the social security system"
-      type-hébergement:
-        aria-label: Type of accommodation
-        chambre-hôte: Bed &amp; Breakfast
-        meublé-tourisme: Furnished tourist accommodation
+        regime:
+          options:
+            estimation: Estimated contributions
+            micro-entrepreneur:
+              description: You pay a fixed percentage of your sales.
+              label: Micro-business
+            régime-général:
+              description: As with an employee, social security contributions will be deducted
+                at source.
+              label: General scheme (URSSAF contributions)
+            travailleur-indépendant:
+              description: You pay social security contributions on your profits.
+              label: Self-employed
+      shortname: Furnished apartment rental
+      title: Income simulator for renting furnished accommodation
     lodeom:
-      effectif:
-        moins-de-50: Fewer than 50 employees
-        plus-de-50: More than 50 employees
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.
         title: Lodeom exemption
-      mois-incomplet:
-        court: Incomplete month
-        détails: (hiring, absences, departures...)
       month-by-month:
         caption: "Lodeom exemption month by month :"
-      options:
-        description: Adds fields to modulate employee activity
-        heures-sup:
-          popover: "The number of overtime and additional hours is used to calculate the
-            reduction: gross pay is compared to the minimum wage plus the number
-            of hours worked."
-        label:
-          heures-complémentaires: Number of overtime hours
-          heures-supplémentaires: Number of overtime hours
-          rémunération-etp: Basic remuneration for a full month
-          rémunération-primes: Remuneration not affected by the incomplete month
-        rémunération-etp:
-          popover: Enter here the compensation that would have been paid for a full month,
-            <2>excluding</2> :<4><0>bonuses and other compensation components
-            not affected by the absence;</0><1>overtime or additional hours
-            pay.</1></4>
-        rémunération-primes:
-          popover: List here the compensation components not affected by the absence, such
-            as bonuses.
-      recap:
-        T1: 1st quarter
-        T2: 2nd quarter
-        T3: 3rd quarter
-        T4: 4th quarter
-        caption: "Quarterly summary :"
-        header-réduction: Calculated reduction
-        header-régularisation: Calculated regularization
-      régularisation:
-        annuelle: Annual adjustment
-        progressive: Progressive regularization
-        type: What type of regulation would you like?
-      répartition:
-        chômage: of which unemployment
-        retraite: IRC
-        urssaf: URSSAF
       shortname: Lodeom exemption
       title: Lodeom exemption simulator
       warning: <0></0> Derogatory contribution rates and breakdowns are not taken into
@@ -2339,7 +1899,6 @@ pages:
           on total revenue. Sector 1, sector 2 and excess fees taken into
           account
         title: "Doctor: income simulator"
-      professionnelles: doctors
       shortname: Doctor
       title: Income simulator for self-employed doctors
     pamc:
@@ -2349,15 +1908,17 @@ pages:
         title: PAMC plan simulators
       shortname: PAMC
       title: Contribution and income simulator for PAMC
-      titre: What do you do for a living?
     pharmacien:
       meta:
         description: Calculation of net income after deduction of contributions from
           total revenues for self-employed pharmacists
         title: "Pharmacist: income simulator"
-      professionnelles: pharmacists
       shortname: Pharmacist
       title: Income simulator for self-employed pharmacists
+    print-info:
+      date: This simulation was carried out on
+      recover: You'll find this simulation and other tools to help you set up and run
+        your business on <2>mon-entreprise.urssaf.fr</2>.
     profession-libérale:
       meta:
         description: Net income calculation for self-employed workers subject to income
@@ -2366,39 +1927,100 @@ pages:
       shortname: Liberal profession
       title: Income simulator for self-employed professionals
       warning:
-        cotisations-ordinales:
-          générique: For regulated professions, the simulator does not calculate the
-            amount of membership <1>fees</1>. They must be added manually in the
-            "Charges" box.
-          spécifique: The simulator does not calculate the amount of <2>membership
-            fees</2>. These must be added manually in the "Charges" box.
-        général:
-          générique: This simulator is intended for self-employed professionals who earn a
-            <2>BNC</2>. It does not take into account self-employed companies.
-          spécifique: This simulator is intended for {{professionnelles}} in <4>BNC</4>.
-            It does not take into account partnerships.
+        année-courante: The amount calculated corresponds to the contributions for the
+          year {{year}} (for an income {{year}}).
+        cotisations-ordinales: For regulated professions, the simulator does not
+          calculate the amount of membership fees. They must be added manually
+          in the "operating expenses" box.
+        général: This simulator is intended for self-employed professionals in the BNC
+          sector. It does not take into account self-employed companies.
+    raccourcis:
+      aria-label: "Go to question : {{question}}"
+      titre: "Go to question :"
     réduction-générale:
-      header: The general reduction in contributions simulator is no longer available
-      message: We decided to remove it from the site. It required too much maintenance
-        for very little use.
+      externalLinks:
+        "1":
+          ariaLabel: Consult the guide on urssaf.fr, new window
+          ctaLabel: Consult the guide
+          description: Calculation, declaration, rules... Consult the Urssaf guide to the
+            general reduction in contributions.
+          title: General reduction in contributions
+      meta:
+        description: Estimate of the amount of the general reduction in employer
+          contributions (RGCP). This reduction applies to salaries below 1.6
+          times the SMIC.
+        title: General reduction
+      month-by-month:
+        caption: "General discount month by month :"
+      options:
+        description: Adds fields to modulate employee activity
+        heures-sup:
+          popover: "<0>The number of hours of overtime and complementary work is used to
+            calculate the reduction: gross remuneration is compared with the
+            SMIC increased by this number of hours.</0>"
+        label:
+          heures-complémentaires: Number of overtime hours
+          heures-supplémentaires: Number of overtime hours
+          rémunération-etp: Basic remuneration for a full month
+          rémunération-heures-complémentaires: Overtime pay
+          rémunération-heures-supplémentaires: Overtime pay
+          rémunération-primes: Remuneration not affected by the incomplete month
+        rémunération-etp:
+          popover: <0>Indicate here the remuneration that would have been paid for a full
+            month, <2>excluding</2>:<4><0>bonuses and other remuneration not
+            affected by the absence ;</0><1>remuneration for overtime or
+            additional hours worked.</1></4></0>
+        rémunération-heures-sup:
+          popover: <0>Indicate here the remuneration relating to the payment of overtime
+            or complementary hours.</0>
+        rémunération-primes:
+          popover: <0>Indicate here any elements of remuneration not affected by the
+            absence, such as bonuses.</0>
+      recap:
+        T1: 1st quarter
+        T2: 2nd quarter
+        T3: 3rd quarter
+        T4: 4th quarter
+        caption: "Quarterly summary :"
+        header-réduction: Calculated reduction
+        header-régularisation: Calculated regularization
+      régularisation:
+        annuelle: Annual adjustment
+        progressive: Progressive regularization
+        type: What type of regulation would you like?
+      répartition:
+        chômage: of which unemployment
+        retraite: IRC
+        urssaf: URSSAF
+      shortname: General reduction
+      title: General contribution reduction simulator
+      warning: "<0>This simulator does not take into account <2>all</2> specific
+        <2>calculation rules</2> (temporary employment agencies, road haulage
+        employees subject to equivalent working hours, etc.). Nor does it take
+        into account the specific rates and/or distribution of supplementary
+        pension contributions applied in certain companies.</0><1>In overseas
+        France, it is possible to choose between the general reduction in
+        contributions and another exemption: access the <2>Lodeom exemption
+        simulator</2>.</1>"
+      warning-link: go to the Lodeom exemption simulator page
+      warnings:
+        JEI: The general reduction cannot be combined with the Young Innovative Company
+          (JEI) exemption.
+        salaire: The RGCP only applies to salaries below 1.6 Smic. In other words, for
+          {{year}}, total remuneration does not exceed <4>{{plafond}}</4> gross
+          per year.
+        stage: The general reduction does not apply to internship bonuses.
     sage-femme:
       meta:
         description: Calculation of net income after contributions based on total income.
         title: "Midwife: income simulator"
-      professionnelles: midwives
       shortname: Midwife
       title: Income simulator for self-employed midwives
     salarié:
       SASU: Are you an SAS(U) director? <2>Access the dedicated income simulator</2>
-      aides: including <2> </2> aid
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
-      explications:
-        répartition:
-          cotisations: Contributions
-          impôt: Tax
-          revenu: Disposable income
       externalLinks:
         "1":
           ariaLabel: Visit Code du travail numérique, new window.
@@ -2418,51 +2040,43 @@ pages:
         ogTitle: "Gross salary, net salary, net salary after tax, total cost: the
           all-in-one simulator for employees and employers"
         titre: "Gross/net salary: the Urssaf converter"
-      seo:
-        aria-label: the official portal; visit aides-entreprises.fr (opens in a new window)
-        text: "<0><0>How do you calculate take-home pay?</0><1>During a job interview,
-          the employer generally offers a salary expressed as a “gross” amount.
-          The amount quoted includes employee contributions, which are used to
-          fund the employee’s social security benefits and are deducted from the
-          “net” pay received by the employee.</1><2>You can use our calculator
-          to convert <2>gross pay to net pay</2> : simply enter the offered
-          salary in the “gross pay” field. You can refine the calculation by
-          answering various questions (fixed-term contract, executive status,
-          overtime, part-time work, meal vouchers,
-          etc.).</2><3></3><4>Furthermore, since 2019, the<1>income tax</1>
-          has been withheld at source. To facilitate this, the Directorate
-          General of Public Finances (DGFiP) provides the employer with the tax
-          rate calculated based on the employee’s tax return. If this rate is
-          unknown—for example, during an employee’s first year of employment—the
-          employer uses the <4>default rate</4>.</4></0><1><0>How do you
-          calculate the total cost of hiring?</0><1>If you’re looking to hire,
-          you can calculate the total cost of your employee’s compensation, as
-          well as the corresponding employer and employee contributions. This
-          allows you to set the compensation level while knowing the overall
-          cost to your company.</1><2>In addition to salary, our simulator
-          factors in benefits in kind (cell phone, company car, etc.), as well
-          as mandatory health insurance.</2><3>There are <2>deferred
-          incentives</2> available for hiring that are not all included in
-          our simulator; you can find them on <6>the official
-          portal</6>.</3></1><2><0>Talk to an advisor about your hiring
-          plan</0><1>You would like to:</1><2><0>Receive advice on the hiring
-          incentives available for your recruitment</0><1>Learn about
-          apprenticeships, professional training contracts, “emplois francs” in
-          priority neighborhoods, the <1>VTE program, and more…</1></1><2>Find
-          candidates</2><3>Hire a person with a disability</3></2><3><0>A simple
-          and fast public service: an advisor who can help you will call you
-          back.</0></3><4>Partner organizations involved: France Travail, APEC,
-          Cap Emploi, local employment missions…</4><5></5></2>"
+      seo: "<0><0>How do you calculate net salary?</0><1>During the job interview, the
+        employer generally proposes a gross salary. This amount includes the
+        employee's social security contributions, which are deducted from the
+        \"net\" salary received by the employee.</1><2>You can use our simulator
+        to convert <2>gross pay into net pay</2>: simply enter the pay
+        advertised in the gross pay box. The simulation can be refined by
+        answering the various questions (fixed-term contract, executive status,
+        overtime, part-time work, meal vouchers, etc.).</2><3></3><4>In
+        addition, since 2019,<1>income tax</1> has been deducted at source. To
+        do this, the Direction Générale des Finances Publiques (DGFiP) sends the
+        employer the tax rate calculated from the employee's tax return. If the
+        employee's tax rate is unknown, for example in the first year of
+        employment, the employer uses the <4>neutral rate</4>.</4></0><1><0>How
+        do I calculate the cost of hiring?</0><1>If you're looking to hire, you
+        can calculate the total cost of remunerating your employee, as well as
+        the corresponding employer and employee contributions. This will enable
+        you to define the level of remuneration, knowing the overall cost to
+        your company.</1><2>In addition to salary, our simulator takes into
+        account the calculation of benefits in kind (telephone, company car,
+        etc.), as well as compulsory health insurance.</2><3>There are also
+        <2>deferred</2> hiring <2>subsidies</2> which are not all taken into
+        account by our simulator. You can find them on <6>the official
+        portal</6>.</3></1><2><0>Talk to an advisor about your recruitment
+        project</0><1>You would like to :</1><2><0>be advised on the hiring aids
+        available for your recruitment project</0><1>Find out about
+        apprenticeships, professionalization contracts, \"emplois francs\" in
+        priority neighborhoods, <1>VTE</1>, etc.</1><2>Find
+        candidates</2><3>Recruiting a disabled person</3></2><3><0>Fast, simple
+        public service: you'll be called back by the advisor who can help
+        you.</0></3><4>Partners: France Travail, Apec, Cap Emploi, local
+        missions...</4><5></5></2>"
       shortname: Employee
       title: Income simulator for employees
-      titres-restaurant: in meal vouchers
-      warning:
-        général: The simulator does not currently take into account collective
-          agreements, nor the myriad of company subsidies. Find your collective
-          bargaining agreement <2>here</2>, and explore the range of assistance
-          available on <4>aides-entreprises.fr</4>.
-        réformes: The simulator incorporates <2>updates for 2026</2>, including the
-          one-off degressive general reduction (RGDU).
+      warning: The simulator does not currently take into account collective
+        agreements, nor the myriad of company subsidies. Find your collective
+        bargaining agreement <2>here</2>, and explore the range of assistance
+        available on <4>aides-entreprises.fr</4>.
     sasu:
       meta:
         description: Calculation of net salary from the total allocated to remuneration
@@ -2471,30 +2085,33 @@ pages:
           income after tax from the total allocated to your remuneration.
         ogTitle: "SASU manager's remuneration: a simulator to find out your net salary"
         titre: "SASU: income simulator for managers"
-      seo-explanation: "<0>How do you calculate the salary of an SAS or SASU
-        executive? </0><1>As with a conventional employee, the <1>director of an
-        SAS(U)</1> pays social security contributions on the remuneration he or
-        she receives. Contributions are calculated in the same way as for an
+      seo-explanation: "<0>How do you calculate the salary of a SAS or SASU director?
+        </0><1>As with a conventional employee, the <1>director of an SAS(U)</1>
+        pays social security contributions on the remuneration he or she
+        receives. Contributions are calculated in the same way as for an
         employee: they are broken down into employer and employee portions, and
-        are expressed as a percentage of gross salary</1><2>.</2><2>In addition,
-        they do not benefit from the <5>réduction générale dégressive unique de
-        cotisations</5> or from schemes governed by the French Labor Code, such
-        as <9>heures supplémentaires</9> or bonuses.</2><3>However, they can
-        claim the <2>réduction Acre</2> at the start of their activity, under
-        certain conditions.</3><4>You can use our simulator to calculate
-        <2>rémunération nette</2> from a superbrut amount allocated to the
+        are expressed as a percentage of gross salary.</1><2>Managers treated as
+        employees do not pay <2>unemployment contributions</2>. In addition,
+        they do not benefit from the <5>general reduction in contributions</5>,
+        nor from schemes governed by the French Labor Code, such as
+        <9>overtime</9> or bonuses.</2><3>They may, however, qualify for the
+        <2>ACRE reduction</2> at the start of their activity, subject to certain
+        conditions.</3><4>You can use our simulator to calculate <2>net
+        remuneration</2> based on a super-gross amount allocated to the
         manager's remuneration. Simply enter the total amount allocated in the
-        \"total loaded\" box. The simulation can then be refined by answering
+        \"total charged\" box. The simulation can then be refined by answering
         the various questions.</4>"
       shortname: SAS(U)
       title: Income simulator for SAS(U) managers
       warning: This simulator does not handle the case of SAS(U) taxable on income
         (IR). Only the corporate income tax (IS) option is implemented.
+    select-year:
+      access: Access the simulator {{year}}
+      back: Back to simulator {{year}}
+      info: "This simulation concerns the year <2>{{currentEngineYear}}</2>. "
   statistiques:
     a11y-switch: Enable accessibility mode on this section
     anonymous: The data collected is anonymized.
-    demandes:
-      aria-label: "{{title}}, see the request on github.com (opens in a new window)"
     explanation: <0><0>The simulators and wizards on this site are designed to
       <2>answer a specific question</2> (e.g. "How much should my company pay to
       hire a new employee?" or "What is the best legal status for starting my
@@ -2515,17 +2132,116 @@ payslip:
     to understand your pay slip: you can click on the links to understand how
     each amount is calculated. This payslip is not a substitute for a real
     payslip. For more information, visit <2>service-public.fr</2>."
-  link: See the pay slip
   repartition: Breakdown of total expenses
+periode-calcul: Calculation period
 points: points
 pourcentage: percentage
+previousSimulationBanner:
+  info: "Your previous simulation has been saved:"
+  retrieveButton: Find my simulation
+privacyPolicy:
+  data:
+    content: "mon-entreprise.urssaf.fr does not process any personal data via the
+      simulators or by depositing cookies or tracers. There is no account; only
+      the anonymous information entered during the simulations is automatically
+      saved in your browser. <1></1><2></2>However, if a user wishes to become a
+      “beta tester” in order to receive information on new products, give his or
+      her opinion and take part in workshops to improve our services, he or she
+      can register via the link in the footer of the “Become a beta tester”
+      page. The following data is then processed: e-mail address, type of
+      company, type of activity, type of taxation, postal code, age group, etc.
+      This data is kept for a maximum of 2 years.<4></4><5></5>The Urssaf Caisse
+      Nationale is committed to ensuring that the collection and processing of
+      your data complies with regulations on the protection of personal data. In
+      this respect, Urssaf Caisse Nationale informs you of:<7><0>The legal basis
+      for this processing, i.e. your consent for us to store the above-mentioned
+      data;</0><1>The identity and contact details of the party responsible for
+      processing your data: Urssaf Caisse Nationale, domiciled at 36 rue de
+      Valmy - 93108 Montreuil Cedex, represented by its director, Mr Damien
+      IENTILE;</1><2>Contact details for the Data Protection Officer: Mme la
+      Déléguée à la Protection des données de l'Urssaf Caisse nationale, 36 rue
+      de Valmy - 93108 Montreuil Cedex -
+      informatiqueetlibertes.acoss@acoss.fr.</2></7>"
+    title: What personal data is collected?
+  liability:
+    content: The mon-entreprise.urssaf.fr platform is under the responsibility of
+      the Agence centrale des organismes de sécurité sociale, also known as
+      “Acoss” or “Urssaf Caisse nationale”. <1></1>The platform offers
+      simulators to help entrepreneurs develop their business.
+    title: Who is responsible for my-company?
+  recipients:
+    table:
+      caption: List of subcontractors receiving personal data
+      country: Destination country
+      mailer: Sending e-mails
+      processing: Treatment performed
+      provider: Subcontractor
+      security: Warranties
+      support: Support tool
+    title: Who will receive your data?
+  rights:
+    content: "In accordance with the French Data Protection Act, you have the
+      following rights:<1><0>The right to ask whether the Urssaf Caisse
+      Nationale holds any information about you, and to request that the Urssaf
+      Caisse Nationale communicate all such data to you (right of
+      access);</0><1>The right to restrict the processing of your personal data
+      if you agree that the processing is unlawful or excessive (right to
+      restrict processing);</1><2>The right to request the rectification of
+      inaccurate information concerning you (right of rectification);</2><3>the
+      right to object, where appropriate and for legitimate reasons (right to
+      object);</3><4>The possibility of requesting, where appropriate and if
+      there are no legal obligations to the contrary, that your data be deleted
+      by the Urssaf Caisse Nationale (right to be forgotten);</4><5>the
+      possibility of defining what happens to your data after your
+      death.</5></1>All these rights may be exercised by contacting the Data
+      Protection Officer of the Urssaf Caisse Nationale, by e-mail at
+      <4>informatiqueetlibertes.acoss@acoss.fr</4> or by post at the following
+      address: Urssaf Caisse nationale, Informatique et Libertés, 36 rue de
+      Valmy, 93108 Montreuil Cedex; in both cases providing proof of identity in
+      accordance with article 77 of decree no. 2019-536 of May 29,
+      2019.<7></7>For further information or to make a complaint, please contact
+      the Commission Nationale de l'Informatique et des Libertés (CNIL)."
+    title: What rights to information and freedom do you have?
+  security:
+    content: Your personal data collected as part of the services offered on
+      mon-entreprise.urssaf.fr are processed using secure computer and physical
+      protocols.
+    title: How is the security of your data ensured?
+  title: Privacy policy
+  tracking:
+    ariaLabel: CNIL recommendations, see more information on the CNIL website, new window
+    content: mon-entreprise.urssaf.fr does not use cookies or other tracking
+      devices. However, the platform uses Piano Analytics, an audience
+      measurement solution configured in "exempted" mode, which does not require
+      the consent of the persons concerned, in accordance with the
+      <2>recommendations of the CNIL</2>.
+    optOut:
+      checkboxLabel: I do not want to send anonymous data about my use of the platform
+        for audience measurement purposes.
+      confirmation: Your preferences have been saved
+      content: "You can opt out of this platform usage measure by checking the
+        corresponding box below:"
+    title: Cookies and trackers
 recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
   search launched automatically after entering characters, results will be
   displayed after this element.
+recherche-globale:
+  placeholder: Keyword or acronym (e.g. CSG)
 salarié, accéder au simulateur salarié: employee, access the employee simulator
+search-code-ape:
+  alternative: You can try "{{proposal}}" instead of "{{match}}".
+  cant-find-my-activity: I can't find my activity
+  feedback:
+    description: Tell us about your business and any search terms you've used that
+      didn't give good results.<1></1>We'll use this information to improve this
+      tool.
+    info: We are unable to answer questions concerning your company's APE code.
+  radio-card-group:
+    aria-label: List of activities
 select:
   value:
     default: Choose an option
+septembre: September
 shareSimulation:
   banner: Generate a share link
   button:
@@ -2546,63 +2262,38 @@ shareSimulation:
 simulateurs:
   explanation:
     institutions:
-      CARCDSF:
-        description: CARCDSF is the pension fund for dental surgeons and midwives.
-      CARMF:
-        description: CARMF is the independent pension fund for French doctors.
-      CARPIMKO:
-        description: CARPIMKO is the autonomous pension fund for medical auxiliaries.
-      CAVEC:
-        description: CAVEC is the social security organization for chartered accountants
-          and statutory auditors.
-      CAVP:
-        description: CAVP is the pension fund for pharmacists.
-      CIPAV:
-        description: Cipav is the independent pension fund for the regulated liberal
-          professions.
-        img: Cipav website, new window
-        note: From January 1, 2023, Urssaf will collect basic and supplementary pension
-          and disability-death contributions from self-employed professionals
-          covered by Cipav. Cipav will continue to manage pension and
-          contingency files.
-      CNAVPL:
-        img: "{{ caisse }} website, new window"
-        note: It collects contributions related to your pension and to the
-          disability-death scheme.
-      CNBF:
-        description: Caisse Nationale des Barreaux Français (CNBF) is the social
-          security organization for lawyers.
+      CIPAV: From January 1, 2023, Urssaf will collect basic and supplementary pension
+        and disability-death contributions from self-employed professionals
+        covered by Cipav. Cipav will continue to manage the pension and
+        provident fund file.
+      CNAPL: It collects contributions related to your pension and to the
+        disability-death scheme.
+      cpam: As an approved healthcare professional, part of your contributions are
+        reimbursed by the Assurance Maladie.
       dgfip: The Direction Générale des Finances Publiques (DGFiP) is the organization
         that collects income tax. <2>The amount calculated takes into <2>account
         the micro-tax allowance</2>.</2>
+      précompte-artiste-auteur: For your salary and wage income, these contributions
+        are "précomptée", i.e. paid at source by the broadcaster.
       titre: Your partner institutions
+      urssaf: Urssaf collects contributions used to finance the social security system
+        (health insurance, family allowances, long-term care<1> and <3>
+        basic</3> pensions</1>).
   précision:
     défaut: "Improve your simulation by answering the questions below:"
   warning:
-    beta: "<0>This tool is in beta</0> : We are working to validate the information
-      and calculations, but <3>errors may still be present</3>."
-    fermer:
-      aria-label: I get it, close the condensed message.
-      texte: I understand
     general: <0>The calculations are indicative.</0> They are based on the
-      information you have entered and on the applicable regulations, but they
-      do not take into account your entire situation. <3>They do not replace
-      actual statements</3> from Urssaf, the tax authorities or any other
+      information you have entered and the applicable regulations, but they do
+      not take into account your entire situation. <3>They are not a substitute
+      for actual statements</3> from Urssaf, the tax authorities or any other
       organization.
-    plus:
-      aria-label: Read the details, open the condensed message.
-      texte: Read more
+    plus: Read more
     titre: Before we begin...
 simulation-end:
   hiring:
     text: Now you can make your hiring plans a reality.
   text: You now have access to the most accurate estimate possible.
   title: You have completed this simulation
-simulationChargéeBanner:
-  fermer: Close
-  lienPartagé: This simulation was loaded from a shared link.
-  règlesDéfaillantes: Some parameters could not be applied due to an evolution of the simulator.
-  sauvegarde: Your previous simulation has been restored.
 simulationPréremplieBanner:
   aria-label: View my situation, access my company management page
   button: See my situation
@@ -2705,6 +2396,8 @@ vos retours, accéder aux statistiques d'utilisation: your feedback, access to u
 warning:
   overwrite:
     situation: Do you want to crush your situation?
+"{{title}}, voir la demande sur github":
+  com, nouvelle fenêtre: "{{title}}view request on github.com, new window"
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 "Établissement recherché :": "Establishment sought:"

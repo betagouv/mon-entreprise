@@ -1,48 +1,62 @@
-import React, { useCallback, useRef } from 'react'
+import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { styled } from 'styled-components'
 
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import RuleInput, {
+	getRuleInputNature,
+	OUI_NON_INPUT,
+	PLUSIEURS_POSSIBILITES,
+	UNE_POSSIBILITE,
+} from '@/components/conversation/RuleInput'
 import SeeAnswersButton from '@/components/conversation/SeeAnswersButton'
 import { VousAvezComplétéCetteSimulation } from '@/components/conversation/VousAvezComplétéCetteSimulation'
 import Notifications from '@/components/Notifications'
+import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
 import { FromTop } from '@/components/ui/animate'
 import Progress from '@/components/ui/Progress'
-import { Body, Conversation, H3, Spacing } from '@/design-system'
-import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
-import { Situation } from '@/domaine/Situation'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Body, Conversation, H3 } from '@/design-system'
 import {
-	QuestionPublicodes as TypeQuestionPublicodes,
-	useQuestions,
-} from '@/hooks/useQuestions'
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
+import { isQuantité } from '@/domaine/Quantité'
+import { Situation } from '@/domaine/Situation'
+import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unités'
+import { useQuestions } from '@/hooks/useQuestions'
+import { enregistreLaRéponse } from '@/store/actions/actions'
+import { evaluateQuestion } from '@/utils/publicodes'
 
-import { ComposantQuestion } from './ComposantQuestion'
-import { QuestionPublicodes } from './QuestionPublicodes'
 import Raccourcis from './Raccourcis'
 
 export interface QuestionsProps<S extends Situation = Situation> {
 	situation?: S
 	questions?: Array<ComposantQuestion<S>>
-	questionsPublicodes?: Array<TypeQuestionPublicodes<S>>
-	raccourcisPublicodes?: Array<RaccourciPublicodes>
-	showModifierMesRéponses?: boolean
+	avecQuestionsPublicodes?: boolean
 	customEndMessages?: React.ReactNode
+	customSituationVisualisation?: React.ReactNode
 }
 
 export function Questions<S extends Situation>({
-	situation,
-	questions,
-	questionsPublicodes,
-	raccourcisPublicodes,
+	questions = [],
+	avecQuestionsPublicodes = true,
 	customEndMessages,
-	showModifierMesRéponses = true,
+	customSituationVisualisation,
+	situation,
 }: QuestionsProps<S>) {
 	const { t } = useTranslation()
-	const focusAnchorForA11yRef = useRef<HTMLDivElement>(null)
+	const dispatch = useDispatch()
+	const engine = useEngine()
 
 	const {
 		nombreDeQuestions,
 		nombreDeQuestionsRépondues,
-		questionCouranteIndex,
+		activeQuestionIndex,
 		QuestionCourante,
 		questionCouranteRépondue,
 		raccourcis,
@@ -52,43 +66,66 @@ export function Questions<S extends Situation>({
 		goTo,
 	} = useQuestions({
 		questions,
-		questionsPublicodes,
-		raccourcisPublicodes,
 		situation,
+		avecQuestionsPublicodes,
 	})
 
-	const handleGoToPrevious = useCallback(() => {
-		goToPrevious()
-
-		if (focusAnchorForA11yRef.current) {
-			focusAnchorForA11yRef.current.focus()
-		}
-	}, [goToPrevious, focusAnchorForA11yRef])
-
-	const handleGoToNext = useCallback(() => {
-		goToNext()
-
-		if (focusAnchorForA11yRef.current) {
-			focusAnchorForA11yRef.current.focus()
-		}
-	}, [goToNext, focusAnchorForA11yRef])
-
-	const handleGoTo = useCallback(
-		(index: string) => {
-			goTo(index)
-
-			if (focusAnchorForA11yRef.current) {
-				focusAnchorForA11yRef.current.focus()
-			}
+	const handlePublicodesQuestionResponse = useCallback(
+		(dottedName: DottedName, value: ValeurPublicodes | undefined) => {
+			dispatch(enregistreLaRéponse(dottedName, value))
 		},
-		[goTo, focusAnchorForA11yRef]
+		[dispatch]
 	)
+
+	let shouldBeWrappedByFieldset = false
+	if (!finished && QuestionCourante?._tag === 'QuestionPublicodes') {
+		const dottedName = QuestionCourante.id
+		const rule = engine.getRule(dottedName)
+		const evaluation = engine.evaluate({ valeur: dottedName })
+
+		const decoded: O.Option<ValeurPublicodes> =
+			PublicodesAdapter.decode(evaluation)
+		const value = O.getOrUndefined(decoded)
+
+		const unitéPublicodes = rule.rawNode.unité
+
+		const estUnMontant = Boolean(
+			(value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes)
+		)
+
+		const estUneQuantité = Boolean(
+			(value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes)
+		)
+
+		const ruleInputNature = getRuleInputNature(
+			QuestionCourante.id,
+			engine,
+			{},
+			estUnMontant,
+			estUneQuantité
+		)
+
+		shouldBeWrappedByFieldset = [
+			PLUSIEURS_POSSIBILITES,
+			UNE_POSSIBILITE,
+			OUI_NON_INPUT,
+		].includes(ruleInputNature)
+	}
+
+	const questionCouranteHtmlForId = QuestionCourante?.id
+		.replaceAll(' . ', '_')
+		.replaceAll(' ', '-')
+
+	const questionCouranteLabel =
+		QuestionCourante?._tag === 'QuestionPublicodes'
+			? evaluateQuestion(engine, engine.getRule(QuestionCourante.id))
+			: undefined
 
 	return (
 		nombreDeQuestions > 0 && (
 			<>
 				<Progress
-					progress={questionCouranteIndex + 1}
+					progress={activeQuestionIndex + 1}
 					maxValue={nombreDeQuestions}
 				/>
 				<QuestionsContainer>
@@ -102,62 +139,96 @@ export function Questions<S extends Situation>({
 							</Body>
 						)}
 					</div>
-
 					{finished && (
 						<VousAvezComplétéCetteSimulation
 							customEndMessages={customEndMessages}
-							onPrevious={handleGoToPrevious}
+							onPrevious={goToPrevious}
 						/>
 					)}
 
-					{!finished && QuestionCourante && (
-						<FromTop key={`question-${QuestionCourante.id}`}>
-							<div ref={focusAnchorForA11yRef} tabIndex={-1} role="status">
-								{QuestionCourante?._tag === 'QuestionFournie' && (
-									<fieldset>
-										<QuestionTitle as="legend">
-											{QuestionCourante.libellé(t)}
-										</QuestionTitle>
-										<QuestionCourante />
-										<Spacing md />
-									</fieldset>
-								)}
-
-								{QuestionCourante?._tag === 'QuestionPublicodes' && (
-									<QuestionPublicodes
-										question={QuestionCourante}
-										handleGoToNext={handleGoToNext}
-									/>
-								)}
-							</div>
+					{!finished && QuestionCourante?._tag === 'QuestionFournie' && (
+						<FromTop key={`custom-question-${QuestionCourante.id}`}>
+							<QuestionTitle>{QuestionCourante.libellé}</QuestionTitle>
+							<QuestionCourante />
 
 							<Conversation
-								onPrevious={
-									questionCouranteIndex > 0 ? handleGoToPrevious : undefined
-								}
-								onNext={handleGoToNext}
+								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+								onNext={goToNext}
 								questionIsAnswered={questionCouranteRépondue}
-								isPreviousDisabled={questionCouranteIndex === 0}
+								isPreviousDisabled={activeQuestionIndex === 0}
 								customVisualisation={
-									showModifierMesRéponses ? <SeeAnswersButton /> : undefined
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
 								}
 							>
-								{QuestionCourante?._tag === 'QuestionFournie' && (
-									/* Le contenu de la question est rendu par activeCustomQuestion.renderer */
-									<div style={{ display: 'none' }}></div>
-								)}
+								{/* Le contenu de la question est rendu par activeCustomQuestion.renderer */}
+								<div style={{ display: 'none' }}></div>
 							</Conversation>
+						</FromTop>
+					)}
 
-							{QuestionCourante?._tag === 'QuestionPublicodes' && (
-								<Notifications />
+					{!finished && QuestionCourante?._tag === 'QuestionPublicodes' && (
+						<FromTop key={`publicodes-question-${QuestionCourante.id}`}>
+							{shouldBeWrappedByFieldset ? (
+								<fieldset>
+									<H3 as="legend">
+										{questionCouranteLabel}
+										<ExplicableRule
+											light
+											dottedName={QuestionCourante.id}
+											ariaDescribedBy={questionCouranteLabel}
+										/>
+									</H3>
+									<RuleInput
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</fieldset>
+							) : (
+								<>
+									<H3 as="label" htmlFor={questionCouranteHtmlForId}>
+										{questionCouranteLabel}
+										<ExplicableRule
+											light
+											dottedName={QuestionCourante.id}
+											ariaDescribedBy={questionCouranteLabel}
+										/>
+									</H3>
+									<RuleInput
+										id={questionCouranteHtmlForId}
+										dottedName={QuestionCourante.id}
+										onChange={(value, name) =>
+											handlePublicodesQuestionResponse(name, value)
+										}
+										key={QuestionCourante.id}
+										onSubmit={goToNext}
+									/>
+								</>
 							)}
+							<Conversation
+								onPrevious={activeQuestionIndex > 0 ? goToPrevious : undefined}
+								onNext={goToNext}
+								questionIsAnswered={questionCouranteRépondue}
+								isPreviousDisabled={activeQuestionIndex === 0}
+								customVisualisation={
+									<SeeAnswersButton>
+										{customSituationVisualisation}
+									</SeeAnswersButton>
+								}
+							/>
+							<Notifications />
 						</FromTop>
 					)}
 
 					{QuestionCourante && (
 						<Raccourcis
 							raccourcis={raccourcis}
-							goTo={handleGoTo}
+							goTo={goTo}
 							idQuestionCourante={QuestionCourante?.id}
 						/>
 					)}
@@ -178,6 +249,8 @@ const QuestionsContainer = styled.div`
 	box-shadow: ${({ theme }) => theme.elevations[2]};
 `
 
-const QuestionTitle = styled(H3)`
+const QuestionTitle = styled.h3`
 	margin-top: 0;
+	margin-bottom: 1rem;
+	font-weight: 500;
 `

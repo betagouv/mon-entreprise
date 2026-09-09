@@ -2,11 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Link, SmallBody } from '@/design-system'
-
-export interface Raccourci {
-	id: string
-	libellé: string
-}
+import { Raccourci } from '@/hooks/useQuestions'
 
 type Props = {
 	raccourcis: Raccourci[]
@@ -28,10 +24,7 @@ export default function Raccourcis({
 	return (
 		<Container>
 			<StyledSmallBody>
-				{t(
-					'pages.simulateurs.commun.raccourcis.titre',
-					'Aller à la question :'
-				)}
+				{t('pages.simulateurs.raccourcis.titre', 'Aller à la question :')}
 			</StyledSmallBody>
 
 			<StyledList>
@@ -41,7 +34,7 @@ export default function Raccourcis({
 							$active={id === idQuestionCourante}
 							onPress={() => goTo(id)}
 							aria-label={t(
-								'pages.simulateurs.commun.raccourcis.aria-label',
+								'pages.simulateurs.raccourcis.aria-label',
 								'Aller à la question : {{question}}',
 								{
 									question: libellé,

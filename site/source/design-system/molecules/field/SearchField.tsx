@@ -1,10 +1,15 @@
-import { ReactNode, useRef } from 'react'
-import { AriaSearchFieldProps, useButton, useSearchField } from 'react-aria'
-import { SearchFieldState, useSearchFieldState } from 'react-stately'
+import { useButton } from '@react-aria/button'
+import { useSearchField } from '@react-aria/searchfield'
+import {
+	SearchFieldState,
+	useSearchFieldState,
+} from '@react-stately/searchfield'
+import { AriaSearchFieldProps } from '@react-types/searchfield'
+import { useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../global-style'
-import { SearchIcon, Spinner } from '../../icons'
+import { Loader, SearchIcon } from '../../icons'
 import {
 	StyledContainer,
 	StyledDescription,
@@ -39,11 +44,9 @@ const IconContainer = styled.div<{ $hasLabel?: boolean }>`
 `
 
 export function SearchField(
-	props: Omit<AriaSearchFieldProps, 'errorMessage' | 'description'> & {
+	props: AriaSearchFieldProps & {
 		state?: SearchFieldState
 		isSearchStalled?: boolean
-		errorMessage?: ReactNode
-		description?: ReactNode
 	}
 ) {
 	const innerState = useSearchFieldState(props)
@@ -66,7 +69,7 @@ export function SearchField(
 				hasLabel={!!props.label}
 			>
 				<IconContainer $hasLabel={!!props.label}>
-					{props.isSearchStalled ? <Spinner /> : <SearchIcon />}
+					{props.isSearchStalled ? <Loader /> : <SearchIcon aria-hidden />}
 				</IconContainer>
 				<SearchInput
 					{...inputProps}
@@ -103,8 +106,8 @@ const StyledClearButton = styled.button`
 	right: 0;
 	background: transparent;
 	border: none;
-	font-size: ${({ theme }) => theme.fontSizes.xxxl};
-	line-height: ${({ theme }) => theme.lineHeights.lg};
+	font-size: 2rem;
+	line-height: 2rem;
 	height: ${({ theme }) => theme.spacings.xxxl};
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.sm}`};
 	${({ theme: { darkMode } }) =>

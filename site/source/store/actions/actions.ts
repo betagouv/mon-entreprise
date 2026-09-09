@@ -1,128 +1,143 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { PublicodesSimulationConfig } from '@/store/reducers/rootReducer'
+import { SituationPublicodes } from '@/domaine/SituationPublicodes'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
 import { CompanyActions } from './companyActions'
+import { HiringChecklistAction } from './hiringChecklistAction'
 
 export type Action =
 	| ReturnType<
-			| typeof configureLaSimulation
-			| typeof réinitialiseLaSimulation
-			| typeof chargeLaSimulationPrécédente
-			| typeof ajusteLaSituation
-			| typeof enregistreLaRéponseÀLaQuestion
-			| typeof ignoreLaQuestion
-			| typeof enregistreLesRéponsesÀLaQuestion
-			| typeof enregistreLesRéponsesAuxQuestions
-			| typeof supprimeLaRègleDeLaSituation
-			| typeof applicabilitéDesQuestionsRépondues
-			| typeof metÀJourLesQuestionsSuivantes
-			| typeof updateUnit
+			| typeof explainVariable
+			| typeof vaÀLaQuestion
 			| typeof hideNotification
+			| typeof loadPreviousSimulation
+			| typeof resetSimulation
 			| typeof setActiveTarget
+			| typeof setSimulationConfig
+			| typeof retourneÀLaQuestionPrécédente
+			| typeof vaÀLaQuestionSuivante
+			| typeof ajusteLaSituation
+			| typeof enregistreLaRéponse
+			| typeof enregistreLesRéponses
+			| typeof deleteFromSituation
+			| typeof updateUnit
+			| typeof batchUpdateSituation
+			| typeof questionsSuivantes
+			| typeof applicabilitéDesQuestionsRépondues
+			| typeof miseÀJourSituation
 	  >
 	| CompanyActions
+	| HiringChecklistAction
 
-// Configuration de la simulation
-
-export const configureLaSimulation = (
-	config: PublicodesSimulationConfig,
-	url: string,
-	key: string
-) =>
+export const resetSimulation = () =>
 	({
-		type: 'CONFIGURE_LA_SIMULATION',
+		type: 'RESET_SIMULATION',
+	}) as const
+
+export const vaÀLaQuestion = (question: DottedName) =>
+	({
+		type: 'VA_À_LA_QUESTION',
+		question,
+	}) as const
+
+export const questionsSuivantes = (questionsSuivantes: Array<DottedName>) =>
+	({
+		type: 'QUESTIONS_SUIVANTES',
+		questionsSuivantes,
+	}) as const
+
+export const setSimulationConfig = (config: SimulationConfig, url: string) =>
+	({
+		type: 'SET_SIMULATION',
 		url,
 		config,
-		key,
 	}) as const
 
-// Initialisation de la simulation
-
-export const réinitialiseLaSimulation = () =>
+export const setActiveTarget = (targetName: DottedName) =>
 	({
-		type: 'RÉINITIALISE_LA_SIMULATION',
+		type: 'SET_ACTIVE_TARGET_INPUT',
+		name: targetName,
 	}) as const
 
-export function chargeLaSimulationPrécédente() {
-	return {
-		type: 'CHARGE_LA_SIMULATION_PRÉCÉDENTE',
-	} as const
-}
-
-// Modification de la situation
-
-/**
- * Modifie la situation, sans modifier la liste des questions répondues
- */
-export const ajusteLaSituation = (
-	amendement: Record<DottedName, ValeurPublicodes | undefined>
+export const ajusteLaSituation = <T extends DottedName>(
+	amendement: Record<T, ValeurPublicodes | undefined>
 ) =>
 	({
 		type: 'AJUSTE_LA_SITUATION',
 		amendement,
 	}) as const
 
-/**
- * Modifie la situation et la liste des question répondues
- */
-export const enregistreLaRéponseÀLaQuestion = (
+export const enregistreLaRéponse = (
 	fieldName: DottedName,
 	value: ValeurPublicodes | undefined
 ) =>
 	value === undefined
-		? supprimeLaRègleDeLaSituation(fieldName)
+		? deleteFromSituation(fieldName)
 		: ({
-				type: 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION',
+				type: 'ENREGISTRE_LA_RÉPONSE',
 				fieldName,
 				value,
-			} as const)
+		  } as const)
 
-/**
- * Modifie la liste des question répondues, sans modifier la situation
- */
-export const ignoreLaQuestion = (question: DottedName) =>
-	({
-		type: 'IGNORE_LA_QUESTION',
-		question,
-	}) as const
-
-/**
- * Modifie la situation et la liste des questions répondues,
- * pour une question de type "plusieurs possibilités"
- */
-export const enregistreLesRéponsesÀLaQuestion = (
+export const enregistreLesRéponses = (
 	règle: DottedName,
 	valeurs: Record<string, ValeurPublicodes>
 ) =>
 	({
-		type: 'ENREGISTRE_LES_RÉPONSES_À_LA_QUESTION',
+		type: 'ENREGISTRE_LES_RÉPONSES',
 		règle,
 		valeurs,
 	}) as const
 
-/**
- * Modifie la situation et la liste des questions répondues
- * pour plusieurs questions à la fois
- */
-export const enregistreLesRéponsesAuxQuestions = (
-	situation: Record<DottedName, O.Option<ValeurPublicodes>>
-) =>
+export const deleteFromSituation = (fieldName: DottedName) =>
 	({
-		type: 'ENREGISTRE_LES_RÉPONSES_AUX_QUESTIONS',
-		situation,
-	}) as const
-
-export const supprimeLaRègleDeLaSituation = (fieldName: DottedName) =>
-	({
-		type: 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION',
+		type: 'DELETE_FROM_SITUATION',
 		fieldName,
 	}) as const
 
-// Mise à jour des questions
+export const batchUpdateSituation = (
+	situation: Record<DottedName, O.Option<ValeurPublicodes>>
+) =>
+	({
+		type: 'BATCH_UPDATE_SITUATION',
+		situation,
+	}) as const
+
+export const updateUnit = (targetUnit: string) =>
+	({
+		type: 'UPDATE_TARGET_UNIT',
+		targetUnit,
+	}) as const
+
+export function loadPreviousSimulation() {
+	return {
+		type: 'LOAD_PREVIOUS_SIMULATION',
+	} as const
+}
+
+export function hideNotification(id: string) {
+	return { type: 'HIDE_NOTIFICATION', id } as const
+}
+
+export const explainVariable = (variableName: DottedName | null = null) =>
+	({
+		type: 'EXPLAIN_VARIABLE',
+		variableName,
+	}) as const
+
+export const retourneÀLaQuestionPrécédente = () =>
+	({
+		type: 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE',
+	}) as const
+
+export const vaÀLaQuestionSuivante = () =>
+	({
+		type: 'VA_À_LA_QUESTION_SUIVANTE',
+	}) as const
 
 export const applicabilitéDesQuestionsRépondues = (
 	questionsRépondues: Array<QuestionRépondue>
@@ -132,29 +147,8 @@ export const applicabilitéDesQuestionsRépondues = (
 		questionsRépondues,
 	}) as const
 
-export const metÀJourLesQuestionsSuivantes = (
-	questionsSuivantes: Array<DottedName>
-) =>
+export const miseÀJourSituation = (situation: SituationPublicodes) =>
 	({
-		type: 'MET_À_JOUR_LES_QUESTIONS_SUIVANTES',
-		questionsSuivantes,
-	}) as const
-
-// Divers
-
-export const updateUnit = (targetUnit: string) =>
-	({
-		type: 'UPDATE_TARGET_UNIT',
-		targetUnit,
-	}) as const
-
-export function hideNotification(id: string) {
-	return { type: 'HIDE_NOTIFICATION', id } as const
-}
-
-// TODO: supprimer car non utilisé ?
-export const setActiveTarget = (targetName: DottedName) =>
-	({
-		type: 'SET_ACTIVE_TARGET',
-		name: targetName,
+		type: 'MISE_À_JOUR_SITUATION',
+		payload: { situation },
 	}) as const

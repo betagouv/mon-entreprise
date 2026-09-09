@@ -1,12 +1,12 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { typography } from '@/design-system'
 
 import Meta from '../components/utils/Meta'
 
-const { H1, Body, H2, H3, H4, Li, Link, Ul } = typography
+const { H1, Body, H2, H3, H4, Li, Link, SmallBody, Ul } = typography
 
 export default function Accessibilité() {
 	const { t } = useTranslation()
@@ -104,21 +104,29 @@ export default function Accessibilité() {
 				révèle que :
 			</Body>
 			<Ul>
-				<Li>93,65% des critères RGAA sont respectés.</Li>
-				<Li>Le taux moyen de conformité du site s’élève à 98%.</Li>
+				<Li>77,78% des critères RGAA sont respectés.</Li>
+				<Li>Le taux moyen de conformité du site s’élève à 94%.</Li>
 				<Li>
 					La page "Simulateur de revenus pour salarié" a un taux de conformité
-					de 100%.
+					de 91%.
 				</Li>
 			</Ul>
 			<Body>
-				Nombre de critères applicables : 63 ; Nombre de critères conformes : 59
-				; Nombre de critères non conformes : 4
+				Nombre de critères applicables : 63 ; Nombre de critères conformes : 49
+				; Nombre de critères non conformes : 14
 			</Body>
 			<H3>Contenus non accessibles</H3>
 			<Body>
 				Liste des critères non conformes :
 				<Ul>
+					<Li>
+						Pour certaines pages web, l’information est donnée uniquement par la
+						couleur.
+					</Li>
+					<Li>
+						Pour certaines pages web, le contraste entre la couleur du texte et
+						la couleur de son arrière-plan n’est pas suffisamment élevé.
+					</Li>
 					<Li>Certains liens ne sont pas explicites.</Li>
 					<Li>
 						Certains scripts ne sont pas compatibles avec les technologies
@@ -129,8 +137,39 @@ export default function Accessibilité() {
 						l’utilisateur n’est pas averti ou en n’a pas le contrôle.
 					</Li>
 					<Li>
+						Pour certaines pages web, l’information n’est pas structurée par
+						l’utilisation appropriée de titres.
+					</Li>
+					<Li>
+						Pour certaines pages web, certaines listes ne sont pas correctement
+						structurées.
+					</Li>
+					<Li>Certains champs de formulaire n’ont pas d’étiquette.</Li>
+					<Li>
+						Certaines étiquettes associées à un champ de formulaire ne sont pas
+						pertinentes.
+					</Li>
+					<Li>
+						Pour certains formulaires, certaines étiquettes de champ et son
+						champ associé ne sont pas accolés.
+					</Li>
+					<Li>
+						Pour certains formulaires, les champs de même nature ne sont pas
+						regroupés, si nécessaire.
+					</Li>
+					<Li>
 						Pour certains formulaires, certaines légendes associées à un
 						regroupement de champs de même nature ne sont pas pertinentes.
+					</Li>
+					<Li>
+						Pour certains formulaires, certains contrôles de saisie ne sont pas
+						utilisés de manière pertinente.
+					</Li>
+					<Li>
+						Certaines zones de regroupement de contenus présentes dans plusieurs
+						pages web (zones d’en-tête, de navigation principale, de contenu
+						principal, de pied de page et de moteur de recherche) ne pas peuvent
+						être atteintes ou évitées.
 					</Li>
 				</Ul>
 			</Body>
@@ -140,9 +179,7 @@ export default function Accessibilité() {
 			<Body>Néant</Body>
 			<H3>Établissement de cette déclaration d'accessibilité</H3>{' '}
 			<Body>
-				Cette déclaration d'accessibilité a été établie le 15 mai 2025. Elle a
-				été mise à jour le 13 janvier 2026 lors d'un audit de contrôle, après
-				correction de non-conformités par l'équipe de développement.
+				Cette déclaration d'accessibilité a été établie le 15 mai 2025.
 			</Body>
 			<H4>Technologies utilisées pour la réalisation du site</H4>
 			<Ul>
@@ -219,6 +256,11 @@ export default function Accessibilité() {
 				</Li>
 				<Li>
 					<Link href="/assistants/choix-du-statut">Page "Choix du statut"</Link>
+				</Li>
+				<Li>
+					<Link href="/assistants/declaration-revenus-pam">
+						Page "Assistant à la déclaration de revenus pour les PAMC"
+					</Link>
 				</Li>
 				<Li>
 					<Link href="/nouveaut%C3%A9s/f%C3%A9vrier-2025">
@@ -311,6 +353,7 @@ export default function Accessibilité() {
 					</Link>
 				</Li>
 			</Ul>
+			<SmallBody>Mis à jour le 27 mai 2025</SmallBody>
 		</Trans>
 	)
 }

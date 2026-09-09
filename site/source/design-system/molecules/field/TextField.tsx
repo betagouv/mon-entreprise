@@ -1,5 +1,5 @@
-import { HTMLAttributes, InputHTMLAttributes, RefObject, useRef } from 'react'
-import { AriaTextFieldOptions, useTextField } from 'react-aria'
+import { AriaTextFieldOptions, useTextField } from '@react-aria/textfield'
+import { HTMLAttributes, RefObject, useRef } from 'react'
 import { css, styled } from 'styled-components'
 
 import { omit } from '@/utils'
@@ -13,7 +13,7 @@ type TextFieldProps = AriaTextFieldOptions<'input'> & {
 	inputRef?: RefObject<HTMLInputElement>
 	small?: boolean
 	id?: string
-	role?: 'combobox'
+	role?: string
 }
 
 export default function TextField(props: TextFieldProps) {
@@ -38,7 +38,7 @@ export default function TextField(props: TextFieldProps) {
 					{...(props.id && { id: props.id })}
 					role={props.role}
 					placeholder={
-						(inputProps as InputHTMLAttributes<HTMLInputElement>).placeholder ??
+						(inputProps as HTMLAttributes<HTMLInputElement>).placeholder ??
 						undefined
 					}
 					ref={props.inputRef || ref}
@@ -67,8 +67,8 @@ export const StyledContainer = styled.div`
 	width: 100%;
 `
 export const StyledInput = styled.input`
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	border: none;
 	width: 100%;
 	background: none;
@@ -132,8 +132,8 @@ export const StyledErrorMessage = styled(StyledDescription)`
 `
 
 export const StyledSuffix = styled.span`
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
@@ -168,8 +168,8 @@ export const StyledInputContainer = styled.div.withConfig({
 			hasError
 				? theme.colors.extended.error[400]
 				: theme.darkMode
-					? theme.colors.bases.primary[100]
-					: theme.colors.bases.primary[700]};
+				? theme.colors.bases.primary[100]
+				: theme.colors.bases.primary[700]};
 		outline-offset: ${({ theme }) => theme.spacings.xxs};
 		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
@@ -201,8 +201,8 @@ export const StyledInputContainer = styled.div.withConfig({
 		`}
 
 	${StyledInput}:not(:focus):placeholder-shown:not(:empty) + ${StyledLabel} {
-		font-size: ${({ theme }) => theme.fontSizes.base};
-		line-height: ${({ theme }) => theme.lineHeights.base};
+		font-size: 1rem;
+		line-height: 1.5rem;
 		top: 50%;
 		transform: translateY(-50%);
 	}
@@ -224,10 +224,10 @@ export const StyledInputContainer = styled.div.withConfig({
 			small
 				? css`
 						${theme.spacings.xxs} ${theme.spacings.xs}
-					`
+				  `
 				: css`calc(${hasLabel ? LABEL_HEIGHT : '0rem'} + ${
 						theme.spacings.xs
-					}) ${theme.spacings.sm} ${theme.spacings.xs}`};
+				  }) ${theme.spacings.sm} ${theme.spacings.xs}`};
 		color: ${({ theme }) =>
 			theme.darkMode
 				? theme.colors.extended.grey[100]
@@ -238,8 +238,8 @@ export const StyledInputContainer = styled.div.withConfig({
 		small &&
 		css`
 			${StyledSuffix}, ${StyledInput} {
-				font-size: ${({ theme }) => theme.fontSizes.base};
-				line-height: ${({ theme }) => theme.lineHeights.sm};
+				font-size: 1rem;
+				line-height: 1.25rem;
 			}
 		`}
 `

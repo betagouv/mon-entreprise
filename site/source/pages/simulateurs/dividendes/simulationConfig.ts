@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configDividendes: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+export const configDividendes: SimulationConfig = {
 	'objectifs exclusifs': [
 		'bénéficiaire . dividendes . bruts',
 		"bénéficiaire . dividendes . nets d'impôt",

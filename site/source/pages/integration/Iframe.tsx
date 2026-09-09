@@ -1,11 +1,12 @@
 import ColorPicker from '@atomik-color/component'
 import { str2Color } from '@atomik-color/core'
-import * as R from 'effect/Record'
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useHref, useSearchParams } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import urssafLogo from '@/assets/images/Urssaf.svg'
+import { TrackPage } from '@/components/ATInternetTracking'
 import {
 	Article,
 	Body,
@@ -24,84 +25,79 @@ import {
 	TextField,
 	Ul,
 } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useNavigation } from '@/lib/navigation'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 
 import Meta from '../../components/utils/Meta'
 
 import './iframe.css'
 
-import { pipe } from 'effect'
-
-import { SimulatorsMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
-import { setupIframeMessageHandlers } from '@/utils/iframeMessageHandlers'
 import {
-	CODE_DU_TRAVAIL_NUMERIQUE,
-	FRANCE_TRAVAIL,
-	URSSAF,
-} from '@/utils/logos'
+	SimulatorData,
+	SimulatorDataValues,
+} from '@/pages/simulateurs-et-assistants/metadata-src'
+
+import cciLogo from './images/cci.png'
+import minTraLogo from './images/min-tra.jpg'
+import poleEmploiLogo from './images/pole-emploi.png'
+
+const checkIframe = (obj: SimulatorDataValues) =>
+	'iframePath' in obj && obj.iframePath && !('private' in obj && obj.private)
+
+const getFromSimu = <S extends SimulatorData, T extends string>(
+	obj: S,
+	key: T
+) =>
+	key in obj &&
+	obj[key as keyof SimulatorData] &&
+	checkIframe(obj[key as keyof SimulatorData])
+		? obj[key as keyof SimulatorData]
+		: undefined
 
 function IntegrationCustomizer() {
 	const { t } = useTranslation()
-	const simulatorsData = useSimulatorsMetadata()
-	const { searchParams, setSearchParams, getHref } = useNavigation()
+	const simulatorsData = useSimulatorsData()
+	const [searchParams, setSearchParams] = useSearchParams()
 
-	const simulateursValidesPourIntégration = pipe(
-		simulatorsData,
-		R.filter((simulateur: SimulatorsMetadata[keyof SimulatorsMetadata]) => {
-			const simulateurIsNotPrivate = !(
-				'private' in simulateur && simulateur.private
-			)
-			const simulateurHasIframePath =
-				'iframePath' in simulateur && !!simulateur.iframePath
+	const defaultModuleFromUrl = searchParams.get('module') ?? ''
 
-			return simulateurIsNotPrivate && simulateurHasIframePath
-		})
+	const [currentModule, setCurrentModule] = useState(
+		getFromSimu(simulatorsData, defaultModuleFromUrl)
+			? defaultModuleFromUrl
+			: 'salarié'
 	)
-	type SimulateurValideId = keyof typeof simulateursValidesPourIntégration
-
-	const estSimulateurValidePourIntégration = useCallback(
-		(simulateur: string): simulateur is SimulateurValideId =>
-			!!simulateur && simulateur in simulateursValidesPourIntégration,
-		[simulateursValidesPourIntégration]
-	)
-
-	const simulateurFromUrl = searchParams.get('simulateur') ?? ''
-	const defaultSimulateur = estSimulateurValidePourIntégration(
-		simulateurFromUrl
-	)
-		? simulateurFromUrl
-		: ('salarié' as SimulateurValideId)
-
-	const [currentSimulateur, setCurrentSimulateur] =
-		useState<SimulateurValideId>(defaultSimulateur)
 
 	useEffect(() => {
-		setSearchParams({ simulateur: currentSimulateur }, { replace: true })
-	}, [currentSimulateur, setSearchParams])
-
-	const currentSimulator = useMemo(
-		() => simulateursValidesPourIntégration[currentSimulateur],
-		[currentSimulateur, simulateursValidesPourIntégration]
-	)
-
-	const currentIframePath = currentSimulator.iframePath
-	const currentIframeTitle = currentSimulator.title
-
-	const iframeSrc = getHref(`/iframes/${currentIframePath}`)
-	const iframeRef = useRef<HTMLIFrameElement>(null)
-
-	useEffect(() => {
-		if (!iframeRef.current) {
-			return
-		}
-
-		const handlers = setupIframeMessageHandlers(iframeRef.current)
-
-		return () => handlers.cleanup()
-	}, [iframeRef])
+		setSearchParams({ module: currentModule }, { replace: true })
+	}, [currentModule, setSearchParams])
 
 	const [color, setColor] = useState<string>('#005aa1')
+
+	const currentSimulator = getFromSimu(simulatorsData, currentModule)
+
+	const currentIframePath =
+		(currentSimulator &&
+			'iframePath' in currentSimulator &&
+			currentSimulator.iframePath) ||
+		''
+	const currentIframeTitle =
+		(currentSimulator &&
+			'title' in currentSimulator &&
+			currentSimulator.title) ||
+		''
+
+	const iframeRef = useRef<HTMLIFrameElement>(null)
+	const iframeSrc = useHref(`/iframes/${currentIframePath}`)
+
+	useEffect(() => {
+		window.addEventListener(
+			'message',
+			function (evt: MessageEvent<{ kind: string; value: number }>) {
+				if (iframeRef.current && evt.data.kind === 'resize-height') {
+					iframeRef.current.style.height = `${evt.data.value}px`
+				}
+			}
+		)
+	}, [iframeRef])
 
 	useEffect(() => {
 		iframeRef.current?.contentWindow?.postMessage({
@@ -132,25 +128,28 @@ function IntegrationCustomizer() {
 					</H3>
 					<Select
 						label="Assistant ou simulateur"
-						onSelectionChange={(value) =>
-							estSimulateurValidePourIntégration(value as string) &&
-							setCurrentSimulateur(value as keyof SimulatorsMetadata)
-						}
-						selectedKey={currentSimulateur}
+						onSelectionChange={(val) => setCurrentModule(String(val))}
+						selectedKey={currentModule}
 					>
-						{Object.values(simulateursValidesPourIntégration).map(
-							({ id, shortName, title, icône }) => (
-								<Item key={id} textValue={shortName ?? title ?? ''}>
-									{icône && (
-										<>
-											<Emoji emoji={icône} />
-											&nbsp;
-										</>
-									)}
-									{shortName ?? title ?? ''}
-								</Item>
+						{Object.entries(simulatorsData)
+							.map(
+								([module, s]) =>
+									getFromSimu(simulatorsData, module) && (
+										<Item
+											key={module}
+											textValue={s.shortName ?? ('title' in s ? s.title : '')}
+										>
+											{s.icône && (
+												<>
+													<Emoji emoji={s.icône} />
+													&nbsp;
+												</>
+											)}
+											{s.shortName ?? ('title' in s ? s.title : '')}
+										</Item>
+									)
 							)
-						)}
+							.filter(((el) => Boolean(el)) as <T>(x: T | undefined) => x is T)}
 					</Select>
 				</Grid>
 				<Grid item xs={'auto'}>
@@ -225,8 +224,6 @@ const Logo = styled.img`
 `
 
 export default function Integration() {
-	const { t } = useTranslation()
-
 	return (
 		<>
 			<TrackPage name="module_web" />
@@ -253,70 +250,56 @@ export default function Integration() {
 			</Trans>
 			<section className="blocks" id="integrations">
 				<H2>
-					{t(
-						'pages.développeur.iframe.intégrations.titre',
-						'Liste des intégrations'
-					)}
+					<Trans>Liste des intégrations</Trans>
 				</H2>
 				<Grid as={Ul} container id="integrationList" spacing={2}>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Urssaf"
-							href="https://www.urssaf.fr/accueil/outils-documentation/simulateurs.html"
-							ctaLabel={t(
-								'pages.développeur.iframe.intégrations.urssaf.cta-label',
-								'Voir l’intégration'
-							)}
-							aria-label={t(
-								'pages.développeur.iframe.intégrations.urssaf.aria-label',
-								'Urssaf, voir l’intégration, nouvelle fenêtre'
-							)}
+							href="https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-de-cotisations-2019.html?ut=estimateurs"
+							ctaLabel="Voir l'intégration"
+							aria-label="Urssaf.fr, Voir l'intégration"
 						>
-							<Logo src={URSSAF} alt="" />
+							<Logo src={urssafLogo} alt="Logo urssaf.fr" />
+						</Article>
+					</Grid>
+					<Grid as="li" item xs={12} md={6} xl={4}>
+						<Article
+							title="CCI de France"
+							href="http://les-aides.fr/embauche"
+							ctaLabel="Voir l'intégration"
+							aria-label="les-aides.fr, Voir l'intégration"
+						>
+							<Logo src={cciLogo} alt="Logo Les-aides.fr" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Code du travail numérique"
 							href="https://code.travail.gouv.fr/outils/simulateur-embauche"
-							ctaLabel={t(
-								'pages.développeur.iframe.intégrations.code-du-travail-numérique.cta-label',
-								'Voir le simulateur'
-							)}
-							aria-label={t(
-								'pages.développeur.iframe.intégrations.code-du-travail-numérique.aria-label',
-								'Code du travail numérique", voir le simulateur, nouvelle fenêtre'
-							)}
+							aria-label="code.travail.gouv.fr, Voir le simulateur"
+							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={CODE_DU_TRAVAIL_NUMERIQUE} alt="" />
+							<Logo src={minTraLogo} alt="Logo Ministère du travail" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="France Travail"
-							href="https://pro.francetravail.fr/accueil/estimer-cout-salarie"
-							ctaLabel={t(
-								'pages.développeur.iframe.intégrations.france-travail.cta-label',
-								'Voir le simulateur'
-							)}
-							aria-label={t(
-								'pages.développeur.iframe.intégrations.france-travail.aria-label',
-								'France Travail, voir le simulateur, nouvelle fenêtre'
-							)}
+							href="https://entreprise.francetravail.fr/cout-salarie/"
+							aria-label="francetravail.fr, voir le simulateur"
+							ctaLabel="Voir le simulateur"
 						>
-							<Logo src={FRANCE_TRAVAIL} alt="" />
+							<Logo src={poleEmploiLogo} alt="" />
 						</Article>
 					</Grid>
 					<Grid as="li" item xs={12} md={6} xl={4}>
 						<Article
 							title="Une idée&nbsp;?"
 							href="mailto:contact@mon-entreprise.beta.gouv.fr?subject=Proposition de réutilisation"
-							ctaLabel={t('Contactez-nous')}
+							ctaLabel="Contactez-nous"
 						>
-							{t(
-								'pages.développeur.iframe.intégrations.suggestion',
-								'Vous avez un projet ou une idée à nous partager ?'
-							)}
+							Vous avez un projet ou une idée à nous partager?
 						</Article>
 					</Grid>
 				</Grid>
@@ -448,7 +431,7 @@ function IntegrationCode({
 							: t(
 									'pages.développeur.code.copy-code',
 									'Copier le code dans le presse-papier'
-								)
+							  )
 					}
 					color={copied ? 'secondary' : 'primary'}
 					onPress={copyCodeToClipboard}

@@ -1,21 +1,28 @@
-import rules, { RègleModèleSocial } from 'modele-social'
+import i18next from 'i18next'
+import rules, { DottedName } from 'modele-social'
 import Engine, { PublicodesExpression, Unit } from 'publicodes'
 
+import { engineFactory } from '@/components/utils/EngineContext'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import { engineFactory } from '@/utils/publicodes/engineFactory'
+import ruleTranslations from '@/locales/rules-en.yaml'
+import translateRules from '@/locales/translateRules'
 
 let publicodesEngine: Engine | null = null
 
-function getPublicodesEngine(): Engine<RègleModèleSocial> {
+export function getPublicodesEngine(): Engine<DottedName> {
 	if (!publicodesEngine) {
 		resetPublicodesEngine()
 	}
 
-	return publicodesEngine as Engine<RègleModèleSocial>
+	return publicodesEngine as Engine<DottedName>
 }
 
-function resetPublicodesEngine(): void {
-	publicodesEngine = engineFactory(rules)
+export function resetPublicodesEngine(): void {
+	publicodesEngine = engineFactory(
+		i18next.language === 'en'
+			? translateRules('en', ruleTranslations, rules)
+			: rules
+	)
 }
 
 export const evalueAvecPublicodes = <TypeRetour>(

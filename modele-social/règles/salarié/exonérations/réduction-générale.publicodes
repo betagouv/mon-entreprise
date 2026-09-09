@@ -1,87 +1,90 @@
-salarié . cotisations . exonérations . RGDU:
+salarié . cotisations . exonérations . réduction générale:
   description: |
-    Le dispositif de réduction générale de cotisations patronales permet à
-    l’employeur de baisser le montant de ses cotisations. Depuis le 1er janvier 2026,
-    le dispositif d’allègement des cotisations est renommé
-    **« réduction générale dégressive unique » (RGDU)**.
-
-    Cette réduction est maximale pour une rémunération au niveau du Smic. Pour une
-    rémunération comprise entre le Smic et **moins de 3 Smic**, la réduction est
-    dégressive. L’allègement de cotisations ne s’applique plus à partir d’une
-    rémunération égale à 3 Smic.
-
-    Malgré l’augmentation du Smic au 1er juin 2026, l’éligibilité à la RGDU et
-    le calcul de son coefficient continuent de se baser sur la valeur du Smic au
-    1er janvier 2026.
+    Dans le cadre du pacte de responsabilité et de solidarité, le dispositif zéro
+    cotisation Urssaf permet à l'employeur d'un salarié au Smic de ne plus payer
+    aucune cotisation. Le montant de l'allègement est égal au produit de la
+    rémunération annuelle brute par un coefficient. Il n'y a pas de formalité
+    particulière à effectuer.
   références:
-    La réduction générale dégressive unique: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
-    Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
-    Réduction générale dégressive unique: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html
-    Règles de cumul: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html#toc-regles-de-cumul
+    Simulateur actuel: https://www.declaration.urssaf.fr/calcul/
+    Fiche service-public.fr: https://entreprendre.service-public.fr/vosdroits/F24542
+    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+    Cumuls: https://www.legisocial.fr/actualites-sociales/2068-comment-declarer-les-cotisations-dallocations-familiales-si-lentreprise-beneficie-du-regime-jei.html
+    Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general
   produit:
     - cotisations . assiette
     - coefficient
   plafond: plafond avec application de la DFS
-  non applicable si:
-    une de ces conditions:
-      - cotisations . assiette = 0
-      - cotisations . assiette >= 3 * SMIC
+  non applicable si: cotisations . assiette = 0
 
   avec:
     coefficient:
       produit:
-        - somme:
-            - Tmin
-            - produit:
-                - Tdelta
-                - (0.5 * (3 * SMIC / cotisations . assiette - 1)) ** P
+        - 1.6 * temps de travail . SMIC / cotisations . assiette - 1
+        - T / 0.6
         - coefficient de majoration
-      plafond: Tmin + Tdelta
+      plancher: 0
+      plafond: T
       unité: ''
       arrondi: 4 décimales
       références:
-        Réforme des allègements généraux de cotisations patronales de sécurité sociale: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2025/septembre/reforme-des-allegements-generaux.html
-        Article D241-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
-        La réduction générale des cotisations: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+        Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
+        Urssaf.fr: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
-
-    SMIC:
-      description: |
-        Montant du Smic utilisé dans le calcul de la RGDU, pour le plafond
-        d’éligibilité et pour le calcul du cœfficient.
-
-        Le Smic est proratisé en fonction du temps de travail en cas de temps
-        partiel ou d’heures supplémentaires.
-
-        Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est toujours
-        celle du 1er janvier 2026.
-      valeur: temps de travail . SMIC
-      contexte:
-        date: 01/01/2026
-      références:
-        Revalorisation du SMIC à compter du 1er juin 2026 - Évolutions réglementaires prévues de la réduction générale dégressive unique: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2026/juin/revalorisation-du-smic-a-compter.html
-
-    P: 1.75
-
-    plafond avec application de la DFS:
-      privé: oui
-      applicable si: régimes spécifiques . DFS
-      unité: €/mois
-      produit:
-        - valeur: RGDU
-          contexte:
-            régimes spécifiques . DFS: non
-        - 130%
 
     coefficient de majoration:
       variations:
         - si: caisse de congés payés
           alors: 100 / 90
         - sinon: 1
-      références:
-        Employeurs de salariés dont les indemnités de congés payés sont versées par une caisse de congés payés: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-i--formule-de-calcul-du-coeffici-b--employeurs-beneficiant-dune-m-2--employeurs-de-salaries-dont-l
+
+    imputation retraite complémentaire:
+      valeur: réduction générale - imputation sécurité sociale
+      arrondi: 2 décimales
+
+    imputation sécurité sociale:
+      produit:
+        - réduction générale
+        - T . sécurité sociale et chômage / T
+      arrondi: 2 décimales
+
+    imputation chômage:
+      produit:
+        - réduction générale
+        - chômage . taux / T
+      arrondi: 2 décimales
+
+    plafond avec application de la DFS:
+      privé: oui
+      applicable si: régimes spécifiques . DFS
+      unité: €/mois
+      produit:
+        - valeur: réduction générale
+          contexte:
+            régimes spécifiques . DFS: non
+        - 130%
 
     caisse de congés payés:
       titre: Obligation de recourir à une caisse de congés payés
       question: Avez-vous l’obligation de recourir à une caisse de congés payés ?
       par défaut: non
+
+salarié . cotisations . exonérations . réduction générale . régularisation:
+  description: |
+    ### Régularisation progressive
+
+    À chaque échéance, vous cumulez :
+    - les rémunérations brutes du salarié perçues depuis le début de l’année ou depuis son embauche ;
+    - et vous calculez le montant du Smic brut sur cette même période.
+
+    La régularisation correspond à la différence entre le montant ainsi calculé et le montant cumulé
+    des réductions appliquées sur les mois ou trimestres précédents de l'année.
+
+    ### Régularisation annuelle
+
+    Elle correspond à la différence entre le montant de la réduction calculée selon la formule annuelle
+    et le montant des réductions appliquées par anticipation sur les périodes précédentes de l’année.
+
+    Elle intervient :
+    - sur les cotisations dues au titre du mois de décembre, pour les employeurs « mensuels » ;
+    - ou au titre du dernier trimestre de l’année pour les employeurs « trimestriels ».

@@ -13,32 +13,32 @@ import {
 	Label as RALabel,
 	Popover as RAPopover,
 	Text as RAText,
+	type DatePickerProps as RADatePickerProps,
+	type DateValue as RADateValue,
 } from 'react-aria-components'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Emoji } from '@/design-system/emoji'
-import { parseLangue } from '@/locales/langue'
 
 import {
 	fieldInputStyles,
 	fieldLabelStyles,
-	fieldTransition,
 	labelAndInputContainerStyles,
-	outlineOnFocus,
 } from '../fieldsStyles'
 
-type DateFieldsWithPickerProps = {
-	defaultSelected?: Date
-	label: string
-}
+type DateFieldsWithPickerProps = RADateValue &
+	RADatePickerProps<RADateValue> & {
+		defaultSelected?: Date
+		label: string
+	}
 
 export function DateFieldWithPicker({
 	defaultSelected,
 	label,
 }: DateFieldsWithPickerProps) {
 	const { i18n } = useTranslation()
-	const language = parseLangue(i18n.language)
+	const language = i18n.language as 'fr' | 'en'
 
 	const dateFormatHelperText = language === 'fr' ? 'JJ/MM/AAAA' : 'DD/MM/YYYY'
 
@@ -51,14 +51,13 @@ export function DateFieldWithPicker({
 			<StyledLabelAndInputContainer>
 				<StyledLabelContainer>
 					<RALabel>{label}</RALabel>
-
 					<RAText slot="description">{` (${dateFormatHelperText})`}</RAText>
 				</StyledLabelContainer>
 
 				<StyledRAGroup>
-					<StyledRADateInput>
+					<RADateInput>
 						{(segment) => <RADateSegment segment={segment} />}
-					</StyledRADateInput>
+					</RADateInput>
 
 					<StyledRAButton>
 						<Emoji emoji="📅" />
@@ -103,22 +102,13 @@ const StyledLabelContainer = styled.div`
 const StyledRAGroup = styled(RAGroup)`
 	${fieldInputStyles}
 
+	position: relative;
 	display: flex;
-	align-items: center;
-	gap: ${({ theme }) => theme.spacings.xs};
-
-	width: fit-content;
-	padding: 0;
-
-	&:focus-within {
-		outline: none;
-	}
+	justify-content: space-between;
 
 	[role='spinbutton'] {
 		border-radius: 2px;
 		outline: transparent solid 2px;
-
-		${fieldTransition}
 
 		&:focus {
 			outline-color: ${({ theme }) =>
@@ -129,11 +119,10 @@ const StyledRAGroup = styled(RAGroup)`
 	}
 `
 
-const StyledRADateInput = styled(RADateInput)`
-	padding: ${({ theme }) => `${theme.spacings.xs} ${theme.spacings.sm}`};
-`
-
 const StyledRAButton = styled(RAButton)`
+	position: absolute;
+	right: 0;
+	bottom: 0;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -141,14 +130,18 @@ const StyledRAButton = styled(RAButton)`
 	width: 2.25rem;
 	height: 2.25rem;
 	border: none;
-	border-radius: 0 ${({ theme }) => theme.box.borderRadius}
-		${({ theme }) => theme.box.borderRadius} 0;
+	border-radius: 50%;
 	outline: transparent solid 1px;
 
 	background: ${({ theme }) => theme.colors.bases.primary[700]};
 
 	&:focus {
-		${outlineOnFocus}
+		outline-color: ${({ theme }) =>
+			theme.darkMode
+				? theme.colors.bases.primary[100]
+				: theme.colors.bases.primary[700]};
+		outline-offset: ${({ theme }) => theme.spacings.xxs};
+		outline-width: ${({ theme }) => theme.spacings.xxs};
 	}
 `
 
@@ -178,10 +171,8 @@ const StyledRACalendar = styled(RACalendar)`
 		border: none;
 		border-radius: 50%;
 
-		font-size: ${({ theme }) => theme.fontSizes.xl};
+		font-size: 1.25rem;
 		background: transparent;
-
-		${fieldTransition}
 
 		&:hover,
 		&:focus {
@@ -195,8 +186,6 @@ const StyledRACalendar = styled(RACalendar)`
 		border-radius: 50%;
 
 		text-align: center;
-
-		${fieldTransition}
 
 		&:hover,
 		&:focus {

@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configAutoEntrepreneur: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+export const configAutoEntrepreneur: SimulationConfig = {
 	'objectifs exclusifs': [
 		"dirigeant . auto-entrepreneur . chiffre d'affaires",
 		'dirigeant . auto-entrepreneur . revenu net',
@@ -28,7 +27,7 @@ export const configAutoEntrepreneur: PublicodesSimulationConfig = {
 			},
 			{
 				label: 'ACRE',
-				dottedName: 'dirigeant . exonérations . ACRE',
+				dottedName: "dirigeant . auto-entrepreneur . éligible à l'ACRE",
 			},
 		],
 		liste: [
@@ -40,9 +39,9 @@ export const configAutoEntrepreneur: PublicodesSimulationConfig = {
 		],
 		'non prioritaires': ['établissement . commune'],
 		'liste noire': [
-			"dirigeant . auto-entrepreneur . chiffre d'affaires",
+			'entreprise . activités . revenus mixtes',
 			'entreprise . charges',
-			'entreprise . activité . revenus mixtes',
+			"entreprise . chiffre d'affaires",
 		],
 	},
 	'unité par défaut': '€/an',

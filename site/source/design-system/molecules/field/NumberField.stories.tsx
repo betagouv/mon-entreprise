@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 import { NumberField } from './NumberField'
 
 export default {
+	title: 'Design System/Field/NumberField',
 	component: NumberField,
 	decorators: [
 		(Story) => (

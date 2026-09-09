@@ -1,50 +1,35 @@
 import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 
-import SimulationChargéeBanner from '@/components/Simulation/SimulationChargéeBanner'
 import Warning from '@/components/ui/WarningBlock'
-import { Body, Emoji, Strong } from '@/design-system'
-import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
+import { Body, Strong } from '@/design-system'
+import { AbsoluteSitePaths } from '@/sitePaths'
 
 type SimulateurWarningProps = {
-	metadata: MergedSimulatorMetadata
+	simulateur: Exclude<keyof AbsoluteSitePaths['simulateurs'], 'index'>
 	informationsComplémentaires?: ReactNode
 }
 
 export default function SimulateurWarning({
-	metadata,
+	simulateur,
 	informationsComplémentaires,
 }: SimulateurWarningProps) {
 	return (
-		<>
-			<Warning
-				localStorageKey={'app::simulateurs:warning-folded:v1:' + metadata.id}
-			>
-				{metadata.beta && (
-					<Body>
-						<Emoji emoji="🚧" />{' '}
-						<Trans i18nKey="simulateurs.warning.beta">
-							<Strong>Cet outil est en version bêta</Strong>&nbsp;: nous
-							travaillons à valider les informations et les calculs, mais{' '}
-							<Strong>des erreurs peuvent être présentes</Strong>.
-						</Trans>
-					</Body>
-				)}
+		<Warning
+			localStorageKey={'app::simulateurs:warning-folded:v1:' + simulateur}
+		>
+			{informationsComplémentaires && <>{informationsComplémentaires}</>}
 
-				{informationsComplémentaires && <>{informationsComplémentaires}</>}
-
-				<Body>
-					<Trans i18nKey="simulateurs.warning.general">
-						<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à
-						partir des éléments que vous avez saisis et des éléments
-						réglementaires applicables, mais ils ne tiennent pas compte de
-						l'ensemble de votre situation.{' '}
-						<Strong>Ils ne se substituent pas aux décomptes réels</Strong> de
-						l'Urssaf, de l'administration fiscale ou de tout autre organisme.
-					</Trans>
-				</Body>
-			</Warning>
-			<SimulationChargéeBanner />
-		</>
+			<Body>
+				<Trans i18nKey="simulateurs.warning.general">
+					<Strong>Les calculs sont indicatifs.</Strong> Ils sont faits à partir
+					des éléments que vous avez saisis et des éléments réglementaires
+					applicables, mais ils ne tiennent pas compte de l’ensemble de votre
+					situation.{' '}
+					<Strong>Ils ne se substituent pas aux décomptes réels</Strong> de
+					l’Urssaf, de l’administration fiscale ou de tout autre organisme.
+				</Trans>
+			</Body>
+		</Warning>
 	)
 }

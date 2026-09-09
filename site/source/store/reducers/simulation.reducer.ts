@@ -1,11 +1,11 @@
 import * as A from 'effect/Array'
-import * as R from 'effect/Record'
+import { DottedName } from 'modele-social'
 import * as Optics from 'optics-ts'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { updateSituation } from '@/domaine/updateSituation'
+import { updateSituationMulti } from '@/domaine/updateSituationMulti'
 import { updateSituationMultiple } from '@/domaine/updateSituationMultiple'
 import { Action } from '@/store/actions/actions'
 import { omit, reject } from '@/utils'
@@ -16,31 +16,31 @@ export type QuestionRépondue = {
 }
 
 export type Simulation = {
-	key: string
-	config: PublicodesSimulationConfig
+	config: SimulationConfig
 	url: string
 	hiddenNotifications: Array<string>
 	situation: SituationPublicodes
 	targetUnit: string
 	questionsRépondues: Array<QuestionRépondue>
 	questionsSuivantes?: Array<DottedName>
+	currentQuestion?: DottedName | null
 }
 
 export function simulationReducer(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
-	if (action.type === 'CONFIGURE_LA_SIMULATION') {
-		const { config, url, key } = action
+	if (action.type === 'SET_SIMULATION') {
+		const { config, url } = action
 
 		return {
-			key,
 			config,
 			url,
-			hiddenNotifications: config['notifications à ignorer'] || [],
+			hiddenNotifications: [],
 			situation: {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			questionsRépondues: [],
+			currentQuestion: null,
 		}
 	}
 
@@ -55,37 +55,27 @@ export function simulationReducer(
 				hiddenNotifications: [...state.hiddenNotifications, action.id],
 			}
 
-		case 'RÉINITIALISE_LA_SIMULATION':
+		case 'RESET_SIMULATION':
 			return {
 				...state,
-				hiddenNotifications: state.config['notifications à ignorer'] || [],
+				hiddenNotifications: [],
 				situation: {},
 				questionsRépondues: [],
+				currentQuestion: null,
 			}
 
 		case 'AJUSTE_LA_SITUATION': {
 			return {
 				...state,
-				situation: R.reduce(
-					action.amendement,
+				situation: updateSituationMulti(
+					state.config,
 					state.situation,
-					(newSituation, value, dottedName) => {
-						if (value === undefined) {
-							return omit(newSituation, dottedName)
-						}
-
-						return updateSituation(
-							state.config,
-							newSituation,
-							dottedName,
-							value
-						)
-					}
+					action.amendement
 				),
 			}
 		}
 
-		case 'ENREGISTRE_LA_RÉPONSE_À_LA_QUESTION': {
+		case 'ENREGISTRE_LA_RÉPONSE': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.fieldName
 			)
@@ -95,7 +85,7 @@ export function simulationReducer(
 				: [
 						...state.questionsRépondues,
 						{ règle: action.fieldName, applicable: true },
-					]
+				  ]
 
 			return {
 				...state,
@@ -109,7 +99,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'ENREGISTRE_LES_RÉPONSES_À_LA_QUESTION': {
+		case 'ENREGISTRE_LES_RÉPONSES': {
 			const déjàDansLesQuestionsRépondues = state.questionsRépondues.some(
 				(question) => question.règle === action.règle
 			)
@@ -119,12 +109,13 @@ export function simulationReducer(
 				: [
 						...state.questionsRépondues,
 						{ règle: action.règle, applicable: true },
-					]
+				  ]
 
 			return {
 				...state,
 				questionsRépondues: answeredQuestions,
 				situation: updateSituationMultiple(
+					state.config,
 					state.situation,
 					action.règle,
 					action.valeurs
@@ -132,7 +123,7 @@ export function simulationReducer(
 			}
 		}
 
-		case 'SUPPRIME_LA_RÈGLE_DE_LA_SITUATION': {
+		case 'DELETE_FROM_SITUATION': {
 			const newState = {
 				...state,
 				questionsRépondues: reject(
@@ -148,27 +139,128 @@ export function simulationReducer(
 			return newState
 		}
 
-		case 'IGNORE_LA_QUESTION': {
-			const questionsRépondues = [
-				...state.questionsRépondues,
-				{ règle: action.question, applicable: true },
-			]
+		case 'RETOURNE_À_LA_QUESTION_PRÉCÉDENTE': {
+			if (state.questionsRépondues.length === 0) {
+				return state
+			}
 
-			const questionsSuivantes = state.questionsSuivantes?.filter(
-				(question) => question !== action.question
+			const currentIndex = state.currentQuestion
+				? state.questionsRépondues.findIndex(
+						(question) => question.règle === state.currentQuestion
+				  )
+				: -1
+
+			if (currentIndex === -1) {
+				return {
+					...state,
+					currentQuestion: state.questionsRépondues
+						.filter((q) => q.applicable)
+						.at(-1)?.règle,
+				}
+			}
+
+			const destination = state.questionsRépondues.findLastIndex(
+				(q, index) => index < currentIndex && q.applicable
 			)
+
+			if (destination === -1) {
+				return state
+			}
 
 			return {
 				...state,
-				questionsRépondues,
-				questionsSuivantes,
+				currentQuestion: state.questionsRépondues[destination]?.règle,
 			}
 		}
 
-		case 'MET_À_JOUR_LES_QUESTIONS_SUIVANTES': {
+		case 'VA_À_LA_QUESTION_SUIVANTE': {
+			const currentIndex = state.currentQuestion
+				? state.questionsRépondues.findIndex(
+						(question) => question.règle === state.currentQuestion
+				  )
+				: -1
+
+			// La question en cours n'est pas répondue, l’usager veut passer la question
+			if (currentIndex === -1 && state.currentQuestion) {
+				const answeredQuestions = [
+					...state.questionsRépondues,
+					{ règle: state.currentQuestion, applicable: true },
+				]
+
+				const questionsSuivantes = state.questionsSuivantes?.filter(
+					(question) => question !== state.currentQuestion
+				)
+
+				return {
+					...state,
+					questionsRépondues: answeredQuestions,
+					currentQuestion: questionsSuivantes?.[0] || null,
+					questionsSuivantes,
+				}
+			}
+
+			// On était sur la dernière question posée, on en prend une nouvelle
+			if (currentIndex === state.questionsRépondues.length - 1) {
+				return {
+					...state,
+					currentQuestion: state.questionsSuivantes?.length
+						? state.questionsSuivantes[0]
+						: null,
+				}
+			}
+
+			// Sinon, on navigue simplement à la question déjà répondue suivante
+			const destination = state.questionsRépondues.findIndex(
+				(q, index) => index > currentIndex && q.applicable
+			)
+			if (destination > -1) {
+				return {
+					...state,
+					currentQuestion: state.questionsRépondues[destination].règle,
+				}
+			}
+
+			// On est sur la dernière question posée applicable, on en prend une nouvelle
+			return {
+				...state,
+				currentQuestion: state.questionsSuivantes?.length
+					? state.questionsSuivantes[0]
+					: null,
+			}
+		}
+
+		case 'VA_À_LA_QUESTION': {
+			return {
+				...state,
+				currentQuestion: action.question,
+			}
+		}
+
+		case 'QUESTIONS_SUIVANTES': {
+			const currentQuestion = state.currentQuestion
+			const pasDeQuestionEnCours = !currentQuestion
+			const questionEnCoursNEstPasÀRépondre = currentQuestion
+				? !action.questionsSuivantes.includes(currentQuestion)
+				: false
+			const questionEnCoursNEstPasRépondue = currentQuestion
+				? !state.questionsRépondues?.some(
+						(question) => question.règle === currentQuestion
+				  )
+				: false
+			const questionEnCoursPlusNécessaire =
+				questionEnCoursNEstPasÀRépondre && questionEnCoursNEstPasRépondue
+
+			const nouvelleQuestionEnCours =
+				pasDeQuestionEnCours || questionEnCoursPlusNécessaire
+					? action.questionsSuivantes.length
+						? action.questionsSuivantes[0]
+						: null
+					: currentQuestion
+
 			return {
 				...state,
 				questionsSuivantes: action.questionsSuivantes,
+				currentQuestion: nouvelleQuestionEnCours,
 			}
 		}
 

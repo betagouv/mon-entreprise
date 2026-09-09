@@ -8,18 +8,15 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { ErrorIcon } from '@/design-system/icons'
-
 import {
-	errorMessageStyle,
+	errorColorStyle,
 	fieldContainerStyles,
-	fieldDescriptionStyles,
 	fieldInputStyles,
 	fieldLabelStyles,
 	labelAndInputContainerStyles,
 } from '../fieldsStyles'
 
-type TextFieldProps = Pick<RATextFieldProps, 'defaultValue' | 'type'> & {
+type TextFieldProps = RATextFieldProps & {
 	description?: string
 	errorMessage?: string
 	label: string
@@ -30,8 +27,8 @@ export function TextField({
 	defaultValue,
 	description,
 	errorMessage,
-	label,
 	placeholder,
+	label,
 	type = 'text',
 }: TextFieldProps) {
 	return (
@@ -39,18 +36,15 @@ export function TextField({
 			<StyledLabelAndInputContainer $hasError={!!errorMessage}>
 				<StyledRALabel>{label}</StyledRALabel>
 
-				{description && (
-					<StyledDescription slot="description">
-						{description}
-					</StyledDescription>
-				)}
-
 				<StyledRAInput placeholder={placeholder} />
 			</StyledLabelAndInputContainer>
 
+			{description && (
+				<StyledRAText slot="description">{description}</StyledRAText>
+			)}
+
 			{errorMessage ? (
 				<StyledErrorMessage slot="errorMessage">
-					<ErrorIcon />
 					{errorMessage}
 				</StyledErrorMessage>
 			) : (
@@ -62,6 +56,16 @@ export function TextField({
 
 const StyledRATextField = styled(RATextField)`
 	${fieldContainerStyles}
+
+	&[data-invalid] > div {
+		${({ theme }) =>
+			`border-color: ${theme.colors.extended.error[400]};
+
+            label {
+                color: ${theme.colors.extended.error[400]}
+            }
+        `}
+	}
 `
 
 const StyledLabelAndInputContainer = styled.div<{
@@ -71,14 +75,11 @@ const StyledLabelAndInputContainer = styled.div<{
 
 	${({ theme, $hasError }) =>
 		$hasError &&
-		`
+		`border-color: ${theme.colors.extended.error[400]};
+
         label {
             color: ${theme.colors.extended.error[400]}
         }
-
-		input {
-			border-color: ${theme.colors.extended.error[400]};
-		}
         `}
 `
 
@@ -90,16 +91,16 @@ const StyledRAInput = styled(RAInput)`
 	${fieldInputStyles}
 `
 
-const StyledDescription = styled(RAText)`
-	${fieldDescriptionStyles}
+const StyledRAText = styled(RAText)`
+	${fieldLabelStyles}
 `
 
 const StyledErrorMessage = styled(RAText)`
 	${fieldLabelStyles}
-	${errorMessageStyle}
+	${errorColorStyle}
 `
 
 const StyledRAFieldError = styled(RAFieldError)`
 	${fieldLabelStyles}
-	${errorMessageStyle}
+	${errorColorStyle}
 `

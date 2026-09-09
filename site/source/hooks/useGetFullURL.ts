@@ -1,24 +1,19 @@
 import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
-import { useNavigation } from '@/lib/navigation'
-import { AvailableLang, parseLangue } from '@/locales/langue'
-
-const DEVELOPMENT_BASE_PATHS: Record<AvailableLang, string> = {
+const DEVELOPMENT_BASE_PATHS = {
 	fr: '/mon-entreprise',
 	en: '/infrance',
 }
 
 export const useGetFullURL = () => {
 	const { i18n } = useTranslation()
-	const { currentPath } = useNavigation()
+	const { pathname } = useLocation()
 
-	const language = parseLangue(i18n.language)
+	const language = i18n.language as 'fr' | 'en'
 
-	const isViteDevelopment =
-		typeof IS_DEVELOPMENT !== 'undefined' && IS_DEVELOPMENT
-
-	const pathStart = isViteDevelopment ? DEVELOPMENT_BASE_PATHS[language] : ''
+	const pathStart = IS_DEVELOPMENT ? DEVELOPMENT_BASE_PATHS[language] : ''
 
 	// Rustine : permet d'utiliser window en SSR
 	const originRef = useRef('')
@@ -26,7 +21,5 @@ export const useGetFullURL = () => {
 		originRef.current = window?.location?.origin || ''
 	}, [])
 
-	return `${originRef.current}${pathStart}${
-		currentPath !== '/' ? currentPath : ''
-	}`
+	return `${originRef.current}${pathStart}${pathname !== '/' ? pathname : ''}`
 }

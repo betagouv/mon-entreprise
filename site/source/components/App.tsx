@@ -1,14 +1,21 @@
 import { ErrorBoundary } from '@sentry/react'
-import { StrictMode } from 'react'
+import rules from 'modele-social'
+import { StrictMode, useMemo } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import Footer from '@/components/layout/Footer/Footer'
 import Header from '@/components/layout/Header'
+import {
+	engineFactory,
+	EngineProvider,
+	Rules,
+	useEngine,
+	useSetupSafeSituation,
+} from '@/components/utils/EngineContext'
 import { Container } from '@/design-system'
 import { useAxeCoreAnalysis } from '@/hooks/useAxeCoreAnalysis'
-import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import { useSaveAndRestoreScrollPosition } from '@/hooks/useSaveAndRestoreScrollPosition'
 import Landing from '@/pages/_landing/Landing'
@@ -17,8 +24,9 @@ import Accessibilité from '@/pages/Accessibilité'
 import Assistants from '@/pages/assistants/index'
 import Budget from '@/pages/budget/index'
 import IntegrationTest from '@/pages/dev/IntegrationTest'
-import Documentation from '@/pages/documentation/Documentation'
+import Documentation from '@/pages/Documentation'
 import Iframes from '@/pages/iframes'
+import IframeFooter from '@/pages/iframes/IframeFooter'
 import Integration from '@/pages/integration/index'
 import Nouveautés from '@/pages/nouveautés/index'
 import { CatchOffline } from '@/pages/Offline'
@@ -33,23 +41,44 @@ import Redirections from './Redirections'
 
 type RootProps = {
 	basename: ProviderProps['basename']
+	rulesPreTransform?: (rules: Rules) => Rules
 }
 
-export default function Root({ basename }: RootProps) {
+export default function Root({
+	basename,
+	rulesPreTransform = (r) => r,
+}: RootProps) {
+	const engine = useMemo(
+		() => engineFactory(rulesPreTransform(rules)),
+
+		// We need to keep [rules] in the dependency list for hot reload of the rules
+		// in dev mode, even if ESLint think it is unnecessary since `rules` isn't
+		// defined in the component scope.
+		//
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[rules]
+	)
+
 	return (
 		<StrictMode>
-			<Provider basename={basename}>
-				<Redirections>
-					<ErrorBoundary fallback={CatchOffline}>
-						<Router />
-					</ErrorBoundary>
-				</Redirections>
-			</Provider>
+			<EngineProvider value={engine}>
+				<Provider engine={engine} basename={basename}>
+					<Redirections>
+						<ErrorBoundary fallback={CatchOffline}>
+							<Router />
+						</ErrorBoundary>
+					</Redirections>
+				</Provider>
+			</EngineProvider>
 		</StrictMode>
 	)
 }
 
 const Router = () => {
+	const engine = useEngine()
+
+	useSetupSafeSituation(engine)
+
 	return (
 		<Routes>
 			<Route path="/iframes/*" element={<Iframes />} />
@@ -64,21 +93,17 @@ const App = () => {
 	useSaveAndRestoreScrollPosition()
 	usePlausibleTracking()
 
+	const isEmbedded = useIsEmbedded()
 	if (!import.meta.env.PROD && import.meta.env.VITE_AXE_CORE_ENABLED) {
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		useAxeCoreAnalysis()
 	}
-
-	const documentationPathModèleSocial = useDocumentationPath('modele-social')
-	const engineModèleSocial = useEngineFromModèle('modele-social')
-	const documentationPathModèleTI = useDocumentationPath('modele-ti')
-	const engineModèleTI = useEngineFromModèle('modele-ti')
-	const documentationPathModèleAS = useDocumentationPath('modele-as')
-	const engineModèleAS = useEngineFromModèle('modele-as')
+	const documentationPath = useSitePaths().absoluteSitePaths.documentation.index
+	const engine = useEngine()
 
 	return (
-		<StyledLayout>
-			<Header />
+		<StyledLayout $isEmbedded={isEmbedded}>
+			{!isEmbedded && <Header />}
 
 			<main
 				role="main"
@@ -106,32 +131,11 @@ const App = () => {
 							element={<SimulateursEtAssistants />}
 						/>
 						<Route
-							path={relativeSitePaths.documentation.index + '/modele-ti/*'}
-							element={
-								<Documentation
-									documentationPath={documentationPathModèleTI}
-									engine={engineModèleTI}
-									nomModèle="modele-ti"
-								/>
-							}
-						/>
-						<Route
-							path={relativeSitePaths.documentation.index + '/modele-as/*'}
-							element={
-								<Documentation
-									documentationPath={documentationPathModèleAS}
-									engine={engineModèleAS}
-									nomModèle="modele-as"
-								/>
-							}
-						/>
-						<Route
 							path={relativeSitePaths.documentation.index + '/*'}
 							element={
 								<Documentation
-									documentationPath={documentationPathModèleSocial}
-									engine={engineModèleSocial}
-									nomModèle="modele-social"
+									documentationPath={documentationPath}
+									engine={engine}
 								/>
 							}
 						/>
@@ -159,15 +163,21 @@ const App = () => {
 				</Container>
 			</main>
 
-			<Footer />
+			{isEmbedded ? <IframeFooter /> : <Footer />}
 		</StyledLayout>
 	)
 }
 
-const StyledLayout = styled.div`
-	flex-direction: column;
-	display: flex;
-	height: 100%;
+const StyledLayout = styled.div<{
+	$isEmbedded: boolean
+}>`
+	${({ $isEmbedded }) =>
+		!$isEmbedded &&
+		css`
+			flex-direction: column;
+			display: flex;
+			height: 100%;
+		`}
 
 	min-height: 100vh;
 `

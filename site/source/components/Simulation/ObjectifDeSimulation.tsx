@@ -2,25 +2,23 @@ import { Option } from 'effect'
 import React from 'react'
 import { styled } from 'styled-components'
 
-import {
-	Body,
-	Grid,
-	InfoBulle,
-	SmallBody,
-	TitreObjectif,
-} from '@/design-system'
-import { Montant, montantToString } from '@/domaine/Montant'
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { Grid, TitreObjectif, typography } from '@/design-system'
+import { toString as formatMontant, Montant } from '@/domaine/Montant'
 import { useInitialRender } from '@/hooks/useInitialRender'
 
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
+const { Body } = typography
+
 export type ObjectifDeSimulationProps = {
 	id: string
 	titre: React.ReactNode
-	sousTitre?: React.ReactNode
 	description?: React.ReactNode
+	explication?: React.ReactNode
 	valeur: Option.Option<Montant> | string
+	messageComplementaire?: string
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
@@ -30,9 +28,10 @@ export type ObjectifDeSimulationProps = {
 export function ObjectifDeSimulation({
 	id,
 	titre,
-	sousTitre,
 	description,
+	explication,
 	valeur,
+	messageComplementaire,
 	displayedUnit,
 	small = false,
 	appear = true,
@@ -44,33 +43,49 @@ export function ObjectifDeSimulation({
 			? valeur
 			: Option.match(valeur, {
 					onNone: () => '—',
-					onSome: (montant) => montantToString(montant, displayedUnit),
-				})
+					onSome: (montant) => formatMontant(montant, displayedUnit),
+			  })
 
 	return (
 		<Appear unless={!appear || initialRender}>
 			<StyledGoal $small={small}>
-				<GridCentered container spacing={2}>
+				<GridCentered
+					container
+					style={{
+						alignItems: 'baseline',
+						justifyContent: 'space-between',
+					}}
+					spacing={2}
+				>
 					<Grid item md="auto" sm={small ? 9 : 8} xs={8}>
-						<TitreObjectif id={`${id}-label`}>{titre}</TitreObjectif>
+						<TitreObjectif id={`${id}-label`} noWrap={true}>
+							{titre}
+						</TitreObjectif>
 
-						{sousTitre && (
-							<SousTitre id={`${id}-description`}>{sousTitre}</SousTitre>
+						{explication && (
+							<ForceThemeProvider forceTheme="default">
+								{explication}
+							</ForceThemeProvider>
 						)}
 
-						{description && <InfoBulle description={description} />}
+						{description && (
+							<StyledBody
+								className={small ? 'sr-only' : ''}
+								id={`${id}-description`}
+							>
+								{description}
+							</StyledBody>
+						)}
+
+						{messageComplementaire && (
+							<StyledBody>{messageComplementaire}</StyledBody>
+						)}
 					</Grid>
 					<Grid item>
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
-						<StyledValue
-							id={`${id}-value`}
-							aria-labelledby={`${id}-label`}
-							aria-describedby={sousTitre ? `${id}-description` : undefined}
-						>
-							{valeurAffichee}
-						</StyledValue>
+						<StyledValue id={`${id}-value`}>{valeurAffichee}</StyledValue>
 					</Grid>
 				</GridCentered>
 			</StyledGoal>
@@ -80,24 +95,12 @@ export function ObjectifDeSimulation({
 
 const GridCentered = styled(Grid)`
 	display: grid;
-	grid-template-columns: 1.15fr 1fr;
+	grid-template-columns: 1.25fr 1fr;
 	gap: ${({ theme }) => theme.spacings.md};
-	align-items: baseline;
-	justify-content: space-between;
 
-	& > div {
-		padding: 0;
+	& > div:first-of-type {
 		max-width: 100%;
 		text-align: right;
-	}
-
-	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		grid-template-columns: 1fr;
-		gap: ${({ theme }) => theme.spacings.xs};
-
-		& > div {
-			text-align: left;
-		}
 	}
 `
 
@@ -111,14 +114,10 @@ const StyledGoal = styled.div<{ $small: boolean }>`
 	}
 `
 
-const SousTitre = styled(SmallBody)`
-	margin: 0;
-	white-space: pre-line;
+const StyledBody = styled(Body)`
+	margin-bottom: 0;
 `
 
 const StyledValue = styled(Body)`
 	margin: 1.2rem 0;
-	font-size: ${({ theme }) => theme.fontSizes.lg};
-	text-align: right;
-	padding-right: ${({ theme }) => theme.spacings.sm};
 `

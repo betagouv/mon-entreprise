@@ -1,3 +1,2 @@
-export { Button } from './Button'
-export { CloseButton } from './CloseButton'
-export { ReturnButton } from './ReturnButton'
+export * from './Button'
+export { default as CloseButton } from './CloseButton'

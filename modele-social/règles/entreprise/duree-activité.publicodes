@@ -12,8 +12,8 @@ entreprise . date de création:
     approximation.
   suggestions:
     Début d’année: période . début d'année
-    Début 2025: 01/01/2025
-    Il y a plus de 10 ans: 01/01/2016
+    Début 2024: 01/01/2024
+    Il y a plus de 10 ans: 01/01/2015
   type: date
 
 entreprise . date de création . contrôle date future:
@@ -79,13 +79,14 @@ entreprise . durée d'activité . en fin d'année:
     - durée:
         depuis: date de création
         jusqu'à: période . fin d'année
-    - applicable si: date de création <= période . fin d'année
-      valeur: 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
-  durée:
-    depuis: date de création
-    jusqu'à: période . début d'année
+  somme:
+    - durée:
+        depuis: date de création
+        jusqu'à: période . début d'année
+    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
 
 entreprise . durée d'activité . trimestres civils:
   titre: Nombre de trimestres civils couverts

@@ -1,88 +1,102 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configIndépendant: PublicodesSimulationConfig = {
-	nomModèle: 'modele-ti',
+export const configIndépendant: SimulationConfig = {
 	'objectifs exclusifs': [
 		"entreprise . chiffre d'affaires",
-		'indépendant . rémunération . brute',
-		'indépendant . rémunération . nette',
-		'indépendant . rémunération . nette . avec dividendes',
-		'indépendant . rémunération . nette . après impôt',
+		'dirigeant . rémunération . totale',
+		'dirigeant . rémunération . net',
+		'dirigeant . rémunération . net . après impôt',
 	],
 	objectifs: [
-		'indépendant . cotisations et contributions',
-		'indépendant . cotisations et contributions . avec dividendes',
-		'indépendant . cotisations et contributions . début activité',
-		'indépendant . rémunération . impôt',
-		'indépendant . rémunération . impôt . avec dividendes',
-		'protection sociale . retraite . base . trimestres',
-		'protection sociale . retraite . base . revenu cotisé',
-		'protection sociale . retraite . complémentaire . points acquis',
+		'dirigeant . indépendant . cotisations et contributions . début activité',
 	],
 	questions: {
 		raccourcis: [
 			{
 				label: "Type d'activité",
-				dottedName: 'entreprise . activité',
+				dottedName: 'entreprise . activité . nature',
 			},
 			{
 				label: 'Micro-fiscal',
-				dottedName: 'entreprise . imposition . IR . régime micro-fiscal',
+				dottedName: 'entreprise . imposition . régime . micro-entreprise',
 			},
 			{
 				label: 'Date de création',
 				dottedName: 'entreprise . date de création',
 			},
 			{
-				label: 'Acre',
-				dottedName:
-					'indépendant . cotisations et contributions . cotisations . exonérations . Acre',
+				label: 'ACRE',
+				dottedName: 'dirigeant . exonérations . ACRE',
 			},
 			{
 				label: 'Contrats Madelins',
-				dottedName:
-					'indépendant . cotisations et contributions . cotisations facultatives',
+				dottedName: 'dirigeant . indépendant . cotisations facultatives',
 			},
 			{
 				label: 'Conjoint collaborateur',
-				dottedName: 'indépendant . conjoint collaborateur',
+				dottedName: 'dirigeant . indépendant . conjoint collaborateur',
 			},
 			{
 				label: 'Impôt sur le revenu',
 				dottedName: 'impôt . méthode de calcul',
 			},
-			{
-				label: 'Imposition des dividendes',
-				dottedName: 'indépendant . dividendes . imposition',
-			},
 		],
 		'liste noire': [
-			'entreprise . imposition',
-			"entreprise . chiffre d'affaires",
 			'entreprise . charges',
-			'indépendant . rémunération . brute',
-			'indépendant . rémunération . nette',
-			'indépendant . rémunération . nette . avec dividendes',
-			'indépendant . rémunération . nette . après impôt',
-			'indépendant . dividendes',
+			"entreprise . chiffre d'affaires",
+			'entreprise . exercice . début',
+			'entreprise . exercice . fin',
+			'entreprise . imposition . régime',
+			'entreprise . imposition',
+			'entreprise . activités',
+			'entreprise . activités . revenus mixtes',
 		],
 		'non prioritaires': [
-			'entreprise . activité . commerciale . débit de tabac',
-			'indépendant . profession libérale . CNAVPL . exonération incapacité',
-			'indépendant . cotisations et contributions . cotisations . exonérations . invalidité',
-			'indépendant . cotisations et contributions . cotisations . exonérations . âge',
-			'indépendant . cotisations et contributions . cotisations facultatives',
-			'indépendant . revenus de remplacement',
-			'indépendant . revenus étrangers',
-			"situation personnelle . domiciliation fiscale à l'étranger",
-			'entreprise . salariés . effectif',
+			'dirigeant . indépendant . cotisations facultatives',
+			'entreprise . activités . saisonnière',
 			'situation personnelle . RSA',
-			'entreprise . activité . saisonnière',
+			'dirigeant . indépendant . PL . CNAVPL . exonération incapacité',
+			'dirigeant . indépendant . cotisations et contributions . exonérations . pension invalidité',
+			'dirigeant . indépendant . cotisations et contributions . exonérations . âge',
+			"situation personnelle . domiciliation fiscale à l'étranger",
+			'dirigeant . indépendant . revenus étrangers',
+			'dirigeant . indépendant . IJSS',
+			'entreprise . activités . commerciale . débit de tabac',
+			'dirigeant . indépendant . PL . PAMC . IJSS',
+			'entreprise . salariés . effectif',
 		],
 	},
 	'unité par défaut': '€/an',
 	situation: {
+		'dirigeant . régime social': "'indépendant'",
 		'entreprise . imposition': "'IR'",
+		'entreprise . catégorie juridique': "''",
+		salarié: 'non',
 	},
 	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
+}
+
+export const configEntrepriseIndividuelle: SimulationConfig = {
+	...configIndépendant,
+	situation: {
+		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+	},
+}
+
+export const configEirl: SimulationConfig = {
+	...configIndépendant,
+	situation: {
+		'entreprise . catégorie juridique': "'EI'",
+		'entreprise . catégorie juridique . EI . auto-entrepreneur': 'non',
+	},
+}
+
+export const configEurl: SimulationConfig = {
+	...configIndépendant,
+	situation: {
+		'entreprise . catégorie juridique': "'SARL'",
+		'entreprise . associés': "'unique'",
+		'entreprise . imposition': "'IS'",
+	},
 }
