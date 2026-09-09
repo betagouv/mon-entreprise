@@ -1,37 +1,33 @@
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 
+import { useEngine } from '@/components/utils/EngineContext'
 import { Article } from '@/design-system'
-import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 export function AnnuaireEntreprises() {
 	const { t } = useTranslation()
+	const engine = useEngine()
 
-	const siren = useSelector(companySirenSelector)
-
-	if (!siren) {
-		return null
-	}
+	const siren = engine.evaluate('entreprise . SIREN').nodeValue as string
 
 	return (
 		<>
 			<Article
 				title={t(
-					'pages.assistants.pour-mon-entreprise.annuaire-entreprises.title',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.title',
 					'Voir vos données publiques'
 				)}
 				href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siren}?mtm_campaign=mon-entreprise`}
 				ctaLabel={t(
-					'pages.assistants.pour-mon-entreprise.annuaire-entreprises.cta',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.cta',
 					'Visiter le site'
 				)}
 				aria-label={t(
-					'pages.assistants.pour-mon-entreprise.annuaire-entreprises.aria-label',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.aria-label',
 					'Annuaire-entreprise, Visiter le site'
 				)}
 			>
 				{t(
-					'pages.assistants.pour-mon-entreprise.annuaire-entreprises.body',
+					'assistants.pour-mon-entreprise.annuaire-entreprises.body',
 					'Retrouvez toutes les informations publiques concernant votre entreprise sur'
 				)}{' '}
 				Annuaire des Entreprises.

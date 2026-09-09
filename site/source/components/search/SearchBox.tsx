@@ -24,12 +24,13 @@ export const SearchBox = connectSearchBox<Props>(
 						refine('')
 					}}
 					placeholder={t(
-						'components.recherche.input.placeholder',
+						'recherche-globale.placeholder',
 						'Mot-clé ou acronyme (exemple : CSG)'
 					)}
 					id="input-recherche-globale"
 					isSearchStalled={isSearchStalled}
 					label={props.label}
+					aria-label={props['aria-label']}
 				/>
 			</form>
 		)

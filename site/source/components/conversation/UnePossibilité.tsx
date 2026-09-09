@@ -1,3 +1,5 @@
+import { DottedName } from 'modele-social'
+
 import { Choice, isChoice } from '@/components/conversation/Choice'
 import {
 	ChoiceDisplayType,
@@ -7,7 +9,6 @@ import {
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant, montantToString } from '@/domaine/Montant'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
@@ -17,16 +18,19 @@ export type { ChoiceDisplayType } from '@/design-system'
 interface UnePossibilitéProps {
 	dottedName: DottedName
 	value: ValeurPublicodes | undefined
+	defaultValue: ValeurPublicodes | undefined
 	choices: Choice
 	onChange?: (value: ValeurPublicodes | undefined) => void
+	missing?: boolean
 	onSubmit?: (source?: string) => void
 	id?: string
 	title?: string
 	description?: string
+	autoFocus?: boolean
 	variant?: ChoiceDisplayType
 	aria?: {
+		label?: string
 		labelledby?: string
-		describedby?: string
 	}
 }
 
@@ -37,11 +41,13 @@ interface UnePossibilitéProps {
 export const UnePossibilité = ({
 	dottedName,
 	value,
+	defaultValue,
 	choices,
 	onChange = NoOp,
 	id,
 	title,
 	description,
+	autoFocus,
 	variant = 'radio',
 	aria,
 }: UnePossibilitéProps) => {
@@ -65,6 +71,7 @@ export const UnePossibilité = ({
 			label: node.title,
 			description: node.rawNode.description,
 			emoji: node.rawNode.icônes,
+			isDefaultSelected: defaultValue === value,
 		}
 	}
 
@@ -86,6 +93,7 @@ export const UnePossibilité = ({
 			label: node.title,
 			description: node.rawNode.description,
 			emoji: node.rawNode.icônes,
+			isDefaultSelected: defaultValue === value,
 		}
 	})
 
@@ -93,14 +101,21 @@ export const UnePossibilité = ({
 		? montantToString(currentSelection)
 		: currentSelection?.toString()
 
+	const defaultValueAsString = isMontant(defaultValue)
+		? montantToString(defaultValue)
+		: defaultValue?.toString()
+
 	return (
 		<ChoixUnique
 			value={valueAsString}
+			defaultValue={defaultValueAsString}
 			options={options}
 			onChange={handleChange}
 			id={id}
 			title={title}
 			description={description}
+			/* eslint-disable-next-line jsx-a11y/no-autofocus */
+			autoFocus={autoFocus}
 			variant={variant}
 			aria={aria}
 		/>

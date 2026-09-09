@@ -1,8 +1,7 @@
-import React, { ComponentPropsWithRef, JSX, useRef } from 'react'
-import { AriaButtonProps } from 'react-aria'
+import { AriaButtonProps } from '@react-types/button'
+import React, { ComponentPropsWithRef, ReactHTML, useRef } from 'react'
+import { Link as BaseLink } from 'react-router-dom'
 import { css, IStyledComponent, styled } from 'styled-components'
-
-import { Link as BaseLink } from '@/lib/navigation'
 
 import { StyledButton } from '../buttons/Button'
 import { H3, H4, HeadingUnderline } from '../typography/heading'
@@ -28,7 +27,7 @@ export type GenericCardProps = {
 } & GenericButtonOrLinkProps
 
 type CardProps = GenericCardProps & {
-	bodyAs?: keyof JSX.IntrinsicElements | IStyledComponent<'web'>
+	bodyAs?: keyof ReactHTML | IStyledComponent<'web'>
 	children: React.ReactNode
 	className?: string
 	compact?: boolean
@@ -100,10 +99,7 @@ export function Card(props: CardProps) {
 Default header to "as". Otherwise, use the same header level as provided
 while keeping the same consistent style
 */
-export function getTitleProps(
-	children: React.ReactNode,
-	as: keyof JSX.IntrinsicElements
-) {
+export function getTitleProps(children: React.ReactNode, as: keyof ReactHTML) {
 	if (
 		children &&
 		typeof children === 'object' &&
@@ -111,9 +107,8 @@ export function getTitleProps(
 		typeof children.type === 'string' &&
 		/^h[\d]$/.exec(children.type)
 	) {
-		as = children.type as keyof JSX.IntrinsicElements
-		children =
-			(children.props as { children?: React.ReactNode }).children ?? null
+		as = children.type as keyof ReactHTML
+		children = children.props.children ?? null
 	}
 
 	return { as, children }
@@ -192,10 +187,10 @@ export const CardContainer = styled.div.withConfig({
 		compact
 			? css`
 					${spacings.sm} ${spacings.md}
-				`
+			  `
 			: css`
 					${spacings.md} ${spacings.lg}
-				`};
+			  `};
 	transition:
 		box-shadow 0.15s,
 		background-color 0.15s;

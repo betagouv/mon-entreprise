@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 
+import { toAtString } from '@/components/ATInternetTracking'
 import PrivacyPolicy from '@/components/layout/Footer/PrivacyPolicy'
-import { toAtString } from '@/components/PianoAnalytics'
 import { FromTop } from '@/components/ui/animate'
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { Emoji, Grid, Spacing, Switch, typography } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useNavigation } from '@/lib/navigation'
-import { SimulatorMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 import PagesChart from '@/pages/statistiques/_components/PagesCharts'
 
 import { MainIndicators } from './_components/LastMonthIndicators'
@@ -168,7 +168,7 @@ export default function StatPage({ stats }: StatsDetailProps) {
 	)
 }
 
-export function getFilter(s: SimulatorMetadata): Filter | '' {
+export function getFilter(s: SimulatorDataValues): Filter | '' {
 	if ('iframePath' in s && s.iframePath === 'pamc') {
 		return 'PAM'
 	}
@@ -180,7 +180,7 @@ export function getFilter(s: SimulatorMetadata): Filter | '' {
 		| { chapter2?: PageChapter2; chapter3?: string }
 
 	const filter =
-		typeof tracking === 'string' ? { chapter2: tracking } : (tracking ?? '')
+		typeof tracking === 'string' ? { chapter2: tracking } : tracking ?? ''
 	if (!filter.chapter2) {
 		return ''
 	}
@@ -194,17 +194,17 @@ export function getFilter(s: SimulatorMetadata): Filter | '' {
 }
 
 function useStatState() {
-	const { searchParams, setSearchParams } = useNavigation()
+	const [searchParams, setSearchParams] = useSearchParams()
 
-	const simulators = useSimulatorsMetadata()
+	const simulators = useSimulatorsData()
 	const URLFilter: string = searchParams.get('module') ?? ''
 
 	const [filter, setFilter] = useState<Filter | ''>(
 		URLFilter in simulators
 			? getFilter(simulators[URLFilter as keyof typeof simulators])
 			: ['PAMC', 'api-rest'].includes(URLFilter)
-				? (URLFilter as Filter)
-				: ''
+			? (URLFilter as Filter)
+			: ''
 	)
 
 	useEffect(() => {
@@ -213,20 +213,11 @@ function useStatState() {
 				(s) =>
 					!!filter && JSON.stringify(getFilter(s)) === JSON.stringify(filter)
 			)?.id ?? filter
+		const paramsEntries = [['module', module]].filter(
+			([, val]) => val !== ''
+		) as [string, string][]
 
-		setSearchParams(
-			(prev) => {
-				const newParams = new URLSearchParams(prev)
-				if (module) {
-					newParams.set('module', module as string)
-				} else {
-					newParams.delete('module')
-				}
-
-				return newParams
-			},
-			{ replace: true }
-		)
+		setSearchParams(paramsEntries, { replace: true })
 	}, [filter, simulators, setSearchParams])
 
 	return [filter, setFilter] as const

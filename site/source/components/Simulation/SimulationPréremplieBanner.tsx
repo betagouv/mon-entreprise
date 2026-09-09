@@ -5,10 +5,12 @@ import { styled } from 'styled-components'
 
 import SimulationBanner from '@/components/Simulation/Banner'
 import { Link, PopoverWithTrigger } from '@/design-system'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import {
+	companySituationSelector,
+	situationSelector,
+} from '@/store/selectors/simulationSelectors'
 
-import { AnswersList } from '../conversation/AnswersList'
+import AnswerList from '../conversation/AnswerList'
 import WrongSimulateurWarning from '../WrongSimulateurWarning'
 
 export default function SimulationPréremplieBanner() {
@@ -45,7 +47,7 @@ export default function SimulationPréremplieBanner() {
 					</Link>
 				)}
 			>
-				{(close) => <AnswersList onClose={close} />}
+				{(close) => <AnswerList onClose={close} />}
 			</PopoverWithTrigger>
 			<WrongSimulateurWarningContainer>
 				<WrongSimulateurWarning />

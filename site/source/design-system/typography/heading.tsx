@@ -1,7 +1,7 @@
 import { css, styled } from 'styled-components'
 
 export const baseHeading = css`
-	font-family: ${({ theme }) => theme.fonts.heading};
+	font-family: 'Montserrat', sans-serif;
 	font-weight: 700;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
 	color: ${({ theme }) =>
@@ -21,74 +21,59 @@ export const HeadingUnderline = css`
 	}
 `
 
-export const H1Style = css`
+export const H1 = styled.h1<{ noUnderline?: boolean }>`
 	${baseHeading}
-	${HeadingUnderline}
-	font-size: ${({ theme }) => theme.fontSizes.xxxl};
+	font-size: 2rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxxl} 0 ${theme.spacings.xl}
 	`};
 	line-height: 2.375rem;
+	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 
 	@media print {
 		margin: ${({ theme }) => theme.spacings.xl} 0;
 	}
 `
-export const H1 = styled.h1`
-	${H1Style}
-`
 
-export const H2Style = css`
+export const H2 = styled.h2<{ noUnderline?: boolean }>`
 	${baseHeading}
-	${HeadingUnderline}
 	font-size: 1.625rem;
-	line-height: ${({ theme }) => theme.lineHeights.lg};
+	line-height: 2rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.xxl} 0 ${theme.spacings.lg}
 	`};
+	${({ noUnderline }) => (!noUnderline ? HeadingUnderline : '')}
 
 	@media print {
 		margin: ${({ theme }) => theme.spacings.xl} 0;
 	}
 `
-export const H2 = styled.h2`
-	${H2Style}
-`
 
-export const H3Style = css`
+export const H3 = styled.h3`
 	${baseHeading}
 	margin: ${({ theme }) => css`
 		${theme.spacings.xl} 0 ${theme.spacings.md}
 	`};
-	font-size: ${({ theme }) => theme.fontSizes.xl};
-	line-height: ${({ theme }) => theme.lineHeights.lg};
-`
-export const H3 = styled.h3`
-	${H3Style}
+	font-size: 1.25rem;
+	line-height: 1.75rem;
 `
 
-export const H4Style = css`
+export const H4 = styled.h4`
 	${baseHeading}
 	margin: ${({ theme }) => css`
 		${theme.spacings.lg} 0 ${theme.spacings.sm}
 	`};
-	font-size: ${({ theme }) => theme.fontSizes.lg};
-	line-height: ${({ theme }) => theme.lineHeights.base};
-`
-export const H4 = styled.h4`
-	${H4Style}
+	font-size: 1.125rem;
+	line-height: 1.5rem;
 `
 
-export const H5Style = css`
+export const H5 = styled.h5`
 	${baseHeading}
-	font-size: ${({ theme }) => theme.fontSizes.base};
+	font-size: 1rem;
 	margin: ${({ theme }) => css`
 		${theme.spacings.md} 0 ${theme.spacings.xs}
 	`};
-	line-height: ${({ theme }) => theme.lineHeights.base};
-`
-export const H5 = styled.h5`
-	${H5Style}
+	line-height: 1.5rem;
 `
 
 export const H6 = styled.h6`
@@ -96,8 +81,8 @@ export const H6 = styled.h6`
 	margin: ${({ theme }) => css`
 		${theme.spacings.sm} 0 ${theme.spacings.xxs}
 	`};
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 `
 
 export const fromLevel = (level: number) => {

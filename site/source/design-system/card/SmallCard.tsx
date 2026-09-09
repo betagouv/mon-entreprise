@@ -1,8 +1,7 @@
+import { useButton } from '@react-aria/button'
 import React, { useRef } from 'react'
-import { AriaButtonOptions, useButton } from 'react-aria'
+import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
-
-import { Link } from '@/lib/navigation'
 
 import { H6 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
@@ -19,12 +18,7 @@ export function SmallCard({
 		'href' in ariaButtonProps ? 'a' : 'to' in ariaButtonProps ? Link : 'div'
 
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
-	const { buttonProps } = useButton(
-		{ elementType, ...ariaButtonProps } as AriaButtonOptions<
-			typeof elementType
-		>,
-		ref
-	)
+	const { buttonProps } = useButton({ elementType, ...ariaButtonProps }, ref)
 	const titleProps = getTitleProps(title, 'h4')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 

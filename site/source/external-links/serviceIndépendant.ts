@@ -2,7 +2,12 @@ import { URSSAF } from '@/utils/logos'
 
 // TODO: gérer les traductions
 export const serviceIndépendant = {
-	associatedRule: 'entreprise . activité . libérale . réglementée = non',
+	associatedRule: {
+		'toutes ces conditions': [
+			'dirigeant . indépendant',
+			'entreprise . activité . nature . libérale . réglementée = non',
+		],
+	},
 	url: 'https://www.urssaf.fr/accueil/services/services-independants/service-acplnr.html',
 	title:
 		'Le service Artisan, Commerçant et Profession libérale non réglementée',

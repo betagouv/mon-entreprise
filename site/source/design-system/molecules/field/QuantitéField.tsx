@@ -1,7 +1,7 @@
 import { styled } from 'styled-components'
 
-import { quantité, Quantité } from '@/domaine/Quantite'
-import { UnitéQuantité } from '@/domaine/Unites'
+import { quantité, Quantité } from '@/domaine/Quantité'
+import { UnitéQuantité } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
@@ -21,7 +21,7 @@ interface QuantitéFieldProps<U extends UnitéQuantité> {
 	label?: React.ReactNode
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 }
 
@@ -76,15 +76,15 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			? {
 					style: 'percent',
 					maximumFractionDigits: 2,
-				}
+			  }
 			: nbDécimalesMax !== undefined
-				? {
-						style: 'decimal',
-						maximumFractionDigits: nbDécimalesMax,
-					}
-				: {
-						style: 'decimal',
-					}
+			? {
+					style: 'decimal',
+					maximumFractionDigits: nbDécimalesMax,
+			  }
+			: {
+					style: 'decimal',
+			  }
 	) satisfies Intl.NumberFormatOptions
 
 	// Pour les pourcentages, le format 'percent' multiplie par 100,
@@ -100,7 +100,7 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			: placeholder?.valeur
 
 	const displayedUnit = !isPercentage
-		? (unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité)
+		? unitéToDisplayedUnit[unité as UnitéQuantité] ?? unité
 		: undefined
 
 	return (
@@ -108,8 +108,8 @@ export const QuantitéField = <U extends UnitéQuantité>({
 			<NumericInput
 				id={id}
 				label={label}
+				aria-label={label ? '' : aria?.label}
 				aria-labelledby={label ? '' : aria?.labelledby}
-				aria-describedby={aria?.describedby}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
 				formatOptions={formatOptions}
@@ -124,7 +124,7 @@ export const QuantitéField = <U extends UnitéQuantité>({
 									key,
 									isPercentage ? quantité.valeur / 100 : quantité.valeur,
 								])
-							)
+						  )
 						: undefined
 				}
 			/>

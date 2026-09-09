@@ -9,7 +9,7 @@ import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, splitVendorChunkPlugin } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
 
 import { multipleSPA } from './build/multiple-SPA'
@@ -22,7 +22,7 @@ const branch = (mode: string) => getBranch(mode)
 const sentryReleaseName = (mode: string) =>
 	env(mode).VITE_GITHUB_SHA
 		? `${branch(mode).split('/').at(-1)}-` +
-			env(mode).VITE_GITHUB_SHA?.substring(0, 7)
+		  env(mode).VITE_GITHUB_SHA?.substring(0, 7)
 		: undefined
 
 export default defineConfig(({ command, mode }) => ({
@@ -41,15 +41,6 @@ export default defineConfig(({ command, mode }) => ({
 					if (id.includes('modele-social')) {
 						return 'modele-social'
 					}
-					if (id.includes('modele-as')) {
-						return 'modele-as'
-					}
-					if (id.includes('modele-ti')) {
-						return 'modele-ti'
-					}
-					if (id.includes('node_modules')) {
-						return 'vendor'
-					}
 				},
 				chunkFileNames: (chunkInfo) => {
 					if (chunkInfo.isDynamicEntry) {
@@ -64,12 +55,9 @@ export default defineConfig(({ command, mode }) => ({
 	define: {
 		BRANCH_NAME: JSON.stringify(branch(mode)),
 		IS_DEVELOPMENT: mode === 'development',
-		IS_STAGING: environnementDéployé(mode) === 'staging',
-		IS_PRODUCTION: environnementDéployé(mode) === 'production',
-		ENVIRONNEMENT: JSON.stringify(environnementDéployé(mode)),
-		...(sentryReleaseName(mode) !== undefined
-			? { SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)) }
-			: {}),
+		IS_STAGING: mode === 'production' && !isProductionBranch(mode),
+		IS_PRODUCTION: mode === 'production' && isProductionBranch(mode),
+		SENTRY_RELEASE_NAME: JSON.stringify(sentryReleaseName(mode)),
 	},
 	plugins: [
 		command === 'build' &&
@@ -83,7 +71,7 @@ export default defineConfig(({ command, mode }) => ({
 
 		yaml({
 			transform(data, filePath) {
-				return /\/rules(?:-(?:\S){2})?-en.yaml$/.test(filePath)
+				return filePath.endsWith('/rules-en.yaml')
 					? cleanAutomaticTag(data)
 					: data
 			},
@@ -110,43 +98,31 @@ export default defineConfig(({ command, mode }) => ({
 
 		VitePWA(pwaOptions),
 
-		// Skip le plugin legacy en mode Storybook : outil dev sur navigateurs
-		// modernes, et le plugin force build.target = chrome64/firefox67/...
-		// incompatible avec les literals BigInt de Storybook 8 lui-même.
-		...(process.env.STORYBOOK === 'true'
-			? []
-			: [
-					legacy({
-						targets: ['defaults', 'not IE 11'],
-					}),
-				]),
+		legacy({
+			targets: ['defaults', 'not IE 11'],
+		}),
 
-		...(command === 'build' && mode !== 'test'
-			? [
-					sentryVitePlugin({
-						org: 'betagouv',
-						project: 'mon-entreprise',
-						url: 'https://sentry.incubateur.net/',
-						authToken: process.env.SENTRY_AUTH_TOKEN,
-						telemetry: false,
-						errorHandler: (err) => {
-							console.warn(
-								'[sentry] Upload failed (non-blocking):',
-								err.message
-							)
-						},
-						release: {
-							// Use same release name as the one used in the app.
-							name: sentryReleaseName(mode),
-							inject: false, // Avoid adding imports with a hash in chunks, as this causes long term caching issues.
-							uploadLegacySourcemaps: {
-								paths: ['./dist'],
-								ignore: ['./node_modules'],
-							},
-						},
-					}),
-				]
-			: []),
+		splitVendorChunkPlugin(),
+
+		sentryVitePlugin({
+			org: 'betagouv',
+			project: 'mon-entreprise',
+			url: 'https://sentry.incubateur.net/',
+			authToken: process.env.SENTRY_AUTH_TOKEN,
+			telemetry: false,
+			errorHandler: (err) => {
+				console.warn('[sentry] Upload failed (non-blocking):', err.message)
+			},
+			release: {
+				// Use same release name as the one used in the app.
+				name: sentryReleaseName(mode),
+				inject: false, // Avoid adding imports with a hash in chunks, as this causes long term caching issues.
+				uploadLegacySourcemaps: {
+					paths: ['./dist'],
+					ignore: ['./node_modules'],
+				},
+			},
+		}),
 	],
 
 	server: {
@@ -179,8 +155,8 @@ export default defineConfig(({ command, mode }) => ({
 
 	optimizeDeps: {
 		entries: ['./source/entries/entry-fr.tsx', './source/entries/entry-en.tsx'],
-		include: ['@publicodes/react-ui > react/jsx-runtime'],
-		exclude: ['@publicodes/react-ui', 'publicodes'],
+		include: ['@publicodes\\/react-ui > react/jsx-runtime'],
+		exclude: ['@publicodes\\/react-ui', 'publicodes'],
 	},
 
 	ssr: {
@@ -191,24 +167,11 @@ export default defineConfig(({ command, mode }) => ({
 		noExternal: [/tslib/],
 	},
 	test: {
-		setupFiles: ['./vitest-setup.ts'],
-		projects: [
-			{
-				extends: true,
-				test: {
-					name: 'composants',
-					include: ['source/**/*.test.tsx'],
-					environment: 'happy-dom',
-				},
-			},
-			{
-				extends: true,
-				test: {
-					name: 'unitaires',
-					include: ['{source,test}/**/*.{test,spec}.{ts,js}'],
-				},
-			},
+		environmentMatchGlobs: [
+			// all tests in source with tsx will run in happy-dom (component tests)
+			['source/**/*.test.tsx', 'happy-dom'],
 		],
+		setupFiles: ['./vitest-setup.ts'],
 	},
 }))
 
@@ -221,7 +184,7 @@ export default defineConfig(({ command, mode }) => ({
  * or hide some features.
  */
 const isProductionBranch = (mode: string) => {
-	return ['master', 'main'].includes(getBranch(mode))
+	return ['master', 'next'].includes(getBranch(mode))
 }
 
 const getBranch = (mode: string) => {
@@ -234,12 +197,6 @@ const getBranch = (mode: string) => {
 	}
 
 	return branch ?? ''
-}
-
-const environnementDéployé = (mode: string) => {
-	if (mode !== 'production') return 'développement'
-
-	return isProductionBranch(mode) ? 'production' : 'staging'
 }
 
 const cleanAutomaticTag = (data: ValidYamlType): ValidYamlType => {

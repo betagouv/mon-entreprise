@@ -1,47 +1,31 @@
 import { RuleLink as EngineRuleLink } from '@publicodes/react-ui'
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
-import { ReactNode } from 'react'
-import { useSelector } from 'react-redux'
+import React, { ReactNode } from 'react'
 
 import { Link } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
-import { nomModèleSelector } from '@/store/selectors/simulation/config/nomModèle.selector'
-import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
+import { useSitePaths } from '@/sitePaths'
 
-type Props = {
-	documentationPath?: string
-	dottedName: DottedName
-	engine?: Engine<DottedName>
-	'aria-label'?: string
-	id?: string
-	children?: ReactNode
-}
+import { useEngine } from './utils/EngineContext'
 
 // TODO : quicklink -> en cas de variations ou de somme avec un seul élément actif, faire un lien vers cet élément
-export default function RuleLink({
-	dottedName,
-	children,
-	documentationPath,
-	engine,
-	'aria-label': ariaLabel,
-	id,
-}: Props) {
-	const nomModèle = useSelector(nomModèleSelector)
+export default function RuleLink(
+	props: {
+		dottedName: DottedName
+		displayIcon?: boolean
+		children?: React.ReactNode
+		documentationPath?: string
+		linkComponent?: ReactNode
+		engine?: Engine<DottedName>
+	} & Omit<React.ComponentProps<typeof Link>, 'to' | 'children'>
+) {
+	const { absoluteSitePaths } = useSitePaths()
+	const defaultEngine = useEngine()
 
-	const documentationIndex = useDocumentationPath(nomModèle)
-	const defaultEngine = useOptionalEngine()
-
-	const engineUsed = engine ?? defaultEngine
-
-	if (!engineUsed) {
-		throw new Error(
-			'RuleLink doit être utilisé avec un engine ou dans un EngineProvider'
-		)
-	}
+	const engineUsed = props?.engine ?? defaultEngine
 
 	try {
-		engineUsed.getRule(dottedName)
+		engineUsed.getRule(props.dottedName)
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.error(error)
@@ -51,17 +35,13 @@ export default function RuleLink({
 
 	return (
 		<EngineRuleLink
-			// @ts-ignore @publicodes/react-ui ne déclare pas `id` dans ses props,
-			// mais le propage au runtime via `...propsRest`.
-			id={id}
-			dottedName={dottedName}
-			aria-label={ariaLabel}
+			{...props}
 			// @ts-ignore
-			linkComponent={Link}
+			linkComponent={props?.linkComponent || Link}
 			engine={engineUsed}
-			documentationPath={documentationPath ?? documentationIndex}
-		>
-			{children}
-		</EngineRuleLink>
+			documentationPath={
+				props.documentationPath ?? absoluteSitePaths.documentation.index
+			}
+		/>
 	)
 }

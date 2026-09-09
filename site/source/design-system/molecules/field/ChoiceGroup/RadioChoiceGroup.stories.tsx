@@ -57,6 +57,7 @@ const optionsWithDisabled = [
 ]
 
 const meta = {
+	title: 'Design System/Field/ChoiceGroup/RadioChoiceGroup',
 	component: RadioChoiceGroup,
 	parameters: {
 		layout: 'centered',

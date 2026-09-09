@@ -1,7 +1,6 @@
 import { useMemo } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
-import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 interface Props {
@@ -10,7 +9,7 @@ interface Props {
 
 export default function Redirections({ children }: Props) {
 	const { absoluteSitePaths } = useSitePaths()
-	const { currentPath } = useNavigation()
+	const { pathname } = useLocation()
 
 	const redirections = useMemo(() => {
 		return [
@@ -40,14 +39,14 @@ export default function Redirections({ children }: Props) {
 			},
 			{
 				paths: ['/gérer/*', '/manage/*'],
-				to: decodeURI(currentPath).replace(
+				to: decodeURI(pathname).replace(
 					/^\/(gérer|manage)/,
 					absoluteSitePaths.assistants.index
 				),
 			},
 			{
 				paths: ['/créer/*', '/create/*'],
-				to: decodeURI(currentPath).replace(
+				to: decodeURI(pathname).replace(
 					/^\/(créer|create)/,
 					absoluteSitePaths.assistants['choix-du-statut'].index
 				),
@@ -57,7 +56,7 @@ export default function Redirections({ children }: Props) {
 					'/simulateurs/économie-collaborative/*',
 					'/calculators/sharing-economy/*',
 				],
-				to: decodeURI(currentPath).replace(
+				to: decodeURI(pathname).replace(
 					/^\/(simulateurs|calculators)/,
 					absoluteSitePaths.assistants.index
 				),
@@ -68,7 +67,7 @@ export default function Redirections({ children }: Props) {
 		absoluteSitePaths.assistants,
 		absoluteSitePaths.plan,
 		absoluteSitePaths.stats,
-		currentPath,
+		pathname,
 	])
 
 	return (

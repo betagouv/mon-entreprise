@@ -3,7 +3,6 @@ import 'react-day-picker/dist/style.css'
 import { autoUpdate, flip, offset, useFloating } from '@floating-ui/react-dom'
 import { format as formatDate, isValid, parse } from 'date-fns'
 import { enUS, fr } from 'date-fns/locale'
-import * as O from 'effect/Option'
 import FocusTrap from 'focus-trap-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useId } from 'react-aria'
@@ -12,7 +11,6 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { useOnClickOutside } from '@/hooks/useOnClickOutside'
-import { parseLangue } from '@/locales/langue'
 
 import { Button } from '../../buttons'
 import { Emoji } from '../../emoji'
@@ -25,30 +23,21 @@ export interface DateFieldProps {
 	defaultSelected?: Date
 	onChange?: (value?: Date) => void
 	label?: string
+	'aria-label'?: string
 	'aria-labelledby'?: string
 	type?: 'date passé' | 'date' | 'date futur'
-	errorMessage?: string
-	validation?: (date: Date) => O.Option<string>
 }
 
 export const DateField = (props: DateFieldProps) => {
 	const { aria: ariaProps, rest } = splitAriaProps(props)
-	const {
-		id,
-		defaultSelected,
-		label,
-		onChange,
-		type = 'date',
-		validation,
-	} = rest
+	const { id, defaultSelected, label, onChange, type = 'date' } = rest
 
 	const { t, i18n } = useTranslation()
-	const language = parseLangue(i18n.language)
+	const language = i18n.language as 'fr' | 'en'
 
 	const [isChangeOnce, setIsChangeOnce] = useState(false)
 	const [selected, setSelected] = useState<Date>()
 	const [isOpen, setIsOpen] = useState(false)
-	const [raisonRefus, setRaisonRefus] = useState<string>()
 
 	const ariaControlsId = useId()
 
@@ -69,14 +58,6 @@ export const DateField = (props: DateFieldProps) => {
 	const [inputValue, setInputValue] = useState<string>(
 		inputProps.value as string
 	)
-	const dernièreValeurTransmise = useRef<Date | undefined>(defaultSelected)
-	useEffect(() => {
-		const estLÉchoDeLaSaisie = dernièreValeurTransmise.current === undefined
-		if (defaultSelected === undefined && !estLÉchoDeLaSaisie) {
-			setInputValue('')
-			dernièreValeurTransmise.current = undefined
-		}
-	}, [defaultSelected])
 
 	const { x, y, strategy, refs } = useFloating<HTMLButtonElement>({
 		open: isOpen,
@@ -102,24 +83,12 @@ export const DateField = (props: DateFieldProps) => {
 		setIsChangeOnce(true)
 		setInputValue(value)
 		const date = parse(value, format, new Date())
-		if (!isValid(date) || date.getFullYear() <= 1800) {
-			setRaisonRefus(undefined)
-			setSelected(undefined)
-			dernièreValeurTransmise.current = undefined
-			onChange?.()
-
-			return
-		}
-		const raison = validation && O.getOrUndefined(validation(date))
-		setRaisonRefus(raison)
-		if (raison) {
-			setSelected(undefined)
-			dernièreValeurTransmise.current = undefined
-			onChange?.()
-		} else {
+		if (isValid(date) && date.getFullYear() > 1800) {
 			setSelected(date)
-			dernièreValeurTransmise.current = date
 			onChange?.(date)
+		} else {
+			setSelected(undefined)
+			onChange?.()
 		}
 	}
 
@@ -129,12 +98,7 @@ export const DateField = (props: DateFieldProps) => {
 
 	const handleDaySelect = useCallback(
 		(date?: Date) => {
-			if (date && validation && O.isSome(validation(date))) {
-				return
-			}
-			setRaisonRefus(undefined)
 			setSelected(date)
-			dernièreValeurTransmise.current = date
 			if (date) {
 				const value = formatDate(date, format, { locale })
 				setInputValue(value)
@@ -145,7 +109,7 @@ export const DateField = (props: DateFieldProps) => {
 				onChange?.()
 			}
 		},
-		[close, locale, onChange, validation]
+		[close, onChange]
 	)
 
 	const oldDefaultSelected = useRef<Date | undefined>(defaultSelected)
@@ -181,14 +145,12 @@ export const DateField = (props: DateFieldProps) => {
 						inputProps.onFocus?.(e)
 					}}
 					errorMessage={
-						props.errorMessage ??
-						raisonRefus ??
-						(isChangeOnce && selected === undefined && inputValue.trim() !== ''
+						isChangeOnce && selected === undefined
 							? t(
 									'design-system.date-picker.error.invalid-date',
 									'Format de date invalide, le format attendu est JJ/MM/AAAA (par exemple, 11/06/1991).'
-								)
-							: '')
+							  )
+							: ''
 					}
 				/>
 				<StyledButton
@@ -244,9 +206,6 @@ export const DateField = (props: DateFieldProps) => {
 							defaultMonth={selected}
 							selected={selected}
 							onSelect={handleDaySelect}
-							disabled={
-								validation && ((date: Date) => O.isSome(validation(date)))
-							}
 							labels={{
 								labelMonthDropdown: () =>
 									t('design-system.date-picker.month', 'Mois'),

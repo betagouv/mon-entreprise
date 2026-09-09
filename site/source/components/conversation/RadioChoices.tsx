@@ -1,3 +1,4 @@
+import { DottedName } from 'modele-social'
 import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
@@ -5,7 +6,6 @@ import { styled } from 'styled-components'
 import { Choice } from '@/components/conversation/Choice'
 import { ExplicableRule } from '@/components/conversation/Explicable'
 import { Emoji, H3, H4, Radio, Spacing } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { relativeDottedName } from '@/domaine/relativeDottedName'
 
 export function RadioChoices<Names extends string = DottedName>({
@@ -90,9 +90,15 @@ export function RadioChoices<Names extends string = DottedName>({
 									{node.title}
 									{node.rawNode.icônes && <Emoji emoji={node.rawNode.icônes} />}
 									{type !== 'toggle' && (
-										<ExplicableRule
-											dottedName={node.dottedName as DottedName}
-										/>
+										<>
+											<ExplicableRule
+												light
+												dottedName={node.dottedName as DottedName}
+												aria-label={t("Plus d'informations sur {{ title }}", {
+													title: node.title,
+												})}
+											/>
+										</>
 									)}
 								</Radio>
 							</span>

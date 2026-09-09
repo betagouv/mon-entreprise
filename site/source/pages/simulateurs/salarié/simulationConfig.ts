@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configSalarié: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+export const configSalarié: SimulationConfig = {
 	'objectifs exclusifs': [
 		'salarié . coût total employeur',
 		'salarié . contrat . salaire brut',
@@ -9,7 +8,6 @@ export const configSalarié: PublicodesSimulationConfig = {
 		'salarié . rémunération . net . à payer avant impôt',
 		'salarié . rémunération . net . payé après impôt',
 	],
-	objectifs: ['salarié . rémunération . contrôle minimum'],
 	questions: {
 		raccourcis: [
 			{
@@ -17,12 +15,17 @@ export const configSalarié: PublicodesSimulationConfig = {
 				dottedName: 'salarié',
 			},
 			{
-				label: 'Cadre',
-				dottedName: 'salarié . contrat . statut cadre',
-			},
-			{
 				label: 'Temps partiel',
 				dottedName: 'salarié . contrat . temps de travail . temps partiel',
+			},
+			{
+				label: 'Emploi franc',
+				dottedName:
+					'salarié . coût total employeur . aides . emploi franc . éligible',
+			},
+			{
+				label: 'Cadre',
+				dottedName: 'salarié . contrat . statut cadre',
 			},
 			{
 				label: 'Heures supplémentaires',
@@ -34,143 +37,20 @@ export const configSalarié: PublicodesSimulationConfig = {
 					'salarié . rémunération . frais professionnels . titres-restaurant',
 			},
 			{
-				label: 'Commune',
-				dottedName: 'établissement . commune',
-			},
-			{
-				label: 'Emploi franc',
-				dottedName:
-					'salarié . coût total employeur . aides . emploi franc . éligible',
-			},
-			{
 				label: 'Impôt',
 				dottedName: 'impôt . méthode de calcul',
 			},
+			{
+				label: 'Commune',
+				dottedName: 'établissement . commune',
+			},
 		],
-		liste: [
-			// # Contrat
-			// ## Type de contrat
-			'salarié . contrat',
-			'salarié . contrat . CDD . motif',
-			'salarié . contrat . CDD . durée',
-			'salarié . contrat . CDD . indemnité de fin de contrat . CDD jeune vacances',
-			'salarié . régimes spécifiques . apprentissage . handicap',
-			'salarié . contrat . apprentissage . diplôme',
-			'salarié . contrat . apprentissage . âge',
-			"salarié . contrat . date d'embauche",
-			'salarié . contrat . professionnalisation . âge',
-			'salarié . contrat . professionnalisation . formation',
-			// ## Congés (si CDD)
-			'salarié . contrat . CDD . congés pris',
-			// ## Fin de contrat (si CDD)
-			'salarié . contrat . CDD . indemnité de fin de contrat . rupture sans indemnité',
-			'salarié . contrat . CDD . reconduction en CDI',
-			'salarié . contrat . CDD . indemnité de fin de contrat',
-			// ## Statut cadre
-			'salarié . contrat . statut cadre',
-			// # Temps de travail
-			// ## Temps partiel
-			'salarié . contrat . temps de travail . temps partiel',
-			'salarié . contrat . temps de travail . temps partiel . heures par semaine',
-			// ## Heures supplémentaires
-			'salarié . temps de travail . heures supplémentaires',
-			'salarié . temps de travail . heures complémentaires',
-			// # Rémunération
-			// ## 13ème mois
-			"salarié . rémunération . primes . fin d'année",
-			// ## Primes
-			'salarié . rémunération . primes . activité . base',
-			// # Transport
-			// ## Transports en commun
-			'salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . montant',
-			'salarié . rémunération . frais professionnels . trajets domicile travail . transports publics . taux employeur',
-			// ## Mobilité durable
-			'salarié . rémunération . frais professionnels . trajets domicile travail . forfait mobilités durables . montant',
-			// ## Frais de carburant
-			'salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . montant',
-			'salarié . rémunération . frais professionnels . trajets domicile travail . prime de transport . véhicule electrique hybride hydrogène',
-			// # Avantages en nature
-			// ## Mutuelle
-			'salarié . cotisations . prévoyances . santé . montant',
-			'salarié . cotisations . prévoyances . santé . taux employeur',
-			// ## Titres-restaurant
-			'salarié . rémunération . frais professionnels . titres-restaurant',
-			'salarié . rémunération . frais professionnels . titres-restaurant . nombre',
-			'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire',
-			'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur',
-			'salarié . rémunération . avantages en nature',
-			// ## Repas
-			'salarié . rémunération . avantages en nature . nourriture',
-			'salarié . rémunération . avantages en nature . nourriture . repas par mois',
-			// ## NTIC
-			'salarié . rémunération . avantages en nature . ntic',
-			'salarié . rémunération . avantages en nature . ntic . coût appareils',
-			'salarié . rémunération . avantages en nature . ntic . abonnements',
-			// ## Autres avantages en nature
-			'salarié . rémunération . avantages en nature . autres',
-			'salarié . rémunération . avantages en nature . autres . montant',
-			// # Entreprise
-			// ## Convention collective
-			'salarié . convention collective',
-			'salarié . convention collective . BTP . catégorie',
-			'salarié . convention collective . BTP . congés intempéries . caisse de rattachement',
-			'salarié . convention collective . sport . joueur entraineur',
-			'salarié . convention collective . sport . primes . nombre de manifestations',
-			'salarié . convention collective . sport . primes . manifestation 1',
-			'salarié . convention collective . sport . primes . manifestation 2',
-			'salarié . convention collective . sport . primes . manifestation 3',
-			'salarié . convention collective . sport . primes . manifestation 4',
-			'salarié . convention collective . sport . primes . manifestation 5',
-			'salarié . convention collective . sport . primes . autres manifestations',
-			'salarié . convention collective . sport . cotisations . régime frais de santé . option',
-			'salarié . convention collective . sport . refus exonération cotisation AT',
-			'salarié . régimes spécifiques . intermittents du spectacle',
-			'salarié . régimes spécifiques . intermittents du spectacle . artiste . nombre jours travaillés',
-			'salarié . régimes spécifiques . intermittents du spectacle . artiste . acteur de complément',
-			'salarié . régimes spécifiques . intermittents du spectacle . artiste . activité accessoire',
-			'salarié . convention collective . optique . coefficient',
-			// ## Effectif
-			'entreprise . salariés . effectif . seuil',
-			'entreprise . salariés . ratio alternants',
-			// ## Commune
-			'établissement . commune',
-			// ## Taux AT/MP
-			'établissement . taux ATMP',
-			'établissement . taux ATMP . taux collectif',
-			'salarié . cotisations . ATMP . taux fonctions support',
-			// ## TVA
-			'entreprise . TVA',
-			// ## Association
-			'entreprise . association non lucrative',
-			// ## JEI
-			'salarié . cotisations . exonérations . JEI',
-			// ## Lodeom (si DROM)
-			"salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles",
-			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
-			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
-			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
-			// ## RGDU
-			'salarié . cotisations . exonérations . RGDU . caisse de congés payés',
-			// # Salarié⋅e
-			// ## DFS
+		'non prioritaires': [
 			'salarié . régimes spécifiques . DFS',
-			// ## Taux réduits cas particulier
-			'salarié . régimes spécifiques . taux réduits',
-			'salarié . régimes spécifiques . taux réduits . profession',
-			// ## Emploi franc
-			'salarié . coût total employeur . aides . emploi franc . éligible',
-			// ## Résidence fiscale
+			'entreprise . association non lucrative',
+			'entreprise . TVA',
 			"situation personnelle . domiciliation fiscale à l'étranger",
-			// ## Régime des impatriés
 			'salarié . régimes spécifiques . impatriés',
-			// # Impôt
-			// ## Impôt sur le revenus
-			'impôt . méthode de calcul',
-			'impôt . taux personnalisé',
-			'impôt . foyer fiscal . situation de famille',
-			'impôt . foyer fiscal . enfants à charge',
-			'impôt . foyer fiscal . parent isolé',
-			'impôt . foyer fiscal . revenu imposable . autres revenus imposables',
 		],
 		'liste noire': [
 			'salarié . cotisations . exonérations . zones lodeom',

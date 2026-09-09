@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useMatch, useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { determinant, useHideNewsBanner } from '@/components/layout/NewsBanner'
 import MoreInfosOnUs from '@/components/MoreInfosOnUs'
-import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import {
@@ -19,7 +19,6 @@ import {
 	typography,
 } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 const { Body, H1, Link } = typography
@@ -30,10 +29,10 @@ type Releases = typeof import('@/public/data/releases.json')
 
 export default function Nouveautés() {
 	const { data } = useFetchData<Releases>('/data/releases.json')
-	const { navigate, matchPath } = useNavigation()
+	const navigate = useNavigate()
 	const { absoluteSitePaths } = useSitePaths()
-	const slug = matchPath(encodeURI(absoluteSitePaths.nouveautés.date))?.params
-		.date
+	const slug = useMatch(encodeURI(absoluteSitePaths.nouveautés.date))?.params
+		?.date
 	useHideNewsBanner()
 
 	const { t } = useTranslation()
@@ -109,10 +108,7 @@ export default function Nouveautés() {
 						</Select>
 					</MobileGridItem>
 					<DesktopGridItem item lg={3}>
-						<Sidebar
-							aria-label="Navigation lettres d'actualités"
-							role="navigation"
-						>
+						<Sidebar aria-label="Lettres d'actualités">
 							<StyledUl>
 								{data.map(({ name }, index) => (
 									<li key={name}>
@@ -171,7 +167,7 @@ const SidebarLink = styled(Link)<GenericButtonOrNavLinkProps>`
 	display: block;
 	border-radius: 0;
 	padding: 0.5rem 1rem;
-	border-bottom: 1px solid ${({ theme }) => theme.colors.extended.grey[300]};
+	border-bottom: 1px solid #e6e9ec;
 	&:hover {
 		background-color: ${({ theme }) =>
 			theme.darkMode

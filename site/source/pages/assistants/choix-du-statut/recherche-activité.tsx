@@ -2,17 +2,14 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import { Body, H5, InfoButton, Link, Message } from '@/design-system'
+import { Body, H5, HelpButtonWithPopover, Link, Message } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import {
-	enregistreLaRéponseÀLaQuestion,
-	réinitialiseLaSimulation,
-} from '@/store/actions/actions'
+import { enregistreLaRéponse, resetSimulation } from '@/store/actions/actions'
 
 import SearchCodeAPE from '../recherche-code-ape/SearchCodeAPE'
 import Layout from './_components/Layout'
 import Navigation from './_components/Navigation'
-import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
+import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
 export default function RechercheActivité() {
 	const [codeApe, setCodeApe] = useState('')
@@ -20,10 +17,10 @@ export default function RechercheActivité() {
 	const dispatch = useDispatch()
 	const isEmbedded = useIsEmbedded()
 	useEffect(() => {
-		dispatch(réinitialiseLaSimulation())
+		dispatch(resetSimulation())
 	}, [])
 
-	const isBpi = useIsEmbeddedOnBPISite()
+	const isBpi = useIsEmbededOnBPISite()
 
 	const NavigationComponent = (
 		<Navigation
@@ -31,7 +28,7 @@ export default function RechercheActivité() {
 			currentStepIsComplete={!!codeApe}
 			onNextStep={() => {
 				dispatch(
-					enregistreLaRéponseÀLaQuestion(
+					enregistreLaRéponse(
 						'entreprise . activités . principale . code APE',
 						codeApe
 					)
@@ -44,17 +41,14 @@ export default function RechercheActivité() {
 		<>
 			<Layout
 				title={
-					<Trans i18nKey={'pages.assistants.choix-statut.activité.title'}>
-						Mon activité principale est…
-						<InfoButton
-							subject={t(
-								'pages.assistants.choix-statut.activité.help.subject',
-								'l’activité principale'
-							)}
-							popoverTitle={t(
-								'pages.assistants.choix-statut.activité.help.title',
+					<Trans i18nKey={'choix-statut.activité.title'}>
+						Mon activité principale est...
+						<HelpButtonWithPopover
+							title={t(
+								'choix-statut.activité.help.title',
 								'Le choix du statut, un choix adapté à votre situation'
 							)}
+							type="info"
 						>
 							<Body>
 								Le choix du statut et les cotisations diffèrent en fonction de
@@ -72,7 +66,7 @@ export default function RechercheActivité() {
 										href={
 											isBpi
 												? 'https://bpifrance-creation.fr/encyclopedie/statut-du-dirigeant-son-conjoint/situation-pluriactifs/cumul-dactivites-independantes#:~:text=Il%20est%20en%20g%C3%A9n%C3%A9ral%20possible,d%27entre%20elles%20est%20agricole.'
-												: 'https://entreprendre.service-public.gouv.fr/vosdroits/F33050'
+												: 'https://entreprendre.service-public.fr/vosdroits/F33050'
 										}
 									>
 										voir ce guide
@@ -80,7 +74,7 @@ export default function RechercheActivité() {
 									.
 								</Body>
 							</Message>
-						</InfoButton>
+						</HelpButtonWithPopover>
 					</Trans>
 				}
 			>

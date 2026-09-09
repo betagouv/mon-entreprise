@@ -1,24 +1,20 @@
+import { DottedName } from 'modele-social'
 import { Trans, useTranslation } from 'react-i18next'
 import { Hit as AlgoliaHit } from 'react-instantsearch-core'
 import { connectInfiniteHits } from 'react-instantsearch-dom'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
 import { Body, Button, H3, SmallBody } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
-import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
-import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
-type THit = AlgoliaHit<{
-	dottedName: DottedName
-	nomModèle: NomModèle
-	namespace?: string
-	ruleName?: string
-}>
+import RuleLink from '../../RuleLink'
+import { Highlight } from '../Hightlight'
+
+type THit = AlgoliaHit<{ objectID: DottedName; namespace?: string }>
 
 const StyledRuleLink = styled(RuleLink)`
+	display: block; // Fix focus outline on chrome
+
 	${SmallBody}, ${Body} {
 		margin: 0;
 		color: inherit;
@@ -34,9 +30,7 @@ const StyledRuleLink = styled(RuleLink)`
 `
 
 const HitContainer = styled.li`
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
+	display: block;
 
 	border-top: 1px solid #eee;
 	padding-top: 0.5rem;
@@ -50,27 +44,18 @@ const HitContainer = styled.li`
 `
 
 const Hit = (hit: THit) => {
-	const engine = useEngineFromModèle(hit.nomModèle)
-
 	return (
 		<HitContainer>
-			{hit.namespace && (
-				<SmallBody as="span" className="hit-namespace">
-					{Object.values(hit.namespace).join(' > ')}
-				</SmallBody>
-			)}
-
-			<EngineProvider value={engine}>
-				<StyledRuleLink
-					engine={engine}
-					dottedName={hit.dottedName}
-					aria-label={hit.ruleName}
-				>
-					<Body as="span" className="hit-ruleName">
-						{hit.ruleName}
-					</Body>
-				</StyledRuleLink>
-			</EngineProvider>
+			<StyledRuleLink dottedName={hit.objectID}>
+				{hit.namespace && (
+					<SmallBody as="span" className="hit-namespace">
+						<Highlight hit={hit} attribute="namespace" separator=" > " />
+					</SmallBody>
+				)}
+				<Body as="span" className="hit-ruleName">
+					<Highlight hit={hit} attribute="ruleName" />
+				</Body>
+			</StyledRuleLink>
 		</HitContainer>
 	)
 }

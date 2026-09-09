@@ -26,7 +26,6 @@ impôt . taux d'imposition:
         alors: foyer fiscal . taux effectif
 
 impôt . méthode de calcul:
-  titre: Méthode de calcul de l’impôt sur le revenu
   description: |
     Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
     - *Le taux personnalisé* : indiqué sur votre avis d’imposition
@@ -126,50 +125,6 @@ impôt . taux neutre d'impôt sur le revenu . barème Guadeloupe Réunion Martin
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
   remplace: taux neutre d'impôt sur le revenu
   variations:
-    - si: date >= 01/01/2026
-      alors:
-        grille:
-          assiette: revenu imposable
-          tranches:
-            - montant: 0%
-              plafond: 1875 €/mois
-            - montant: 0.5%
-              plafond: 1989 €/mois
-            - montant: 1.3%
-              plafond: 2191 €/mois
-            - montant: 2.1%
-              plafond: 2392 €/mois
-            - montant: 2.9%
-              plafond: 2642 €/mois
-            - montant: 3.5%
-              plafond: 2786 €/mois
-            - montant: 4.1%
-              plafond: 2881 €/mois
-            - montant: 5.3%
-              plafond: 3170 €/mois
-            - montant: 7.5%
-              plafond: 3920 €/mois
-            - montant: 9.9%
-              plafond: 5016 €/mois
-            - montant: 11.9%
-              plafond: 5697 €/mois
-            - montant: 13.8%
-              plafond: 6599 €/mois
-            - montant: 15.8%
-              plafond: 7907 €/mois
-            - montant: 17.9%
-              plafond: 8789 €/mois
-            - montant: 20%
-              plafond: 9989 €/mois
-            - montant: 24%
-              plafond: 13738 €/mois
-            - montant: 28%
-              plafond: 18253 €/mois
-            - montant: 33%
-              plafond: 27858 €/mois
-            - montant: 38%
-              plafond: 60893 €/mois
-            - montant: 43%
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -402,50 +357,6 @@ impôt . taux neutre d'impôt sur le revenu . barème Guyane Mayotte:
     Article 204 H du code des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000042907548/
 
   variations:
-    - si: date >= 01/01/2026
-      alors:
-        grille:
-          assiette: revenu imposable
-          tranches:
-            - montant: 0%
-              plafond: 2008 €/mois
-            - montant: 0.5%
-              plafond: 2170 €/mois
-            - montant: 1.3%
-              plafond: 2420 €/mois
-            - montant: 2.1%
-              plafond: 2728 €/mois
-            - montant: 2.9%
-              plafond: 2833 €/mois
-            - montant: 3.5%
-              plafond: 2930 €/mois
-            - montant: 4.1%
-              plafond: 3026 €/mois
-            - montant: 5.3%
-              plafond: 3362 €/mois
-            - montant: 7.5%
-              plafond: 4639 €/mois
-            - montant: 9.9%
-              plafond: 6005 €/mois
-            - montant: 11.9%
-              plafond: 6772 €/mois
-            - montant: 13.8%
-              plafond: 7858 €/mois
-            - montant: 15.8%
-              plafond: 8644 €/mois
-            - montant: 17.9%
-              plafond: 9577 €/mois
-            - montant: 20%
-              plafond: 11115 €/mois
-            - montant: 24%
-              plafond: 14953 €/mois
-            - montant: 28%
-              plafond: 19020 €/mois
-            - montant: 33%
-              plafond: 30482 €/mois
-            - montant: 38%
-              plafond: 64341 €/mois
-            - montant: 43%
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -677,50 +588,6 @@ impôt . taux neutre d'impôt sur le revenu:
     abattu.
 
   variations:
-    - si: date >= 01/01/2026
-      alors:
-        grille:
-          assiette: revenu imposable
-          tranches:
-            - plafond: 1635 €/mois
-              montant: 0%
-            - plafond: 1698 €/mois
-              montant: 0.5 %
-            - plafond: 1807 €/mois
-              montant: 1.3 %
-            - plafond: 1928 €/mois
-              montant: 2.1 %
-            - plafond: 2060 €/mois
-              montant: 2.9 %
-            - plafond: 2170 €/mois
-              montant: 3.5 %
-            - plafond: 2315 €/mois
-              montant: 4.1 %
-            - plafond: 2738 €/mois
-              montant: 5.3 %
-            - plafond: 3135 €/mois
-              montant: 7.5 %
-            - plafond: 3571 €/mois
-              montant: 9.9 %
-            - plafond: 4019 €/mois
-              montant: 11.9 %
-            - plafond: 4690 €/mois
-              montant: 13.8 %
-            - plafond: 5624 €/mois
-              montant: 15.8 %
-            - plafond: 7037 €/mois
-              montant: 17.9 %
-            - plafond: 8789 €/mois
-              montant: 20%
-            - plafond: 12200 €/mois
-              montant: 24%
-            - plafond: 16523 €/mois
-              montant: 28 %
-            - plafond: 25937 €/mois
-              montant: 33 %
-            - plafond: 55558 €/mois
-              montant: 38 %
-            - montant: 43 %
     - si: date >= 01/05/2025
       alors:
         grille:
@@ -947,14 +814,12 @@ impôt . taux neutre d'impôt sur le revenu:
     Qu’est-ce que le taux neutre ?: https://www.economie.gouv.fr/particuliers/modifier-gerer-taux-prelevement-source#qu-est-ce-que-le-taux-non-person_5
 
 impôt . taux personnalisé:
-  titre: Taux d’imposition personnalisé
+  question: Quel est votre taux de prélèvement à la source ?
   description: |
     Votre taux moyen d’imposition personnalisé, que vous pouvez retrouver sur :
       - une fiche de paie
       - un avis d’imposition
       - votre espace personnel [impots.gouv.fr](https://impots.gouv.fr)
-  applicable si: méthode de calcul . taux personnalisé
-  question: Quel est votre taux de prélèvement à la source ?
   unité: '%'
 
 # TODO: "foyer fiscal" should be in its own top level namespace, but we put it
@@ -1088,8 +953,6 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
     valeur: 10% * revenu d'activité
     plafond:
       variations:
-        - si: date >= 01/2026
-          alors: 14555 €/an
         - si: date >= 01/2025
           alors: 14426 €/an
         - si: date >= 01/2024
@@ -1104,8 +967,6 @@ impôt . foyer fiscal . revenu imposable . revenu d'activité abattu:
           alors: 12627 €/an
     plancher:
       variations:
-        - si: date >= 01/2026
-          alors: 509 €/an
         - si: date >= 01/2025
           alors: 504 €/an
         - si: date >= 01/2024
@@ -1169,8 +1030,6 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
     - si: foyer fiscal . situation de famille = 'couple'
       alors:
         variations:
-          - si: date >= 01/2026
-            alors: 1483 €/an
           - si: date >= 01/2025
             alors: 1470 €/an
           - si: date >= 01/2024
@@ -1185,8 +1044,6 @@ impôt . foyer fiscal . impôt sur le revenu . décote:
             alors: 1286 €/an
     - sinon:
         variations:
-          - si: date >= 01/2026
-            alors: 897 €/an
           - si: date >= 01/2025
             alors: 889 €/an
           - si: date >= 01/2024
@@ -1226,8 +1083,6 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
     plafonnement général:
       produit:
         - variations:
-            - si: date >= 01/2026
-              alors: 1807 €/demi-part/an
             - si: date >= 01/2025
               alors: 1791 €/demi-part/an
             - si: date >= 01/2024
@@ -1253,8 +1108,6 @@ impôt . foyer fiscal . impôt sur le revenu . quotient familial . plafond avant
         contribuables célibataires ou divorcés vivant seuls.
       applicable si: nombre de parts . majoration personne seule avec enfant
       variations:
-        - si: date >= 01/2026
-          alors: 4262 €/an
         - si: date >= 01/2025
           alors: 4224 €/an
         - si: date >= 01/2024
@@ -1280,13 +1133,13 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
     41 000 € d’impôt (le taux de la 4ème tranche est 41%) ! Ces 41% sont appliqués
     uniquement à la part de ses revenus supérieure à 72 617 €.
   barème:
-    assiette: assiette
+    assiette: quotient familial
     tranches:
+      # HACK waiting for https://github.com/betagouv/publicodes/discussions/92#discussioncomment-1904882 to be resolved
+      &tranches
       - taux: 0%
         plafond:
           variations:
-            - si: date >= 01/2026
-              alors: 11600 €/part/an
             - si: date >= 01/2025
               alors: 11497 €/part/an
             - si: date >= 01/2024
@@ -1298,12 +1151,21 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
             - si: date >= 01/2021
               alors: 10084 €/part/an
       - taux: 11%
-        plafond: plafond tranche 2
+        plafond:
+          variations:
+            - si: date >= 01/2025
+              alors: 29315 €/part/an
+            - si: date >= 01/2024
+              alors: 28797 €/part/an
+            - si: date >= 01/2023
+              alors: 27478 €/part/an
+            - si: date >= 01/2022
+              alors: 26070 €/part/an
+            - si: date >= 01/2021
+              alors: 25710 €/part/an
       - taux: 30%
         plafond:
           variations:
-            - si: date >= 01/2026
-              alors: 84577 €/part/an
             - si: date >= 01/2025
               alors: 83823 €/part/an
             - si: date >= 01/2024
@@ -1317,8 +1179,6 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
       - taux: 41%
         plafond:
           variations:
-            - si: date >= 01/2026
-              alors: 181917 €/part/an
             - si: date >= 01/2025
               alors: 180294 €/part/an
             - si: date >= 01/2024
@@ -1334,28 +1194,10 @@ impôt . foyer fiscal . impôt sur le revenu . impôt brut . par part:
     Article 197 du Code général des impôts: https://www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte=LEGITEXT000006069577&idArticle=LEGIARTI000006308322
     Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/tranches-imposition-impot-revenu
 
-  avec:
-    assiette: quotient familial
-
-    plafond tranche 2:
-      variations:
-        - si: date >= 01/2026
-          alors: 29579 €/part/an
-        - si: date >= 01/2025
-          alors: 29315 €/part/an
-        - si: date >= 01/2024
-          alors: 28797 €/part/an
-        - si: date >= 01/2023
-          alors: 27478 €/part/an
-        - si: date >= 01/2022
-          alors: 26070 €/part/an
-        - si: date >= 01/2021
-          alors: 25710 €/part/an
-
 impôt . foyer fiscal . impôt sur le revenu . impôt brut . sans parts rattachées:
-  valeur: par part
-  contexte:
-    par part . assiette: revenu imposable / nombre de parts . principales
+  barème:
+    assiette: revenu imposable / nombre de parts . principales
+    tranches: *tranches
 
 impôt . foyer fiscal . impôt sur le revenu . impôt brut:
   valeur:
@@ -1400,9 +1242,7 @@ impôt . foyer fiscal . CEHR:
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
 
 impôt . domiciliation étranger non implémentée:
-  toutes ces conditions:
-    - situation personnelle . domiciliation fiscale à l'étranger
-    - salarié
+  formule: situation personnelle . domiciliation fiscale à l'étranger
   type: notification
   sévérité: avertissement
   description: |

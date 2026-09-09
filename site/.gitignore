@@ -1,5 +1,4 @@
 .env
-algolia-data.json
 source/public/data/*
 !source/public/data/versement-mobilité.json
 !source/public/data/base-stats.json

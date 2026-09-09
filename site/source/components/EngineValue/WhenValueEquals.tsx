@@ -1,5 +1,4 @@
-import { useEngine } from '@/utils/publicodes/EngineContext'
-
+import { useEngine } from '../utils/EngineContext'
 import { ConditionProps } from './types'
 
 export function WhenValueEquals({

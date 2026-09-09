@@ -1,6 +1,5 @@
-import { Array, Option, pipe, Record } from 'effect'
-
-import { Palette, SmallPalette, Theme } from '@/types/styled'
+import { Theme } from '@/types/styled'
+import { Merge } from '@/types/utils'
 
 import { KeysOfUnion } from './types'
 
@@ -117,7 +116,7 @@ export const baseTheme = {
 				300: '#7DE38A',
 				400: '#53D769',
 				500: '#3CB053',
-				600: '#175F2A',
+				600: '#18632C',
 			},
 			info: {
 				100: '#FFFCE0',
@@ -139,27 +138,28 @@ export const baseTheme = {
 			},
 		},
 	},
+	darkMode: false,
+	spacings: {
+		xxxs: '.125rem',
+		xxs: '.25rem',
+		xs: '.5rem',
+		sm: '0.75rem',
+		md: '1rem',
+		lg: '1.5rem',
+		xl: '2rem',
+		xxl: '3rem',
+		xxxl: '4rem',
+	},
 
 	fonts: {
-		main: "var(--font-roboto, 'Roboto'), sans-serif",
-		heading: "var(--font-montserrat, 'Montserrat'), sans-serif",
+		main: "'Roboto', sans-serif",
+		heading: '',
 	},
+
+	baseFontSize: '16px',
 
 	fontSizes: {
-		min: '0.875rem',
-		base: '1rem',
 		lg: '1.125rem',
-		xl: '1.25rem',
-		xxl: '1.5rem',
-		xxxl: '2rem',
-	},
-
-	lineHeights: {
-		sm: '1.25rem',
-		base: '1.5rem',
-		lg: '1.75rem',
-		xl: '2rem',
-		xxl: '2.5rem',
 	},
 
 	box: {
@@ -189,41 +189,39 @@ export const baseTheme = {
 		lg: '992px',
 		xl: '1200px',
 	},
-
-	darkMode: false,
-	isInIframe: false,
-
-	spacings: {
-		xxxs: '.125rem',
-		xxs: '.25rem',
-		xs: '.5rem',
-		sm: '0.75rem',
-		md: '1rem',
-		lg: '1.5rem',
-		xl: '2rem',
-		xxl: '3rem',
-		xxxl: '4rem',
-	},
 }
 
 type ColorsType = typeof baseTheme.colors
-type ColorsSubGroup = ColorsType[keyof ColorsType]
+type ColorGroups = Merge<ColorsType[keyof ColorsType]>
 
-export type Color = KeysOfUnion<ColorsSubGroup>
+export type Colors = KeysOfUnion<ColorsType[keyof ColorsType]>
 
 /**
- * Get the color palette of a color
- * @example getColorPalette('error') => { 100: '#FDE8E9', 200: '#F9BCC0', 300: '#DB666E', 400: '#CB111D', 500: '#96050F', 600: '#52070C' }
+ * Check if a color is in the theme
  * @param color
  */
-export const getColorPalette = (color: Color) => {
-	const colorGroup = pipe(
-		Record.values(baseTheme.colors),
-		Array.findFirst((val) => color in val),
-		Option.getOrThrow
-	)
+export const isColor = (color: string): color is Colors =>
+	Object.values(baseTheme.colors).some((val) => color in val)
 
-	return colorGroup[color as keyof typeof colorGroup] as Palette | SmallPalette
+/**
+ * Get the color group of a color
+ * @example getColorGroup('error') => { 100: '#FDE8E9', 200: '#F9BCC0', 300: '#DB666E', 400: '#CB111D', 500: '#96050F', 600: '#52070C' }
+ * @param color
+ */
+export const getColorGroup = <T extends Colors>(color: T) => {
+	const colorGroup = Object.values(baseTheme.colors).find(
+		(val) => color in val
+	) as ColorGroups | undefined
+
+	if (colorGroup && color in colorGroup) {
+		return (
+			(colorGroup[color as keyof ColorGroups] as Merge<
+				NonNullable<ColorGroups[T]>
+			>) ?? null
+		)
+	}
+
+	return null
 }
 
 // We use the Grid from material-ui, we need to uniformise

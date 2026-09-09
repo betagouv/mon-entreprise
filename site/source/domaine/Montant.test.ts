@@ -1,23 +1,35 @@
-import { Either, Equal } from 'effect'
-import { describe, expect, it } from 'vitest'
+import { Either, Equal, pipe } from 'effect'
+import { isLeft } from 'effect/Either'
+import { describe, expect, expectTypeOf, it } from 'vitest'
 
 import {
 	diviséPar,
 	DivisionParZéro,
 	estNégatif,
+	estPlusGrandOuÉgalÀ,
+	estPlusGrandQue,
+	estPlusPetitOuÉgalÀ,
+	estPlusPetitQue,
 	estPositif,
 	estZéro,
+	euros,
+	eurosParAn,
+	eurosParMois,
 	fois,
-	montantToString,
+	moins,
+	Montant,
+	plus,
+	sommeEnEuros,
+	sommeEnEurosParAn,
+	sommeEnEurosParMois,
+	toString,
 } from './Montant'
-import { euros } from './MontantPonctuel'
-import { eurosParAn, eurosParMois } from './MontantRecurrent'
 
 describe('Montant', () => {
 	describe('constructeurs', () => {
 		it('crée correctement un montant en euros', () => {
 			const montant = euros(100)
-			expect(montantToString(montant)).toBe('100\u00a0€')
+			expect(toString(montant)).toBe('100 €')
 			expect(montant.unité).toBe('€')
 			expect(Equal.equals(montant, euros(100))).toBe(true)
 		})
@@ -25,13 +37,13 @@ describe('Montant', () => {
 		it('crée correctement un montant en euros par mois', () => {
 			const montant = eurosParMois(100)
 			expect(montant.unité).toBe('€/mois')
-			expect(montantToString(montant)).toBe('100\u00a0€/mois')
+			expect(toString(montant)).toBe('100 €/mois')
 		})
 
 		it('crée correctement un montant en euros annuels', () => {
 			const montant = eurosParAn(100)
 			expect(montant.unité).toBe('€/an')
-			expect(montantToString(montant)).toBe('100\u00a0€/an')
+			expect(toString(montant)).toBe('100 €/an')
 		})
 
 		it('arrondi automatiquement au centime', () => {
@@ -44,11 +56,48 @@ describe('Montant', () => {
 	})
 
 	describe('opérations', () => {
+		it('additionne correctement deux montants de même unité', () => {
+			const montant1 = euros(100)
+			const montant2 = euros(50)
+			const resultat = plus(montant1, montant2)
+			expect(Equal.equals(resultat, euros(150))).toBe(true)
+			expect(resultat.unité).toBe('€')
+		})
+
+		it('soustrait correctement deux montants de même unité', () => {
+			const montant1 = eurosParAn(100)
+			const montant2 = eurosParAn(50)
+			const resultat = moins(montant1, montant2)
+			expect(Equal.equals(resultat, eurosParAn(50))).toBe(true)
+			expect(resultat.unité).toBe('€/an')
+		})
+
 		it('multiplie correctement un montant par un scalaire', () => {
 			const montant = euros(100)
 			const resultat = fois(montant, 2)
 			expect(Equal.equals(resultat, euros(200))).toBe(true)
 			expect(resultat.unité).toBe('€')
+		})
+
+		it('somme correctement plusieurs montants de même unité ponctuelle', () => {
+			const montants = [euros(200), euros(300), euros(500)]
+			const resultat = sommeEnEuros(montants)
+			expect(Equal.equals(resultat, euros(1000))).toBe(true)
+			expect(resultat.unité).toBe('€')
+		})
+
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/mois', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParMois(montants)
+			expect(Equal.equals(resultat, eurosParMois(1000))).toBe(true)
+			expect(resultat.unité).toBe('€/mois')
+		})
+
+		it('somme correctement plusieurs montants en €/mois et retourne un résultat en €/an', () => {
+			const montants = [eurosParMois(200), eurosParMois(300), eurosParMois(500)]
+			const resultat = sommeEnEurosParAn(montants)
+			expect(Equal.equals(resultat, eurosParAn(12000))).toBe(true)
+			expect(resultat.unité).toBe('€/an')
 		})
 
 		it('divise correctement un montant par un scalaire non nul', () => {
@@ -69,15 +118,71 @@ describe('Montant', () => {
 				expect(resultatEither.left).toBeInstanceOf(DivisionParZéro)
 			}
 		})
+
+		it('permet la composition avec pipe', () => {
+			const montant = euros(100)
+
+			// Chaînage d'opérations: (100€ + 50€) * 2
+			const resultat = pipe(montant, plus(euros(50)), fois(2))
+
+			expect(Equal.equals(resultat, euros(300))).toBe(true)
+		})
 	})
 
-	describe('prédicats', () => {
+	describe('comparaisons', () => {
+		it('comparer correctement deux montants de même unité', () => {
+			const montant1 = euros(100)
+			const montant2 = euros(50)
+			expect(estPlusGrandQue(montant1, montant2)).toBe(true)
+			expect(estPlusPetitQue(montant2, montant1)).toBe(true)
+			expect(Equal.equals(montant1, montant1)).toBe(true)
+			expect(Equal.equals(montant1, montant2)).toBe(false)
+		})
+
+		it('vérifie correctement les égalités et inégalités', () => {
+			const montant1 = eurosParMois(100)
+			const montant2 = eurosParMois(100)
+			const montant3 = eurosParMois(150)
+
+			expect(Equal.equals(montant1, montant2)).toBe(true)
+			expect(Equal.equals(montant1, montant3)).toBe(false)
+			expect(estPlusGrandOuÉgalÀ(montant1, montant2)).toBe(true)
+			expect(estPlusPetitOuÉgalÀ(montant1, montant2)).toBe(true)
+			expect(estPlusPetitQue(montant1, montant3)).toBe(true)
+			expect(estPlusGrandQue(montant3, montant1)).toBe(true)
+		})
+
+		it('permet la composition avec pipe pour les comparaisons', () => {
+			const montant1 = euros(100)
+			const montant2 = euros(50)
+
+			const supérieur = pipe(montant1, estPlusGrandQue(montant2))
+			expect(supérieur).toBe(true)
+
+			const inférieur = pipe(montant2, estPlusPetitQue(montant1))
+			expect(inférieur).toBe(true)
+		})
+
 		it('vérifie correctement si un montant est positif, négatif ou zéro', () => {
 			expect(estPositif(euros(100))).toBe(true)
 			expect(estNégatif(euros(-100))).toBe(true)
 			expect(estZéro(euros(0))).toBe(true)
 			expect(estPositif(euros(0))).toBe(false)
 			expect(estNégatif(euros(0))).toBe(false)
+		})
+
+		it('conserve le type du montant', () => {
+			const centEuros = euros(100)
+			const resultat = plus(centEuros, euros(50))
+
+			expectTypeOf<typeof resultat>().toMatchTypeOf<Montant<'€'>>()
+		})
+
+		it('renvoie une erreur en cas de division par zéro', () => {
+			const centEuros = euros(100)
+			const resultat = diviséPar(centEuros, 0)
+
+			expect(isLeft(resultat)).toBe(true)
 		})
 	})
 })

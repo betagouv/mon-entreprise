@@ -5,6 +5,7 @@ import { Spacing } from '../../layout'
 import { DateField } from './DateField'
 
 export default {
+	title: 'Design System/Field/DateField',
 	component: DateField,
 	decorators: [
 		(Story) => (

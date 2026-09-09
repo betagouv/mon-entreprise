@@ -1,4 +1,4 @@
-import { Body, H1, Intro, Message, Spinner } from '@/design-system'
+import { Body, H1, Intro, Loader, Message } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
 
 import StatPage from './StatsPage'
@@ -19,7 +19,7 @@ export default function Stats() {
 				<>
 					<H1>Statistiques 📊</H1>
 					<Intro>
-						Chargement des statistiques <Spinner />{' '}
+						Chargement des statistiques <Loader />{' '}
 					</Intro>
 				</>
 			) : (

@@ -12,7 +12,6 @@ export const JeDonneMonAvis = ({ light }: { light?: boolean }) => {
 		<Link
 			href={href}
 			aria-label={t(
-				'feedback.jedonnemonavis.aria-label',
 				'Je donne mon avis, donner mon avis sur jedonnemonavis.numerique.gouv.fr, nouvelle fenêtre'
 			)}
 		>

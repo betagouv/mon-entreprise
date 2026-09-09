@@ -3,9 +3,6 @@ on:
   schedule:
     - cron: '47 3,15 * * *'
 
-permissions:
-  contents: read
-
 jobs:
   test-external-integrations:
     env:
@@ -14,9 +11,9 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@v3
 
-      - uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5.0.4
+      - uses: actions/cache@v3
         # Custom cache as we do not care about installing all the other dependancies
         with:
           path: |
@@ -27,7 +24,7 @@ jobs:
       - uses: ./.github/actions/install
 
       - name: Test external integration
-        uses: cypress-io/github-action@783cb3f07983868532cabaedaa1e6c00ff4786a8 # v7.1.9
+        uses: cypress-io/github-action@v5
         with:
           install: false
           working-directory: site

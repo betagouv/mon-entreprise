@@ -13,9 +13,9 @@ import {
 	StyledLink,
 	Ul,
 } from '@/design-system'
-import { useTracking } from '@/hooks/useTracking'
 
-import { TrackPage } from '../../PianoAnalytics'
+import * as safeLocalStorage from '../../../storage/safeLocalStorage'
+import { TrackPage, useTracking } from '../../ATInternetTracking'
 
 const StyledTable = styled.table`
 	&,
@@ -40,37 +40,42 @@ export default function PrivacyPolicy({
 	label?: string
 	noUnderline?: boolean
 }) {
-	const { isTrackingRefused, refuseTracking } = useTracking()
+	const tracker = useTracking()
 	const [valueChanged, setValueChanged] = useState(false)
 	const { t } = useTranslation()
 
 	const handleChange = useCallback(
 		(checked: boolean) => {
-			refuseTracking(checked)
+			if (checked) {
+				tracker?.consent.setMode('opt-out')
+				safeLocalStorage.setItem('tracking:do_not_track', '1')
+			} else {
+				tracker?.consent.setMode('essential')
+				safeLocalStorage.setItem('tracking:do_not_track', '0')
+			}
 			setValueChanged(true)
 		},
-		[refuseTracking, setValueChanged]
+		[setValueChanged, tracker?.consent]
 	)
 
 	return (
 		<PopoverWithTrigger
 			trigger={(buttonProps) => (
 				<Link {...buttonProps} aria-haspopup="dialog" noUnderline={noUnderline}>
-					{label ??
-						t('pages.privacyPolicy.title', 'Politique de confidentialité')}
+					{label ?? t('privacyPolicy.title', 'Politique de confidentialité')}
 				</Link>
 			)}
-			title={t('pages.privacyPolicy.title', 'Politique de confidentialité')}
+			title={t('privacyPolicy.title', 'Politique de confidentialité')}
 		>
 			<TrackPage chapter1="informations" name="donnees_personnelles" />
 			<H2>
 				{t(
-					'pages.privacyPolicy.liability.title',
+					'privacyPolicy.liability.title',
 					'Qui est responsable de mon-entreprise ?'
 				)}
 			</H2>
 			<Body>
-				<Trans i18nKey="pages.privacyPolicy.liability.content">
+				<Trans i18nKey="privacyPolicy.liability.content">
 					La plateforme mon-entreprise.urssaf.fr est sous la responsabilité de
 					l'Agence centrale des organismes de sécurité sociale, également
 					appelée « Acoss » ou « Urssaf Caisse nationale ». <br />
@@ -80,12 +85,12 @@ export default function PrivacyPolicy({
 			</Body>
 			<H2>
 				{t(
-					'pages.privacyPolicy.data.title',
+					'privacyPolicy.data.title',
 					'Quelles données à caractère personnel sont collectées ?'
 				)}
 			</H2>
 			<Body>
-				<Trans i18nKey="pages.privacyPolicy.data.content">
+				<Trans i18nKey="privacyPolicy.data.content">
 					mon-entreprise.urssaf.fr ne traite aucune donnée à caractère personnel
 					par le biais des simulateurs ou via un dépôt de cookies ou traceurs.
 					Il n'existe pas de compte, seules les informations anonymes
@@ -128,7 +133,7 @@ export default function PrivacyPolicy({
 			</Body>
 			<H2>
 				{t(
-					'pages.privacyPolicy.recipients.title',
+					'privacyPolicy.recipients.title',
 					'Qui sont les destinataires de vos données ?'
 				)}
 			</H2>
@@ -136,35 +141,29 @@ export default function PrivacyPolicy({
 				<StyledTable>
 					<caption className="sr-only">
 						{t(
-							'pages.privacyPolicy.recipients.table.caption',
+							'privacyPolicy.recipients.table.caption',
 							'Liste des sous-traitants destinataires des données à caractère personnel'
 						)}
 					</caption>
 					<thead>
 						<tr>
 							<th scope="col">
-								{t(
-									'pages.privacyPolicy.recipients.table.provider',
-									'Sous-traitant'
-								)}
+								{t('privacyPolicy.recipients.table.provider', 'Sous-traitant')}
 							</th>
 							<th scope="col">
 								{t(
-									'pages.privacyPolicy.recipients.table.country',
+									'privacyPolicy.recipients.table.country',
 									'Pays destinataire'
 								)}
 							</th>
 							<th scope="col">
 								{t(
-									'pages.privacyPolicy.recipients.table.processing',
+									'privacyPolicy.recipients.table.processing',
 									'Traitement réalisé'
 								)}
 							</th>
 							<th scope="col">
-								{t(
-									'pages.privacyPolicy.recipients.table.security',
-									'Garanties'
-								)}
+								{t('privacyPolicy.recipients.table.security', 'Garanties')}
 							</th>
 						</tr>
 					</thead>
@@ -173,10 +172,7 @@ export default function PrivacyPolicy({
 							<td>Brevo</td>
 							<td>France</td>
 							<td>
-								{t(
-									'pages.privacyPolicy.recipients.table.mailer',
-									"Envoi d'e-mails"
-								)}
+								{t('privacyPolicy.recipients.table.mailer', "Envoi d'e-mails")}
 							</td>
 							<td>
 								<StyledLink
@@ -194,7 +190,7 @@ export default function PrivacyPolicy({
 							<td>France</td>
 							<td>
 								{t(
-									'pages.privacyPolicy.recipients.table.support',
+									'privacyPolicy.recipients.table.support',
 									'Outil de support'
 								)}
 							</td>
@@ -214,12 +210,12 @@ export default function PrivacyPolicy({
 			</Body>
 			<H2>
 				{t(
-					'pages.privacyPolicy.rights.title',
+					'privacyPolicy.rights.title',
 					'Quels sont les droits Informatiques et liberté que vous pouvez exercer ?'
 				)}
 			</H2>
 			<Body>
-				<Trans i18nKey="pages.privacyPolicy.rights.content">
+				<Trans i18nKey="privacyPolicy.rights.content">
 					En application de la réglementation Informatique et libertés, vous
 					disposez :
 					<Ul>
@@ -274,19 +270,19 @@ export default function PrivacyPolicy({
 			</Body>
 			<H2>
 				{t(
-					'pages.privacyPolicy.security.title',
+					'privacyPolicy.security.title',
 					'Comment la sécurité de vos données est-elle assurée ?'
 				)}
 			</H2>
 			<Body>
 				{t(
-					'pages.privacyPolicy.security.content',
+					'privacyPolicy.security.content',
 					'Vos données personnelles recueillies dans le cadre des services proposés sur mon-entreprise.urssaf.fr sont traitées selon des protocoles sécurisés, à la fois informatiques et physiques.'
 				)}
 			</Body>
-			<H2>{t('pages.privacyPolicy.tracking.title', 'Cookies et traceurs')}</H2>
+			<H2>{t('privacyPolicy.tracking.title', 'Cookies et traceurs')}</H2>
 			<Body>
-				<Trans i18nKey="pages.privacyPolicy.tracking.content">
+				<Trans i18nKey="privacyPolicy.tracking.content">
 					mon-entreprise.urssaf.fr ne dépose pas de cookies ou de traceurs.
 					Cependant, la plateforme utilise Piano Analytics, une solution de
 					mesure d'audience, configurée en mode « exempté » et ne nécessitant
@@ -295,7 +291,7 @@ export default function PrivacyPolicy({
 					<StyledLink
 						href="https://www.cnil.fr/fr/solutions-pour-les-cookies-de-mesure-daudience"
 						aria-label={t(
-							'pages.privacyPolicy.tracking.ariaLabel',
+							'privacyPolicy.tracking.ariaLabel',
 							"recommandations de la CNIL, voir plus d'informations à ce sujet sur le site de la CNIL, nouvelle fenêtre"
 						)}
 						target="_blank"
@@ -309,7 +305,7 @@ export default function PrivacyPolicy({
 
 			<Body>
 				{t(
-					'pages.privacyPolicy.tracking.optOut.content',
+					'privacyPolicy.tracking.optOut.content',
 					"Vous pouvez vous soustraire de cette mesure d'utilisation de la plateforme en cochant la case correspondante ci-dessous :"
 				)}
 			</Body>
@@ -318,17 +314,17 @@ export default function PrivacyPolicy({
 					id="opt-out-mesure-audience"
 					name="opt-out mesure audience"
 					onChange={handleChange}
-					defaultSelected={isTrackingRefused}
+					defaultSelected={tracker?.consent.getMode().name === 'opt-out'}
 				>
 					{t(
-						'pages.privacyPolicy.tracking.optOut.checkboxLabel',
+						'privacyPolicy.tracking.optOut.checkboxLabel',
 						"Je ne veux pas envoyer de données anonymes sur mon utilisation de la plateforme à des fins de mesures d'audience."
 					)}
 				</Checkbox>
 			</Body>
 			{valueChanged && (
 				<SmallBody>
-					<Trans i18nKey="pages.privacyPolicy.tracking.optOut.confirmation">
+					<Trans i18nKey="privacyPolicy.tracking.optOut.confirmation">
 						Vos préférences ont bien été enregistrées
 					</Trans>
 				</SmallBody>

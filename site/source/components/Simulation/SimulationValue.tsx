@@ -1,4 +1,5 @@
 import { isNone } from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { formatValue } from 'publicodes'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
@@ -9,16 +10,14 @@ import { Body, Grid } from '@/design-system'
 import { Contexte } from '@/domaine/Contexte'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { isMontant } from '@/domaine/Montant'
-import { toOuiNon } from '@/domaine/OuiNon'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useInitialRender } from '@/hooks/useInitialRender'
-import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import { targetUnitSelector } from '@/store/selectors/simulationSelectors'
 
 import LectureGuide from '../LectureGuide'
 import RuleLink from '../RuleLink'
 import { Appear } from '../ui/animate'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+import { useEngine } from '../utils/EngineContext'
 
 type SimulationValueProps = {
 	dottedName: DottedName
@@ -46,7 +45,7 @@ export function SimulationValue({
 	const language = useTranslation().i18n.language
 	const evaluation = engine.evaluate({
 		valeur: dottedName,
-		arrondi: toOuiNon(round),
+		arrondi: round ? 'oui' : 'non',
 		...(!isTypeBoolean ? { unité: currentUnit } : {}),
 		contexte,
 	})

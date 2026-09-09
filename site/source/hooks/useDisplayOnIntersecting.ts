@@ -6,7 +6,7 @@ export default function ({
 	threshold = 0,
 	unobserve = true,
 }: IntersectionObserverInit & { unobserve?: boolean }): [
-	React.RefObject<HTMLDivElement | null>,
+	React.RefObject<HTMLDivElement>,
 	boolean,
 ] {
 	const ref = useRef<HTMLDivElement>(null)

@@ -1,7 +1,8 @@
 import { Fragment } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { Emoji } from '../../../emoji'
-import { InfoButton } from '../../InfoButton'
+import { InfoButton } from '../../../InfoButton'
 import { Checkbox } from '../Checkbox'
 
 export interface ChoixOption {
@@ -22,7 +23,7 @@ export interface ChoixMultipleProps {
 
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 }
 
@@ -33,13 +34,14 @@ export interface ChoixMultipleProps {
 export function ChoixMultiple({
 	options,
 	onChange,
-	aria,
+	aria = {},
 	id,
 }: ChoixMultipleProps) {
 	return (
 		<div
-			aria-labelledby={aria?.labelledby}
-			aria-describedby={aria?.describedby}
+			aria-labelledby={aria.labelledby || 'questionHeader'} // FIXME: supprimer ce aria-labelledby en dur
+			aria-label={aria.label}
+			role="group"
 			id={id}
 		>
 			{options.map((option) => (
@@ -60,6 +62,8 @@ type CheckBoxOptionProps = {
 }
 
 function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Checkbox
@@ -70,7 +74,14 @@ function CheckBoxOption({ option, onChange }: CheckBoxOptionProps) {
 			/>
 			{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 			{option.description && (
-				<InfoButton subject={option.label} description={option.description} />
+				<InfoButton
+					light
+					title={option.label}
+					description={option.description}
+					aria-label={t("Plus d'informations sur {{ title }}", {
+						title: option.label,
+					})}
+				/>
 			)}
 			<br />
 		</>

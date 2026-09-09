@@ -1,7 +1,4 @@
 export function removeItem(key: string) {
-	if (typeof window === 'undefined') {
-		return null
-	}
 	try {
 		return window.localStorage.removeItem(key)
 	} catch (error) {
@@ -17,9 +14,6 @@ export function removeItem(key: string) {
 }
 
 export function getItem(key: string) {
-	if (typeof window === 'undefined') {
-		return null
-	}
 	try {
 		return window.localStorage.getItem(key)
 	} catch (error) {
@@ -33,9 +27,6 @@ export function getItem(key: string) {
 }
 
 export function setItem(key: string, value: string) {
-	if (typeof window === 'undefined') {
-		return null
-	}
 	try {
 		return window.localStorage.setItem(key, value)
 	} catch (error) {

@@ -15,15 +15,15 @@ protection sociale . retraite:
     pension de retraite.
 
   description: |
-    ### Un système obligatoire…
+    ### Un système obligatoire …
     Dès lors que vous travaillez, vous et votre employeur, cotisez pour la retraite. Cette cotisation est définie à la mesure du salaire que vous percevez.
 
-    ###…par répartition
+    ###… par répartition
     Le montant total des cotisations que vous versez chaque année sert à payer les
     pensions des retraités pour cette même année. Le système organise ainsi un
     transfert direct des générations en activité vers les générations à la retraite.
 
-    ###…principalement contributif
+    ###… principalement contributif
     Lorsque vous arrivez à la retraite, votre pension (c’est-à-dire votre « revenu »
     à la retraite) est calculé en fonction de vos revenus, de votre âge de départ à
     la retraite et du nombre d’années passées à travailler.
@@ -61,8 +61,9 @@ protection sociale . retraite . trimestres:
   plafond: 4 trimestre validé/an
   références:
     Durée d’assurance retraite du salarié du secteur privé: https://www.service-public.fr/particuliers/vosdroits/F1761
-    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.gouv.fr/vosdroits/F23369
-    Article R351-9 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530
+    # Lien mort :
+    # Salaire validant un trimestre: https://www.legislation.cnav.fr/#/bareme?file_leaf_ref=salaire_validant_un_trimestre_montant_bar.aspx
+    Article R351-9 du code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000028751530/2014-03-21
 
   avec:
     exonération invalidité indépendant:
@@ -84,10 +85,6 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
     assiette: entreprise . chiffre d'affaires
     multiplicateur:
       variations:
-        - si: date >= 01/2026
-          alors: 2860 €/an
-        - si: date >= 01/2025
-          alors: 2694 €/an
         - si: date >= 01/2024
           alors: 2660 €/an
         - si: date >= 01/2023
@@ -104,8 +101,8 @@ protection sociale . retraite . trimestres . auto-entrepreneur CIPAV:
         plafond: 4
       - montant: 4 trimestre validé/an
   références:
-    Cotiser pour acquérir des droits à retraite - Auto-entrepreneurs: https://www.lacipav.fr/sites/default/files/2025-10/Cotiser%20pour%20acqu%C3%A9rir%20des%20droits%20%C3%A0%20retraite%20-%20AE%202025.pdf#page=2
-    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.gouv.fr/vosdroits/F23369
+    Le régime retraite de base des auto-entrepreneur: https://www.lacipav.fr/sites/default/files/2022-01/Guide%20pratique%202022%20-%20Auto-entrepreneurs%20-%20La%20Cipav_0.pdf?page=10
+    Régime de retraite du micro-entrepreneur: https://entreprendre.service-public.fr/vosdroits/F23369
 
 protection sociale . retraite . base:
   titre: Retraite de base maximum
@@ -131,7 +128,7 @@ protection sociale . retraite . base:
     > - _revenu annuel moyen_ = moyenne des salaires et des revenus cotisés de
     > travailleur indépendant pendant les 25 années les plus avantageuses de votre
     > carrière ;
-    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /
+    > - _prorata de pension_ = durée d’assurance auprès de l’Assurance retraite /q
     > durée d’assurance pour obtenir une pension à taux plein.
 
   arrondi: oui
@@ -262,35 +259,6 @@ protection sociale . retraite . complémentaire:
         - CIPAV
     - 10 ans
 
-protection sociale . retraite . complémentaire . points acquis:
-  titre: Points de retraite complémentaire acquis
-  description: |
-    Nombre total de points de retraite complémentaire acquis sur une année,
-    tous régimes confondus (AGIRC-ARRCO, RCI ou Cipav selon le statut).
-  unité: point
-  arrondi: oui
-  somme:
-    - AGIRC ARRCO . points acquis
-    - RCI . points acquis
-    - CIPAV . points acquis
-
-protection sociale . retraite . complémentaire . valeur du point:
-  titre: Valeur de service du point
-  description: |
-    La valeur de service du point permet de convertir les points de retraite
-    complémentaire acquis en pension annuelle. Cette valeur est revalorisée
-    régulièrement par les caisses de retraite.
-  unité: €/an/point
-  variations:
-    - si: salarié
-      alors: AGIRC ARRCO . valeur du point
-    - si:
-        une de ces conditions:
-          - dirigeant . indépendant . PL . CIPAV
-          - dirigeant . auto-entrepreneur . Cipav
-      alors: CIPAV . valeur de service du point
-    - sinon: RCI . valeur du point
-
 protection sociale . retraite . complémentaire . AGIRC ARRCO:
   titre: Agirc-Arrco
   applicable si: salarié
@@ -335,7 +303,6 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
         Le supplément de cotisation ainsi déterminé ne permet pas d’acquérir des
         points.
 
-      unité: point/an
       valeur: (salarié . cotisations . retraite complémentaire / 1.27) / valeur
         d'acquisition
       note:
@@ -346,21 +313,37 @@ protection sociale . retraite . complémentaire . AGIRC ARRCO:
 
     valeur d'acquisition:
       variations:
-        - si: date < 01/2024
-          alors: 18.7669 €/point
-        - si: date < 01/2025
+        - si: date >= 01/2025
+          alors: 20.1877 €/point
+        - si: date >= 01/2024
           alors: 19.6321 €/point
-        - sinon: 20.1877 €/point
+        - si: date >= 01/2023
+          alors: 18.7669 €/point
+        - si: date >= 01/2022
+          alors: 17.4316 €/point
+        - si: date >= 01/2021
+          alors: 17.3982 €/point
+        - si: date >= 01/2020
+          alors: 17.3982 €/point
+        - si: date >= 01/01/2019
+          alors: 17.0571 €/point
       références:
         'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
     valeur du point:
       variations:
-        - si: date < 11/2023
-          alors: 1.3498 €/an/point
-        - si: date < 11/2024
+        - si: date >= 11/2024
+          alors: 1.4386 €/an/point
+        - si: date >= 11/2023
           alors: 1.4159 €/an/point
-        - sinon: 1.4386 €/an/point
+        - si: date >= 11/2022
+          alors: 1.3498 €/an/point
+        - si: date >= 11/2021
+          alors: 1.2841 €/an/point
+        - si: date >= 11/2019
+          alors: 1.2714 €/an/point
+        - si: date >= 01/2019
+          alors: 1.2588 €/an/point
       références:
         'Agirc-Arrco : Paramètres du régime': https://www.agirc-arrco.fr/nos-etudes-et-publications/documentation-institutionnelle/parametres-et-donnees-statistiques/
 
@@ -386,6 +369,8 @@ protection sociale . retraite . complémentaire . RCI:
         exonérations . pension invalidité # Non implémenté (cf règle)
       arrondi: oui
       valeur: dirigeant . indépendant . cotisations et contributions . retraite complémentaire / valeur d'acquisition
+      références:
+        cnav.fr: https://www.lassuranceretraite.fr/portail-info/home/actif/travailleur-independant/calcul-retraite/retraite-complementaire.html
 
     revenu cotisé auto-entrepreneur:
       applicable si: dirigeant . auto-entrepreneur
@@ -404,8 +389,6 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur d'acquisition:
       variations:
-        - si: date >= 01/2026
-          alors: 21.726 €/point
         - si: date >= 01/2025
           alors: 21.532 €/point
         - si: date >= 01/2024
@@ -425,8 +408,6 @@ protection sociale . retraite . complémentaire . RCI:
 
     valeur du point:
       variations:
-        - si: date >= 01/2026
-          alors: 1.347 €/an/point
         - si: date >= 01/2025
           alors: 1.335 €/an/point
         - si: date >= 01/2024
@@ -522,8 +503,6 @@ protection sociale . retraite . base . CNAVPL:
 
     valeur du point:
       variations:
-        - si: date >= 01/2026
-          alors: 0.6599 €/an/point
         - si: date >= 01/2025
           alors: 0.6540 €/an/point
         - si: date >= 01/2024
@@ -533,7 +512,7 @@ protection sociale . retraite . base . CNAVPL:
         - si: date >= 01/2022
           alors: 0.5795 €/an/point
     références:
-      Comprendre sa retraite - Pension du professionnel libéral - Montant de la pension: https://www.cnavpl.fr/comprendre-sa-retraite/
+      'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
 
 protection sociale . retraite . complémentaire . CIPAV:
   applicable si:
@@ -544,7 +523,8 @@ protection sociale . retraite . complémentaire . CIPAV:
     - points acquis
     - valeur de service du point
   références:
-    Comment est calculée ma retraite ?: https://www.lacipav.fr/calcul-retraite
+    'Cipav: Fiche pratique - Comment est calculée la retraite ?': https://www.lacipav.fr/sites/default/files/2024-03/Comment%20est%20calcul%C3%A9e%20la%20retraite%20-%20Fiche%20pratique%20La%20Cipav%20Digital.pdf
+    Évolutions relatives aux droits et aux prestations de la Cipav: https://www.lacipav.fr/evolutiondroitsetprestationsCipav
 
   avec:
     points acquis:
@@ -575,16 +555,20 @@ protection sociale . retraite . complémentaire . CIPAV:
 
     valeur d'acquisition:
       variations:
-        - si: date < 01/2024
+        - si: date >= 01/2024
+          alors: 47.40 €/point
+        - si: date >= 01/2023
           alors: 45.30 €/point
-        - sinon: 47.40 €/point
 
     valeur de service du point:
       unité: €/an/point
       variations:
-        - si: date < 01/2024
+        - si: date >= 01/2024
+          alors: 2.89 €/an/point
+        - si: date >= 01/2023
           alors: 2.77 €/an/point
-        - sinon: 2.89 €/an/point
+        - si: date >= 01/2022
+          alors: 2.63 €/an/point
 
 protection sociale . maladie:
   icônes: 🏥
@@ -605,7 +589,7 @@ protection sociale . maladie:
     Grâce à elle, vous êtes couvert sur la plupart des soins de santé. En cas de
     maladie grave ou de longue durée, 100 % des soins sont remboursés.
 
-    ### L’assurance maladie en France en quelques chiffres
+    ## L’assurance maladie en France en quelques chiffres
       - **92 %** des dépenses de santé remboursées en moyenne par l’assurance
       maladie et la complémentaire
       - **30 000 € / an / patient** : exemple de prise en charge complète pour une
@@ -647,7 +631,7 @@ protection sociale . maladie . arrêt maladie:
   description: >-
     Si vous êtes en arrêt de travail pour maladie, vous avez droit à des
     indemnités journalières (IJ) versées par votre régime d’assurance maladie
-    (CPAM, MSA…).
+    (CPAM, MSA,...).
 
     Les conditions d’indemnisation varient en fonction de votre régime de protection
     sociale.
@@ -795,11 +779,11 @@ protection sociale . maladie . maternité paternité adoption:
 
     délai d'attente:
       description: |
-        ### Maternité
+        ## Maternité
         Vous devez justifiez de 10 mois d’affiliation à la date prévue de votre
         accouchement, et cesser toute activité professionnelle pendant la période de
         perception et au moins pendant 8 semaines dont 6 après l’accouchement.
-        ### Paternité / Adoption
+        ## Paternité / Adoption
         Pour en bénéficier, vous devez justifier de 10 mois d’affiliation à la
         naissance / à l’adoption.
       valeur: 10 mois
@@ -1036,8 +1020,7 @@ protection sociale . invalidité et décès:
         instituées en faveur des personnes handicapées.
       références:
         Le capital orphelin pour les enfants des travailleurs indépendants: https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
-      valeur: 5% * plafond sécurité sociale * 1 an
-      unité: €
+      valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
 
     pension de reversion:
       titre: pension de reversion maximum
@@ -1165,7 +1148,7 @@ protection sociale . assurance chômage:
     toucher un revenu sous forme d’allocation à condition d’avoir cotisé
     suffisamment.
 
-    ### L’assurance chômage en France en quelques chiffres
+    ## L’assurance chômage en France en quelques chiffres
       - **72 %** de l’ancien salaire net : pourcentage de l’allocation chômage en
       moyenne
       - **2,7 millions** de chômeurs indemnisés chaque mois
@@ -1181,7 +1164,7 @@ protection sociale . famille:
   type: branche
   résumé: |
     Assure des prestations en soutien aux familles : garde d’enfants, aide au
-    logement…
+    logement...
   description: |
     Créée en 1945, la branche Famille est l’un des principaux acteurs de la
     politique familiale française. Actuellement, elle a deux missions prioritaires :
@@ -1223,9 +1206,9 @@ protection sociale . transport:
     mobilité](https://fr.wikipedia.org/wiki/Autorit%C3%A9_organisatrice_de_la_mobilit%C3%A9)
     de la zone ou est implantée l’entreprise. Celle-ci peut ensuite l’utiliser pour
     ubventionner les transports en commun existants ou pour développer de nouvelles
-    infrastructures de transport (tramway, métro, bus…).
+    infrastructures de transport (tramway, métro, bus...).
 
-    ### Le versement mobilité en quelques chiffres
+    ## Le versement mobilité en quelques chiffres
     - **45% de réduction** sur le coût des transports en communs dans les 12 plus
     grandes agglomérations de France.
     - **263 € / an / habitant** de gain de pouvoir d’achat pour les habitants

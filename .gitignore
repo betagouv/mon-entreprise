@@ -7,16 +7,10 @@ package-lock.json
 node_modules/
 .env
 dist/
-.next/
-next-env.d.ts
-*.tsbuildinfo
 storybook-static/
 
 # Local Netlify folder
 .netlify
-
-# Local Clever Cloud link
-.clever.json
 
 # IDE
 .idea/

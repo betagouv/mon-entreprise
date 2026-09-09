@@ -1,9 +1,10 @@
-import { ComponentPropsWithRef, useId } from 'react'
-import { AriaButtonProps, useProgressBar } from 'react-aria'
+import { useProgressBar } from '@react-aria/progress'
+import { useSSRSafeId } from '@react-aria/ssr'
+import { AriaButtonProps } from '@react-types/button'
+import { ComponentPropsWithRef } from 'react'
 import { Trans } from 'react-i18next'
+import { Link as RouterLink, useMatch } from 'react-router-dom'
 import { css, styled } from 'styled-components'
-
-import { Link as RouterLink, useNavigation } from '@/lib/navigation'
 
 import { Link } from '../typography/link'
 
@@ -20,12 +21,11 @@ export function Step({
 	children,
 	...props
 }: Props) {
-	const labelId = useId()
+	const labelId = useSSRSafeId()
 	if (import.meta.env.DEV && (progress > 1 || progress < 0)) {
 		throw new TypeError('`progress` should be a number between 0 and 1')
 	}
-	const { matchPath } = useNavigation()
-	const active = matchPath(props.to) !== null
+	const active = !!useMatch({ path: props.to })
 	const propsBar = {
 		'aria-labelledby': labelId,
 		minValue: 0,
@@ -100,7 +100,7 @@ const StyledStepContainer = styled.li`
 const StyledStepNumber = styled.span<{ $active: boolean; $disabled: boolean }>`
 	&::before {
 		content: counter(step-counter);
-		font-size: ${({ theme }) => theme.fontSizes.lg};
+		font-size: 1.125rem;
 		font-weight: 500;
 	}
 	display: inline-flex;
@@ -133,10 +133,10 @@ const StyledStep = styled(Link)<{ $active: boolean }>`
 			? css`
 					color: ${theme.colors.bases.primary[800]};
 					background-color: inherit;
-				`
+			  `
 			: css`
 					font-weight: inherit;
-				`};
+			  `};
 `
 const StyledProgressBar = styled.span<{
 	$active: boolean

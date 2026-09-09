@@ -1,8 +1,7 @@
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useNavigate } from 'react-router-dom'
 
 import { Popover } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
-import Documentation from '@/pages/documentation/Documentation'
+import Documentation from '@/pages/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export function EngineDocumentationRoutes({
@@ -12,7 +11,7 @@ export function EngineDocumentationRoutes({
 	namedEngines: EngineComparison
 	basePath: string
 }) {
-	const { navigate } = useNavigation()
+	const navigate = useNavigate()
 
 	return (
 		<Routes>
@@ -34,7 +33,6 @@ export function EngineDocumentationRoutes({
 								<Documentation
 									engine={engine}
 									documentationPath={`${basePath}/${name}`}
-									nomModèle="modele-social"
 								/>
 							</Popover>
 						</div>

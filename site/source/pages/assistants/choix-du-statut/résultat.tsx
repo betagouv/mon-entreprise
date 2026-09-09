@@ -1,14 +1,16 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import { RuleNode } from 'publicodes'
 import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 
+import { TrackPage } from '@/components/ATInternetTracking'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
-import { References } from '@/components/documentation/References/References'
 import { Feedback } from '@/components/Feedback/Feedback'
-import { TrackPage } from '@/components/PianoAnalytics'
+import { References } from '@/components/References'
 import { StatutType } from '@/components/StatutTag'
+import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Article,
 	Button,
@@ -22,24 +24,18 @@ import {
 	Strong,
 } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
-import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+import { batchUpdateSituation } from '@/store/actions/actions'
 
-import useIsEmbeddedOnBPISite from './_components/useIsEmbeddedBPI'
-import { lastPathSegment } from './_components/useSteps'
+import useIsEmbededOnBPISite from './_components/useIsEmbededBPI'
 
 export default function Résultat() {
-	const { t } = useTranslation()
-	const { relativeSitePaths } = useSitePaths()
-	const { currentPath } = useNavigation()
-	const segment = lastPathSegment(currentPath)
+	const { absoluteSitePaths } = useSitePaths()
+	const location = useLocation()
 
 	const statut = Object.entries(
-		relativeSitePaths.assistants['choix-du-statut'].résultat
-	).find(([key, value]) => key !== 'index' && value === segment)?.[0]
+		absoluteSitePaths.assistants['choix-du-statut'].résultat
+	).find(([, path]) => location.pathname === path)?.[0]
 	const dottedName = STATUT_TO_DOTTEDNAME[statut as StatutType]
 	useSetStatutInSituation(dottedName)
 	const rule = useEngine().getRule(dottedName)
@@ -52,47 +48,32 @@ export default function Résultat() {
 			<TrackPage chapter3="resultat" name={statutLabel} />
 
 			<H3 as="h2">
-				{t(
-					'pages.assistants.choix-statut.résultat.titre',
-					'Vous avez choisi le statut :'
-				)}{' '}
-				<Strong>{statutLabel}</Strong> <Emoji emoji="🎉" />
+				Vous avez choisi le statut : <Strong>{statutLabel}</Strong>{' '}
+				<Emoji emoji="🎉" />
 			</H3>
 			<Intro>
-				{t(
-					'pages.assistants.choix-statut.résultat.intro',
-					'Félicitations ! Le temps est venu de rassembler toutes les informations nécessaires à la création de votre entreprise. Voici quelques pistes.'
-				)}
+				Félicitations ! Le temps est venu de rassembler toutes les informations
+				nécessaires à la création de votre entreprise. Voici quelques pistes.
 			</Intro>
 			<Grid spacing={3} container>
 				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Le guide complet pour créer son activité"
 						href={externalGuideLink}
-						ctaLabel={t(
-							'pages.assistants.choix-statut.résultat.guide.cta',
-							'Lire le guide'
-						)}
+						ctaLabel="Lire le guide"
 					>
-						{t(
-							'pages.assistants.choix-statut.résultat.guide.texte',
-							'Laissez-vous guidez pas à pas dans les étapes de création de votre entreprise, du stade de l’idée au lancement de l’entreprise.'
-						)}
+						Laissez-vous guidez pas à pas dans les étapes de création de votre
+						entreprise, du stade de l'idée au lancement de l'entreprise.
 					</Article>
 				</Grid>
 				<Grid item xl={4} lg={6} sm={12}>
 					<Article
 						title="Vos démarches en ligne"
 						href="https://formalites.entreprises.gouv.fr/"
-						ctaLabel={t(
-							'pages.assistants.choix-statut.résultat.démarches.cta',
-							'Accéder au site'
-						)}
+						ctaLabel="Accéder au site"
 					>
-						{t(
-							'pages.assistants.choix-statut.résultat.démarches.texte',
-							'Immatriculez votre entreprise en ligne, de manière sécurisée et gratuite, sur le site officiel formalites.entreprises.gouv.fr.'
-						)}
+						Immatriculez votre entreprise en ligne, de manière sécurisée et
+						gratuite, sur le site officiel formalites.entreprises.gouv.fr.
 					</Article>
 				</Grid>
 				<Grid item xl={4} xs={12} sm>
@@ -118,12 +99,13 @@ export default function Résultat() {
 					}}
 					xl="auto"
 				>
-					<Button color="secondary" light size="XXS" to="..">
-						<Emoji emoji="↻" />{' '}
-						{t(
-							'pages.assistants.choix-statut.résultat.recommencer',
-							'Recommencer l’assistant'
-						)}
+					<Button
+						color="secondary"
+						light
+						size="XXS"
+						to={absoluteSitePaths.assistants['choix-du-statut'].index}
+					>
+						<span aria-hidden>↻</span> Recommencer l'assistant
 					</Button>
 				</Grid>
 			</Grid>
@@ -136,20 +118,9 @@ export default function Résultat() {
 						: theme.colors.bases.primary[100]
 				}
 			>
-				<H3>
-					{t(
-						'pages.assistants.choix-statut.résultat.références',
-						'{{statutLabel}} : pour aller plus loin',
-						{ statutLabel }
-					)}
-				</H3>
+				<H3>{statutLabel} : pour aller plus loin</H3>
 				<References dottedName={dottedName} references={références} />
-				<H3>
-					{t(
-						'pages.assistants.choix-statut.résultat.simulateur',
-						'Simuler vos futurs revenus'
-					)}
-				</H3>
+				<H3>Simuler vos futurs revenus</H3>
 				<CurrentSimulatorCard />
 				<Spacing xl />
 			</Container>
@@ -185,14 +156,14 @@ function useSetStatutInSituation(dottedName: DottedName) {
 	const dispatch = useDispatch()
 	useEffect(() => {
 		dispatch(
-			enregistreLesRéponsesAuxQuestions({
+			batchUpdateSituation({
 				...setAllStatutTo('non'),
 				[dottedName]: 'oui',
 			})
 		)
 
 		return () => {
-			dispatch(enregistreLesRéponsesAuxQuestions(setAllStatutTo(undefined)))
+			dispatch(batchUpdateSituation(setAllStatutTo(undefined)))
 		}
 	}, [])
 }
@@ -203,7 +174,7 @@ function useSetStatutInSituation(dottedName: DottedName) {
 const BPIWhiteList = ['bpifrance-creation.fr', 'associations.gouv.fr']
 
 export function useReferences(rule: RuleNode) {
-	const onBPISite = useIsEmbeddedOnBPISite()
+	const onBPISite = useIsEmbededOnBPISite()
 	if (!rule.rawNode.références) {
 		return {}
 	}
@@ -218,7 +189,7 @@ export function useReferences(rule: RuleNode) {
 }
 
 function useExternalGuideLink() {
-	const onBPISite = useIsEmbeddedOnBPISite()
+	const onBPISite = useIsEmbededOnBPISite()
 
 	return onBPISite
 		? 'https://bpifrance-creation.fr/boiteaoutils/guide-pratique-du-createur-reussir-votre-creation-dentreprise'

@@ -1,127 +1,145 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`calculate assimilé salarié > Acre 1`] = `
-"assimilé salarié . cotisations: 851
-assimilé salarié . rémunération . brute: 1552
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 1232
-assimilé salarié . rémunération . nette . à payer avant impôt: 1232
-assimilé salarié . rémunération . totale: 25000"
+exports[`calculate assimilé salarié > ACRE 1`] = `
+"dirigeant . rémunération . totale: 25000
+impôt . montant: 174
+salarié . cotisations: 505
+salarié . rémunération . brut: 1855
+salarié . rémunération . net . payé après impôt: 1564
+salarié . rémunération . net . à payer avant impôt: 1579"
 `;
 
-exports[`calculate assimilé salarié > Acre 2`] = `
-"assimilé salarié . cotisations: 1691
-assimilé salarié . rémunération . brute: 3099
-assimilé salarié . rémunération . impôt: 1791
-assimilé salarié . rémunération . nette . après impôt: 2326
-assimilé salarié . rémunération . nette . à payer avant impôt: 2475
-assimilé salarié . rémunération . totale: 50000"
+exports[`calculate assimilé salarié > ACRE 2`] = `
+"dirigeant . rémunération . totale: 50000
+impôt . montant: 2579
+salarié . cotisations: 1428
+salarié . rémunération . brut: 3328
+salarié . rémunération . net . payé après impôt: 2524
+salarié . rémunération . net . à payer avant impôt: 2739"
 `;
 
-exports[`calculate assimilé salarié > Acre 3`] = `
-"assimilé salarié . cotisations: 3642
-assimilé salarié . rémunération . brute: 5944
-assimilé salarié . rémunération . impôt: 9118
-assimilé salarié . rémunération . nette . après impôt: 3931
-assimilé salarié . rémunération . nette . à payer avant impôt: 4691
-assimilé salarié . rémunération . totale: 100000"
+exports[`calculate assimilé salarié > ACRE 3`] = `
+"dirigeant . rémunération . totale: 100000
+impôt . montant: 9196
+salarié . cotisations: 3636
+salarié . rémunération . brut: 5949
+salarié . rémunération . net . payé après impôt: 3931
+salarié . rémunération . net . à payer avant impôt: 4697"
 `;
 
-exports[`calculate assimilé salarié > Acre 4`] = `
-"assimilé salarié . cotisations: 1124
-assimilé salarié . rémunération . brute: 1769
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 1376
-assimilé salarié . rémunération . nette . à payer avant impôt: 1376
-assimilé salarié . rémunération . totale: 30000"
+exports[`calculate assimilé salarié > ACRE 4`] = `
+"dirigeant . rémunération . totale: 30000
+impôt . montant: 0
+salarié . cotisations: 1123
+salarié . rémunération . brut: 1770
+salarié . rémunération . net . payé après impôt: 1377
+salarié . rémunération . net . à payer avant impôt: 1377"
 `;
 
-exports[`calculate assimilé salarié > Acre 5`] = `
-"assimilé salarié . cotisations: 505
-assimilé salarié . rémunération . brute: 1855
-assimilé salarié . rémunération . impôt: 149
-assimilé salarié . rémunération . nette . après impôt: 1566
-assimilé salarié . rémunération . nette . à payer avant impôt: 1578
-assimilé salarié . rémunération . totale: 25000"
+exports[`calculate assimilé salarié > ACRE 5`] = `
+"dirigeant . rémunération . totale: 25000
+impôt . montant: 174
+salarié . cotisations: 505
+salarié . rémunération . brut: 1855
+salarié . rémunération . net . payé après impôt: 1564
+salarié . rémunération . net . à payer avant impôt: 1579"
 `;
 
 exports[`calculate assimilé salarié > JEI 1`] = `
-"assimilé salarié . cotisations: 1196
-assimilé salarié . rémunération . brute: 3577
-assimilé salarié . rémunération . impôt: 2764
-assimilé salarié . rémunération . nette . après impôt: 2573
-assimilé salarié . rémunération . nette . à payer avant impôt: 2804
-assimilé salarié . rémunération . totale: 48000"
+"dirigeant . rémunération . totale: 48000
+impôt . montant: 2828
+salarié . cotisations: 1195
+salarié . rémunération . brut: 3577
+salarié . rémunération . net . payé après impôt: 2569
+salarié . rémunération . net . à payer avant impôt: 2805"
+`;
+
+exports[`calculate assimilé salarié > avec charges 1`] = `
+"dirigeant . rémunération . totale: 10000
+impôt . montant: 0
+salarié . cotisations: 397
+salarié . rémunération . brut: 581
+salarié . rémunération . net . payé après impôt: 437
+salarié . rémunération . net . à payer avant impôt: 437"
+`;
+
+exports[`calculate assimilé salarié > avec charges 2`] = `
+"dirigeant . rémunération . totale: 20000
+impôt . montant: 0
+salarié . cotisations: 760
+salarié . rémunération . brut: 1176
+salarié . rémunération . net . payé après impôt: 907
+salarié . rémunération . net . à payer avant impôt: 907"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 1`] = `
-"assimilé salarié . cotisations: 51
-assimilé salarié . rémunération . brute: 15
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: -10
-assimilé salarié . rémunération . nette . à payer avant impôt: -10
-assimilé salarié . rémunération . totale: 500"
+"dirigeant . rémunération . totale: 100
+impôt . montant: undefined
+salarié . cotisations: undefined
+salarié . rémunération . brut: undefined
+salarié . rémunération . net . payé après impôt: undefined
+salarié . rémunération . net . à payer avant impôt: undefined"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 2`] = `
-"assimilé salarié . cotisations: 70
-assimilé salarié . rémunération . brute: 45
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 14
-assimilé salarié . rémunération . nette . à payer avant impôt: 14
-assimilé salarié . rémunération . totale: 1000"
+"dirigeant . rémunération . totale: 1000
+impôt . montant: 0
+salarié . cotisations: 70
+salarié . rémunération . brut: 45
+salarié . rémunération . net . payé après impôt: 14
+salarié . rémunération . net . à payer avant impôt: 14"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 3`] = `
-"assimilé salarié . cotisations: 106
-assimilé salarié . rémunération . brute: 105
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 61
-assimilé salarié . rémunération . nette . à payer avant impôt: 61
-assimilé salarié . rémunération . totale: 2000"
+"dirigeant . rémunération . totale: 2000
+impôt . montant: 0
+salarié . cotisations: 106
+salarié . rémunération . brut: 105
+salarié . rémunération . net . payé après impôt: 61
+salarié . rémunération . net . à payer avant impôt: 61"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 4`] = `
-"assimilé salarié . cotisations: 215
-assimilé salarié . rémunération . brute: 283
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 202
-assimilé salarié . rémunération . nette . à payer avant impôt: 202
-assimilé salarié . rémunération . totale: 5000"
+"dirigeant . rémunération . totale: 5000
+impôt . montant: 0
+salarié . cotisations: 215
+salarié . rémunération . brut: 283
+salarié . rémunération . net . payé après impôt: 202
+salarié . rémunération . net . à payer avant impôt: 202"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 5`] = `
-"assimilé salarié . cotisations: 397
-assimilé salarié . rémunération . brute: 580
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 436
-assimilé salarié . rémunération . nette . à payer avant impôt: 436
-assimilé salarié . rémunération . totale: 10000"
+"dirigeant . rémunération . totale: 10000
+impôt . montant: 0
+salarié . cotisations: 397
+salarié . rémunération . brut: 581
+salarié . rémunération . net . payé après impôt: 437
+salarié . rémunération . net . à payer avant impôt: 437"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 6`] = `
-"assimilé salarié . cotisations: 761
-assimilé salarié . rémunération . brute: 1175
-assimilé salarié . rémunération . impôt: 0
-assimilé salarié . rémunération . nette . après impôt: 906
-assimilé salarié . rémunération . nette . à payer avant impôt: 906
-assimilé salarié . rémunération . totale: 20000"
+"dirigeant . rémunération . totale: 20000
+impôt . montant: 0
+salarié . cotisations: 760
+salarié . rémunération . brut: 1176
+salarié . rémunération . net . payé après impôt: 907
+salarié . rémunération . net . à payer avant impôt: 907"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 7`] = `
-"assimilé salarié . cotisations: 1852
-assimilé salarié . rémunération . brute: 2958
-assimilé salarié . rémunération . impôt: 1504
-assimilé salarié . rémunération . nette . après impôt: 2190
-assimilé salarié . rémunération . nette . à payer avant impôt: 2315
-assimilé salarié . rémunération . totale: 50000"
+"dirigeant . rémunération . totale: 50000
+impôt . montant: 1532
+salarié . cotisations: 1850
+salarié . rémunération . brut: 2960
+salarié . rémunération . net . payé après impôt: 2189
+salarié . rémunération . net . à payer avant impôt: 2317"
 `;
 
 exports[`calculate assimilé salarié > échelle de rémunération 8`] = `
-"assimilé salarié . cotisations: 3642
-assimilé salarié . rémunération . brute: 5944
-assimilé salarié . rémunération . impôt: 9118
-assimilé salarié . rémunération . nette . après impôt: 3931
-assimilé salarié . rémunération . nette . à payer avant impôt: 4691
-assimilé salarié . rémunération . totale: 100000"
+"dirigeant . rémunération . totale: 100000
+impôt . montant: 9196
+salarié . cotisations: 3636
+salarié . rémunération . brut: 5949
+salarié . rémunération . net . payé après impôt: 3931
+salarié . rémunération . net . à payer avant impôt: 4697"
 `;

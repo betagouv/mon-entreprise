@@ -8,8 +8,6 @@
 	"type": "module",
 	"workspaces": [
 		"modele-social",
-		"modele-as",
-		"modele-ti",
 		"exoneration-covid",
 		"api",
 		"site",
@@ -25,17 +23,17 @@
 		"lint:prettier:fix": "yarn lint:prettier --write",
 		"lint:fix": "yarn lint:eslint:fix ; yarn lint:prettier:fix",
 		"lint": "yarn lint:eslintrc && yarn lint:eslint && yarn lint:prettier",
-		"postinstall": "yarn workspaces foreach -Apiv --exclude site run prepack",
-		"test": "CI=true yarn workspaces foreach -A run test",
-		"test:type": "yarn workspaces foreach -Api run tsc --skipLibCheck --noEmit",
-		"clean": "yarn workspaces foreach -A run clean && rimraf node_modules",
+		"postinstall": "yarn workspaces foreach -piv --exclude site run prepack",
+		"test": "CI=true yarn workspaces foreach run test",
+		"test:type": "yarn workspaces foreach -pi run tsc --skipLibCheck --noEmit",
+		"clean": "yarn workspaces foreach run clean && rimraf node_modules",
 		"build:api": "yarn workspaces focus api && yarn workspace api run build && yarn workspaces focus --all && yarn test",
 		"build:server": "yarn workspaces focus server && yarn workspace server run build"
 	},
 	"devDependencies": {
 		"@actions/core": "^1.10.1",
 		"@actions/github": "^5.1.1",
-		"@ianvs/prettier-plugin-sort-imports": "^4.7.0",
+		"@ianvs/prettier-plugin-sort-imports": "^4.1.0",
 		"@publicodes/codemod": "^1.1.0",
 		"@publicodes/tools": "^1.0.7",
 		"@testing-library/react-hooks": "^8.0.1",
@@ -54,41 +52,24 @@
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"eslint-plugin-vitest": "^0.3.22",
-		"prettier": "^3.8.1",
+		"prettier": "^3.0.3",
 		"publicodes": "^1.8.1",
 		"rimraf": "^5.0.1"
 	},
 	"resolutions": {
-		"rollup": "^4.43.0",
+		"rollup": "^3.10.0",
 		"@koa/cors": "^4.0.0",
 		"@koa/router": "^12.0.0",
 		"koa-body": "^6.0.1",
 		"@types/koa": "^2.13.8",
-		"@types/react": "^19.0.0",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
+		"@types/react": "^18.2.18",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
 		"styled-components": "^6.0.7"
 	},
-	"packageManager": "yarn@4.12.0",
+	"packageManager": "yarn@3.5.0",
 	"engines": {
-		"node": "^24"
-	},
-	"dependenciesMeta": {
-		"@sentry/cli": {
-			"built": true
-		},
-		"@swc/core": {
-			"built": true
-		},
-		"cypress": {
-			"built": true
-		},
-		"esbuild": {
-			"built": true
-		},
-		"sharp": {
-			"built": true
-		}
+		"node": "^18"
 	},
 	"dependencies": {
 		"optics-ts": "^2.4.1",

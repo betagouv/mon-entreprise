@@ -78,6 +78,7 @@ const optionsWithSubOptions = [
 ]
 
 const meta = {
+	title: 'Design System/Field/ChoiceGroup/CardChoiceGroup',
 	component: CardChoiceGroup,
 	parameters: {
 		layout: 'centered',

@@ -1,5 +1,4 @@
 import { ComponentType, PropsWithChildren, ReactNode } from 'react'
-import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import {
@@ -7,21 +6,15 @@ import {
 	findChildrenByType,
 } from '@/utils/react-compound-components'
 
-import { Emoji } from '../emoji'
 import { Grid } from '../layout'
 import { Body } from '../typography/paragraphs'
 import { CardContainer } from './Card'
 
-export type Status = 'applicable' | 'sousConditions' | 'nonApplicable'
-
 type StatusCardProps = {
-	status?: Status
 	children: ReactNode
 }
 
-export const StatusCard = ({ children, status }: StatusCardProps) => {
-	const { t } = useTranslation()
-
+export const StatusCard = ({ children }: StatusCardProps) => {
 	const étiquettes = findChildrenByType(children, StatusCard.Étiquette)
 	const titre = findChildByType(children, StatusCard.Titre)
 	const valeurSecondaire = findChildByType(
@@ -34,7 +27,7 @@ export const StatusCard = ({ children, status }: StatusCardProps) => {
 	const hasContent = titre || valeurSecondaire
 
 	return (
-		<StyledCardContainer $status={status}>
+		<StyledCardContainer inert>
 			<CardBody>
 				{étiquettes.length > 0 && (
 					<Grid container spacing={1}>
@@ -42,42 +35,12 @@ export const StatusCard = ({ children, status }: StatusCardProps) => {
 					</Grid>
 				)}
 				{hasContent && (
-					<StyledContentWrapper as="div" $status={status}>
+					<StyledContentWrapper as="div">
 						{titre}
 						{valeurSecondaire}
 					</StyledContentWrapper>
 				)}
 			</CardBody>
-			{status === 'applicable' && (
-				<AbsoluteSpanWithMargin
-					title={t(
-						'pages.simulateurs.comparaison-statuts.option-applicable',
-						'Option applicable.'
-					)}
-				>
-					<StyledStatusEmoji emoji="✅" />
-				</AbsoluteSpanWithMargin>
-			)}
-			{status === 'sousConditions' && (
-				<AbsoluteSpanWithMargin
-					title={t(
-						'pages.simulateurs.comparaison-statuts.option-sous-conditions',
-						'Option applicable sous conditions.'
-					)}
-				>
-					<StyledStatusEmoji emoji="⚠️" />
-				</AbsoluteSpanWithMargin>
-			)}
-			{status === 'nonApplicable' && (
-				<AbsoluteSpanWithMargin
-					title={t(
-						'pages.simulateurs.comparaison-statuts.option-non-applicable',
-						'Option non applicable.'
-					)}
-				>
-					<StyledStatusEmoji emoji="🚫" />
-				</AbsoluteSpanWithMargin>
-			)}
 			{(complément || actions.length > 0) && (
 				<CardFooter>
 					{complément}
@@ -121,74 +84,10 @@ StatusCard.ValeurSecondaire = StatusCardValeurSecondaire
 StatusCard.Complément = StatusCardComplément
 StatusCard.Action = StatusCardAction
 
-const getStatusBackgroundColor = (
-	status: Status | undefined,
-	darkMode: boolean
-) => {
-	if (!status) return undefined
-
-	const colors = {
-		applicable: darkMode
-			? 'rgba(34, 197, 94, 0.05)'
-			: 'rgba(34, 197, 94, 0.03)',
-		sousConditions: darkMode
-			? 'rgba(234, 179, 8, 0.05)'
-			: 'rgba(234, 179, 8, 0.03)',
-		nonApplicable: darkMode
-			? 'rgba(239, 68, 68, 0.05)'
-			: 'rgba(239, 68, 68, 0.03)',
-	}
-
-	return colors[status]
-}
-
-const getStatusTitleColor = (status: Status | undefined, darkMode: boolean) => {
-	if (!status) return undefined
-
-	const colors = {
-		applicable: darkMode ? 'rgb(134, 239, 172)' : 'rgb(20, 83, 45)',
-		sousConditions: darkMode ? 'rgb(253, 224, 71)' : 'rgb(113, 63, 18)',
-		nonApplicable: darkMode ? 'rgb(252, 165, 165)' : 'rgb(127, 29, 29)',
-	}
-
-	return colors[status]
-}
-
-const StyledCardContainer = styled(CardContainer)<{
-	$status?: Status
-}>`
+const StyledCardContainer = styled(CardContainer)`
 	position: relative;
 	align-items: flex-start;
 	padding: 0;
-
-	${({ $status, theme }) =>
-		$status &&
-		`
-		background-color: ${getStatusBackgroundColor(
-			$status,
-			theme.darkMode
-		)} !important;
-
-		&:hover {
-			background-color: ${getStatusBackgroundColor(
-				$status,
-				theme.darkMode
-			)} !important;
-			box-shadow: ${
-				theme.darkMode ? theme.elevationsDarkMode[2] : theme.elevations[2]
-			};
-		}
-	`}
-`
-
-const AbsoluteSpanWithMargin = styled.span`
-	position: absolute;
-	top: 0.5rem;
-	right: 1.5rem;
-`
-
-const StyledStatusEmoji = styled(Emoji)`
-	font-size: ${({ theme }) => theme.fontSizes.xxl};
 `
 
 const CardBody = styled.div`
@@ -205,27 +104,21 @@ const CardFooter = styled.div`
 	padding: 1.5rem;
 `
 
-const StyledContentWrapper = styled(Body)<{ $status?: Status }>`
-	font-size: ${({ theme }) => theme.fontSizes.xl};
+const StyledContentWrapper = styled(Body)`
+	font-size: 1.25rem;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
 	font-weight: 700;
 	margin: 0;
 	margin-top: 0.75rem;
-
-	${({ $status, theme }) =>
-		$status &&
-		`
-		color: ${getStatusTitleColor($status, theme.darkMode)};
-	`}
 `
 
 const StyledValeurSecondaire = styled.span`
 	display: block;
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: normal;
-	font-size: ${({ theme }) => theme.fontSizes.base};
+	font-size: 1rem;
 	color: ${({ theme }) => theme.colors.extended.grey[700]};
 	margin: 0 !important;
 	margin-top: 0.5rem;

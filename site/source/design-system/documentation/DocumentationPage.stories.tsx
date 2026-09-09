@@ -5,6 +5,7 @@ import { MemoryRouter } from 'react-router-dom'
 import { DocumentationPage } from './DocumentationPage'
 
 const meta = {
+	title: 'Design System/Documentation/DocumentationPage',
 	component: DocumentationPage,
 	parameters: {
 		layout: 'padded',

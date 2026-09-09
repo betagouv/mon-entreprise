@@ -1,22 +1,17 @@
 import { readFileSync } from 'fs'
 
 import dotenv from 'dotenv'
-import { Record } from 'effect'
-import rulesAS from 'modele-as'
-import rules from 'modele-social'
-import rulesTI from 'modele-ti'
 import yaml from 'yaml'
+
+import rules from '../../../modele-social/dist/index.js'
 
 dotenv.config()
 
-export const localesPath = new URL('../../source/locales/', import.meta.url)
-	.pathname
-export const UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
-export const UiTranslationPath = localesPath + 'ui-en.yaml'
-export const UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
-const rulesTranslationFile = 'rules-en.yaml'
-const rulesTranslationFileTI = 'rules-ti-en.yaml'
-const rulesTranslationFileAS = 'rules-as-en.yaml'
+const localesPath = new URL('../../source/locales/', import.meta.url).pathname
+export let UiStaticAnalysisPath = localesPath + 'static-analysis-fr.json'
+export let rulesTranslationPath = localesPath + 'rules-en.yaml'
+export let UiTranslationPath = localesPath + 'ui-en.yaml'
+export let UiOriginalTranslationPath = localesPath + 'ui-fr.yaml'
 
 let attributesToTranslate = [
 	'titre',
@@ -109,22 +104,15 @@ const recursiveRulesMissingTranslations = (currentExternalization, rules) => {
 }
 
 export function getRulesMissingTranslations() {
-	return [
-		[rulesTranslationFile, rules],
-		[rulesTranslationFileTI, rulesTI],
-		[rulesTranslationFileAS, rulesAS],
-	].map(([fileName, rules]) => {
-		let currentExternalization = yaml.parse(
-			readFileSync(localesPath + fileName, 'utf-8')
-		)
+	let currentExternalization = yaml.parse(
+		readFileSync(rulesTranslationPath, 'utf-8')
+	)
 
-		const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
-			currentExternalization,
-			rules
-		)
-
-		return [fileName, missingTranslations, resolved]
-	})
+	const { missingTranslations, resolved } = recursiveRulesMissingTranslations(
+		currentExternalization,
+		rules
+	)
+	return [missingTranslations, resolved]
 }
 
 export const getUiMissingTranslations = () => {
@@ -134,19 +122,28 @@ export const getUiMissingTranslations = () => {
 		readFileSync(UiOriginalTranslationPath, 'utf-8')
 	)
 
-	const pathReducer = (currentSelection, subPath) => currentSelection?.[subPath]
+	const missingTranslations = Object.entries(staticKeys)
+		.filter(([key, valueInSource]) => {
+			if (key.match(/^\{.*\}$/) || key.includes('NO_AUTO_TRANSLATION')) {
+				return false
+			}
+			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
+			const pathReducer = (currentSelection, subPath) =>
+				currentSelection?.[subPath]
+			const isNewKey = !keys.reduce(pathReducer, translatedKeys)
+			const isInvalidatedKey =
+				keys.reduce(pathReducer, originalKeys) !==
+				(valueInSource === 'NO_TRANSLATION' ? key : valueInSource)
 
-	return Record.filter(staticKeys, (valueInSource, key) => {
-		if (key.match(/^\{.*\}$/) || key.includes('NO_AUTO_TRANSLATION')) {
-			return false
-		}
+			return isNewKey || isInvalidatedKey
+		}, staticKeys)
+		.map(([key]) => key)
 
-		const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-		const isNewKey = !keys.reduce(pathReducer, translatedKeys)
-		const isNewValue = keys.reduce(pathReducer, originalKeys) !== valueInSource
-
-		return isNewKey || isNewValue
-	})
+	return Object.fromEntries(
+		Object.entries(staticKeys).filter(([key]) =>
+			missingTranslations.includes(key)
+		)
+	)
 }
 
 const getInObject = (keys, object) =>
@@ -167,35 +164,33 @@ export function assocPath(path, val, obj) {
 export const filterUnusedTranslations = (original, translated) => {
 	const staticKeys = JSON.parse(readFileSync(UiStaticAnalysisPath, 'utf-8'))
 
-	return Object.keys(staticKeys).reduce(
-		({ originalTranslations, translatedTranslations }, key) => {
+	const ret = Object.keys(staticKeys).reduce(
+		(obj, key) => {
 			const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
 
-			originalTranslations = assocPath(
+			obj.originalTranslations = assocPath(
 				keys,
 				getInObject(keys, original),
-				originalTranslations
+				obj.originalTranslations
 			)
-			translatedTranslations = assocPath(
+			obj.translatedTranslations = assocPath(
 				keys,
 				getInObject(keys, translated),
-				translatedTranslations
+				obj.translatedTranslations
 			)
 
-			return {
-				originalTranslations,
-				translatedTranslations,
-			}
+			return obj
 		},
 		{ originalTranslations: {}, translatedTranslations: {} }
 	)
+
+	return ret
 }
 
 export const fetchTranslation = async (text) => {
 	if (typeof text !== 'string') {
 		throw new Error("❌ Can't translate anything other than a string")
 	}
-
 	const response = await fetch(`https://api.deepl.com/v2/translate`, {
 		method: 'POST',
 		headers: {
@@ -213,13 +208,11 @@ export const fetchTranslation = async (text) => {
 			target_lang: 'EN',
 		}),
 	})
-
 	if (response.status !== 200) {
 		const msg = JSON.stringify(text, null, 2)
 		console.error(`❌ Deepl return status ${response.status} for:\n\t${msg}\n`)
 		return ''
 	}
-
 	try {
 		const { translations } = await response.json()
 		const translation = translations[0].text
@@ -235,16 +228,3 @@ export const fetchTranslation = async (text) => {
 		return ''
 	}
 }
-
-export const translateObject = (resolved, paths, arr) =>
-	Promise.all(
-		arr.map(async ([dot, k, v]) => {
-			if (typeof v === 'string') {
-				const trad = await fetchTranslation(v)
-				const res = paths.reduce((obj, key) => obj[key], resolved)
-				res[dot][k] = '[automatic] ' + trad
-			} else {
-				return await translateObject(resolved, [...paths, dot, k], v)
-			}
-		})
-	)

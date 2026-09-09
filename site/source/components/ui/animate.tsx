@@ -157,4 +157,4 @@ function AppearAnim({
 
 export const Appear = (props: Parameters<typeof AppearAnim>[0]) =>
 	// eslint-disable-next-line react/jsx-props-no-spreading
-	typeof window === 'undefined' ? props.children : <AppearAnim {...props} />
+	import.meta.env.SSR ? props.children : <AppearAnim {...props} />

@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import illustration from '@/assets/images/illustrations/créer.svg'
-import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
+import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
+import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -18,15 +18,17 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
+import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
-import { useNextStep, useStepPaths } from './_components/useSteps'
+import { useNextStep } from './_components/useSteps'
+import créerSvg from './_illustrations/créer.svg'
 
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
-	const { toStep } = useStepPaths()
-	const existingCompany = !!useSelector(companySirenSelector)
+	const choixStatutPath =
+		useSitePaths().absoluteSitePaths.assistants['choix-du-statut']
+	const existingCompany = useEngine().evaluate('entreprise . SIREN').nodeValue!
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
 
@@ -34,9 +36,9 @@ export default function AccueilChoixStatut() {
 		<>
 			<TrackPage name={ACCUEIL} />
 
-			<PageHeader picture={illustration}>
+			<PageHeader picture={créerSvg}>
 				<Intro>
-					<Trans i18nKey="pages.assistants.choix-statut.home.intro">
+					<Trans i18nKey="choix-statut.home.intro">
 						La première étape pour créer votre entreprise consiste à{' '}
 						<Strong>choisir un statut juridique adapté à votre activité</Strong>
 						. Les démarches administratives changent en fonction de ce dernier.
@@ -48,8 +50,8 @@ export default function AccueilChoixStatut() {
 
 						<Grid container spacing={3} style={{ alignItems: 'center' }}>
 							<Grid item xs={12} sm={'auto'}>
-								<Button size="XL" to={toStep(nextStep)}>
-									<Trans i18nKey="pages.assistants.choix-statut.home.find-statut">
+								<Button size="XL" to={choixStatutPath[nextStep]}>
+									<Trans i18nKey="choix-statut.home.find-statut">
 										Trouver le bon statut
 									</Trans>
 								</Button>
@@ -64,7 +66,7 @@ export default function AccueilChoixStatut() {
 									}}
 								>
 									<ClockIcon />
-									<Trans i18nKey="pages.assistants.choix-statut.home.estimated-duration">
+									<Trans i18nKey="choix-statut.home.estimated-duration">
 										Durée estimée : 10 minutes.
 									</Trans>
 								</SmallBody>
@@ -74,35 +76,28 @@ export default function AccueilChoixStatut() {
 				) : (
 					<>
 						<Message type="info" border={false}>
-							<Trans i18nKey="pages.assistants.choix-statut.home.warning-entreprise-existante.titre">
-								<H3>Une entreprise est déjà renseignée</H3>
+							<Trans i18nKey="choix-statut.home.warning-entreprise-existante">
+								<H3>Une entreprise a déjà renseignée</H3>
 								<Body>
 									Pour accéder à l'assistant, il vous faut réinitialiser les
-									données.
+									données
 								</Body>
 							</Trans>
 						</Message>
-						<EntrepriseDetailsCard />
+						<EntrepriseDetails />
 						<PopoverConfirm
 							trigger={(buttonProps) => (
 								<Button
 									light
-									aria-label={t(
-										'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.bouton.aria-label',
-										'Réinitialiser la situation enregistrée'
-									)}
+									aria-label={t('Réinitialiser la situation enregistrée')}
 									{...buttonProps}
 								>
-									{t(
-										'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.bouton.texte',
-										'Réinitialiser'
-									)}
+									{t('Réinitialiser')}
 								</Button>
 							)}
 							onConfirm={() => dispatch(resetCompany())}
 							small
 							title={t(
-								'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.titre',
 								'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
 							)}
 						/>

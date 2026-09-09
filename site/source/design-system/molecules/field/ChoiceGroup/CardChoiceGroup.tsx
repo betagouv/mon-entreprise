@@ -1,4 +1,5 @@
 import { Key } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import { RadioCard, RadioCardGroup } from '../Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -11,7 +12,7 @@ interface CardChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 	options: ChoiceOption[]
 	title?: string
@@ -25,14 +26,18 @@ export default function CardChoiceGroup({
 	defaultValue,
 	options,
 	title,
-	aria,
+	aria = {},
 	isSubGroup = false,
 }: CardChoiceGroupProps) {
+	const { t } = useTranslation()
+
 	return (
 		<RadioCardGroup
-			aria-label=""
-			aria-labelledby={aria?.labelledby}
-			aria-describedby={aria?.describedby}
+			aria-label={
+				aria.label ||
+				t('conversation.multiple-answer.aria-label', 'Choix multiples')
+			}
+			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}
 			label={title}

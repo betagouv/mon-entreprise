@@ -1,10 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import illustrationSvg from '@/assets/images/illustrations/landing.svg'
-import illustration2Svg from '@/assets/images/illustrations/landing2.svg'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import Meta from '@/components/utils/Meta'
@@ -19,13 +17,15 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
+import illustrationSvg from './illustration.svg'
+import illustration2Svg from './illustration2.svg'
 import SearchOrCreate from './SearchOrCreate'
 
 export default function Landing() {
-	const simulators = useSimulatorsMetadata()
+	const simulators = useSimulatorsData()
 	const { absoluteSitePaths } = useSitePaths()
 	const { t } = useTranslation()
 
@@ -38,7 +38,7 @@ export default function Landing() {
 					'landing.description',
 					"L'assistant officiel des entrepreneurs"
 				)}
-				openGraph={{ image: '/logo-share.png' }}
+				ogImage="/logo-share.png"
 			/>
 
 			<Container>
@@ -136,32 +136,23 @@ export default function Landing() {
 							<Body>
 								Nous sommes une petite{' '}
 								<Link
-									aria-label={t(
-										'aria-label.équipe',
-										'équipe, accéder à notre page de présentation d’équipe, nouvelle fenêtre'
-									)}
+									aria-label="équipe, accéder à notre page de présentation d'équipe, nouvelle fenêtre"
 									href="https://beta.gouv.fr/startups/mon-entreprise.html#equipe"
 								>
 									équipe
 								</Link>{' '}
-								autonome et pluridisciplinaire au sein de l’
+								autonome et pluridisciplinaire au sein de{' '}
 								<Link
 									href="https://www.urssaf.fr"
-									aria-label={t(
-										'aria-label.urssaf',
-										'Urssaf, accéder à urssaf.fr, nouvelle fenêtre'
-									)}
+									aria-label="l'URSSAF, accéder au site urssaf.fr, nouvelle fenêtre"
 								>
-									Urssaf
+									l’Urssaf
 								</Link>
 								. Nous avons à cœur d’être au près de vos besoins afin
 								d’améliorer en permanence ce site conformément à l'approche{' '}
 								<Link
 									href="https://beta.gouv.fr/manifeste"
-									aria-label={t(
-										'aria-label.beta-gouv',
-										'beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre'
-									)}
+									aria-label="beta.gouv.fr, accéder au site beta.gouv.fr, nouvelle fenêtre"
 								>
 									beta.gouv.fr
 								</Link>

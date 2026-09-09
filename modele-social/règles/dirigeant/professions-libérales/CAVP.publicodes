@@ -20,25 +20,29 @@ dirigeant . indépendant . PL . CAVP . demande reduction:
   résumé: |
     Une réduction de cotisations peut être demandée les 2 premières années, ou
     en cas de revenus faibles. Ainsi, si vos revenus de l'avant-dernière année,
-    ou de l'année précédente s'ils sont connus (soit 2024 ou 2025 pour les cotisations
-    2026), étaient :
-      - inférieurs à 1/3 du PASS (16 020 € en 2026), vous pouvez demander une réduction de 75 % ;
-      - entre 1/3 et 2/3 du PASS (entre 16 020  et 32 040 € en 2026), vous pouvez demander une réduction de 50 % ;
-      - entre 2/3 du PASS et le PASS (entre 32 040 € et 48 060 € en 2026), vous pouvez demander une réduction de 25 %.
+    ou de l'année précédente s'ils sont connus (soit 2023 ou 2024 pour les cotisations
+    2025), étaient :
+      - inférieurs à 1/3 du PASS (15 700 € en 2025), vous pouvez demander une réduction de 75 % ;
+      - entre 1/3 et 2/3 du PASS (entre 15 700  et 31 400 € en 2025), vous pouvez demander une réduction de 50 % ;
+      - entre 2/3 du PASS et le PASS (entre 31 400 € et 47 100 € en 2025), vous pouvez demander une réduction de 25 %.
 
     Cette possibilité est réservée aux pharmaciens qui cotisent en classe 3 (la plus basse).
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
 dirigeant . indépendant . PL . CAVP . cotisation de référence:
-  variations:
-    - si: date < 01/2024
-      alors: 1306 €/an
-    - si: date < 01/2025
-      alors: 1376 €/an
-    - si: date < 01/2026
-      alors: 1423 €/an
-    - sinon: 1453 €/an
+  valeur:
+    variations:
+      - si: date >= 01/2025
+        alors: 1423 €
+      - si: date >= 01/2024
+        alors: 1376 €
+      - si: date >= 01/2023
+        alors: 1306 €
+      - si: date >= 01/2022
+        alors: 1232 €
+      - si: date >= 01/2021
+        alors: 1200 €
   reference:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations-regime-complementaire
 
@@ -67,7 +71,7 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
       formule:
         grille:
           assiette: assiette des cotisations
-          multiplicateur: plafond sécurité sociale . cas général . N-1
+          multiplicateur: plafond sécurité sociale . N-1
           tranches:
             - montant: 2 * cotisation de référence
               plafond: 1.8125
@@ -97,14 +101,13 @@ dirigeant . indépendant . PL . CAVP . retraite complémentaire:
 dirigeant . indépendant . PL . CAVP . invalidité et décès:
   titre: invalidité et décès
   remplace: cotisations et contributions . invalidité et décès
-  variations:
-    - si: date < 01/2024
-      alors: 608 €/an
-    - si: date < 01/2025
-      alors: 674 €/an
-    - si: date < 01/2026
-      alors: 689 €/an
-    - sinon: 696 €/an
+  valeur:
+    variations:
+      - si: date >= 01/2025
+        alors: 689 €/an
+      - si: date >= 01/2024
+        alors: 674 €/an
+      - sinon: 608 €/an
   références:
     Site CAVP: https://www.cavp.fr/votre-profil/pharmacien-en-activite/vos-cotisations
 
@@ -126,22 +129,27 @@ dirigeant . indépendant . PL . CAVP . PCV:
   avec:
     cotisations forfaitaire:
       variations:
-        - si: date < 01/2024
-          alors: 1911 €/an
-        - si: date < 01/2025
-          alors: 2051 €/an
-        - si: date < 01/2026
+        - si: date >= 01/2025
           alors: 2138 €/an
-        - sinon: 2200 €/an
+        - si: date >= 01/2024
+          alors: 2051 €/an
+        - si: date >= 01/2023
+          alors: 1911 €/an
+        - si: date >= 01/2022
+          alors: 1788 €/an
+        - si: date >= 01/2021
+          alors: 1728 €/an
 
     cotisations proportionnelle:
       produit:
         - valeur: assiette des cotisations
           plafond: 5 * plafond sécurité sociale
         - variations:
-            - si: date < 01/2024
+            - si: date >= 01/2024
+              alors: 1.20%
+            - si: date >= 01/2023
               alors: 0.60%
-            - sinon: 1.20%
+            - sinon: 0.30%
 
 dirigeant . indépendant . PL . CAVP . PCV . aide CPAM:
   somme:

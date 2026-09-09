@@ -1,5 +1,6 @@
 import { ReactNode, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
@@ -18,7 +19,6 @@ import {
 	TextField,
 } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
-import { useNavigation } from '@/lib/navigation'
 
 type SubmitError = {
 	message?: string
@@ -119,8 +119,7 @@ export default function FeedbackForm({
 	const [submitError, setSubmitError] = useState<SubmitError | undefined>(
 		undefined
 	)
-	const { currentPath } = useNavigation()
-	const pathname = decodeURI(currentPath)
+	const pathname = decodeURI(useLocation().pathname)
 
 	const { t } = useTranslation()
 
@@ -209,8 +208,8 @@ export default function FeedbackForm({
 								const emailError = isEmailEmpty
 									? requiredEmailError
 									: isEmailInvalid
-										? invalidEmailError
-										: ''
+									? invalidEmailError
+									: ''
 
 								if (isMessageEmpty || isEmailEmpty) {
 									setSubmitError({
@@ -251,7 +250,7 @@ export default function FeedbackForm({
 									placeholder ??
 									t(
 										'components.feedback.form.message.placeholder',
-										'Exemple : Des informations plus claires, un calcul détaillé…'
+										'Exemple : Des informations plus claires, un calcul détaillé...'
 									)
 								}
 							/>
@@ -298,8 +297,8 @@ export default function FeedbackForm({
 }
 
 const StyledFeedback = styled.div`
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	font-family: ${({ theme }) => theme.fonts.main};
 	text-align: left;
 
@@ -311,16 +310,16 @@ const StyledFeedback = styled.div`
 
 const StyledTextArea = styled(TextAreaField)`
 	width: 100%;
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	padding: ${({ theme }) => theme.spacings.sm};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	font-family: ${({ theme }) => theme.fonts.main};
 `
 
 const StyledTextField = styled(TextField)`
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: 1rem;
+	line-height: 1.5rem;
 	padding: ${({ theme }) => theme.spacings.sm};
 	font-family: ${({ theme }) => theme.fonts.main};
 `

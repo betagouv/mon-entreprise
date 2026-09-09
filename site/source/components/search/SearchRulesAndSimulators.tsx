@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Configure, Index } from 'react-instantsearch-dom'
+import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import { Spacing } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
 
 import { algoliaIndexPrefix, searchClient } from './Algolia'
 import { RulesInfiniteHits } from './RulesInfiniteHits'
@@ -18,11 +18,14 @@ interface Props {
 
 export default function SearchRulesAndSimulators({ closePopover }: Props) {
 	const { t } = useTranslation()
-	const { onNavigate } = useNavigation()
-
+	const location = useLocation()
+	const prevLocation = useRef(location)
 	useEffect(() => {
-		return onNavigate(closePopover)
-	}, [closePopover, onNavigate])
+		if (prevLocation.current !== location) {
+			prevLocation.current = location
+			closePopover()
+		}
+	}, [closePopover, location])
 
 	return (
 		<StyledContainer>

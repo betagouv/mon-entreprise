@@ -1,7 +1,8 @@
 import { useCallback, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
+import { useLocation } from 'react-router-dom'
 
+import { useTracking } from '@/components/ATInternetTracking'
 import {
 	Body,
 	Button,
@@ -11,32 +12,53 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
-import { useTracking } from '@/hooks/useTracking'
-import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
+import * as safeLocalStorage from '../../storage/safeLocalStorage'
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import FeedbackForm from './FeedbackForm'
 import FeedbackRating, { FeedbackT } from './FeedbackRating'
 import { useFeedback } from './useFeedback'
-import { setFeedbackGivenForUrl, shouldAskFeedback } from './utils'
+
+const localStorageKey = (url: string) => `app::feedback::v3::${url}`
+const setFeedbackGivenForUrl = (url: string) => {
+	safeLocalStorage.setItem(
+		localStorageKey(url),
+		JSON.stringify(new Date().toISOString())
+	)
+}
+
+// Ask for feedback again after 4 months
+export const getShouldAskFeedback = (url: string) => {
+	const previousFeedbackDate = safeLocalStorage.getItem(localStorageKey(url))
+	if (!previousFeedbackDate) {
+		return true
+	}
+
+	return (
+		new Date(previousFeedbackDate) <
+		new Date(new Date().setMonth(new Date().getMonth() - 4))
+	)
+}
 
 const IFRAME_SIMULATEUR_EMBAUCHE_PATH = '/iframes/simulateur-embauche'
 
-type Props = {
+export function Feedback({
+	onEnd,
+	onFeedbackFormOpen,
+}: {
 	onEnd?: () => void
 	onFeedbackFormOpen?: () => void
-}
-
-export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
+}) {
 	const [isShowingThankMessage, setIsShowingThankMessage] = useState(false)
 	const [isShowingSuggestionForm, setIsShowingSuggestionForm] = useState(false)
 	const [isNotSatisfied, setIsNotSatisfied] = useState(false)
 	const { t } = useTranslation()
-	const { currentPath } = useNavigation()
-	const { trackClick } = useTracking()
+	const url = useLocation().pathname
+	const tag = useTracking()
 
 	const { absoluteSitePaths } = useSitePaths()
+	const currentPath = useLocation().pathname
 	const isSimulateurSalaire =
 		currentPath.includes(absoluteSitePaths.simulateurs.salarié) ||
 		currentPath.includes(IFRAME_SIMULATEUR_EMBAUCHE_PATH)
@@ -45,10 +67,10 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 
 	const submitFeedback = useCallback(
 		(rating: FeedbackT) => {
-			setFeedbackGivenForUrl(currentPath)
-			trackClick({
-				action: rating,
-				feature: 'satisfaction',
+			setFeedbackGivenForUrl(url)
+			tag?.sendEvent('click.action', {
+				click_chapter1: 'satisfaction',
+				click: rating,
 			})
 			const isNotSatisfiedValue = ['mauvais', 'moyen'].includes(rating)
 			if (isNotSatisfiedValue) {
@@ -59,14 +81,14 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 			setIsShowingThankMessage(!isNotSatisfiedValue)
 			setIsShowingSuggestionForm(isNotSatisfiedValue)
 		},
-		[currentPath, onFeedbackFormOpen, trackClick]
+		[tag, url]
 	)
 
-	const shouldShowFeedback = shouldAskFeedback(currentPath)
+	const shouldAskFeedback = getShouldAskFeedback(url)
 
 	return (
 		<>
-			{isShowingThankMessage || !shouldShowFeedback ? (
+			{isShowingThankMessage || !shouldAskFeedback ? (
 				<>
 					<Body>
 						<Strong>
@@ -103,7 +125,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 			{isSimulateurSalaire ? (
 				<JeDonneMonAvis light />
 			) : (
-				<CenteredDiv>
+				<div style={{ textAlign: 'center' }}>
 					<Button
 						color="tertiary"
 						size="XXS"
@@ -116,7 +138,7 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 					>
 						<Trans i18nKey="feedback.reportError">Faire une suggestion</Trans>
 					</Button>
-				</CenteredDiv>
+				</div>
 			)}
 			{isShowingSuggestionForm && (
 				<Popover
@@ -149,8 +171,3 @@ export function Feedback({ onEnd, onFeedbackFormOpen }: Props) {
 		</>
 	)
 }
-
-const CenteredDiv = styled.div`
-	display: flex;
-	justify-content: center;
-`

@@ -1,14 +1,18 @@
 import 'vitest'
 
+import { DottedName } from 'modele-social'
 import { Evaluation, PublicodesExpression } from 'publicodes'
-
-import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { PublicodesTypes } from './modele-social/helpers/PublicodesTypes'
 
 interface CustomMatchers<R = unknown> {
 	toEvaluate: <T extends PublicodesTypes>(
-		rule: PublicodesExpression,
+		rule:
+			| PublicodesExpression
+			| {
+					rule: PublicodesExpression
+					precision?: number
+			  },
 		value: Evaluation<T>
 	) => R
 	toBeApplicable: (rule: DottedName) => R

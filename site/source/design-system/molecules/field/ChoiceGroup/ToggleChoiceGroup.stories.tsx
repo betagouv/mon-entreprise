@@ -22,6 +22,7 @@ const options = [
 ]
 
 const meta = {
+	title: 'Design System/Field/ChoiceGroup/ToggleChoiceGroup',
 	component: ToggleChoiceGroup,
 	parameters: {
 		layout: 'centered',

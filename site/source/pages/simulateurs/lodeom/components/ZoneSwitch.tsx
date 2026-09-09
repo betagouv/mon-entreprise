@@ -1,10 +1,13 @@
-import { SimpleField } from '@/components/Simulation/SimpleField'
-import { RuleSwitchLabel, SwitchContainer } from '@/components/Switch'
+import {
+	RuleSwitchLabel,
+	SwitchContainer,
+} from '@/components/RéductionDeCotisations/réductionDeCotisations'
 import { zonesLodeomDottedName } from '@/hooks/useZoneLodeom'
+import { SimpleField } from '@/pages/assistants/components/Fields'
 
 export default function ZoneSwitch() {
 	return (
-		<SwitchContainer>
+		<SwitchContainer isRule>
 			<SimpleField
 				dottedName={zonesLodeomDottedName}
 				labelStyle={RuleSwitchLabel}

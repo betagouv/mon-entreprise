@@ -6,22 +6,20 @@ import {
 } from 'react-aria-components'
 import { styled } from 'styled-components'
 
-import { InfoButton } from '@/design-system'
+import { InfoButton } from '@/design-system/InfoButton'
 
-import { fieldContainerStyles, radioFieldsSharedStyles } from '../fieldsStyles'
+import { fieldContainerStyles } from '../fieldsStyles'
 
-export type RadioOption = {
+type Option = {
 	description?: string
 	label: string
 	value: string
 }
 
-type RadioGroupProps = Pick<
-	RARadioGroupProps,
-	'defaultValue' | 'value' | 'onChange'
-> & {
+type RadioGroupProps = RARadioGroupProps & {
+	description?: string
 	legend: string
-	options: RadioOption[]
+	options: Option[]
 }
 
 // Ce composant ne gère plus le cas des sous-groupes de boutons radio.
@@ -48,7 +46,8 @@ export function RadioGroup({
 					{option.description && (
 						<InfoButton
 							description={option.description}
-							subject={option.label.toString()}
+							title={option.label.toString()}
+							light
 						/>
 					)}
 				</StyledRadioAndInfoButton>
@@ -70,14 +69,42 @@ const StyledRALabel = styled(RALabel)`
 const StyledRadioAndInfoButton = styled.div`
 	display: flex;
 	align-items: center;
-
-	button.print-hidden {
-		margin-left: ${({ theme }) => theme.spacings.xxxs};
-	}
 `
 
 const StyledRARadio = styled(RARadio)`
-	${radioFieldsSharedStyles}
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: ${({ theme }) => theme.spacings.xxs};
+
+	&::before,
+	&::after {
+		content: '';
+
+		border-radius: 50%;
+
+		cursor: pointer;
+
+		transition: all 200ms;
+	}
+
+	&::before {
+		padding: ${({ theme }) => theme.spacings.xxs};
+		border: ${({ theme }) => theme.spacings.md} solid white;
+
+		background: transparent;
+	}
+
+	&::after {
+		position: absolute;
+
+		left: ${({ theme }) => theme.spacings.sm};
+
+		width: ${({ theme }) => theme.spacings.md};
+		height: ${({ theme }) => theme.spacings.md};
+		border: ${({ theme }) => theme.spacings.xxxs} solid
+			${({ theme }) => theme.colors.extended.grey[600]};
+	}
 
 	&:hover::before {
 		border-color: ${({ theme }) => theme.colors.bases.primary[200]};
@@ -87,5 +114,9 @@ const StyledRARadio = styled(RARadio)`
 
 	&[data-selected='true']::before {
 		background: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
+
+	&[data-selected='true']::after {
+		border-color: ${({ theme }) => theme.colors.bases.primary[700]};
 	}
 `

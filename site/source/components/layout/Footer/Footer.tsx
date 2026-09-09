@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async'
 import { Trans, useTranslation } from 'react-i18next'
+import { generatePath, matchPath, useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import { FeedbackButton } from '@/components/Feedback/FeedbackButton'
+import Contact from '@/components/Contact'
+import FeedbackButton from '@/components/Feedback'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import {
 	Body,
@@ -13,13 +15,9 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
-import { NavigationAPI, useNavigation } from '@/lib/navigation'
-import { parseLangue } from '@/locales/langue'
-import { environnement } from '@/services/environnement/environnement'
 import { alternatePathname, useSitePaths } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
-import Contact from './Contact'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import LegalNotice from './LegalNotice'
 import PrivacyPolicy from './PrivacyPolicy'
@@ -27,11 +25,9 @@ import TermsOfUse from './TermsOfUse'
 
 const altPathname = alternatePathname()
 
-const getAltPathnamesWithParams = (
+const altPathnnamesWithParams = (
 	lang: keyof typeof altPathname,
-	path: string,
-	matchPath: NavigationAPI['matchPath'],
-	generatePath: NavigationAPI['generatePath']
+	path: string
 ) =>
 	Object.entries(altPathname[lang])
 		.filter(([pth]) => /\/:/.test(pth))
@@ -44,18 +40,20 @@ const getAltPathnamesWithParams = (
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
-	const { currentPath, matchPath, generatePath } = useNavigation()
+	const { pathname } = useLocation()
 	const { t, i18n } = useTranslation()
-	const language = parseLangue(i18n.language)
+	const language = i18n.language as 'fr' | 'en'
 
 	const path = decodeURIComponent(
-		currentPath.replace(/^\/(mon-entreprise|infrance)/, '')
+		pathname.replace(/^\/(mon-entreprise|infrance)/, '')
 	)
 	const altLang = language === 'en' ? 'fr' : 'en'
 	const altHref =
-		(language === 'en' ? environnement.urls.fr : environnement.urls.en) +
+		(language === 'en'
+			? import.meta.env.VITE_FR_BASE_URL
+			: import.meta.env.VITE_EN_BASE_URL) +
 		(altPathname[language][path] ??
-			getAltPathnamesWithParams(language, path, matchPath, generatePath)?.[0] ??
+			altPathnnamesWithParams(language, path)?.[0] ??
 			'/')
 
 	const isFrenchMode = language === 'fr'
@@ -81,14 +79,13 @@ export default function Footer() {
 							: theme.colors.bases.tertiary[100]
 					}
 				>
-					<FeedbackButton key={`${currentPath}-feedback-key`} />
+					<FeedbackButton key={`${pathname}-feedback-key`} />
 					{language === 'en' && (
 						<Body>
 							This website is provided by the{' '}
 							<Link
 								href="https://www.urssaf.fr"
 								aria-label={t(
-									'footer.urssaf.aria-label',
 									'Urssaf, voir le site urssaf.fr, nouvelle fenêtre'
 								)}
 							>
@@ -145,7 +142,7 @@ export default function Footer() {
 											href="https://github.com/betagouv/mon-entreprise"
 											noUnderline
 											aria-label={t(
-												'footer.github.aria-label',
+												'footer.github.new-window',
 												'Voir le code source sur Github, nouvelle fenêtre'
 											)}
 										>
@@ -201,8 +198,17 @@ export default function Footer() {
 									</StyledLi>
 									{language === 'fr' && (
 										<StyledLi>
-											<Link to={absoluteSitePaths.accessibilité} noUnderline>
-												Accessibilité : partiellement conforme
+											<Link
+												to={absoluteSitePaths.accessibilité}
+												aria-label={t(
+													'footer.accessibilitéAriaLabel',
+													'Accessibilité : partiellement conforme, en savoir plus'
+												)}
+												noUnderline
+											>
+												<Trans i18nKey="footer.accessibilité">
+													Accessibilité : partiellement conforme
+												</Trans>
 											</Link>
 										</StyledLi>
 									)}

@@ -1,11 +1,5 @@
 import { ComponentType } from 'react'
 
-import {
-	AvailableLang,
-	estLangueSupportée,
-	SUPPORTED_LANGUAGES,
-} from '@/locales/langue'
-
 export interface MDXDocumentation {
 	path: string
 	slug: string
@@ -19,7 +13,6 @@ export interface MDXModule {
 	metadata?: {
 		title: string
 		description?: string
-		metaTitle?: string
 	}
 }
 
@@ -44,8 +37,9 @@ function createMDXDocumentation(
 	mdxModules: Record<string, MDXModule | ComponentType>
 ): MDXDocumentation[] {
 	return Object.entries(mdxModules).map(([slug, module]) => {
-		const component = getDefaultComponent(module)
-		const metadata = getMetadata(module)
+		const isFullModule = typeof module === 'object' && 'default' in module
+		const component = isFullModule ? module.default : module
+		const metadata = isFullModule ? module.metadata : undefined
 
 		const title = metadata?.title ?? slugToTitle(slug)
 		const description = metadata?.description
@@ -63,7 +57,6 @@ function createMDXDocumentation(
 export interface MDXDocumentationResult {
 	documentations: MDXDocumentation[]
 	indexComponent?: ComponentType
-	indexMetadata?: MDXModule['metadata']
 }
 
 /**
@@ -80,98 +73,26 @@ export interface MDXDocumentationResult {
  * ```
  */
 export function createMDXDocumentationFromGlob(
-	globModules: Record<string, unknown>,
-	langue: AvailableLang = 'fr'
+	globModules: Record<string, unknown>
 ): MDXDocumentationResult {
-	const modulesParSlug = sélectionnerModulesParLangue(globModules, langue)
-
 	const processedModules: Record<string, MDXModule | ComponentType> = {}
 	let indexComponent: ComponentType | undefined
-	let indexMetadata: MDXModule['metadata']
 
-	Object.entries(modulesParSlug).forEach(([slug, module]) => {
-		if (slug === 'index') {
-			indexComponent = getDefaultComponent(module)
-			indexMetadata = getMetadata(module)
+	Object.entries(globModules).forEach(([path, module]) => {
+		const filename = extractBaseFilename(path)
+
+		if (filename === 'index') {
+			const indexModule = module as MDXModule | ComponentType
+			indexComponent = getDefaultComponent(indexModule)
 		} else {
-			processedModules[slug] = module
+			processedModules[filename] = module as MDXModule | ComponentType
 		}
 	})
 
 	return {
 		documentations: createMDXDocumentation(processedModules),
 		indexComponent,
-		indexMetadata,
 	}
-}
-
-type ModuleMDX = MDXModule | ComponentType
-
-/**
- * Sélectionne, pour chaque document, la variante de la langue demandée.
- * Chaque document doit exister dans chaque langue supportée
- * (`slug.fr.mdx`, `slug.en.mdx`, …) ; un fichier sans suffixe de langue
- * est une erreur.
- */
-function sélectionnerModulesParLangue(
-	globModules: Record<string, unknown>,
-	langue: AvailableLang
-): Record<string, ModuleMDX> {
-	const variantesParSlug: Record<
-		string,
-		Partial<Record<AvailableLang, ModuleMDX>>
-	> = {}
-
-	Object.entries(globModules).forEach(([path, module]) => {
-		const { slug, langue: langueDuFichier } = extraireSlugEtLangue(path)
-		if (langueDuFichier === null) {
-			throw new Error(
-				`Documentation « ${slug} » : fichier sans suffixe de langue reconnu — fournir une variante par langue supportée (${slug}.fr.mdx, ${slug}.en.mdx, …).`
-			)
-		}
-		variantesParSlug[slug] ??= {}
-		variantesParSlug[slug][langueDuFichier] = module as ModuleMDX
-	})
-
-	const modules: Record<string, ModuleMDX> = {}
-	Object.entries(variantesParSlug).forEach(([slug, variantes]) => {
-		modules[slug] = valideVariantesComplètes(slug, variantes)[langue]
-	})
-
-	return modules
-}
-
-function valideVariantesComplètes(
-	slug: string,
-	variantes: Partial<Record<AvailableLang, ModuleMDX>>
-): Record<AvailableLang, ModuleMDX> {
-	const manquantes = SUPPORTED_LANGUAGES.filter((langue) => !variantes[langue])
-	if (manquantes.length > 0) {
-		throw new Error(
-			`Documentation « ${slug} » : variante(s) de langue manquante(s) : ${manquantes.join(
-				', '
-			)}.`
-		)
-	}
-
-	return variantes as Record<AvailableLang, ModuleMDX>
-}
-
-function extraireSlugEtLangue(path: string): {
-	slug: string
-	langue: AvailableLang | null
-} {
-	const filename = extractBaseFilename(path)
-	const dernierPoint = filename.lastIndexOf('.')
-
-	if (dernierPoint !== -1) {
-		const suffixe = filename.slice(dernierPoint + 1)
-		if (estLangueSupportée(suffixe)) {
-			return { slug: filename.slice(0, dernierPoint), langue: suffixe }
-		}
-	}
-
-	return { slug: filename, langue: null }
 }
 
 /**
@@ -190,12 +111,6 @@ function getDefaultComponent<T>(
 	const isModuleWithDefault = typeof module === 'object' && 'default' in module
 
 	return isModuleWithDefault ? (module.default as ComponentType<T>) : module
-}
-
-function getMetadata(module: MDXModule | ComponentType): MDXModule['metadata'] {
-	return typeof module === 'object' && 'metadata' in module
-		? module.metadata
-		: undefined
 }
 
 function extractBaseFilename(filePath: string): string {

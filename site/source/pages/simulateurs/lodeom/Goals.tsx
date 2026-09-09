@@ -3,14 +3,14 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
+import RéductionMoisParMois from '@/components/RéductionDeCotisations/RéductionMoisParMois'
 import { SimulationGoals } from '@/components/Simulation'
+import { useEngine } from '@/components/utils/EngineContext'
 import { Body, Message } from '@/design-system'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
-import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
-import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
@@ -21,16 +21,18 @@ import {
 	Options,
 	RégularisationMethod,
 	SituationType,
-} from '@/pages/simulateurs/lodeom/utils'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
-import { useEngine } from '@/utils/publicodes/EngineContext'
+} from '@/utils/réductionDeCotisations'
 
-import BarèmeSwitch from './components/BarèmeSwitch'
 import Warnings from './components/Warnings'
 import WarningSalaireTrans from './components/WarningSalaireTrans'
-import ZoneSwitch from './components/ZoneSwitch'
 
-export default function LodeomSimulationGoals() {
+export default function LodeomSimulationGoals({
+	toggles,
+	régularisationMethod,
+}: {
+	toggles?: React.ReactNode
+	régularisationMethod?: RégularisationMethod
+}) {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>([])
@@ -39,8 +41,6 @@ export default function LodeomSimulationGoals() {
 	const previousSituation = useRef(situation)
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
-	const [régularisationMethod, setRégularisationMethod] =
-		useState<RégularisationMethod>('progressive')
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
@@ -50,16 +50,17 @@ export default function LodeomSimulationGoals() {
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
-	const withRépartitionAndRégularisation = currentZone === 'zone un'
+	const withRépartition = currentZone === 'zone un'
 
 	const initializeLodeomMoisParMoisData = useCallback(() => {
 		const data = getInitialRéductionMoisParMois(
+			lodeomDottedName,
 			year,
 			engine,
-			withRépartitionAndRégularisation
+			withRépartition
 		)
 		setData(data)
-	}, [engine, withRépartitionAndRégularisation, year])
+	}, [engine, withRépartition, year])
 
 	useEffect(() => {
 		if (lodeomMoisParMoisData.length === 0) {
@@ -70,22 +71,17 @@ export default function LodeomSimulationGoals() {
 	useEffect(() => {
 		setData((previousData) => {
 			return getDataAfterSituationChange(
+				lodeomDottedName,
 				situation,
 				previousSituation.current,
 				previousData,
 				year,
 				engine,
 				régularisationMethod,
-				withRépartitionAndRégularisation
+				withRépartition
 			)
 		})
-	}, [
-		engine,
-		situation,
-		régularisationMethod,
-		year,
-		withRépartitionAndRégularisation,
-	])
+	}, [engine, situation, régularisationMethod, year, withRépartition])
 
 	const onRémunérationChange = (
 		monthIndex: number,
@@ -93,6 +89,7 @@ export default function LodeomSimulationGoals() {
 	) => {
 		setData((previousData) => {
 			return getDataAfterRémunérationChange(
+				lodeomDottedName,
 				monthIndex,
 				rémunérationBrute,
 				previousData,
@@ -100,7 +97,7 @@ export default function LodeomSimulationGoals() {
 				engine,
 				dispatch,
 				régularisationMethod,
-				withRépartitionAndRégularisation
+				withRépartition
 			)
 		})
 	}
@@ -108,35 +105,20 @@ export default function LodeomSimulationGoals() {
 	const onOptionsChange = (monthIndex: number, options: Options) => {
 		setData((previousData) => {
 			return getDataAfterOptionsChange(
+				lodeomDottedName,
 				monthIndex,
 				options,
 				previousData,
 				year,
 				engine,
 				régularisationMethod,
-				withRépartitionAndRégularisation
+				withRépartition
 			)
 		})
 	}
 
 	return (
-		<SimulationGoals
-			toggles={
-				<>
-					<ZoneSwitch />
-					<BarèmeSwitch />
-					{currentZone === 'zone un' && (
-						<>
-							<RégularisationSwitch
-								régularisationMethod={régularisationMethod}
-								setRégularisationMethod={setRégularisationMethod}
-							/>
-							<EffectifSwitch />
-						</>
-					)}
-				</>
-			}
-		>
+		<SimulationGoals toggles={toggles}>
 			<Warnings />
 			<WhenApplicable dottedName="salarié . cotisations . exonérations . zones lodeom">
 				{!currentBarème && (
@@ -152,6 +134,7 @@ export default function LodeomSimulationGoals() {
 			</WhenApplicable>
 			{currentBarème && (
 				<RéductionMoisParMois
+					dottedName={lodeomDottedName}
 					data={lodeomMoisParMoisData}
 					onRémunérationChange={onRémunérationChange}
 					onOptionsChange={onOptionsChange}
@@ -173,7 +156,7 @@ export default function LodeomSimulationGoals() {
 							code: codeRégularisation,
 						})
 					}
-					withRépartitionAndRégularisation={withRépartitionAndRégularisation}
+					withRépartitionAndRégularisation={withRépartition}
 				/>
 			)}
 		</SimulationGoals>

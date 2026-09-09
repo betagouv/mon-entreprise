@@ -2,12 +2,13 @@
 import { Meta, StoryObj } from '@storybook/react'
 import React, { useState } from 'react'
 
-import { quantité, Quantité } from '@/domaine/Quantite'
-import { UnitéQuantité } from '@/domaine/Unites'
+import { quantité, Quantité } from '@/domaine/Quantité'
+import { UnitéQuantité } from '@/domaine/Unités'
 
 import { QuantitéField } from './QuantitéField'
 
 export default {
+	title: 'Design System/Field/QuantitéField',
 	component: QuantitéField,
 	parameters: {
 		docs: {
@@ -115,6 +116,9 @@ export const AvecAttributsAccessibilité: Story = {
 		unité: 'heures/mois',
 		value: quantité(17.33, 'heures/mois'),
 		id: 'heures-sup',
+		aria: {
+			label: 'Heures supplémentaires',
+		},
 	},
 	parameters: {
 		docs: {
@@ -129,30 +133,51 @@ export const AvecAttributsAccessibilité: Story = {
 export const DifférentesUnités: Story = {
 	render: () => (
 		<div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-			<QuantitéFieldWrapper unité="%" value={quantité(42, '%')} />
+			<QuantitéFieldWrapper
+				unité="%"
+				value={quantité(42, '%')}
+				aria={{ label: 'Pourcentage' }}
+			/>
 			<QuantitéFieldWrapper
 				unité="heures/mois"
 				value={quantité(18, 'heures/mois')}
+				aria={{ label: 'Nombre d’heures par mois' }}
 			/>
 			<QuantitéFieldWrapper
 				unité="heures/semaine"
 				value={quantité(28, 'heures/semaine')}
+				aria={{ label: 'Nombre d’heures par semaine' }}
 			/>
-			<QuantitéFieldWrapper unité="jours" value={quantité(7, 'jours')} />
+			<QuantitéFieldWrapper
+				unité="jours"
+				value={quantité(7, 'jours')}
+				aria={{ label: 'Nombre de jours' }}
+			/>
 			<QuantitéFieldWrapper
 				unité="jours ouvrés"
 				value={quantité(5, 'jours ouvrés')}
+				aria={{ label: 'Nombre de jours ouvrés' }}
 			/>
-			<QuantitéFieldWrapper unité="mois" value={quantité(12, 'mois')} />
+			<QuantitéFieldWrapper
+				unité="mois"
+				value={quantité(12, 'mois')}
+				aria={{ label: 'Nombre de mois' }}
+			/>
 			<QuantitéFieldWrapper
 				unité="trimestre civil"
 				value={quantité(12, 'trimestre civil')}
+				aria={{ label: 'Nombre de trimestres civils' }}
 			/>
 			<QuantitéFieldWrapper
 				unité="année civile"
 				value={quantité(12, 'année civile')}
+				aria={{ label: 'Nombre d’années civiles' }}
 			/>
-			<QuantitéFieldWrapper unité="employés" value={quantité(12, 'employés')} />
+			<QuantitéFieldWrapper
+				unité="employés"
+				value={quantité(12, 'employés')}
+				aria={{ label: 'Nombre d’employés' }}
+			/>
 		</div>
 	),
 	parameters: {

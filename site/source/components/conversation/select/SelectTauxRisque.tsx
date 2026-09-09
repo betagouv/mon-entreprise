@@ -4,18 +4,9 @@ import { styled } from 'styled-components'
 
 import { Card, Spacing, TextField } from '@/design-system'
 
-let worker: Worker | null = null
+import Worker from './SelectTauxRisque.worker?worker'
 
-const getWorker = () => {
-	if (!worker && typeof window !== 'undefined') {
-		worker = new Worker(
-			new URL('./SelectTauxRisque.worker.ts', import.meta.url),
-			{ type: 'module' }
-		)
-	}
-
-	return worker
-}
+const worker = !import.meta.env.SSR ? new Worker() : null
 
 const formatTauxNet = (taux: string) => {
 	const tauxNet = parseFloat(taux.replace(',', '.'))
@@ -38,8 +29,10 @@ function SelectComponent({
 	onSubmit,
 	id,
 	options,
+	autoFocus,
 }: {
 	options: Result[]
+	autoFocus?: boolean
 	id?: string
 	onChange?: (value: string | undefined) => void
 	onSubmit?: () => void
@@ -58,13 +51,12 @@ function SelectComponent({
 	}
 
 	useEffect(() => {
-		getWorker()?.postMessage({
+		worker?.postMessage({
 			options,
 		})
 
-		const currentWorker = getWorker()
-		if (currentWorker) {
-			currentWorker.onmessage = ({ data: results }: { data: Result[] }) =>
+		if (worker) {
+			worker.onmessage = ({ data: results }: { data: Result[] }) =>
 				setSearchResults(results)
 		}
 	}, [options])
@@ -76,6 +68,8 @@ function SelectComponent({
 				type="search"
 				placeholder={t("Saisissez votre domaine d'activité")}
 				aria-label={t("Votre domaine d'activité")}
+				// eslint-disable-next-line jsx-a11y/no-autofocus
+				autoFocus={autoFocus}
 				errorMessage={
 					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
 				}
@@ -85,7 +79,7 @@ function SelectComponent({
 
 						return
 					}
-					getWorker()?.postMessage({ input })
+					worker?.postMessage({ input })
 				}}
 			/>
 
@@ -141,7 +135,7 @@ const Wrapper = styled.div`
 	display: flex;
 	align-items: center;
 	text-align: left;
-	font-size: ${({ theme }) => theme.fontSizes.min};
+	font-size: 0.85rem;
 `
 
 interface ErrorT extends Error {
@@ -155,7 +149,7 @@ export default function SelectAtmp(
 
 	useEffect(() => {
 		fetch(
-			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2026.json'
+			'https://raw.githubusercontent.com/betagouv/taux-collectifs-cotisation-atmp/master/taux-2024.json'
 		)
 			.then((response) => {
 				if (!response.ok) {

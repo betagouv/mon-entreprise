@@ -57,9 +57,9 @@ export function Conversation({
 	const focusFirstElemInForm = useCallback(() => {
 		setTimeout(() => {
 			formRef.current
-				?.querySelector<
-					HTMLInputElement | HTMLButtonElement | HTMLLinkElement
-				>('input, button, a')
+				?.querySelector<HTMLInputElement | HTMLButtonElement | HTMLLinkElement>(
+					'input, button, a'
+				)
 				?.focus()
 		}, 5)
 	}, [])
@@ -87,7 +87,7 @@ export function Conversation({
 			>
 				{children}
 
-				<GridContainer container columnSpacing={2}>
+				<Grid container spacing={2}>
 					{onPrevious && (
 						<Grid item xs={6} sm="auto">
 							<Button
@@ -133,12 +133,8 @@ export function Conversation({
 							{customVisualisation}
 						</Grid>
 					)}
-				</GridContainer>
+				</Grid>
 			</form>
 		</Container>
 	)
 }
-
-const GridContainer = styled(Grid)`
-	margin-top: ${({ theme }) => theme.spacings.md};
-`

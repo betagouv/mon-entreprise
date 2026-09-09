@@ -3,11 +3,23 @@ import { ThemeProvider, useTheme } from 'styled-components'
 
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { persistDarkMode, readDarkModeForVite } from '@/storage/darkModeStorage'
+import { getItem, setItem } from '@/storage/safeLocalStorage'
 
 // TODO: Theme and dark mode should be in design-system (https://github.com/betagouv/mon-entreprise/issues/2563)
 
 type DarkModeContextType = [boolean, (darkMode: boolean) => void]
+
+const persistDarkMode = (darkMode: boolean) => {
+	setItem('darkMode', darkMode.toString())
+}
+
+const getDefaultDarkMode = () => {
+	if (import.meta.env.SSR) {
+		return false
+	}
+
+	return getItem('darkMode') ? getItem('darkMode') === 'true' : false
+}
 
 export const DarkModeContext = createContext<DarkModeContextType>([
 	false,
@@ -17,16 +29,8 @@ export const DarkModeContext = createContext<DarkModeContextType>([
 	},
 ])
 
-export const DarkModeProvider = ({
-	children,
-	darkModeParDéfaut,
-}: {
-	children: ReactNode
-	darkModeParDéfaut?: boolean
-}) => {
-	const [darkMode, _setDarkMode] = useState<boolean>(
-		darkModeParDéfaut ?? readDarkModeForVite()
-	)
+export const DarkModeProvider = ({ children }: { children: ReactNode }) => {
+	const [darkMode, _setDarkMode] = useState<boolean>(getDefaultDarkMode())
 
 	const setDarkMode = (darkMode: boolean) => {
 		_setDarkMode(darkMode)

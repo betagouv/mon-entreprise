@@ -8,7 +8,6 @@ export const pwaOptions: Partial<Options> = {
 	filename: 'entry-sw.ts',
 	injectManifest: {
 		maximumFileSizeToCacheInBytes: 3000000,
-		globIgnores: ['**/assets/*sentry*.js', '**/assets/*vendor*.js'],
 		manifestTransforms: [
 			(entries) => {
 				const manifest = entries.filter(

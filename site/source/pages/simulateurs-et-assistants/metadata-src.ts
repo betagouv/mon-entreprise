@@ -1,84 +1,93 @@
-import { choixDuStatutMetadata } from '@/pages/assistants/choix-du-statut/metadata'
-import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entreprise/metadata'
-import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
+import { choixStatutJuridiqueConfig } from '@/pages/assistants/choix-du-statut/config'
+import { CMGConfig } from '@/pages/assistants/cmg/config'
+import { déclarationChargesSocialesIndépendantConfig } from '@/pages/assistants/declaration-charges-sociales-independant/config'
+import { déclarationRevenusPAMCConfig } from '@/pages/assistants/declaration-revenus-pamc/config'
+import { demandeMobilitéConfig } from '@/pages/assistants/demande-mobilité/config'
+import { pourMonEntrepriseConfig } from '@/pages/assistants/pour-mon-entreprise/config'
+import { rechercheCodeApeConfig } from '@/pages/assistants/recherche-code-ape/config'
 import {
-	PageMetadata,
-	PageMetadataParams,
-	parId,
+	PageConfig,
+	SimulatorsDataParams,
 } from '@/pages/simulateurs/_configs/types'
-import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
-import { artisteAuteurMetadata } from '@/pages/simulateurs/artiste-auteur/metadata'
-import { autoEntrepreneurMetadata } from '@/pages/simulateurs/auto-entrepreneur/metadata'
-import { auxiliaireMédicalMetadata } from '@/pages/simulateurs/auxiliaire-médical/metadata'
-import { avocatMetadata } from '@/pages/simulateurs/avocat/metadata'
-import { cessationActivitéMetadata } from '@/pages/simulateurs/cessation-activité/metadata'
-import { chirurgienDentisteMetadata } from '@/pages/simulateurs/chirurgien-dentiste/metadata'
-import { cipavMetadata } from '@/pages/simulateurs/cipav/metadata'
-import { comparaisonStatutsMetadata } from '@/pages/simulateurs/comparaison-statuts/metadata'
-import { cotisationMaladieFrontalierSuisseMetadata } from '@/pages/simulateurs/cotisation-maladie-frontalier-suisse/metadata'
-import { coûtCréationEntrepriseMetadata } from '@/pages/simulateurs/cout-creation-entreprise/metadata'
-import { dividendesMetadata } from '@/pages/simulateurs/dividendes/metadata'
-import { eirlMetadata } from '@/pages/simulateurs/eirl/metadata'
-import { entrepriseIndividuelleMetadata } from '@/pages/simulateurs/entreprise-individuelle/metadata'
-import { eurlMetadata } from '@/pages/simulateurs/eurl/metadata'
-import { expertComptableMetadata } from '@/pages/simulateurs/expert-comptable/metadata'
-import { impôtSociétéMetadata } from '@/pages/simulateurs/impot-societe/metadata'
-import { indépendantMetadata } from '@/pages/simulateurs/indépendant/metadata'
-import { locationDeMeubleMetadata } from '@/pages/simulateurs/location-de-meublé/metadata'
-import { lodeomMetadata } from '@/pages/simulateurs/lodeom/metadata'
-import { médecinMetadata } from '@/pages/simulateurs/médecin/metadata'
-import { pamcMetadata } from '@/pages/simulateurs/pamc/metadata'
-import { pharmacienMetadata } from '@/pages/simulateurs/pharmacien/metadata'
-import { professionLibéraleMetadata } from '@/pages/simulateurs/profession-libérale/metadata'
-import { sageFemmeMetadata } from '@/pages/simulateurs/sage-femme/metadata'
-import { salariéMetadata } from '@/pages/simulateurs/salarié/metadata'
-import { sasuMetadata } from '@/pages/simulateurs/sasu/metadata'
+import { activitéPartielleConfig } from '@/pages/simulateurs/activité-partielle/config'
+import { artisteAuteurConfig } from '@/pages/simulateurs/artiste-auteur/config'
+import { autoEntrepreneurConfig } from '@/pages/simulateurs/auto-entrepreneur/config'
+import { auxiliaireMédicalConfig } from '@/pages/simulateurs/auxiliaire-médical/config'
+import { avocatConfig } from '@/pages/simulateurs/avocat/config'
+import { cessationActivitéConfig } from '@/pages/simulateurs/cessation-activité/config'
+import { chirurgienDentisteConfig } from '@/pages/simulateurs/chirurgien-dentiste/config'
+import { cipavConfig } from '@/pages/simulateurs/cipav/config'
+import { comparaisonStatutsConfig } from '@/pages/simulateurs/comparaison-statuts/config'
+import { coûtCréationEntrepriseConfig } from '@/pages/simulateurs/cout-creation-entreprise/config.js'
+import { dividendesConfig } from '@/pages/simulateurs/dividendes/config'
+import { eirlConfig } from '@/pages/simulateurs/eirl/config'
+import { entrepriseIndividuelleConfig } from '@/pages/simulateurs/entreprise-individuelle/config'
+import { eurlConfig } from '@/pages/simulateurs/eurl/config'
+import { expertComptableConfig } from '@/pages/simulateurs/expert-comptable/config'
+import { impôtSociétéConfig } from '@/pages/simulateurs/impot-societe/config'
+import { indépendantConfig } from '@/pages/simulateurs/indépendant/config'
+import { locationDeMeubleConfig } from '@/pages/simulateurs/location-de-meublé/config'
+import { lodeomConfig } from '@/pages/simulateurs/lodeom/config'
+import { médecinConfig } from '@/pages/simulateurs/médecin/config'
+import { pamcConfig } from '@/pages/simulateurs/pamc/config'
+import { pharmacienConfig } from '@/pages/simulateurs/pharmacien/config'
+import { professionLibéraleConfig } from '@/pages/simulateurs/profession-libérale/config'
+import { réductionGénéraleConfig } from '@/pages/simulateurs/reduction-generale/config'
+import { sageFemmeConfig } from '@/pages/simulateurs/sage-femme/config'
+import { salariéConfig } from '@/pages/simulateurs/salarié/config'
+import { sasuConfig } from '@/pages/simulateurs/sasu/config'
 import { ImmutableType } from '@/types/utils'
 
 /**
- * Contient les métadonnées (données pures, sans composant React) de tous les
- * simulateurs et assistants utilisées pour : plan du site, recherche, cards, statistiques,
- * script de mise à jour des données pour Algolia…
+ * Contient l'intégralité des données concernant les différents simulateurs et assistants
+ * sans dépendance qui compliquerait leur import dans le script de mise à jour
+ * des données pour Algolia.
  */
-const getMetadataSrc = (params: PageMetadataParams) => {
-	return {
-		// simulateurs :
-		...parId(salariéMetadata(params)),
-		...parId(entrepriseIndividuelleMetadata(params)),
-		...parId(eirlMetadata(params)),
-		...parId(sasuMetadata(params)),
-		...parId(eurlMetadata(params)),
-		...parId(autoEntrepreneurMetadata(params)),
-		...parId(indépendantMetadata(params)),
-		...parId(artisteAuteurMetadata(params)),
-		...parId(activitéPartielleMetadata(params)),
-		...parId(comparaisonStatutsMetadata(params)),
-		...parId(pharmacienMetadata(params)),
-		...parId(médecinMetadata(params)),
-		...parId(chirurgienDentisteMetadata(params)),
-		...parId(sageFemmeMetadata(params)),
-		...parId(auxiliaireMédicalMetadata(params)),
-		...parId(avocatMetadata(params)),
-		...parId(expertComptableMetadata(params)),
-		...parId(professionLibéraleMetadata(params)),
-		...parId(pamcMetadata(params)),
-		...parId(dividendesMetadata(params)),
-		...parId(coûtCréationEntrepriseMetadata(params)),
-		...parId(impôtSociétéMetadata(params)),
-		...parId(cipavMetadata(params)),
-		...parId(lodeomMetadata(params)),
-		...parId(cessationActivitéMetadata(params)),
-		...parId(locationDeMeubleMetadata(params)),
-		...parId(cotisationMaladieFrontalierSuisseMetadata(params)),
+const getMetadataSrc = (params: SimulatorsDataParams) => {
+	const data = {
+		// simulateurs:
+		...salariéConfig(params),
+		...entrepriseIndividuelleConfig(params),
+		...eirlConfig(params),
+		...sasuConfig(params),
+		...eurlConfig(params),
+		...autoEntrepreneurConfig(params),
+		...indépendantConfig(params),
+		...artisteAuteurConfig(params),
+		...activitéPartielleConfig(params),
+		...comparaisonStatutsConfig(params),
+		...pharmacienConfig(params),
+		...médecinConfig(params),
+		...chirurgienDentisteConfig(params),
+		...sageFemmeConfig(params),
+		...auxiliaireMédicalConfig(params),
+		...avocatConfig(params),
+		...expertComptableConfig(params),
+		...professionLibéraleConfig(params),
+		...pamcConfig(params),
+		...dividendesConfig(params),
+		...coûtCréationEntrepriseConfig(params),
+		...impôtSociétéConfig(params),
+		...cipavConfig(params),
+		...réductionGénéraleConfig(params),
+		...lodeomConfig(params),
+		...cessationActivitéConfig(params),
+		...locationDeMeubleConfig(params),
 
-		// assistants :
-		...parId(choixDuStatutMetadata(params)),
-		...parId(pourMonEntrepriseMetadata(params)),
-		...parId(rechercheCodeApeMetadata(params)),
-	} as const satisfies ImmutableType<Record<string, PageMetadata>>
+		// assistants:
+		...choixStatutJuridiqueConfig(params),
+		...CMGConfig(params),
+		...déclarationChargesSocialesIndépendantConfig(params),
+		...déclarationRevenusPAMCConfig(params),
+		...demandeMobilitéConfig(params),
+		...pourMonEntrepriseConfig(params),
+		...rechercheCodeApeConfig(params),
+	} as const
+
+	return data satisfies ImmutableType<Record<string, PageConfig>>
 }
 
-export type SimulatorsMetadata = ReturnType<typeof getMetadataSrc>
-export type SimulatorMetadata = SimulatorsMetadata[keyof SimulatorsMetadata]
+export type SimulatorData = ReturnType<typeof getMetadataSrc>
+export type SimulatorDataValues = SimulatorData[keyof SimulatorData]
 
 export default getMetadataSrc

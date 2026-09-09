@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 
+import { SIMULATION_TERMINEE, TrackPage } from '@/components/ATInternetTracking'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import Notifications from '@/components/Notifications'
-import { SIMULATION_TERMINEE, TrackPage } from '@/components/PianoAnalytics'
 import { Body, Button, Emoji, Grid, H3, Spacing } from '@/design-system'
-import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
+import { useCurrentSimulatorData } from '@/hooks/useCurrentSimulatorData'
 
 interface Props {
 	customEndMessages?: React.ReactNode
@@ -16,7 +16,7 @@ export function VousAvezComplétéCetteSimulation({
 	customEndMessages,
 	onPrevious,
 }: Props) {
-	const { currentSimulatorMetadata } = useCurrentSimulatorMetadata()
+	const { currentSimulatorData } = useCurrentSimulatorData()
 
 	const [firstRenderDone, setFirstRenderDone] = useState(false)
 	useEffect(() => setFirstRenderDone(true), [])
@@ -39,7 +39,7 @@ export function VousAvezComplétéCetteSimulation({
 						</Trans>
 					)}
 				</Body>
-				{currentSimulatorMetadata?.pathId === 'simulateurs.salarié' && (
+				{currentSimulatorData?.pathId === 'simulateurs.salarié' && (
 					<>
 						<JeDonneMonAvis />
 						<Spacing md />

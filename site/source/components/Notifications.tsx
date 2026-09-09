@@ -1,34 +1,63 @@
-import { Trans } from 'react-i18next'
+import { DottedName } from 'modele-social'
+import Engine, { RuleNode } from 'publicodes'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Emoji, Markdown, Message, typography } from '@/design-system'
-import { getNotifications } from '@/domaine/publicodes/Notification'
-import { useInversionFail } from '@/hooks/useInversionFail'
+import { useEngine, useInversionFail } from '@/components/utils/EngineContext'
+import {
+	CloseButton,
+	Emoji,
+	Markdown,
+	Message,
+	typography,
+} from '@/design-system'
 import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
-import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
 import { ExplicableRule } from './conversation/Explicable'
 import { Appear } from './ui/animate'
 
 const { Body, Strong, SmallBody } = typography
 
+// To add a new notification to a simulator, you should create a publicodes rule
+// with the "type: notification" attribute. The display can be customized with
+// the "sévérité" attribute. The notification will only be displayed if the
+// publicodes rule is applicable.
+type Notification = {
+	dottedName: DottedName | 'inversion fail'
+	description: RuleNode['rawNode']['description']
+	résumé?: RuleNode['rawNode']['description']
+	sévérité: 'avertissement' | 'information'
+}
+
+function getNotifications(engine: Engine) {
+	return Object.values(engine.getParsedRules())
+		.filter(
+			(rule) =>
+				rule.rawNode.type === 'notification' &&
+				!!engine.evaluate(rule.dottedName).nodeValue
+		)
+		.map(({ dottedName, rawNode: { sévérité, résumé, description } }) => ({
+			dottedName,
+			sévérité,
+			résumé,
+			description,
+		}))
+}
+
 export default function Notifications() {
-	const engine = useOptionalEngine()
+	const { t } = useTranslation()
+	const engine = useEngine()
 	const inversionFail = useInversionFail()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)
 	const dispatch = useDispatch()
 
-	if (!engine) {
-		return null
-	}
-
-	const messages = getNotifications(engine).filter(
-		({ dottedName }) => !hiddenNotifications?.includes(dottedName)
-	)
+	const messages: Array<Notification> = (
+		getNotifications(engine) as Array<Notification>
+	).filter(({ dottedName }) => !hiddenNotifications?.includes(dottedName))
 
 	const isMultiline = (str: string) => str.trim().split('\n').length > 1
 
@@ -44,7 +73,7 @@ export default function Notifications() {
 					<Message icon={<StyledEmoji emoji="🤯" />} type="info">
 						<Trans i18nkey="simulateurs.inversionFail">
 							<Body>
-								Le montant demandé n'est <Strong>pas calculable…</Strong>
+								Le montant demandé n'est <Strong>pas calculable...</Strong>
 							</Body>
 
 							<SmallBody $grey>
@@ -61,8 +90,6 @@ export default function Notifications() {
 						icon
 						type={sévérité === 'avertissement' ? 'info' : 'primary'}
 						key={dottedName}
-						dismissible
-						onDismiss={() => dispatch(hideNotification(dottedName))}
 					>
 						<StyledBody
 							as="div"
@@ -71,7 +98,12 @@ export default function Notifications() {
 							<Markdown>{résumé ?? description ?? ''}</Markdown>
 						</StyledBody>
 						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
-							<ExplicableRule dottedName={dottedName} />
+							<ExplicableRule dottedName={dottedName} light />
+							<CloseButton
+								aria-label={t('Cacher le message')}
+								onPress={() => dispatch(hideNotification(dottedName))}
+								color={sévérité === 'avertissement' ? 'tertiary' : 'primary'}
+							/>
 						</Absolute>
 					</Message>
 				))}
@@ -93,9 +125,12 @@ const Absolute = styled.div<{ $isMultiline: boolean }>`
 	align-items: flex-end;
 	position: absolute;
 	top: ${({ theme, $isMultiline }) =>
-		$isMultiline ? theme.spacings.xxs : theme.spacings.md};
-	right: ${({ theme }) => theme.spacings.xxl};
-	padding-top: 2px;
+		$isMultiline ? theme.spacings.xxs : theme.spacings.xs};
+	right: ${({ theme }) => theme.spacings.sm};
+	${CloseButton} {
+		margin-left: ${({ theme }) => theme.spacings.xxs};
+		margin-bottom: ${({ theme }) => theme.spacings.xxs};
+	}
 `
 
 const StyledEmoji = styled(Emoji)`

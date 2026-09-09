@@ -12,8 +12,8 @@ type FooterColumnType = {
 const StyledGrid = styled(Grid)`
 	ul {
 		list-style-type: none;
-		line-height: ${({ theme }) => theme.lineHeights.base};
-		font-size: ${({ theme }) => theme.fontSizes.base};
+		line-height: 1.5rem;
+		font-size: 1rem;
 		padding: 0;
 		a,
 		button {

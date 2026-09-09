@@ -1,14 +1,11 @@
 import { ResizeObserver } from '@juggle/resize-observer'
-import { SSRProvider } from 'react-aria'
+import { SSRProvider } from '@react-aria/ssr'
 import ReactDomServerType from 'react-dom/server'
 // @ts-ignore
 import ReactDomServer from 'react-dom/server.browser'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
-
-import { ReactRouterNavigationProvider } from '@/lib/navigation'
-import { AvailableLang } from '@/locales/langue'
 
 import i18next from '../locales/i18n'
 import { AppEn } from './entry-en'
@@ -33,10 +30,7 @@ interface Result {
 	helmet: FilledContext['helmet']
 }
 
-export async function render(
-	url: string,
-	lang: AvailableLang
-): Promise<Result> {
+export async function render(url: string, lang: 'fr' | 'en'): Promise<Result> {
 	global.window.location.href = url
 	global.window.location.search = ''
 
@@ -52,9 +46,7 @@ export async function render(
 			<SSRProvider>
 				<StyleSheetManager sheet={sheet.instance}>
 					<StaticRouter location={url}>
-						<ReactRouterNavigationProvider>
-							{lang === 'fr' ? <AppFr /> : <AppEn />}
-						</ReactRouterNavigationProvider>
+						{lang === 'fr' ? <AppFr /> : <AppEn />}
 					</StaticRouter>
 				</StyleSheetManager>
 			</SSRProvider>

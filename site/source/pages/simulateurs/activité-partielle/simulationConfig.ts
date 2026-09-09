@@ -1,7 +1,6 @@
-import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 
-export const configActivitéPartielle: PublicodesSimulationConfig = {
-	nomModèle: 'modele-social',
+export const configActivitéPartielle: SimulationConfig = {
 	objectifs: [
 		'salarié . contrat . salaire brut',
 		'salarié . rémunération . net . à payer avant impôt',

@@ -1,38 +1,36 @@
 import { createMemoryHistory } from 'history'
+import { DottedName } from 'modele-social'
 import { createStore, Store, StoreEnhancer } from 'redux'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { setupSimulationPersistence } from '@/storage/persistSimulation'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 import {
-	chargeLaSimulationPrécédente,
-	configureLaSimulation,
-	enregistreLaRéponseÀLaQuestion,
+	enregistreLaRéponse,
+	loadPreviousSimulation,
+	setSimulationConfig,
 } from '@/store/actions/actions'
-import reducers, {
-	PublicodesSimulationConfig,
-} from '@/store/reducers/rootReducer'
+import reducers, { SimulationConfig } from '@/store/reducers/rootReducer'
 import { Simulation } from '@/store/reducers/simulation.reducer'
 
 function delay(ms: number) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
 }
 
-const simulationConfig: PublicodesSimulationConfig = {
+const simulationConfig: SimulationConfig = {
 	'objectifs exclusifs': [],
 	objectifs: [],
 	situation: {},
 	'unité par défaut': '€/mois',
 }
 const initialSimulation: Simulation = {
-	key: 'simulateur',
 	config: simulationConfig,
 	url: '/someurl',
 	hiddenNotifications: [],
 	situation: {},
 	targetUnit: '€/mois',
 	questionsRépondues: [{ règle: 'somestep' as DottedName, applicable: true }],
+	currentQuestion: null,
 }
 
 describe.skip('[persistence] When simulation persistence is setup', () => {
@@ -50,9 +48,7 @@ describe.skip('[persistence] When simulation persistence is setup', () => {
 
 	describe('when the state is changed with some data that is persistable', () => {
 		beforeEach(async () => {
-			store.dispatch(
-				enregistreLaRéponseÀLaQuestion('dotted name' as DottedName, '42')
-			)
+			store.dispatch(enregistreLaRéponse('dotted name' as DottedName, '42'))
 			await delay(0)
 		})
 		it('saves state in localStorage with all fields', () => {
@@ -84,16 +80,12 @@ describe.skip('[persistence] When simulation config is set', () => {
 		history.replace('/someotherurl')
 
 		store.dispatch(
-			configureLaSimulation(
-				simulationConfig,
-				history.location.pathname,
-				'simulateur'
-			)
+			setSimulationConfig(simulationConfig, history.location.pathname)
 		)
 	})
 	describe('when previous simulation is loaded in state', () => {
 		beforeEach(() => {
-			store.dispatch(chargeLaSimulationPrécédente())
+			store.dispatch(loadPreviousSimulation())
 		})
 		it('loads url in state', () => {
 			expect(store.getState().simulation.url).toBe('/someotherurl')

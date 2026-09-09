@@ -1,11 +1,15 @@
+import { useRadioGroup } from '@react-aria/radio'
+import { useRadioGroupState } from '@react-stately/radio'
+import { AriaRadioGroupProps } from '@react-types/radio'
 import React, { Key, useEffect } from 'react'
-import { AriaRadioGroupProps, useRadioGroup } from 'react-aria'
-import { useRadioGroupState } from 'react-stately'
+import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
-import { FlexCenter, H5, InfoButton } from '@/design-system'
+import { FlexCenter } from '@/design-system/global-style'
+import { H5 } from '@/design-system/typography'
 
 import { Emoji } from '../../../emoji'
+import { InfoButton } from '../../../InfoButton'
 import { Radio } from '../Radio'
 import { RadioContext } from '../Radio/Radio'
 import { ChoiceOption, isChoiceOptionWithValue } from './ChoiceOption'
@@ -20,7 +24,7 @@ export interface RadioChoiceGroupProps {
 	defaultValue?: string
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 	options: Array<ChoiceOption>
 	isSubRadioGroup?: boolean
@@ -34,13 +38,18 @@ export default function RadioChoiceGroup({
 	autoFocus,
 	defaultValue,
 	options,
-	aria,
+	aria = {},
 	isSubRadioGroup = false,
 }: RadioChoiceGroupProps) {
+	const { t } = useTranslation()
+
 	return (
 		<RadioGroup
-			aria-labelledby={aria?.labelledby}
-			aria-describedby={aria?.describedby}
+			aria-label={
+				aria.label ||
+				t('conversation.multiple-answer.aria-label', 'Choix multiples')
+			}
+			aria-labelledby={aria.labelledby}
 			onChange={onChange}
 			value={value}
 			label={label}
@@ -65,8 +74,12 @@ export default function RadioChoiceGroup({
 						{option.emoji && <Emoji emoji={option.emoji} />}{' '}
 						{option.description && (
 							<InfoButton
-								subject={option.label.toString()}
+								light
+								title={option.label.toString()}
 								description={option.description}
+								aria-label={t("Plus d'informations sur {{ title }}", {
+									title: option.label,
+								})}
 							/>
 						)}
 					</div>
@@ -99,8 +112,8 @@ type RadioGroupProps = AriaRadioGroupProps & {
 function RadioGroup(props: RadioGroupProps) {
 	const { children, label, description, isSubRadioGroup } = props
 	const state = useRadioGroupState(props)
-	// Code mysteriously crashes if this hook is removed:
-	useRadioGroup(props, state)
+	const { radioGroupProps, labelProps } = useRadioGroup(props, state)
+	const { t } = useTranslation()
 
 	useEffect(() => {
 		if (!props.value) {
@@ -109,12 +122,25 @@ function RadioGroup(props: RadioGroupProps) {
 	}, [props.value, state])
 
 	return (
-		<>
+		<div
+			/* eslint-disable-next-line react/jsx-props-no-spreading */
+			{...radioGroupProps}
+			onKeyDown={undefined}
+			aria-label={props['aria-label']}
+		>
+			{/* eslint-disable-next-line react/jsx-props-no-spreading */}
 			{label && (
-				<StyledH5 as="p">
+				<StyledH5 as="p" {...labelProps}>
 					{label}
 					{description && (
-						<InfoButton subject={label} description={description} />
+						<InfoButton
+							light
+							title={label}
+							description={description}
+							aria-label={t("Plus d'informations sur {{ title }}", {
+								title: label,
+							})}
+						/>
 					)}
 				</StyledH5>
 			)}
@@ -124,7 +150,7 @@ function RadioGroup(props: RadioGroupProps) {
 			>
 				<RadioContext.Provider value={state}>{children}</RadioContext.Provider>
 			</RadioGroupContainer>
-		</>
+		</div>
 	)
 }
 

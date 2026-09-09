@@ -1,22 +1,30 @@
+import { useOverlayTriggerState } from '@react-stately/overlays'
+import { DottedName } from 'modele-social'
+import { Evaluation } from 'publicodes'
 import { useEffect, useRef, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, Route, Routes } from 'react-router-dom'
-import { useOverlayTriggerState } from 'react-stately'
+import {
+	generatePath,
+	Navigate,
+	Route,
+	Routes,
+	useParams,
+} from 'react-router-dom'
 import { styled } from 'styled-components'
 
-import growth from '@/assets/images/illustrations/croissance.svg'
-import forms from '@/assets/images/illustrations/formes.svg'
+import { ACCUEIL, TrackPage } from '@/components/ATInternetTracking'
+import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleInput from '@/components/conversation/RuleInput'
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
 import { Condition } from '@/components/EngineValue/Condition'
-import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
+import { EntrepriseDetails } from '@/components/entreprise/EntrepriseDetails'
 import PageHeader from '@/components/PageHeader'
-import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { FromTop } from '@/components/ui/animate'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { useEngine } from '@/components/utils/EngineContext'
 import {
 	Body,
 	Button,
@@ -29,25 +37,22 @@ import {
 	Message,
 	Popover,
 	Spacing,
+	Strong,
 } from '@/design-system'
 import { Entreprise } from '@/domaine/Entreprise'
-import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
-import { usePageMetadata } from '@/hooks/usePageMetadata'
 import { useQuestionList } from '@/hooks/useQuestionList'
 import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useNavigation } from '@/lib/navigation'
-import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
+import useSimulationConfig from '@/hooks/useSimulationConfig'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
-import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
-import { evaluateQuestion } from '@/utils/publicodes/publicodes'
+import { SimulationConfig } from '@/store/reducers/rootReducer'
+import { companySituationSelector } from '@/store/selectors/simulationSelectors'
+import { evaluateQuestion } from '@/utils/publicodes'
 
-import { pourMonEntrepriseMetadata } from './metadata'
-import { configPourMonEntreprise } from './simulationConfig'
+import forms from './forms.svg'
+import growth from './growth.svg'
 
 export default function PourMonEntrepriseHome() {
 	const { relativeSitePaths } = useSitePaths()
@@ -63,16 +68,9 @@ export default function PourMonEntrepriseHome() {
 	)
 }
 
-const externalLinks = [premiersMoisUrssaf]
-
 function PourMonEntreprise() {
-	const { t } = useTranslation()
-	const simulateurs = useSimulatorsMetadata()
-	const metadata = usePageMetadata(pourMonEntrepriseMetadata)
-	const { isReady, engine } = useSimulationPublicodes(
-		metadata,
-		configPourMonEntreprise
-	)
+	const simulateurs = useSimulatorsData()
+	const engine = useEngine()
 	const dispatch = useDispatch()
 	const engineSiren = engine.evaluate('entreprise . SIREN').nodeValue
 	const prevSiren = useRef(engineSiren)
@@ -122,116 +120,171 @@ function PourMonEntreprise() {
 				<meta name="robots" content="noindex" />
 			</Helmet>
 
+			{param && engineSiren && param !== engineSiren && !overwrite && (
+				<PopoverOverwriteSituation
+					onOverwrite={() => {
+						dispatch(resetCompany())
+						setOverwrite(true)
+					}}
+				/>
+			)}
+
 			<TrackPage name={ACCUEIL} />
-
-			<EngineProvider value={engine}>
-				<SimulateurPageLayout
-					metadata={metadata}
-					isReady={isReady}
-					externalLinks={externalLinks}
-				>
-					{param && engineSiren && param !== engineSiren && !overwrite && (
-						<PopoverOverwriteSituation
-							onOverwrite={() => {
-								dispatch(resetCompany())
-								setOverwrite(true)
-							}}
-						/>
-					)}
-
-					<PageHeader picture={growth}>
+			<PageHeader picture={growth}>
+				<Intro>
+					<Trans i18nKey="pages.assistants.pour-mon-entreprise.description">
+						Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
+						payer des cotisations et des impôts. Anticipez leurs montants grâce
+						aux simulateurs adaptés à votre situation.
+					</Trans>
+				</Intro>
+				{entreprisePending ? (
+					<Message type="info" border={false}>
 						<Intro>
-							{t(
-								'pages.assistants.pour-mon-entreprise.description',
-								'Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à payer des cotisations et des impôts. Anticipez leurs montants grâce aux simulateurs adaptés à votre situation.'
-							)}
+							<Trans i18nKey="loading">Chargement en cours...</Trans>
 						</Intro>
-						{entreprisePending ? (
-							<Message type="info" border={false}>
-								<Intro>{t('messages.loading', 'Chargement en cours…')}</Intro>
-							</Message>
-						) : (
-							<AskCompanyMissingDetails />
-						)}
-						<Spacing xl />
-					</PageHeader>
+					</Message>
+				) : (
+					<AskCompanyMissingDetails />
+				)}
+				<Spacing xl />
+			</PageHeader>
 
-					<Container
-						backgroundColor={(theme) => theme.colors.bases.primary[600]}
+			<Container backgroundColor={(theme) => theme.colors.bases.primary[600]}>
+				<FromTop>
+					<FormsImage src={forms} alt="" />
+					<Spacing xs />
+					<ForceThemeProvider forceTheme="dark">
+						<H2>Simulateurs pour votre entreprise</H2>
+					</ForceThemeProvider>
+					<Grid
+						container
+						spacing={3}
+						style={{
+							position: 'relative',
+						}}
 					>
-						<FromTop>
-							<FormsImage src={forms} alt="" />
-							<Spacing xs />
-							<ForceThemeProvider forceTheme="dark">
-								{t(
-									'pages.assistants.pour-mon-entreprise.simulateurs',
-									'Simulateurs pour votre entreprise'
-								)}
-							</ForceThemeProvider>
+						<CurrentSimulatorCard fromGérer />
+
+						<Condition expression="dirigeant . indépendant">
+							<SimulateurCard
+								fromGérer
+								{...simulateurs['déclaration-charges-sociales-indépendant']}
+							/>
+						</Condition>
+						<Condition expression="entreprise . imposition . IS">
 							<Grid
-								container
-								spacing={3}
+								item
+								xs={12}
+								md={6}
+								lg={4}
 								style={{
-									position: 'relative',
+									alignSelf: 'flex-end',
 								}}
 							>
-								<CurrentSimulatorCard fromGérer />
+								<Grid container spacing={3} columns={2}>
+									<SimulateurCard fromGérer {...simulateurs.is} small />
+									<SimulateurCard fromGérer {...simulateurs.dividendes} small />
+								</Grid>
+							</Grid>
+						</Condition>
+					</Grid>
+				</FromTop>
+				<Spacing xl />
+			</Container>
+			{!isAutoEntrepreneur && (
+				<FromTop>
+					<H2>
+						<Trans>Salariés et embauche</Trans>
+					</H2>
+					<Grid container spacing={3}>
+						<SimulateurCard fromGérer {...simulateurs['salarié']} />
+						<SimulateurCard fromGérer {...simulateurs['activité-partielle']} />
+					</Grid>
+				</FromTop>
+			)}
 
-								<Condition expression="entreprise . imposition . IS">
-									<Grid
-										item
-										xs={12}
-										md={6}
-										lg={4}
-										style={{
-											alignSelf: 'flex-end',
-										}}
-									>
-										<Grid container spacing={3} columns={2}>
-											<SimulateurCard fromGérer {...simulateurs.is} small />
-											<SimulateurCard
-												fromGérer
-												{...simulateurs.dividendes}
-												small
-											/>
-										</Grid>
-									</Grid>
-								</Condition>
-							</Grid>
-						</FromTop>
-						<Spacing xl />
-					</Container>
-					{!isAutoEntrepreneur && (
-						<FromTop>
-							<H2>
-								{t(
-									'pages.assistants.pour-mon-entreprise.embauche',
-									'Salariés et embauche'
-								)}
-							</H2>
-							<Grid container spacing={3}>
-								<SimulateurCard fromGérer {...simulateurs['salarié']} />
-								<SimulateurCard
-									fromGérer
-									{...simulateurs['activité-partielle']}
-								/>
-							</Grid>
-						</FromTop>
-					)}
-				</SimulateurPageLayout>
-			</EngineProvider>
+			<Trans i18nKey="pages.assistants.pour-mon-entreprise.info.PdE">
+				<H2>
+					Échanger avec le conseiller qui peut vous aider selon votre
+					problématique
+				</H2>
+				<Body as="div">
+					<span>Vous souhaitez :</span>
+					<UlInColumns>
+						<li>recruter, former vos salariés</li>
+						<li>financer vos projets d'investissement</li>
+						<li>résoudre un problème de trésorerie</li>
+						<li>être conseillé(e) en droit du travail</li>
+						<li>développer votre activité commerciale</li>
+						<li>vendre sur internet</li>
+						<li>vendre ou reprendre une entreprise</li>
+						<li>améliorer la santé et sécurité au travail</li>
+						<li>entrer dans une démarche de transition écologique & RSE</li>
+					</UlInColumns>
+				</Body>
+				<Body>
+					<Strong>
+						Service public simple et rapide : vous êtes rappelé(e) par LE
+						conseiller qui peut vous aider.
+					</Strong>
+				</Body>
+				<Body>
+					Plus de 40 partenaires publics sont mobilisés pour vous accompagner en
+					fonction de votre problématique.
+					<br />
+					Le conseiller compétent proche de chez vous vous rappelle sous 5
+					jours.
+				</Body>
+			</Trans>
+
+			<ConseillersEntreprisesButton
+				siret={
+					engine.evaluate('établissement . SIRET')
+						.nodeValue as Evaluation<string>
+				}
+			/>
+			<Spacing lg />
 		</>
 	)
 }
 
+const configEntrepriseDetails: SimulationConfig = {
+	questions: {
+		'liste noire': ['entreprise . imposition . régime'] as DottedName[],
+	},
+	objectifs: [
+		'dirigeant . régime social',
+		'entreprise . imposition',
+	] as DottedName[],
+	situation: {
+		'entreprise . catégorie juridique . EI . auto-entrepreneur . par défaut':
+			'oui',
+	},
+}
+
+const UlInColumns = styled.ul`
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
+		columns: 2;
+	}
+	@media (min-width: ${({ theme }) => theme.breakpointsWidth.lg}) {
+		columns: 3;
+	}
+`
+
 const AskCompanyMissingDetails = () => {
-	const { t } = useTranslation()
+	const { absoluteSitePaths } = useSitePaths()
+	useSimulationConfig({
+		key: absoluteSitePaths.assistants.index,
+		config: configEntrepriseDetails,
+	})
+
 	const [questions, onQuestionAnswered] = useQuestionList()
 	const engine = useEngine()
 
 	return (
 		<>
-			<EntrepriseDetailsCard showSituation headingTag="h2" />
+			<EntrepriseDetails showSituation headingTag="h2" />
 			{!!questions.length && (
 				<>
 					<Body
@@ -239,10 +292,8 @@ const AskCompanyMissingDetails = () => {
 							marginBottom: '-0.5rem',
 						}}
 					>
-						{t(
-							'pages.assistants.pour-mon-entreprise.questions',
-							'Répondez aux questions suivantes pour découvrir les simulateurs et assistants adaptés à votre situation :'
-						)}
+						Répondez aux questions suivantes pour découvrir les simulateurs et
+						assistants adaptés à votre situation :
 					</Body>
 
 					{questions.map((question) => (
@@ -253,6 +304,7 @@ const AskCompanyMissingDetails = () => {
 								</Markdown>
 							</H3>
 							<RuleInput
+								hideDefaultValue
 								dottedName={question.dottedName}
 								onChange={onQuestionAnswered(question.dottedName)}
 							/>
@@ -291,57 +343,50 @@ const PopoverOverwriteSituation = ({
 			isDismissable
 			small
 		>
-			<Message type="info">
-				<Body>
-					{t(
-						'pages.assistants.pour-mon-entreprise.situation-overwrite.question',
-						'Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir l’écraser ?'
-					)}
-				</Body>
-			</Message>
-			<Grid
-				container
-				style={{
-					justifyContent: 'end',
-				}}
-				spacing={2}
-			>
-				<Grid item>
-					<Button
-						size="XS"
-						onPress={() => {
-							onOverwrite?.()
-						}}
-					>
-						{t(
-							'pages.assistants.pour-mon-entreprise.situation-overwrite.écraser',
-							'Écraser'
-						)}
-					</Button>
+			<Trans>
+				<Message type="info">
+					<Body>
+						Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
+						l'écraser ?
+					</Body>
+				</Message>
+				<Grid
+					container
+					style={{
+						justifyContent: 'end',
+					}}
+					spacing={2}
+				>
+					<Grid item>
+						<Button
+							size="XS"
+							onPress={() => {
+								onOverwrite?.()
+							}}
+						>
+							Ecraser
+						</Button>
+					</Grid>
+					<Grid item>
+						<Button
+							size="XS"
+							light
+							onPress={() => {
+								state.close()
+								onCancel?.()
+							}}
+						>
+							Annuler
+						</Button>
+					</Grid>
 				</Grid>
-				<Grid item>
-					<Button
-						size="XS"
-						light
-						onPress={() => {
-							state.close()
-							onCancel?.()
-						}}
-					>
-						{t(
-							'pages.assistants.pour-mon-entreprise.situation-overwrite.annuler',
-							'Annuler'
-						)}
-					</Button>
-				</Grid>
-			</Grid>
+			</Trans>
 		</Popover>
 	)
 }
 
 const usePourMonEntreprisePath = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	const { generatePath } = useNavigation()
 	const company = useSelector(companySituationSelector)
 
 	if (company['entreprise . SIREN']) {
@@ -357,12 +402,7 @@ const usePourMonEntreprisePath = () => {
 }
 
 const useSirenFromParams = (overwrite: boolean) => {
-	const { matchPath } = useNavigation()
-	const { absoluteSitePaths } = useSitePaths()
-	const match = matchPath(
-		absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise
-	)
-	const param = match?.params.entreprise
+	const { entreprise: param } = useParams<{ entreprise?: string }>()
 	const [entreprise, setEntreprise] = useState<Entreprise | null>(null)
 
 	const [entreprisePending, setEntreprisePending] = useState(false)

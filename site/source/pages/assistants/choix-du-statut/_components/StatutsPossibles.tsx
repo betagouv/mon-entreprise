@@ -1,11 +1,11 @@
+import { DottedName } from 'modele-social'
 import { forwardRef } from 'react'
 import FlipMove from 'react-flip-move'
 import { styled } from 'styled-components'
 
 import { StatutTag, StatutType } from '@/components/StatutTag'
+import { useEngine } from '@/components/utils/EngineContext'
 import { H5, Li, Message, Ul } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useEngine } from '@/utils/publicodes/EngineContext'
 
 const STATUTS = [
 	'entreprise . catégorie juridique . EI . EI',
@@ -98,7 +98,7 @@ const Statut = forwardRef(function Statut(
 	return (
 		<Li ref={ref} className={disabled ? 'disabled' : ''}>
 			<StyledSpan>{engine.getRule(statut).title}</StyledSpan>
-			<StatutTag statut={acronyme} />
+			<StatutTag statut={acronyme} text="acronym" showIcon />
 		</Li>
 	)
 })

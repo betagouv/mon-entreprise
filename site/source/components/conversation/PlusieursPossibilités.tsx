@@ -1,9 +1,9 @@
+import { DottedName } from 'modele-social'
 import Engine from 'publicodes'
 import { useCallback } from 'react'
 
 import { ChoixMultiple, ChoixOption } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { getMultiplePossibilitiesOptions } from './getMultiplePossibilitiesOptions'
 
@@ -20,7 +20,7 @@ interface PlusieursPossibilitésProps {
 
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 }
 
@@ -28,7 +28,7 @@ export function PlusieursPossibilités({
 	règle,
 	onChange,
 	engine,
-	aria,
+	aria = {},
 	id,
 }: PlusieursPossibilitésProps) {
 	const choices = getMultiplePossibilitiesOptions(engine, règle)

@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { AvailableLang, parseLangue } from '@/locales/langue'
-import { SimulatorMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
+import { SimulatorDataValues } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 const rawSitePathsFr = {
 	index: '',
@@ -46,6 +45,14 @@ const rawSitePathsFr = {
 				association: 'association',
 			},
 		},
+		cmg: {
+			index: 'cmg',
+			informations: 'informations-générales',
+			enfants: 'enfants',
+			déclarations: 'déclarations',
+			inéligibilité: 'inéligible',
+			résultat: 'résultat',
+		},
 	},
 	simulateurs: {
 		index: 'simulateurs',
@@ -78,15 +85,13 @@ const rawSitePathsFr = {
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-activité',
 		'location-de-logement-meublé': 'location-de-logement-meuble',
-		'cotisation-maladie-frontalier-suisse':
-			'cotisation-maladie-frontalier-suisse',
 	},
 	nouveautés: {
 		index: 'nouveautés',
 		date: ':date',
 	},
 	stats: 'statistiques',
-	accessibilité: 'accessibilite',
+	accessibilité: 'accessibilité',
 	budget: 'budget',
 	simulateursEtAssistants: 'simulateurs-et-assistants',
 	développeur: {
@@ -147,6 +152,14 @@ const rawSitePathsEn = {
 				association: 'association',
 			},
 		},
+		cmg: {
+			index: 'cmg',
+			informations: 'general-information',
+			enfants: 'children',
+			déclarations: 'declarations',
+			inéligibilité: 'ineligible',
+			résultat: 'result',
+		},
 	},
 	simulateurs: {
 		index: 'calculators',
@@ -179,8 +192,6 @@ const rawSitePathsEn = {
 		lodeom: 'lodeom',
 		'cessation-activité': 'cessation-of-activity',
 		'location-de-logement-meublé': 'furnished-accommodation',
-		'cotisation-maladie-frontalier-suisse':
-			'health-insurance-contribution-swiss-cross-border-worker',
 	},
 	nouveautés: {
 		index: 'news',
@@ -219,7 +230,7 @@ type UnionToIntersection<T> = (
 	: never
 
 // Union of pathId
-type PathIds = SimulatorMetadata['pathId']
+type PathIds = SimulatorDataValues['pathId']
 
 type RequiredPath = Required<UnionToIntersection<PathToType<PathIds, string>>>
 
@@ -258,8 +269,7 @@ const encodedAbsoluteSitePaths = {
 	en: constructAbsoluteSitePaths(rawSitePathsEn),
 }
 
-const relativeSitePaths = encodedRelativeSitePaths
-
+export const relativeSitePaths = encodedRelativeSitePaths
 export const absoluteSitePaths = encodedAbsoluteSitePaths
 
 export type RelativeSitePaths =
@@ -267,9 +277,9 @@ export type RelativeSitePaths =
 export type AbsoluteSitePaths =
 	(typeof absoluteSitePaths)[keyof typeof absoluteSitePaths]
 
-export const useSitePaths = <T extends AvailableLang>(lang?: T) => {
+export const useSitePaths = <T extends 'fr' | 'en'>(lang?: T) => {
 	const { language } = useTranslation().i18n
-	lang ??= parseLangue(language) as T
+	lang ??= language as T
 
 	return {
 		relativeSitePaths: relativeSitePaths[lang],
@@ -286,12 +296,12 @@ type SitePathBuilt<T extends SitePath, Root extends string = ''> = {
 				? '/'
 				: `${Root}${T[K]}`
 			: T extends { index: string }
-				? `${Root}${T['index']}/${T[K]}`
-				: `${Root}${T[K]}`
+			? `${Root}${T['index']}/${T[K]}`
+			: `${Root}${T[K]}`
 		: SitePathBuilt<
 				T[K] extends SitePath ? T[K] : never,
 				T extends { index: string } ? `${Root}${T['index']}/` : `${Root}`
-			>
+		  >
 }
 
 function constructAbsoluteSitePaths<T extends SitePath>(
@@ -337,12 +347,13 @@ export const generateSiteMap = (sitePaths: AbsoluteSitePaths): SiteMap =>
 	)
 
 export const alternatePathname = () => {
+	type Lang = 'fr' | 'en'
 	type Sitepath = { [k: string]: string | Sitepath }
-	type LangSitepath = { [k in AvailableLang]: string }
+	type LangSitepath = { [k in Lang]: string }
 	type Return = { [k: string]: LangSitepath | Return }
 
 	const buildSitemap = (
-		lang: AvailableLang,
+		lang: Lang,
 		sitePath: Sitepath,
 		initialValue: Return = {}
 	): Return =>
@@ -356,13 +367,10 @@ export const alternatePathname = () => {
 
 	const buildPathname = (
 		sitemap: Return,
-		initialValue: Record<AvailableLang, Record<string, string>> = {
-			fr: {},
-			en: {},
-		}
+		initialValue: Record<Lang, Record<string, string>> = { fr: {}, en: {} }
 	) =>
 		Object.values(sitemap).reduce(
-			(acc, obj): Record<AvailableLang, Record<string, string>> =>
+			(acc, obj): Record<Lang, Record<string, string>> =>
 				typeof obj === 'object' && ('fr' in obj || 'en' in obj)
 					? {
 							fr: {
@@ -377,7 +385,7 @@ export const alternatePathname = () => {
 									? { [obj.en as string]: (obj.fr || obj.en) as string }
 									: null),
 							},
-						}
+					  }
 					: buildPathname(obj, acc),
 			initialValue
 		)

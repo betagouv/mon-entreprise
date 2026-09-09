@@ -1,9 +1,9 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 import useScrollToHash from '@/components/utils/Scroll/useScrollToHash'
 import { H1, H2, H3, H4, H5, H6, Link } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
 import { isIterable } from '@/utils'
 
 type Props = {
@@ -13,7 +13,7 @@ type Props = {
 
 export default function HeadingWithAnchorLink({ level, children }: Props) {
 	useScrollToHash()
-	const { currentPath } = useNavigation()
+	const { pathname } = useLocation()
 	const headingId = flatMapChildren(children)
 		.join(' ')
 		.toLowerCase()
@@ -24,7 +24,7 @@ export default function HeadingWithAnchorLink({ level, children }: Props) {
 
 	const childrenWithAnchor = headingId ? (
 		<>
-			<Link className="anchor-link" to={`${currentPath}#${headingId}`}>
+			<Link className="anchor-link" to={`${pathname}#${headingId}`}>
 				#
 			</Link>
 			{children}
@@ -45,15 +45,11 @@ const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 		typeof child === 'string' || typeof child === 'number'
 			? child
 			: isIterable(child)
-				? flatMapChildren(Array.from(child))
-				: typeof child === 'object' && 'props' in child
-					? (((child.props as { value?: string; children?: React.ReactNode })
-							?.value as string) ??
-						flatMapChildren(
-							(child.props as { value?: string; children?: React.ReactNode })
-								?.children
-						))
-					: ''
+			? flatMapChildren(Array.from(child))
+			: typeof child === 'object' && 'props' in child
+			? // eslint-disable-next-line
+			  (child.props?.value as string) ?? flatMapChildren(child.props?.children)
+			: ''
 	)
 }
 
@@ -66,14 +62,14 @@ const Heading = ({ level, children, ...otherProps }: HeadingProps) =>
 		level === 1
 			? H1
 			: level === 2
-				? H2
-				: level === 3
-					? H3
-					: level === 4
-						? H4
-						: level === 5
-							? H5
-							: H6,
+			? H2
+			: level === 3
+			? H3
+			: level === 4
+			? H4
+			: level === 5
+			? H5
+			: H6,
 		otherProps,
 		children
 	)

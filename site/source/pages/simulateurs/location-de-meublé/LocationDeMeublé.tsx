@@ -1,125 +1,127 @@
-import { useTranslation } from 'react-i18next'
+import { Either, Match, pipe } from 'effect'
+import { Trans } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
+import AvertissementDansObjectifDeSimulateur from '@/components/AvertissementDansObjectifDeSimulateur'
+import Value from '@/components/EngineValue/Value'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation, { SimulationGoals } from '@/components/Simulation'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative'
+import { SimulationImpossible } from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
-	ÉconomieCollaborativeProvider,
 	estSituationValide,
-	isCotisationsEnabled,
 	SituationÉconomieCollaborative,
-	useEconomieCollaborative,
-} from '@/contextes/économie-collaborative'
-import { simulationEstCommencée } from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
-import { Body, ConteneurBleu, Emoji, Message } from '@/design-system'
-import { usePageMetadata } from '@/hooks/usePageMetadata'
-import { AffichageSelonAffiliation } from '@/pages/simulateurs/location-de-meublé/components/AffichageSelonAffiliation'
-import { TypeHébergementSwitch } from '@/pages/simulateurs/location-de-meublé/components/TypeHébergementSwitch'
-import { ObjectifAutresRevenus } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifAutresRevenus'
+	usagerAChoisiUnRégimeDeCotisation,
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/situation'
+import { ÉconomieCollaborativeProvider } from '@/contextes/économie-collaborative/hooks/ÉconomieCollaborativeContext'
+import { Button, SmallBody } from '@/design-system'
+import { eurosParAn } from '@/domaine/Montant'
 import { ObjectifRecettes } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRecettes'
+import { ObjectifRevenuNet } from '@/pages/simulateurs/location-de-meublé/objectifs/ObjectifRevenuNet'
 import {
 	AlsaceMoselleQuestion,
-	ClassementQuestion,
 	PremiereAnneeQuestion,
-	RecettesCourteDuréeQuestion,
-	TypeDuréeQuestion,
+	RegimeCotisationQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
-import { URSSAF } from '@/utils/logos'
+import { useSitePaths } from '@/sitePaths'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
-import { locationDeMeubleMetadata } from './metadata'
-import { locationDeMeubleOpenGraph } from './opengraph'
+import { ObjectifCotisations } from './objectifs/ObjectifCotisations'
 
 const LocationDeMeublé = () => {
-	const metadata = usePageMetadata(locationDeMeubleMetadata)
-	const { t } = useTranslation()
-	const { situation } = useEconomieCollaborative()
+	const { situation, cotisations, revenuNet } = useEconomieCollaborative()
+	const { absoluteSitePaths } = useSitePaths()
 
-	const isMeubléDeTourisme = situation.typeHébergement === 'meublé-tourisme'
-	const isChambreDHôte = situation.typeHébergement === 'chambre-hôte'
-
-	const externalLinks = [
-		{
-			url: 'https://www.urssaf.fr/accueil/services/economie-collaborative.html',
-			title: t(
-				'pages.simulateurs.location-de-logement-meublé.externalLinks.1.title',
-				'Le service Économie collaborative'
-			),
-			description: t(
-				'pages.simulateurs.location-de-logement-meublé.externalLinks.1.description',
-				'Vous louez des logements meublés ou des biens ? Le service Économie collaborative vous facilite la déclaration et le paiement de vos cotisations.'
-			),
-			logo: URSSAF,
-			ctaLabel: t('external-links.service.ctaLabel', 'Accéder au service'),
-			ariaLabel: t(
-				'external-links.service.ariaLabel',
-				'Accéder au service sur urssaf.fr, nouvelle fenêtre'
-			),
-		},
-	]
+	const regimeCotisationChoisi = usagerAChoisiUnRégimeDeCotisation(situation)
 
 	return (
-		<SimulateurPageLayout
-			metadata={metadata}
-			openGraph={locationDeMeubleOpenGraph(t)}
-			externalLinks={externalLinks}
-			showDate={false}
-		>
+		<>
 			<Simulation<SituationÉconomieCollaborative>
 				entrepriseSelection={false}
 				situation={situation}
 				questions={[
-					TypeDuréeQuestion,
-					RecettesCourteDuréeQuestion,
-					ClassementQuestion,
-					...(isCotisationsEnabled
-						? [PremiereAnneeQuestion, AlsaceMoselleQuestion]
-						: []),
+					RegimeCotisationQuestion,
+					AlsaceMoselleQuestion,
+					PremiereAnneeQuestion,
 				]}
-				simulationEstCommencée={simulationEstCommencée}
-				hideDetails={true}
+				showQuestionsFromBeginning={estSituationValide(situation)}
+				avecQuestionsPublicodes={false}
 			>
-				<SimulateurWarning metadata={metadata} />
-				<SimulationGoals toggles={<TypeHébergementSwitch />}>
-					{isMeubléDeTourisme && (
-						<>
-							<ObjectifRecettes />
-							<ObjectifAutresRevenus />
-						</>
-					)}
-					{isChambreDHôte && (
-						<Message type="info" icon={<Emoji emoji="🚧" />}>
-							<Body>
-								{t(
-									'pages.simulateurs.location-de-logement-meublé.chambre-hôtes.non-pris-en-charge',
-									"Le cas des chambres d'hôtes n'est pas encore pris en charge par ce simulateur."
-								)}
-							</Body>
-						</Message>
-					)}
+				<SimulateurWarning simulateur="location-de-logement-meublé" />
+				<SimulationGoals>
+					<ObjectifRecettes />
+					{regimeCotisationChoisi &&
+						Either.match(cotisations, {
+							onRight: (cotisationsCalculées) => (
+								<>
+									<ObjectifCotisations cotisations={cotisationsCalculées} />
+									<ObjectifRevenuNet
+										revenuNet={pipe(
+											revenuNet,
+											Either.getOrElse(() => eurosParAn(0))
+										)}
+									/>
+								</>
+							),
+							onLeft: (erreur) => {
+								return pipe(
+									erreur,
+									Match.type<SimulationImpossible>().pipe(
+										Match.tag(
+											'RecettesSupérieuresAuPlafondAutoriséPourCeRégime',
+											() => (
+												<AvertissementDansObjectifDeSimulateur>
+													<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.dépassement-du-plafond">
+														Vous dépassez le plafond autorisé (
+														<Value
+															linkToRule={false}
+															expression="location de logement meublé . plafond régime général"
+														/>
+														) pour déclarer vos revenus de l'économie
+														collaborative avec un statut social au régime
+														général. Vous devez vous orienter vers les statuts
+														d'auto-entrepreneur ou de travailleur indépendant.
+													</Trans>
+												</AvertissementDansObjectifDeSimulateur>
+											)
+										),
+										Match.tag(
+											'RecettesInférieuresAuSeuilRequisPourCeRégime',
+											() => (
+												<SmallBody>
+													<Trans i18nKey="pages.simulateurs.location-de-logement-meublé.avertissement.pas-de-cotisation">
+														Le montant de vos recettes est inférieur à{' '}
+														<Value expression="location de logement meublé . seuil de professionalisation" />{' '}
+														et votre activité n'est pas considérée comme
+														professionnelle. Vous n'êtes pas obligé de vous
+														affilier à la sécurité sociale. Vous pouvez
+														toutefois le faire si vous souhaitez bénéficier
+														d'une protection sociale (assurance maladie,
+														retraite…) en contrepartie du paiement des
+														cotisations sociales.
+													</Trans>
+												</SmallBody>
+											)
+										),
+										Match.tag('SituationIncomplète', () => null),
+										Match.exhaustive
+									)
+								)
+							},
+						})}
 				</SimulationGoals>
 			</Simulation>
-			{isMeubléDeTourisme && estSituationValide(situation) && (
-				<ConteneurBleu>
-					<AffichageSelonAffiliation />
-				</ConteneurBleu>
-			)}
-			{/* TODO: Réactiver quand la documentation sera à jour
-			<ConteneurBleu foncé>
-				<Button
-					size="XS"
-					light
-					to={
-						absoluteSitePaths.simulateurs['location-de-logement-meublé'] +
-						'/documentation'
-					}
-				>
-					📚 Documentation
-				</Button>
-			</ConteneurBleu>
-			*/}
-		</SimulateurPageLayout>
+			<Button
+				size="XS"
+				light
+				to={
+					absoluteSitePaths.simulateurs['location-de-logement-meublé'] +
+					'/documentation'
+				}
+			>
+				📚 Documentation
+			</Button>
+		</>
 	)
 }
 

@@ -1,10 +1,10 @@
+import { pipe } from 'effect'
 import * as R from 'effect/Record'
 import { css, styled } from 'styled-components'
 
 import * as M from '@/domaine/Montant'
 import { montant, Montant } from '@/domaine/Montant'
-import * as MR from '@/domaine/MontantRecurrent'
-import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unites'
+import { UnitéMonétaire, UnitéMonétaireRécurrente } from '@/domaine/Unités'
 import { useSelection } from '@/hooks/UseSelection'
 import { NoOp } from '@/utils/NoOp'
 
@@ -25,7 +25,7 @@ interface MontantFieldProps<U extends UnitéMonétaire> {
 	label?: React.ReactNode
 	aria?: {
 		labelledby?: string
-		describedby?: string
+		label?: string
 	}
 }
 
@@ -61,28 +61,17 @@ export const MontantField = <U extends UnitéMonétaire>({
 		handleChange(valeur === undefined ? undefined : montant<U>(valeur, unité))
 	}
 
-	const valeurConvertie = (montant: Montant<U>): number => {
-		const montantConverti =
-			unitéRécurrenteCible && MR.isMontantRécurrent(montant)
-				? unitéRécurrenteCible === '€/mois'
-					? MR.toEurosParMois(montant)
-					: MR.toEurosParAn(montant)
-				: montant
-
-		return M.montantToNumber(montantConverti)
-	}
-
-	const valeur = currentValue && valeurConvertie(currentValue)
-	const placeholderValue = placeholder && valeurConvertie(placeholder)
-	const suggestionsValue = suggestions && R.map(suggestions, valeurConvertie)
+	const convertisseur =
+		unitéRécurrenteCible &&
+		(unitéRécurrenteCible === '€/mois' ? M.toEurosParMois : M.toEurosParAn)
 
 	return (
 		<Container $noPadding={unité !== '€'}>
 			<NumericInput
 				id={id}
 				label={label}
+				aria-label={label ? '' : aria?.label}
 				aria-labelledby={label ? '' : aria?.labelledby}
-				aria-describedby={aria?.describedby}
 				onChange={handleValueChange}
 				onSubmit={onSubmit}
 				formatOptions={{
@@ -91,11 +80,23 @@ export const MontantField = <U extends UnitéMonétaire>({
 					minimumFractionDigits: 0,
 					maximumFractionDigits: avecCentimes ? 2 : 0,
 				}}
-				placeholder={placeholderValue}
-				value={valeur}
+				placeholder={placeholder?.valeur}
+				value={currentValue?.valeur}
 				displayedUnit={unitéToDisplayedUnit[unité]}
 				small={small}
-				suggestions={suggestionsValue}
+				suggestions={
+					suggestions
+						? R.map(suggestions, (montant) =>
+								M.isMontantRécurrent(montant) && convertisseur
+									? pipe(
+											montant as Montant<UnitéMonétaireRécurrente>,
+											convertisseur,
+											M.montantToNumber
+									  )
+									: M.montantToNumber(montant)
+						  )
+						: undefined
+				}
 			/>
 		</Container>
 	)

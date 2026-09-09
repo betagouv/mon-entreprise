@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { TrackPage } from '@/components/PianoAnalytics'
+import { TrackPage } from '@/components/ATInternetTracking'
 import { H1, Li, Link, Ul } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
 import Meta from '../components/utils/Meta'
@@ -34,7 +34,7 @@ export default function Plan() {
 
 export const PlanContent = () => {
 	const { absoluteSitePaths } = useSitePaths()
-	const simulatorData = useSimulatorsMetadata()
+	const simulatorData = useSimulatorsData()
 
 	return (
 		<>

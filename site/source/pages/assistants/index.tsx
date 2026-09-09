@@ -1,27 +1,21 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
+import SimulateurOrAssistantPage from '@/components/SimulateurOrAssistantPage'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { useNavigation } from '@/lib/navigation'
-import Page404 from '@/pages/404'
+import useSimulatorsData from '@/hooks/useSimulatorsData'
 import { useSitePaths } from '@/sitePaths'
 
-import ChoixDuStatut from './choix-du-statut'
-import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'
 import AideDéclarationIndépendant from './declaration-revenu-independants'
-import DéclarationRevenusPAMC from './declaration-revenus-pamc'
-import DemandeMobilité from './demande-mobilité'
 import ÉconomieCollaborative from './économie-collaborative'
-import PourMonEntreprise from './pour-mon-entreprise'
-import SearchCodeApePage from './recherche-code-ape'
 
 export default function Assistants() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
-	const { currentPath } = useNavigation()
-	const assistants = relativeSitePaths.assistants
+	const location = useLocation()
+	const simulateurs = useSimulatorsData()
 
 	return (
 		<>
-			<ScrollToTop key={currentPath} />
+			<ScrollToTop key={location.pathname} />
 
 			<Routes>
 				<Route
@@ -30,41 +24,31 @@ export default function Assistants() {
 						<Navigate to={absoluteSitePaths.simulateursEtAssistants} replace />
 					}
 				/>
+				{/* Simulateurs et assistants décomissionnés */}
 				<Route
-					path={assistants['déclaration-charges-sociales-indépendant']}
-					element={<ChargesSocialesIndépendant />}
-				/>
-				<Route
-					path={assistants['déclaration-revenus-pamc']}
-					element={<DéclarationRevenusPAMC />}
-				/>
-				<Route
-					path={assistants.déclarationIndépendant.index}
+					path={relativeSitePaths.assistants.déclarationIndépendant.index}
 					element={<AideDéclarationIndépendant />}
 				/>
 				<Route
-					path={assistants.économieCollaborative.index}
+					path={relativeSitePaths.assistants.économieCollaborative.index}
 					element={<ÉconomieCollaborative />}
 				/>
-				<Route
-					path={assistants.formulaireMobilité}
-					element={<DemandeMobilité />}
-				/>
-
-				<Route
-					path={assistants['choix-du-statut'].index + '/*'}
-					element={<ChoixDuStatut />}
-				/>
-				<Route
-					path={assistants['pour-mon-entreprise'].index + '/*'}
-					element={<PourMonEntreprise />}
-				/>
-				<Route
-					path={assistants['recherche-code-ape'] + '/*'}
-					element={<SearchCodeApePage />}
-				/>
-
-				<Route path="*" element={<Page404 />} />
+				{/* Tous les simulateur et assistants */}
+				{Object.entries(simulateurs)
+					.filter(([, simu]) => simu.pathId.startsWith('assistants.'))
+					.map(([, simu]) => (
+						<Route
+							key={simu.path}
+							path={
+								simu.path.replace(absoluteSitePaths.assistants.index, '') + '/*'
+							}
+							element={
+								<>
+									<SimulateurOrAssistantPage />
+								</>
+							}
+						/>
+					))}
 			</Routes>
 		</>
 	)

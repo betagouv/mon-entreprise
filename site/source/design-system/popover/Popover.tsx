@@ -1,16 +1,15 @@
-import FocusTrap from 'focus-trap-react'
-import React, { RefObject, useRef } from 'react'
+import { useButton } from '@react-aria/button'
+import { useDialog } from '@react-aria/dialog'
 import {
-	AriaDialogProps,
 	OverlayContainer,
 	OverlayProps,
-	useButton,
-	useDialog,
 	useModal,
 	useOverlay,
 	usePreventScroll,
-} from 'react-aria'
-import { useTranslation } from 'react-i18next'
+} from '@react-aria/overlays'
+import { AriaDialogProps } from '@react-types/dialog'
+import FocusTrap from 'focus-trap-react'
+import React, { RefObject, useRef } from 'react'
 import { css, keyframes, styled } from 'styled-components'
 
 import { FromBottom } from '@/components/ui/animate'
@@ -18,7 +17,6 @@ import { wrapperDebounceEvents } from '@/utils'
 
 import { FocusStyle } from '../global-style'
 import { useIFrameOffset } from '../hooks'
-import { CrossIcon } from '../icons'
 import { Container, Grid } from '../layout'
 import { H1 } from '../typography/heading'
 
@@ -36,12 +34,11 @@ export function Popover(
 			disableOverflowAuto?: boolean
 		}
 ) {
-	const { t } = useTranslation()
 	const { title, ariaLabel, children, small, contentRef } = props
 
 	// Handle interacting outside the dialog and pressing
 	// the Escape key to close the modal.
-	const ref = useRef<HTMLDivElement>(null)
+	const ref = useRef(null)
 	const { overlayProps, underlayProps } = useOverlay(
 		{ isOpen: true, ...props },
 		ref
@@ -62,6 +59,9 @@ export function Popover(
 	)
 
 	const offsetTop = useIFrameOffset()
+	if (offsetTop === undefined) {
+		return null
+	}
 
 	return (
 		<OverlayContainer>
@@ -108,8 +108,24 @@ export function Popover(
 											<CloseButtonContainer>
 												{/* TODO : replace with Link when in design system */}
 												<CloseButton {...closeButtonProps} ref={closeButtonRef}>
-													{t('global.fermer', 'Fermer')}
-													<CrossIcon />
+													Fermer
+													<svg
+														aria-hidden
+														viewBox="0 0 24 24"
+														fill="none"
+														xmlns="http://www.w3.org/2000/svg"
+													>
+														<path
+															fillRule="evenodd"
+															clipRule="evenodd"
+															d="M6.69323 17.2996C6.30271 16.9091 6.30271 16.276 6.69323 15.8854L15.8856 6.69304C16.2761 6.30252 16.9093 6.30252 17.2998 6.69304C17.6904 7.08356 17.6904 7.71673 17.2998 8.10725L8.10744 17.2996C7.71692 17.6902 7.08375 17.6902 6.69323 17.2996Z"
+														/>
+														<path
+															fillRule="evenodd"
+															clipRule="evenodd"
+															d="M6.6635 6.69306C7.05402 6.30254 7.68719 6.30254 8.07771 6.69306L17.2701 15.8854C17.6606 16.276 17.6606 16.9091 17.2701 17.2997C16.8796 17.6902 16.2464 17.6902 15.8559 17.2997L6.6635 8.10727C6.27297 7.71675 6.27297 7.08359 6.6635 6.69306Z"
+														/>
+													</svg>
 												</CloseButton>
 											</CloseButtonContainer>
 										)}
@@ -141,7 +157,7 @@ const fromtop = keyframes`
 	to { transform: translateY(0px)}
 `
 
-type UnderlayProps = { $offsetTop?: number }
+type UnderlayProps = { $offsetTop: number | null }
 const Underlay = styled.div<UnderlayProps>`
 	position: fixed;
 	top: 0;
@@ -154,7 +170,7 @@ const Underlay = styled.div<UnderlayProps>`
 	animation: ${appear} 0.2s;
 	display: flex;
 	${({ $offsetTop }) =>
-		$offsetTop === undefined &&
+		$offsetTop === null &&
 		css`
 			align-items: center;
 			@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
@@ -163,7 +179,7 @@ const Underlay = styled.div<UnderlayProps>`
 		`}
 `
 
-const PopoverContainer = styled.div<{ $offsetTop?: number }>`
+const PopoverContainer = styled.div<{ $offsetTop: number | null }>`
 	max-height: 90vh;
 
 	background: ${({ theme }) =>
@@ -177,19 +193,19 @@ const PopoverContainer = styled.div<{ $offsetTop?: number }>`
 	animation: ${fromtop} 0.2s;
 
 	${({ theme, $offsetTop }) =>
-		$offsetTop !== undefined
+		$offsetTop
 			? css`
 					position: relative;
 					top: ${$offsetTop}px;
 					@media (min-width: ${theme.breakpointsWidth.md}) {
 						margin-top: ${theme.spacings.xl};
 					}
-				`
+			  `
 			: css`
 					@media (max-width: ${theme.breakpointsWidth.sm}) {
 						margin: 0 -16px;
 					}
-				`}
+			  `}
 `
 
 export const CloseButtonContainer = styled.div`
@@ -221,8 +237,8 @@ export const CloseButton = styled.button`
 			: theme.colors.bases.primary[700]};
 	font-family: ${({ theme }) => theme.fonts.main};
 	font-weight: 700;
-	font-size: ${({ theme }) => theme.fontSizes.base};
-	line-height: ${({ theme }) => theme.lineHeights.base};
+	font-size: ${({ theme }) => theme.baseFontSize};
+	line-height: 24px;
 	padding: ${({ theme }) => theme.spacings.sm};
 	svg {
 		width: ${({ theme }) => theme.spacings.lg};

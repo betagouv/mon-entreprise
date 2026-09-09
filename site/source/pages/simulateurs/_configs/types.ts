@@ -1,23 +1,21 @@
 import type { TFunction } from 'i18next'
+import { PublicodesExpression } from 'publicodes'
 
-import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
+import { TrackingChapters } from '@/components/ATInternetTracking'
+import { SimulationConfig } from '@/domaine/SimulationConfig'
 import { AbsoluteSitePaths } from '@/sitePaths'
-import { ImmutableType } from '@/types/utils'
 
 /**
- * Métadonnées d'une page de simulateur ou d'assistant : uniquement des
- * données pures (textes, chemins, drapeaux), sans composant React ni
- * ressource de la page. C'est la seule partie agrégée pour les besoins
- * transverses : plan du site, recherche, cards, statistiques, Algolia.
+ * Configuration d'une page de simulateur ou d'assistant
  */
-export interface PageMetadata {
+export interface PageConfig {
 	/** Identifiant unique de la page
 	 */
 	id: string
 
 	/** Chemin de la page
 	 *  Ce dernier doit exister dans le fichier sitePaths.ts */
-	path: string
+	path?: string
 
 	/** Chemin de l'iframe */
 	iframePath: string
@@ -39,6 +37,8 @@ export interface PageMetadata {
 	/** Titre H1 de la page du simulateur */
 	title: string
 
+	/** Configuration du tracking */
+
 	/**
 	 * Les informations liées au tracking, utilisées pour les statistiques.
 	 *
@@ -59,12 +59,18 @@ export interface PageMetadata {
 	 */
 	tracking: TrackingChapters
 
-	/** Métadonnées textuelles de la page pour les moteurs de recherche */
+	/** Métadonnées de la page */
 	meta: {
 		/** Titre de la page pour les moteurs de recherche */
 		title: string
 		/** Description de la page pour les moteurs de recherche */
 		description: string
+		/** Description Open Graph de la page */
+		ogDescription?: string
+		/** Titre Open Graph de la page */
+		ogTitle?: string
+		/** Image Open Graph de la page */
+		ogImage?: string
 	}
 
 	/** Indique si le simulateur est privé
@@ -87,31 +93,62 @@ export interface PageMetadata {
 	tooltip?: string
 
 	/**
-	 * Indique les catégories d'entreprise concernées par le simulateur.
+	 * Avertissement propre au simulateur à ajouter dans l’encart générique
+	 */
+	warning?: () => JSX.Element
+
+	/** ID des pages de simulateur ou assistant à faire apparaître dans la
+	 * section « Ressources utiles » en bas de page.
+	 */
+	nextSteps?: string[] | false
+
+	/** Liens externes à  faire apparaître dans la section « Ressources utiles » en bas de page. */
+	externalLinks?: ExternalLink[]
+
+	/** Configuration de la simulation */
+	simulation?: SimulationConfig
+
+	/** Indique si la dernière simulation doit être chargée automatiquement à l'arrivée
+	 * sur la page
+	 */
+	autoloadLastSimulation?: boolean
+
+	/** Indique les catégories d'entreprise concernées par le simulateur.
 	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
 	 */
 	codesCatégorieJuridique?: string[]
+
+	/** Indique si la date du simulateur doit être masquée ou pas.
+	 */
+	hideDate?: boolean
+
+	/** Indique si le formulaire de retour doit être désactivé en iframe
+	 */
+	disableIframeFeedback?: boolean
+
+	/** Composant React de la page
+	 *
+	 * Note : Le nom du composant doit être en un seul mot pour que le script `yarn build:simulator-data` marche
+	 * example: `component: MyComponent,`
+	 */
+	component?: () => JSX.Element
+
+	/** Composant React pour les explications SEO, qui apparaissent en dessous du simulateur */
+	seoExplanations?: () => JSX.Element
 }
 
 export type ExternalLink = {
 	url: string
 	title: string
+	associatedRule?: PublicodesExpression
 	description?: string
 	logo?: string
 	ctaLabel?: string
 	ariaLabel?: string
 }
 
-export interface PageMetadataParams {
+export interface SimulatorsDataParams {
 	t: TFunction
 	sitePaths: AbsoluteSitePaths
 	language: string
-}
-
-export function parId<Métadonnée extends ImmutableType<PageMetadata>>(
-	métadonnée: ImmutableType<PageMetadata> & Métadonnée
-) {
-	return {
-		[métadonnée.id]: métadonnée,
-	} as ImmutableType<{ [k in Métadonnée['id']]: Métadonnée }>
 }

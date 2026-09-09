@@ -5,7 +5,6 @@ import { RootState, SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { debounce } from '../utils'
 import * as safeLocalStorage from './safeLocalStorage'
-import { sanitizePersistedSituation } from './sanitizePersistedSituation'
 
 const VERSION = 5
 
@@ -28,8 +27,6 @@ export function retrievePersistedCompanySituation() {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 
 	return serializedState && serializedState !== 'undefined'
-		? (sanitizePersistedSituation(
-				JSON.parse(serializedState)
-			) as SituationPublicodes)
+		? (JSON.parse(serializedState) as SituationPublicodes)
 		: undefined
 }

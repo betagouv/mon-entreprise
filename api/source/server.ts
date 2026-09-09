@@ -5,26 +5,21 @@ import Koa from 'koa'
 import rules from 'modele-social'
 import Engine from 'publicodes'
 
+import { analyticsMiddleware } from './analytics.js'
 import { catchErrors } from './errors.js'
-import { analyticsMiddleware } from './middlewares/analytics.js'
-import { rateLimiterMiddleware } from './middlewares/rate-limiter.js'
-import { redisCacheMiddleware } from './middlewares/redis-cache.js'
-import Sentry, {
-	requestHandler,
-	tracingMiddleWare,
-} from './middlewares/sentry.js'
-import v1unitéAdapterMiddleware from './middlewares/v1unitéAdapterMiddleware.js'
-import { modèles } from './modeles.js'
+import openapi from './openapi.json' assert { type: 'json' }
+import { rateLimiterMiddleware } from './rate-limiter.js'
+import { redisCacheMiddleware } from './redis-cache.js'
 import { docRoutes } from './route/doc.js'
-import { openApiRoutes } from './route/openapi.js'
+import { openapiRoutes } from './route/openapi.js'
+import Sentry, { requestHandler, tracingMiddleWare } from './sentry.js'
+import v1unitéAdapterMiddleware from './v1unitéAdapterMiddleware.js'
 
 type State = Koa.DefaultState
 type Context = Koa.DefaultContext
 
 export const app = new Koa<State, Context>()
-const router = new Router<State, Context>({
-	prefix: '/api/v1',
-})
+const router = new Router<State, Context>()
 
 if (process.env.NODE_ENV === 'production') {
 	app.proxy = true // Trust X-Forwarded-For proxy header
@@ -46,31 +41,25 @@ app.use(catchErrors())
 
 app.use(cors())
 
-router.use('', docRoutes(), openApiRoutes())
+router.use('/api/v1', docRoutes(), openapiRoutes(openapi))
 
-const engineOptions = {
-	warn: {
-		deprecatedSyntax: false,
-		cyclicReferences: false,
-	},
-}
+const apiRoutes = publicodesAPI(
+	new Engine(rules, {
+		warn: {
+			deprecatedSyntax: false,
+			cyclicReferences: false,
+		},
+	})
+)
 
-const apiRoutes = publicodesAPI(new Engine(rules, engineOptions))
 router.use(
-	'',
+	'/api/v1',
 	rateLimiterMiddleware,
 	redisCacheMiddleware(),
 	analyticsMiddleware,
 	v1unitéAdapterMiddleware(),
 	apiRoutes
 )
-
-Object.entries(modèles).forEach(([nom, règles]) => {
-	router.use(
-		`/modeles/${nom}`,
-		publicodesAPI(new Engine(règles, engineOptions))
-	)
-})
 
 app.use(router.routes())
 app.use(router.allowedMethods())

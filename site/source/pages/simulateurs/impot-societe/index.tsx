@@ -1,17 +1,18 @@
 import * as O from 'effect/Option'
+import { DottedName } from 'modele-social'
 import React from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import RuleInput from '@/components/conversation/RuleInput'
-import Value from '@/components/EngineValue/Value'
-import Notifications from '@/components/Notifications'
 import {
 	ACCUEIL,
 	SIMULATION_TERMINEE,
 	TrackPage,
-} from '@/components/PianoAnalytics'
+} from '@/components/ATInternetTracking'
+import RuleInput from '@/components/conversation/RuleInput'
+import Value from '@/components/EngineValue/Value'
+import Notifications from '@/components/Notifications'
 import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import {
@@ -22,61 +23,35 @@ import {
 import { FromTop } from '@/components/ui/animate'
 import { Body, H2, Intro, Link, StyledInputSuggestion } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { DottedName } from '@/domaine/publicodes/DottedName'
-import { usePageMetadata } from '@/hooks/usePageMetadata'
-import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
-import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import useYear from '@/hooks/useYear'
 import {
-	enregistreLaRéponseÀLaQuestion,
-	enregistreLesRéponsesAuxQuestions,
+	batchUpdateSituation,
+	enregistreLaRéponse,
 } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
-import { EngineProvider } from '@/utils/publicodes/EngineContext'
-
-import SimulateurPageLayout from '../SimulateurPageLayout'
-import { impôtSociétéMetadata } from './metadata'
-import { ISSimulationConfig } from './simulationConfig'
-
-const nextSteps = ['salarié', 'comparaison-statuts'] satisfies SimulateurId[]
+import { situationSelector } from '@/store/selectors/simulationSelectors'
 
 export default function ISSimulation() {
-	const metadata = usePageMetadata(impôtSociétéMetadata)
-	const { isReady, engine } = useSimulationPublicodes(
-		metadata,
-		ISSimulationConfig
-	)
-
 	return (
-		<EngineProvider value={engine}>
-			<SimulateurPageLayout
-				metadata={metadata}
-				seoExplanations={<SeoExplanations />}
-				isReady={isReady}
-				nextSteps={nextSteps}
-			>
-				<SimulationContainer>
-					<SimulateurWarning
-						metadata={metadata}
-						informationsComplémentaires={
-							<Body>
-								<Trans i18nKey="pages.simulateurs.is.warning">
-									Ce simulateur s’adresse aux{' '}
-									<abbr title="Très Petites Entreprises">TPE</abbr> : il prend
-									en compte les taux réduits de l’impôt sur les sociétés.
-								</Trans>
-							</Body>
-						}
-					/>
-					<Notifications />
+		<SimulationContainer>
+			<SimulateurWarning
+				simulateur="is"
+				informationsComplémentaires={
+					<Body>
+						<Trans i18nKey="pages.simulateurs.is.warning">
+							Ce simulateur s’adresse aux{' '}
+							<abbr title="Très Petites Entreprises">TPE</abbr> : il prend en
+							compte les taux réduits de l’impôt sur les sociétés.
+						</Trans>
+					</Body>
+				}
+			/>
+			<Notifications />
 
-					<SimulationGoals toggles={<ExerciceDate />}>
-						<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
-					</SimulationGoals>
-					<Explanations />
-				</SimulationContainer>
-			</SimulateurPageLayout>
-		</EngineProvider>
+			<SimulationGoals toggles={<ExerciceDate />}>
+				<SimulationGoal dottedName="entreprise . imposition . IS . résultat imposable" />
+			</SimulationGoals>
+			<Explanations />
+		</SimulationContainer>
 	)
 }
 
@@ -109,7 +84,7 @@ function ExerciceDate() {
 								)}
 								onPress={() => {
 									dispatch(
-										enregistreLesRéponsesAuxQuestions({
+										batchUpdateSituation({
 											'entreprise . exercice . début': O.some(`01/01/${year}`),
 											'entreprise . exercice . fin': O.some(`31/12/${year}`),
 										} as Record<DottedName, O.Option<ValeurPublicodes>>)
@@ -131,17 +106,13 @@ function ExerciceDate() {
 				<RuleInput
 					dottedName={'entreprise . exercice . début'}
 					onChange={(x) =>
-						dispatch(
-							enregistreLaRéponseÀLaQuestion('entreprise . exercice . début', x)
-						)
+						dispatch(enregistreLaRéponse('entreprise . exercice . début', x))
 					}
 				/>{' '}
 				<RuleInput
 					dottedName={'entreprise . exercice . fin'}
 					onChange={(x) =>
-						dispatch(
-							enregistreLaRéponseÀLaQuestion('entreprise . exercice . fin', x)
-						)
+						dispatch(enregistreLaRéponse('entreprise . exercice . fin', x))
 					}
 				/>
 			</ExerciceDateContainer>

@@ -1,14 +1,3 @@
-# Redirect www → non-www
-[[redirects]]
-from = "https://www.mon-entreprise.urssaf.fr/*"
-to = "https://mon-entreprise.urssaf.fr/:splat"
-status = 301
-
-[[redirects]]
-from = "https://www.mycompanyinfrance.urssaf.fr/*"
-to = "https://mycompanyinfrance.urssaf.fr/:splat"
-status = 301
-
 [[headers]]
 for = "/*"
 [headers.values]
@@ -19,7 +8,7 @@ Content-Security-Policy = """\
   form-action 'self' *.sibforms.com *.incubateur.net; \
   script-src 'self' 'unsafe-inline' 'unsafe-eval' tm.urssaf.fr tag.aticdn.net *.incubateur.net stonly.com code.jquery.com polyfill.io; \
   img-src 'self' data: mon-entreprise.urssaf.fr tm.urssaf.fr user-images.githubusercontent.com github.com *.s3.amazonaws.com jedonnemonavis.numerique.gouv.fr; \
-  frame-src 'self' https://www.youtube-nocookie.com https://codesandbox.io https://stackblitz.com https://conseillers-entreprises.service-public.gouv.fr \
+  frame-src 'self' https://www.youtube-nocookie.com https://codesandbox.io https://place-des-entreprises.beta.gouv.fr https://reso-staging.osc-fr1.scalingo.io https://stackblitz.com https://conseillers-entreprises.service-public.gouv.fr \
   """
 
 [dev]

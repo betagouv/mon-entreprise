@@ -1,37 +1,24 @@
 import { Either, Option, pipe } from 'effect'
 
-import { abattement, fois, Montant } from '@/domaine/Montant'
+import { SEUIL_PROFESSIONNALISATION } from '@/contextes/économie-collaborative/domaine/location-de-meublé/constantes'
 import {
-	estPlusGrandOuÉgalÀ,
-	estPlusGrandQue,
-	eurosParAn,
-	moins,
-} from '@/domaine/MontantRecurrent'
-
-import {
-	applicableSurRecettesCourteDurée,
-	applicableSurToutesRecettes,
-	EstApplicable,
-	NON_APPLICABLE,
-} from './applicabilité'
-import {
-	AffiliationNonObligatoire,
+	RecettesInférieuresAuSeuilRequisPourCeRégime,
 	RecettesSupérieuresAuPlafondAutoriséPourCeRégime,
-	RégimeNonApplicablePourCeTypeDeDurée,
-	RégimeNonApplicablePourChambreDHôte,
-} from './erreurs'
-import { estActivitéPrincipale } from './estActivitéPrincipale'
+} from '@/contextes/économie-collaborative/domaine/location-de-meublé/erreurs'
 import {
-	estActiviteProfessionnelle,
-	SEUIL_PROFESSIONNALISATION,
-} from './estActiviteProfessionnelle'
+	abattement,
+	estPlusGrandQue,
+	estPlusPetitQue,
+	eurosParAn,
+	fois,
+	moins,
+	Montant,
+} from '@/domaine/Montant'
+
+import { DEFAULTS } from './cotisations'
 import {
-	aRenseignéSesAutresRevenus,
-	aRenseignéSonTypeDeDurée,
-	faitDeLaLocationCourteEtLongueDurée,
 	RegimeCotisation,
 	SituationÉconomieCollaborativeValide,
-	situationParDéfaut,
 } from './situation'
 
 export const PLAFOND_REGIME_GENERAL = eurosParAn(77_700)
@@ -41,27 +28,37 @@ export const ABATTEMENT_REGIME_GENERAL = 0.6
 
 /**
  * Calcule les cotisations sociales pour le régime général
- * @param situation La situation avec des recettes
- * @returns Un Either contenant soit les cotisations calculées, soit une erreur
+ * @param situation La situation avec des recettes obligatoirement définies
+ * @returns Un Either contenant soit les cotisations calculées, soit une erreur explicite
  */
 export function calculeCotisationsRégimeGénéral(
 	situation: SituationÉconomieCollaborativeValide
 ): Either.Either<
 	Montant<'€/an'>,
-	| AffiliationNonObligatoire
+	| RecettesInférieuresAuSeuilRequisPourCeRégime
 	| RecettesSupérieuresAuPlafondAutoriséPourCeRégime
-	| RégimeNonApplicablePourChambreDHôte
-	| RégimeNonApplicablePourCeTypeDeDurée
 > {
-	if (situation.typeHébergement === 'chambre-hôte') {
+	const recettes = situation.recettes.value
+
+	const estAlsaceMoselle = Option.getOrElse(
+		situation.estAlsaceMoselle,
+		() => DEFAULTS.EST_ALSACE_MOSELLE
+	)
+
+	const premièreAnnée = Option.getOrElse(
+		situation.premièreAnnée,
+		() => DEFAULTS.PREMIERE_ANNEE
+	)
+
+	if (pipe(recettes, estPlusPetitQue(SEUIL_PROFESSIONNALISATION))) {
 		return Either.left(
-			new RégimeNonApplicablePourChambreDHôte({
+			new RecettesInférieuresAuSeuilRequisPourCeRégime({
+				recettes,
+				seuil: SEUIL_PROFESSIONNALISATION,
 				régime: RegimeCotisation.regimeGeneral,
 			})
 		)
 	}
-
-	const recettes = situation.recettes.value
 
 	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
 		return Either.left(
@@ -73,24 +70,9 @@ export function calculeCotisationsRégimeGénéral(
 		)
 	}
 
-	const applicabilité = estApplicableRégimeGénéral(situation)
-	if (Either.isRight(applicabilité) && !applicabilité.right.applicable) {
-		return Either.left(new AffiliationNonObligatoire())
-	}
-
-	const estAlsaceMoselle = Option.getOrElse(
-		situation.estAlsaceMoselle,
-		() => situationParDéfaut.estAlsaceMoselle
-	)
-
-	const premièreAnnée = Option.getOrElse(
-		situation.premièreAnnée,
-		() => situationParDéfaut.premièreAnnée
-	)
-
 	const assiette = premièreAnnée
-		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
-			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION.MEUBLÉ))
+		? pipe(recettes, estPlusGrandQue(SEUIL_PROFESSIONNALISATION))
+			? pipe(recettes, moins(SEUIL_PROFESSIONNALISATION))
 			: eurosParAn(0)
 		: recettes
 
@@ -105,63 +87,4 @@ export function calculeCotisationsRégimeGénéral(
 	)
 
 	return Either.right(cotisations)
-}
-
-export const estApplicableRégimeGénéral: EstApplicable = (situation) => {
-	if (situation.typeHébergement === 'chambre-hôte') {
-		return NON_APPLICABLE
-	}
-
-	const recettes = situation.recettes.value
-
-	if (pipe(recettes, estPlusGrandQue(PLAFOND_REGIME_GENERAL))) {
-		return NON_APPLICABLE
-	}
-
-	if (!estActiviteProfessionnelle(situation)) {
-		return NON_APPLICABLE
-	}
-
-	if (!aRenseignéSesAutresRevenus(situation)) {
-		return Either.left(['autresRevenus'])
-	}
-
-	if (!estActivitéPrincipale(situation)) {
-		if (!aRenseignéSonTypeDeDurée(situation)) {
-			return Either.left(['typeDurée'])
-		}
-		const typeDurée = situation.typeDurée.value
-
-		if (faitDeLaLocationCourteEtLongueDurée(situation)) {
-			if (Option.isNone(situation.recettesCourteDurée)) {
-				return Either.left(['recettesCourteDurée'])
-			}
-			const recettesCourteDurée = situation.recettesCourteDurée.value
-			if (
-				!pipe(
-					recettesCourteDurée,
-					estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ)
-				)
-			) {
-				return NON_APPLICABLE
-			}
-
-			return applicableSurRecettesCourteDurée(recettesCourteDurée)
-		} else if (typeDurée !== 'courte') {
-			return NON_APPLICABLE
-		}
-	}
-
-	if (pipe(recettes, estPlusGrandOuÉgalÀ(SEUIL_PROFESSIONNALISATION.MEUBLÉ))) {
-		if (!aRenseignéSonTypeDeDurée(situation)) {
-			return Either.left(['typeDurée'])
-		}
-		const typeDurée = situation.typeDurée.value
-
-		if (estActivitéPrincipale(situation) && typeDurée !== 'courte') {
-			return NON_APPLICABLE
-		}
-	}
-
-	return applicableSurToutesRecettes(recettes)
 }

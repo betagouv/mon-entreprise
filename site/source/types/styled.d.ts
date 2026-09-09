@@ -59,7 +59,6 @@ export interface Theme {
 	}
 
 	spacings: {
-		xxxs: Spacing
 		xxs: Spacing
 		xs: Spacing
 		sm: Spacing
@@ -75,10 +74,7 @@ export interface Theme {
 		heading: Font
 	}
 
-	fontSizes: {
-		min: FontSize
-		base: FontSize
-	}
+	baseFontSize: FontSize
 
 	box: {
 		borderRadius: Metric
@@ -102,14 +98,13 @@ export interface Theme {
 	}
 
 	breakpointsWidth: {
-		sm: Metric
-		md: Metric
-		lg: Metric
 		xl: Metric
+		lg: Metric
+		md: Metric
+		sm: Metric
 	}
 
 	darkMode: boolean
-	isInIframe?: boolean
 
 	breakpoints: { values: Record<SpacingKey | 'xs', number> }
 	spacing: Array<string>

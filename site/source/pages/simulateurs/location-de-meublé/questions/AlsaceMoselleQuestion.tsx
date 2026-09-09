@@ -3,15 +3,15 @@ import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import {
-	SituationÉconomieCollaborative,
-	useEconomieCollaborative,
-} from '@/contextes/économie-collaborative'
+import { SituationÉconomieCollaborative } from '@/contextes/économie-collaborative/domaine/location-de-meublé'
+import { useEconomieCollaborative } from '@/contextes/économie-collaborative/hooks/useEconomieCollaborative'
 import { Radio, ToggleGroup } from '@/design-system'
-import { toOuiNon } from '@/domaine/OuiNon'
+
+interface Props {}
 
 export const AlsaceMoselleQuestion: ComposantQuestion<
-	SituationÉconomieCollaborative
+	SituationÉconomieCollaborative,
+	Props
 > = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useEconomieCollaborative()
@@ -24,7 +24,9 @@ export const AlsaceMoselleQuestion: ComposantQuestion<
 	)
 
 	const value = O.isSome(situation.estAlsaceMoselle)
-		? toOuiNon(situation.estAlsaceMoselle.value)
+		? situation.estAlsaceMoselle.value
+			? 'oui'
+			: 'non'
 		: undefined
 
 	return (
@@ -40,11 +42,8 @@ export const AlsaceMoselleQuestion: ComposantQuestion<
 }
 AlsaceMoselleQuestion._tag = 'QuestionFournie'
 AlsaceMoselleQuestion.id = 'est-alsace-moselle'
-AlsaceMoselleQuestion.libellé = (t) =>
-	t(
-		'pages.simulateurs.location-de-logement-meublé.questions.alsace-moselle.libellé',
-		'Votre hébergement est-il situé en Alsace-Moselle ?'
-	)
+AlsaceMoselleQuestion.libellé =
+	'Votre hébergement est-il situé en Alsace-Moselle ?'
 AlsaceMoselleQuestion.applicable = () => true
 AlsaceMoselleQuestion.répondue = (situation) =>
 	O.isSome(situation.estAlsaceMoselle)

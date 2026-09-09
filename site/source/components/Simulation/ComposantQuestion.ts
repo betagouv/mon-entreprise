@@ -1,5 +1,4 @@
 import { Predicate } from 'effect/Predicate'
-import { TFunction } from 'i18next'
 
 import { Situation } from '@/domaine/Situation'
 
@@ -9,12 +8,7 @@ export type ComposantQuestion<
 > = React.FunctionComponent<P> & {
 	_tag: 'QuestionFournie'
 	id: string
-	libellé: (t: TFunction) => string
+	libellé: string
 	applicable: Predicate<S>
 	répondue: Predicate<S>
-}
-
-export type GroupeDeQuestionsFournies<S extends Situation> = {
-	titre: (t: TFunction) => string
-	liste: ComposantQuestion<S>[]
 }

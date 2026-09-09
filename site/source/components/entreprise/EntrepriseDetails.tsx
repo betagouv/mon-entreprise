@@ -1,62 +1,68 @@
-import { ComponentType, ReactNode } from 'react'
+import { ComponentType } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { Body, H3, H4, Strong } from '@/design-system'
-import { companyDetailsSelector } from '@/store/selectors/company/companyDetails.selector'
+import { Body, Grid, H4, Message, Spacing, Strong } from '@/design-system'
 
-type Props = {
-	small?: boolean
-	headingTag?: string | ComponentType | undefined
-}
+import SeeAnswersButton from '../conversation/SeeAnswersButton'
+import Value from '../EngineValue/Value'
 
-export default function EntrepriseDetails({
-	small = false,
+export function EntrepriseDetails({
+	showSituation = false,
 	headingTag = 'h3',
-}: Props) {
-	const companyDetails = useSelector(companyDetailsSelector)
-	const BodyComponent = small ? BodyWithoutMargin : Body
-
-	const DateDeCréation = () => <Strong>{companyDetails.dateDeCréation}</Strong>
-	const Commune = () => <Strong>{companyDetails.commune}</Strong>
-
+}: {
+	showSituation?: boolean
+	headingTag?: string | ComponentType | undefined
+}) {
 	return (
-		<>
-			<TitleComponent
-				data-test-id="currently-selected-company"
-				small
-				headingTag={headingTag}
+		<StyledCompanyContainer>
+			<Grid
+				container
+				style={{
+					alignItems: 'flex-end',
+					justifyContent: 'center',
+				}}
+				spacing={3}
 			>
-				{`${companyDetails.nom} ${companyDetails.siren}`}
-			</TitleComponent>
-			<BodyComponent>
-				<Trans i18nKey="entreprise.détails">
-					Entreprise créée le <DateDeCréation /> et domiciliée à <Commune />.
-				</Trans>
-			</BodyComponent>
-		</>
+				<Grid item xs={12} lg>
+					<StyledH4 data-test-id="currently-selected-company" as={headingTag}>
+						<Value expression="entreprise . nom" linkToRule={false} />{' '}
+						<Value expression="entreprise . SIREN" linkToRule={false} />
+					</StyledH4>
+					<Body>
+						<Trans>
+							Entreprise créée le{' '}
+							<Strong>
+								<Value
+									expression="entreprise . date de création"
+									linkToRule={false}
+								/>
+							</Strong>{' '}
+							et domiciliée à{' '}
+							<Strong>
+								<Value
+									expression="établissement . commune"
+									linkToRule={false}
+								/>
+							</Strong>
+						</Trans>
+					</Body>
+				</Grid>
+				{showSituation && (
+					<Grid item xs={12} sm="auto">
+						<SeeAnswersButton label={<Trans>Afficher le détail</Trans>} />
+						<Spacing sm />
+					</Grid>
+				)}
+			</Grid>
+		</StyledCompanyContainer>
 	)
 }
 
-type TitleProps = {
-	children: ReactNode
-	small: boolean
-	headingTag: string | ComponentType
-}
+const StyledCompanyContainer = styled(Message).attrs({ border: false })``
 
-function TitleComponent({ small, headingTag, children }: TitleProps) {
-	return small ? (
-		<StyledH3 as={headingTag}>{children}</StyledH3>
-	) : (
-		<H4 as={headingTag}>{children}</H4>
-	)
-}
-
-const StyledH3 = styled(H3)`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
-`
-
-const BodyWithoutMargin = styled(Body)`
-	margin: ${({ theme }) => theme.spacings.xxs} 0;
+const StyledH4 = styled(H4)`
+	& span {
+		color: ${({ theme }) => theme.colors.bases.primary[700]};
+	}
 `

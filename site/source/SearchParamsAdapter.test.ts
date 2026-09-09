@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { euros, eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
 import {
+	euros,
 	eurosParAn,
 	eurosParHeure,
 	eurosParJour,
 	eurosParMois,
-} from '@/domaine/MontantRecurrent'
+	eurosParTitreRestaurant,
+} from '@/domaine/Montant'
 import {
 	annéeCivile,
 	employés,
@@ -18,7 +19,7 @@ import {
 	pourcentage,
 	titresRestaurantParMois,
 	trimestreCivil,
-} from '@/domaine/Quantite'
+} from '@/domaine/Quantité'
 
 import { SearchParamsAdapter } from './SearchParamsAdapter'
 

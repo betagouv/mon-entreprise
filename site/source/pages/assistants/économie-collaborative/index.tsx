@@ -1,18 +1,19 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import illustration from '@/assets/images/illustrations/illustration.svg'
 import PageHeader from '@/components/PageHeader'
 import { Body, Button } from '@/design-system'
+
+import illustrationSrc from './illustration.svg'
 
 export default function ÉconomieCollaborative() {
 	const { t } = useTranslation()
 
 	return (
-		<PageHeader
-			titre="L'assistant économie collaborative, c'est terminé"
-			picture={illustration}
-		>
-			<Trans i18nKey="pages.assistants.économie-collaborative.texte">
+		<Trans>
+			<PageHeader
+				titre="L'assistant économie collaborative, c'est terminé"
+				picture={illustrationSrc}
+			>
 				<Body>
 					Ce dernier n'a pas rencontré le succès escompté. Nous avons donc
 					décidé de le retirer du site. En effet, il était trop difficile de
@@ -25,13 +26,12 @@ export default function ÉconomieCollaborative() {
 				<Button
 					href="https://www.urssaf.fr/portail/home/espaces-dedies/activites-relevant-de-leconomie.html"
 					title={t(
-						'pages.assistants.économie-collaborative.aria-label',
 						'Activités relevant de l’économie collaborative, voir la page'
 					)}
 				>
 					Activités relevant de l’économie collaborative
 				</Button>
-			</Trans>
-		</PageHeader>
+			</PageHeader>
+		</Trans>
 	)
 }

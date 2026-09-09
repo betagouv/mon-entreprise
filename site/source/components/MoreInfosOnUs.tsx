@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router-dom'
 
 import {
 	Emoji,
@@ -9,11 +10,10 @@ import {
 	Spacing,
 	Ul,
 } from '@/design-system'
-import { useNavigation } from '@/lib/navigation'
 import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
-	const { currentPath } = useNavigation()
+	const { pathname } = useLocation()
 	const { absoluteSitePaths } = useSitePaths()
 	const { language } = useTranslation().i18n
 
@@ -25,7 +25,7 @@ export default function MoreInfosOnUs() {
 		<>
 			<H2>Plus d'informations sur mon-entreprise</H2>
 			<Grid as={Ul} container spacing={2}>
-				{!currentPath.startsWith(absoluteSitePaths.nouveautés.index) && (
+				{!pathname.startsWith(absoluteSitePaths.nouveautés.index) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji={'✨'} />}
@@ -36,7 +36,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				{!currentPath.startsWith(absoluteSitePaths.stats) && (
+				{!pathname.startsWith(absoluteSitePaths.stats) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="📊" />}
@@ -47,7 +47,7 @@ export default function MoreInfosOnUs() {
 						</SmallCard>
 					</Grid>
 				)}
-				{!currentPath.startsWith(absoluteSitePaths.budget) && (
+				{!pathname.startsWith(absoluteSitePaths.budget) && (
 					<Grid as="li" item xs={12} sm={6} md={4}>
 						<SmallCard
 							icon={<Emoji emoji="💶" />}

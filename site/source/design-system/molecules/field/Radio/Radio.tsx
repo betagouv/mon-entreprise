@@ -1,6 +1,7 @@
+import { useRadio } from '@react-aria/radio'
+import { RadioGroupState } from '@react-stately/radio'
+import { AriaRadioProps } from '@react-types/radio'
 import React, { createContext, useContext, useRef } from 'react'
-import { AriaRadioProps, useRadio } from 'react-aria'
-import { RadioGroupState } from 'react-stately'
 import { css, styled } from 'styled-components'
 
 import { FocusStyle } from '../../../global-style'
@@ -148,10 +149,7 @@ export const RadioButton = styled.span`
 		width: calc(var(--halo) * 2 + var(--size));
 		height: calc(var(--halo) * 2 + var(--size));
 		border-radius: 50%;
-		background: ${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.bases.primary[200]};
+		background: ${({ theme }) => theme.colors.bases.primary[100]};
 		z-index: 0;
 		opacity: 0;
 		transition: all 0.15s ease;
@@ -163,16 +161,15 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 	display: inline-flex;
 	align-items: center;
 	text-align: initial;
-	padding: 0 ${({ theme }) => theme.spacings.xs} 0
-		${({ theme }) => theme.spacings.sm};
-	margin: ${({ theme }) => `0 -${theme.spacings.xxs} 0 ${theme.spacings.xxs}`};
+	padding: 0 ${({ theme }) => theme.spacings.sm};
+	margin: 0 calc(-1 * ${({ theme }) => theme.spacings.sm});
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	z-index: 1;
 	${({ theme, $inert }) =>
 		!$inert
 			? css`
 				&:hover > ${RadioButton}::before {
-					opacity: 0.7;
+					opacity: 1;
 					transform: scale(1);
 				}
 
@@ -192,14 +189,14 @@ export const VisibleRadio = styled.span<{ $inert?: boolean }>`
 					&:hover * {
 						cursor: default !important;
 					}
-				`}
+			  `}
 `
 
 const Label = styled.label<{ htmlFor?: string }>``
 
 export const SpanBody = styled(Body).attrs({ as: 'span' })`
-	margin: ${({ theme }) => theme.spacings.xxxs} 0;
-	margin-left: ${({ theme }) => theme.spacings.xxxs};
+	margin: ${({ theme }) => theme.spacings.xs} 0px;
+	margin-left: ${({ theme }) => theme.spacings.xxs};
 	background-color: transparent;
 	display: inline-flex;
 	align-items: center;

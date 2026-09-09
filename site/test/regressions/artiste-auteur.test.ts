@@ -1,17 +1,12 @@
-import rules from 'modele-social'
 import { expect, it } from 'vitest'
 
 import { configArtisteAuteur } from '@/pages/simulateurs/artiste-auteur/simulationConfig'
-import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import artisteAuteurSituations from './artiste-auteur.yaml'
-import { getMissingVariables, runSimulations } from './utils'
-
-const engine = engineFactory(rules)
+import { engine, getMissingVariables, runSimulations } from './utils'
 
 it('calculate simulations-artiste-auteur', () => {
 	runSimulations(
-		engine,
 		artisteAuteurSituations,
 		[
 			...(configArtisteAuteur['objectifs exclusifs'] ?? []),

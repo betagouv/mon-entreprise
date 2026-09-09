@@ -1,4 +1,8 @@
+import './global.css'
+
 import { createGlobalStyle, css } from 'styled-components'
+
+import { inIframe } from '@/utils'
 
 export const SROnly = css`
 	position: absolute !important;
@@ -13,12 +17,9 @@ export const SROnly = css`
 `
 
 export const FocusStyle = css`
-	outline: 3px solid
-		${({ theme }) =>
-			theme.darkMode
-				? theme.colors.extended.grey[100]
-				: theme.colors.bases.primary[700]};
+	outline: 3px solid ${({ theme }) => theme.colors.bases.primary[700]};
 	outline-offset: 2px;
+	box-shadow: 0 0 0 2px #ffffff;
 `
 
 export const FlexCenter = css`
@@ -30,16 +31,20 @@ export const GlobalStyle = createGlobalStyle`
 html {
 	transition: none !important;
 	box-sizing: border-box;
+	font-size: 16px;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
 
 html, body, #js, #js > *, [data-overlay-container] {
-	${({ theme }) =>
-		theme.isInIframe &&
-		css`
-			min-height: 100%;
-		`}
+	${
+		inIframe()
+			? css`
+					min-height: 100%;
+			  `
+			: css``
+	}
+
 }
 
 *,
@@ -87,7 +92,7 @@ button:enabled {
 	margin: 0;
 	overflow: hidden;
 	clip: rect(1px, 1px, 1px, 1px);
-	font-family: ${({ theme }) => theme.fonts.main};
+	font-family: 'Roboto';
 	font-weight: bold;
 	list-style-type: "";
 }

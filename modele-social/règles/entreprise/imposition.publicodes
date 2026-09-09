@@ -1,51 +1,5 @@
 entreprise . imposition:
-  question: Quel est le type d’imposition de votre entreprise ?
-  description: |
-    ## Impôt sur le revenu
-
-    Le résultat de votre entreprise est imposé à l’impôt sur le revenu, comme les
-    autres revenus de votre foyer.
-
-    Le résultat est déterminé lors du remplissage de la **liasse fiscale** (aussi
-    appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
-
-    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
-    est ajouté aux autres revenus imposables (s’ils existent) :
-    **votre impôt sur le revenu est plus élevé**.
-
-    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
-    vient réduire le montant du revenu imposable de votre ménage :
-    **votre impôt sur le revenu est moins élevé**.
-
-    À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
-    entre les revenus de votre foyer et ceux de votre entreprise.
-
-    ## Impôt sur les sociétés
-
-    Le **résultat** de votre entreprise est imposé à l’**impôt sur les sociétés**.
-
-    Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Elle
-    n’aura pas à payer d’impôt sur les sociétés.
-
-    Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**.
-    Il sera imposé à un **taux fixe**.
-
-    Le résultat imposable est déterminé lors du remplissage de la **liasse fiscale**
-    (aussi appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
-
-    À noter : il existe **deux façons de se rémunérer** avec une entreprise à l’impôt
-    sur les sociétés :
-      - Vous pouvez vous verser une rémunération en tant que dirigeant pendant
-      l’année. Cette rémunération est déduite (soustraite) du résultat pour calculer
-      le bénéfice imposable de votre entreprise. En revanche, cette rémunération est
-      ajoutée aux revenus imposables de votre foyer pour le calcul de l’impôt sur le
-      revenu.
-      - Vous pouvez aussi vous verser des dividendes à partir des bénéfices des
-      années précédentes. Vous aurez à payer un impôt fixe sur ces derniers : c’est
-      ce que l’on appelle la « flat tax ».
-
-      Dans tous les cas, vous aurez à payer des **cotisations sociales** sur les
-      revenus que vous touchez.
+  question: Quel est le type d’imposition de votre entreprise ?
   une possibilité:
     - IR
     - IS
@@ -78,33 +32,15 @@ entreprise . imposition . IR:
     appelée déclaration de résultat). C’est l’expert-comptable qui s’en charge.
 
     Si votre entreprise gagne de l’argent, le résultat est appelé **bénéfice**. Il
-    est ajouté aux autres revenus imposables (s’ils existent) :
-    **votre impôt sur le revenu est plus élevé**.
+    est ajouté aux autres revenus imposables (s’ils existent) : **votre impôt sur le
+    revenu est plus élevé**.
 
     Si votre entreprise perd de l’argent, le résultat est appelé **déficit**. Il
-    vient réduire le montant du revenu imposable de votre ménage :
-    **votre impôt sur le revenu est moins élevé**.
+    vient réduire le montant du revenu imposable de votre ménage : **votre impôt sur
+    le revenu est moins élevé**.
 
     À noter : avec l’imposition sur le revenu, il n’y a pas de différence fiscale
     entre les revenus de votre foyer et ceux de votre entreprise.
-
-entreprise . imposition . IR . régime micro-fiscal:
-  titre: micro-fiscal
-  description: |
-    Avec le régime micro-fiscal, les charges déductibles sont estimées forfaitairement, en fonction d’un pourcentage du chiffre d’affaires. Ce
-    pourcentage dépend du type d’activité : 71% pour les activités de vente, restauration et hébergement (location de meublé de tourisme
-    classé et chambre d’hôte), 50% pour les prestations de service commerciales ou artisanales, 34% pour les activités libérales.
-
-    Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
-    fonctionnement sont faibles.
-  non applicable si: entreprise . imposition . IS
-  valeur: régime = 'micro-entreprise'
-  question: Avez-vous opté pour le régime micro-fiscal ?
-  par défaut: non
-  rend non applicable: dirigeant . indépendant . cotisations facultatives
-  références:
-    Régime micro-fiscal: https://entreprendre.service-public.fr/vosdroits/F23267
-    "Changement de régime d’imposition : comment ça marche ?": https://www.economie.gouv.fr/entreprises/changement-regime-imposition
 
 entreprise . imposition . IR . type de bénéfices:
   question: Quel est le type de bénéfices de votre entreprise ?
@@ -314,9 +250,7 @@ entreprise . imposition . régime . micro-entreprise:
     Cette option permet de simplifier votre comptabilité et peut être avantageuse en termes de revenu imposable dans le cas où vos charges de
     fonctionnement sont faibles.
   non applicable si: entreprise . imposition . IS
-  une de ces conditions:
-    - régime = 'micro-entreprise'
-    - IR . régime micro-fiscal
+  valeur: régime = 'micro-entreprise'
   question: Avez-vous opté pour le régime micro-fiscal ?
   par défaut: non
   rend non applicable: dirigeant . indépendant . cotisations facultatives
@@ -355,7 +289,7 @@ entreprise . imposition . régime . micro-entreprise . revenu abattu:
   avec:
     plancher abattement:
       variations:
-        - si: entreprise . activité . revenus mixtes
+        - si: entreprise . activités . revenus mixtes
           alors: 610 €/an
         - sinon: 305 €/an
 
