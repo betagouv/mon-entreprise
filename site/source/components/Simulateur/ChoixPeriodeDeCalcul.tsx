@@ -5,7 +5,7 @@ import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio
 
 export type PériodeDeCalcul = '€/mois' | '€/an'
 
-const isPériodeDeCalcul = (value?: unknown): value is PériodeDeCalcul =>
+export const isPériodeDeCalcul = (value?: unknown): value is PériodeDeCalcul =>
 	typeof value === 'string' && (value === '€/mois' || value === '€/an')
 
 type Props = {
