@@ -2,20 +2,21 @@ import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
-import {
-	isUnitéMonétaireRécurrente,
-	UnitéMonétaireRécurrente,
-} from '@/domaine/Unites'
+
+export type PériodeDeCalcul = '€/mois' | '€/an'
+
+const isPériodeDeCalcul = (value?: unknown): value is PériodeDeCalcul =>
+	typeof value === 'string' && (value === '€/mois' || value === '€/an')
 
 type Props = {
-	unité: UnitéMonétaireRécurrente
-	onChange: (unité: UnitéMonétaireRécurrente) => void
+	unité: PériodeDeCalcul
+	onChange: (unité: PériodeDeCalcul) => void
 }
 
 export const ChoixPériodeDeCalcul = ({ unité, onChange }: Props) => {
 	const handleChange = useCallback(
 		(value: Key) => {
-			if (typeof value !== 'string' || !isUnitéMonétaireRécurrente(value)) {
+			if (!isPériodeDeCalcul(value)) {
 				return
 			}
 			onChange(value)

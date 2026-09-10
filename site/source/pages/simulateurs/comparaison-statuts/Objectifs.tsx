@@ -9,17 +9,19 @@ import {
 import { useComparateur } from '@/contextes/comparateur'
 import { MontantField } from '@/design-system'
 import { MontantRécurrent } from '@/domaine/MontantRecurrent'
-import { UnitéMonétaireRécurrente } from '@/domaine/Unites'
 
 import { ChoixImposition } from './components/ChoixImposition'
-import { ChoixPériodeDeCalcul } from './components/ChoixPeriodeDeCalcul'
+import {
+	ChoixPériodeDeCalcul,
+	PériodeDeCalcul,
+} from './components/ChoixPeriodeDeCalcul'
 import { ChoixVersementLibératoire } from './components/ChoixVersementLiberatoire'
 
 export const Objectifs = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useComparateur()
 
-	const [unitéCible, setUnitéCible] = useState<UnitéMonétaireRécurrente>('€/an')
+	const [unitéCible, setUnitéCible] = useState<PériodeDeCalcul>('€/an')
 
 	const chiffreDAffaires = situation.chiffreDAffaires
 	const charges = situation.charges
