@@ -27,9 +27,6 @@ const règles = {
 
 const engine = () => new Engine(règles) as Engine<DottedName>
 
-const documentationDe = (dottedName: string) =>
-	documentationPublicodes(engine, dottedName as DottedName, 'EI')
-
 const afficher = (Composant: ComponentType<PropsWithChildren>) => {
 	render(
 		<TestProvider>
@@ -45,7 +42,13 @@ const afficher = (Composant: ComponentType<PropsWithChildren>) => {
 describe('documentationPublicodes', () => {
 	describe('Résumé', () => {
 		it('affiche la description de la règle', () => {
-			afficher(documentationDe('entreprise . chiffre').Résumé)
+			afficher(
+				documentationPublicodes(
+					engine,
+					'entreprise . chiffre' as DottedName,
+					'EI'
+				).Résumé
+			)
 
 			expect(
 				screen.getByText(/Tout ce que votre entreprise encaisse/)
@@ -54,14 +57,26 @@ describe('documentationPublicodes', () => {
 
 		it("n'affiche rien lorsque la règle n'a pas de description", () => {
 			expect(
-				afficher(documentationDe('entreprise . sans documentation').Résumé)
+				afficher(
+					documentationPublicodes(
+						engine,
+						'entreprise . sans documentation' as DottedName,
+						'EI'
+					).Résumé
+				)
 			).toBeEmptyDOMElement()
 		})
 	})
 
 	describe('Références', () => {
 		it('affiche les références à afficher hors du site de la BPI', () => {
-			afficher(documentationDe('entreprise . chiffre').Références)
+			afficher(
+				documentationPublicodes(
+					engine,
+					'entreprise . chiffre' as DottedName,
+					'EI'
+				).Références
+			)
 
 			expect(screen.getByText('Urssaf.fr')).toBeInTheDocument()
 			expect(screen.queryByText('BPI France')).not.toBeInTheDocument()
@@ -69,16 +84,26 @@ describe('documentationPublicodes', () => {
 
 		it("n'affiche rien lorsque la règle n'a pas de référence", () => {
 			expect(
-				afficher(documentationDe('entreprise . sans documentation').Références)
+				afficher(
+					documentationPublicodes(
+						engine,
+						'entreprise . sans documentation' as DottedName,
+						'EI'
+					).Références
+				)
 			).toBeEmptyDOMElement()
 		})
 	})
 
 	describe('chemin', () => {
 		it("désigne la règle dans l'espace de documentation du modèle", () => {
-			expect(documentationDe('entreprise . chiffre').chemin).toBe(
-				'EI/entreprise/chiffre'
-			)
+			expect(
+				documentationPublicodes(
+					engine,
+					'entreprise . chiffre' as DottedName,
+					'EI'
+				).chemin
+			).toBe('EI/entreprise/chiffre')
 		})
 
 		it("se réduit à la règle lorsque le modèle n'a pas d'espace", () => {
@@ -91,9 +116,13 @@ describe('documentationPublicodes', () => {
 
 	describe('titre', () => {
 		it('reprend le titre de la règle', () => {
-			expect(documentationDe('entreprise . chiffre').titre()).toBe(
-				"Chiffre d'affaires"
-			)
+			expect(
+				documentationPublicodes(
+					engine,
+					'entreprise . chiffre' as DottedName,
+					'EI'
+				).titre()
+			).toBe("Chiffre d'affaires")
 		})
 	})
 })
