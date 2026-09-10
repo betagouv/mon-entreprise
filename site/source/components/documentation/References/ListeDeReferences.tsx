@@ -1,7 +1,7 @@
 import { Li, Ul } from '@/design-system'
+import { Références } from '@/domaine/documentation/References'
 
 import { Référence } from './Reference'
-import { Références } from './references'
 
 export const ListeDeRéférences = ({
 	références,
