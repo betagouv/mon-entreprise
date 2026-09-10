@@ -34,36 +34,29 @@ Le code actuel porte les symptômes de cette indécision :
 
 3. **La forme dépend de la nature du contenu, pas d'un souci d'uniformité.** Un libellé plat est une fonction `(t: TFunction) => string`. Un contenu riche (gras, lien, liste, MDX) est un `ReactNode`.
 
-    |                        | `(t: TFunction) => string` | `ReactNode`      |
-    | ---------------------- | -------------------------- | ---------------- |
-    | Test                   | égalité simple             | `renderToString` |
-    | API                    | champ JSON texte           | HTML             |
-    | Consommateur non React | possible                   | impossible       |
-    | Gras, lien, liste, MDX | non                        | oui              |
-
 4. **La traduction est résolue tardivement, jamais figée à la construction du modèle.** Pour une chaîne, c'est le consommateur qui fournit `t` : celui de `useTranslation()` dans le site, celui de la requête dans l'API. Pour un `ReactNode`, c'est un `<Trans>` ou un composant qui appelle `useTranslation()`, dont la langue vient du contexte i18n au rendu. Est exclu l'appel du `t` global d'i18next dans un getter, qui fige la langue courante au moment où le modèle est construit.
 
-5. **Tout React produit par un modèle doit être rendable côté serveur.** Pas de `window`, pas d'effet, pas de `lazy` non résolu. Un test rend chaque avertissement et chaque documentation avec `renderToString` dans la pile de providers du site.
-
-6. **Chaque modèle regroupe sa présentation dans un module voisin du fichier de calcul.** Statut, avertissements et `DocumentationRoutes` vivent dans un fichier de présentation ; le fichier de calcul reste un `.ts` sans React, qui importe ce module et assigne son contenu aux valeurs. La décision d'émettre un avertissement reste dans le calcul, seule sa rédaction est à côté. Les clés i18n sont préfixées par le nom du modèle, du type `modèles.auto-entrepreneur.régime`, et non par page, puisque les modèles ont vocation à servir hors du comparateur.
-
-    ```
-    domaine/auto-entrepreneur/
-      modele.ts               calculs, implémente ModèleComparable
-      modele.test.ts
-      presentation.tsx        statut, avertissements, DocumentationRoutes
-      presentation.test.tsx
-    ```
-
-    Les noms de fichiers restent sans accent pour le graphe d'import.
+5. **Tout React produit par un modèle doit être rendable côté serveur.** Pas de `window`, pas d'effet, pas de `lazy` non résolu.
 
 ### Contrat cible
 
 ```typescript
+// Défini par la PR #4650, allégé de `Résumé` et `Références`
+// puisque la modale ouvre directement la documentation complète.
+// `chemin` est l'adresse de la valeur dans `DocumentationRoutes`, voir ci-dessous.
+type DocumentationDeValeur = {
+    titre: () => string
+    chemin: string
+}
+
 type ValeurDocumentée = {
     documentation: DocumentationDeValeur
     avertissement?: ReactNode
 }
+
+export type MontantDocumenté = Montant & ValeurDocumentée
+export type MontantRécurrentDocumenté = MontantRécurrent & ValeurDocumentée
+export type QuantitéDocumentée = Quantité & ValeurDocumentée
 
 export interface ModèleComparable {
     nom: NomModèle
@@ -86,6 +79,24 @@ export interface ModèleComparable {
     }
 }
 ```
+
+### Documentation d'une valeur : une application navigable et une adresse
+
+À première lecture, `DocumentationDeValeur` ressemble à une référence plutôt qu'à du contenu, ce qui semble contredire la règle 1. Ce n'est pas le cas : le contenu est bien produit par le modèle, mais il l'est en un seul endroit, `DocumentationRoutes`, et `chemin` est l'adresse d'une valeur dans ce contenu.
+
+Fonctionnement mis en place par la PR #4650 :
+
+1. Le bouton « i » d'une valeur navigue vers une URL construite à partir de `chemin`, du type `/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette`.
+2. Le comparateur détecte cette URL, ouvre une `Popover`, et y rend le `DocumentationRoutes` du modèle concerné avec le `basePath` correspondant.
+3. Le `DocumentationRoutes` d'un modèle Publicodes rend l'explorateur de règles de publicodes-react, avec ses liens d'une règle à l'autre.
+
+La documentation d'un modèle n'est donc pas une collection de pages indépendantes, c'est une application navigable : la page d'une règle renvoie vers les règles dont elle dépend, et la popover doit pouvoir suivre ces liens. C'est pour cela que la valeur expose une adresse et non un composant :
+
+- un `Contenu: ComponentType` par valeur rendrait la première page, mais les liens qu'elle contient auraient quand même besoin de `DocumentationRoutes` pour fonctionner. On aurait deux mécanismes pour le prix d'un ;
+- le passage par l'URL donne un lien partageable vers l'explication d'une valeur, et le bouton retour du navigateur fonctionne dans la popover ;
+- la forme est indépendante du moteur : un futur modèle en TypeScript pur fournira un `DocumentationRoutes` qui rend des pages MDX derrière des routes, et `chemin` sera l'adresse de la page qui explique la valeur.
+
+`titre` est le titre de la règle dans le moteur du modèle. Le moteur étant construit par langue, ce titre respecte la règle 4 par ce biais, et non par un `t` fourni à l'appel.
 
 ### Exemple
 
@@ -120,6 +131,7 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
 - **Présentation regroupée par modèle** : toutes les phrases d'un modèle sont lisibles d'un coup, et le fichier de calcul ne dépend plus de React.
 - **Libellés plats testables par égalité** et exposables tels quels en JSON par l'API.
 - **Cohérence avec la documentation** déjà en place (`DocumentationRoutes`, MDX).
+- **Documentation navigable et partageable** : on suit les liens entre règles dans la popover, et l'URL d'une explication se partage.
 - **Pleine capacité d'expression** pour le contenu riche : listes, liens, composants du design-system, MDX.
 - **Réutilisation dans l'API** possible : les chaînes se traduisent avec le `t` de la requête, les `ReactNode` se rendent en HTML avec `renderToString`.
 
@@ -130,6 +142,7 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
 - **La rédaction n'est plus sur la même ligne que la condition** qui la déclenche, mais dans le fichier voisin.
 - **L'API devra embarquer la pile de rendu du site** pour le contenu riche : React, styled-components, i18next, routeur, compilation MDX. Aujourd'hui l'API Koa ne dépend que de `publicodes` et des paquets `modele-*`. Utiliser les modèles comparables suppose de les extraire de `site` dans un paquet du monorepo, et ce paquet sera lourd. Si l'API migre dans l'application Next.js, ce coût disparaît presque entièrement. La décision sur l'hébergement de l'API conditionne donc le coût réel de celle-ci.
 - **`renderToString` ne gère ni `lazy` ni Suspense** : les MDX devront être importés avant le rendu, ou rendus avec `renderToPipeableStream`.
+- **Rendre la documentation d'une valeur dans l'API demande un routeur** : il faut rendre le `DocumentationRoutes` du modèle sous un `StaticRouter` positionné sur `basePath/chemin` pour obtenir l'HTML de la page de cette valeur. Ça suppose que l'explorateur de règles de publicodes-react se rende côté serveur sans toucher au DOM, ce qui n'a pas été vérifié.
 - **Les tests de texte du contenu riche passent par un rendu** (`renderToString` suffit, sans DOM). Les tests de présence ou d'absence d'un avertissement restent de simples égalités.
 
 ## Alternatives considérées
@@ -169,12 +182,6 @@ Un seul type de présentation dans le contrat, `TFunction` disparaît. `régime`
 
 Évite `TFunction` mais fige la langue à la construction du modèle. **Rejetée** car le comparateur mémoïse les modèles et l'API voudra rendre un même modèle dans la langue de chaque requête.
 
-### Alternative 5 : un catalogue de traduction par modèle
-
-Un fichier YAML ou un namespace i18next par modèle, à côté du fichier de calcul.
-
-**Rejetée** car toute la chaîne i18n du projet repose sur un catalogue unique, le namespace `translation`, extrait par `i18n:translate` à partir des appels `t()` et `<Trans>` puis traduit automatiquement. Le préfixe des clés par modèle obtient le même regroupement sans toucher à cette chaîne.
-
 ## Implémentation
 
 1. Ajouter `avertissement?: ReactNode` à `ValeurDocumentée` et l'afficher génériquement dans `ComparaisonÉlément`, puis supprimer la prop `warning` et `get.warning`.
@@ -190,7 +197,4 @@ Un fichier YAML ou un namespace i18next par modèle, à côté du fichier de cal
 - PR #4650 : documentation des valeurs du comparateur
 - PR #4651 : style de la documentation MDX
 - PR #4654 : documentation des questions du comparateur
-- [ADR-2025-05-31-documentation-mdx](./ADR-2025-05-31-documentation-mdx.md)
-- [ADR-2025-05-31-convention-nommage-fichiers](./ADR-2025-05-31-convention-nommage-fichiers.md)
-- [ADR-2025-05-09-publicodes-adapter-pattern](./ADR-2025-05-09-publicodes-adapter-pattern.md)
 - [Hexagonal Architecture - Ports & Adapters](https://alistair.cockburn.us/hexagonal-architecture/)
