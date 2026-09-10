@@ -1,10 +1,10 @@
 import Engine, { utils } from 'publicodes'
 import type { JSX } from 'react'
 
+import type { Références as CollectionDeRéférences } from '@/domaine/documentation/References'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { ListeDeRéférences } from '../References/ListeDeReferences'
-import type { Références as CollectionDeRéférences } from '../References/references'
 
 export function RéférencesPublicodes({
 	références,
