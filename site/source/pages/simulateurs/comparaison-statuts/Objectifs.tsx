@@ -3,6 +3,10 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import {
+	ChoixPériodeDeCalcul,
+	PériodeDeCalcul,
+} from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import {
 	ChampSaisieProps,
 	ObjectifSaisissableDeSimulation,
 } from '@/components/Simulation/ObjectifSaisissableDeSimulation'
@@ -11,10 +15,6 @@ import { MontantField } from '@/design-system'
 import { MontantRécurrent } from '@/domaine/MontantRecurrent'
 
 import { ChoixImposition } from './components/ChoixImposition'
-import {
-	ChoixPériodeDeCalcul,
-	PériodeDeCalcul,
-} from './components/ChoixPeriodeDeCalcul'
 import { ChoixVersementLibératoire } from './components/ChoixVersementLiberatoire'
 
 export const Objectifs = () => {
