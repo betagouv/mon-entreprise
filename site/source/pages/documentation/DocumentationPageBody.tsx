@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Références } from '@/components/documentation/References/References'
+import { RéférencesPublicodes } from '@/components/documentation/publicodes/ReferencesPublicodes'
 import {
 	BodyStyle,
 	H1Style,
@@ -59,7 +59,7 @@ export default function DocumentationPageBody({
 		references,
 		dottedName,
 	}: PublicodesReferencesProps) =>
-		Références({
+		RéférencesPublicodes({
 			engine,
 			références: references,
 			dottedName: dottedName as DottedName,

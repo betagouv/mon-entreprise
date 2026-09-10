@@ -3,10 +3,10 @@ import type { JSX } from 'react'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { ListeDeRéférences } from './ListeDeReferences'
-import type { Références as CollectionDeRéférences } from './references'
+import { ListeDeRéférences } from '../References/ListeDeReferences'
+import type { Références as CollectionDeRéférences } from '../References/references'
 
-export function Références({
+export function RéférencesPublicodes({
 	références,
 	dottedName,
 	engine,
