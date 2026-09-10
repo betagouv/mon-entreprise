@@ -18,25 +18,44 @@ Le code actuel porte les symptômes de cette indécision :
 
 - `get.warning` est un fourre-tout au niveau du modèle, déconnecté de la valeur qu'il qualifie ;
 - chaque `<Item>` de `ComparaisonListe` passe une callback `warning` à `ComparaisonÉlément`, et l'UI recalcule `!indemnitésArrêtMaladie.valeur` pour deviner si le modèle a un avertissement, alors que le modèle expose déjà `revenuTropBasPourIJ` ;
-- `régime: (t: TFunction) => string` fait entrer `TFunction` dans le contrat ;
 - le `<Trans>` IR/IS est copié à l'identique dans deux modèles ;
-- `nom` est une chaîne brute non traduite dans le même bloc que `régime` traduit.
+- `nom` est une chaîne brute non traduite dans le même bloc que `régime` traduit ;
+- les fichiers de modèle mélangent six cents lignes de calcul avec du JSX.
 
 ## Décision
 
-**Documenter un calcul, avertir et nommer un régime font partie du métier de Mon Entreprise.** La présentation de ce qu'un modèle sait dire de lui-même fait donc partie de son domaine. `ModèleComparable` n'est pas un port hexagonal pur : c'est un contrat qui expose du `ReactNode`, parce que React est notre langage pour du contenu riche.
+**Documenter un calcul, avertir et nommer un régime font partie du métier de Mon Entreprise.** La présentation de ce qu'un modèle sait dire de lui-même fait donc partie de son domaine. `ModèleComparable` n'est pas un port hexagonal pur : c'est un contrat qui expose du contenu traduit, sous forme de chaînes pour les libellés plats et de `ReactNode` pour le contenu riche, parce que React est notre langage pour du contenu riche.
 
 ### Règles
 
-1. **Le modèle possède la présentation de ce qui lui est spécifique.** Avertissements, documentation, régime, imposition : le modèle produit le contenu, en React, à côté du calcul qui le déclenche.
+1. **Le modèle possède la présentation de ce qui lui est spécifique.** Avertissements, documentation, régime, imposition : le modèle produit le contenu, et le comparateur ne le connaît pas.
 
 2. **Le comparateur possède le cadre.** Tooltip, modale, cartes, mise en page : le comparateur enveloppe génériquement ce que le modèle lui donne. Il ne connaît aucun avertissement ni aucune documentation en particulier.
 
-3. **La traduction est résolue au rendu, jamais à la construction.** Un modèle ne retourne jamais de chaîne traduite. Il retourne un `<Trans>`, ou un composant qui appelle `useTranslation()`, dont la langue vient du contexte i18n fourni par le consommateur. Sont exclus : un paramètre `TFunction` dans le contrat, et l'appel du `t` global d'i18next dans un getter.
+3. **La forme dépend de la nature du contenu, pas d'un souci d'uniformité.** Un libellé plat est une fonction `(t: TFunction) => string`. Un contenu riche (gras, lien, liste, MDX) est un `ReactNode`.
 
-4. **Tout React produit par un modèle doit être rendable côté serveur.** Pas de `window`, pas d'effet, pas de `lazy` non résolu. Un test rend chaque avertissement et chaque documentation avec `renderToString` dans la pile de providers du site.
+    |                        | `(t: TFunction) => string` | `ReactNode`      |
+    | ---------------------- | -------------------------- | ---------------- |
+    | Test                   | égalité simple             | `renderToString` |
+    | API                    | champ JSON texte           | HTML             |
+    | Consommateur non React | possible                   | impossible       |
+    | Gras, lien, liste, MDX | non                        | oui              |
 
-5. **Les clés i18n d'un modèle sont nommées par modèle**, du type `modèles.auto-entrepreneur.régime`, et non par page, puisque les modèles ont vocation à servir hors du comparateur.
+4. **La traduction est résolue tardivement, jamais figée à la construction du modèle.** Pour une chaîne, c'est le consommateur qui fournit `t` : celui de `useTranslation()` dans le site, celui de la requête dans l'API. Pour un `ReactNode`, c'est un `<Trans>` ou un composant qui appelle `useTranslation()`, dont la langue vient du contexte i18n au rendu. Est exclu l'appel du `t` global d'i18next dans un getter, qui fige la langue courante au moment où le modèle est construit.
+
+5. **Tout React produit par un modèle doit être rendable côté serveur.** Pas de `window`, pas d'effet, pas de `lazy` non résolu. Un test rend chaque avertissement et chaque documentation avec `renderToString` dans la pile de providers du site.
+
+6. **Chaque modèle regroupe sa présentation dans un module voisin du fichier de calcul.** Statut, avertissements et `DocumentationRoutes` vivent dans un fichier de présentation ; le fichier de calcul reste un `.ts` sans React, qui importe ce module et assigne son contenu aux valeurs. La décision d'émettre un avertissement reste dans le calcul, seule sa rédaction est à côté. Les clés i18n sont préfixées par le nom du modèle, du type `modèles.auto-entrepreneur.régime`, et non par page, puisque les modèles ont vocation à servir hors du comparateur.
+
+    ```
+    domaine/auto-entrepreneur/
+      modele.ts               calculs, implémente ModèleComparable
+      modele.test.ts
+      presentation.tsx        statut, avertissements, DocumentationRoutes
+      presentation.test.tsx
+    ```
+
+    Les noms de fichiers restent sans accent pour le graphe d'import.
 
 ### Contrat cible
 
@@ -57,8 +76,8 @@ export interface ModèleComparable {
     get: {
         statut: {
             étiquette: StatutType
-            nom: ReactNode
-            régime: ReactNode
+            nom: (t: TFunction) => string
+            régime: (t: TFunction) => string
             imposition: () => ReactNode
         }
         revenu: () => { bénéfice: MontantRécurrentDocumenté /* … */ }
@@ -71,13 +90,20 @@ export interface ModèleComparable {
 ### Exemple
 
 ```tsx
-// Dans ModeleAssimileSalarie.tsx : le modèle décide et rédige
-indemnitésArrêtMaladie.avertissement = rémunérationEstPositive() ? undefined : (
-    <Trans i18nKey="modèles.assimilé-salarié.avertissements.indemnités-journalières">
-        Votre <Strong>rémunération</Strong> est <Strong>trop faible</Strong>{' '}
-        pour bénéficier d’arrêt maladie.
-    </Trans>
-)
+// Dans assimile-salarie/presentation.tsx : le modèle rédige
+export const avertissements = {
+    rémunérationTropFaiblePourIJ: (
+        <Trans i18nKey="modèles.assimilé-salarié.avertissements.indemnités-journalières">
+            Votre <Strong>rémunération</Strong> est <Strong>trop faible</Strong>{' '}
+            pour bénéficier d’arrêt maladie.
+        </Trans>
+    ),
+}
+
+// Dans assimile-salarie/modele.ts : le modèle décide
+indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
+    ? undefined
+    : avertissements.rémunérationTropFaiblePourIJ
 
 // Dans ComparaisonÉlément.tsx : le comparateur encadre, sans rien savoir
 {
@@ -89,19 +115,22 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive() ? undefined
 
 ### Positives
 
-- **Localité** : un avertissement est écrit à côté du calcul qui le déclenche, dans le modèle qui le connaît.
+- **Localité** : un avertissement est décidé dans le calcul et rédigé dans le dossier du modèle qui le connaît.
 - **Comparateur générique** : ajouter un modèle ou un avertissement ne touche ni `ComparaisonListe` ni `ComparaisonÉlément`. La prop `warning` de `ComparaisonÉlément` et le fourre-tout `get.warning` disparaissent.
-- **Un seul type de présentation** dans le contrat, `ReactNode`. `TFunction` disparaît.
+- **Présentation regroupée par modèle** : toutes les phrases d'un modèle sont lisibles d'un coup, et le fichier de calcul ne dépend plus de React.
+- **Libellés plats testables par égalité** et exposables tels quels en JSON par l'API.
 - **Cohérence avec la documentation** déjà en place (`DocumentationRoutes`, MDX).
-- **Pleine capacité d'expression** pour les modèles : listes, liens, composants du design-system, MDX.
-- **Réutilisation dans l'API** possible en rendant les `ReactNode` en HTML avec `renderToString`, dans la langue de la requête.
+- **Pleine capacité d'expression** pour le contenu riche : listes, liens, composants du design-system, MDX.
+- **Réutilisation dans l'API** possible : les chaînes se traduisent avec le `t` de la requête, les `ReactNode` se rendent en HTML avec `renderToString`.
 
 ### Négatives
 
-- **Le contrat dépend de React.** Les modèles ne sont pas réutilisables hors d'un environnement capable de rendre du React.
-- **L'API devra embarquer la pile de rendu du site** : React, styled-components, i18next, routeur, compilation MDX. Aujourd'hui l'API Koa ne dépend que de `publicodes` et des paquets `modele-*`. Utiliser les modèles comparables suppose de les extraire de `site` dans un paquet du monorepo, et ce paquet sera lourd. Si l'API migre dans l'application Next.js, ce coût disparaît presque entièrement. La décision sur l'hébergement de l'API conditionne donc le coût réel de celle-ci.
+- **Le contrat dépend de React pour le contenu riche.** Les avertissements et la documentation ne sont pas réutilisables hors d'un environnement capable de rendre du React.
+- **Deux formes de présentation coexistent** dans le contrat. Le critère de la règle 3 doit être appliqué à chaque nouveau champ.
+- **La rédaction n'est plus sur la même ligne que la condition** qui la déclenche, mais dans le fichier voisin.
+- **L'API devra embarquer la pile de rendu du site** pour le contenu riche : React, styled-components, i18next, routeur, compilation MDX. Aujourd'hui l'API Koa ne dépend que de `publicodes` et des paquets `modele-*`. Utiliser les modèles comparables suppose de les extraire de `site` dans un paquet du monorepo, et ce paquet sera lourd. Si l'API migre dans l'application Next.js, ce coût disparaît presque entièrement. La décision sur l'hébergement de l'API conditionne donc le coût réel de celle-ci.
 - **`renderToString` ne gère ni `lazy` ni Suspense** : les MDX devront être importés avant le rendu, ou rendus avec `renderToPipeableStream`.
-- **Les tests de texte passent par un rendu** (`renderToString` suffit, sans DOM). Les tests de présence ou d'absence d'un avertissement restent de simples égalités.
+- **Les tests de texte du contenu riche passent par un rendu** (`renderToString` suffit, sans DOM). Les tests de présence ou d'absence d'un avertissement restent de simples égalités.
 
 ## Alternatives considérées
 
@@ -130,21 +159,30 @@ Le modèle possède le message (clé i18n, texte par défaut, valeurs typées), 
 - réduit la capacité d'expression des modèles aux balises `<0>` de `<Trans>` : pas de liste, pas de composant, pas de MDX ;
 - oblige la documentation à redevenir une simple référence, ce qui, en pratique, réintroduit un nom de règle Publicodes dans le contrat que la PR #4650 venait d'en sortir.
 
-### Alternative 3 : `régime: (t: TFunction) => string`
+### Alternative 3 : `ReactNode` pour tous les libellés, y compris plats
 
-État actuel. **Rejetée** car `TFunction` entre dans le contrat, la chaîne est traduite à l'appel, et chaque consommateur doit fournir `t`.
+Un seul type de présentation dans le contrat, `TFunction` disparaît. `régime` et `nom` deviennent des `<Trans>`.
+
+**Rejetée** car l'uniformité ne vaut pas ce qu'elle coûte : un libellé plat en `ReactNode` se teste par rendu au lieu d'une égalité, sort de l'API en HTML au lieu d'un texte, et devient inaccessible à tout consommateur non React.
 
 ### Alternative 4 : `i18next.t()` global dans les getters
 
 Évite `TFunction` mais fige la langue à la construction du modèle. **Rejetée** car le comparateur mémoïse les modèles et l'API voudra rendre un même modèle dans la langue de chaque requête.
 
+### Alternative 5 : un catalogue de traduction par modèle
+
+Un fichier YAML ou un namespace i18next par modèle, à côté du fichier de calcul.
+
+**Rejetée** car toute la chaîne i18n du projet repose sur un catalogue unique, le namespace `translation`, extrait par `i18n:translate` à partir des appels `t()` et `<Trans>` puis traduit automatiquement. Le préfixe des clés par modèle obtient le même regroupement sans toucher à cette chaîne.
+
 ## Implémentation
 
 1. Ajouter `avertissement?: ReactNode` à `ValeurDocumentée` et l'afficher génériquement dans `ComparaisonÉlément`, puis supprimer la prop `warning` et `get.warning`.
-2. Remplacer `régime: (t) => string` par `régime: ReactNode`, traduire `nom`, et extraire le `<Trans>` IR/IS dupliqué dans un composant partagé.
-3. Renommer les clés i18n des modèles par modèle et régénérer les traductions.
-4. Ajouter le test garde-fou qui rend chaque avertissement et chaque documentation avec `renderToString`.
-5. Réécrire les deux TODO de `modeleComparable.ts` à la lumière de cet ADR.
+2. Traduire `nom` sur le modèle de `régime`, garder `imposition` en `ReactNode`, et extraire le `<Trans>` IR/IS dupliqué dans un composant partagé.
+3. Créer un dossier par modèle avec un module de présentation, y déplacer statut, avertissements et `DocumentationRoutes` ; le fichier de calcul redevient un `.ts`.
+4. Renommer les clés i18n des modèles par modèle et régénérer les traductions.
+5. Ajouter le test garde-fou qui rend chaque avertissement et chaque documentation avec `renderToString`.
+6. Réécrire les deux TODO de `modeleComparable.ts` à la lumière de cet ADR.
 
 ## Références
 
@@ -153,5 +191,6 @@ Le modèle possède le message (clé i18n, texte par défaut, valeurs typées), 
 - PR #4651 : style de la documentation MDX
 - PR #4654 : documentation des questions du comparateur
 - [ADR-2025-05-31-documentation-mdx](./ADR-2025-05-31-documentation-mdx.md)
+- [ADR-2025-05-31-convention-nommage-fichiers](./ADR-2025-05-31-convention-nommage-fichiers.md)
 - [ADR-2025-05-09-publicodes-adapter-pattern](./ADR-2025-05-09-publicodes-adapter-pattern.md)
 - [Hexagonal Architecture - Ports & Adapters](https://alistair.cockburn.us/hexagonal-architecture/)
