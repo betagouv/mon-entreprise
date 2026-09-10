@@ -145,7 +145,7 @@ export const useComparateur = () => {
 		})
 	}, [modèles, situation.chiffreDAffaires])
 
-	const documentations = useMemo(
+	const documentationRoutes = useMemo(
 		() =>
 			modèles.map(({ get, DocumentationRoutes }) => ({
 				étiquette: get.statut.étiquette,
@@ -158,6 +158,6 @@ export const useComparateur = () => {
 		situation,
 		set,
 		comparaison,
-		documentations,
+		documentationRoutes,
 	}
 }
