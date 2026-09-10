@@ -5,11 +5,11 @@ import { useNavigation } from '@/lib/navigation'
 
 export const DocumentationRoutes = () => {
 	const basePath = useDocumentationBasePath()
-	const { documentations } = useComparateur()
+	const { documentationRoutes } = useComparateur()
 	const { currentPath, matchPath, navigate } = useNavigation()
 
 	const cheminDemandé = decodeURI(currentPath)
-	const documentationDemandée = documentations.find(({ étiquette }) =>
+	const documentationDemandée = documentationRoutes.find(({ étiquette }) =>
 		matchPath(`${basePath}/${étiquette}/*`, cheminDemandé)
 	)
 
