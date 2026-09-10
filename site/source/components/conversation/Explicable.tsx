@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
 import RuleLink from '@/components/RuleLink'
-import { InfoButton, Spacing } from '@/design-system'
+import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
@@ -45,7 +45,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 			</RuleLink>
 
 			<Références />
-			<Spacing xxl />
 		</InfoButton>
 	)
 }
