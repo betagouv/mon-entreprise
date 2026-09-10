@@ -1338,21 +1338,20 @@ salarié . cotisations . Mayotte:
   sévérité: avertissement
   titre: Cotisations Mayotte
   résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** applicables
-    à Mayotte.
+    Ce simulateur applique bien les **taux de cotisations sociales** et
+    l’exonération **Lodeom** en vigueur à Mayotte.
 
-    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
-    sont pas encore disponibles pour ce territoire.
+    En revanche, le calcul de la **RGDU** suit les règles de la métropole.
   description: |
-    Les **taux de cotisations sociales** patronales et salariales applicables à Mayotte sont
-    bien appliqués par ce simulateur.
+    Les **taux de cotisations sociales** patronales et salariales ainsi que
+    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    simulateur.
 
-    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive Unique)
-    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
-    **pas encore disponibles** dans ce simulateur.
+    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
+    Unique) spécifique à Mayotte n’est **pas encore disponible**.
 
-    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
-    métropole.
+    > Attention : le simulateur calcule actuellement la RGDU selon les règles
+    de la métropole.
   références:
     Taux de cotisations - Employeurs à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/cotisations-employeurs-mayotte.html
     Les services de l’État à Mayotte - Réduction générale dégressive unique (RGDU) de cotisations patronales: https://www.mayotte.gouv.fr/Demarches/Demarches-PARTICULIERS#!/professionnels/page/F24542

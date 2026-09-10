@@ -11310,59 +11310,48 @@ salarié . cotisations . FNAL:
   titre.fr: Contribution au Fonds National d’Aide au Logement
 salarié . cotisations . Mayotte:
   description.en: >
-    [automatic] The employer and employee **social security contribution rates**
-    applicable in Mayotte are
+    [automatic] The employer and employee **social security contribution
+    rates**, as well as
 
-    accurately reflected by this calculator.
+    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
+    this
 
-
-    However, calculations related to the **RGDU** (Single Degressive General
-    Reduction)
-
-    and the **Lodeom** exemption, which differ for Mayotte, are
-
-    **not yet available** in this simulator.
+    simulator.
 
 
-    > Please note: For the RGDU, the simulator applies the calculation rules
-    used in
+    However, the calculation of the **RGDU** (Single General Degressive
 
-    mainland France.
-  description.fr: >
-    Les **taux de cotisations sociales** patronales et salariales applicables à
-    Mayotte sont
-
-    bien appliqués par ce simulateur.
+    Reduction) specific to Mayotte is **not yet available**.
 
 
-    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive
-    Unique)
+    > Please note: the simulator currently calculates the RGDU according to the
+    rules
 
-    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
+    of mainland France.
+  description.fr: |
+    Les **taux de cotisations sociales** patronales et salariales ainsi que
+    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    simulateur.
 
-    **pas encore disponibles** dans ce simulateur.
+    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
+    Unique) spécifique à Mayotte n’est **pas encore disponible**.
 
-
-    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
-
-    métropole.
+    > Attention : le simulateur calcule actuellement la RGDU selon les règles
+    de la métropole.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
-    contribution rates** applicable
+    contribution rates** and
 
-    in Mayotte.
+    the **Lodeom** exemption in effect in Mayotte.
 
 
-    However, calculations related to the **RGDU** and the **Lodeom** exemption
-    are
-
-    not yet available for this territory.
+    However, the calculation of the **RGDU** follows the rules of mainland
+    France.
   résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** applicables
-    à Mayotte.
+    Ce simulateur applique bien les **taux de cotisations sociales** et
+    l’exonération **Lodeom** en vigueur à Mayotte.
 
-    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
-    sont pas encore disponibles pour ce territoire.
+    En revanche, le calcul de la **RGDU** suit les règles de la métropole.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
