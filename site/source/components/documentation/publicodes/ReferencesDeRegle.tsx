@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { H3 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { Références } from '../References/References'
+import { ListeDeRéférences } from '../References/ListeDeReferences'
 import { useRéférencesÀAfficher } from '../References/useReferencesAAfficher'
 
 type Props = {
@@ -24,7 +24,7 @@ export const RéférencesDeRègle = ({ engine, dottedName }: Props) => {
 	return (
 		<>
 			<H3>{t('components.règle.info.références', 'Liens utiles')}</H3>
-			<Références références={référencesÀAfficher} />
+			<ListeDeRéférences références={référencesÀAfficher} />
 		</>
 	)
 }
