@@ -58,7 +58,7 @@ jobs:
             number="$REQUESTED_PR_NUMBER"
           else
             number="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RUN_HEAD_SHA/pulls" \
-              --jq '([.[] | select(.state == "open")] + .) | .[0].number // empty')"
+              --jq "([.[] | select(.head.sha == \"$RUN_HEAD_SHA\")] + [.[] | select(.state == \"open\")] + .) | .[0].number // empty")"
           fi
           if [ -z "$number" ]; then
             echo "::error::Aucune PR ne correspond au commit $RUN_HEAD_SHA"
