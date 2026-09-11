@@ -11,7 +11,7 @@ import {
 	TAUX_COTISATION_MALADIE,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
-import { Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
+import { Body, Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
 import { arrondirÀLEuro, Montant, montantToString } from '@/domaine/Montant'
 
 export const Décomposition = () => {
@@ -21,10 +21,12 @@ export const Décomposition = () => {
 	if (!estSituationValide(situation)) {
 		return (
 			<Info>
-				{t(
-					'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
-					'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
-				)}
+				<Body>
+					{t(
+						'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
+						'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
+					)}
+				</Body>
 			</Info>
 		)
 	}
@@ -37,119 +39,130 @@ export const Décomposition = () => {
 	const pourcent = (taux: number) => Math.round(taux * 100)
 
 	return (
-		<Tableau>
-			<thead>
-				<tr>
-					<th>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.étape',
-							'Étape'
-						)}
-					</th>
-					<th>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.calcul',
-							'Calcul'
-						)}
-					</th>
-					<th>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.montant',
-							'Montant'
-						)}
-					</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.assiette',
-							'Assiette retenue'
-						)}
-					</td>
-					<td>
-						{euro(détail.salaires)} + {euro(détail.autresRevenus)}
-					</td>
-					<td>
-						<Valeur couleur="primary">{euro(détail.assiette)}</Valeur>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.abattement',
-							'Abattement'
-						)}
-					</td>
-					<td>
-						{pourcent(TAUX_ABATTEMENT_PASS)}&nbsp;% × PASS {détail.annéeRevenus}{' '}
-						({euro(plafond)})
-					</td>
-					<td>
-						<Valeur couleur="primary">{euro(abattement)}</Valeur>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.base',
-							'Base de cotisation'
-						)}
-					</td>
-					<td>
-						{euro(détail.assiette)} − {euro(abattement)}
-					</td>
-					<td>
-						<Valeur couleur="primary">{euro(détail.base)}</Valeur>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.annuelle',
-							'Cotisation annuelle'
-						)}
-					</td>
-					<td>
-						{euro(détail.base)} × {pourcent(TAUX_COTISATION_MALADIE)}&nbsp;%
-					</td>
-					<td>
-						<ValeurImportante>{euro(détail.annuel)}</ValeurImportante>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						{t(
-							'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.mensuelle',
-							'Cotisation mensuelle'
-						)}
-					</td>
-					<td>{euro(détail.annuel)} ÷ 12</td>
-					<td>
-						<ValeurImportante>{euro(détail.mensuel)}</ValeurImportante>
-					</td>
-				</tr>
-				{O.isSome(détail.prorataAnnéePartielle) && (
+		<>
+			<Tableau>
+				<thead>
+					<tr>
+						<th>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.étape',
+								'Étape'
+							)}
+						</th>
+						<th>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.calcul',
+								'Calcul'
+							)}
+						</th>
+						<th>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.montant',
+								'Montant'
+							)}
+						</th>
+					</tr>
+				</thead>
+				<tbody>
 					<tr>
 						<td>
 							{t(
-								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.prorata',
-								'Cotisation {{année}} au prorata',
-								{ année: détail.annéeRevenus }
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.assiette',
+								'Assiette retenue'
 							)}
 						</td>
 						<td>
-							{euro(détail.annuel)} × {détail.joursAffiliation} ÷ {joursAnnée}
+							{euro(détail.salaires)} + {euro(détail.autresRevenus)}
 						</td>
 						<td>
-							<ValeurImportante>
-								{euro(détail.prorataAnnéePartielle.value)}
-							</ValeurImportante>
+							<Valeur couleur="primary">{euro(détail.assiette)}</Valeur>
 						</td>
 					</tr>
-				)}
-			</tbody>
-		</Tableau>
+					<tr>
+						<td>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.abattement',
+								'Abattement'
+							)}
+						</td>
+						<td>
+							{pourcent(TAUX_ABATTEMENT_PASS)}&nbsp;% × PASS{' '}
+							{détail.annéeRevenus} ({euro(plafond)})
+						</td>
+						<td>
+							<Valeur couleur="primary">{euro(abattement)}</Valeur>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.base',
+								'Base de cotisation'
+							)}
+						</td>
+						<td>
+							{euro(détail.assiette)} − {euro(abattement)}
+						</td>
+						<td>
+							<Valeur couleur="primary">{euro(détail.base)}</Valeur>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.annuelle',
+								'Cotisation annuelle'
+							)}
+						</td>
+						<td>
+							{euro(détail.base)} × {pourcent(TAUX_COTISATION_MALADIE)}&nbsp;%
+						</td>
+						<td>
+							<ValeurImportante>{euro(détail.annuel)}</ValeurImportante>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							{t(
+								'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.mensuelle',
+								'Cotisation mensuelle'
+							)}
+						</td>
+						<td>{euro(détail.annuel)} ÷ 12</td>
+						<td>
+							<ValeurImportante>{euro(détail.mensuel)}</ValeurImportante>
+						</td>
+					</tr>
+					{O.isSome(détail.prorataAnnéePartielle) && (
+						<tr>
+							<td>
+								{t(
+									'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.prorata',
+									'Cotisation {{année}} au prorata',
+									{ année: détail.annéeRevenus }
+								)}
+							</td>
+							<td>
+								{euro(détail.annuel)} × {détail.joursAffiliation} ÷ {joursAnnée}
+							</td>
+							<td>
+								<ValeurImportante>
+									{euro(détail.prorataAnnéePartielle.value)}
+								</ValeurImportante>
+							</td>
+						</tr>
+					)}
+				</tbody>
+			</Tableau>
+
+			<Info>
+				<Body>
+					{t(
+						'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.disclaimer',
+						'Cette estimation ne saurait engager la responsabilité de l’Urssaf.'
+					)}
+				</Body>
+			</Info>
+		</>
 	)
 }

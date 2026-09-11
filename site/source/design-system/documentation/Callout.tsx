@@ -30,24 +30,36 @@ export const Callout = styled.div.withConfig({
 					background-color: ${theme.colors.extended.success[100]};
 					border-color: ${theme.colors.extended.success[300]};
 					color: ${theme.colors.extended.success[600]};
+					& * {
+						color: inherit;
+					}
 				`
 			case 'important':
 				return `
 					background-color: ${theme.colors.extended.info[100]};
 					border-color: ${theme.colors.extended.info[300]};
 					color: ${theme.colors.extended.info[600]};
+					& * {
+						color: inherit;
+					}
 				`
 			case 'caution':
 				return `
 					background-color: ${theme.colors.extended.error[100]};
 					border-color: ${theme.colors.extended.error[300]};
 					color: ${theme.colors.extended.error[600]};
+					& * {
+						color: inherit;
+					}
 				`
 			default:
 				return `
 					background-color: ${theme.colors.bases.primary[100]};
 					border-color: ${theme.colors.bases.primary[300]};
 					color: ${theme.colors.bases.primary[800]};
+					& * {
+						color: inherit;
+					}
 				`
 		}
 	}}
