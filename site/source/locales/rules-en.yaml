@@ -11323,13 +11323,7 @@ salarié . cotisations . Mayotte:
 
     ) specific to Mayotte is **not yet available**.
 
-
-    > Note: The simulator currently calculates the RGDU according to the rules
-
-    of mainland France.
-
-
-    > The Lodeom exemption will not apply in Mayotte until July 1, 2026.
+    > The Lodeom exemption does not apply in Mayotte until July 1, 2026.
   description.fr: >
     Les **taux de cotisations sociales** patronales et salariales ainsi que
 
@@ -11343,11 +11337,6 @@ salarié . cotisations . Mayotte:
     Unique) spécifique à Mayotte n’est **pas encore disponible**.
 
 
-    > Attention : le simulateur calcule actuellement la RGDU selon les règles
-
-    de la métropole.
-
-
     > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet
     2026.
   résumé.en: >
@@ -11357,13 +11346,12 @@ salarié . cotisations . Mayotte:
     the **Lodeom** exemption in effect in Mayotte since July 1, 2026.
 
 
-    However, the calculation of the **RGDU** follows the rules of mainland
-    France.
+    However, the calculation of the **RGDU** is not yet available.
   résumé.fr: |
     Ce simulateur applique bien les **taux de cotisations sociales** et
     l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
 
-    En revanche, le calcul de la **RGDU** suit les règles de la métropole.
+    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:

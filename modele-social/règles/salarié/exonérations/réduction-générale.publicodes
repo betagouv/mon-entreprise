@@ -26,6 +26,7 @@ salarié . cotisations . exonérations . RGDU:
     une de ces conditions:
       - cotisations . assiette = 0
       - cotisations . assiette >= 3 * SMIC
+      - établissement . commune . département . outre-mer . Mayotte
 
   avec:
     coefficient:
