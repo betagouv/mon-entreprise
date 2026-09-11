@@ -6,6 +6,8 @@ import { styled } from 'styled-components'
 import RuleLink from '@/components/RuleLink'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import useYear from '@/hooks/useYear'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import {
 	lodeomDottedName,
 	MonthState,
@@ -41,6 +43,10 @@ export default function RéductionMoisParMois({
 	codeRégularisation,
 	withRépartitionAndRégularisation = true,
 }: Props) {
+	const currentZone = useZoneLodeom()
+	const year = useYear()
+	// La Lodeom ne s'applique à Mayotte qu'à partir du 1er juillet 2026
+	const masquerPremierSemestre = currentZone === 'mayotte' && year === 2026
 	const { t } = useTranslation()
 	const isDesktop = useMediaQuery(
 		`(min-width: ${baseTheme.breakpointsWidth.md})`
@@ -99,21 +105,25 @@ export default function RéductionMoisParMois({
 						</thead>
 						<tbody>
 							{data.length > 0 &&
-								months.map((monthName, monthIndex) => (
-									<RéductionMois
-										key={`month-${monthIndex}`}
-										monthName={monthName}
-										data={data[monthIndex]}
-										index={monthIndex}
-										onRémunérationChange={onRémunérationChange}
-										onOptionsChange={onOptionsChange}
-										warningCondition={warningCondition}
-										warningTooltip={warningTooltip}
-										withRépartitionAndRégularisation={
-											withRépartitionAndRégularisation
-										}
-									/>
-								))}
+								months.map((monthName, monthIndex) => {
+									return (
+										!(masquerPremierSemestre && monthIndex < 6) && (
+											<RéductionMois
+												key={`month-${monthIndex}`}
+												monthName={monthName}
+												data={data[monthIndex]}
+												index={monthIndex}
+												onRémunérationChange={onRémunérationChange}
+												onOptionsChange={onOptionsChange}
+												warningCondition={warningCondition}
+												warningTooltip={warningTooltip}
+												withRépartitionAndRégularisation={
+													withRépartitionAndRégularisation
+												}
+											/>
+										)
+									)
+								})}
 						</tbody>
 					</StyledTable>
 
@@ -164,18 +174,22 @@ export default function RéductionMoisParMois({
 							</tr>
 						</thead>
 						<tbody>
-							{Object.keys(quarters).map((label, index) => (
-								<RécapitulatifTrimestre
-									key={index}
-									label={label}
-									data={quarters[label]}
-									codeRéduction={codeRéduction}
-									codeRégularisation={codeRégularisation}
-									withRépartitionAndRégularisation={
-										withRépartitionAndRégularisation
-									}
-								/>
-							))}
+							{Object.keys(quarters).map((label, index) => {
+								return (
+									!(masquerPremierSemestre && index < 2) && (
+										<RécapitulatifTrimestre
+											key={index}
+											label={label}
+											data={quarters[label]}
+											codeRéduction={codeRéduction}
+											codeRégularisation={codeRégularisation}
+											withRépartitionAndRégularisation={
+												withRépartitionAndRégularisation
+											}
+										/>
+									)
+								)
+							})}
 						</tbody>
 					</StyledRecapTable>
 				</>
@@ -183,22 +197,26 @@ export default function RéductionMoisParMois({
 				<>
 					<H3 as="h2">{caption}</H3>
 					{data.length > 0 &&
-						months.map((monthName, monthIndex) => (
-							<RéductionMois
-								key={`month-${monthIndex}`}
-								monthName={monthName}
-								data={data[monthIndex]}
-								index={monthIndex}
-								onRémunérationChange={onRémunérationChange}
-								onOptionsChange={onOptionsChange}
-								warningCondition={warningCondition}
-								warningTooltip={warningTooltip}
-								withRépartitionAndRégularisation={
-									withRépartitionAndRégularisation
-								}
-								mobileVersion={true}
-							/>
-						))}
+						months.map((monthName, monthIndex) => {
+							return (
+								!(masquerPremierSemestre && monthIndex < 6) && (
+									<RéductionMois
+										key={`month-${monthIndex}`}
+										monthName={monthName}
+										data={data[monthIndex]}
+										index={monthIndex}
+										onRémunérationChange={onRémunérationChange}
+										onOptionsChange={onOptionsChange}
+										warningCondition={warningCondition}
+										warningTooltip={warningTooltip}
+										withRépartitionAndRégularisation={
+											withRépartitionAndRégularisation
+										}
+										mobileVersion={true}
+									/>
+								)
+							)
+						})}
 
 					<Spacing xxl />
 
@@ -208,19 +226,23 @@ export default function RéductionMoisParMois({
 							'Récapitulatif trimestriel :'
 						)}
 					</H3>
-					{Object.keys(quarters).map((label, index) => (
-						<RécapitulatifTrimestre
-							key={index}
-							label={label}
-							data={quarters[label]}
-							codeRéduction={codeRéduction}
-							codeRégularisation={codeRégularisation}
-							withRépartitionAndRégularisation={
-								withRépartitionAndRégularisation
-							}
-							mobileVersion={true}
-						/>
-					))}
+					{Object.keys(quarters).map((label, index) => {
+						return (
+							!(masquerPremierSemestre && index < 2) && (
+								<RécapitulatifTrimestre
+									key={index}
+									label={label}
+									data={quarters[label]}
+									codeRéduction={codeRéduction}
+									codeRégularisation={codeRégularisation}
+									withRépartitionAndRégularisation={
+										withRépartitionAndRégularisation
+									}
+									mobileVersion={true}
+								/>
+							)
+						)
+					})}
 				</>
 			)}
 
