@@ -14,7 +14,10 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+import {
+	useZoneLodeom,
+	zoneAvecRépartitionEtRégularisation,
+} from '@/hooks/useZoneLodeom'
 import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
@@ -49,7 +52,8 @@ export default function LodeomSimulationGoals() {
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
-	const withRépartitionAndRégularisation = currentZone !== 'zone deux'
+	const withRépartitionAndRégularisation =
+		zoneAvecRépartitionEtRégularisation(currentZone)
 
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
 		initialRéductionMoisParMois
@@ -177,7 +181,7 @@ export default function LodeomSimulationGoals() {
 				<>
 					<ZoneSwitch />
 					<BarèmeSwitch />
-					{currentZone !== 'zone deux' && (
+					{withRépartitionAndRégularisation && (
 						<>
 							<RégularisationSwitch
 								régularisationMethod={régularisationMethod}
