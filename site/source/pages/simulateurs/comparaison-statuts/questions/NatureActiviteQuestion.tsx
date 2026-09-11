@@ -1,6 +1,7 @@
 import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { documentationMDX } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import {
 	NatureActivité,
@@ -72,3 +73,12 @@ NatureActivitéQuestion.libellé = (t) =>
 NatureActivitéQuestion.typeRadioGroup = true
 NatureActivitéQuestion.applicable = () => true
 NatureActivitéQuestion.Valeur = NatureActivitéValeur
+NatureActivitéQuestion.documentation = {
+	Documentation: documentationMDX(
+		(langue) => import(`./NatureActiviteDocumentation.${langue}.mdx`)
+	),
+	références: {
+		'Création d’entreprise : déterminer la nature de l’activité d’une entreprise':
+			'https://entreprendre.service-public.gouv.fr/vosdroits/F32887',
+	},
+}
