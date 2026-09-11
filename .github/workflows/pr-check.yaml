@@ -1,10 +1,14 @@
 name: Vérification PR
 on:
   pull_request:
-    types: [opened, synchronize]
+    types: [opened, synchronize, ready_for_review]
 
 permissions:
   contents: read
+
+concurrency:
+  group: pr-check-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   lint:
