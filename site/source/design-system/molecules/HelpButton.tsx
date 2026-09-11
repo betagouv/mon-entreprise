@@ -43,6 +43,7 @@ export function HelpButton({ subject, children }: Props) {
 					<HelpIcon />
 				</StyledButton>
 			)}
+			ariaLabel={ariaLabel}
 		>
 			{children}
 		</PopoverWithTrigger>
