@@ -31,3 +31,6 @@ storybook-static/
 !**/.yarn/sdks
 !**/.yarn/versions
 /.direnv/
+
+# Instructions personnelles pour Claude Code
+CLAUDE.local.md

@@ -1,0 +1,112 @@
+name: Revue IA
+# Déclenché par workflow_run, comme « Déploiement PR » : les secrets sont disponibles, y compris
+# pour les PR de fork, qui n'exécutent « Vérification PR » qu'après approbation d'un mainteneur.
+# Le code d'un fork n'est jamais checkouté : l'agent le lit par l'API GitHub. Les consignes de
+# l'agent sont lues depuis la branche par défaut, comme ce workflow. Le checkout d'une PR interne
+# est gardé par une expression sur le payload de workflow_run, la seule forme reconnue par CodeQL.
+on:
+  workflow_run:
+    workflows: ['Vérification PR']
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      pr-number:
+        description: Numéro de la PR à relire
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  context:
+    if: >-
+      github.event_name == 'workflow_dispatch'
+      || (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion != 'cancelled')
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    outputs:
+      number: ${{ steps.pr.outputs.number }}
+      sha: ${{ steps.pr.outputs.sha }}
+      base-branch: ${{ steps.pr.outputs.base-branch }}
+      fork: ${{ steps.pr.outputs.fork }}
+      review-needed: ${{ steps.pr.outputs.review-needed }}
+      instructions: ${{ steps.instructions.outputs.text }}
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - id: instructions
+        run: |
+          delimiter="END_OF_INSTRUCTIONS_$RANDOM"
+          {
+            echo "text<<$delimiter"
+            cat .github/ai-review/instructions.md
+            echo "$delimiter"
+          } >> "$GITHUB_OUTPUT"
+
+      - id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED_PR_NUMBER: ${{ inputs.pr-number }}
+          RUN_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+          MANUAL_TRIGGER: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          if [ -n "$REQUESTED_PR_NUMBER" ]; then
+            number="$REQUESTED_PR_NUMBER"
+          else
+            number="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RUN_HEAD_SHA/pulls" \
+              --jq '([.[] | select(.state == "open")] + .) | .[0].number // empty')"
+          fi
+          if [ -z "$number" ]; then
+            echo "::error::Aucune PR ne correspond au commit $RUN_HEAD_SHA"
+            exit 1
+          fi
+          pr="$(gh pr view "$number" --repo "$GITHUB_REPOSITORY" --json number,headRefOid,baseRefName,isDraft,isCrossRepository,state)"
+          {
+            echo "number=$number"
+            echo "sha=$(jq -r .headRefOid <<< "$pr")"
+            echo "base-branch=$(jq -r .baseRefName <<< "$pr")"
+            echo "fork=$(jq -r .isCrossRepository <<< "$pr")"
+            echo "review-needed=$(jq -r --argjson manual "$MANUAL_TRIGGER" '.state == "OPEN" and ((.isDraft | not) or $manual)' <<< "$pr")"
+          } >> "$GITHUB_OUTPUT"
+
+  review:
+    needs: context
+    if: needs.context.outputs.review-needed == 'true'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    concurrency:
+      group: ai-review-${{ needs.context.outputs.number }}
+      cancel-in-progress: true
+    steps:
+      - if: github.event.workflow_run.head_repository.full_name == github.repository || (github.event_name == 'workflow_dispatch' && needs.context.outputs.fork == 'false')
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ needs.context.outputs.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - if: needs.context.outputs.fork == 'true'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - uses: anthropics/claude-code-action@19dda84776b3518d98b8798e591daee763049ed3 # v1.0.220
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_non_write_users: ${{ needs.context.outputs.fork == 'true' && format('{0},{1}', github.actor, github.event.workflow_run.actor.login) || '' }}
+          claude_args: |
+            --max-turns 100
+            --allowedTools "Bash(gh pr comment ${{ needs.context.outputs.number }}:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr checks:*),Bash(gh run view:*),Bash(gh api --method GET:*),Bash(gh api --method POST repos/${{ github.repository }}/pulls/${{ needs.context.outputs.number }}/comments:*),Bash(git log:*),Bash(git diff:*),Bash(git show:*)"
+          prompt: |
+            REPO: ${{ github.repository }}
+            PR NUMBER: ${{ needs.context.outputs.number }}
+            COMMIT: ${{ needs.context.outputs.sha }}
+            BASE BRANCH: ${{ needs.context.outputs.base-branch }}
+            FORK: ${{ needs.context.outputs.fork }}
+
+            ${{ needs.context.outputs.instructions }}
