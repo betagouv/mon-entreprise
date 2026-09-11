@@ -11320,14 +11320,9 @@ salarié . cotisations . Mayotte:
 
 
     However, the calculation of the **RGDU** (Single General Degressive
+    Reduction)
 
-    Reduction) specific to Mayotte is **not yet available**.
-
-
-    > Please note: the simulator currently calculates the RGDU according to the
-    rules
-
-    of mainland France.
+    specific to Mayotte is **not yet available**.
   description.fr: |
     Les **taux de cotisations sociales** patronales et salariales ainsi que
     l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
@@ -11335,23 +11330,19 @@ salarié . cotisations . Mayotte:
 
     En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
     Unique) spécifique à Mayotte n’est **pas encore disponible**.
-
-    > Attention : le simulateur calcule actuellement la RGDU selon les règles
-    de la métropole.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
     contribution rates** and
 
-    the **Lodeom** exemption in effect in Mayotte.
+    the **Lodeom** exemption currently in effect in Mayotte.
 
 
-    However, the calculation of the **RGDU** follows the rules of mainland
-    France.
+    However, the calculation of the **RGDU** is not yet available.
   résumé.fr: |
     Ce simulateur applique bien les **taux de cotisations sociales** et
     l’exonération **Lodeom** en vigueur à Mayotte.
 
-    En revanche, le calcul de la **RGDU** suit les règles de la métropole.
+    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
