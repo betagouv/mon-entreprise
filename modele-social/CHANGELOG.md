@@ -6,10 +6,17 @@
 - Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
 
 ### Nouveautés
+- Calcul de la Lodeom à Mayotte
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 
+### Mises à jour
+- Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+
 ### Corrections
+- Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte
+- Supprime les cotisations retraite complémentaires obligatoires pour Mayotte
+- Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans le calcul de la RGDU
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 

@@ -455,7 +455,7 @@ salarié . rémunération . net . à payer avant impôt: 2527"
 exports[`calculate simulations-salarié > frais pro - outre-mer 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3998
+salarié . coût total employeur: 3999
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2531
 salarié . rémunération . net . à payer avant impôt: 2586"
@@ -799,10 +799,10 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3760
+salarié . coût total employeur: 3657
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 2483
-salarié . rémunération . net . à payer avant impôt: 2537
+salarié . rémunération . net . payé après impôt: 2601
+salarié . rémunération . net . à payer avant impôt: 2657
 
 Notifications affichées : salarié . cotisations . Mayotte"
 `;
@@ -810,10 +810,10 @@ Notifications affichées : salarié . cotisations . Mayotte"
 exports[`calculate simulations-salarié > impôt sur le revenu 7`] = `
 "salarié . contrat . salaire brut: 30000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 35985
+salarié . coût total employeur: 32806
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 17437
-salarié . rémunération . net . à payer avant impôt: 26035
+salarié . rémunération . net . payé après impôt: 18919
+salarié . rémunération . net . à payer avant impôt: 28247
 
 Notifications affichées : salarié . cotisations . Mayotte, salarié . contrat . salaire brut . contrôle salaire élevé"
 `;
@@ -924,7 +924,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3112
+salarié . coût total employeur: 3113
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2223
 salarié . rémunération . net . à payer avant impôt: 2353"
@@ -933,7 +933,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4471
+salarié . coût total employeur: 4472
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2820
 salarié . rémunération . net . à payer avant impôt: 3144"
@@ -971,7 +971,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3112
+salarié . coût total employeur: 3113
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2223
 salarié . rémunération . net . à payer avant impôt: 2353"
@@ -980,7 +980,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4407
+salarié . coût total employeur: 4408
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2820
 salarié . rémunération . net . à payer avant impôt: 3144"

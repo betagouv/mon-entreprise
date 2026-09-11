@@ -11310,59 +11310,39 @@ salarié . cotisations . FNAL:
   titre.fr: Contribution au Fonds National d’Aide au Logement
 salarié . cotisations . Mayotte:
   description.en: >
-    [automatic] The employer and employee **social security contribution rates**
-    applicable in Mayotte are
+    [automatic] The employer and employee **social security contribution
+    rates**, as well as
 
-    accurately reflected by this calculator.
+    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
+    this
+
+    simulator.
 
 
-    However, calculations related to the **RGDU** (Single Degressive General
+    However, the calculation of the **RGDU** (Single General Degressive
     Reduction)
 
-    and the **Lodeom** exemption, which differ for Mayotte, are
+    specific to Mayotte is **not yet available**.
+  description.fr: |
+    Les **taux de cotisations sociales** patronales et salariales ainsi que
+    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    simulateur.
 
-    **not yet available** in this simulator.
-
-
-    > Please note: For the RGDU, the simulator applies the calculation rules
-    used in
-
-    mainland France.
-  description.fr: >
-    Les **taux de cotisations sociales** patronales et salariales applicables à
-    Mayotte sont
-
-    bien appliqués par ce simulateur.
-
-
-    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive
-    Unique)
-
-    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
-
-    **pas encore disponibles** dans ce simulateur.
-
-
-    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
-
-    métropole.
+    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
+    Unique) spécifique à Mayotte n’est **pas encore disponible**.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
-    contribution rates** applicable
+    contribution rates** and
 
-    in Mayotte.
+    the **Lodeom** exemption currently in effect in Mayotte.
 
 
-    However, calculations related to the **RGDU** and the **Lodeom** exemption
-    are
-
-    not yet available for this territory.
+    However, the calculation of the **RGDU** is not yet available.
   résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** applicables
-    à Mayotte.
+    Ce simulateur applique bien les **taux de cotisations sociales** et
+    l’exonération **Lodeom** en vigueur à Mayotte.
 
-    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
-    sont pas encore disponibles pour ce territoire.
+    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
@@ -11841,6 +11821,9 @@ salarié . cotisations . exonérations . lodeom . code régularisation:
     pour régulariser l’exonération.
   titre.en: '[automatic] regularization code'
   titre.fr: code régularisation
+salarié . cotisations . exonérations . lodeom . mayotte:
+  titre.en: '[automatic] Mayotte'
+  titre.fr: mayotte
 salarié . cotisations . exonérations . lodeom . montant:
   avec:
     coefficient:
@@ -11864,6 +11847,9 @@ salarié . cotisations . exonérations . lodeom . montant:
     seuil sortie:
       titre.en: '[automatic] output threshold'
       titre.fr: seuil sortie
+    smic:
+      titre.en: '[automatic] minimum wage'
+      titre.fr: smic
   titre.en: '[automatic] exemption amount'
   titre.fr: montant de l’exonération
 salarié . cotisations . exonérations . lodeom . régularisation:
@@ -12882,10 +12868,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
       question.fr: Quel barème envisagez-vous ?
       titre.en: '[automatic] scales'
       titre.fr: barèmes
-  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
-  titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
+  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
+  titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
 salarié . cotisations . exonérations . zones lodeom:
   avec:
+    mayotte:
+      titre.en: '[automatic] Mayotte'
+      titre.fr: Mayotte
     zone deux:
       titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
       titre.fr: Saint-Barthélémy, Saint-Martin

@@ -3,6 +3,7 @@ import { sumAll } from 'effect/Number'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { styled } from 'styled-components'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
@@ -14,7 +15,10 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
+import {
+	useZoneLodeom,
+	zoneAvecRépartitionEtRégularisation,
+} from '@/hooks/useZoneLodeom'
 import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
@@ -48,7 +52,8 @@ export default function LodeomSimulationGoals() {
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
-	const withRépartitionAndRégularisation = currentZone === 'zone un'
+	const withRépartitionAndRégularisation =
+		zoneAvecRépartitionEtRégularisation(currentZone)
 
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
 		initialRéductionMoisParMois
@@ -164,10 +169,10 @@ export default function LodeomSimulationGoals() {
 	return (
 		<SimulationGoals
 			toggles={
-				<>
+				<GoalsContainer>
 					<ZoneSwitch />
 					<BarèmeSwitch />
-					{currentZone === 'zone un' && (
+					{withRépartitionAndRégularisation && (
 						<>
 							<RégularisationSwitch
 								régularisationMethod={régularisationMethod}
@@ -176,7 +181,7 @@ export default function LodeomSimulationGoals() {
 							<EffectifSwitch />
 						</>
 					)}
-				</>
+				</GoalsContainer>
 			}
 		>
 			<Warnings />
@@ -221,3 +226,10 @@ export default function LodeomSimulationGoals() {
 		</SimulationGoals>
 	)
 }
+
+const GoalsContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: ${({ theme }) => theme.spacings.xl};
+`

@@ -112,6 +112,7 @@ salarié . cotisations . retraite complémentaire-CEG-CET:
   titre: retraite complémentaire, CEG et CET
   cotisation:
     branche: retraite
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   somme:
     - employeur
     - salarié
@@ -141,6 +142,7 @@ salarié . cotisations . CEG:
 
   références:
     Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   somme:
     - employeur
     - salarié
@@ -177,6 +179,7 @@ salarié . cotisations . CET:
   applicable si: cotisations . assiette > temps de travail . plafond sécurité sociale
   références:
     Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   somme:
     - employeur
     - salarié
@@ -205,6 +208,7 @@ salarié . cotisations . retraite complémentaire:
   références:
     Comment calculer les cotisations de retraite complémentaire: https://www.agirc-arrco.fr/mon-entreprise/calculer-et-declarer/calculer-les-cotisations-de-retraite-complementaire/
     régimes des impatriés: https://www.legifrance.gouv.fr/affichTexteArticle.do;jsessionid=D2C4F8F0A5E19693ADF9F440120B748A.tplgfr31s_2?idArticle=JORFARTI000038496272&cidTexte=JORFTEXT000038496102&dateTexte=29990101&categorieLien=id
+  non applicable si: établissement . commune . département . outre-mer . Mayotte
   somme:
     - employeur
     - salarié
@@ -283,13 +287,19 @@ salarié . cotisations . allocations familiales:
   avec:
     taux:
       variations:
-        - si: établissement . commune . département . outre-mer . Mayotte
-          alors: 5.40%
         - si: éligible taux réduit
           alors: taux réduit
-        - sinon: 5.25%
+        - sinon:
+            variations:
+              - si: établissement . commune . département . outre-mer . Mayotte
+                alors: 5.40%
+              - sinon: 5.25%
 
-    taux réduit: 3.45%
+    taux réduit:
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 3.55%
+        - sinon: 3.45%
 
     éligible taux réduit:
       description: |
@@ -482,15 +492,15 @@ salarié . cotisations . ATMP:
       description: >-
         Le taux minimum existant pour la cotisation ATMP.
       variations:
-        - si: date >= 05/2025
-          alors: 0.5%
-        - si: date >= 01/2024
-          alors: 0.46%
-        - si: date >= 01/2023
-          alors: 0.55%
-        - si: date >= 01/2022
+        - si: date < 01/2023
           alors: 0.59%
-        - sinon: 0.70 %
+        - si: date < 01/2024
+          alors: 0.55%
+        - si: date < 05/2025
+          alors: 0.46%
+        - si: date < 01/2026
+          alors: 0.50%
+        - sinon: 0.49%
       références:
         Article D241-2-4: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000041460928
 
@@ -790,13 +800,19 @@ salarié . cotisations . maladie:
       avec:
         taux:
           variations:
-            - si: établissement . commune . département . outre-mer . Mayotte
-              alors: 5.80%
             - si: éligible taux réduit
               alors: taux réduit
-            - sinon: 13%
+            - sinon:
+                variations:
+                  - si: établissement . commune . département . outre-mer . Mayotte
+                    alors: 5.80%
+                  - sinon: 13%
 
-        taux réduit: 7%
+        taux réduit:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 3.12%
+            - sinon: 7%
 
         éligible taux réduit:
           description: |
@@ -1082,7 +1098,7 @@ salarié . cotisations . vieillesse:
         taux:
           variations:
             - si: établissement . commune . département . outre-mer . Mayotte
-              alors: 5.40%
+              alors: 9.90%
             - sinon: 8.55%
 
     salarié:
@@ -1322,21 +1338,17 @@ salarié . cotisations . Mayotte:
   sévérité: avertissement
   titre: Cotisations Mayotte
   résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** applicables
-    à Mayotte.
+    Ce simulateur applique bien les **taux de cotisations sociales** et
+    l’exonération **Lodeom** en vigueur à Mayotte.
 
-    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
-    sont pas encore disponibles pour ce territoire.
+    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
   description: |
-    Les **taux de cotisations sociales** patronales et salariales applicables à Mayotte sont
-    bien appliqués par ce simulateur.
+    Les **taux de cotisations sociales** patronales et salariales ainsi que
+    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    simulateur.
 
-    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive Unique)
-    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
-    **pas encore disponibles** dans ce simulateur.
-
-    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
-    métropole.
+    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
+    Unique) spécifique à Mayotte n’est **pas encore disponible**.
   références:
     Taux de cotisations - Employeurs à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/cotisations-employeurs-mayotte.html
     Les services de l’État à Mayotte - Réduction générale dégressive unique (RGDU) de cotisations patronales: https://www.mayotte.gouv.fr/Demarches/Demarches-PARTICULIERS#!/professionnels/page/F24542
