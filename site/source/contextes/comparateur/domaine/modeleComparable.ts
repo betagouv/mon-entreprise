@@ -1,12 +1,11 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import Engine from 'publicodes'
-import { ReactNode } from 'react'
+import { ComponentType, ReactNode } from 'react'
 
 import { StatutType } from '@/components/StatutTag'
+import { DocumentationDeValeur } from '@/domaine/documentation/DocumentationDeValeur'
 import { Montant } from '@/domaine/Montant'
 import { MontantRécurrent } from '@/domaine/MontantRecurrent'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { Quantité } from '@/domaine/Quantite'
 
@@ -14,8 +13,7 @@ import { IRouIS } from './imposition'
 import { Question, Réponse } from './situation'
 
 type ValeurDocumentée = {
-	// TODO: remplacer documentationRule par DocumentationLink (un composant)
-	documentationRule: DottedName
+	documentation: DocumentationDeValeur
 	// TODO: déplacer les warnings ici
 	// warning?: ReactNode
 }
@@ -26,6 +24,8 @@ export type QuantitéDocumentée = Quantité & ValeurDocumentée
 
 export interface ModèleComparable {
 	nom: NomModèle
+
+	DocumentationRoutes: ComponentType<{ basePath: string }>
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => void
@@ -40,7 +40,6 @@ export interface ModèleComparable {
 	}
 
 	get: {
-		engine: () => Engine<DottedName>
 		statut: {
 			étiquette: StatutType
 			nom: string
@@ -97,9 +96,9 @@ export interface ModèleComparable {
 
 export type CatégorieComparée = keyof Omit<
 	ModèleComparable['get'],
-	'engine' | 'statut' | 'warning'
+	'statut' | 'warning'
 >
 export type ÉlémentComparé<K extends CatégorieComparée> = Exclude<
 	keyof ReturnType<ModèleComparable['get'][K]>,
-	'documentationRule'
+	'documentation'
 >

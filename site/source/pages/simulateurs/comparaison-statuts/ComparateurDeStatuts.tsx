@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 
+import { DocumentationBasePathProvider } from '@/components/documentation/DocumentationBasePathProvider'
 import { Simulateur } from '@/components/Simulateur/Simulateur'
 import {
 	ComparateurProvider,
@@ -16,6 +17,7 @@ import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DetailSimulation'
+import { DocumentationRoutes } from './components/DocumentationRoutes'
 import { comparaisonStatutsMetadata } from './metadata'
 import { Objectifs } from './Objectifs'
 import { groupesDeQuestions, questionsPrincipales } from './questions'
@@ -70,16 +72,22 @@ const PageComparateur = () => {
 				</Trans>
 			</Intro>
 
-			<Simulateur
-				metadata={metadata}
-				montantsÀSaisir={<Objectifs />}
-				questionsFourniesPrincipales={questionsPrincipales}
-				groupesDeQuestionsFournies={groupesDeQuestions}
-				situation={situation}
-				simulationEstCommencée={simulationEstCommencée(situation)}
-				détail={<DétailSimulation />}
-				onReset={set.reset}
-			/>
+			<DocumentationBasePathProvider
+				basePath={absoluteSitePaths.simulateurs.comparaison}
+			>
+				<Simulateur
+					metadata={metadata}
+					montantsÀSaisir={<Objectifs />}
+					questionsFourniesPrincipales={questionsPrincipales}
+					groupesDeQuestionsFournies={groupesDeQuestions}
+					situation={situation}
+					simulationEstCommencée={simulationEstCommencée(situation)}
+					détail={<DétailSimulation />}
+					onReset={set.reset}
+				/>
+
+				<DocumentationRoutes />
+			</DocumentationBasePathProvider>
 		</SimulateurPageLayout>
 	)
 }

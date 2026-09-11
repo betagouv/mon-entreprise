@@ -19,6 +19,6 @@ export const IsBPIProvider = ({ children }: PropsWithChildren) => {
 	return <BPIContext.Provider value={isBPI}>{children}</BPIContext.Provider>
 }
 
-export default function useIsEmbeddedOnBPISite() {
+export function useIsEmbeddedOnBPISite() {
 	return useContext(BPIContext)
 }
