@@ -9,6 +9,7 @@ salarié . cotisations . exonérations . zones lodeom:
       valeur: zones lodeom = 'zone un'
       titre: Guadeloupe, Guyane, Martinique, La Réunion
     mayotte:
+      applicable si: date >= 07/2026
       valeur: zones lodeom = 'mayotte'
       titre: Mayotte
     zone deux:
@@ -71,7 +72,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
-    - établissement . commune . département = 'Mayotte'
+    - toutes ces conditions:
+        - établissement . commune . département = 'Mayotte'
+        - date >= 07/2026
     - établissement . commune . département = 'Guyane'
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
