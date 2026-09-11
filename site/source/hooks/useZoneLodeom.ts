@@ -13,3 +13,7 @@ export const useZoneLodeom = (): ZoneLodeom | undefined => {
 
 	return engine.evaluate(zonesLodeomDottedName).nodeValue as ZoneLodeom
 }
+
+export const zoneAvecRépartitionEtRégularisation = (
+	zone: ZoneLodeom | undefined
+) => !!zone && ['zone un', 'mayotte'].includes(zone)
