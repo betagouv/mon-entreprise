@@ -466,7 +466,7 @@ const getRépartition = (
 
 /**
  * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
- * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#710)
+ * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#620)
  * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
  * (heures supplémentaires, temps partiel, mois incomplet...).
  */
