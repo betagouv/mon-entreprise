@@ -23,7 +23,7 @@ export function indépendantMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.simulateurs.indépendant.meta.description',
-				"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement"
+				"Calcul du revenu net après impôt et des cotisations à partir du chiffre d'affaires et inversement."
 			),
 		},
 	} as const

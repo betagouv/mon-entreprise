@@ -54,7 +54,7 @@ describe('PAMC', () => {
 				...defaultSituation,
 				'indépendant . profession libérale . réglementée . PAMC . recettes activité conventionnée':
 					'80000 €/an',
-				"indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire":
+				"indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraires":
 					'30000 €/an',
 			})
 			const assietteSociale = e.evaluate(

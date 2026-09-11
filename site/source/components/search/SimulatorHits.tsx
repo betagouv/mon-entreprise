@@ -38,10 +38,10 @@ const SimulateurCardHit = ({ hit }: { hit: AlgoliaSimulatorHit }) => {
 			to={{ pathname: hit.path ?? '/' }}
 			onPress={() => setNavigationOrigin({ fromSimulateurs: true })}
 			title={
-				<p>
+				<>
 					<Highlight hit={hit} attribute="title" />{' '}
 					{hit.tooltip && <InfoBulle description={hit.tooltip} />}
-				</p>
+				</>
 			}
 		/>
 	)

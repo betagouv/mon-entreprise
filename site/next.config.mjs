@@ -17,6 +17,10 @@ const nextConfig = {
 		'@publicodes/react-ui',
 	],
 
+	experimental: {
+		turbopackScopeHoisting: false,
+	},
+
 	turbopack: {
 		rules: {
 			'*.yaml': {

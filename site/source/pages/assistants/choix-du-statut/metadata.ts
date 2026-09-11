@@ -20,7 +20,7 @@ export function choixDuStatutMetadata({ t, sitePaths }: PageMetadataParams) {
 			),
 			description: t(
 				'pages.assistants.choix-statut.meta.description',
-				"SAS, EURL, EI, auto-entrepreneur…  Ce simulateur vous aide à choisir le statut juridique le plus adapté à votre projet d'entreprise."
+				"SAS, EURL, EI, auto-entrepreneur…  Cet assistant vous aide à choisir le statut juridique le plus adapté à votre projet d'entreprise."
 			),
 		},
 	} as const

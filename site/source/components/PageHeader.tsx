@@ -42,8 +42,8 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<InnerGrid item className="hide-mobile" md={4} lg={5} xl={4}>
-					<Illustration className="hide-mobile" src={picture} alt="" />
+				<InnerGrid item md={4} lg={5} xl={4}>
+					<Illustration src={picture} alt="" />
 				</InnerGrid>
 			)}
 		</Grid>
@@ -53,6 +53,10 @@ export default function PageHeader({
 const InnerGrid = styled(Grid)`
 	align-self: flex-end;
 	display: none;
+
+	@media (max-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
+		display: none;
+	}
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
 		display: block;
