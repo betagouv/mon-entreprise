@@ -15,7 +15,7 @@ export default function Répartition({ idPrefix, répartition }: Props) {
 	const zone = useZoneLodeom()
 	const { t } = useTranslation()
 
-	const ImputationSécuritéSociale = () => (
+	const ImputationSécuritéSociale = (
 		<>
 			<RépartitionValue
 				value={répartition.Urssaf}
@@ -53,12 +53,10 @@ export default function Répartition({ idPrefix, répartition }: Props) {
 							idPrefix={`${idPrefix}-IRC`}
 						/>
 					</StyledLi>
-					<StyledLi>
-						<ImputationSécuritéSociale />
-					</StyledLi>
+					<StyledLi>{ImputationSécuritéSociale}</StyledLi>
 				</StyledUl>
 			) : (
-				<ImputationSécuritéSociale />
+				ImputationSécuritéSociale
 			)}
 		</>
 	)
