@@ -3,6 +3,7 @@ import { sumAll } from 'effect/Number'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { styled } from 'styled-components'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
@@ -168,7 +169,7 @@ export default function LodeomSimulationGoals() {
 	return (
 		<SimulationGoals
 			toggles={
-				<>
+				<GoalsContainer>
 					<ZoneSwitch />
 					<BarèmeSwitch />
 					{withRépartitionAndRégularisation && (
@@ -180,7 +181,7 @@ export default function LodeomSimulationGoals() {
 							<EffectifSwitch />
 						</>
 					)}
-				</>
+				</GoalsContainer>
 			}
 		>
 			<Warnings />
@@ -225,3 +226,10 @@ export default function LodeomSimulationGoals() {
 		</SimulationGoals>
 	)
 }
+
+const GoalsContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: ${({ theme }) => theme.spacings.xl};
+`
