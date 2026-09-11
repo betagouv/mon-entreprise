@@ -39,15 +39,6 @@ export type Options = {
 
 export type RégularisationMethod = 'annuelle' | 'progressive'
 
-export type SituationType = SituationPublicodes & {
-	[heuresSupplémentairesDottedName]?: {
-		nodeValue: number
-	}
-	[heuresComplémentairesDottedName]?: {
-		valeur: number
-	}
-}
-
 export type RémunérationBruteInput = {
 	unité: string
 	valeur: number
