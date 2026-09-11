@@ -7,13 +7,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
 import { Body, Message } from '@/design-system'
-import {
-	PublicodesAdapter,
-	ValeurPublicodes,
-} from '@/domaine/engine/PublicodesAdapter'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { QuantitéAdapter } from '@/domaine/engine/QuantitéAdapter'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { Quantité, quantitéToNumber } from '@/domaine/Quantite'
+import { quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
@@ -75,7 +73,7 @@ export default function LodeomSimulationGoals() {
 		const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
 			pipe(
 				engine.evaluate(dottedName),
-				PublicodesAdapter.decode as () => Option.Option<Quantité>,
+				QuantitéAdapter.decode,
 				Option.map(quantitéToNumber),
 				Option.getOrElse(() => 0)
 			)
