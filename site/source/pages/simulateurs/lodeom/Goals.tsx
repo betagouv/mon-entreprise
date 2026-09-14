@@ -70,6 +70,10 @@ export default function LodeomSimulationGoals() {
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
+	useEffect(() => {
+		setData(initialRéductionMoisParMois)
+	}, [currentZone])
+
 	const heuresSupplémentairesGlobales =
 		situation[heuresSupplémentairesDottedName]
 	const heuresComplémentairesGlobales =
