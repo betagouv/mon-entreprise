@@ -9,8 +9,9 @@ export const DocumentationRoutes = () => {
 	const { currentPath, matchPath, navigate } = useNavigation()
 
 	const cheminDemandé = decodeURI(currentPath)
-	const documentationDemandée = documentationRoutes.find(({ étiquette }) =>
-		matchPath(`${basePath}/${étiquette}/*`, cheminDemandé)
+	const documentationDemandée = documentationRoutes.find(
+		({ étiquette }) =>
+			matchPath(`${basePath}/${étiquette}/*`, cheminDemandé)?.params['*']
 	)
 
 	if (!documentationDemandée) {
