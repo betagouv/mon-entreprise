@@ -31,10 +31,16 @@ describe('Lodeom', () => {
 
 	describe('Calcul de la réduction et de sa répartition', () => {
 		describe('Zone un', () => {
+			// T = 0,3201
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
 			it.each([
-				['compétitivité', 280.7, 52.7, 228, 35.08],
+				// Cœfficient = (1,3 x 0,3201 / 0,9) x [(2,2 * 1823,07 / 3500) - 1] = 0,0675
+				['compétitivité', 236.25, 44.36, 191.89, 29.52],
+				// Cœfficient = T = 0,3201
 				['compétitivité renforcée', 1120.35, 210.35, 910, 140.0],
-				['innovation et croissance', 1016.05, 190.77, 825.28, 126.97],
+				// Cœfficient = 1,7 * 0,3201 * 1823,07 / 3500 = 0,2834
+				['innovation et croissance', 991.9, 186.23, 805.67, 123.95],
 			])(
 				'Barème %s',
 				(barème, montantLodeom, montantIRC, montantUrssaf, montantChômage) => {
@@ -79,10 +85,16 @@ describe('Lodeom', () => {
 		})
 
 		describe('Mayotte', () => {
+			// T = 0,1996
+			// Smic (1er janvier) = 1415,05
+			// Réduction = 3000 x cœefficient
 			it.each([
-				['compétitivité', 54.6, 10.94],
-				['compétitivité renforcée', 521.7, 104.55],
-				['innovation et croissance', 492, 98.6],
+				// Cœfficient = (1,3 x 0,1996 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0109
+				['compétitivité', 32.7, 6.55],
+				// Cœfficient = (2 x 0,1996 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1560
+				['compétitivité renforcée', 468, 93.79],
+				// Cœfficient = 1,7 * 0,1996 * 1415,05 / 3000 = 0,1601
+				['innovation et croissance', 480.3, 96.25],
 			])('Barème %s', (barème, montantLodeom, montantChômage) => {
 				const e = engine.setSituation({
 					...situationMayotte,
@@ -119,10 +131,16 @@ describe('Lodeom', () => {
 		})
 
 		describe('Zone deux', () => {
+			// T = 0,2111
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
 			it.each([
-				['moins de 11 salariés', 551.95],
-				['sectoriel', 388.15],
-				['renforcé', 669.9],
+				// Cœfficient = 1,4 * 0,2111 * 1823,07 / 3500 = 0,1539
+				['moins de 11 salariés', 538.65],
+				// Cœfficient = (1,4 x 0,2111 / 1,6) x [(3 * 1823,07 / 3500) - 1] = 0,1039
+				['sectoriel', 363.65],
+				// Cœfficient = 1,7 * 0,2111 * 1823,07 / 3500 = 0,1869
+				['renforcé', 654.15],
 			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
 					...situationZone2,
@@ -130,7 +148,10 @@ describe('Lodeom', () => {
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
 					montantLodeom
 				)
 			})
@@ -215,18 +236,48 @@ describe('Lodeom', () => {
 
 	describe('Plus de 50 salariés', () => {
 		describe('Zone un', () => {
-			const situationModifiée = {
-				...situationZone1,
-				'entreprise . salariés . effectif': '50',
-			}
-
+			// T = 0,3241
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
 			it.each([
-				['compétitivité', 284.2],
+				// Cœfficient = (1,3 x 0,3241 / 0,9) x [(2,2 * 1823,07 / 3500) - 1] = 0,0683
+				['compétitivité', 239.05],
+				// Cœfficient = T = 0,3241
 				['compétitivité renforcée', 1134.35],
-				['innovation et croissance', 1028.65],
+				// Cœfficient = 1,7 * 0,3241 * 1823,07 / 3500 = 0,2870
+				['innovation et croissance', 1004.5],
 			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
-					...situationModifiée,
+					...situationZone1,
+					'entreprise . salariés . effectif': '50',
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
+				})
+
+				expect(e).toEvaluate(
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
+					montantLodeom
+				)
+			})
+		})
+
+		describe('À Mayotte', () => {
+			// T = 0,2036
+			// Smic (1er janvier) = 1415,05
+			// Réduction = 3000 x cœefficient
+			it.each([
+				// Cœfficient = (1,3 x 0,2036 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0111
+				['compétitivité', 33.3],
+				// Cœfficient = (2 x 0,2036 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1591
+				['compétitivité renforcée', 477.3],
+				// Cœfficient = 1,7 * 0,2036 * 1415,05 / 3000 = 0,1633
+				['innovation et croissance', 489.9],
+			])('Barème %s', (barème, montantLodeom) => {
+				const e = engine.setSituation({
+					...situationMayotte,
+					'entreprise . salariés . effectif': '50',
 					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
 				})
 
