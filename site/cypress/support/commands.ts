@@ -55,6 +55,7 @@ const fixtureFilename = (url: string) => {
 	// FNV-1a 32-bit: simple, deterministic, plenty collision-resistant for
 	// the few dozen URLs recorded per spec (this has no security purpose).
 	let hash = 0x811c9dc5
+
 	for (let i = 0; i < url.length; i++) {
 		hash ^= url.charCodeAt(i)
 		hash = Math.imul(hash, 0x01000193)
