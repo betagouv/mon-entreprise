@@ -19,7 +19,9 @@ export const U = styled.u`
 
 export const Code = styled.code`
 	background-color: ${({ theme }) =>
-		theme.darkMode ? theme.colors.extended.grey[600] : '#eee'};
+		theme.darkMode
+			? theme.colors.extended.dark[600]
+			: theme.colors.extended.grey[300]};
 	color: inherit;
 	padding: ${({ theme }) => theme.spacings.xxs};
 	border-radius: ${({ theme }) => theme.spacings.xxs};
@@ -27,7 +29,7 @@ export const Code = styled.code`
 
 export const Pre = styled.pre`
 	overflow: auto;
-	padding: 0.5rem;
+	padding: ${({ theme }) => theme.spacings.xs};
 	background-color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.dark[600]
