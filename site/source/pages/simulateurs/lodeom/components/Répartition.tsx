@@ -44,7 +44,7 @@ export default function Répartition({ idPrefix, répartition }: Props) {
 					<Trans>Détail du montant :</Trans>
 				</Strong>
 			</Body>
-			{répartition.IRC > 0 ? (
+			{zone === 'zone un' ? (
 				<StyledUl>
 					<StyledLi>
 						<RépartitionValue
