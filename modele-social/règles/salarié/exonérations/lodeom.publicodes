@@ -9,7 +9,10 @@ salarié . cotisations . exonérations . zones lodeom:
       valeur: zones lodeom = 'zone un'
       titre: Guadeloupe, Guyane, Martinique, La Réunion
     mayotte:
-      applicable si: date >= 07/2026
+      # Ici on permet la sélection de Mayotte dès le début de l'année 2026 car
+      # cette question sert dans le simulateur Lodeom qui fonctionne sur l'année
+      # entière et se charge de masquer les 6 premiers mois de 2026.
+      applicable si: date >= 01/2026
       valeur: zones lodeom = 'mayotte'
       titre: Mayotte
     zone deux:
@@ -68,7 +71,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
   par défaut: non
   une de ces conditions:
     - zones lodeom = 'zone un'
-    - zones lodeom = 'mayotte'
+    - toutes ces conditions:
+        - zones lodeom = 'mayotte'
+        - date >= 01/2026
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
