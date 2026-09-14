@@ -57,8 +57,10 @@ jobs:
           if [ -n "$REQUESTED_PR_NUMBER" ]; then
             number="$REQUESTED_PR_NUMBER"
           else
+            # Une PR empilée contient le commit de tête de sa base : on préfère la PR dont c'est
+            # exactement le commit de tête, puis une PR ouverte.
             number="$(gh api "repos/$GITHUB_REPOSITORY/commits/$RUN_HEAD_SHA/pulls" \
-              --jq "([.[] | select(.head.sha == \"$RUN_HEAD_SHA\")] + [.[] | select(.state == \"open\")] + .) | .[0].number // empty")"
+              | jq -r --arg sha "$RUN_HEAD_SHA" '([.[] | select(.head.sha == $sha)] + [.[] | select(.state == "open")] + .) | .[0].number // empty')"
           fi
           if [ -z "$number" ]; then
             echo "::error::Aucune PR ne correspond au commit $RUN_HEAD_SHA"
