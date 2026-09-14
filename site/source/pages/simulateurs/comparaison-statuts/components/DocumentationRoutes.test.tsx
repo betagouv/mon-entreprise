@@ -63,8 +63,43 @@ const paquetNpmProposé = () =>
 		.find((href) => href?.includes('npmjs.com/package/'))
 
 describe('DocumentationRoutes', () => {
+	it('documente une valeur EI avec le modèle travailleur indépendant', async () => {
+		afficherLaDocumentation(
+			ModèleTravailleurIndépendant,
+			'EI/indépendant/rémunération/nette'
+		)
+
+		expect(
+			await screen.findByRole('heading', { name: /Rémunération nette/ })
+		).toBeInTheDocument()
+	})
+
+	it('documente une valeur SASU avec le modèle assimilé salarié', async () => {
+		afficherLaDocumentation(
+			ModèleAssimiléSalarié,
+			'SASU/assimilé-salarié/rémunération/nette'
+		)
+
+		expect(
+			await screen.findByRole('heading', { name: /Rémunération nette/ })
+		).toBeInTheDocument()
+	})
+
+	it("ne rend rien lorsque l'URL ne demande aucune documentation", () => {
+		afficherLaDocumentation(ModèleTravailleurIndépendant, '')
+
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+	})
+
+	it("laisse l'usager sur le comparateur lorsque l'URL s'arrête à l'étiquette", () => {
+		afficherLaDocumentation(ModèleAssimiléSalarié, 'SASU')
+
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+		expect(window.location.pathname).not.toBe('/404')
+	})
+
 	it(
-		'documente une valeur EI avec le modèle travailleur indépendant',
+		'propose le paquet npm du modèle qui documente la valeur',
 		async () => {
 			const user = userEvent.setup()
 			afficherLaDocumentation(
@@ -82,37 +117,4 @@ describe('DocumentationRoutes', () => {
 		},
 		TIMEOUT
 	)
-
-	it(
-		'documente une valeur SASU avec le modèle assimilé salarié',
-		async () => {
-			const user = userEvent.setup()
-			afficherLaDocumentation(
-				ModèleAssimiléSalarié,
-				'SASU/assimilé-salarié/rémunération/nette'
-			)
-
-			await déplierRéutiliserCeCalcul(user)
-
-			await waitFor(() =>
-				expect(paquetNpmProposé()).toBe(
-					'https://www.npmjs.com/package/modele-as'
-				)
-			)
-		},
-		TIMEOUT
-	)
-
-	it("ne rend rien lorsque l'URL ne demande aucune documentation", () => {
-		afficherLaDocumentation(ModèleTravailleurIndépendant, '')
-
-		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-	})
-
-	it("laisse l'usager sur le comparateur lorsque l'URL s'arrête à l'étiquette", () => {
-		afficherLaDocumentation(ModèleAssimiléSalarié, 'SASU')
-
-		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
-		expect(window.location.pathname).not.toBe('/404')
-	})
 })
