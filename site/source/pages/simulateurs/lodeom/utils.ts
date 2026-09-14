@@ -466,7 +466,7 @@ const getRépartition = (
 
 /**
  * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
- * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#620)
+ * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous)
  * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
  * (heures supplémentaires, temps partiel, mois incomplet...).
  */

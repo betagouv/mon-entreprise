@@ -72,8 +72,8 @@ salarié . cotisations . exonérations . lodeom . zone un:
   une de ces conditions:
     - zones lodeom = 'zone un'
     - toutes ces conditions:
+        - est applicable: zones lodeom . mayotte
         - zones lodeom = 'mayotte'
-        - date >= 01/2026
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
@@ -302,8 +302,12 @@ salarié . cotisations . exonérations . lodeom . zone un:
 salarié . cotisations . exonérations . lodeom . mayotte:
   par défaut: non
   une de ces conditions:
-    - zones lodeom = 'mayotte'
-    - établissement . commune . département = 'Mayotte'
+    - toutes ces conditions:
+        - est applicable: zones lodeom . mayotte
+        - zones lodeom = 'mayotte'
+    - toutes ces conditions:
+        - date >= 07/2026
+        - établissement . commune . département = 'Mayotte'
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
@@ -552,8 +556,25 @@ salarié . cotisations . exonérations . lodeom . montant:
       arrondi: 4 décimales
 
     smic:
+      description: |
+        Montant du Smic utilisé dans le calcul de l’exonération Lodeom, pour le
+        plafond d’éligibilité et pour le calcul du cœfficient.
+
+        La valeur à utiliser est la même que pour le calcul de la Réduction
+        générale dégressive unique (RGDU). Autrement dit :
+        - Le Smic est proratisé en fonction du temps de travail en cas de temps
+          partiel ou d’heures supplémentaires ;
+        - Le Smic est proratisé en cas de mois de travail incomplet, en tenant
+          compte des éléments de rémunérations non impactés par cette absence (comme
+          les primes) ;
+        - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est toujours
+          celle du 1er janvier 2026.
+      références:
+        Détermination de la valeur du SMIC à retenir: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-3--modalites-dapplicatio-b-determination-de-la-valeur-du
+        Réduction générale dégressive unique - Détermination de la valeur du salaire minimum à retenir: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous
       valeur: temps de travail . SMIC
       contexte:
+        date: période . début d'année
         établissement . commune . département:
           applicable si: lodeom . mayotte
           valeur: "'Mayotte'"

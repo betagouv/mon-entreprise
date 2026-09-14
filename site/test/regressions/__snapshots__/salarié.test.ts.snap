@@ -455,7 +455,7 @@ salarié . rémunération . net . à payer avant impôt: 2527"
 exports[`calculate simulations-salarié > frais pro - outre-mer 1`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3999
+salarié . coût total employeur: 4043
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2531
 salarié . rémunération . net . à payer avant impôt: 2586"
@@ -464,7 +464,7 @@ salarié . rémunération . net . à payer avant impôt: 2586"
 exports[`calculate simulations-salarié > frais pro - outre-mer 2`] = `
 "salarié . contrat . salaire brut: 3200
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4012
+salarié . coût total employeur: 4057
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2527
 salarié . rémunération . net . à payer avant impôt: 2583"
@@ -779,7 +779,7 @@ Notifications affichées : salarié . contrat . CDD . information"
 exports[`calculate simulations-salarié > impôt sur le revenu 4`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3561
+salarié . coût total employeur: 3605
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2282
 salarié . rémunération . net . à payer avant impôt: 2353"
@@ -799,7 +799,7 @@ Notifications affichées : salarié . contrat . salaire brut . contrôle salaire
 exports[`calculate simulations-salarié > impôt sur le revenu 6`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3657
+salarié . coût total employeur: 3679
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2601
 salarié . rémunération . net . à payer avant impôt: 2657
@@ -877,7 +877,7 @@ salarié . rémunération . net . à payer avant impôt: 1561"
 exports[`calculate simulations-salarié > lodeom 3`] = `
 "salarié . contrat . salaire brut: 3000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3561
+salarié . coût total employeur: 3605
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2223
 salarié . rémunération . net . à payer avant impôt: 2353"
@@ -886,7 +886,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 5374
+salarié . coût total employeur: 5419
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2820
 salarié . rémunération . net . à payer avant impôt: 3144"
@@ -933,7 +933,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom compétitivité renforcée 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4472
+salarié . coût total employeur: 4580
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2820
 salarié . rémunération . net . à payer avant impôt: 3144"
@@ -980,7 +980,7 @@ salarié . rémunération . net . à payer avant impôt: 2353"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 4`] = `
 "salarié . contrat . salaire brut: 4000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 4408
+salarié . coût total employeur: 4432
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 2820
 salarié . rémunération . net . à payer avant impôt: 3144"
@@ -989,7 +989,7 @@ salarié . rémunération . net . à payer avant impôt: 3144"
 exports[`calculate simulations-salarié > lodeom innovation et croissance 5`] = `
 "salarié . contrat . salaire brut: 5500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 7227
+salarié . coût total employeur: 7311
 salarié . rémunération . contrôle minimum: null
 salarié . rémunération . net . payé après impôt: 3718
 salarié . rémunération . net . à payer avant impôt: 4342"
