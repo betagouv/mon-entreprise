@@ -33,11 +33,40 @@ Cypress.Commands.add('iframe', { prevSubject: ['element'] }, ($iframe) => {
 	})
 })
 
+// Short, filesystem-safe, deterministic fixture filename for a recorded URL.
+//
+// Fixtures used to be named `${btoa(url)}.json`: the full URL, base64-encoded,
+// used directly as both the filename and (decoded back) as the intercept
+// pattern. This broke `git clone` on Windows in two ways:
+// - `btoa`'s standard alphabet includes `/`, which is a path separator on
+//   every filesystem: an encoded URL that happens to contain one doesn't
+//   produce a single long filename, it silently produces extra, garbage
+//   nested directories that then confuse git and Windows' path handling.
+// - independently, some of our recorded hostnames are 70+ characters long on
+//   their own; combined with a long query string and a typical Windows
+//   checkout path, the full encoded URL routinely exceeded Windows' MAX_PATH.
+//
+// Hashing keeps the filename short (fixed-length) and made only of safe
+// characters regardless of URL length. Since a hash can't be decoded back
+// into the URL it came from, the original URL is stored inside the fixture
+// file itself instead of in its name (see writeInterceptResponses /
+// setInterceptResponses below).
+const fixtureFilename = (url: string) => {
+	// FNV-1a 32-bit: simple, deterministic, plenty collision-resistant for
+	// the few dozen URLs recorded per spec (this has no security purpose).
+	let hash = 0x811c9dc5
+	for (let i = 0; i < url.length; i++) {
+		hash ^= url.charCodeAt(i)
+		hash = Math.imul(hash, 0x01000193)
+	}
+	return (hash >>> 0).toString(16).padStart(8, '0')
+}
+
+type RecordedFixture = { url: string; body: unknown }
+
 Cypress.Commands.add(
 	'setInterceptResponses',
 	(pendingRequests, responses, hostnames, specFixturesFolder) => {
-		const FIXTURES_FOLDER = 'cypress/fixtures'
-
 		const writeFixtures = Cypress.env('record_http') !== undefined
 		const stubFixtures = !writeFixtures
 
@@ -53,20 +82,19 @@ Cypress.Commands.add(
 				})
 			})
 		} else if (stubFixtures) {
-			const urlOfFilepath = (filename: string) => {
-				return atob(filename.slice(0, -'.json'.length))
-			}
 			cy.exec(`find ${specFixturesFolder} -type f`)
 				.then((result) => {
-					return result.stdout.split('\n')
+					return result.stdout.split('\n').filter(Boolean)
 				})
 				.then((filepaths) => {
 					filepaths.forEach((filepath) => {
-						const shortPath = filepath.slice(FIXTURES_FOLDER.length + 1)
-						const filename = filepath.slice(specFixturesFolder.length + 1)
-						cy.intercept(encodeURI(urlOfFilepath(filename)), {
-							fixture: shortPath,
-						})
+						cy.readFile(filepath).then(
+							(fixture: RecordedFixture) => {
+								cy.intercept(encodeURI(fixture.url), {
+									body: fixture.body,
+								})
+							}
+						)
 					})
 				})
 		}
@@ -87,9 +115,10 @@ Cypress.Commands.add(
 			cy.waitUntil(() => pendingRequests.size === 0)
 			Object.keys(responses).forEach((url) => {
 				if (responses[url] === undefined) return undefined
+				const fixture: RecordedFixture = { url, body: responses[url] }
 				cy.writeFile(
-					`${specFixturesFolder}/${btoa(url)}.json`,
-					JSON.stringify(responses[url], null, 2)
+					`${specFixturesFolder}/${fixtureFilename(url)}.json`,
+					JSON.stringify(fixture, null, 2)
 				)
 			})
 		}
