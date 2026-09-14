@@ -4,6 +4,8 @@ name: Revue IA
 # Le code d'un fork n'est jamais checkouté : l'agent le lit par l'API GitHub. Les consignes de
 # l'agent sont lues depuis la branche par défaut, comme ce workflow. Le checkout d'une PR interne
 # est gardé par une expression sur le payload de workflow_run, la seule forme reconnue par CodeQL.
+# Sur une PR interne, les commentaires sont postés par l'application GitHub « Claude » via OIDC ;
+# sur un fork, par GITHUB_TOKEN, seul jeton qui permet d'autoriser un auteur sans droits en écriture.
 on:
   workflow_run:
     workflows: ['Vérification PR']
@@ -18,6 +20,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  id-token: write
 
 jobs:
   context:
@@ -98,7 +101,7 @@ jobs:
 
       - uses: anthropics/claude-code-action@19dda84776b3518d98b8798e591daee763049ed3 # v1.0.220
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ needs.context.outputs.fork == 'true' && secrets.GITHUB_TOKEN || '' }}
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           allowed_non_write_users: ${{ needs.context.outputs.fork == 'true' && format('{0},{1}', github.actor, github.event.workflow_run.actor.login) || '' }}
           claude_args: |
