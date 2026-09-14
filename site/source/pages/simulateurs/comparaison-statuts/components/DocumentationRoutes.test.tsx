@@ -108,4 +108,11 @@ describe('DocumentationRoutes', () => {
 
 		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 	})
+
+	it("laisse l'usager sur le comparateur lorsque l'URL s'arrête à l'étiquette", () => {
+		afficherLaDocumentation(ModèleAssimiléSalarié, 'SASU')
+
+		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+		expect(window.location.pathname).not.toBe('/404')
+	})
 })
