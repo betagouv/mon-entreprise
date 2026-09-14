@@ -1,6 +1,6 @@
 export { AccordeonDocumentation } from './AccordeonDocumentation'
 export { Alert } from './Alert'
-export { Attention, Callout, Conseil, Info, Note } from './Callout'
+export { Attention, Conseil, Info, Note } from './Callout'
 export { Liseré } from './Liseré'
 export { DocumentationPage, NavigationContainer } from './DocumentationPage'
 export { MDXWrapper } from './MDXWrapper'
