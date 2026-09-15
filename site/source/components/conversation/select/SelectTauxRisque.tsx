@@ -23,7 +23,8 @@ const formatTauxNet = (taux: string) => {
 		return 'Taux inconnu'
 	}
 
-	return `${tauxNet} %`
+	// eslint-disable-next-line no-irregular-whitespace
+	return `${tauxNet} %`
 }
 
 export interface Result {
@@ -74,10 +75,18 @@ function SelectComponent({
 			<TextField
 				id={id}
 				type="search"
-				placeholder={t("Saisissez votre domaine d'activité")}
-				aria-label={t("Votre domaine d'activité")}
+				placeholder={t(
+					'components.select-taux-risque.placeholder',
+					'Saisissez votre domaine d’activité'
+				)}
+				aria-label={t(
+					'components.select-taux-risque.aria-label.field',
+					'Votre domaine d’activité'
+				)}
 				errorMessage={
-					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
+					searchResults && searchResults.length === 0
+						? t('components.select-taux-risque.no-result', 'Aucun résultat')
+						: ''
 				}
 				onChange={(input) => {
 					if (input.length < 2) {
@@ -98,7 +107,11 @@ function SelectComponent({
 							<Li key={JSON.stringify(option)}>
 								<BasicCard
 									onPress={() => submitOnChange(option)}
-									aria-label={`${option['Nature du risque']} (${taux}), sélectionner ce taux`}
+									aria-label={t(
+										'components.select-taux-risque.aria-label.card',
+										'{{nature}} ({{taux}}), sélectionner ce taux',
+										{ nature: option['Nature du risque'], taux }
+									)}
 								>
 									<Container>
 										<RisqueContainer>

@@ -18,7 +18,6 @@ Annuler: Annuler
 Attention: Attention
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
-Aucun résultat: Aucun résultat
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.:
   Aucun résultat ne correspond à votre recherche. Essayez avec d'autres
   mots-clés.
@@ -89,7 +88,6 @@ Mois: Mois
 Mon entreprise: Mon entreprise
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
-Nous n’avons pas trouvé de résultat pour cette entreprise.: Nous n’avons pas trouvé de résultat pour cette entreprise.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
 Nouveautés: Nouveautés
 Option ACRE non activée: Option ACRE non activée
@@ -120,14 +118,6 @@ Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
 Réinitialiser: Réinitialiser
 Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
-Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
-Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
-  Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut
-  que vous ayez opté pour que <2>les informations de votre entreprise ne soient
-  pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats
-  de recherche. Vous pouvez le vérifier sur <5>l'annuaire des
-  entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de
-  même consulter et utiliser nos simulateurs.</7>
 Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
 Simulation en cours: Simulation en cours
@@ -158,16 +148,12 @@ Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
-Votre domaine d'activité: Votre domaine d'activité
 Votre entreprise: Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
   Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes
   désolé(e)s.
-Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.:
-  Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
-  résultat.
 accessibility:
   description: Référentiel Général d’Amélioration de l’Accessibilité
   title: Accessibilité
@@ -217,6 +203,21 @@ components:
       5 jours et vous accompagnera en fonction de votre situation.
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
+  entreprise-search-results:
+    aria-label:
+      annuaire: l'annuaire des entreprises, nouvelle fenêtre
+      card: "{{nom}}, sélectionner cette entreprise"
+    no-result:
+      "1": Nous n’avons pas trouvé de résultat pour cette entreprise.
+      "2": Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
+        résultat.
+      "3": Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se
+        peut que vous ayez opté pour que <2>les informations de votre entreprise
+        ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas
+        dans les résultats de recherche. Vous pouvez le vérifier sur
+        <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas
+        d'inquiétude, vous pouvez tout de même consulter et utiliser nos
+        simulateurs.</7>
   feedback:
     form:
       email:
@@ -297,6 +298,12 @@ components:
         aria-label: Lire la documentation sur {{ règle }}
         texte: Lire la documentation
       références: Liens utiles
+  select-taux-risque:
+    aria-label:
+      card: "{{nature}} ({{taux}}), sélectionner ce taux"
+      field: Votre domaine d’activité
+    no-result: Aucun résultat
+    placeholder: Saisissez votre domaine d’activité
   simulateur:
     conseillers-entreprise:
       bouton: Échanger avec un conseiller
@@ -443,7 +450,6 @@ intégration:
   description: Outils pour les développeurs
   title: Intégration
 jours: jours
-l'annuaire des entreprises, nouvelle fenêtre: l'annuaire des entreprises, nouvelle fenêtre
 legalNotice:
   accessibility:
     content: La plateforme est <2>partiellement conforme</2> aux normes
