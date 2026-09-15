@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 
-import { DocumentationBasePathProvider } from '@/components/documentation/DocumentationBasePathProvider'
+import { DocumentationBasePathProvider } from '@/components/documentation'
 import { Simulateur } from '@/components/Simulateur/Simulateur'
 import {
 	ComparateurProvider,
