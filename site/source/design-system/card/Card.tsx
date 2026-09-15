@@ -37,6 +37,7 @@ type CardProps = GenericCardProps & {
 	role?: string
 	tabIndex?: number
 	précision?: string
+	niveauDeTitre?: 'h3' | 'h4'
 }
 
 export function Card(props: CardProps) {
@@ -51,6 +52,7 @@ export function Card(props: CardProps) {
 		tabIndex,
 		title,
 		précision,
+		niveauDeTitre = 'h3',
 		...ariaButtonProps
 	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -75,9 +77,9 @@ export function Card(props: CardProps) {
 
 				{title &&
 					(compact ? (
-						<StyledH4 as="h3">{title}</StyledH4>
+						<StyledH4 as={niveauDeTitre}>{title}</StyledH4>
 					) : (
-						<StyledH3>{title}</StyledH3>
+						<StyledH3 as={niveauDeTitre}>{title}</StyledH3>
 					))}
 
 				{précision && (
