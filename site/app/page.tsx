@@ -54,13 +54,13 @@ export default function Home() {
 					<ForceThemeProvider forceTheme="default">
 						<SimulateurCard
 							role="listitem"
-							streched
+							stretched
 							{...simulators['choix-statut']}
 						/>
 
 						<SimulateurCard
 							role="listitem"
-							streched
+							stretched
 							{...simulators['comparaison-statuts']}
 						/>
 					</ForceThemeProvider>
@@ -81,8 +81,8 @@ export default function Home() {
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
 							role="listitem"
-							niveauDeTitre="h4"
-							streched
+							headingLevel="h4"
+							stretched
 							{...simulators.salarié}
 						/>
 					</Grid>
@@ -97,42 +97,44 @@ export default function Home() {
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
 							role="listitem"
-							niveauDeTitre="h4"
+							headingLevel="h4"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators['auto-entrepreneur']}
 						/>
 
 						<SimulateurCard
 							role="listitem"
-							niveauDeTitre="h4"
+							headingLevel="h4"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators['entreprise-individuelle']}
-							précision={t(
-								'pages.landing.précision.ei',
+							subtitle={t(
+								'pages.landing.card-subtitle.ei',
 								'(hors auto-entrepreneur)'
 							)}
 						/>
 
 						<SimulateurCard
 							role="listitem"
-							niveauDeTitre="h4"
+							headingLevel="h4"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators.eurl}
 						/>
 
 						<SimulateurCard
 							role="listitem"
-							niveauDeTitre="h4"
+							headingLevel="h4"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators.sasu}
 						/>
 					</Grid>
 
-					<H2>{t('pages.landing.section.by-occupation', 'Par profession')}</H2>
+					<H2 id="par-profession">
+						{t('pages.landing.section.by-occupation', 'Par profession')}
+					</H2>
 
 					<Body>
 						{t(
@@ -145,31 +147,31 @@ export default function Home() {
 						<SimulateurCard
 							role="listitem"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators.artisan}
 						/>
 
 						<SimulateurCard
 							role="listitem"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators.commerçant}
 						/>
 
 						<SimulateurCard
 							role="listitem"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators['profession-libérale']}
 						/>
 
 						<SimulateurCard
 							role="listitem"
 							darkerBackground
-							sansDescription
+							withoutDescription
 							{...simulators['artiste-auteur']}
-							précision={t(
-								'pages.landing.précision.artiste-auteur',
+							subtitle={t(
+								'pages.landing.card-subtitle.artiste-auteur',
 								'(hors intermittents du spectacle)'
 							)}
 						/>
