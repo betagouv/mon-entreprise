@@ -12,6 +12,11 @@ const situationZone1 = {
 	...situationParDéfaut,
 	'salarié . cotisations . exonérations . zones lodeom': "'zone un'",
 }
+const situationMayotte = {
+	...situationParDéfaut,
+	'salarié . cotisations . exonérations . zones lodeom': "'mayotte'",
+	'salarié . rémunération . brut': '3000 €/mois',
+}
 const situationZone2 = {
 	...situationParDéfaut,
 	'salarié . cotisations . exonérations . zones lodeom': "'zone deux'",
@@ -22,16 +27,78 @@ describe('Lodeom', () => {
 	let smic: number
 	beforeEach(() => {
 		engine = new Engine(rules)
-		smic = engine.evaluate('SMIC').nodeValue as number
 	})
 
 	describe('Calcul de la réduction et de sa répartition', () => {
 		describe('Zone un', () => {
-			it('Barème compétitivité', () => {
+			// T = 0,3201
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
+			it.each([
+				// Cœfficient = (1,3 x 0,3201 / 0,9) x [(2,2 * 1823,07 / 3500) - 1] = 0,0675
+				['compétitivité', 236.25, 44.36, 191.89, 29.52],
+				// Cœfficient = T = 0,3201
+				['compétitivité renforcée', 1120.35, 210.35, 910, 140.0],
+				// Cœfficient = 1,7 * 0,3201 * 1823,07 / 3500 = 0,2834
+				['innovation et croissance', 991.9, 186.23, 805.67, 123.95],
+			])(
+				'Barème %s',
+				(barème, montantLodeom, montantIRC, montantUrssaf, montantChômage) => {
+					const e = engine.setSituation({
+						...situationZone1,
+						'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
+					})
+
+					expect(e).toEvaluate(
+						{
+							valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+							arrondi: '2 décimales',
+						},
+						montantLodeom
+					)
+					expect(e).toEvaluate(
+						{
+							valeur:
+								'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
+							arrondi: '2 décimales',
+						},
+						montantIRC
+					)
+					expect(e).toEvaluate(
+						{
+							valeur:
+								'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
+							arrondi: '2 décimales',
+						},
+						montantUrssaf
+					)
+					expect(e).toEvaluate(
+						{
+							valeur:
+								'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
+							arrondi: '2 décimales',
+						},
+						montantChômage
+					)
+				}
+			)
+		})
+
+		describe('Mayotte', () => {
+			// T = 0,1996
+			// Smic (1er janvier) = 1415,05
+			// Réduction = 3000 x cœefficient
+			it.each([
+				// Cœfficient = (1,3 x 0,1996 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0109
+				['compétitivité', 32.7, 6.55],
+				// Cœfficient = (2 x 0,1996 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1560
+				['compétitivité renforcée', 468, 93.79],
+				// Cœfficient = 1,7 * 0,1996 * 1415,05 / 3000 = 0,1601
+				['innovation et croissance', 480.3, 96.25],
+			])('Barème %s', (barème, montantLodeom, montantChômage) => {
 				const e = engine.setSituation({
-					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité'",
+					...situationMayotte,
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
 				})
 
 				expect(e).toEvaluate(
@@ -39,15 +106,10 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					281.05
+					montantLodeom
 				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
-						arrondi: '2 décimales',
-					},
-					52.75
+				expect(e).not.toBeApplicable(
+					'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire'
 				)
 				expect(e).toEvaluate(
 					{
@@ -55,7 +117,7 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
 						arrondi: '2 décimales',
 					},
-					228.3
+					montantLodeom
 				)
 				expect(e).toEvaluate(
 					{
@@ -63,110 +125,26 @@ describe('Lodeom', () => {
 							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
 						arrondi: '2 décimales',
 					},
-					35.11
-				)
-			})
-
-			it('Barème compétitivité renforcée', () => {
-				const e = engine.setSituation({
-					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité renforcée'",
-				})
-
-				expect(e).toEvaluate(
-					{
-						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
-						arrondi: '2 décimales',
-					},
-					1120.7
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
-						arrondi: '2 décimales',
-					},
-					210.35
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
-						arrondi: '2 décimales',
-					},
-					910.35
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
-						arrondi: '2 décimales',
-					},
-					140.0
-				)
-			})
-
-			it('Barème innovation et croissance', () => {
-				const e = engine.setSituation({
-					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'innovation et croissance'",
-				})
-
-				expect(e).toEvaluate(
-					{
-						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
-						arrondi: '2 décimales',
-					},
-					1016.4
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation retraite complémentaire',
-						arrondi: '2 décimales',
-					},
-					190.77
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation sécurité sociale',
-						arrondi: '2 décimales',
-					},
-					825.63
-				)
-				expect(e).toEvaluate(
-					{
-						valeur:
-							'salarié . cotisations . exonérations . lodeom . montant . imputation chômage',
-						arrondi: '2 décimales',
-					},
-					126.97
+					montantChômage
 				)
 			})
 		})
 
 		describe('Zone deux', () => {
-			it('Barème moins de 11 salariés', () => {
+			// T = 0,2111
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
+			it.each([
+				// Cœfficient = 1,4 * 0,2111 * 1823,07 / 3500 = 0,1539
+				['moins de 11 salariés', 538.65],
+				// Cœfficient = (1,4 x 0,2111 / 1,6) x [(3 * 1823,07 / 3500) - 1] = 0,1039
+				['sectoriel', 363.65],
+				// Cœfficient = 1,7 * 0,2111 * 1823,07 / 3500 = 0,1869
+				['renforcé', 654.15],
+			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
 					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'moins de 11 salariés'",
-				})
-
-				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					551.95
-				)
-			})
-
-			it('Barème sectoriel', () => {
-				const e = engine.setSituation({
-					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'sectoriel'",
+					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes': `"${barème}"`,
 				})
 
 				expect(e).toEvaluate(
@@ -174,23 +152,7 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					388.15
-				)
-			})
-
-			it('Barème renforcé', () => {
-				const e = engine.setSituation({
-					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'renforcé'",
-				})
-
-				expect(e).toEvaluate(
-					{
-						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
-						arrondi: '2 décimales',
-					},
-					669.9
+					montantLodeom
 				)
 			})
 		})
@@ -198,12 +160,19 @@ describe('Lodeom', () => {
 
 	describe('Salaire trop élevé', () => {
 		describe('Zone un', () => {
-			it('Barème compétitivité', () => {
+			beforeEach(() => {
+				smic = engine.evaluate('SMIC').nodeValue as number
+			})
+
+			it.each([
+				['compétitivité', 2.2],
+				['compétitivité renforcée', 2.7],
+				['innovation et croissance', 3.5],
+			])('Barème %s', (barème, seuil) => {
 				const e = engine.setSituation({
 					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité'",
-					'salarié . rémunération . brut': `${Math.ceil(2.2 * smic)} €/mois`,
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
+					'salarié . rémunération . brut': `${Math.ceil(seuil * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -211,27 +180,27 @@ describe('Lodeom', () => {
 					0
 				)
 			})
+		})
 
-			it('Barème compétitivité renforcée', () => {
-				const e = engine.setSituation({
-					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité renforcée'",
-					'salarié . rémunération . brut': `${Math.ceil(2.7 * smic)} €/mois`,
-				})
-
-				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					0
-				)
+		describe('Mayotte', () => {
+			beforeEach(() => {
+				smic = engine.evaluate({
+					valeur: 'SMIC',
+					contexte: {
+						'établissement . commune . département': "'Mayotte'",
+					},
+				}).nodeValue as number
 			})
 
-			it('Barème innovation et croissance', () => {
+			it.each([
+				['compétitivité', 2.2],
+				['compétitivité renforcée', 2.7],
+				['innovation et croissance', 3.5],
+			])('Barème %s', (barème, seuil) => {
 				const e = engine.setSituation({
-					...situationZone1,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'innovation et croissance'",
-					'salarié . rémunération . brut': `${Math.ceil(3.5 * smic)} €/mois`,
+					...situationMayotte,
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
+					'salarié . rémunération . brut': `${Math.ceil(seuil * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -242,40 +211,19 @@ describe('Lodeom', () => {
 		})
 
 		describe('Zone deux', () => {
-			it('Barème moins de 11 salariés', () => {
-				const e = engine.setSituation({
-					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'moins de 11 salariés'",
-					'salarié . rémunération . brut': `${Math.ceil(3 * smic)} €/mois`,
-				})
-
-				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					0
-				)
+			beforeEach(() => {
+				smic = engine.evaluate('SMIC').nodeValue as number
 			})
 
-			it('Barème sectoriel', () => {
+			it.each([
+				['moins de 11 salariés', 3],
+				['sectoriel', 3],
+				['renforcé', 4.5],
+			])('Barème %s', (barème, seuil) => {
 				const e = engine.setSituation({
 					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'sectoriel'",
-					'salarié . rémunération . brut': `${Math.ceil(3 * smic)} €/mois`,
-				})
-
-				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					0
-				)
-			})
-
-			it('Barème renforcé', () => {
-				const e = engine.setSituation({
-					...situationZone2,
-					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes':
-						"'renforcé'",
-					'salarié . rémunération . brut': `${Math.ceil(4.5 * smic)} €/mois`,
+					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes': `"${barème}"`,
+					'salarié . rémunération . brut': `${Math.ceil(seuil * smic)} €/mois`,
 				})
 
 				expect(e).toEvaluate(
@@ -288,16 +236,21 @@ describe('Lodeom', () => {
 
 	describe('Plus de 50 salariés', () => {
 		describe('Zone un', () => {
-			const situationModifiée = {
-				...situationZone1,
-				'entreprise . salariés . effectif': '50',
-			}
-
-			it('Barème compétitivité', () => {
+			// T = 0,3241
+			// Smic (1er janvier) = 1823,07
+			// Réduction = 3500 x cœefficient
+			it.each([
+				// Cœfficient = (1,3 x 0,3241 / 0,9) x [(2,2 * 1823,07 / 3500) - 1] = 0,0683
+				['compétitivité', 239.05],
+				// Cœfficient = T = 0,3241
+				['compétitivité renforcée', 1134.35],
+				// Cœfficient = 1,7 * 0,3241 * 1823,07 / 3500 = 0,2870
+				['innovation et croissance', 1004.5],
+			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
-					...situationModifiée,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité'",
+					...situationZone1,
+					'entreprise . salariés . effectif': '50',
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
 				})
 
 				expect(e).toEvaluate(
@@ -305,33 +258,35 @@ describe('Lodeom', () => {
 						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
 						arrondi: '2 décimales',
 					},
-					284.55
+					montantLodeom
 				)
 			})
+		})
 
-			it('Barème compétitivité renforcée', () => {
+		describe('À Mayotte', () => {
+			// T = 0,2036
+			// Smic (1er janvier) = 1415,05
+			// Réduction = 3000 x cœefficient
+			it.each([
+				// Cœfficient = (1,3 x 0,2036 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0111
+				['compétitivité', 33.3],
+				// Cœfficient = (2 x 0,2036 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1591
+				['compétitivité renforcée', 477.3],
+				// Cœfficient = 1,7 * 0,2036 * 1415,05 / 3000 = 0,1633
+				['innovation et croissance', 489.9],
+			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
-					...situationModifiée,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'compétitivité renforcée'",
+					...situationMayotte,
+					'entreprise . salariés . effectif': '50',
+					'salarié . cotisations . exonérations . lodeom . zone un . barèmes': `"${barème}"`,
 				})
 
 				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					1134.7
-				)
-			})
-
-			it('Barème innovation et croissance', () => {
-				const e = engine.setSituation({
-					...situationModifiée,
-					'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-						"'innovation et croissance'",
-				})
-
-				expect(e).toEvaluate(
-					'salarié . cotisations . exonérations . lodeom . montant',
-					1029
+					{
+						valeur: 'salarié . cotisations . exonérations . lodeom . montant',
+						arrondi: '2 décimales',
+					},
+					montantLodeom
 				)
 			})
 		})

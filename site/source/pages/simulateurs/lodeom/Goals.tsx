@@ -3,6 +3,7 @@ import { sumAll } from 'effect/Number'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { styled } from 'styled-components'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
@@ -14,8 +15,13 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
+import {
+	useZoneLodeom,
+	zoneAvecRépartitionEtRégularisation,
+} from '@/hooks/useZoneLodeom'
+import EffectifSwitch, {
+	effectifDottedName,
+} from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
 import {
@@ -33,6 +39,7 @@ import {
 } from '@/pages/simulateurs/lodeom/utils'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
+import { omit } from '@/utils'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
@@ -48,7 +55,8 @@ export default function LodeomSimulationGoals() {
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
-	const withRépartitionAndRégularisation = currentZone === 'zone un'
+	const withRépartitionAndRégularisation =
+		zoneAvecRépartitionEtRégularisation(currentZone)
 
 	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
 		initialRéductionMoisParMois
@@ -65,6 +73,11 @@ export default function LodeomSimulationGoals() {
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
+	useEffect(() => {
+		setData(initialRéductionMoisParMois)
+	}, [currentZone])
+
+	const effectif = situation[effectifDottedName]
 	const heuresSupplémentairesGlobales =
 		situation[heuresSupplémentairesDottedName]
 	const heuresComplémentairesGlobales =
@@ -79,20 +92,21 @@ export default function LodeomSimulationGoals() {
 			)
 
 		return {
+			effectif: getNumberFromQuantitéPublicodes(effectifDottedName),
 			heuresSupplémentaires: getNumberFromQuantitéPublicodes(
 				heuresSupplémentairesDottedName
 			),
 			heuresComplémentaires: getNumberFromQuantitéPublicodes(
 				heuresComplémentairesDottedName
 			),
-		} satisfies Partial<Options>
+		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
+	}, [effectif, heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
 
 	useEffect(() => {
 		setData((previousData) =>
 			getDataAfterGlobalOptionsChange(
-				globalOptions,
+				omit(globalOptions, 'effectif'),
 				previousData,
 				year,
 				engine,
@@ -164,10 +178,10 @@ export default function LodeomSimulationGoals() {
 	return (
 		<SimulationGoals
 			toggles={
-				<>
+				<GoalsContainer>
 					<ZoneSwitch />
 					<BarèmeSwitch />
-					{currentZone === 'zone un' && (
+					{withRépartitionAndRégularisation && (
 						<>
 							<RégularisationSwitch
 								régularisationMethod={régularisationMethod}
@@ -176,7 +190,7 @@ export default function LodeomSimulationGoals() {
 							<EffectifSwitch />
 						</>
 					)}
-				</>
+				</GoalsContainer>
 			}
 		>
 			<Warnings />
@@ -221,3 +235,10 @@ export default function LodeomSimulationGoals() {
 		</SimulationGoals>
 	)
 }
+
+const GoalsContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: ${({ theme }) => theme.spacings.xl};
+`
