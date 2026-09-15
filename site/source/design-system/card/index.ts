@@ -1,4 +1,5 @@
 export { Article } from './Article'
+export { BasicClickableCard } from './BasicClickableCard'
 export { Card, CardContainer } from './Card'
 export { ContenuInteractif } from './ContenuInteractif'
 export { SmallCard } from './SmallCard'
