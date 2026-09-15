@@ -78,70 +78,66 @@ export default function Home() {
 			<Container>
 				<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
 
-				<section>
-					<H3>
-						{t(
-							'pages.landing.sub-section.employees-and-employers',
-							'Travailleurs salariés et employeurs'
+				<H3>
+					{t(
+						'pages.landing.sub-section.employees-and-employers',
+						'Travailleurs salariés et employeurs'
+					)}
+				</H3>
+
+				<Grid role="list" container spacing={4}>
+					<SimulateurCard
+						role="listitem"
+						niveauDeTitre="h4"
+						streched
+						{...simulators.salarié}
+					/>
+				</Grid>
+
+				<H3>
+					{t(
+						'pages.landing.sub-section.self-employed',
+						'Travailleurs indépendants'
+					)}
+				</H3>
+
+				<Grid role="list" container spacing={4}>
+					<SimulateurCard
+						role="listitem"
+						niveauDeTitre="h4"
+						darkerBackground
+						sansDescription
+						{...simulators['auto-entrepreneur']}
+					/>
+
+					<SimulateurCard
+						role="listitem"
+						niveauDeTitre="h4"
+						darkerBackground
+						sansDescription
+						{...simulators['entreprise-individuelle']}
+						précision={t(
+							'pages.landing.précision.ei',
+							'(hors auto-entrepreneur)'
 						)}
-					</H3>
+					/>
 
-					<Grid role="list" container spacing={4}>
-						<SimulateurCard
-							role="listitem"
-							niveauDeTitre="h4"
-							streched
-							{...simulators.salarié}
-						/>
-					</Grid>
-				</section>
+					<SimulateurCard
+						role="listitem"
+						niveauDeTitre="h4"
+						darkerBackground
+						sansDescription
+						{...simulators.eurl}
+					/>
 
-				<section>
-					<H3>
-						{t(
-							'pages.landing.sub-section.self-employed',
-							'Travailleurs indépendants'
-						)}
-					</H3>
-
-					<Grid role="list" container spacing={4}>
-						<SimulateurCard
-							role="listitem"
-							niveauDeTitre="h4"
-							darkerBackground
-							sansDescription
-							{...simulators['auto-entrepreneur']}
-						/>
-
-						<SimulateurCard
-							role="listitem"
-							niveauDeTitre="h4"
-							darkerBackground
-							sansDescription
-							{...simulators['entreprise-individuelle']}
-							précision={t(
-								'pages.landing.précision.ei',
-								'(hors auto-entrepreneur)'
-							)}
-						/>
-
-						<SimulateurCard
-							role="listitem"
-							niveauDeTitre="h4"
-							darkerBackground
-							sansDescription
-							{...simulators.eurl}
-						/>
-
-						<SimulateurCard
-							role="listitem"
-							niveauDeTitre="h4"
-							darkerBackground
-							sansDescription
-							{...simulators.sasu}
-						/>
-					</Grid>
-				</section>
+					<SimulateurCard
+						role="listitem"
+						niveauDeTitre="h4"
+						darkerBackground
+						sansDescription
+						{...simulators.sasu}
+					/>
+				</Grid>
 			</Container>
 
 			<Container>
