@@ -2,7 +2,8 @@ import Engine from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
-import Documentation from '@/pages/documentation/Documentation'
+
+import Documentation from './Documentation'
 
 export const documentationRoutesPublicodes = (
 	engine: () => Engine<DottedName>,

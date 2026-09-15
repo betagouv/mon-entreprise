@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 
+import Documentation from '@/components/documentation/publicodes/Documentation'
 import { Popover } from '@/design-system'
 import { useNavigation } from '@/lib/navigation'
-import Documentation from '@/pages/documentation/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export function EngineDocumentationRoutes({
