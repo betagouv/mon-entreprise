@@ -8,13 +8,13 @@ import { ListeDeRéférences } from '../References/ListeDeReferences'
 import { useRéférencesÀAfficher } from '../References/useReferencesAAfficher'
 
 type Props = {
-	engine: () => Engine<DottedName>
+	engine: Engine<DottedName>
 	dottedName: DottedName
 }
 
 export const RéférencesDeRègle = ({ engine, dottedName }: Props) => {
 	const { t } = useTranslation()
-	const { références } = engine().getRule(dottedName).rawNode
+	const { références } = engine.getRule(dottedName).rawNode
 	const référencesÀAfficher = useRéférencesÀAfficher(références)
 
 	if (Object.keys(référencesÀAfficher).length === 0) {
