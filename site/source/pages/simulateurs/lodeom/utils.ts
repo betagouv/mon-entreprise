@@ -545,7 +545,7 @@ const getParamètresRéductionParMois = (
 				monthData.options,
 				engine
 			)
-			const coefT = getCoefT(year, monthIndex, engine)
+			const coefT = getCoefT(year, monthIndex, rémunérationBrute, engine)
 
 			paramètres.push({
 				rémunérationBrute,
@@ -562,11 +562,13 @@ const getParamètresRéductionParMois = (
 const getCoefT = (
 	year: number,
 	monthIndex: number,
+	rémunérationBrute: number,
 	engine: Engine<DottedName>
 ): number => {
 	const date = getDateForContexte(year, monthIndex)
 	const contexte = {
 		date,
+		[rémunérationBruteDottedName]: rémunérationBrute,
 	} as SituationPublicodes
 
 	return engine.evaluate({
