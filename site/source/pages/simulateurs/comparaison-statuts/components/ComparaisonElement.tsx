@@ -3,7 +3,7 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { DocumentationLink } from '@/components/documentation/DocumentationLink'
+import { DocumentationLink } from '@/components/documentation'
 import { StatutTag } from '@/components/StatutTag'
 import {
 	CatégorieComparée,

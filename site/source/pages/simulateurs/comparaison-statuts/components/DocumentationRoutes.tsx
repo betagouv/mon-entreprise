@@ -1,4 +1,4 @@
-import { useDocumentationBasePath } from '@/components/documentation/DocumentationBasePathProvider'
+import { useDocumentationBasePath } from '@/components/documentation'
 import { useComparateur } from '@/contextes/comparateur'
 import { Popover } from '@/design-system'
 import { useNavigation } from '@/lib/navigation'

@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { RéférencesDeRègle } from '@/components/documentation/publicodes/ReferencesDeRegle'
-import { RésuméDeRègle } from '@/components/documentation/publicodes/ResumeDeRegle'
+import { RéférencesDeRègle, RésuméDeRègle } from '@/components/documentation'
 import RuleLink from '@/components/RuleLink'
 import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
