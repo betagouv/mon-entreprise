@@ -1,11 +1,11 @@
 import React, { ComponentPropsWithRef, JSX, useRef } from 'react'
 import { AriaButtonProps } from 'react-aria'
-import { css, IStyledComponent, styled } from 'styled-components'
+import { IStyledComponent, styled } from 'styled-components'
 
 import { Link as BaseLink } from '@/lib/navigation'
 
 import { StyledButton } from '../buttons/Button'
-import { H3, H4 } from '../typography/heading'
+import { H3 } from '../typography/heading'
 import {
 	NewWindowLinkIcon,
 	useButtonOrLink,
@@ -31,11 +31,9 @@ type CardProps = GenericCardProps & {
 	bodyAs?: keyof JSX.IntrinsicElements | IStyledComponent<'web'>
 	children: React.ReactNode
 	className?: string
-	compact?: boolean
 	ctaLabel?: React.ReactNode
 	darkerBackground?: boolean
 	role?: string
-	tabIndex?: number
 	subtitle?: string
 	headingLevel?: 'h3' | 'h4'
 }
@@ -45,11 +43,9 @@ export function Card(props: CardProps) {
 		bodyAs,
 		children,
 		className,
-		compact = false,
 		ctaLabel,
 		icon,
 		darkerBackground = false,
-		tabIndex,
 		title,
 		subtitle,
 		headingLevel = 'h3',
@@ -67,35 +63,19 @@ export function Card(props: CardProps) {
 	return (
 		<CardContainer
 			className={className}
-			compact={compact}
 			{...(!ctaLabel ? buttonOrLinkProps : {})}
 			darkerBackground={darkerBackground}
-			tabIndex={tabIndex}
 		>
 			<ContentContainer>
 				{icon && <IconContainer>{icon}</IconContainer>}
 
-				{title &&
-					(compact ? (
-						<StyledH4 as={headingLevel}>{title}</StyledH4>
-					) : (
-						<StyledH3 as={headingLevel}>{title}</StyledH3>
-					))}
+				{title && <StyledH3 as={headingLevel}>{title}</StyledH3>}
 
 				{subtitle && (
 					<CenteredBodyWithoutMargin>{subtitle}</CenteredBodyWithoutMargin>
 				)}
 
-				{withChildren && (
-					<div
-						style={{
-							flex: '1',
-							width: '100%',
-						}}
-					>
-						<Body as={bodyAs}>{children}</Body>
-					</div>
-				)}
+				{withChildren && <Body as={bodyAs}>{children}</Body>}
 			</ContentContainer>
 
 			{ctaLabel && (
@@ -115,10 +95,8 @@ export function Card(props: CardProps) {
 }
 
 export const CardContainer = styled.div.withConfig({
-	shouldForwardProp: (prop) =>
-		!['compact', 'inert', 'darkerBackground'].includes(prop),
+	shouldForwardProp: (prop) => !['inert', 'darkerBackground'].includes(prop),
 })<{
-	compact?: boolean
 	inert?: boolean
 	darkerBackground?: boolean
 }>`
@@ -131,14 +109,7 @@ export const CardContainer = styled.div.withConfig({
 
 	width: 100%;
 	height: 100%;
-	padding: ${({ theme: { spacings }, compact = false }) =>
-		compact
-			? css`
-					${spacings.sm} ${spacings.md}
-				`
-			: css`
-					${spacings.lg}
-				`};
+	padding: ${({ theme }) => theme.spacings.lg};
 	border: solid 1px ${({ theme }) => theme.colors.extended.grey[300]};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
 	box-shadow: ${({ theme }) =>
@@ -197,10 +168,6 @@ const StyledH3 = styled(H3)`
 	> div {
 		padding: ${({ theme }) => theme.spacings.xxs} 0 0 0;
 	}
-`
-
-const StyledH4 = styled(H4)`
-	text-align: center;
 `
 
 const CenteredBodyWithoutMargin = styled(Body)`
