@@ -41,16 +41,16 @@ export default function Home() {
 						</Trans>
 					</Intro>
 
-					<Body>
+					<ParagrapheEnTête>
 						{t(
 							'pages.landing.disclaimer',
 							'Tous les simulateurs sur ce site sont maintenus à jour avec les dernières évolutions législatives.'
 						)}
-					</Body>
+					</ParagrapheEnTête>
 				</PageHeader>
 			</Container>
 
-			<ContainerWithXxlPaddingBottom
+			<ExplorerLesStatutsContainer
 				forceTheme="dark"
 				backgroundColor={(theme) => theme.colors.bases.primary[600]}
 			>
@@ -73,172 +73,168 @@ export default function Home() {
 						/>
 					</ForceThemeProvider>
 				</Grid>
-			</ContainerWithXxlPaddingBottom>
+			</ExplorerLesStatutsContainer>
 
-			<Container>
-				<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
+			<ListeDesStatutsEtRechercheEntrepriseContainer>
+				<BlocListeDesStatuts>
+					<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
 
-				<H3>
-					{t(
-						'pages.landing.sub-section.employees-and-employers',
-						'Travailleurs salariés et employeurs'
-					)}
-				</H3>
-
-				<Grid role="list" container spacing={4}>
-					<SimulateurCard
-						role="listitem"
-						niveauDeTitre="h4"
-						streched
-						{...simulators.salarié}
-					/>
-				</Grid>
-
-				<H3>
-					{t(
-						'pages.landing.sub-section.self-employed',
-						'Travailleurs indépendants'
-					)}
-				</H3>
-
-				<Grid role="list" container spacing={4}>
-					<SimulateurCard
-						role="listitem"
-						niveauDeTitre="h4"
-						darkerBackground
-						sansDescription
-						{...simulators['auto-entrepreneur']}
-					/>
-
-					<SimulateurCard
-						role="listitem"
-						niveauDeTitre="h4"
-						darkerBackground
-						sansDescription
-						{...simulators['entreprise-individuelle']}
-						précision={t(
-							'pages.landing.précision.ei',
-							'(hors auto-entrepreneur)'
+					<H3>
+						{t(
+							'pages.landing.sub-section.employees-and-employers',
+							'Travailleurs salariés et employeurs'
 						)}
-					/>
+					</H3>
 
-					<SimulateurCard
-						role="listitem"
-						niveauDeTitre="h4"
-						darkerBackground
-						sansDescription
-						{...simulators.eurl}
-					/>
+					<Grid role="list" container spacing={4}>
+						<SimulateurCard
+							role="listitem"
+							niveauDeTitre="h4"
+							streched
+							{...simulators.salarié}
+						/>
+					</Grid>
 
-					<SimulateurCard
-						role="listitem"
-						niveauDeTitre="h4"
-						darkerBackground
-						sansDescription
-						{...simulators.sasu}
-					/>
-				</Grid>
-			</Container>
-
-			<Container>
-				<H2>{t('pages.landing.section.by-occupation', 'Par profession')}</H2>
-
-				<Body>
-					{t(
-						'pages.landing.sub-section.self-employed-description',
-						"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
-					)}
-				</Body>
-
-				<Grid role="list" container spacing={4}>
-					<SimulateurCard
-						role="listitem"
-						darkerBackground
-						sansDescription
-						{...simulators.artisan}
-					/>
-
-					<SimulateurCard
-						role="listitem"
-						darkerBackground
-						sansDescription
-						{...simulators.commerçant}
-					/>
-
-					<SimulateurCard
-						role="listitem"
-						darkerBackground
-						sansDescription
-						{...simulators['profession-libérale']}
-					/>
-
-					<SimulateurCard
-						role="listitem"
-						darkerBackground
-						sansDescription
-						{...simulators['artiste-auteur']}
-						précision={t(
-							'pages.landing.précision.artiste-auteur',
-							'(hors intermittents du spectacle)'
+					<H3>
+						{t(
+							'pages.landing.sub-section.self-employed',
+							'Travailleurs indépendants'
 						)}
-					/>
-				</Grid>
-			</Container>
+					</H3>
 
-			<ContainerWithLgPaddingBottom>
-				<H2>{t('pages.landing.section.other-tools', 'Autres outils')}</H2>
+					<Grid role="list" container spacing={4}>
+						<SimulateurCard
+							role="listitem"
+							niveauDeTitre="h4"
+							darkerBackground
+							sansDescription
+							{...simulators['auto-entrepreneur']}
+						/>
 
-				<Grid role="list" container spacing={4}>
-					<SimulateurCard
-						role="listitem"
-						{...simulators['activité-partielle']}
-					/>
+						<SimulateurCard
+							role="listitem"
+							niveauDeTitre="h4"
+							darkerBackground
+							sansDescription
+							{...simulators['entreprise-individuelle']}
+							précision={t(
+								'pages.landing.précision.ei',
+								'(hors auto-entrepreneur)'
+							)}
+						/>
 
-					<SimulateurCard role="listitem" {...simulators.is} />
+						<SimulateurCard
+							role="listitem"
+							niveauDeTitre="h4"
+							darkerBackground
+							sansDescription
+							{...simulators.eurl}
+						/>
 
-					<SimulateurCard role="listitem" {...simulators.dividendes} />
+						<SimulateurCard
+							role="listitem"
+							niveauDeTitre="h4"
+							darkerBackground
+							sansDescription
+							{...simulators.sasu}
+						/>
+					</Grid>
 
-					<SimulateurCard
-						role="listitem"
-						{...simulators['coût-création-entreprise']}
-					/>
+					<H2>{t('pages.landing.section.by-occupation', 'Par profession')}</H2>
 
-					<SimulateurCard
-						role="listitem"
-						{...simulators['recherche-code-ape']}
-					/>
+					<Body>
+						{t(
+							'pages.landing.sub-section.self-employed-description',
+							"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
+						)}
+					</Body>
 
-					<SimulateurCard
-						role="listitem"
-						{...simulators['cessation-activité']}
-					/>
+					<Grid role="list" container spacing={4}>
+						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
+							{...simulators.artisan}
+						/>
 
-					<SimulateurCard role="listitem" {...simulators.lodeom} />
+						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
+							{...simulators.commerçant}
+						/>
 
-					<SimulateurCard
-						role="listitem"
-						{...simulators['location-de-logement-meublé']}
-					/>
-				</Grid>
-			</ContainerWithLgPaddingBottom>
+						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
+							{...simulators['profession-libérale']}
+						/>
 
-			<ContainerWithXxlPaddingBottom>
+						<SimulateurCard
+							role="listitem"
+							darkerBackground
+							sansDescription
+							{...simulators['artiste-auteur']}
+							précision={t(
+								'pages.landing.précision.artiste-auteur',
+								'(hors intermittents du spectacle)'
+							)}
+						/>
+					</Grid>
+
+					<H2>{t('pages.landing.section.other-tools', 'Autres outils')}</H2>
+
+					<Grid role="list" container spacing={4}>
+						<SimulateurCard
+							role="listitem"
+							{...simulators['activité-partielle']}
+						/>
+
+						<SimulateurCard role="listitem" {...simulators.is} />
+
+						<SimulateurCard role="listitem" {...simulators.dividendes} />
+
+						<SimulateurCard
+							role="listitem"
+							{...simulators['coût-création-entreprise']}
+						/>
+
+						<SimulateurCard
+							role="listitem"
+							{...simulators['recherche-code-ape']}
+						/>
+
+						<SimulateurCard
+							role="listitem"
+							{...simulators['cessation-activité']}
+						/>
+
+						<SimulateurCard role="listitem" {...simulators.lodeom} />
+
+						<SimulateurCard
+							role="listitem"
+							{...simulators['location-de-logement-meublé']}
+						/>
+					</Grid>
+				</BlocListeDesStatuts>
+
 				<SearchOrCreate />
-			</ContainerWithXxlPaddingBottom>
+			</ListeDesStatutsEtRechercheEntrepriseContainer>
 
-			<ContainerWithLgPaddingBottom
+			<AboutContainer
 				backgroundColor={(theme) =>
 					theme.darkMode
 						? theme.colors.extended.dark[700]
 						: theme.colors.bases.primary[100]
 				}
 			>
-				<StyledAboutGrid container spacing={4}>
-					<StyledDecorativeImageHiddenOnMobile item xs={2} md={2}>
+				<AboutGrid container columnSpacing={6}>
+					<DecorativeImageHiddenOnMobile item md={4} lg={3} xl={2}>
 						<img src="/images/home-about-decorative.svg" alt="" />
-					</StyledDecorativeImageHiddenOnMobile>
+					</DecorativeImageHiddenOnMobile>
 
-					<Grid item xs={10} md={10}>
+					<Grid item md={8} lg={9} xl={10}>
 						<Trans i18nKey="pages.landing.aboutUs">
 							<H2>Qui sommes-nous ?</H2>
 
@@ -289,31 +285,44 @@ export default function Home() {
 							</Body>
 						</Trans>
 					</Grid>
-				</StyledAboutGrid>
-			</ContainerWithLgPaddingBottom>
+				</AboutGrid>
+			</AboutContainer>
 		</>
 	)
 }
 
-const ContainerWithXxlPaddingBottom = styled(Container)`
+const ParagrapheEnTête = styled(Body)`
+	padding-bottom: ${({ theme }) => theme.spacings.xl};
+`
+
+const ExplorerLesStatutsContainer = styled(Container)`
 	padding-bottom: ${({ theme }) => theme.spacings.xxl};
 `
 
-const ContainerWithLgPaddingBottom = styled(Container)`
+const ListeDesStatutsEtRechercheEntrepriseContainer = styled(Container)`
+	padding-bottom: ${({ theme }) => theme.spacings.xl};
+`
+const AboutContainer = styled(Container)`
+	padding-bottom: ${({ theme }) => theme.spacings.xl};
+`
+
+const BlocListeDesStatuts = styled.div`
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.lg};
 	padding-bottom: ${({ theme }) => theme.spacings.lg};
 `
 
-const StyledAboutGrid = styled(Grid)`
-	align-items: center;
+const AboutGrid = styled(Grid)`
+	align-items: end;
 `
 
-const StyledDecorativeImageHiddenOnMobile = styled(Grid)`
+const DecorativeImageHiddenOnMobile = styled(Grid)`
 	display: none;
 
 	img {
 		width: 100%;
-		padding-right: 2rem;
-		padding-bottom: 1rem;
+		padding-bottom: ${({ theme }) => theme.spacings.sm};
 	}
 
 	@media (min-width: ${({ theme }) => theme.breakpointsWidth.md}) {
