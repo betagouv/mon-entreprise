@@ -1,12 +1,25 @@
 import React from 'react'
 import { styled } from 'styled-components'
 
-export const Callout = styled.div.withConfig({
-	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
-})<{
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+
+type Props = {
+	children: React.ReactNode
 	type?: 'tip' | 'note' | 'important' | 'caution'
 	icon?: string
-}>`
+}
+
+const Callout = ({ children, type, icon }: Props) => (
+	<ForceThemeProvider forceTheme="light">
+		<CalloutDiv type={type} icon={icon}>
+			{children}
+		</CalloutDiv>
+	</ForceThemeProvider>
+)
+
+const CalloutDiv = styled.div.withConfig({
+	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
+})<Pick<Props, 'type' | 'icon'>>`
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.lg}`};
 	margin: ${({ theme }) => `${theme.spacings.lg} 0`};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -51,6 +64,10 @@ export const Callout = styled.div.withConfig({
 				`
 		}
 	}}
+
+	& * {
+		color: inherit;
+	}
 
 	p:last-child {
 		margin-bottom: 0;
