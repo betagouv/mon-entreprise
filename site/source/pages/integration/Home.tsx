@@ -1,4 +1,4 @@
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import illustration from '@/assets/images/illustrations/code.svg'
 import PageHeader from '@/components/PageHeader'
@@ -33,23 +33,23 @@ export default function Options() {
 				picture={illustration}
 				titre={
 					<>
-						<Trans i18nKey="intégration.description">
-							Outils pour les développeurs
-						</Trans>{' '}
+						{t('intégration.description', 'Outils pour les développeurs')}{' '}
 						<Emoji emoji="👨‍💻" />
 					</>
 				}
 			>
-				<Trans i18nKey="pages.développeur.home.description">
-					<Intro $xxl>
-						Offrez à vos utilisateurs une expérience améliorée en incorporant
-						nos outils directement dans votre site.
-					</Intro>
-					<Body>
-						Découvrez notre gamme complète de solutions pour intégrer en toute
-						simplicité nos simulateurs et assistants sur votre site web.
-					</Body>
-				</Trans>
+				<Intro $xxl>
+					{t(
+						'pages.développeur.home.description.intro',
+						'Offrez à vos utilisateurs une expérience améliorée en incorporant nos outils directement dans votre site.'
+					)}
+				</Intro>
+				<Body>
+					{t(
+						'pages.développeur.home.description.body',
+						'Découvrez notre gamme complète de solutions pour intégrer en toute simplicité nos simulateurs et assistants sur votre site web.'
+					)}
+				</Body>
 			</PageHeader>
 			<Grid container spacing={3}>
 				<Grid item xs={12} md={6} lg={4}>
@@ -64,15 +64,12 @@ export default function Options() {
 							'pages.développeur.home.choice.iframe.cta',
 							'Commencer'
 						)}
-						bodyAs="div"
 						aria-label="Commencer à intégrer un simulateur"
 					>
-						<Body>
-							<Trans i18nKey="pages.développeur.home.choice.iframe.body">
-								Intégrer l'un de nos simulateurs en un clic dans votre site Web,
-								via un script clé en main.
-							</Trans>
-						</Body>
+						{t(
+							'pages.développeur.home.choice.iframe.body',
+							'Intégrer l’un de nos simulateurs en un clic dans votre site Web, via un script clé en main.'
+						)}
 					</Card>
 				</Grid>
 
@@ -85,15 +82,12 @@ export default function Options() {
 						)}
 						to={absoluteSitePaths.développeur.api}
 						ctaLabel={t('pages.développeur.home.choice.api.cta', 'Commencer')}
-						bodyAs="div"
 						aria-label="Commencer à utiliser notre API REST"
 					>
-						<Body>
-							<Trans i18nKey="pages.développeur.home.choice.api.body">
-								Utilisez nos simulateurs via notre API ouverte dans vos
-								différents services.
-							</Trans>
-						</Body>
+						{t(
+							'pages.développeur.home.choice.api.body',
+							'Utilisez nos simulateurs via notre API ouverte dans vos différents services.'
+						)}
 					</Card>
 				</Grid>
 
@@ -109,14 +103,12 @@ export default function Options() {
 							'pages.développeur.home.choice.spreadsheet.cta',
 							'Commencer'
 						)}
-						bodyAs="div"
 						aria-label="Commencer à utiliser un tableur"
 					>
-						<Body>
-							<Trans i18nKey="pages.développeur.home.choice.spreadsheet.body">
-								Utilisez nos simulateurs dans vos fichiers Excel/Sheets.
-							</Trans>
-						</Body>
+						{t(
+							'pages.développeur.home.choice.spreadsheet.body',
+							'Utilisez nos simulateurs dans vos fichiers Excel/Sheets.'
+						)}
 					</Card>
 				</Grid>
 
@@ -131,11 +123,10 @@ export default function Options() {
 						ctaLabel={t('pages.développeur.choice.library.cta', 'Commencer')}
 						aria-label="Commencer avec la librairie de calcul"
 					>
-						<Trans i18nKey="pages.développeur.choice.library.body">
-							L'intégralité du moteur de calcul socio-fiscal développé par
-							l'Urssaf, mis à disposition librement sous forme de bibliothèque
-							NPM.
-						</Trans>
+						{t(
+							'pages.développeur.choice.library.body',
+							'L’intégralité du moteur de calcul socio-fiscal développé par l’Urssaf, mis à disposition librement sous forme de bibliothèque NPM.'
+						)}
 					</Card>
 				</Grid>
 
@@ -147,10 +138,10 @@ export default function Options() {
 						href="https://publi.codes/"
 						aria-label="Découvrir Publicodes, nouvelle fenêtre"
 					>
-						<Trans i18nKey="pages.développeur.choice.publicodes.body">
-							Nos outils sont propulsés par Publicodes, un nouveau langage pour
-							encoder des algorithmes “explicables”.
-						</Trans>
+						{t(
+							'pages.développeur.choice.publicodes.body',
+							'Nos outils sont propulsés par Publicodes, un nouveau langage pour encoder des algorithmes “explicables”.'
+						)}
 					</Card>
 				</Grid>
 
@@ -167,10 +158,10 @@ export default function Options() {
 						href="https://github.com/betagouv/mon-entreprise"
 						aria-label="Commencer à contribuer sur GitHub, nouvelle fenêtre"
 					>
-						<Trans i18nKey="pages.développeur.choice.github.body">
-							Tous nos outils sont ouverts et développés publiquement sur
-							GitHub.
-						</Trans>
+						{t(
+							'pages.développeur.choice.github.body',
+							'Tous nos outils sont ouverts et développés publiquement sur GitHub.'
+						)}
 					</Card>
 				</Grid>
 			</Grid>

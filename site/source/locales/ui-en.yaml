@@ -1084,8 +1084,8 @@ pages:
         cta: Start
         title: Contribute on GitHub
       library:
-        body: The complete socio-fiscal calculation engine developed by Urssaf, freely
-          available as an NPM library.
+        body: The entire socio-fiscal calculation engine developed by Urssaf, made
+          freely available as an NPM library.
         cta: Start
         title: Calculation library
       publicodes:
@@ -1173,18 +1173,19 @@ pages:
           cta: Start
           title: Use our REST API
         iframe:
-          body: Integrate one of our simulators into your website with one click, via a
-            turnkey script.
+          body: Embed one of our simulators on your website with just one click, using a
+            ready-to-use script.
           cta: Start
           title: Integrate a simulator
         spreadsheet:
           body: Use our simulators in your Excel/Sheets files.
           cta: Start
           title: Using a spreadsheet
-      description: <0>Give your users an enhanced experience by incorporating our
-        tools directly into your site.</0><1>Discover our full range of
-        solutions for seamlessly integrating our simulators and wizards into
-        your website.</1>
+      description:
+        body: Discover our full range of solutions for easily integrating our simulators
+          and guides into your website.
+        intro: Offer your users an enhanced experience by embedding our tools directly
+          into your website.
     iframe:
       csp-1: <0>The error shown below in the console is linked to communication
         between the parent page and the iframe for automatic resizing to the
