@@ -4,8 +4,10 @@ import rules, { RègleModèleTravailleurIndépendant } from 'modele-ti'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
-import { documentationRoutesPublicodes } from '@/components/documentation/publicodes/documentationRoutesPublicodes'
+import {
+	documentationPublicodes,
+	documentationRoutesPublicodes,
+} from '@/components/documentation'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { euros } from '@/domaine/MontantPonctuel'

@@ -3,7 +3,7 @@ import * as O from 'effect/Option'
 import { useEffect } from 'react'
 import { describe, expect, it } from 'vitest'
 
-import { DocumentationBasePathProvider } from '@/components/documentation/DocumentationBasePathProvider'
+import { DocumentationBasePathProvider } from '@/components/documentation'
 import {
 	ComparateurProvider,
 	ModèleAssimiléSalarié,
