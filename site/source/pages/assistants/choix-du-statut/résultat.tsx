@@ -4,8 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
-import { ListeDeRéférences } from '@/components/documentation/References/ListeDeReferences'
-import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
+import {
+	ListeDeRéférences,
+	useRéférencesÀAfficher,
+} from '@/components/documentation'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { StatutType } from '@/components/StatutTag'
