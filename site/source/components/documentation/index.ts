@@ -6,3 +6,4 @@ export type {
 	MDXModule,
 	MDXDocumentationResult,
 } from './createMDXDocumentation'
+export { documentationMDX } from './documentationMDX'
