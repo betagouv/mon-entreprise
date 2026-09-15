@@ -185,7 +185,6 @@ aquoiserventmescotisations:
   h2: À quoi servent mes cotisations ?
 aria-label:
   aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, nouvelle fenêtre
-  beta-gouv: manifeste beta.gouv.fr, nouvelle fenêtre
   cpam: CPAM, accéder à ameli.fr, nouvelle fenêtre
   dgfip: DGFiP, accéder à impots.gouv.fr, nouvelle fenêtre
   economie-gouv: economie.gouv.fr, nouvelle fenêtre
@@ -193,7 +192,6 @@ aria-label:
   ircec: Ircec, accéder à ircec.fr, nouvelle fenêtre
   service-public: service-public.fr, nouvelle fenêtre
   urssaf: Urssaf, nouvelle fenêtre
-  équipe: petite équipe, nouvelle fenêtre
 cards:
   simulator-resource:
     cta: Accéder au simulateur
@@ -275,6 +273,20 @@ components:
     code-source: Le code source
     nouveautés: Les nouveautés
     statistiques: Les statistiques
+  qui-sommes-nous:
+    aria-label:
+      beta-gouv: manifeste beta.gouv.fr, nouvelle fenêtre
+      urssaf: Urssaf, nouvelle fenêtre
+      équipe: petite équipe, nouvelle fenêtre
+    texte: "<0>Nous sommes une <2>petite équipe</2> autonome et pluridisciplinaire
+      au sein de l’<5>Urssaf</5>. Nous avons à cœur d’être au près de vos
+      besoins afin d’améliorer en permanence ce site conformément au
+      <8>manifeste beta.gouv.fr</8>.</0><1>Nous avons développé ce site pour
+      accompagner les créateurs d’entreprise dans le développement de leur
+      activité.</1><2>Notre objectif est de lever toutes les incertitudes vis à
+      vis de l’administration afin que vous puissiez vous concentrer sur ce qui
+      compte : votre activité.</2>"
+    titre: Qui sommes-nous ?
   recherche:
     button:
       aria-label: Ouvrir la boite de dialogue pour rechercher
@@ -1273,14 +1285,6 @@ pages:
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
   landing:
-    aboutUs: "<0>Qui sommes-nous ?</0><1>Nous sommes une <2>petite équipe</2>
-      autonome et pluridisciplinaire au sein de l’<5>Urssaf</5>. Nous avons à
-      cœur d’être au près de vos besoins afin d’améliorer en permanence ce site
-      conformément au <8>manifeste beta.gouv.fr</8>.</1><2>Nous avons développé
-      ce site pour accompagner les créateurs d’entreprise dans le développement
-      de leur activité.</2><3>Notre objectif est de lever toutes les
-      incertitudes vis à vis de l’administration afin que vous puissiez vous
-      concentrer sur ce qui compte : votre activité.</3>"
     choice:
       simulators:
         title: Découvrir la liste de tous les outils

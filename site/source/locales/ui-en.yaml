@@ -174,7 +174,6 @@ aquoiserventmescotisations:
   h2: What are my contributions used for?
 aria-label:
   aquoiserventlescotisations: aquoiserventlescotisations.urssaf.fr, new window
-  beta-gouv: beta.gouv.fr, new window
   cpam: CPAM, access to ameli.fr, new window
   dgfip: DGFiP, access to impots.gouv.fr, new window
   economie-gouv: economie.gouv.fr, new window
@@ -182,7 +181,6 @@ aria-label:
   ircec: Ircec, access to ircec.fr, new window
   service-public: service-public.fr, new window
   urssaf: Urssaf, new window
-  équipe: small team, new window
 cards:
   simulator-resource:
     cta: Access the simulator
@@ -262,6 +260,19 @@ components:
     code-source: The source code
     nouveautés: What's New
     statistiques: Statistics
+  qui-sommes-nous:
+    aria-label:
+      beta-gouv: beta.gouv.fr manifesto, new window
+      urssaf: Urssaf, new window
+      équipe: small team, new window
+    texte: "<0>We are a <2>small team&lt;/2> —an independent, multidisciplinary team
+      within<5>Urssaf</5>. We are committed to staying attuned to your needs in
+      order to continuously improve this site in accordance with <8>the
+      beta.gouv.fr manifesto</8>.</0><1>We developed this site to support
+      entrepreneurs in growing their businesses.</1><2>Our goal is to eliminate
+      all uncertainties regarding administrative procedures so that you can
+      focus on what matters most: your business.</2>"
+    titre: About Us
   recherche:
     button:
       aria-label: Open the search dialog box
@@ -1216,12 +1227,6 @@ pages:
       <2>Google Sheets</2> by clicking on "Create a copy" (you can check the
       scripts with "View Apps script file").</5>
   landing:
-    aboutUs: "<0>Who are we?</0><1>We are a <2>small team</2>
-      autonomous and multidisciplinary within <5>Urssaf</5>. We are committed to listening to your
-      needs, and to constantly improving this site in line with the <8>beta.gouv.fr manifesto</8>.</1>
-      <2>We have developed this site to support entrepreneurs in the development of their business.</2>
-      <3>Our aim is to remove any uncertainties with regard to the administration, so that you can
-      concentrate on what matters: your business.</3>"
     choice:
       simulators:
         title: Discover the list of all tools
