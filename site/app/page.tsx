@@ -87,7 +87,11 @@ export default function Home() {
 					</H3>
 
 					<Grid container spacing={4}>
-						<SimulateurCard streched {...simulators.salarié} />
+						<SimulateurCard
+							niveauDeTitre="h4"
+							streched
+							{...simulators.salarié}
+						/>
 					</Grid>
 				</section>
 
@@ -102,6 +106,7 @@ export default function Home() {
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
 							role="listitem"
+							niveauDeTitre="h4"
 							darkerBackground
 							sansDescription
 							{...simulators['auto-entrepreneur']}
@@ -109,6 +114,7 @@ export default function Home() {
 
 						<SimulateurCard
 							role="listitem"
+							niveauDeTitre="h4"
 							darkerBackground
 							sansDescription
 							{...simulators['entreprise-individuelle']}
@@ -120,6 +126,7 @@ export default function Home() {
 
 						<SimulateurCard
 							role="listitem"
+							niveauDeTitre="h4"
 							darkerBackground
 							sansDescription
 							{...simulators.eurl}
@@ -127,6 +134,7 @@ export default function Home() {
 
 						<SimulateurCard
 							role="listitem"
+							niveauDeTitre="h4"
 							darkerBackground
 							sansDescription
 							{...simulators.sasu}
