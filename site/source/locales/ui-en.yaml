@@ -18,7 +18,6 @@ Annuler: Cancel
 Attention: Warning
 Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
 Aucun: No
-Aucun résultat: No results
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Aucune donnée disponible.: No data available.
 Avec <1>Acre</1>: With <1>Acre</1>
@@ -86,7 +85,6 @@ Mois: Month
 Mon entreprise: My company
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
-Nous n’avons pas trouvé de résultat pour cette entreprise.: No results were found for this company.
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
 Nouveautés: News
 Option ACRE non activée: ACRE option not activated
@@ -117,13 +115,6 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Réinitialiser: Reset
 Réinitialiser la situation enregistrée: Reset registered situation
-Saisissez votre domaine d'activité: Enter your field of activity
-Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se peut que vous ayez opté pour que <2>les informations de votre entreprise ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas dans les résultats de recherche. Vous pouvez le vérifier sur <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas d'inquiétude, vous pouvez tout de même consulter et utiliser nos simulateurs.</7>:
-  If your company does not appear using your SIREN/SIRET, it may be that you
-  have opted not to have <2>your company information made public</2>, in which
-  case it will not appear in the search results. You can check this on the
-  company directory.<7>If this is the case, don't worry, you can still consult
-  and use our simulators</7>.
 Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
@@ -153,12 +144,10 @@ Vos charges estimées: Your estimated expenses
 Vos cotisations pour l’année précédente: Your contributions for the previous year
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
-Votre domaine d'activité: Your field of activity
 Votre entreprise: Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.: We're sorry you weren't satisfied with your experience.
-Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.: You can try again with your SIREN or SIRET for a better result.
 accessibility:
   description: Référentiel Général d'Amélioration de l'Accessibilité (General
     Accessibility Improvement Reference System)
@@ -207,6 +196,18 @@ components:
       days, and will provide you with assistance tailored to your situation.
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
+  entreprise-search-results:
+    aria-label:
+      annuaire: the business directory, new window
+      card: "{{nom}}, select this company"
+    no-result:
+      "1": We couldn't find any results for this company.
+      "2": You can try again using your SIREN or SIRET number for better results.
+      "3": If your business does not appear when you search using your SIREN/SIRET
+        number, you may have chosen to <2>keep your business information
+        private</2>, in which case it will not appear in the search results. You
+        can check this in <5>the business directory</5>.<7>If this is the case,
+        don’t worry—you can still view and use our simulators.</7>
   feedback:
     form:
       email:
@@ -285,6 +286,12 @@ components:
         aria-label: Read the documentation on {{ règle }}
         texte: Read the documentation
       références: Useful links
+  select-taux-risque:
+    aria-label:
+      card: "{{taux}}, select this rate"
+      field: Your field of activity
+      no-result: No results
+    placeholder: Enter your industry
   simulateur:
     conseillers-entreprise:
       bouton: Talk to an advisor
@@ -426,7 +433,6 @@ intégration:
   description: Tools for developers
   title: Integration
 jours: days
-l'annuaire des entreprises, nouvelle fenêtre: business directory, new window
 legalNotice:
   accessibility:
     content: The platform is <2>partially compliant</2> with digital accessibility

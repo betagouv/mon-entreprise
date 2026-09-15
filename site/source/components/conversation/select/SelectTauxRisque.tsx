@@ -81,10 +81,21 @@ function SelectComponent({
 			<TextField
 				id={id}
 				type="search"
-				placeholder={t("Saisissez votre domaine d'activité")}
-				aria-label={t("Votre domaine d'activité")}
+				placeholder={t(
+					'components.select-taux-risque.placeholder',
+					'Saisissez votre domaine d’activité'
+				)}
+				aria-label={t(
+					'components.select-taux-risque.aria-label.field',
+					'Votre domaine d’activité'
+				)}
 				errorMessage={
-					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
+					searchResults && searchResults.length === 0
+						? t(
+								'components.select-taux-risque.aria-label.no-result',
+								'Aucun résultat'
+							)
+						: ''
 				}
 				onChange={(input) => {
 					if (input.length < 2) {
@@ -102,7 +113,11 @@ function SelectComponent({
 						<Li key={JSON.stringify(option)}>
 							<BasicClickableCard
 								onClick={() => submitOnChange(option)}
-								ariaLabel={`${option['Taux net']}, sélectionner ce taux`}
+								ariaLabel={t(
+									'components.select-taux-risque.aria-label.card',
+									'{{taux}}, sélectionner ce taux',
+									{ taux: option['Taux net'] }
+								)}
 							>
 								<Container>
 									<RisqueContainer>

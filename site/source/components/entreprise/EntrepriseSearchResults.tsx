@@ -29,19 +29,20 @@ export default function EntrepriseSearchResults({
 			<Message type="info" icon>
 				<Body>
 					<Strong>
-						<Trans>
-							Nous n’avons pas trouvé de résultat pour cette entreprise.
-						</Trans>
+						{t(
+							'components.entreprise-search-results.no-result.1',
+							'Nous n’avons pas trouvé de résultat pour cette entreprise.'
+						)}
 					</Strong>
 				</Body>
 				<Body>
-					<Trans>
-						Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un
-						meilleur résultat.
-					</Trans>
+					{t(
+						'components.entreprise-search-results.no-result.2',
+						'Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur résultat.'
+					)}
 				</Body>
 				<Body>
-					<Trans>
+					<Trans i18nKey="components.entreprise-search-results.no-result.3">
 						Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET,
 						il se peut que vous ayez opté pour que{' '}
 						<Strong>
@@ -51,7 +52,10 @@ export default function EntrepriseSearchResults({
 						, auquel cas elle n'apparaitra pas dans les résultats de recherche.
 						Vous pouvez le vérifier sur{' '}
 						<StyledLink
-							aria-label={t("l'annuaire des entreprises, nouvelle fenêtre")}
+							aria-label={t(
+								'components.entreprise-search-results.aria-label.annuaire',
+								"l'annuaire des entreprises, nouvelle fenêtre"
+							)}
 							href="https://annuaire-entreprises.data.gouv.fr/"
 						>
 							l'annuaire des entreprises
@@ -73,7 +77,11 @@ export default function EntrepriseSearchResults({
 						<Li key={entreprise.siren}>
 							<BasicClickableCard
 								onClick={() => onSubmit?.(entreprise)}
-								ariaLabel={`${entreprise.nom}, sélectionner cette entreprise`}
+								ariaLabel={t(
+									'components.entreprise-search-results.aria-label.card',
+									'{{nom}}, sélectionner cette entreprise',
+									{ nom: entreprise.nom }
+								)}
 							>
 								<EntrepriseSearchDetails entreprise={entreprise} />
 							</BasicClickableCard>
