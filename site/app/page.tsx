@@ -86,8 +86,9 @@ export default function Home() {
 						)}
 					</H3>
 
-					<Grid container spacing={4}>
+					<Grid role="list" container spacing={4}>
 						<SimulateurCard
+							role="listitem"
 							niveauDeTitre="h4"
 							streched
 							{...simulators.salarié}
