@@ -1,10 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import { References } from '@/components/documentation/References/References'
+import { RéférencesDeRègle, RésuméDeRègle } from '@/components/documentation'
 import RuleLink from '@/components/RuleLink'
-import { H3, InfoButton, Spacing } from '@/design-system'
+import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { useReferences } from '@/pages/assistants/choix-du-statut/résultat'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export function ExplicableRule<Names extends string = DottedName>({
@@ -16,7 +15,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 }) {
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
-	const références = useReferences(rule)
 	const { t } = useTranslation()
 
 	if (rule.rawNode.description == null) {
@@ -24,11 +22,9 @@ export function ExplicableRule<Names extends string = DottedName>({
 	}
 
 	return (
-		<InfoButton
-			subject={rule.title}
-			popoverTitle={title}
-			description={rule.rawNode.description}
-		>
+		<InfoButton subject={rule.title} popoverTitle={title}>
+			<RésuméDeRègle engine={engine} dottedName={dottedName as DottedName} />
+
 			<RuleLink
 				dottedName={dottedName as DottedName}
 				aria-label={t(
@@ -43,13 +39,10 @@ export function ExplicableRule<Names extends string = DottedName>({
 				)}
 			</RuleLink>
 
-			{références && Object.keys(références).length > 0 && (
-				<>
-					<H3>{t('components.règle.info.références', 'Liens utiles')}</H3>
-					<References references={références} />
-				</>
-			)}
-			<Spacing xxl />
+			<RéférencesDeRègle
+				engine={engine}
+				dottedName={dottedName as DottedName}
+			/>
 		</InfoButton>
 	)
 }

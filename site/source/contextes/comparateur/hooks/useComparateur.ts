@@ -145,9 +145,19 @@ export const useComparateur = () => {
 		})
 	}, [modèles, situation.chiffreDAffaires])
 
+	const documentationRoutes = useMemo(
+		() =>
+			modèles.map(({ get, DocumentationRoutes }) => ({
+				étiquette: get.statut.étiquette,
+				DocumentationRoutes,
+			})),
+		[modèles]
+	)
+
 	return {
 		situation,
 		set,
 		comparaison,
+		documentationRoutes,
 	}
 }

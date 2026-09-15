@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { References } from '@/components/documentation/References/References'
 import {
 	BodyStyle,
 	H1Style,
@@ -27,6 +26,7 @@ import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
+import { RéférencesPublicodes } from './ReferencesPublicodes'
 
 type PublicodesReferencesProps = {
 	references?: Record<string, string>
@@ -55,17 +55,21 @@ export default function DocumentationPageBody({
 		.replace(documentationPath, '')
 		.replace(/^\//, '')
 
-	const ReferencesWithEngine = ({
+	const RéférencesWithEngine = ({
 		references,
 		dottedName,
 	}: PublicodesReferencesProps) =>
-		References({ engine, references, dottedName: dottedName as DottedName })
+		RéférencesPublicodes({
+			engine,
+			références: references,
+			dottedName: dottedName as DottedName,
+		})
 
 	const { current: renderers } = useRef({
 		Head: Helmet,
 		Link,
 		Text: Markdown,
-		References: ReferencesWithEngine,
+		References: RéférencesWithEngine,
 		Accordion: DocumentationAccordion,
 	} as ComponentProps<typeof RulePage>['renderers'])
 
