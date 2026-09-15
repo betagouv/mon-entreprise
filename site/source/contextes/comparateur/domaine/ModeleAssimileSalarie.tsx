@@ -362,19 +362,6 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 			let indemnitésATMPLongTerme = eurosParJour(0) as MontantRécurrentDocumenté
 			let délaiAttente = quantité(0, 'mois') as QuantitéDocumentée
 
-			indemnitésArrêtMaladie.documentation = documentation(
-				'protection sociale . maladie . arrêt maladie'
-			)
-			indemnitésATMP.documentation = documentation(
-				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités'
-			)
-			indemnitésATMPLongTerme.documentation = documentation(
-				'protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités . à partir du 29ème jour'
-			)
-			délaiAttente.documentation = documentation(
-				"protection sociale . maladie . arrêt maladie . délai d'attente"
-			)
-
 			if (engine && rémunérationEstPositive()) {
 				const calculIndemnitésArrêtMaladie = engine.evaluate(
 					'protection sociale . maladie . arrêt maladie'
