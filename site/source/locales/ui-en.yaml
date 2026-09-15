@@ -1227,6 +1227,9 @@ pages:
       <2>Google Sheets</2> by clicking on "Create a copy" (you can check the
       scripts with "View Apps script file").</5>
   landing:
+    card-subtitle:
+      artiste-auteur: (excluding freelance entertainment industry workers)
+      ei: (excluding sole proprietors)
     choice:
       simulators:
         title: Discover the list of all tools
@@ -1235,9 +1238,6 @@ pages:
     meta:
       title: Home
     outils: <0>Some reference simulators</0>
-    précision:
-      artiste-auteur: (excluding freelance entertainment workers)
-      ei: (excluding sole proprietors)
     searchcompany: <0>Search for Your Company </0><1>To access our simulators most
       relevant to your business</1>
     section:

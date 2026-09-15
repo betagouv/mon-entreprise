@@ -7,15 +7,7 @@ import PageHeader from '@/components/PageHeader'
 import { QuiSommesNous } from '@/components/QuiSommesNous'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import {
-	Body,
-	Container,
-	Grid,
-	H2,
-	H3,
-	Intro,
-	Strong,
-} from '@/design-system'
+import { Body, Container, Grid, H2, H3, Intro, Strong } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import SearchOrCreate from '@/pages/_landing/SearchOrCreate'
 
@@ -63,13 +55,13 @@ export default function Home() {
 						<ForceThemeProvider forceTheme="default">
 							<SimulateurCard
 								role="listitem"
-								streched
+								stretched
 								{...simulators['choix-statut']}
 							/>
 
 							<SimulateurCard
 								role="listitem"
-								streched
+								stretched
 								{...simulators['comparaison-statuts']}
 							/>
 						</ForceThemeProvider>
@@ -95,8 +87,8 @@ export default function Home() {
 							<Grid role="list" container spacing={4}>
 								<SimulateurCard
 									role="listitem"
-									niveauDeTitre="h4"
-									streched
+									headingLevel="h4"
+									stretched
 									{...simulators.salarié}
 								/>
 							</Grid>
@@ -113,37 +105,37 @@ export default function Home() {
 							<Grid role="list" container spacing={4}>
 								<SimulateurCard
 									role="listitem"
-									niveauDeTitre="h4"
+									headingLevel="h4"
 									darkerBackground
-									sansDescription
+									withoutDescription
 									{...simulators['auto-entrepreneur']}
 								/>
 
 								<SimulateurCard
 									role="listitem"
-									niveauDeTitre="h4"
+									headingLevel="h4"
 									darkerBackground
-									sansDescription
+									withoutDescription
 									{...simulators['entreprise-individuelle']}
-									précision={t(
-										'pages.landing.précision.ei',
+									subtitle={t(
+										'pages.landing.card-subtitle.ei',
 										'(hors auto-entrepreneur)'
 									)}
 								/>
 
 								<SimulateurCard
 									role="listitem"
-									niveauDeTitre="h4"
+									headingLevel="h4"
 									darkerBackground
-									sansDescription
+									withoutDescription
 									{...simulators.eurl}
 								/>
 
 								<SimulateurCard
 									role="listitem"
-									niveauDeTitre="h4"
+									headingLevel="h4"
 									darkerBackground
-									sansDescription
+									withoutDescription
 									{...simulators.sasu}
 								/>
 							</Grid>
@@ -166,31 +158,31 @@ export default function Home() {
 							<SimulateurCard
 								role="listitem"
 								darkerBackground
-								sansDescription
+								withoutDescription
 								{...simulators.artisan}
 							/>
 
 							<SimulateurCard
 								role="listitem"
 								darkerBackground
-								sansDescription
+								withoutDescription
 								{...simulators.commerçant}
 							/>
 
 							<SimulateurCard
 								role="listitem"
 								darkerBackground
-								sansDescription
+								withoutDescription
 								{...simulators['profession-libérale']}
 							/>
 
 							<SimulateurCard
 								role="listitem"
 								darkerBackground
-								sansDescription
+								withoutDescription
 								{...simulators['artiste-auteur']}
-								précision={t(
-									'pages.landing.précision.artiste-auteur',
+								subtitle={t(
+									'pages.landing.card-subtitle.artiste-auteur',
 									'(hors intermittents du spectacle)'
 								)}
 							/>

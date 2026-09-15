@@ -10,10 +10,10 @@ type SimulateurCardProps = MergedSimulatorMetadata & {
 	fromGérer?: boolean
 	role?: string
 	darkerBackground?: boolean
-	streched?: boolean
-	sansDescription?: boolean
-	précision?: string
-	niveauDeTitre?: 'h3' | 'h4'
+	stretched?: boolean
+	withoutDescription?: boolean
+	subtitle?: string
+	headingLevel?: 'h3' | 'h4'
 }
 
 export function SimulateurCard({
@@ -25,12 +25,12 @@ export function SimulateurCard({
 	icône,
 	beta,
 	darkerBackground = false,
-	streched = false,
+	stretched = false,
 	fromGérer = false,
 	role,
-	sansDescription = false,
-	précision,
-	niveauDeTitre = 'h3',
+	withoutDescription = false,
+	subtitle,
+	headingLevel = 'h3',
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
@@ -48,9 +48,9 @@ export function SimulateurCard({
 			: t('pages.simulateurs.home.cta.simulateur', 'Lancer le simulateur')
 
 	return (
-		<Grid item xs={12} sm={6} md={6} lg={streched ? 6 : 4} role={role}>
+		<Grid item xs={12} sm={6} md={6} lg={stretched ? 6 : 4} role={role}>
 			<Card
-				niveauDeTitre={niveauDeTitre}
+				headingLevel={headingLevel}
 				title={
 					<>
 						{shortName}
@@ -72,9 +72,9 @@ export function SimulateurCard({
 						(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 				}}
 				onPress={handlePress}
-				précision={précision}
+				subtitle={subtitle}
 			>
-				{!sansDescription && meta?.description}
+				{!withoutDescription && meta?.description}
 			</Card>
 		</Grid>
 	)
