@@ -1,7 +1,7 @@
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
+import { RéférencesDeRègle } from '@/components/documentation/publicodes/ReferencesDeRegle'
+import { RésuméDeRègle } from '@/components/documentation/publicodes/ResumeDeRegle'
 import RuleLink from '@/components/RuleLink'
 import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -17,10 +17,6 @@ export function ExplicableRule<Names extends string = DottedName>({
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
 	const { t } = useTranslation()
-	const { Résumé, Références } = useMemo(
-		() => documentationPublicodes(() => engine, dottedName as DottedName),
-		[engine, dottedName]
-	)
 
 	if (rule.rawNode.description == null) {
 		return null
@@ -28,7 +24,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 
 	return (
 		<InfoButton subject={rule.title} popoverTitle={title}>
-			<Résumé />
+			<RésuméDeRègle engine={engine} dottedName={dottedName as DottedName} />
 
 			<RuleLink
 				dottedName={dottedName as DottedName}
@@ -44,7 +40,10 @@ export function ExplicableRule<Names extends string = DottedName>({
 				)}
 			</RuleLink>
 
-			<Références />
+			<RéférencesDeRègle
+				engine={engine}
+				dottedName={dottedName as DottedName}
+			/>
 		</InfoButton>
 	)
 }

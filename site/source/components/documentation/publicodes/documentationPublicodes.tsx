@@ -15,8 +15,8 @@ export const documentationPublicodes = (
 	chemin: [pathSegment, utils.encodeRuleName(dottedName)]
 		.filter(Boolean)
 		.join('/'),
-	Résumé: () => <RésuméDeRègle engine={engine} dottedName={dottedName} />,
+	Résumé: () => <RésuméDeRègle engine={engine()} dottedName={dottedName} />,
 	Références: () => (
-		<RéférencesDeRègle engine={engine} dottedName={dottedName} />
+		<RéférencesDeRègle engine={engine()} dottedName={dottedName} />
 	),
 })
