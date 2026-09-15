@@ -1,0 +1,8 @@
+{
+  "url": "https://entreprise.data.gouv.fr/api/sirene/v1/full_text/johan%20girod?per_page=15",
+  "body": {
+    "message": "no results found",
+    "spellcheck": null,
+    "suggestions": []
+  }
+}
