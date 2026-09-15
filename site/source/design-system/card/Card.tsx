@@ -36,8 +36,8 @@ type CardProps = GenericCardProps & {
 	darkerBackground?: boolean
 	role?: string
 	tabIndex?: number
-	précision?: string
-	niveauDeTitre?: 'h3' | 'h4'
+	subtitle?: string
+	headingLevel?: 'h3' | 'h4'
 }
 
 export function Card(props: CardProps) {
@@ -51,8 +51,8 @@ export function Card(props: CardProps) {
 		darkerBackground = false,
 		tabIndex,
 		title,
-		précision,
-		niveauDeTitre = 'h3',
+		subtitle,
+		headingLevel = 'h3',
 		...ariaButtonProps
 	} = props
 	const ref = useRef<HTMLAnchorElement | HTMLButtonElement>(null)
@@ -77,13 +77,13 @@ export function Card(props: CardProps) {
 
 				{title &&
 					(compact ? (
-						<StyledH4 as={niveauDeTitre}>{title}</StyledH4>
+						<StyledH4 as={headingLevel}>{title}</StyledH4>
 					) : (
-						<StyledH3 as={niveauDeTitre}>{title}</StyledH3>
+						<StyledH3 as={headingLevel}>{title}</StyledH3>
 					))}
 
-				{précision && (
-					<CenteredBodyWithoutMargin>{précision}</CenteredBodyWithoutMargin>
+				{subtitle && (
+					<CenteredBodyWithoutMargin>{subtitle}</CenteredBodyWithoutMargin>
 				)}
 
 				{withChildren && (
