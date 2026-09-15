@@ -21,7 +21,11 @@ import { useSitePaths } from '@/sitePaths'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
-export default function SearchOrCreate() {
+type Props = {
+	id?: string
+}
+
+export default function SearchOrCreate({ id }: Props) {
 	const { absoluteSitePaths } = useSitePaths()
 	const { generatePath } = useNavigation()
 	const companySIREN = useSelector(companySirenSelector)
@@ -36,7 +40,9 @@ export default function SearchOrCreate() {
 			<Grid item xl={8} lg={10} md={12}>
 				{companySIREN ? (
 					<>
-						<H3 as="h2">{t('Votre entreprise')}</H3>
+						<H3 as="h2" id={id}>
+							{t('Votre entreprise')}
+						</H3>
 						<EntrepriseDetailsCard />
 						<Spacing md />
 						<AnswerGroup role="list">
@@ -73,8 +79,10 @@ export default function SearchOrCreate() {
 					</>
 				) : (
 					<>
-						<Trans i18nKey="landing.searchcompany">
-							<H3 as="h2">Rechercher votre entreprise </H3>
+						<Trans i18nKey="pages.landing.searchcompany">
+							<H3 as="h2" id={id}>
+								Rechercher votre entreprise{' '}
+							</H3>
 							<Body>
 								Pour accéder à nos simulateurs les plus pertinents pour votre
 								activité

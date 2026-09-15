@@ -42,8 +42,8 @@ export default function PageHeader({
 			</Grid>
 
 			{picture && (
-				<InnerGrid item className="hide-mobile" md={4} lg={5} xl={4}>
-					<Illustration className="hide-mobile" src={picture} alt="" />
+				<InnerGrid item md={4} lg={5} xl={4}>
+					<Illustration src={picture} alt="" />
 				</InnerGrid>
 			)}
 		</Grid>

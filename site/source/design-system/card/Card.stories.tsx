@@ -7,7 +7,6 @@ const meta: Meta<typeof Card> = {
 	args: {
 		icon: '👋',
 		ctaLabel: 'Click me',
-		compact: false,
 		title: 'Hello world',
 		children: 'This is a card',
 	},

@@ -4870,11 +4870,11 @@ indépendant . profession libérale . réglementée . PAMC . assiette sociale co
 indépendant . profession libérale . réglementée . PAMC . contribution maladie additionnelle:
   titre.en: '[automatic] additional health contribution'
   titre.fr: contribution maladie additionnelle
-indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraire:
-  question.en: '[automatic] How much are your extra fees?'
+indépendant . profession libérale . réglementée . PAMC . dépassements d'honoraires:
+  question.en: '[automatic] How much are your additional fees?'
   question.fr: Quel est le montant de vos dépassements d'honoraires ?
   titre.en: '[automatic] excess fees'
-  titre.fr: dépassements d'honoraire
+  titre.fr: dépassements d'honoraires
 indépendant . profession libérale . réglementée . PAMC . participation CPAM:
   description.en: >
     [automatic] Health professionals who are members of a health insurance
