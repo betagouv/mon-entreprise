@@ -12,6 +12,7 @@ type SimulateurCardProps = MergedSimulatorMetadata & {
 	streched?: boolean
 	sansDescription?: boolean
 	précision?: string
+	niveauDeTitre?: 'h3' | 'h4'
 }
 
 export function SimulateurCard({
@@ -28,6 +29,7 @@ export function SimulateurCard({
 	role,
 	sansDescription = false,
 	précision,
+	niveauDeTitre = 'h3',
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
@@ -47,6 +49,7 @@ export function SimulateurCard({
 	return (
 		<Grid item xs={12} sm={6} md={6} lg={streched ? 6 : 4} role={role}>
 			<Card
+				niveauDeTitre={niveauDeTitre}
 				title={
 					<>
 						{shortName}
