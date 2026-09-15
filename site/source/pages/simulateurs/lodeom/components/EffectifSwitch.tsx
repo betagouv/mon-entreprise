@@ -8,11 +8,13 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
+export const effectifDottedName =
+	'entreprise . salariés . effectif' as DottedName
+
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const dottedName = 'entreprise . salariés . effectif' as DottedName
-	const engineEffectif = engine.evaluate(dottedName).nodeValue as string
+	const engineEffectif = engine.evaluate(effectifDottedName).nodeValue as string
 	const [currentEffectif, setCurrentEffectif] = useState(engineEffectif)
 	const { t } = useTranslation()
 
@@ -50,7 +52,7 @@ export default function EffectifSwitch() {
 				value={currentEffectif}
 				onChange={(value) => {
 					setCurrentEffectif(value)
-					dispatch(enregistreLaRéponseÀLaQuestion(dottedName, value))
+					dispatch(enregistreLaRéponseÀLaQuestion(effectifDottedName, value))
 				}}
 				aria={{ labelledby: 'effectif-switch-label' }}
 			/>
