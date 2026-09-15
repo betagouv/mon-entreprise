@@ -18,6 +18,7 @@ export {
 export {
 	type CatégorieComparée,
 	type ÉlémentComparé,
+	type ModèleComparable,
 	type MontantDocumenté,
 	type MontantRécurrentDocumenté,
 	type QuantitéDocumentée,

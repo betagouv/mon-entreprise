@@ -1,9 +1,11 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import rules from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
+import { documentationPublicodes } from '@/components/documentation/publicodes/documentationPublicodes'
+import { documentationRoutesPublicodes } from '@/components/documentation/publicodes/documentationRoutesPublicodes'
 import { Strong } from '@/design-system'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
@@ -50,8 +52,17 @@ const initEngine = () => {
 	return engine
 }
 
+const getEngine = () => engine ?? initEngine()
+
+const étiquette = 'AE'
+
+const documentation = (dottedName: RègleModèleSocial) =>
+	documentationPublicodes(getEngine, dottedName, étiquette)
+
 export const ModèleAutoEntrepreneur: ModèleComparable = {
 	nom: nomModèle,
+
+	DocumentationRoutes: documentationRoutesPublicodes(getEngine, nomModèle),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
@@ -222,10 +233,8 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? initEngine(),
-
 		statut: {
-			étiquette: 'AE',
+			étiquette,
 			nom: 'Auto-entrepreneur',
 			régime: (t: TFunction) =>
 				t(
@@ -289,10 +298,13 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			bénéfice.documentationRule = 'dirigeant . rémunération . totale'
-			revenuNet.documentationRule = 'dirigeant . rémunération . net'
-			revenuNetAprèsImpôt.documentationRule =
+			bénéfice.documentation = documentation(
+				'dirigeant . rémunération . totale'
+			)
+			revenuNet.documentation = documentation('dirigeant . rémunération . net')
+			revenuNetAprèsImpôt.documentation = documentation(
 				'dirigeant . rémunération . net . après impôt'
+			)
 
 			return {
 				bénéfice,
@@ -320,8 +332,10 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			cotisations.documentationRule = 'dirigeant . rémunération . cotisations'
-			impôt.documentationRule = 'dirigeant . rémunération . impôt'
+			cotisations.documentation = documentation(
+				'dirigeant . rémunération . cotisations'
+			)
+			impôt.documentation = documentation('dirigeant . rémunération . impôt')
 
 			return {
 				cotisations,
@@ -371,17 +385,21 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			trimestres.documentationRule =
+			trimestres.documentation = documentation(
 				'protection sociale . retraite . trimestres'
-			revenuCotisé.documentationRule =
+			)
+			revenuCotisé.documentation = documentation(
 				'protection sociale . retraite . base . cotisée'
-			pointsComplémentaire.documentationRule =
+			)
+			pointsComplémentaire.documentation = documentation(
 				'protection sociale . retraite . complémentaire . points acquis'
-			valeurPointComplémentaire.documentationRule =
+			)
+			valeurPointComplémentaire.documentation = documentation(
 				'protection sociale . retraite . complémentaire . valeur du point'
+			)
 
 			return {
-				documentationRule: 'protection sociale . retraite',
+				documentation: documentation('protection sociale . retraite'),
 				trimestres,
 				revenuCotisé,
 				pointsComplémentaire,
@@ -411,13 +429,15 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as QuantitéDocumentée
 			}
 
-			indemnitésArrêtMaladie.documentationRule =
+			indemnitésArrêtMaladie.documentation = documentation(
 				'protection sociale . maladie . arrêt maladie'
-			délaiAttente.documentationRule =
+			)
+			délaiAttente.documentation = documentation(
 				"protection sociale . maladie . arrêt maladie . délai d'attente"
+			)
 
 			return {
-				documentationRule: 'protection sociale . maladie',
+				documentation: documentation('protection sociale . maladie'),
 				indemnitésArrêtMaladie,
 				délaiAttente,
 			}
@@ -456,15 +476,18 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantDocumenté
 			}
 
-			indemnitésMaternitéPaternitéAdoption.documentationRule =
+			indemnitésMaternitéPaternitéAdoption.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption'
-			allocationNaissance.documentationRule =
+			)
+			allocationNaissance.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-			allocationAdoption.documentationRule =
+			)
+			allocationAdoption.documentation = documentation(
 				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
+			)
 
 			return {
-				documentationRule: 'protection sociale . maladie',
+				documentation: documentation('protection sociale . maladie'),
 				indemnitésMaternitéPaternitéAdoption,
 				allocationNaissance,
 				allocationAdoption,
@@ -495,13 +518,17 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantRécurrentDocumenté
 			}
 
-			pensionInvaliditéPartielle.documentationRule =
+			pensionInvaliditéPartielle.documentation = documentation(
 				'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
-			pensionInvaliditéTotale.documentationRule =
+			)
+			pensionInvaliditéTotale.documentation = documentation(
 				'protection sociale . invalidité et décès . pension invalidité . invalidité totale'
+			)
 
 			return {
-				documentationRule: 'protection sociale . invalidité et décès',
+				documentation: documentation(
+					'protection sociale . invalidité et décès'
+				),
 				pensionInvaliditéPartielle,
 				pensionInvaliditéTotale,
 			}
@@ -538,15 +565,20 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 				) as MontantDocumenté
 			}
 
-			pensionDeRéversion.documentationRule =
+			pensionDeRéversion.documentation = documentation(
 				'protection sociale . invalidité et décès . pension de reversion'
-			capitalDécès.documentationRule =
+			)
+			capitalDécès.documentation = documentation(
 				'protection sociale . invalidité et décès . capital décès'
-			capitalOrphelin.documentationRule =
+			)
+			capitalOrphelin.documentation = documentation(
 				'protection sociale . invalidité et décès . capital décès . orphelin'
+			)
 
 			return {
-				documentationRule: 'protection sociale . invalidité et décès',
+				documentation: documentation(
+					'protection sociale . invalidité et décès'
+				),
 				pensionDeRéversion,
 				capitalDécès,
 				capitalOrphelin,
