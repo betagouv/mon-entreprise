@@ -102,6 +102,8 @@ jobs:
       - uses: anthropics/claude-code-action@19dda84776b3518d98b8798e591daee763049ed3 # v1.0.220
         with:
           github_token: ${{ needs.context.outputs.fork == 'true' && secrets.GITHUB_TOKEN || '' }}
+          additional_permissions: |
+            contents: read
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
           allowed_non_write_users: ${{ needs.context.outputs.fork == 'true' && format('{0},{1}', github.actor, github.event.workflow_run.actor.login) || '' }}
           claude_args: |
