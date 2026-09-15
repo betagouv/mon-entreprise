@@ -1281,6 +1281,9 @@ pages:
       avec <2>Google Sheets</2>, cliquez sur "Créer une copie" (vous pouvez
       vérifier les scripts avec "Afficher le fichier de script Apps")</5>
   landing:
+    card-subtitle:
+      artiste-auteur: (hors intermittents du spectacle)
+      ei: (hors auto-entrepreneur)
     choice:
       simulators:
         title: Découvrir la liste de tous les outils
@@ -1290,9 +1293,6 @@ pages:
     meta:
       title: Accueil
     outils: <0>Quelques simulateurs de référence</0>
-    précision:
-      artiste-auteur: (hors intermittents du spectacle)
-      ei: (hors auto-entrepreneur)
     searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
       simulateurs les plus pertinents pour votre activité</1>
     section:
