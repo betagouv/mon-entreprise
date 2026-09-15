@@ -63,6 +63,7 @@
 		"@internationalized/number": "^3.2.1",
 		"@juggle/resize-observer": "^3.4.0",
 		"@leeoniya/ufuzzy": "^1.0.10",
+		"@mdx-js/react": "^3.1.1",
 		"@publicodes/react-ui": "^1.10.0",
 		"@react-aria/accordion": "^3.0.0-alpha.37",
 		"@reduxjs/toolkit": "^2.6.1",
