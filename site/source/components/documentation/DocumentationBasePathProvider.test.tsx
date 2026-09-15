@@ -7,13 +7,9 @@ import { TestProvider } from '@/test/TestProvider'
 import { DocumentationBasePathProvider } from './DocumentationBasePathProvider'
 import { DocumentationLink } from './DocumentationLink'
 
-const RienÀAfficher = () => null
-
 const documentation: DocumentationDeValeur = {
 	titre: () => 'Rémunération nette',
 	chemin: 'EI/indépendant/rémunération/nette',
-	Résumé: RienÀAfficher,
-	Références: RienÀAfficher,
 }
 
 describe('DocumentationBasePathProvider', () => {
