@@ -7,12 +7,20 @@ export const ListeDeRéférences = ({
 	références,
 }: {
 	références: Références
-}) => (
-	<Ul>
-		{Object.entries(références).map(([titre, href]) => (
-			<Li key={href}>
-				<Référence titre={titre} href={href} />
-			</Li>
-		))}
-	</Ul>
-)
+}) => {
+	const entrées = Object.entries(références)
+
+	if (entrées.length === 0) {
+		return null
+	}
+
+	return (
+		<Ul>
+			{entrées.map(([titre, href]) => (
+				<Li key={href}>
+					<Référence titre={titre} href={href} />
+				</Li>
+			))}
+		</Ul>
+	)
+}
