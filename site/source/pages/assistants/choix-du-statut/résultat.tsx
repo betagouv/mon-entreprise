@@ -138,14 +138,18 @@ export default function Résultat() {
 						: theme.colors.bases.primary[100]
 				}
 			>
-				<H3>
-					{t(
-						'pages.assistants.choix-statut.résultat.références',
-						'{{statutLabel}} : pour aller plus loin',
-						{ statutLabel }
-					)}
-				</H3>
-				<ListeDeRéférences références={références} />
+				{Object.keys(références).length > 0 && (
+					<>
+						<H3>
+							{t(
+								'pages.assistants.choix-statut.résultat.références',
+								'{{statutLabel}} : pour aller plus loin',
+								{ statutLabel }
+							)}
+						</H3>
+						<ListeDeRéférences références={références} />
+					</>
+				)}
 				<H3>
 					{t(
 						'pages.assistants.choix-statut.résultat.simulateur',
