@@ -3,22 +3,18 @@ import { last, map, take } from 'effect/Array'
 import { sumAll } from 'effect/Number'
 import * as O from 'effect/Option'
 import Engine from 'publicodes'
-import { AnyAction, Dispatch } from 'redux'
 
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
-import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
-import { ajusteLaSituation } from '@/store/actions/actions'
 
 export const lodeomDottedName =
 	'salarié . cotisations . exonérations . lodeom . montant'
 
 export const rémunérationBruteDottedName = 'salarié . rémunération . brut'
 
-const heuresSupplémentairesDottedName =
+export const heuresSupplémentairesDottedName =
 	'salarié . temps de travail . heures supplémentaires'
-const heuresComplémentairesDottedName =
+export const heuresComplémentairesDottedName =
 	'salarié . temps de travail . heures complémentaires'
 
 export type MonthState = {
@@ -63,11 +59,37 @@ export type Répartition = {
 	chômage: number
 }
 
-const defaultRépartition = {
+const emptyRépartition = {
 	IRC: 0,
 	Urssaf: 0,
 	chômage: 0,
 }
+
+export const initialRéductionMoisParMois = Array(12).fill({
+	rémunérationBrute: 0,
+	options: {
+		heuresSupplémentaires: 0,
+		heuresComplémentaires: 0,
+		rémunérationETP: 0,
+		rémunérationPrimes: 0,
+	},
+	réduction: {
+		value: 0,
+		répartition: {
+			IRC: 0,
+			Urssaf: 0,
+			chômage: 0,
+		},
+	},
+	régularisation: {
+		value: 0,
+		répartition: {
+			IRC: 0,
+			Urssaf: 0,
+			chômage: 0,
+		},
+	},
+}) as MonthState[]
 
 type ParamètresRéduction =
 	| ParamètresRéductionAvecRémunération
@@ -87,23 +109,20 @@ const isParamètresRéductionAvecRémunération = (
 	params: ParamètresRéduction
 ): params is ParamètresRéductionAvecRémunération => params.rémunérationBrute > 0
 
-export const getDataAfterSituationChange = (
-	situation: SituationType,
-	previousSituation: SituationType,
+export const getDataAfterGlobalOptionsChange = (
+	options: Partial<Options>,
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
 	régularisationMethod: RégularisationMethod,
 	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
-	const newOptions = getOptionsFromSituations(previousSituation, situation)
-
 	const updatedData = previousData.map((data) => {
 		return {
 			...data,
 			options: {
 				...data.options,
-				...newOptions,
+				...options,
 			},
 		}
 	}, [])
@@ -123,7 +142,6 @@ export const getDataAfterRémunérationChange = (
 	previousData: MonthState[],
 	year: number,
 	engine: Engine<DottedName>,
-	dispatch: Dispatch<AnyAction>,
 	régularisationMethod: RégularisationMethod,
 	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
@@ -132,8 +150,6 @@ export const getDataAfterRémunérationChange = (
 		...updatedData[monthIndex],
 		rémunérationBrute,
 	}
-
-	updateRémunérationBruteAnnuelle(updatedData, dispatch)
 
 	return reevaluateRéductionMoisParMois(
 		updatedData,
@@ -168,88 +184,6 @@ export const getDataAfterOptionsChange = (
 	)
 }
 
-export const getInitialRéductionMoisParMois = (
-	year: number,
-	engine: Engine<DottedName>,
-	withRépartition: boolean = true
-): MonthState[] => {
-	const rémunérationBrute =
-		(engine.evaluate({
-			valeur: rémunérationBruteDottedName,
-			arrondi: 'oui',
-			unité: '€/mois',
-		})?.nodeValue as number) ?? 0
-	const heuresSupplémentaires =
-		(engine.evaluate({
-			valeur: heuresSupplémentairesDottedName,
-			unité: 'heures/mois',
-		})?.nodeValue as number) ?? 0
-	const heuresComplémentaires =
-		(engine.evaluate({
-			valeur: heuresComplémentairesDottedName,
-			unité: 'heures/mois',
-		})?.nodeValue as number) ?? 0
-	const rémunérationETP = 0
-	const rémunérationPrimes = 0
-
-	const pasDeRémunération = !rémunérationBrute
-	if (pasDeRémunération) {
-		return Array(12).fill({
-			rémunérationBrute,
-			options: {
-				heuresSupplémentaires,
-				heuresComplémentaires,
-				rémunérationETP,
-				rémunérationPrimes,
-			},
-			réduction: {
-				value: 0,
-				répartition: emptyRépartition,
-			},
-			régularisation: {
-				value: 0,
-				répartition: emptyRépartition,
-			},
-		}) as MonthState[]
-	}
-
-	return Array.from({ length: 12 }, (_item, monthIndex) => {
-		const réduction = getMonthlyRéduction(
-			year,
-			monthIndex,
-			rémunérationBrute,
-			{
-				heuresSupplémentaires,
-				heuresComplémentaires,
-				rémunérationETP,
-				rémunérationPrimes,
-			},
-			engine
-		)
-		const répartition = withRépartition
-			? getRépartition(rémunérationBrute, réduction, engine)
-			: defaultRépartition
-
-		return {
-			rémunérationBrute,
-			options: {
-				heuresSupplémentaires,
-				heuresComplémentaires,
-				rémunérationETP,
-				rémunérationPrimes,
-			},
-			réduction: {
-				value: réduction,
-				répartition,
-			},
-			régularisation: {
-				value: 0,
-				répartition: emptyRépartition,
-			},
-		}
-	})
-}
-
 const reevaluateRéductionMoisParMois = (
 	data: MonthState[],
 	year: number,
@@ -261,8 +195,8 @@ const reevaluateRéductionMoisParMois = (
 		data.map((monthData) => monthData.rémunérationBrute)
 	)
 
-	const pasDeRémunération = !totalRémunérationBrute
-	if (pasDeRémunération) {
+	const aucuneRémunération = !totalRémunérationBrute
+	if (aucuneRémunération) {
 		return data.map((monthData) => {
 			return {
 				...monthData,
@@ -324,7 +258,7 @@ const reevaluateRéductionMoisParMois = (
 					réduction.value = réductionTotale - réductionCumulée
 					réduction.répartition = withRépartition
 						? getRépartition(rémunérationBrute, réduction.value, engine)
-						: defaultRépartition
+						: emptyRépartition
 				} else if (réductionTotale < réductionCumulée) {
 					// Si la réduction totale est *inférieure* à la somme des réductions
 					// accordées, c'est qu'il y a un trop-perçu de réductions et il y a
@@ -332,7 +266,7 @@ const reevaluateRéductionMoisParMois = (
 					régularisation.value = réductionTotale - réductionCumulée
 					régularisation.répartition = withRépartition
 						? getRépartition(rémunérationBrute, régularisation.value, engine)
-						: defaultRépartition
+						: emptyRépartition
 				}
 			} else if (régularisationMethod === 'annuelle' && décembre) {
 				// La régularisation annuelle suit la même logique que la progressive mais
@@ -397,13 +331,7 @@ const reevaluateRéductionMoisParMois = (
 	return reevaluatedData
 }
 
-const emptyRépartition = {
-	IRC: 0,
-	Urssaf: 0,
-	chômage: 0,
-}
-
-const getOptionsFromSituations = (
+export const getOptionsFromSituations = (
 	previousSituation: SituationType,
 	newSituation: SituationType
 ): Partial<Options> => {
@@ -426,22 +354,6 @@ const getOptionsFromSituations = (
 	}
 
 	return options
-}
-
-const updateRémunérationBruteAnnuelle = (
-	data: MonthState[],
-	dispatch: Dispatch<AnyAction>
-): void => {
-	const rémunérationBruteAnnuelle = data.reduce(
-		(total: number, monthState: MonthState) =>
-			total + monthState.rémunérationBrute,
-		0
-	)
-	dispatch(
-		ajusteLaSituation({
-			[rémunérationBruteDottedName]: eurosParAn(rémunérationBruteAnnuelle),
-		} as Record<DottedName, ValeurPublicodes>)
-	)
 }
 
 const getMonthlyRéduction = (
@@ -544,8 +456,8 @@ const getTotalRéduction = (
 
 const getRéduction =
 	(engine: Engine<DottedName>) =>
-	(paramètresRéduction: ParamètresRéductionAvecRémunération) => {
-		return engine.evaluate({
+	(paramètresRéduction: ParamètresRéductionAvecRémunération) =>
+		engine.evaluate({
 			valeur: lodeomDottedName,
 			arrondi: 'non',
 			contexte: {
@@ -555,7 +467,6 @@ const getRéduction =
 					paramètresRéduction.coefT.value,
 			},
 		}).nodeValue as number
-	}
 
 const getRépartition = (
 	rémunération: number,
