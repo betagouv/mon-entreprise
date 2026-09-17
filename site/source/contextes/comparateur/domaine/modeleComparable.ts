@@ -12,7 +12,7 @@ import { Quantité } from '@/domaine/Quantite'
 import { IRouIS } from './imposition'
 import { Question, Réponse } from './situation'
 
-type ValeurDocumentée = {
+export type ValeurDocumentée = {
 	documentation: DocumentationDeValeur
 	// TODO: déplacer les warnings ici
 	// warning?: ReactNode

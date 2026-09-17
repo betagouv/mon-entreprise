@@ -13,7 +13,6 @@ export {
 export { DocumentationLink } from './DocumentationLink'
 export { ListeDeRéférences } from './References/ListeDeReferences'
 export { useRéférencesÀAfficher } from './References/useReferencesAAfficher'
-export { documentationPublicodes } from './publicodes/documentationPublicodes'
 export { documentationRoutesPublicodes } from './publicodes/documentationRoutesPublicodes'
 export { RéférencesDeRègle } from './publicodes/ReferencesDeRegle'
 export { RéférencesPublicodes } from './publicodes/ReferencesPublicodes'
