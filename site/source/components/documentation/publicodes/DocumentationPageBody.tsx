@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { RéférencesPublicodes } from '@/components/documentation'
 import {
 	BodyStyle,
 	H1Style,
@@ -27,6 +26,7 @@ import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
+import { RéférencesPublicodes } from './ReferencesPublicodes'
 
 type PublicodesReferencesProps = {
 	references?: Record<string, string>
