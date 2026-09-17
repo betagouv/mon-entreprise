@@ -150,7 +150,6 @@ Voir les simulateurs personnalisés: See customized simulators
 Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise: See customized simulators, access my company management page
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
-Vos cotisations pour l’année précédente: Your contributions for the previous year
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
 Votre domaine d'activité: Your field of activity
@@ -1544,6 +1543,9 @@ pages:
       shortname: Lawyer
       title: Income simulator for self-employed lawyers
     cessation-activité:
+      bouton-année-précédente:
+        libellé: Your contributions for the previous year
+        titre: Do you need to calculate last year's contributions?
       date-modifiée: The simulation year has been changed to {{ année }}.
       externalLinks:
         "1":
@@ -1736,7 +1738,7 @@ pages:
             th:
               CA: Revenue
               charges: Expenses
-              cotisations: Dues
+              cotisations: Contributions
               impôts: Taxes
               revenu-après-impôt: After-Tax Income
               revenu-avant-impôt: Pre-tax income
