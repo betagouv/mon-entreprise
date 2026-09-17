@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { référencesÀAfficher } from './references'
+import { référencesÀAfficher } from './useReferencesAAfficher'
 
 describe('référencesÀAfficher', () => {
 	const références = {
