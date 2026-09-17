@@ -638,7 +638,12 @@ salarié . cotisations . exonérations . lodeom . montant:
       non applicable si: lodeom . zone deux
       produit:
         - lodeom . montant
-        - chômage . taux / T
+        - valeur: chômage . taux
+          contexte:
+            établissement . commune . département:
+              applicable si: lodeom . mayotte
+              valeur: "'Mayotte'"
+        - 1 / T
 
 salarié . cotisations . exonérations . lodeom . code réduction:
   variations:
