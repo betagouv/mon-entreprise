@@ -25,7 +25,7 @@ export type QuantitéDocumentée = Quantité & ValeurDocumentée
 export interface ModèleComparable {
 	nom: NomModèle
 
-	DocumentationRoutes: ComponentType<{ basePath: string }>
+	DocumentationDeRègle: ComponentType<{ basePath: string }>
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => void
