@@ -4,7 +4,7 @@ import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { documentationRoutesPublicodes } from '@/components/documentation'
+import { documentationDeRèglePublicodes } from '@/components/documentation'
 import { Strong } from '@/design-system'
 import { documentationPublicodes } from '@/domaine/documentation/documentationPublicodes'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
@@ -82,7 +82,7 @@ const valeurDocumentée = <V,>(
 export const ModèleAutoEntrepreneur: ModèleComparable = {
 	nom: nomModèle,
 
-	DocumentationRoutes: documentationRoutesPublicodes(getEngine, nomModèle),
+	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {

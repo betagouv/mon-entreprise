@@ -3,13 +3,13 @@ import { useComparateur } from '@/contextes/comparateur'
 import { Popover } from '@/design-system'
 import { useNavigation } from '@/lib/navigation'
 
-export const DocumentationRoutes = () => {
+export const ModaleDeDocumentation = () => {
 	const basePath = useDocumentationBasePath()
-	const { documentationRoutes } = useComparateur()
+	const { documentationsDeRègle } = useComparateur()
 	const { currentPath, matchPath, navigate } = useNavigation()
 
 	const cheminDemandé = decodeURI(currentPath)
-	const documentationDemandée = documentationRoutes.find(
+	const documentationDemandée = documentationsDeRègle.find(
 		({ étiquette }) =>
 			matchPath(`${basePath}/${étiquette}/*`, cheminDemandé)?.params['*']
 	)
@@ -26,7 +26,7 @@ export const DocumentationRoutes = () => {
 				navigate(basePath, { replace: true })
 			}}
 		>
-			<documentationDemandée.DocumentationRoutes
+			<documentationDemandée.DocumentationDeRègle
 				basePath={`${basePath}/${documentationDemandée.étiquette}`}
 			/>
 		</Popover>

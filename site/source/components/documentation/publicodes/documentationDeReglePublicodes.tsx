@@ -5,11 +5,11 @@ import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 
 import { VisualiseurPublicodes } from './VisualiseurPublicodes'
 
-export const documentationRoutesPublicodes = (
+export const documentationDeRèglePublicodes = (
 	engine: () => Engine<DottedName>,
 	nomModèle: NomModèle
 ) => {
-	const DocumentationRoutes = ({ basePath }: { basePath: string }) => (
+	const DocumentationDeRègle = ({ basePath }: { basePath: string }) => (
 		<VisualiseurPublicodes
 			engine={engine()}
 			documentationPath={basePath}
@@ -17,5 +17,5 @@ export const documentationRoutesPublicodes = (
 		/>
 	)
 
-	return DocumentationRoutes
+	return DocumentationDeRègle
 }
