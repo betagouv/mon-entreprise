@@ -1,19 +1,28 @@
 'use client'
 
+import { useLayoutEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import PageHeader from '@/components/PageHeader'
+import { ACCUEIL } from '@/components/PianoAnalytics'
 import { QuiSommesNous } from '@/components/QuiSommesNous'
 import { SimulateurCard } from '@/components/SimulateurCard'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Container, Grid, H2, H3, Intro, Strong } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { useTracking } from '@/hooks/useTracking'
 import SearchOrCreate from '@/pages/_landing/SearchOrCreate'
 
 export default function Home() {
+	const { trackPage } = useTracking()
 	const simulators = useSimulatorsMetadata()
 	const { t } = useTranslation()
+
+	useLayoutEffect(() => {
+		trackPage({ name: ACCUEIL, chapter1: 'informations' })
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<>
