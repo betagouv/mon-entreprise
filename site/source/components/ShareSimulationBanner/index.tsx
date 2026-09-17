@@ -15,21 +15,14 @@ import { type ConseillersEntreprisesVariant } from '../ConseillersEntreprises/Bo
 import { ConseillersEntreprisesButton } from '../ConseillersEntreprisesButton'
 import { ShareSimulationPopup } from './ShareSimulationPopup'
 
-export interface CustomSimulationButton {
-	href: string
-	title: string
-}
-
 export default function ShareOrSaveSimulationBanner({
 	share,
 	print,
 	conseillersEntreprisesVariant,
-	customSimulationbutton,
 }: {
 	share?: boolean
 	print?: boolean
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
-	customSimulationbutton?: CustomSimulationButton
 }) {
 	const { t } = useTranslation()
 	const { trackClick } = useTracking()
@@ -71,14 +64,6 @@ export default function ShareOrSaveSimulationBanner({
 					justifyContent: 'center',
 				}}
 			>
-				{customSimulationbutton && (
-					<Grid item xs={12} sm="auto" role="listitem">
-						<Button light size="XS" href={customSimulationbutton.href}>
-							{customSimulationbutton.title}
-						</Button>
-					</Grid>
-				)}
-
 				{share && (
 					<Grid as="li" item xs={12} sm="auto">
 						<PopoverWithTrigger
