@@ -5,6 +5,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 
+import { PianoTrackerProvider } from '@/components/PianoAnalytics/PianoTrackerProvider'
 import { DarkModeProvider } from '@/components/utils/DarkModeContext'
 import {
 	DesignSystemThemeProvider,
@@ -34,15 +35,17 @@ export function ClientProviders({
 				<HelmetProvider>
 					<NextJsNavigationProvider>
 						<I18nextProvider i18n={i18n}>
-							<ReduxProvider store={store}>
-								<EmbeddedContextProvider>
-									<DarkModeProvider>
-										<DesignSystemThemeProvider>
-											{children}
-										</DesignSystemThemeProvider>
-									</DarkModeProvider>
-								</EmbeddedContextProvider>
-							</ReduxProvider>
+							<PianoTrackerProvider>
+								<ReduxProvider store={store}>
+									<EmbeddedContextProvider>
+										<DarkModeProvider>
+											<DesignSystemThemeProvider>
+												{children}
+											</DesignSystemThemeProvider>
+										</DarkModeProvider>
+									</EmbeddedContextProvider>
+								</ReduxProvider>
+							</PianoTrackerProvider>
 						</I18nextProvider>
 					</NextJsNavigationProvider>
 				</HelmetProvider>
