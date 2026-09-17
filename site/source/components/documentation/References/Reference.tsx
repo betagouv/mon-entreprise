@@ -20,13 +20,7 @@ import {
 	URSSAF,
 } from '@/utils/logos'
 
-export default function Reference({
-	href,
-	title,
-}: {
-	href: string
-	title: string
-}) {
+export function Référence({ href, titre }: { href: string; titre: string }) {
 	const domain = getDomain(href)
 
 	return (
@@ -43,9 +37,9 @@ export default function Reference({
 					style={{
 						display: 'flex',
 					}}
-					aria-label={title + ', nouvelle fenêtre'}
+					aria-label={titre + ', nouvelle fenêtre'}
 				>
-					{capitalise0(title)}
+					{capitalise0(titre)}
 				</Link>
 			</Grid>
 			{domain in referencesImages && (
