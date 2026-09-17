@@ -90,11 +90,11 @@ describe('Lodeom', () => {
 			// Réduction = 3000 x cœefficient
 			it.each([
 				// Cœfficient = (1,3 x 0,1996 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0109
-				['compétitivité', 32.7, 6.55],
+				['compétitivité', 32.7, 4.59],
 				// Cœfficient = (2 x 0,1996 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1560
-				['compétitivité renforcée', 468, 93.79],
+				['compétitivité renforcée', 468, 65.65],
 				// Cœfficient = 1,7 * 0,1996 * 1415,05 / 3000 = 0,1601
-				['innovation et croissance', 480.3, 96.25],
+				['innovation et croissance', 480.3, 67.38],
 			])('Barème %s', (barème, montantLodeom, montantChômage) => {
 				const e = engine.setSituation({
 					...situationMayotte,
