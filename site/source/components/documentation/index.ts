@@ -17,7 +17,5 @@ export { documentationRoutesPublicodes } from './publicodes/documentationRoutesP
 export { RéférencesDeRègle } from './publicodes/ReferencesDeRegle'
 export { RéférencesPublicodes } from './publicodes/ReferencesPublicodes'
 export { RésuméDeRègle } from './publicodes/ResumeDeRegle'
-export {
-	useRègleDocumentée,
-	VisualiseurPublicodes,
-} from './publicodes/VisualiseurPublicodes'
+export { useRègleDocumentée } from './publicodes/useRegleDocumentee'
+export { VisualiseurPublicodes } from './publicodes/VisualiseurPublicodes'
