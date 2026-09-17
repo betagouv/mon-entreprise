@@ -44,6 +44,7 @@ export default function LodeomSimulation() {
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
 					afterQuestionsSlot={<YearSelectionBanner />}
+					avecSimulationPrécédente={false}
 				>
 					<SimulateurWarning
 						metadata={metadata}
