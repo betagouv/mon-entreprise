@@ -66,6 +66,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	afterQuestionsSlot?: React.ReactNode
 	customSimulationButton?: React.ReactNode
 	avecSimulationPrécédente?: boolean
+	avecBoutonPartage?: boolean
 	hideDetails?: boolean
 	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ReactNode
@@ -88,6 +89,7 @@ export default function Simulation<S extends Situation = Situation>({
 	afterQuestionsSlot,
 	customSimulationButton,
 	avecSimulationPrécédente = true,
+	avecBoutonPartage = true,
 	customEndMessages,
 	showQuestionsFromBeginning,
 	hideDetails = false,
@@ -152,7 +154,7 @@ export default function Simulation<S extends Situation = Situation>({
 							{customSimulationButton}
 
 							<ShareOrSaveSimulationBanner
-								share
+								share={avecBoutonPartage}
 								print
 								conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 							/>
