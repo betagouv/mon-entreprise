@@ -91,6 +91,14 @@ describe('DocumentationRoutes', () => {
 		expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
 	})
 
+	it("annonce une règle introuvable plutôt que d'ouvrir une modale vide", async () => {
+		afficherLaDocumentation(ModèleAssimiléSalarié, 'SASU/règle-inexistante')
+
+		expect(
+			await screen.findByText(/introuvable dans la base/)
+		).toBeInTheDocument()
+	})
+
 	it("laisse l'usager sur le comparateur lorsque l'URL s'arrête à l'étiquette", () => {
 		afficherLaDocumentation(ModèleAssimiléSalarié, 'SASU')
 
