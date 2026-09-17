@@ -1,8 +1,8 @@
 import { Option, pipe } from 'effect'
 import { sumAll } from 'effect/Number'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
@@ -32,7 +32,6 @@ import {
 	rémunérationBruteDottedName,
 } from '@/pages/simulateurs/lodeom/utils'
 import { ajusteLaSituation } from '@/store/actions/actions'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
@@ -44,7 +43,6 @@ export default function LodeomSimulationGoals() {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const year = useYear()
-	const situation = useSelector(situationSelector)
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
@@ -65,34 +63,27 @@ export default function LodeomSimulationGoals() {
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
-	const heuresSupplémentairesGlobales =
-		situation[heuresSupplémentairesDottedName]
-	const heuresComplémentairesGlobales =
-		situation[heuresComplémentairesDottedName]
-	const globalOptions = useMemo(() => {
-		const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
-			pipe(
-				engine.evaluate(dottedName),
-				QuantitéAdapter.decode,
-				Option.map(quantitéToNumber),
-				Option.getOrElse(() => 0)
-			)
-
-		return {
-			heuresSupplémentaires: getNumberFromQuantitéPublicodes(
-				heuresSupplémentairesDottedName
-			),
-			heuresComplémentaires: getNumberFromQuantitéPublicodes(
-				heuresComplémentairesDottedName
-			),
-		} satisfies Partial<Options>
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
+	const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
+		pipe(
+			engine.evaluate(dottedName),
+			QuantitéAdapter.decode,
+			Option.map(quantitéToNumber),
+			Option.getOrElse(() => 0)
+		)
+	const heuresSupplémentairesGlobales = getNumberFromQuantitéPublicodes(
+		heuresSupplémentairesDottedName
+	)
+	const heuresComplémentairesGlobales = getNumberFromQuantitéPublicodes(
+		heuresComplémentairesDottedName
+	)
 
 	useEffect(() => {
 		setData((previousData) =>
 			getDataAfterGlobalOptionsChange(
-				globalOptions,
+				{
+					heuresSupplémentaires: heuresSupplémentairesGlobales,
+					heuresComplémentaires: heuresComplémentairesGlobales,
+				},
 				previousData,
 				year,
 				engine,
@@ -105,7 +96,8 @@ export default function LodeomSimulationGoals() {
 		régularisationMethod,
 		year,
 		withRépartitionAndRégularisation,
-		globalOptions,
+		heuresSupplémentairesGlobales,
+		heuresComplémentairesGlobales,
 	])
 
 	const onRémunérationChange = useCallback(
