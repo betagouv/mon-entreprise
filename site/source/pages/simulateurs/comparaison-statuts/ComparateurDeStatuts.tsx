@@ -17,7 +17,7 @@ import { useSitePaths } from '@/sitePaths'
 
 import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DetailSimulation'
-import { DocumentationRoutes } from './components/DocumentationRoutes'
+import { ModaleDeDocumentation } from './components/ModaleDeDocumentation'
 import { comparaisonStatutsMetadata } from './metadata'
 import { Objectifs } from './Objectifs'
 import { groupesDeQuestions, questionsPrincipales } from './questions'
@@ -86,7 +86,7 @@ const PageComparateur = () => {
 					onReset={set.reset}
 				/>
 
-				<DocumentationRoutes />
+				<ModaleDeDocumentation />
 			</DocumentationBasePathProvider>
 		</SimulateurPageLayout>
 	)

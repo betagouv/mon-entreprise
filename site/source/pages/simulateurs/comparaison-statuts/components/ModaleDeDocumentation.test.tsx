@@ -12,7 +12,7 @@ import {
 import { useSitePaths } from '@/sitePaths'
 import { TestProvider } from '@/test/TestProvider'
 
-import { DocumentationRoutes } from './DocumentationRoutes'
+import { ModaleDeDocumentation } from './ModaleDeDocumentation'
 
 const TIMEOUT = 20_000
 
@@ -23,7 +23,7 @@ const DocumentationDuComparateur = () => {
 		<DocumentationBasePathProvider
 			basePath={absoluteSitePaths.simulateurs.comparaison}
 		>
-			<DocumentationRoutes />
+			<ModaleDeDocumentation />
 		</DocumentationBasePathProvider>
 	)
 }
@@ -62,7 +62,7 @@ const paquetNpmProposé = () =>
 		.map((lien) => lien.getAttribute('href'))
 		.find((href) => href?.includes('npmjs.com/package/'))
 
-describe('DocumentationRoutes', () => {
+describe('ModaleDeDocumentation', () => {
 	it('documente une valeur EI avec le modèle travailleur indépendant', async () => {
 		afficherLaDocumentation(
 			ModèleTravailleurIndépendant,
