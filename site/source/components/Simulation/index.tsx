@@ -65,6 +65,7 @@ type SimulationProps<S extends Situation = Situation> = {
 	children?: React.ReactNode
 	afterQuestionsSlot?: React.ReactNode
 	customSimulationButton?: React.ReactNode
+	avecSimulationPrécédente?: boolean
 	hideDetails?: boolean
 	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ReactNode
@@ -86,6 +87,7 @@ export default function Simulation<S extends Situation = Situation>({
 	children,
 	afterQuestionsSlot,
 	customSimulationButton,
+	avecSimulationPrécédente = true,
 	customEndMessages,
 	showQuestionsFromBeginning,
 	hideDetails = false,
@@ -135,13 +137,13 @@ export default function Simulation<S extends Situation = Situation>({
 					)}
 					<Spacing md />
 
-					{!entrepriseSelection && questionsPublicodes?.length && (
+					{!entrepriseSelection && !!questionsPublicodes?.length && (
 						<SimulationPréremplieBanner />
 					)}
 
-					{!showQuestions && questionsPublicodes?.length && (
-						<PreviousSimulationBanner />
-					)}
+					{avecSimulationPrécédente &&
+						!showQuestions &&
+						!!questionsPublicodes?.length && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 

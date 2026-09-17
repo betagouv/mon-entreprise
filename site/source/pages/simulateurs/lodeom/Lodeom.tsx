@@ -42,6 +42,7 @@ export default function LodeomSimulation() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
+					avecSimulationPrécédente={false}
 				>
 					<SimulateurWarning
 						metadata={metadata}
