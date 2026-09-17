@@ -66,19 +66,11 @@ export const initialRéductionMoisParMois = Array(12).fill({
 	},
 	réduction: {
 		value: 0,
-		répartition: {
-			IRC: 0,
-			Urssaf: 0,
-			chômage: 0,
-		},
+		répartition: emptyRépartition,
 	},
 	régularisation: {
 		value: 0,
-		répartition: {
-			IRC: 0,
-			Urssaf: 0,
-			chômage: 0,
-		},
+		répartition: emptyRépartition,
 	},
 }) as MonthState[]
 
