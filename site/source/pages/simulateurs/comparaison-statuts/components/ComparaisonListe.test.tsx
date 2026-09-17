@@ -50,7 +50,7 @@ describe('Comparaison', () => {
 	it('renvoie chaque valeur comparée vers la documentation de son modèle', async () => {
 		afficherLaComparaison()
 
-		await waitFor(() => {
+		await waitFor(() =>
 			expect(liensAffichés()).toEqual(
 				expect.arrayContaining([
 					'/simulateurs/comparaison-régimes-sociaux/SASU/assimilé-salarié/rémunération/nette/après-impôt',
@@ -58,6 +58,6 @@ describe('Comparaison', () => {
 					'/simulateurs/comparaison-régimes-sociaux/AE/dirigeant/rémunération/net/après-impôt',
 				])
 			)
-		})
+		)
 	})
 })
