@@ -6,6 +6,8 @@ import { Body, Grid } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
 import { MonthState } from '@/pages/simulateurs/lodeom/utils'
 
+import { MobileContainer } from './MobileContainer'
+
 type Props = {
 	label: string
 	data: MonthState[]
@@ -101,7 +103,7 @@ export default function RécapitulatifTrimestre({
 	}
 
 	return mobileVersion ? (
-		<div>
+		<MobileContainer>
 			<StyledMonth>{label}</StyledMonth>
 			<GridContainer container spacing={2}>
 				<Grid item>
@@ -148,7 +150,7 @@ export default function RécapitulatifTrimestre({
 					</Grid>
 				</GridContainer>
 			)}
-		</div>
+		</MobileContainer>
 	) : (
 		<tr>
 			<th scope="row">{label}</th>
