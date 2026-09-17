@@ -12,7 +12,7 @@ import {
 	QuantitéDocumentée,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { Grid, HelpIcon, StatusCard, Ul } from '@/design-system'
+import { Grid, InfoIcon, StatusCard, Ul } from '@/design-system'
 import { arrondirÀLEuro, isMontant, montantToString } from '@/domaine/Montant'
 import {
 	isMontantRécurrent,
@@ -125,7 +125,7 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 											</span>
 											<DocumentationLinkContainer>
 												<DocumentationLink vers={valeur.documentation}>
-													<HelpIcon />
+													<InfoIcon />
 												</DocumentationLink>
 											</DocumentationLinkContainer>
 											{warning?.(résultatModèle)}
