@@ -90,30 +90,28 @@ export default function MonthOptions({
 	return (
 		<Appear>
 			<GridContainer container columnSpacing={4}>
-				<GridItemLabel item>
+				<Grid item sm={8} lg={7}>
 					<FlexDiv>
 						<StyledLabel id={`heures-sup-label`}>
 							{additionalHoursLabels[additionalHours]}
 						</StyledLabel>
 						<InfoBulle description={<HeuresSupplémentairesPopoverContent />} />
 					</FlexDiv>
-				</GridItemLabel>
-				<GridItemInput item>
-					<NumberFieldContainer>
-						<QuantitéField
-							id={`option-heures-sup-${month}`}
-							small={true}
-							value={
-								options[additionalHours] !== undefined
-									? heuresParMois(options[additionalHours])
-									: undefined
-							}
-							onChange={(q) => onHeuresSupChange(q?.valeur)}
-							aria-labelledby={`heures-sup-label`}
-							unité="heures/mois"
-						/>
-					</NumberFieldContainer>
-				</GridItemInput>
+				</Grid>
+				<Grid item xs={7} sm={4} lg={3.4}>
+					<QuantitéField
+						id={`option-heures-sup-${month}`}
+						small={true}
+						value={
+							options[additionalHours] !== undefined
+								? heuresParMois(options[additionalHours])
+								: undefined
+						}
+						onChange={(q) => onHeuresSupChange(q?.valeur)}
+						aria-labelledby={`heures-sup-label`}
+						unité="heures/mois"
+					/>
+				</Grid>
 			</GridContainer>
 
 			<StyledSmallBody>
@@ -127,7 +125,7 @@ export default function MonthOptions({
 			</StyledSmallBody>
 
 			<GridContainer container columnSpacing={4}>
-				<GridItemLabel item>
+				<Grid item sm={9} md={8.6} lg={7}>
 					<FlexDiv>
 						<StyledLabel id="rémunération-etp-label">
 							{t(
@@ -137,29 +135,27 @@ export default function MonthOptions({
 						</StyledLabel>
 						<InfoBulle description={<RémunérationETPPopoverContent />} />
 					</FlexDiv>
-				</GridItemLabel>
-				<GridItemInput item>
-					<NumberFieldContainer>
-						<MontantField
-							id={`option-rémunération-etp-${month}`}
-							small={true}
-							value={
-								options.rémunérationETP !== undefined
-									? euros(options.rémunérationETP)
-									: undefined
-							}
-							unité="€"
-							onChange={(m) => onRémunérationETPChange(m?.valeur)}
-							aria={{
-								labelledby: 'rémunération-etp-label',
-							}}
-							avecCentimes
-						/>
-					</NumberFieldContainer>
-				</GridItemInput>
+				</Grid>
+				<Grid item xs={7} sm={3} md={3.4}>
+					<MontantField
+						id={`option-rémunération-etp-${month}`}
+						small={true}
+						value={
+							options.rémunérationETP !== undefined
+								? euros(options.rémunérationETP)
+								: undefined
+						}
+						unité="€"
+						onChange={(m) => onRémunérationETPChange(m?.valeur)}
+						aria={{
+							labelledby: 'rémunération-etp-label',
+						}}
+						avecCentimes
+					/>
+				</Grid>
 			</GridContainer>
 			<GridContainer container columnSpacing={4}>
-				<GridItemLabel item>
+				<Grid item sm={9} md={8.6} lg={7}>
 					<FlexDiv>
 						<StyledLabel id="rémunération-primes-label">
 							{t(
@@ -169,26 +165,24 @@ export default function MonthOptions({
 						</StyledLabel>
 						<InfoBulle description={<RémunérationPrimesPopoverContent />} />
 					</FlexDiv>
-				</GridItemLabel>
-				<GridItemInput item>
-					<NumberFieldContainer>
-						<MontantField
-							id={`option-rémunération-primes-${month}`}
-							small={true}
-							value={
-								options.rémunérationPrimes !== undefined
-									? euros(options.rémunérationPrimes)
-									: undefined
-							}
-							unité="€"
-							onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
-							aria={{
-								labelledby: 'rémunération-primes-label',
-							}}
-							avecCentimes
-						/>
-					</NumberFieldContainer>
-				</GridItemInput>
+				</Grid>
+				<Grid item xs={7} sm={3} md={3.4}>
+					<MontantField
+						id={`option-rémunération-primes-${month}`}
+						small={true}
+						value={
+							options.rémunérationPrimes !== undefined
+								? euros(options.rémunérationPrimes)
+								: undefined
+						}
+						unité="€"
+						onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
+						aria={{
+							labelledby: 'rémunération-primes-label',
+						}}
+						avecCentimes
+					/>
+				</Grid>
 			</GridContainer>
 		</Appear>
 	)
@@ -233,24 +227,11 @@ const GridContainer = styled(Grid)`
 	align-items: center;
 	margin-bottom: ${({ theme }) => theme.spacings.xxs};
 `
-const GridItemLabel = styled(Grid)`
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		flex: 2;
-	}
-`
-const GridItemInput = styled(Grid)`
-	@media (min-width: ${({ theme }) => theme.breakpointsWidth.sm}) {
-		flex: 1;
-	}
-`
 const FlexDiv = styled.div`
 	${FlexCenter}
 `
 const StyledLabel = styled(SmallBody)`
 	margin: 0;
-`
-const NumberFieldContainer = styled.div`
-	max-width: 120px;
 `
 const StyledSmallBody = styled(SmallBody)`
 	font-weight: bold;

@@ -20,6 +20,7 @@ import {
 	Options,
 } from '@/pages/simulateurs/lodeom/utils'
 
+import { MobileContainer } from './MobileContainer'
 import RémunérationInput from './RémunérationInput'
 
 type Props = {
@@ -101,7 +102,7 @@ export default function RéductionMois({
 	}
 
 	return mobileVersion ? (
-		<div>
+		<MobileContainer>
 			<StyledMonth>{monthName}</StyledMonth>
 			<GridContainer container spacing={2}>
 				<Grid item xs={7} sm={4}>
@@ -161,7 +162,7 @@ export default function RéductionMois({
 					</OptionsContainer>
 				</ForceThemeProvider>
 			)}
-		</div>
+		</MobileContainer>
 	) : (
 		<>
 			<tr>
