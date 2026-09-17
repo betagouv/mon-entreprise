@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { VisualiseurPublicodes } from '@/components/documentation'
 import { Popover } from '@/design-system'
 import { useNavigation } from '@/lib/navigation'
-import Documentation from '@/pages/documentation/Documentation'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
 
 export function EngineDocumentationRoutes({
@@ -31,7 +31,7 @@ export function EngineDocumentationRoutes({
 									})
 								}}
 							>
-								<Documentation
+								<VisualiseurPublicodes
 									engine={engine}
 									documentationPath={`${basePath}/${name}`}
 									nomModèle="modele-social"
