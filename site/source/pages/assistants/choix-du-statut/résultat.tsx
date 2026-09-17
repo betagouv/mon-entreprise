@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
 import { CurrentSimulatorCard } from '@/components/CurrentSimulatorCard'
-import { Références } from '@/components/documentation/References/References'
+import { ListeDeRéférences } from '@/components/documentation/References/ListeDeReferences'
 import { useRéférencesÀAfficher } from '@/components/documentation/References/useReferencesAAfficher'
 import { Feedback } from '@/components/Feedback/Feedback'
 import { TrackPage } from '@/components/PianoAnalytics'
@@ -143,7 +143,7 @@ export default function Résultat() {
 						{ statutLabel }
 					)}
 				</H3>
-				<Références dottedName={dottedName} références={références} />
+				<ListeDeRéférences références={références} />
 				<H3>
 					{t(
 						'pages.assistants.choix-statut.résultat.simulateur',
