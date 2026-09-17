@@ -191,7 +191,7 @@ const reevaluateRéductionMoisParMois = (
 		return data.map((monthData) => {
 			return {
 				...monthData,
-				réductionGénérale: {
+				réduction: {
 					value: 0,
 					répartition: emptyRépartition,
 				},
@@ -268,23 +268,22 @@ const reevaluateRéductionMoisParMois = (
 					paramètresRéductionParMois,
 					engine
 				)
-				const currentRéductionGénéraleCumulée = sumAll(
+				const currentRéductionCumulée = sumAll(
 					reevaluatedData.map((monthData) => monthData.réduction.value)
 				)
 
-				if (réductionTotale > currentRéductionGénéraleCumulée) {
+				if (réductionTotale > currentRéductionCumulée) {
 					// Si la réduction totale est *supérieure* à la somme des réductions
 					// accordées, il y a une *réduction* ce mois-ci aussi.
-					réduction.value = réductionTotale - currentRéductionGénéraleCumulée
+					réduction.value = réductionTotale - currentRéductionCumulée
 					réduction.répartition = withRépartition
 						? getRépartition(rémunérationBrute, réduction.value, engine)
 						: emptyRépartition
-				} else if (réductionTotale < currentRéductionGénéraleCumulée) {
+				} else if (réductionTotale < currentRéductionCumulée) {
 					// Si la réduction totale est *inférieure* à la somme des réductions
 					// accordées, c'est qu'il y a un trop-perçu de réductions et il y a
 					// alors une *régularisation* ce mois-ci
-					régularisation.value =
-						réductionTotale - currentRéductionGénéraleCumulée
+					régularisation.value = réductionTotale - currentRéductionCumulée
 					régularisation.répartition = withRépartition
 						? getRépartition(rémunérationBrute, régularisation.value, engine)
 						: emptyRépartition
