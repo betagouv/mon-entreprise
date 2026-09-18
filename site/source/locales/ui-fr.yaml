@@ -43,7 +43,6 @@ Cotisations: Cotisations
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
-Déplier: Déplier
 "Détail du montant :": "Détail du montant :"
 Effacer mes réponses: Effacer mes réponses
 En savoir plus: En savoir plus
@@ -2397,6 +2396,7 @@ pages:
       month-by-month:
         caption: "Exonération Lodeom mois par mois :"
       options:
+        aria-label: Options pour {{ mois }}
         description: Ajoute des champs pour moduler l'activité du salarié
         heures-sup:
           popover: "Le nombre d'heures supplémentaires et complémentaires est utilisé dans
