@@ -21,12 +21,10 @@ export const Décomposition = () => {
 	if (!estSituationValide(situation)) {
 		return (
 			<Info>
-				<Body>
-					{t(
-						'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
-						'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
-					)}
-				</Body>
+				{t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
+					'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
+				)}
 			</Info>
 		)
 	}

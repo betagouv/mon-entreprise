@@ -3,19 +3,29 @@ import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 
+import { Body } from '../typography'
+
 type Props = {
 	children: React.ReactNode
 	type?: 'tip' | 'note' | 'important' | 'caution'
 	icon?: string
 }
 
-const Callout = ({ children, type, icon }: Props) => (
-	<ForceThemeProvider forceTheme="light">
-		<CalloutDiv type={type} icon={icon}>
-			{children}
-		</CalloutDiv>
-	</ForceThemeProvider>
-)
+const Callout = ({ children, type, icon }: Props) => {
+	const childrenEstTexteBrut =
+		typeof children === 'string' ||
+		(Array.isArray(children) &&
+			children.length === 1 &&
+			typeof children[0] === 'string')
+
+	return (
+		<ForceThemeProvider forceTheme="light">
+			<CalloutDiv type={type} icon={icon}>
+				{childrenEstTexteBrut ? <Body>{children}</Body> : children}
+			</CalloutDiv>
+		</ForceThemeProvider>
+	)
+}
 
 const CalloutDiv = styled.div.withConfig({
 	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
