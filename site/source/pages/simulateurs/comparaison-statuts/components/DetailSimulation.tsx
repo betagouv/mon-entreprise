@@ -1,17 +1,13 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { EngineDocumentationRoutes } from '@/components/EngineDocumentationRoutes'
 import { estSituationValide, useComparateur } from '@/contextes/comparateur'
 import { Body, H4, Link, Message } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
 
-import { EngineComparison } from '../EngineComparison'
 import { Comparaison } from './ComparaisonListe'
 
 export const DétailSimulation = () => {
-	const { situation, comparaison } = useComparateur()
+	const { situation } = useComparateur()
 	const { t } = useTranslation()
-	const { absoluteSitePaths } = useSitePaths()
 
 	if (!estSituationValide(situation)) {
 		return (
@@ -23,11 +19,6 @@ export const DétailSimulation = () => {
 			</Body>
 		)
 	}
-
-	const engines = comparaison.map((résultatModèle) => ({
-		name: résultatModèle.statut.étiquette,
-		engine: résultatModèle.engine(),
-	}))
 
 	return situation.activitéLibéraleRéglementée ? (
 		<Message type="info">
@@ -48,15 +39,6 @@ export const DétailSimulation = () => {
 			</Trans>
 		</Message>
 	) : (
-		<>
-			<Comparaison />
-
-			{/* TODO: créer un autre composant qui prend un <Documentation /> directement
-					fourni par le modèle (objectif modèle comparable hors Publicodes) */}
-			<EngineDocumentationRoutes
-				basePath={absoluteSitePaths.simulateurs.comparaison}
-				namedEngines={engines as EngineComparison}
-			/>
-		</>
+		<Comparaison />
 	)
 }

@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
+import { IsBPIProvider } from '@/hooks/useIsEmbeddedOnBPISite'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
@@ -8,7 +9,6 @@ import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
 import { useSitePaths } from '@/sitePaths'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
-import { IsBPIProvider } from './_components/useIsEmbeddedBPI'
 import { useCurrentStep } from './_components/useSteps'
 import Association from './association'
 import Associé from './associé'

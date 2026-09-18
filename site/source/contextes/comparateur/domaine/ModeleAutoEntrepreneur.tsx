@@ -1,10 +1,12 @@
 import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
-import rules from 'modele-social'
+import rules, { RègleModèleSocial } from 'modele-social'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
+import { documentationDeRèglePublicodes } from '@/components/documentation'
 import { Strong } from '@/design-system'
+import { documentationPublicodes } from '@/domaine/documentation/documentationPublicodes'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
 import { Montant } from '@/domaine/Montant'
 import { euros } from '@/domaine/MontantPonctuel'
@@ -24,12 +26,7 @@ import {
 import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
-import {
-	ModèleComparable,
-	MontantDocumenté,
-	MontantRécurrentDocumenté,
-	QuantitéDocumentée,
-} from './modeleComparable'
+import { ModèleComparable, ValeurDocumentée } from './modeleComparable'
 import { initialSituationComparée } from './situation'
 
 const nomModèle = 'modele-social'
@@ -50,8 +47,42 @@ const initEngine = () => {
 	return engine
 }
 
+const getEngine = () => engine ?? initEngine()
+
+const étiquette = 'AE'
+
+const documentation = (dottedName: RègleModèleSocial) =>
+	documentationPublicodes(getEngine, dottedName, étiquette)
+
+const documenté = <V,>(
+	valeur: V,
+	dottedName: RègleModèleSocial
+): V & ValeurDocumentée => ({
+	...valeur,
+	documentation: documentation(dottedName),
+})
+
+const valeurDocumentée = <V,>(
+	dottedName: RègleModèleSocial,
+	défaut: V,
+	unité?: string
+): V & ValeurDocumentée =>
+	documenté(
+		engine
+			? (O.getOrElse(
+					PublicodesAdapter.decode(
+						engine.evaluate(unité ? { valeur: dottedName, unité } : dottedName)
+					),
+					() => défaut
+				) as V)
+			: défaut,
+		dottedName
+	)
+
 export const ModèleAutoEntrepreneur: ModèleComparable = {
 	nom: nomModèle,
+
+	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
@@ -222,10 +253,8 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 	},
 
 	get: {
-		engine: () => engine ?? initEngine(),
-
 		statut: {
-			étiquette: 'AE',
+			étiquette,
 			nom: 'Auto-entrepreneur',
 			régime: (t: TFunction) =>
 				t(
@@ -258,300 +287,111 @@ export const ModèleAutoEntrepreneur: ModèleComparable = {
 			},
 		},
 
-		revenu: () => {
-			let bénéfice = eurosParMois(0) as MontantRécurrentDocumenté
-			let revenuNet = eurosParMois(0) as MontantRécurrentDocumenté
-			let revenuNetAprèsImpôt = eurosParMois(0) as MontantRécurrentDocumenté
+		revenu: () => ({
+			bénéfice: valeurDocumentée(
+				'dirigeant . rémunération . totale',
+				eurosParMois(0)
+			),
+			revenuNet: valeurDocumentée(
+				'dirigeant . rémunération . net',
+				eurosParMois(0),
+				'€/mois'
+			),
+			revenuNetAprèsImpôt: valeurDocumentée(
+				'dirigeant . rémunération . net . après impôt',
+				eurosParMois(0),
+				'€/mois'
+			),
+		}),
 
-			if (engine) {
-				const calculBénéfice = engine.evaluate(
-					'dirigeant . rémunération . totale'
-				)
-				bénéfice = O.getOrElse(PublicodesAdapter.decode(calculBénéfice), () =>
-					eurosParMois(0)
-				) as MontantRécurrentDocumenté
+		dépenses: () => ({
+			cotisations: valeurDocumentée(
+				'dirigeant . rémunération . cotisations',
+				eurosParMois(0)
+			),
+			impôt: valeurDocumentée(
+				'dirigeant . rémunération . impôt',
+				eurosParMois(0),
+				'€/mois'
+			),
+		}),
 
-				const calculNet = engine.evaluate({
-					valeur: 'dirigeant . rémunération . net',
-					unité: '€/mois',
-				})
-				revenuNet = O.getOrElse(PublicodesAdapter.decode(calculNet), () =>
-					eurosParMois(0)
-				) as MontantRécurrentDocumenté
+		retraite: () => ({
+			documentation: documentation('protection sociale . retraite'),
+			trimestres: valeurDocumentée(
+				'protection sociale . retraite . trimestres',
+				trimestresValidésParAn(0)
+			),
+			revenuCotisé: valeurDocumentée(
+				'protection sociale . retraite . base . cotisée',
+				eurosParAn(0)
+			),
+			pointsComplémentaire: valeurDocumentée(
+				'protection sociale . retraite . complémentaire . points acquis',
+				pointsParAn(0)
+			),
+			valeurPointComplémentaire: valeurDocumentée(
+				'protection sociale . retraite . complémentaire . valeur du point',
+				eurosParAn(0),
+				'€/an'
+			),
+		}),
 
-				const calculNetAprèsImpôt = engine.evaluate({
-					valeur: 'dirigeant . rémunération . net . après impôt',
-					unité: '€/mois',
-				})
-				revenuNetAprèsImpôt = O.getOrElse(
-					PublicodesAdapter.decode(calculNetAprèsImpôt),
-					() => eurosParMois(0)
-				) as MontantRécurrentDocumenté
-			}
+		maladie: () => ({
+			documentation: documentation('protection sociale . maladie'),
+			indemnitésArrêtMaladie: valeurDocumentée(
+				'protection sociale . maladie . arrêt maladie',
+				eurosParJour(0)
+			),
+			délaiAttente: valeurDocumentée(
+				"protection sociale . maladie . arrêt maladie . délai d'attente",
+				quantité(0, 'mois')
+			),
+		}),
 
-			bénéfice.documentationRule = 'dirigeant . rémunération . totale'
-			revenuNet.documentationRule = 'dirigeant . rémunération . net'
-			revenuNetAprèsImpôt.documentationRule =
-				'dirigeant . rémunération . net . après impôt'
+		parentalité: () => ({
+			documentation: documentation('protection sociale . maladie'),
+			indemnitésMaternitéPaternitéAdoption: valeurDocumentée(
+				'protection sociale . maladie . maternité paternité adoption',
+				eurosParJour(0)
+			),
+			allocationNaissance: valeurDocumentée(
+				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel',
+				euros(0)
+			),
+			allocationAdoption: valeurDocumentée(
+				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption',
+				euros(0)
+			),
+		}),
 
-			return {
-				bénéfice,
-				revenuNet,
-				revenuNetAprèsImpôt,
-			}
-		},
+		invalidité: () => ({
+			documentation: documentation('protection sociale . invalidité et décès'),
+			pensionInvaliditéPartielle: valeurDocumentée(
+				'protection sociale . invalidité et décès . pension invalidité . invalidité partielle',
+				eurosParMois(0)
+			),
+			pensionInvaliditéTotale: valeurDocumentée(
+				'protection sociale . invalidité et décès . pension invalidité . invalidité totale',
+				eurosParMois(0)
+			),
+		}),
 
-		dépenses: () => {
-			let cotisations = eurosParMois(0) as MontantRécurrentDocumenté
-			let impôt = eurosParMois(0) as MontantRécurrentDocumenté
-
-			if (engine) {
-				const calcul = engine.evaluate('dirigeant . rémunération . cotisations')
-				cotisations = O.getOrElse(PublicodesAdapter.decode(calcul), () =>
-					eurosParMois(0)
-				) as MontantRécurrentDocumenté
-
-				const calculImpôt = engine.evaluate({
-					valeur: 'dirigeant . rémunération . impôt',
-					unité: '€/mois',
-				})
-				impôt = O.getOrElse(PublicodesAdapter.decode(calculImpôt), () =>
-					eurosParMois(0)
-				) as MontantRécurrentDocumenté
-			}
-
-			cotisations.documentationRule = 'dirigeant . rémunération . cotisations'
-			impôt.documentationRule = 'dirigeant . rémunération . impôt'
-
-			return {
-				cotisations,
-				impôt,
-			}
-		},
-
-		retraite: () => {
-			let trimestres = trimestresValidésParAn(0) as QuantitéDocumentée
-			let revenuCotisé = eurosParAn(0) as MontantRécurrentDocumenté
-			let pointsComplémentaire = pointsParAn(0) as QuantitéDocumentée
-			let valeurPointComplémentaire = eurosParAn(0) as MontantRécurrentDocumenté
-
-			if (engine) {
-				const calculTrimestres = engine.evaluate(
-					'protection sociale . retraite . trimestres'
-				)
-				trimestres = O.getOrElse(
-					PublicodesAdapter.decode(calculTrimestres),
-					() => trimestresValidésParAn(0)
-				) as QuantitéDocumentée
-
-				const calculRevenuCotisé = engine.evaluate(
-					'protection sociale . retraite . base . cotisée'
-				)
-				revenuCotisé = O.getOrElse(
-					PublicodesAdapter.decode(calculRevenuCotisé),
-					() => eurosParAn(0)
-				) as MontantRécurrentDocumenté
-
-				const calculPointsAcquis = engine.evaluate(
-					'protection sociale . retraite . complémentaire . points acquis'
-				)
-				pointsComplémentaire = O.getOrElse(
-					PublicodesAdapter.decode(calculPointsAcquis),
-					() => pointsParAn(0)
-				) as QuantitéDocumentée
-
-				const calculValeurPointComplémentaire = engine.evaluate({
-					valeur:
-						'protection sociale . retraite . complémentaire . valeur du point',
-					unité: '€/an',
-				})
-				valeurPointComplémentaire = O.getOrElse(
-					PublicodesAdapter.decode(calculValeurPointComplémentaire),
-					() => eurosParAn(0)
-				) as MontantRécurrentDocumenté
-			}
-
-			trimestres.documentationRule =
-				'protection sociale . retraite . trimestres'
-			revenuCotisé.documentationRule =
-				'protection sociale . retraite . base . cotisée'
-			pointsComplémentaire.documentationRule =
-				'protection sociale . retraite . complémentaire . points acquis'
-			valeurPointComplémentaire.documentationRule =
-				'protection sociale . retraite . complémentaire . valeur du point'
-
-			return {
-				documentationRule: 'protection sociale . retraite',
-				trimestres,
-				revenuCotisé,
-				pointsComplémentaire,
-				valeurPointComplémentaire,
-			}
-		},
-
-		maladie: () => {
-			let indemnitésArrêtMaladie = eurosParJour(0) as MontantRécurrentDocumenté
-			let délaiAttente = quantité(0, 'mois') as QuantitéDocumentée
-
-			if (engine) {
-				const calculIndemnitésArrêtMaladie = engine.evaluate(
-					'protection sociale . maladie . arrêt maladie'
-				)
-				indemnitésArrêtMaladie = O.getOrElse(
-					PublicodesAdapter.decode(calculIndemnitésArrêtMaladie),
-					() => eurosParJour(0)
-				) as MontantRécurrentDocumenté
-
-				const calculDélaiAttente = engine.evaluate(
-					"protection sociale . maladie . arrêt maladie . délai d'attente"
-				)
-				délaiAttente = O.getOrElse(
-					PublicodesAdapter.decode(calculDélaiAttente),
-					() => quantité(0, 'mois')
-				) as QuantitéDocumentée
-			}
-
-			indemnitésArrêtMaladie.documentationRule =
-				'protection sociale . maladie . arrêt maladie'
-			délaiAttente.documentationRule =
-				"protection sociale . maladie . arrêt maladie . délai d'attente"
-
-			return {
-				documentationRule: 'protection sociale . maladie',
-				indemnitésArrêtMaladie,
-				délaiAttente,
-			}
-		},
-
-		parentalité: () => {
-			let indemnitésMaternitéPaternitéAdoption = eurosParJour(
-				0
-			) as MontantRécurrentDocumenté
-			let allocationNaissance = euros(0) as MontantDocumenté
-			let allocationAdoption = euros(0) as MontantDocumenté
-
-			if (engine) {
-				const calculIndemnitésMaternitéPaternitéAdoption = engine.evaluate(
-					'protection sociale . maladie . maternité paternité adoption'
-				)
-				indemnitésMaternitéPaternitéAdoption = O.getOrElse(
-					PublicodesAdapter.decode(calculIndemnitésMaternitéPaternitéAdoption),
-					() => eurosParJour(0)
-				) as MontantRécurrentDocumenté
-
-				const calculAllocationNaissance = engine.evaluate(
-					'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-				)
-				allocationNaissance = O.getOrElse(
-					PublicodesAdapter.decode(calculAllocationNaissance),
-					() => euros(0)
-				) as MontantDocumenté
-
-				const calculAllocationAdoption = engine.evaluate(
-					'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
-				)
-				allocationAdoption = O.getOrElse(
-					PublicodesAdapter.decode(calculAllocationAdoption),
-					() => euros(0)
-				) as MontantDocumenté
-			}
-
-			indemnitésMaternitéPaternitéAdoption.documentationRule =
-				'protection sociale . maladie . maternité paternité adoption'
-			allocationNaissance.documentationRule =
-				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel'
-			allocationAdoption.documentationRule =
-				'protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption'
-
-			return {
-				documentationRule: 'protection sociale . maladie',
-				indemnitésMaternitéPaternitéAdoption,
-				allocationNaissance,
-				allocationAdoption,
-			}
-		},
-
-		invalidité: () => {
-			let pensionInvaliditéPartielle = eurosParMois(
-				0
-			) as MontantRécurrentDocumenté
-			let pensionInvaliditéTotale = eurosParMois(0) as MontantRécurrentDocumenté
-
-			if (engine) {
-				const calculPensionInvaliditéPartielle = engine.evaluate(
-					'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
-				)
-				pensionInvaliditéPartielle = O.getOrElse(
-					PublicodesAdapter.decode(calculPensionInvaliditéPartielle),
-					() => eurosParMois(0)
-				) as MontantRécurrentDocumenté
-
-				const calculPensionInvaliditéTotale = engine.evaluate(
-					'protection sociale . invalidité et décès . pension invalidité . invalidité totale'
-				)
-				pensionInvaliditéTotale = O.getOrElse(
-					PublicodesAdapter.decode(calculPensionInvaliditéTotale),
-					() => eurosParMois(0)
-				) as MontantRécurrentDocumenté
-			}
-
-			pensionInvaliditéPartielle.documentationRule =
-				'protection sociale . invalidité et décès . pension invalidité . invalidité partielle'
-			pensionInvaliditéTotale.documentationRule =
-				'protection sociale . invalidité et décès . pension invalidité . invalidité totale'
-
-			return {
-				documentationRule: 'protection sociale . invalidité et décès',
-				pensionInvaliditéPartielle,
-				pensionInvaliditéTotale,
-			}
-		},
-
-		décès: () => {
-			let pensionDeRéversion = eurosParMois(0) as MontantRécurrentDocumenté
-			let capitalDécès = euros(0) as MontantDocumenté
-			let capitalOrphelin = euros(0) as MontantDocumenté
-
-			if (engine) {
-				const calculPensionDeRéversion = engine.evaluate(
-					'protection sociale . invalidité et décès . pension de reversion'
-				)
-				pensionDeRéversion = O.getOrElse(
-					PublicodesAdapter.decode(calculPensionDeRéversion),
-					() => eurosParMois(0)
-				) as MontantRécurrentDocumenté
-
-				const calculCapitalDécès = engine.evaluate(
-					'protection sociale . invalidité et décès . capital décès'
-				)
-				capitalDécès = O.getOrElse(
-					PublicodesAdapter.decode(calculCapitalDécès),
-					() => euros(0)
-				) as MontantDocumenté
-
-				const calculCapitalOrphelin = engine.evaluate(
-					'protection sociale . invalidité et décès . capital décès . orphelin'
-				)
-				capitalOrphelin = O.getOrElse(
-					PublicodesAdapter.decode(calculCapitalOrphelin),
-					() => euros(0)
-				) as MontantDocumenté
-			}
-
-			pensionDeRéversion.documentationRule =
-				'protection sociale . invalidité et décès . pension de reversion'
-			capitalDécès.documentationRule =
-				'protection sociale . invalidité et décès . capital décès'
-			capitalOrphelin.documentationRule =
-				'protection sociale . invalidité et décès . capital décès . orphelin'
-
-			return {
-				documentationRule: 'protection sociale . invalidité et décès',
-				pensionDeRéversion,
-				capitalDécès,
-				capitalOrphelin,
-			}
-		},
+		décès: () => ({
+			documentation: documentation('protection sociale . invalidité et décès'),
+			pensionDeRéversion: valeurDocumentée(
+				'protection sociale . invalidité et décès . pension de reversion',
+				eurosParMois(0)
+			),
+			capitalDécès: valeurDocumentée(
+				'protection sociale . invalidité et décès . capital décès',
+				euros(0)
+			),
+			capitalOrphelin: valeurDocumentée(
+				'protection sociale . invalidité et décès . capital décès . orphelin',
+				euros(0)
+			),
+		}),
 
 		// gestion: () => {
 		// 	return {
