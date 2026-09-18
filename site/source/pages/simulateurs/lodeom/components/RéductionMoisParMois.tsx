@@ -6,6 +6,8 @@ import { styled } from 'styled-components'
 import RuleLink from '@/components/RuleLink'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
+import useYear from '@/hooks/useYear'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import {
 	lodeomDottedName,
 	MonthState,
@@ -41,12 +43,17 @@ export default function RéductionMoisParMois({
 	codeRégularisation,
 	withRépartitionAndRégularisation = true,
 }: Props) {
+	const currentZone = useZoneLodeom()
+	const year = useYear()
+	// La Lodeom ne s'applique à Mayotte qu'à partir du 1er juillet 2026
+	const masquerPremierSemestre = currentZone === 'mayotte' && year === 2026
+	const premierMoisAffiché = masquerPremierSemestre ? 6 : 0
 	const { t } = useTranslation()
 	const isDesktop = useMediaQuery(
 		`(min-width: ${baseTheme.breakpointsWidth.md})`
 	)
 
-	const months = [
+	const mois = [
 		t('global.mois.janvier', 'janvier'),
 		t('global.mois.février', 'février'),
 		t('global.mois.mars', 'mars'),
@@ -60,19 +67,33 @@ export default function RéductionMoisParMois({
 		t('global.mois.novembre', 'novembre'),
 		t('global.mois.décembre', 'décembre'),
 	]
+	const moisÀAfficher = mois.slice(premierMoisAffiché)
 
-	const quarters = {
-		[t('pages.simulateurs.lodeom.recap.T1', '1er trimestre')]: data.slice(0, 3),
-		[t('pages.simulateurs.lodeom.recap.T2', '2ème trimestre')]: data.slice(
-			3,
-			6
-		),
-		[t('pages.simulateurs.lodeom.recap.T3', '3ème trimestre')]: data.slice(
-			6,
-			9
-		),
-		[t('pages.simulateurs.lodeom.recap.T4', '4ème trimestre')]: data.slice(9),
-	}
+	const trimestres = masquerPremierSemestre
+		? {
+				[t('pages.simulateurs.lodeom.recap.T3', '3ème trimestre')]: data.slice(
+					6,
+					9
+				),
+				[t('pages.simulateurs.lodeom.recap.T4', '4ème trimestre')]:
+					data.slice(9),
+			}
+		: {
+				[t('pages.simulateurs.lodeom.recap.T1', '1er trimestre')]: data.slice(
+					0,
+					3
+				),
+				[t('pages.simulateurs.lodeom.recap.T2', '2ème trimestre')]: data.slice(
+					3,
+					6
+				),
+				[t('pages.simulateurs.lodeom.recap.T3', '3ème trimestre')]: data.slice(
+					6,
+					9
+				),
+				[t('pages.simulateurs.lodeom.recap.T4', '4ème trimestre')]:
+					data.slice(9),
+			}
 
 	return (
 		<>
@@ -99,21 +120,25 @@ export default function RéductionMoisParMois({
 						</thead>
 						<tbody>
 							{data.length > 0 &&
-								months.map((monthName, monthIndex) => (
-									<RéductionMois
-										key={`month-${monthIndex}`}
-										monthName={monthName}
-										data={data[monthIndex]}
-										index={monthIndex}
-										onRémunérationChange={onRémunérationChange}
-										onOptionsChange={onOptionsChange}
-										warningCondition={warningCondition}
-										warningTooltip={warningTooltip}
-										withRépartitionAndRégularisation={
-											withRépartitionAndRégularisation
-										}
-									/>
-								))}
+								moisÀAfficher.map((monthName, index) => {
+									const monthIndex = index + premierMoisAffiché
+
+									return (
+										<RéductionMois
+											key={`month-${monthIndex}`}
+											monthName={monthName}
+											data={data[monthIndex]}
+											index={monthIndex}
+											onRémunérationChange={onRémunérationChange}
+											onOptionsChange={onOptionsChange}
+											warningCondition={warningCondition}
+											warningTooltip={warningTooltip}
+											withRépartitionAndRégularisation={
+												withRépartitionAndRégularisation
+											}
+										/>
+									)
+								})}
 						</tbody>
 					</StyledTable>
 
@@ -164,11 +189,11 @@ export default function RéductionMoisParMois({
 							</tr>
 						</thead>
 						<tbody>
-							{Object.keys(quarters).map((label, index) => (
+							{Object.keys(trimestres).map((label, index) => (
 								<RécapitulatifTrimestre
 									key={index}
 									label={label}
-									data={quarters[label]}
+									data={trimestres[label]}
 									codeRéduction={codeRéduction}
 									codeRégularisation={codeRégularisation}
 									withRépartitionAndRégularisation={
@@ -182,23 +207,28 @@ export default function RéductionMoisParMois({
 			) : (
 				<>
 					<H3 as="h2">{caption}</H3>
+
 					{data.length > 0 &&
-						months.map((monthName, monthIndex) => (
-							<RéductionMois
-								key={`month-${monthIndex}`}
-								monthName={monthName}
-								data={data[monthIndex]}
-								index={monthIndex}
-								onRémunérationChange={onRémunérationChange}
-								onOptionsChange={onOptionsChange}
-								warningCondition={warningCondition}
-								warningTooltip={warningTooltip}
-								withRépartitionAndRégularisation={
-									withRépartitionAndRégularisation
-								}
-								mobileVersion={true}
-							/>
-						))}
+						moisÀAfficher.map((monthName, index) => {
+							const monthIndex = index + premierMoisAffiché
+
+							return (
+								<RéductionMois
+									key={`month-${monthIndex}`}
+									monthName={monthName}
+									data={data[monthIndex]}
+									index={monthIndex}
+									onRémunérationChange={onRémunérationChange}
+									onOptionsChange={onOptionsChange}
+									warningCondition={warningCondition}
+									warningTooltip={warningTooltip}
+									withRépartitionAndRégularisation={
+										withRépartitionAndRégularisation
+									}
+									mobileVersion={true}
+								/>
+							)
+						})}
 
 					<Spacing xxl />
 
@@ -208,11 +238,11 @@ export default function RéductionMoisParMois({
 							'Récapitulatif trimestriel :'
 						)}
 					</H3>
-					{Object.keys(quarters).map((label, index) => (
+					{Object.keys(trimestres).map((label, index) => (
 						<RécapitulatifTrimestre
 							key={index}
 							label={label}
-							data={quarters[label]}
+							data={trimestres[label]}
 							codeRéduction={codeRéduction}
 							codeRégularisation={codeRégularisation}
 							withRépartitionAndRégularisation={

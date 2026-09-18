@@ -11310,59 +11310,48 @@ salarié . cotisations . FNAL:
   titre.fr: Contribution au Fonds National d’Aide au Logement
 salarié . cotisations . Mayotte:
   description.en: >
-    [automatic] The employer and employee **social security contribution rates**
-    applicable in Mayotte are
+    [automatic] The employer and employee **social security contribution
+    rates**, as well as
 
-    accurately reflected by this calculator.
+    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
+    this
 
-
-    However, calculations related to the **RGDU** (Single Degressive General
-    Reduction)
-
-    and the **Lodeom** exemption, which differ for Mayotte, are
-
-    **not yet available** in this simulator.
+    simulator.
 
 
-    > Please note: For the RGDU, the simulator applies the calculation rules
-    used in
+    However, the calculation of the **RGDU** (General Degressive Reduction
 
-    mainland France.
+    ) specific to Mayotte is **not yet available**.
+
+    > The Lodeom exemption does not apply in Mayotte until July 1, 2026.
   description.fr: >
-    Les **taux de cotisations sociales** patronales et salariales applicables à
-    Mayotte sont
+    Les **taux de cotisations sociales** patronales et salariales ainsi que
 
-    bien appliqués par ce simulateur.
+    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
 
-
-    En revanche, les calculs liés à la **RGDU** (Réduction Générale Dégressive
-    Unique)
-
-    et à l’exonération **Lodeom**, qui diffèrent pour Mayotte, ne sont
-
-    **pas encore disponibles** dans ce simulateur.
+    simulateur.
 
 
-    > Attention : pour la RGDU le simulateur applique les règles de calcul de la
+    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
 
-    métropole.
+    Unique) spécifique à Mayotte n’est **pas encore disponible**.
+
+
+    > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet
+    2026.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
-    contribution rates** applicable
+    contribution rates** and
 
-    in Mayotte.
+    the **Lodeom** exemption in effect in Mayotte since July 1, 2026.
 
 
-    However, calculations related to the **RGDU** and the **Lodeom** exemption
-    are
-
-    not yet available for this territory.
+    However, the calculation of the **RGDU** is not yet available.
   résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** applicables
-    à Mayotte.
+    Ce simulateur applique bien les **taux de cotisations sociales** et
+    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
 
-    En revanche, les calculs liés à la **RGDU** et à l’exonération **Lodeom** ne
-    sont pas encore disponibles pour ce territoire.
+    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
@@ -11841,6 +11830,9 @@ salarié . cotisations . exonérations . lodeom . code régularisation:
     pour régulariser l’exonération.
   titre.en: '[automatic] regularization code'
   titre.fr: code régularisation
+salarié . cotisations . exonérations . lodeom . mayotte:
+  titre.en: '[automatic] Mayotte'
+  titre.fr: mayotte
 salarié . cotisations . exonérations . lodeom . montant:
   avec:
     coefficient:
@@ -11864,6 +11856,46 @@ salarié . cotisations . exonérations . lodeom . montant:
     seuil sortie:
       titre.en: '[automatic] output threshold'
       titre.fr: seuil sortie
+    smic:
+      description.en: >
+        [automatic] The minimum wage (SMIC) amount used in calculating the
+        Lodeom exemption, for the
+
+        eligibility cap and for calculating the coefficient.
+
+
+        The value to be used is the same as that used to calculate the
+
+        Single General Degressive Reduction (RGDU). In other words:
+
+        - The minimum wage is prorated based on hours worked in the case of
+          part-time work or overtime;
+        - The minimum wage is prorated for incomplete months of work, taking
+          into account compensation components not affected by the absence (such as
+          bonuses);
+        - Despite the increase in the minimum wage effective June 1, the value
+        used is still
+          that of January 1, 2026.
+      description.fr: >
+        Montant du Smic utilisé dans le calcul de l’exonération Lodeom, pour le
+
+        plafond d’éligibilité et pour le calcul du cœfficient.
+
+
+        La valeur à utiliser est la même que pour le calcul de la Réduction
+
+        générale dégressive unique (RGDU). Autrement dit :
+
+        - Le Smic est proratisé en fonction du temps de travail en cas de temps
+          partiel ou d’heures supplémentaires ;
+        - Le Smic est proratisé en cas de mois de travail incomplet, en tenant
+          compte des éléments de rémunérations non impactés par cette absence (comme
+          les primes) ;
+        - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
+        toujours
+          celle du 1er janvier 2026.
+      titre.en: '[automatic] minimum wage'
+      titre.fr: smic
   titre.en: '[automatic] exemption amount'
   titre.fr: montant de l’exonération
 salarié . cotisations . exonérations . lodeom . régularisation:
@@ -12882,10 +12914,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
       question.fr: Quel barème envisagez-vous ?
       titre.en: '[automatic] scales'
       titre.fr: barèmes
-  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Reunion Island'
-  titre.fr: Guadeloupe, Guyane, Martinique, La Réunion
+  titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
+  titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
 salarié . cotisations . exonérations . zones lodeom:
   avec:
+    mayotte:
+      titre.en: '[automatic] Mayotte'
+      titre.fr: Mayotte
     zone deux:
       titre.en: '[automatic] Saint-Barthélémy, Saint-Martin'
       titre.fr: Saint-Barthélémy, Saint-Martin

@@ -2,11 +2,19 @@ salarié . cotisations . exonérations . zones lodeom:
   question: Quelle est votre localisation ?
   une possibilité:
     - zone un
+    - mayotte
     - zone deux
   avec:
     zone un:
       valeur: zones lodeom = 'zone un'
       titre: Guadeloupe, Guyane, Martinique, La Réunion
+    mayotte:
+      # Ici on permet la sélection de Mayotte dès le début de l'année 2026 car
+      # cette question sert dans le simulateur Lodeom qui fonctionne sur l'année
+      # entière et se charge de masquer les 6 premiers mois de 2026.
+      applicable si: date >= 01/2026
+      valeur: zones lodeom = 'mayotte'
+      titre: Mayotte
     zone deux:
       valeur: zones lodeom = 'zone deux'
       titre: Saint-Barthélémy, Saint-Martin
@@ -25,7 +33,7 @@ salarié . cotisations . exonérations . lodeom:
     unique (RGDU) : pour un certain salaire donné, 100% de réduction. Pour un autre
     salaire plus élevé, 0% de réduction. Entre les deux, on trace une ligne droite.
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
+    Exonération Lodéom: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
     Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica
 
 salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:
@@ -58,17 +66,23 @@ salarié . cotisations . exonérations . lodeom . secteurs d'activité éligible
     Secteurs d’activité éligibles au Lodeom: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-2--conditions-dapplicati-b-conditions-deligibilite-liees-1-secteurs-dactivites-eligibles
 
 salarié . cotisations . exonérations . lodeom . zone un:
-  titre: Guadeloupe, Guyane, Martinique, La Réunion
-  icônes: 🇬🇵 🇬🇫 🇲🇶 🇷🇪
+  titre: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
+  icônes: 🇬🇵 🇬🇫 🇲🇶 🇾🇹 🇷🇪
   par défaut: non
   une de ces conditions:
     - zones lodeom = 'zone un'
+    - toutes ces conditions:
+        - est applicable: zones lodeom . mayotte
+        - zones lodeom = 'mayotte'
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
+    - toutes ces conditions:
+        - établissement . commune . département = 'Mayotte'
+        - date >= 07/2026
     - établissement . commune . département = 'Guyane'
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+    Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
 
   avec:
     # Impossible (ou trop compliqué) avec Publicodes de gérer dans la même règle :
@@ -103,7 +117,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
             - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
             et croissance.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
             Champ d’application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
 
         compétitivité renforcée:
@@ -142,7 +156,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
               - conseil aux entreprises ;
               - ingénierie ou études techniques.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
             Champ d’application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
 
         innovation et croissance:
@@ -169,7 +183,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
             L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+            Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
             Champ d’application du barème d’innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
 
     barème compétitivité:
@@ -195,7 +209,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
         - aux employeurs bénéficiant des dispositifs de compétitivité renforcée ou d’innovation
         et croissance.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+        Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d’application du barème de compétitivité: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1390
 
     barème compétitivité renforcée:
@@ -245,7 +259,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - conseil aux entreprises ;
           - ingénierie ou études techniques.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+        Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d’application du barème de renforcée: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1410
 
     barème innovation et croissance:
@@ -282,8 +296,18 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
         L’exonération **ne s’applique pas** aux fonctions supports : tâches administratives financières, logistique, ressources humaines.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
+        Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
         Champ d’application du barème d’innovation et croissance: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1430
+
+salarié . cotisations . exonérations . lodeom . mayotte:
+  par défaut: non
+  une de ces conditions:
+    - toutes ces conditions:
+        - est applicable: zones lodeom . mayotte
+        - zones lodeom = 'mayotte'
+    - toutes ces conditions:
+        - date >= 07/2026
+        - établissement . commune . département = 'Mayotte'
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
@@ -293,7 +317,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
     - établissement . commune . département = 'Saint-Barthélemy'
     - établissement . commune . département = 'Saint-Martin'
   références:
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+    Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
 
   avec:
     # Impossible (ou trop compliqué) avec Publicodes de gérer dans la même règle :
@@ -325,7 +349,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
             les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
             cette exonération, plus favorable, car elles ont moins de 11 salariés.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+            Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
             Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
 
         sectoriel:
@@ -356,7 +380,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
               - la desserte intérieure de ces départements ou collectivités.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+            Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
             Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
         renforcé:
@@ -390,7 +414,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
               - 🔋 énergies renouvelables ;
             - soit bénéficier du **régime de « perfectionnement actif »**.
           références:
-            Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+            Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
             Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
 
     barème moins de 11 salariés:
@@ -410,7 +434,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
         les conditions pour bénéficier du barème sectoriel sans critère d’effectif, choisissent d’opter pour
         cette exonération, plus favorable, car elles ont moins de 11 salariés.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+        Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
         Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1520
 
     barème sectoriel:
@@ -448,7 +472,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - la liaison entre ces départements ou collectivités et entre la Réunion et Mayotte ;
           - la desserte intérieure de ces départements ou collectivités.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+        Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
         Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1540
 
     barème renforcé:
@@ -492,7 +516,7 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - 🔋 énergies renouvelables ;
         - soit bénéficier du **régime de « perfectionnement actif »**.
       références:
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
+        Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
         Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
 
 salarié . cotisations . exonérations . lodeom . montant:
@@ -500,8 +524,7 @@ salarié . cotisations . exonérations . lodeom . montant:
   rend non applicable: RGDU
   titre: montant de l’exonération
   références:
-    Estimateur Urssaf: https://www.urssaf.fr/portail/home/utile-et-pratique/estimateur-exoneration-lodeom.html
-    Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
+    Exonération Lodéom: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html
 
   produit:
     - rémunération . brut
@@ -510,9 +533,9 @@ salarié . cotisations . exonérations . lodeom . montant:
   avec:
     coefficient:
       variations:
-        - si: rémunération . brut <= seuil inflexion * temps de travail . SMIC
+        - si: rémunération . brut <= seuil inflexion * smic
           alors: T
-        - si: rémunération . brut >= seuil sortie * temps de travail . SMIC
+        - si: rémunération . brut >= seuil sortie * smic
           alors: 0
         - si:
             une de ces conditions:
@@ -523,13 +546,37 @@ salarié . cotisations . exonérations . lodeom . montant:
             variations:
               - si:
                   toutes ces conditions:
-                    - rémunération . brut > seuil inflexion * temps de travail . SMIC
-                    - rémunération . brut < seuil intermédiaire * temps de travail . SMIC
-                alors: seuil inflexion * T * temps de travail . SMIC / rémunération . brut
-              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
-        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * temps de travail . SMIC / rémunération . brut - 1)
+                    - rémunération . brut > seuil inflexion * smic
+                    - rémunération . brut < seuil intermédiaire * smic
+                alors: seuil inflexion * T * smic / rémunération . brut
+              - sinon: seuil inflexion * T / (seuil sortie - seuil intermédiaire) * (seuil sortie * smic / rémunération . brut - 1)
+        - sinon: seuil inflexion * T / (seuil sortie - seuil inflexion) * (seuil sortie * smic / rémunération . brut - 1)
       unité: ''
       arrondi: 4 décimales
+
+    smic:
+      description: |
+        Montant du Smic utilisé dans le calcul de l’exonération Lodeom, pour le
+        plafond d’éligibilité et pour le calcul du cœfficient.
+
+        La valeur à utiliser est la même que pour le calcul de la Réduction
+        générale dégressive unique (RGDU). Autrement dit :
+        - Le Smic est proratisé en fonction du temps de travail en cas de temps
+          partiel ou d’heures supplémentaires ;
+        - Le Smic est proratisé en cas de mois de travail incomplet, en tenant
+          compte des éléments de rémunérations non impactés par cette absence (comme
+          les primes) ;
+        - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est toujours
+          celle du 1er janvier 2026.
+      références:
+        Détermination de la valeur du SMIC à retenir: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-3--modalites-dapplicatio-b-determination-de-la-valeur-du
+        Réduction générale dégressive unique - Détermination de la valeur du salaire minimum à retenir: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous
+      valeur: temps de travail . SMIC
+      contexte:
+        date: période . début d'année
+        établissement . commune . département:
+          applicable si: lodeom . mayotte
+          valeur: "'Mayotte'"
 
     seuil inflexion:
       variations:
@@ -571,29 +618,53 @@ salarié . cotisations . exonérations . lodeom . montant:
           alors: 4.5
 
     imputation retraite complémentaire:
-      non applicable si: lodeom . zone deux
+      non applicable si:
+        une de ces conditions:
+          - lodeom . zone deux
+          - lodeom . mayotte
       valeur: lodeom . montant - imputation sécurité sociale
 
     imputation sécurité sociale:
       non applicable si: lodeom . zone deux
-      produit:
-        - lodeom . montant
-        - T . sécurité sociale et chômage / T
+      variations:
+        - si: lodeom . mayotte
+          alors: lodeom . montant
+        - sinon:
+            produit:
+              - lodeom . montant
+              - T . sécurité sociale et chômage / T
 
     imputation chômage:
       non applicable si: lodeom . zone deux
       produit:
         - lodeom . montant
-        - chômage . taux / T
+        - valeur: chômage . taux
+          contexte:
+            établissement . commune . département:
+              applicable si: lodeom . mayotte
+              valeur: "'Mayotte'"
+        - 1 / T
 
 salarié . cotisations . exonérations . lodeom . code réduction:
   variations:
     - si: zone un . barème compétitivité
-      alors: '462'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '082'
+          - sinon: '462'
     - si: zone un . barème compétitivité renforcée
-      alors: '463'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '083'
+          - sinon: '463'
     - si: zone un . barème innovation et croissance
-      alors: '473'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '679'
+          - sinon: '473'
     - si: zone deux . barème moins de 11 salariés
       alors: '687'
     - si: zone deux . barème sectoriel
@@ -603,18 +674,35 @@ salarié . cotisations . exonérations . lodeom . code réduction:
   description: |
     Code type de personnel (CTP) à utiliser dans votre déclaration sociale nominative (DSN)
     pour déclarer l’exonération.
+  références:
+    Exonération Lodéom - Déclaration en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-declaration
+    Exonération Lodéom - Déclaration à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-declaration-1
 
 salarié . cotisations . exonérations . lodeom . code régularisation:
   variations:
     - si: zone un . barème compétitivité
-      alors: '684'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '192'
+          - sinon: '684'
     - si: zone un . barème compétitivité renforcée
-      alors: '538'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '295'
+          - sinon: '538'
     - si: zone un . barème innovation et croissance
-      alors: '685'
+      alors:
+        variations:
+          - si: lodeom . mayotte
+            alors: '059'
+          - sinon: '685'
   description: |
     Code type de personnel (CTP) à utiliser dans votre déclaration sociale nominative (DSN)
     pour régulariser l’exonération.
+  références:
+    Exonération Lodéom - Déclaration en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-declaration
 
 salarié . cotisations . exonérations . lodeom . régularisation:
   description: |

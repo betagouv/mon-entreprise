@@ -2428,9 +2428,10 @@ pages:
         progressive: Régularisation progressive
         type: Quel type de régularisation souhaitez-vous ?
       répartition:
+        CSSM: CSSM
         chômage: dont chômage
         retraite: IRC
-        urssaf: URSSAF
+        urssaf: Urssaf
       shortname: Exonération Lodeom
       title: Simulateur d'exonération Lodeom
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
