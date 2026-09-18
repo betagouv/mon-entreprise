@@ -5192,7 +5192,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mdx-js/react@npm:^3.0.0":
+"@mdx-js/react@npm:^3.0.0, @mdx-js/react@npm:^3.1.1":
   version: 3.1.1
   resolution: "@mdx-js/react@npm:3.1.1"
   dependencies:
@@ -26210,6 +26210,7 @@ __metadata:
     "@internationalized/number": "npm:^3.2.1"
     "@juggle/resize-observer": "npm:^3.4.0"
     "@leeoniya/ufuzzy": "npm:^1.0.10"
+    "@mdx-js/react": "npm:^3.1.1"
     "@mdx-js/rollup": "npm:^3.1.0"
     "@publicodes/react-ui": "npm:^1.10.0"
     "@react-aria/accordion": "npm:^3.0.0-alpha.37"

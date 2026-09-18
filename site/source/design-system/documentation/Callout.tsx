@@ -1,12 +1,36 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-export const Callout = styled.div.withConfig({
-	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
-})<{
+import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+
+import { Body } from '../typography'
+
+type Props = {
+	children: React.ReactNode
 	type?: 'tip' | 'note' | 'important' | 'caution'
 	icon?: string
-}>`
+}
+
+const Callout = ({ children, type, icon }: Props) => {
+	const childrenEstTexteBrut =
+		typeof children === 'string' ||
+		(Array.isArray(children) &&
+			children.length === 1 &&
+			typeof children[0] === 'string')
+
+	return (
+		<ForceThemeProvider forceTheme="light">
+			<CalloutDiv type={type} icon={icon}>
+				{childrenEstTexteBrut ? <Body>{children}</Body> : children}
+			</CalloutDiv>
+		</ForceThemeProvider>
+	)
+}
+
+const CalloutDiv = styled.div.withConfig({
+	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
+})<Pick<Props, 'type' | 'icon'>>`
 	padding: ${({ theme }) => `${theme.spacings.md} ${theme.spacings.lg}`};
 	margin: ${({ theme }) => `${theme.spacings.lg} 0`};
 	border-radius: ${({ theme }) => theme.box.borderRadius};
@@ -52,35 +76,55 @@ export const Callout = styled.div.withConfig({
 		}
 	}}
 
+	& * {
+		color: inherit;
+	}
+
 	p:last-child {
 		margin-bottom: 0;
 	}
 `
 
-export const Conseil = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="tip" icon="💡">
-		<strong>Conseil</strong>
-		{children}
-	</Callout>
-)
+export const Conseil = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
 
-export const Attention = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="caution" icon="⚠️">
-		<strong>Attention</strong>
-		{children}
-	</Callout>
-)
+	return (
+		<Callout type="tip" icon="💡">
+			<strong>{t('components.callout.conseil', 'Conseil')}</strong>
+			{children}
+		</Callout>
+	)
+}
 
-export const Info = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="important" icon="ℹ️">
-		<strong>Information</strong>
-		{children}
-	</Callout>
-)
+export const Attention = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
 
-export const Note = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="note" icon="📝">
-		<strong>Note</strong>
-		{children}
-	</Callout>
-)
+	return (
+		<Callout type="caution" icon="⚠️">
+			<strong>{t('components.callout.attention', 'Attention')}</strong>
+			{children}
+		</Callout>
+	)
+}
+
+export const Info = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
+
+	return (
+		<Callout type="important" icon="ℹ️">
+			<strong>{t('components.callout.information', 'Information')}</strong>
+			{children}
+		</Callout>
+	)
+}
+
+export const Note = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
+
+	return (
+		<Callout type="note" icon="📝">
+			<strong>{t('components.callout.note', 'Note')}</strong>
+			{children}
+		</Callout>
+	)
+}
