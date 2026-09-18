@@ -17,9 +17,7 @@ type GenericButtonOrLinkProps = (
 	| AriaButtonProps<'a'>
 	| (AriaButtonProps<typeof BaseLink> & ComponentPropsWithRef<typeof BaseLink>)
 	| AriaButtonProps<'button'>
-) & {
-	openInSameWindow?: true
-}
+)
 
 export type GenericCardProps = {
 	title?: React.ReactNode
@@ -32,7 +30,6 @@ type CardProps = GenericCardProps & {
 	className?: string
 	ctaLabel?: React.ReactNode
 	darkerBackground?: boolean
-	role?: string
 	subtitle?: string
 	headingLevel?: 'h3' | 'h4'
 }
