@@ -219,6 +219,11 @@ codeApe:
 common:
   useful-resources: Ressources utiles
 components:
+  callout:
+    attention: Attention
+    conseil: Conseil
+    information: Information
+    note: Note
   conseillersEntreprises:
     description: Décrivez votre projet ou votre problème en donnant quelques
       éléments de contexte. Conseillers-Entreprises Service Public identifiera,
