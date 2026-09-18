@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
@@ -83,26 +84,54 @@ const CalloutDiv = styled.div.withConfig({
 	}
 `
 
-export const Conseil = ({ children }: { children: React.ReactNode }) => (
-	<Callout titre="Conseil" type="tip" icon="💡">
-		{children}
-	</Callout>
-)
+export const Conseil = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
 
-export const Attention = ({ children }: { children: React.ReactNode }) => (
-	<Callout titre="Attention" type="caution" icon="⚠️">
-		{children}
-	</Callout>
-)
+	return (
+		<Callout
+			titre={t('components.callout.conseil', 'Conseil')}
+			type="tip"
+			icon="💡"
+		>
+			{children}
+		</Callout>
+	)
+}
 
-export const Info = ({ children }: { children: React.ReactNode }) => (
-	<Callout titre="Information" type="important" icon="ℹ️">
-		{children}
-	</Callout>
-)
+export const Attention = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
 
-export const Note = ({ children }: { children: React.ReactNode }) => (
-	<Callout titre="Note" type="note" icon="📝">
-		{children}
-	</Callout>
-)
+	return (
+		<Callout
+			titre={t('components.callout.attention', 'Attention')}
+			type="caution"
+			icon="⚠️"
+		>
+			{children}
+		</Callout>
+	)
+}
+
+export const Info = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
+
+	return (
+		<Callout
+			titre={t('components.callout.information', 'Information')}
+			type="important"
+			icon="ℹ️"
+		>
+			{children}
+		</Callout>
+	)
+}
+
+export const Note = ({ children }: { children: React.ReactNode }) => {
+	const { t } = useTranslation()
+
+	return (
+		<Callout titre={t('components.callout.note', 'Note')} type="note" icon="📝">
+			{children}
+		</Callout>
+	)
+}
