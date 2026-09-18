@@ -12,7 +12,7 @@ import { getColorPalette } from '../theme'
 import { ComponentType } from '../types'
 import { StyledLink } from '../typography/link'
 import { Body, SmallBody } from '../typography/paragraphs'
-import { getIconFromType } from '../utils'
+import { estTexteBrut, getIconFromType } from '../utils'
 
 type MessageProps = {
 	children: React.ReactNode
@@ -48,12 +48,7 @@ export function Message({
 		return
 	}
 
-	if (
-		typeof children === 'string' ||
-		(Array.isArray(children) &&
-			children.length === 1 &&
-			typeof children[0] === 'string')
-	) {
+	if (estTexteBrut(children)) {
 		children = mini ? (
 			<SmallBody>{children}</SmallBody>
 		) : (

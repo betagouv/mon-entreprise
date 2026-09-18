@@ -1,9 +1,9 @@
-import { Emoji } from '@/design-system'
+import { Emoji } from '../emoji'
 
-type Props = {
+type TextRendererProps = {
 	children: string
 }
 
-export default function TextRenderer({ children }: Props) {
-	return <Emoji emoji={children} />
-}
+export const TextRenderer = ({ children }: TextRendererProps) => (
+	<Emoji emoji={children} />
+)

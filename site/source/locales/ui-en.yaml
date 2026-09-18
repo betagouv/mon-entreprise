@@ -207,6 +207,11 @@ codeApe:
 common:
   useful-resources: Useful resources
 components:
+  callout:
+    attention: Warning
+    conseil: Tip
+    information: Information
+    note: Note
   conseillersEntreprises:
     description: Describe your project or problem and provide some background
       information. Conseillers-Entreprises Service Public will identify the
@@ -1878,6 +1883,7 @@ pages:
           assiette: Income base
           base: Contribution base
           calcul: Calculation
+          disclaimer: Urssaf shall not be held liable for this estimate.
           incomplet: Enter your situation (affiliation date and income) to see the
             calculation that applies to it.
           mensuelle: Monthly contribution
