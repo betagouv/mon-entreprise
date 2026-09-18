@@ -3,19 +3,28 @@ import { styled } from 'styled-components'
 
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 
+import { Body, Strong } from '../typography'
+import { estTexteBrut } from '../utils'
+
 type Props = {
+	titre: string
 	children: React.ReactNode
 	type?: 'tip' | 'note' | 'important' | 'caution'
 	icon?: string
 }
 
-const Callout = ({ children, type, icon }: Props) => (
-	<ForceThemeProvider forceTheme="light">
-		<CalloutDiv type={type} icon={icon}>
-			{children}
-		</CalloutDiv>
-	</ForceThemeProvider>
-)
+const Callout = ({ titre, children, type, icon }: Props) => {
+	const childrenEstTexteBrut = estTexteBrut(children)
+
+	return (
+		<ForceThemeProvider forceTheme="light">
+			<CalloutDiv type={type} icon={icon}>
+				<Strong>{titre}</Strong>
+				{childrenEstTexteBrut ? <Body>{children}</Body> : children}
+			</CalloutDiv>
+		</ForceThemeProvider>
+	)
+}
 
 const CalloutDiv = styled.div.withConfig({
 	shouldForwardProp: (prop) => !['type', 'icon'].includes(prop),
@@ -75,29 +84,25 @@ const CalloutDiv = styled.div.withConfig({
 `
 
 export const Conseil = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="tip" icon="💡">
-		<strong>Conseil</strong>
+	<Callout titre="Conseil" type="tip" icon="💡">
 		{children}
 	</Callout>
 )
 
 export const Attention = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="caution" icon="⚠️">
-		<strong>Attention</strong>
+	<Callout titre="Attention" type="caution" icon="⚠️">
 		{children}
 	</Callout>
 )
 
 export const Info = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="important" icon="ℹ️">
-		<strong>Information</strong>
+	<Callout titre="Information" type="important" icon="ℹ️">
 		{children}
 	</Callout>
 )
 
 export const Note = ({ children }: { children: React.ReactNode }) => (
-	<Callout type="note" icon="📝">
-		<strong>Note</strong>
+	<Callout titre="Note" type="note" icon="📝">
 		{children}
 	</Callout>
 )

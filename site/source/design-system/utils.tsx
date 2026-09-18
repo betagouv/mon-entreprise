@@ -11,3 +11,9 @@ export const getIconFromType = (type: ComponentType) => {
 			return <CircledInfoIcon />
 	}
 }
+
+export const estTexteBrut = (children: React.ReactNode) =>
+	typeof children === 'string' ||
+	(Array.isArray(children) &&
+		children.length === 1 &&
+		typeof children[0] === 'string')
