@@ -4,14 +4,13 @@ import { useDispatch } from 'react-redux'
 
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
 import { ChoixUnique } from '@/design-system'
-import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 export default function EffectifSwitch() {
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const dottedName = 'entreprise . salariés . effectif' as DottedName
+	const dottedName = 'entreprise . salariés . effectif'
 	const engineEffectif = engine.evaluate(dottedName).nodeValue as string
 	const [currentEffectif, setCurrentEffectif] = useState(engineEffectif)
 	const { t } = useTranslation()

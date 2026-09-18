@@ -1,10 +1,17 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Option, pipe } from 'effect'
+import { sumAll } from 'effect/Number'
+import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
 import { Body, Message } from '@/design-system'
+import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { QuantitéAdapter } from '@/domaine/engine/QuantitéAdapter'
+import { eurosParAn } from '@/domaine/MontantRecurrent'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { quantitéToNumber } from '@/domaine/Quantite'
 import { useBarèmeLodeom } from '@/hooks/useBarèmeLodeom'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
@@ -12,16 +19,20 @@ import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
 import {
+	getDataAfterGlobalOptionsChange,
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
-	getInitialRéductionMoisParMois,
+	heuresComplémentairesDottedName,
+	heuresSupplémentairesDottedName,
+	initialRéductionMoisParMois,
 	lodeomDottedName,
 	MonthState,
 	Options,
 	RégularisationMethod,
-	SituationType,
+	rémunérationBruteDottedName,
 } from '@/pages/simulateurs/lodeom/utils'
+import { ajusteLaSituation } from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
@@ -33,14 +44,19 @@ import ZoneSwitch from './components/ZoneSwitch'
 export default function LodeomSimulationGoals() {
 	const engine = useEngine()
 	const dispatch = useDispatch()
-	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>([])
 	const year = useYear()
-	const situation = useSelector(situationSelector) as SituationType
-	const previousSituation = useRef(situation)
+	const situation = useSelector(situationSelector)
+
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
+	const withRépartitionAndRégularisation = currentZone === 'zone un'
+
+	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
+		initialRéductionMoisParMois
+	)
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<RégularisationMethod>('progressive')
+
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
@@ -50,74 +66,110 @@ export default function LodeomSimulationGoals() {
 		'salarié . cotisations . exonérations . lodeom . code régularisation'
 	).nodeValue as string
 
-	const withRépartitionAndRégularisation = currentZone === 'zone un'
-
-	const initializeLodeomMoisParMoisData = useCallback(() => {
-		const data = getInitialRéductionMoisParMois(
-			year,
-			engine,
-			withRépartitionAndRégularisation
+	const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
+		pipe(
+			engine.evaluate(dottedName),
+			QuantitéAdapter.decode,
+			Option.map(quantitéToNumber),
+			Option.getOrElse(() => 0)
 		)
-		setData(data)
-	}, [engine, withRépartitionAndRégularisation, year])
+	const heuresSupplémentairesGlobales = getNumberFromQuantitéPublicodes(
+		heuresSupplémentairesDottedName
+	)
+	const heuresComplémentairesGlobales = getNumberFromQuantitéPublicodes(
+		heuresComplémentairesDottedName
+	)
 
 	useEffect(() => {
-		if (lodeomMoisParMoisData.length === 0) {
-			initializeLodeomMoisParMoisData()
-		}
-	}, [initializeLodeomMoisParMoisData, lodeomMoisParMoisData.length])
-
-	useEffect(() => {
-		setData((previousData) => {
-			return getDataAfterSituationChange(
-				situation,
-				previousSituation.current,
+		setData((previousData) =>
+			getDataAfterSituationChange(
 				previousData,
 				year,
 				engine,
 				régularisationMethod,
 				withRépartitionAndRégularisation
 			)
-		})
+		)
 	}, [
 		engine,
-		situation,
 		régularisationMethod,
 		year,
 		withRépartitionAndRégularisation,
+		situation,
 	])
 
-	const onRémunérationChange = (
-		monthIndex: number,
-		rémunérationBrute: number
-	) => {
-		setData((previousData) => {
-			return getDataAfterRémunérationChange(
-				monthIndex,
-				rémunérationBrute,
+	useEffect(() => {
+		setData((previousData) =>
+			getDataAfterGlobalOptionsChange(
+				{
+					heuresSupplémentaires: heuresSupplémentairesGlobales,
+					heuresComplémentaires: heuresComplémentairesGlobales,
+				},
 				previousData,
 				year,
 				engine,
-				dispatch,
 				régularisationMethod,
 				withRépartitionAndRégularisation
 			)
-		})
-	}
+		)
+		// Seules les heures supplémentaires/complémentaires globales doivent réétaler
+		// les options sur les douze mois : les autres dépendances du calcul sont gérées
+		// par le useEffect ci-dessus, qui ne touche pas aux options saisies mois par mois.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
 
-	const onOptionsChange = (monthIndex: number, options: Options) => {
-		setData((previousData) => {
-			return getDataAfterOptionsChange(
-				monthIndex,
-				options,
-				previousData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
+	const onRémunérationChange = useCallback(
+		(monthIndex: number, rémunérationBrute: number) => {
+			const rémunérationBruteAnnuelle =
+				sumAll(
+					lodeomMoisParMoisData.map((monthData, index) =>
+						index === monthIndex ? 0 : monthData.rémunérationBrute
+					)
+				) + rémunérationBrute
+			dispatch(
+				ajusteLaSituation({
+					[rémunérationBruteDottedName]: eurosParAn(rémunérationBruteAnnuelle),
+				} as Record<DottedName, ValeurPublicodes>)
 			)
-		})
-	}
+
+			setData((previousData) =>
+				getDataAfterRémunérationChange(
+					monthIndex,
+					rémunérationBrute,
+					previousData,
+					year,
+					engine,
+					régularisationMethod,
+					withRépartitionAndRégularisation
+				)
+			)
+		},
+		[
+			dispatch,
+			engine,
+			lodeomMoisParMoisData,
+			régularisationMethod,
+			withRépartitionAndRégularisation,
+			year,
+		]
+	)
+
+	const onOptionsChange = useCallback(
+		(monthIndex: number, options: Options) => {
+			setData((previousData) =>
+				getDataAfterOptionsChange(
+					monthIndex,
+					options,
+					previousData,
+					year,
+					engine,
+					régularisationMethod,
+					withRépartitionAndRégularisation
+				)
+			)
+		},
+		[engine, régularisationMethod, withRépartitionAndRégularisation, year]
+	)
 
 	return (
 		<SimulationGoals

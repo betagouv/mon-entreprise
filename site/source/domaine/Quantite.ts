@@ -70,5 +70,7 @@ export const quantitéToString = (
 	return `${quantité.valeur} ${displayedUnit ?? quantité.unité}`
 }
 
+export const quantitéToNumber = (quantité: Quantité): number => quantité.valeur
+
 export const arrondirÀLUnité = <Q extends Quantité>(q: Q): Q =>
 	quantité(Math.round(q.valeur), q.unité) as Q
