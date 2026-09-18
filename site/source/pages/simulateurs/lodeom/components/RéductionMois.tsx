@@ -60,7 +60,11 @@ export default function RéductionMois({
 				aria-describedby="options-description"
 				aria-expanded={isOptionVisible}
 				aria-controls={`options-${monthName}`}
-				aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
+				aria-label={t(
+					'pages.simulateurs.lodeom.options.aria-label',
+					'Options pour {{ mois }}',
+					{ mois: monthName }
+				)}
 			>
 				{t('Options')}&nbsp;
 				<RotatingChevronIcon aria-hidden isOpen={isOptionVisible} />
