@@ -2,7 +2,7 @@ import { Option, pipe } from 'effect'
 import { sumAll } from 'effect/Number'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
@@ -22,6 +22,7 @@ import {
 	getDataAfterGlobalOptionsChange,
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
+	getDataAfterSituationChange,
 	heuresComplémentairesDottedName,
 	heuresSupplémentairesDottedName,
 	initialRéductionMoisParMois,
@@ -32,6 +33,7 @@ import {
 	rémunérationBruteDottedName,
 } from '@/pages/simulateurs/lodeom/utils'
 import { ajusteLaSituation } from '@/store/actions/actions'
+import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import BarèmeSwitch from './components/BarèmeSwitch'
@@ -43,6 +45,7 @@ export default function LodeomSimulationGoals() {
 	const engine = useEngine()
 	const dispatch = useDispatch()
 	const year = useYear()
+	const situation = useSelector(situationSelector)
 
 	const currentZone = useZoneLodeom()
 	const currentBarème = useBarèmeLodeom()
@@ -79,11 +82,7 @@ export default function LodeomSimulationGoals() {
 
 	useEffect(() => {
 		setData((previousData) =>
-			getDataAfterGlobalOptionsChange(
-				{
-					heuresSupplémentaires: heuresSupplémentairesGlobales,
-					heuresComplémentaires: heuresComplémentairesGlobales,
-				},
+			getDataAfterSituationChange(
 				previousData,
 				year,
 				engine,
@@ -96,9 +95,28 @@ export default function LodeomSimulationGoals() {
 		régularisationMethod,
 		year,
 		withRépartitionAndRégularisation,
-		heuresSupplémentairesGlobales,
-		heuresComplémentairesGlobales,
+		situation,
 	])
+
+	useEffect(() => {
+		setData((previousData) =>
+			getDataAfterGlobalOptionsChange(
+				{
+					heuresSupplémentaires: heuresSupplémentairesGlobales,
+					heuresComplémentaires: heuresComplémentairesGlobales,
+				},
+				previousData,
+				year,
+				engine,
+				régularisationMethod,
+				withRépartitionAndRégularisation
+			)
+		)
+		// Seules les heures supplémentaires/complémentaires globales doivent réétaler
+		// les options sur les douze mois : les autres dépendances du calcul sont gérées
+		// par le useEffect ci-dessus, qui ne touche pas aux options saisies mois par mois.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [heuresSupplémentairesGlobales, heuresComplémentairesGlobales])
 
 	const onRémunérationChange = useCallback(
 		(monthIndex: number, rémunérationBrute: number) => {
