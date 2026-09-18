@@ -1,9 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { styled } from 'styled-components'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import { Body, Li, Strong, Ul } from '@/design-system'
+import { Body, Button, H3, Li, Strong, Ul } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
@@ -73,10 +74,22 @@ export const CessationActivitéSimulation = () => {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
-					customSimulationbutton={{
-						href: lien,
-						title: t('Vos cotisations pour l’année précédente'),
-					}}
+					customSimulationButton={
+						<DivWithPaddingBottom>
+							<H3>
+								{t(
+									'pages.simulateurs.cessation-activité.bouton-année-précédente.titre',
+									'Avez-vous besoin de calculer les cotisations de l’année précédente ?'
+								)}
+							</H3>
+							<Button size="MD" href={lien}>
+								{t(
+									'pages.simulateurs.cessation-activité.bouton-année-précédente.libellé',
+									'Vos cotisations pour l’année précédente'
+								)}
+							</Button>
+						</DivWithPaddingBottom>
+					}
 				>
 					<SimulateurWarning
 						metadata={metadata}
@@ -110,3 +123,7 @@ export const CessationActivitéSimulation = () => {
 		</EngineProvider>
 	)
 }
+
+const DivWithPaddingBottom = styled.div`
+	padding-bottom: ${({ theme }) => theme.spacings.lg};
+`

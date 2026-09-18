@@ -4,11 +4,9 @@ import { useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { type ConseillersEntreprisesVariant } from '@/components/ConseillersEntreprises/BoutonConseillersEntreprises'
-import ShareOrSaveSimulationBanner, {
-	CustomSimulationButton,
-} from '@/components/ShareSimulationBanner'
+import ShareOrSaveSimulationBanner from '@/components/ShareSimulationBanner'
 import { ComposantQuestion } from '@/components/Simulation/ComposantQuestion'
-import { Button, Grid, H3, Spacing } from '@/design-system'
+import { Grid, Spacing } from '@/design-system'
 import { RaccourciPublicodes } from '@/domaine/RaccourciPublicodes'
 import { Situation } from '@/domaine/Situation'
 import { QuestionPublicodes } from '@/hooks/useQuestions'
@@ -66,12 +64,14 @@ type SimulationProps<S extends Situation = Situation> = {
 	results?: React.ReactNode
 	children?: React.ReactNode
 	afterQuestionsSlot?: React.ReactNode
+	customSimulationButton?: React.ReactNode
+	avecSimulationPrécédente?: boolean
+	avecBoutonPartage?: boolean
 	hideDetails?: boolean
 	showQuestionsFromBeginning?: boolean
 	customEndMessages?: ReactNode
 	fullWidth?: boolean
 	id?: string
-	customSimulationbutton?: CustomSimulationButton
 	entrepriseSelection?: boolean
 	simulationEstCommencée?: (situation?: S) => boolean
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
@@ -87,12 +87,14 @@ export default function Simulation<S extends Situation = Situation>({
 	results,
 	children,
 	afterQuestionsSlot,
+	customSimulationButton,
+	avecSimulationPrécédente = true,
+	avecBoutonPartage = true,
 	customEndMessages,
 	showQuestionsFromBeginning,
 	hideDetails = false,
 	fullWidth,
 	id,
-	customSimulationbutton,
 	entrepriseSelection = true,
 	simulationEstCommencée,
 	conseillersEntreprisesVariant,
@@ -137,35 +139,22 @@ export default function Simulation<S extends Situation = Situation>({
 					)}
 					<Spacing md />
 
-					{!entrepriseSelection && questionsPublicodes?.length && (
+					{!entrepriseSelection && !!questionsPublicodes?.length && (
 						<SimulationPréremplieBanner />
 					)}
 
-					{!showQuestions && questionsPublicodes?.length && (
-						<PreviousSimulationBanner />
-					)}
+					{avecSimulationPrécédente &&
+						!showQuestions &&
+						!!questionsPublicodes?.length && <PreviousSimulationBanner />}
 
 					{afterQuestionsSlot}
 
 					{laSimulationEstCommencée && !hideDetails && (
 						<>
-							{customSimulationbutton && (
-								<>
-									<div>
-										<H3>
-											Avez-vous besoin de calculer les cotisations de l'année
-											précédente ?
-										</H3>
-										<Button size="MD" href={customSimulationbutton.href}>
-											{customSimulationbutton.title}
-										</Button>
-									</div>
-									<Spacing lg />
-								</>
-							)}
+							{customSimulationButton}
 
 							<ShareOrSaveSimulationBanner
-								share
+								share={avecBoutonPartage}
 								print
 								conseillersEntreprisesVariant={conseillersEntreprisesVariant}
 							/>

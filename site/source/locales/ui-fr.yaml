@@ -157,7 +157,6 @@ Voir les simulateurs personnalisés, accéder à la page de gestion de mon entre
   entreprise
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
-Vos cotisations pour l’année précédente: Vos cotisations pour l’année précédente
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
 Votre domaine d'activité: Votre domaine d'activité
@@ -1623,6 +1622,9 @@ pages:
       shortname: Avocat
       title: Simulateur de revenus pour avocat en libéral
     cessation-activité:
+      bouton-année-précédente:
+        libellé: Vos cotisations pour l’année précédente
+        titre: Avez-vous besoin de calculer les cotisations de l’année précédente ?
       date-modifiée: L’année de simulation a été changée pour {{ année }}.
       externalLinks:
         "1":
