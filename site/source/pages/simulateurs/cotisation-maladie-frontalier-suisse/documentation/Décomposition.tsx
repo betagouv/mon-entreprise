@@ -11,7 +11,7 @@ import {
 	TAUX_COTISATION_MALADIE,
 	useFrontalierSuisse,
 } from '@/contextes/frontalier-suisse'
-import { Body, Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
+import { Info, Tableau, Valeur, ValeurImportante } from '@/design-system'
 import { arrondirÀLEuro, Montant, montantToString } from '@/domaine/Montant'
 
 export const Décomposition = () => {
@@ -21,12 +21,10 @@ export const Décomposition = () => {
 	if (!estSituationValide(situation)) {
 		return (
 			<Info>
-				<Body>
-					{t(
-						'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
-						'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
-					)}
-				</Body>
+				{t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.incomplet',
+					'Renseignez votre situation (date d’affiliation et revenus) pour voir le calcul qui s’y applique.'
+				)}
 			</Info>
 		)
 	}
@@ -156,12 +154,10 @@ export const Décomposition = () => {
 			</Tableau>
 
 			<Info>
-				<Body>
-					{t(
-						'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.disclaimer',
-						'Cette estimation ne saurait engager la responsabilité de l’Urssaf.'
-					)}
-				</Body>
+				{t(
+					'pages.simulateurs.cotisation-maladie-frontalier-suisse.documentation.décomposition.disclaimer',
+					'Cette estimation ne saurait engager la responsabilité de l’Urssaf.'
+				)}
 			</Info>
 		</>
 	)
