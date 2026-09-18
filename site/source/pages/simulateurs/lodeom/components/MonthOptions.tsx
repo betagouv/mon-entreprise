@@ -92,7 +92,7 @@ export default function MonthOptions({
 			<GridContainer container columnSpacing={4}>
 				<Grid item sm={8} lg={7}>
 					<FlexDiv>
-						<StyledLabel id={`heures-sup-label`}>
+						<StyledLabel id={`heures-sup-label-${month}`}>
 							{additionalHoursLabels[additionalHours]}
 						</StyledLabel>
 						<InfoBulle description={<HeuresSupplémentairesPopoverContent />} />
@@ -108,7 +108,7 @@ export default function MonthOptions({
 								: undefined
 						}
 						onChange={(q) => onHeuresSupChange(q?.valeur)}
-						aria-labelledby={`heures-sup-label`}
+						aria-labelledby={`heures-sup-label-${month}`}
 						unité="heures/mois"
 					/>
 				</Grid>
@@ -127,7 +127,7 @@ export default function MonthOptions({
 			<GridContainer container columnSpacing={4}>
 				<Grid item sm={9} md={8.6} lg={7}>
 					<FlexDiv>
-						<StyledLabel id="rémunération-etp-label">
+						<StyledLabel id={`rémunération-etp-label-${month}`}>
 							{t(
 								'pages.simulateurs.lodeom.options.label.rémunération-etp',
 								'Rémunération de base mois complet'
@@ -148,7 +148,7 @@ export default function MonthOptions({
 						unité="€"
 						onChange={(m) => onRémunérationETPChange(m?.valeur)}
 						aria={{
-							labelledby: 'rémunération-etp-label',
+							labelledby: `rémunération-etp-label-${month}`,
 						}}
 						avecCentimes
 					/>
@@ -157,7 +157,7 @@ export default function MonthOptions({
 			<GridContainer container columnSpacing={4}>
 				<Grid item sm={9} md={8.6} lg={7}>
 					<FlexDiv>
-						<StyledLabel id="rémunération-primes-label">
+						<StyledLabel id={`rémunération-primes-label-${month}`}>
 							{t(
 								'pages.simulateurs.lodeom.options.label.rémunération-primes',
 								'Rémunération non affectée par le mois incomplet'
@@ -178,7 +178,7 @@ export default function MonthOptions({
 						unité="€"
 						onChange={(m) => onRémunérationPrimesChange(m?.valeur)}
 						aria={{
-							labelledby: 'rémunération-primes-label',
+							labelledby: `rémunération-primes-label-${month}`,
 						}}
 						avecCentimes
 					/>
