@@ -115,15 +115,13 @@ export const getDataAfterGlobalOptionsChange = (
 	régularisationMethod: RégularisationMethod,
 	withRépartitionAndRégularisation: boolean = true
 ): MonthState[] => {
-	const updatedData = previousData.map((data) => {
-		return {
-			...data,
-			options: {
-				...data.options,
-				...options,
-			},
-		}
-	}, [])
+	const updatedData = previousData.map((data) => ({
+		...data,
+		options: {
+			...data.options,
+			...options,
+		},
+	}))
 
 	return reevaluateRéductionMoisParMois(
 		updatedData,
