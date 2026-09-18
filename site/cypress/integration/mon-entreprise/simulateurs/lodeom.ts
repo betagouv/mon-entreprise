@@ -20,6 +20,8 @@ describe('Simulateur lodeom', function () {
 	const inputSelector = 'div[id="simulator-legend"] input[inputmode="numeric"]'
 	const inputAmount = '{selectall}3500'
 	const idPrefix = 'salarié___cotisations___exonérations___lodeom___montant'
+	const optionsButtonSelector =
+		'div[id="simulator-legend"] button[aria-describedby="options-description"]'
 
 	beforeEach(function () {
 		return cy.visit('/simulateurs/lodeom')
@@ -71,12 +73,7 @@ describe('Simulateur lodeom', function () {
 				expect(baseAmount).to.be.greaterThan(0)
 			})
 
-		cy.get(
-			'div[id="simulator-legend"] button[aria-describedby="options-description"]'
-		)
-			.should('have.length', 12)
-			.first()
-			.click()
+		cy.get(optionsButtonSelector).should('have.length', 12).first().click()
 
 		cy.get('input[id="option-heures-sup-janvier"]')
 			.should('be.visible')
@@ -106,11 +103,7 @@ describe('Simulateur lodeom', function () {
 		cy.get(inputSelector).first().click()
 		cy.get(inputSelector).first().type('{selectall}1500')
 
-		cy.get(
-			'div[id="simulator-legend"] button[aria-describedby="options-description"]'
-		)
-			.first()
-			.click()
+		cy.get(optionsButtonSelector).first().click()
 		cy.get('input[id="option-heures-sup-janvier"]').type('{selectall}5')
 		cy.get('input[id="option-rémunération-etp-janvier"]')
 			.should('be.visible')
@@ -129,11 +122,7 @@ describe('Simulateur lodeom', function () {
 				expect(amount).to.be.lessThan(baseAmount)
 			})
 
-		cy.get(
-			'div[id="simulator-legend"] button[aria-describedby="options-description"]'
-		)
-			.first()
-			.click()
+		cy.get(optionsButtonSelector).first().click()
 	})
 
 	it('devrait respecter le RGAA', function () {
@@ -142,6 +131,10 @@ describe('Simulateur lodeom', function () {
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).type(inputAmount)
 		})
+		cy.get(optionsButtonSelector).first().click()
+		cy.get(optionsButtonSelector).eq(1).click()
+		cy.get('input[id="option-heures-sup-janvier"]').should('be.visible')
+		cy.get('input[id="option-heures-sup-février"]').should('be.visible')
 
 		checkA11Y()
 	})
