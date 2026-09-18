@@ -142,6 +142,11 @@ describe('Simulateur lodeom', function () {
 		cy.get(inputSelector).each(($input) => {
 			cy.wrap($input).type(inputAmount)
 		})
+		cy.get(
+			'div[id="simulator-legend"] button[aria-describedby="options-description"]'
+		)
+			.first()
+			.click()
 
 		checkA11Y()
 	})

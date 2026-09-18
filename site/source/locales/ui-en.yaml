@@ -41,7 +41,6 @@ Cotisations: Contributions
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
-Déplier: Unfold
 "Détail du montant :": "Amount in detail :"
 Effacer mes réponses: Delete my answers
 En savoir plus: Read more
@@ -2288,6 +2287,7 @@ pages:
       month-by-month:
         caption: "Lodeom exemption month by month :"
       options:
+        aria-label: Options for {{ mois }}
         description: Adds fields to modulate employee activity
         heures-sup:
           popover: "The number of overtime and additional hours is used to calculate the

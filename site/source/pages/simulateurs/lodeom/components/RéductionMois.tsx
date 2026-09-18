@@ -20,6 +20,7 @@ import {
 	Options,
 } from '@/pages/simulateurs/lodeom/utils'
 
+import { MobileContainer } from './MobileContainer'
 import RémunérationInput from './RémunérationInput'
 
 type Props = {
@@ -59,7 +60,11 @@ export default function RéductionMois({
 				aria-describedby="options-description"
 				aria-expanded={isOptionVisible}
 				aria-controls={`options-${monthName}`}
-				aria-label={!isOptionVisible ? t('Déplier') : t('Replier')}
+				aria-label={t(
+					'pages.simulateurs.lodeom.options.aria-label',
+					'Options de {{ mois }}',
+					{ mois: monthName }
+				)}
 			>
 				{t('Options')}&nbsp;
 				<RotatingChevronIcon aria-hidden isOpen={isOptionVisible} />
@@ -101,7 +106,7 @@ export default function RéductionMois({
 	}
 
 	return mobileVersion ? (
-		<div>
+		<MobileContainer>
 			<StyledMonth>{monthName}</StyledMonth>
 			<GridContainer container spacing={2}>
 				<Grid item xs={7} sm={4}>
@@ -151,7 +156,7 @@ export default function RéductionMois({
 
 			{isOptionVisible && (
 				<ForceThemeProvider forceTheme="default">
-					<OptionsContainer>
+					<OptionsContainer id={`options-${monthName}`}>
 						<MonthOptions
 							month={monthName}
 							index={index}
@@ -161,7 +166,7 @@ export default function RéductionMois({
 					</OptionsContainer>
 				</ForceThemeProvider>
 			)}
-		</div>
+		</MobileContainer>
 	) : (
 		<>
 			<tr>
@@ -188,7 +193,7 @@ export default function RéductionMois({
 			</tr>
 			{isOptionVisible && (
 				<ForceThemeProvider forceTheme="default">
-					<StyledTableRow>
+					<StyledTableRow id={`options-${monthName}`}>
 						<td />
 						<td colSpan={withRépartitionAndRégularisation ? 4 : 3}>
 							<MonthOptions
