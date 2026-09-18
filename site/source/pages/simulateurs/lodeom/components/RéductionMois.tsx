@@ -152,7 +152,7 @@ export default function RéductionMois({
 
 			{isOptionVisible && (
 				<ForceThemeProvider forceTheme="default">
-					<OptionsContainer>
+					<OptionsContainer id={`options-${monthName}`}>
 						<MonthOptions
 							month={monthName}
 							index={index}
@@ -189,7 +189,7 @@ export default function RéductionMois({
 			</tr>
 			{isOptionVisible && (
 				<ForceThemeProvider forceTheme="default">
-					<StyledTableRow>
+					<StyledTableRow id={`options-${monthName}`}>
 						<td />
 						<td colSpan={withRépartitionAndRégularisation ? 4 : 3}>
 							<MonthOptions
