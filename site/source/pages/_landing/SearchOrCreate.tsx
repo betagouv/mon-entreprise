@@ -73,7 +73,7 @@ export default function SearchOrCreate() {
 					</>
 				) : (
 					<>
-						<Trans i18nKey="landing.searchcompany">
+						<Trans i18nKey="pages.landing.searchcompany">
 							<H3 as="h2">Rechercher votre entreprise </H3>
 							<Body>
 								Pour accéder à nos simulateurs les plus pertinents pour votre

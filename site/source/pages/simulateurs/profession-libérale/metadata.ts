@@ -29,7 +29,7 @@ export function professionLibéraleMetadata({
 			),
 			description: t(
 				'pages.simulateurs.profession-libérale.meta.description',
-				"Calcul du revenu net pour les indépendants en libéral à l'impôt sur le revenu (IR, BNC)"
+				'Calcul du revenu net pour les indépendants en libéral.'
 			),
 		},
 		codesCatégorieJuridique: [

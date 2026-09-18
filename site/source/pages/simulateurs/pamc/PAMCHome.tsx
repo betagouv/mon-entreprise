@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next'
 
 import { TrackPage } from '@/components/PianoAnalytics'
-import { SimulateurCard } from '@/components/SimulateurCard'
+import { SmallSimulateurCard } from '@/components/SmallSimulateurCard'
 import { H2 } from '@/design-system'
 import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { servicePAM } from '@/external-links/servicePAM'
@@ -34,18 +34,16 @@ export function PAMCHome() {
 					)}
 				</H2>
 				<div role="list">
-					<SimulateurCard
-						small
+					<SmallSimulateurCard
+						role="listitem"
 						{...simulators['auxiliaire-médical']}
-						role="listitem"
 					/>
-					<SimulateurCard
-						small
+					<SmallSimulateurCard
+						role="listitem"
 						{...simulators['chirurgien-dentiste']}
-						role="listitem"
 					/>
-					<SimulateurCard small {...simulators.médecin} role="listitem" />
-					<SimulateurCard small {...simulators['sage-femme']} role="listitem" />
+					<SmallSimulateurCard role="listitem" {...simulators.médecin} />
+					<SmallSimulateurCard role="listitem" {...simulators['sage-femme']} />
 				</div>
 			</SimulateurPageLayout>
 		</>

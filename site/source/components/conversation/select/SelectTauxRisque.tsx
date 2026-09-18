@@ -2,7 +2,14 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { Card, Spacing, TextField } from '@/design-system'
+import {
+	BasicClickableCard,
+	Body,
+	Li,
+	Spacing,
+	TextField,
+	Ul,
+} from '@/design-system'
 
 let worker: Worker | null = null
 
@@ -74,10 +81,21 @@ function SelectComponent({
 			<TextField
 				id={id}
 				type="search"
-				placeholder={t("Saisissez votre domaine d'activité")}
-				aria-label={t("Votre domaine d'activité")}
+				placeholder={t(
+					'components.select-taux-risque.placeholder',
+					'Saisissez votre domaine d’activité'
+				)}
+				aria-label={t(
+					'components.select-taux-risque.aria-label.field',
+					'Votre domaine d’activité'
+				)}
 				errorMessage={
-					searchResults && searchResults.length === 0 ? t('Aucun résultat') : ''
+					searchResults && searchResults.length === 0
+						? t(
+								'components.select-taux-risque.aria-label.no-result',
+								'Aucun résultat'
+							)
+						: ''
 				}
 				onChange={(input) => {
 					if (input.length < 2) {
@@ -89,58 +107,59 @@ function SelectComponent({
 				}}
 			/>
 
-			{searchResults &&
-				searchResults.map((option) => (
-					<Card
-						bodyAs={Wrapper}
-						onPress={() => submitOnChange(option)}
-						compact
-						key={JSON.stringify(option)}
-						style={{
-							padding: '0.4rem',
-							marginTop: '0.5rem',
-						}}
-					>
-						<span
-							style={{
-								flex: '6',
-							}}
-						>
-							{option['Nature du risque']}
-						</span>
+			{searchResults && (
+				<Ul $noMarker>
+					{searchResults.map((option) => (
+						<Li key={JSON.stringify(option)}>
+							<BasicClickableCard
+								onClick={() => submitOnChange(option)}
+								ariaLabel={t(
+									'components.select-taux-risque.aria-label.card',
+									'{{taux}}, sélectionner ce taux',
+									{ taux: option['Taux net'] }
+								)}
+							>
+								<Container>
+									<RisqueContainer>
+										{option['Nature du risque']}
+									</RisqueContainer>
 
-						<span
-							style={{
-								flex: '2',
-								color: '#333',
-								backgroundColor: 'inherit',
-								fontSize: '1rem',
-							}}
-						>
-							{formatTauxNet(option['Taux net'])}
-						</span>
-						<span
-							style={{
-								flex: '4',
-								backgroundColor: '#ddd',
-								color: '#333',
-								borderRadius: '0.25em',
-								padding: '0.5em',
-								textAlign: 'center',
-							}}
-						>
-							{option['Catégorie']}
-						</span>
-					</Card>
-				))}
+									<TauxContainer>
+										{formatTauxNet(option['Taux net'])}
+									</TauxContainer>
+									<CatégorieContainer>{option['Catégorie']}</CatégorieContainer>
+								</Container>
+							</BasicClickableCard>
+						</Li>
+					))}
+				</Ul>
+			)}
 		</>
 	)
 }
 
-const Wrapper = styled.div`
+const Container = styled(Body)`
 	display: flex;
 	align-items: center;
-	text-align: left;
+	column-gap: ${({ theme }) => theme.spacings.xs};
+	margin-bottom: 0;
+	margin-top: 0;
+`
+
+const RisqueContainer = styled.span`
+	flex: 6;
+`
+
+const TauxContainer = styled.span`
+	flex: 2;
+`
+
+const CatégorieContainer = styled.span`
+	flex: 4;
+	background-color: ${({ theme }) => theme.colors.extended.grey[300]};
+	border-radius: 0.25em;
+	padding: ${({ theme }) => theme.spacings.xs};
+	text-align: center;
 	font-size: ${({ theme }) => theme.fontSizes.min};
 `
 
