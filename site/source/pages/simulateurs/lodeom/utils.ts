@@ -92,6 +92,21 @@ const isParamètresRéductionAvecRémunération = (
 	params: ParamètresRéduction
 ): params is ParamètresRéductionAvecRémunération => params.rémunérationBrute > 0
 
+export const getDataAfterSituationChange = (
+	data: MonthState[],
+	year: number,
+	engine: Engine<DottedName>,
+	régularisationMethod: RégularisationMethod,
+	withRépartitionAndRégularisation: boolean = true
+): MonthState[] =>
+	reevaluateRéductionMoisParMois(
+		data,
+		year,
+		engine,
+		withRépartitionAndRégularisation,
+		withRépartitionAndRégularisation ? régularisationMethod : undefined
+	)
+
 export const getDataAfterGlobalOptionsChange = (
 	options: Partial<Options>,
 	previousData: MonthState[],
