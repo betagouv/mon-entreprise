@@ -1,33 +1,19 @@
-import rules from 'modele-social'
-import Engine from 'publicodes'
 import { describe, expect, it } from 'vitest'
 
-import { DottedName } from '@/domaine/publicodes/DottedName'
-
-import { situationSalarié } from '../SituationSalarie'
 import {
 	getDataAfterGlobalOptionsChange,
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
 } from './ExonerationMoisParMois'
-import { initialRéductionMoisParMois, MonthState } from './MoisParMois'
+import { initialRéductionMoisParMois } from './MoisParMois'
 import { Options } from './Options'
+import { annéeAvec, moteurZoneUn } from './test/fixtures'
 
 const janvier = 0
 const février = 1
 const année = 2025
-
-const moteurZoneUn = (rémunérationAnnuelle?: string) =>
-	new Engine(rules).setSituation({
-		...situationSalarié,
-		'salarié . cotisations . exonérations . zones lodeom': "'zone un'",
-		'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
-			"'compétitivité'",
-		...(rémunérationAnnuelle
-			? { 'salarié . rémunération . brut': rémunérationAnnuelle }
-			: {}),
-	}) as Engine<DottedName>
+const moteur = moteurZoneUn('3500 €/an')
 
 const heuresSupplémentaires = (nombre: number): Options => ({
 	heuresSupplémentaires: nombre,
@@ -36,23 +22,16 @@ const heuresSupplémentaires = (nombre: number): Options => ({
 	rémunérationPrimes: 0,
 })
 
-const avecRémunération = (
-	mois: number,
-	rémunérationBrute: number,
-	données: MonthState[] = initialRéductionMoisParMois
-) =>
-	getDataAfterRémunérationChange(
-		mois,
-		rémunérationBrute,
-		données,
-		année,
-		moteurZoneUn('3500 €/an'),
-		'progressive'
-	)
-
 describe('getDataAfterRémunérationChange', () => {
 	it('calcule l’exonération du mois saisi', () => {
-		const données = avecRémunération(janvier, 3500)
+		const données = getDataAfterRémunérationChange(
+			janvier,
+			3500,
+			initialRéductionMoisParMois,
+			année,
+			moteur,
+			'progressive'
+		)
 
 		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
 		expect(données[janvier].réduction.répartition.Urssaf).toBeGreaterThan(0)
@@ -70,35 +49,41 @@ describe('getDataAfterRémunérationChange', () => {
 
 		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
 	})
-})
 
-describe('getDataAfterGlobalOptionsChange', () => {
-	it('applique les heures supplémentaires du cadre bleu aux douze mois', () => {
-		const données = getDataAfterGlobalOptionsChange(
-			{ heuresSupplémentaires: 5 },
-			avecRémunération(janvier, 3500),
+	it('écrit sur le mois saisi sans toucher aux autres', () => {
+		const données = getDataAfterRémunérationChange(
+			février,
+			3000,
+			annéeAvec([3500]),
 			année,
-			moteurZoneUn('3500 €/an'),
+			moteur,
 			'progressive'
 		)
 
+		expect(données[janvier].rémunérationBrute).toBe(3500)
+		expect(données[février].rémunérationBrute).toBe(3000)
+	})
+})
+
+describe('getDataAfterGlobalOptionsChange', () => {
+	const étale = (heures: number) =>
+		getDataAfterGlobalOptionsChange(
+			{ heuresSupplémentaires: heures },
+			annéeAvec([3500]),
+			année,
+			moteur,
+			'progressive'
+		)
+
+	it('applique les heures supplémentaires du cadre bleu aux douze mois', () => {
 		expect(
-			données.map((mois) => mois.options.heuresSupplémentaires)
+			étale(5).map((mois) => mois.options.heuresSupplémentaires)
 		).toStrictEqual(Array(12).fill(5))
 	})
 
 	it('fait varier l’exonération du mois rémunéré', () => {
-		const sansHeuresSup = avecRémunération(janvier, 3500)
-		const avecHeuresSup = getDataAfterGlobalOptionsChange(
-			{ heuresSupplémentaires: 5 },
-			sansHeuresSup,
-			année,
-			moteurZoneUn('3500 €/an'),
-			'progressive'
-		)
-
-		expect(avecHeuresSup[janvier].réduction.value).not.toBeCloseTo(
-			sansHeuresSup[janvier].réduction.value,
+		expect(étale(5)[janvier].réduction.value).not.toBeCloseTo(
+			étale(0)[janvier].réduction.value,
 			2
 		)
 	})
@@ -106,9 +91,9 @@ describe('getDataAfterGlobalOptionsChange', () => {
 	it('laisse intactes les rémunérations déjà saisies', () => {
 		const données = getDataAfterGlobalOptionsChange(
 			{ heuresSupplémentaires: 5 },
-			avecRémunération(février, 3000, avecRémunération(janvier, 3500)),
+			annéeAvec([3500, 3000]),
 			année,
-			moteurZoneUn('6500 €/an'),
+			moteur,
 			'progressive'
 		)
 
@@ -122,9 +107,9 @@ describe('getDataAfterOptionsChange', () => {
 		const données = getDataAfterOptionsChange(
 			janvier,
 			heuresSupplémentaires(10),
-			avecRémunération(janvier, 3500),
+			annéeAvec([3500]),
 			année,
-			moteurZoneUn('3500 €/an'),
+			moteur,
 			'progressive'
 		)
 
@@ -135,23 +120,34 @@ describe('getDataAfterOptionsChange', () => {
 
 describe('getDataAfterSituationChange', () => {
 	it('conserve les options saisies mois par mois', () => {
-		const moteur = moteurZoneUn('3500 €/an')
-		const avecOptionsDeJanvier = getDataAfterOptionsChange(
-			janvier,
-			heuresSupplémentaires(10),
-			avecRémunération(janvier, 3500),
-			année,
-			moteur,
-			'progressive'
+		const avecOptionsEnJanvier = annéeAvec([3500]).map((mois, index) =>
+			index === janvier ? { ...mois, options: heuresSupplémentaires(10) } : mois
 		)
 
 		const données = getDataAfterSituationChange(
-			avecOptionsDeJanvier,
+			avecOptionsEnJanvier,
 			année,
 			moteur,
 			'annuelle'
 		)
 
 		expect(données[janvier].options.heuresSupplémentaires).toBe(10)
+	})
+
+	it('recalcule la réduction sans tenir compte de celle reçue en entrée', () => {
+		const avecUneRéductionFausse = annéeAvec([3500]).map((mois, index) =>
+			index === janvier
+				? { ...mois, réduction: { ...mois.réduction, value: 9999 } }
+				: mois
+		)
+
+		const données = getDataAfterSituationChange(
+			avecUneRéductionFausse,
+			année,
+			moteur,
+			'progressive'
+		)
+
+		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
 	})
 })
