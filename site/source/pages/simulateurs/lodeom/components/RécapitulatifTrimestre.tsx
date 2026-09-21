@@ -2,9 +2,9 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { MonthState } from '@/contextes/salarié'
 import { Body, Grid } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
-import { MonthState } from '@/pages/simulateurs/lodeom/utils'
 
 import { MobileContainer } from './MobileContainer'
 

@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
+import { RégularisationMethod } from '@/contextes/salarié'
 import { ChoixUnique } from '@/design-system'
-import { RégularisationMethod } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	régularisationMethod: RégularisationMethod

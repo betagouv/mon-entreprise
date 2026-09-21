@@ -4,12 +4,12 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import { EyeIcon, FlexCenter, Tooltip, WarningIcon } from '@/design-system'
-import Répartition from '@/pages/simulateurs/lodeom/components/Répartition'
 import {
 	rémunérationBruteDottedName,
 	Répartition as RépartitionType,
-} from '@/pages/simulateurs/lodeom/utils'
+} from '@/contextes/salarié'
+import { EyeIcon, FlexCenter, Tooltip, WarningIcon } from '@/design-system'
+import Répartition from '@/pages/simulateurs/lodeom/components/Répartition'
 
 type Props = {
 	id: string

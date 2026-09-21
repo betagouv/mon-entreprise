@@ -4,16 +4,16 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
-import { baseTheme, H3, Spacing } from '@/design-system'
-import { useMediaQuery } from '@/hooks/useMediaQuery'
-import useYear from '@/hooks/useYear'
-import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import {
 	lodeomDottedName,
 	MonthState,
 	Options,
 	rémunérationBruteDottedName,
-} from '@/pages/simulateurs/lodeom/utils'
+} from '@/contextes/salarié'
+import { baseTheme, H3, Spacing } from '@/design-system'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
+import useYear from '@/hooks/useYear'
+import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 
 import RécapitulatifTrimestre from './RécapitulatifTrimestre'
 import RéductionMois from './RéductionMois'
