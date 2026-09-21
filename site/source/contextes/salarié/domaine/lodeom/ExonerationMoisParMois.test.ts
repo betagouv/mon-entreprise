@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
+import { situationSalarié } from '../SituationSalarie'
 import {
 	getDataAfterGlobalOptionsChange,
 	getDataAfterOptionsChange,
@@ -19,9 +20,7 @@ const année = 2025
 
 const moteurZoneUn = (rémunérationAnnuelle?: string) =>
 	new Engine(rules).setSituation({
-		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
-		'entreprise . imposition': 'non',
+		...situationSalarié,
 		'salarié . cotisations . exonérations . zones lodeom': "'zone un'",
 		'salarié . cotisations . exonérations . lodeom . zone un . barèmes':
 			"'compétitivité'",

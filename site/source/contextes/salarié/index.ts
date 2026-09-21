@@ -13,3 +13,4 @@ export {
 	rémunérationBruteDottedName,
 	type Répartition,
 } from './domaine/lodeom'
+export { situationSalarié } from './domaine/SituationSalarie'
