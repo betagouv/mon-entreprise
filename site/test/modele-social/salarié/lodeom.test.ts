@@ -26,7 +26,89 @@ describe('Lodeom', () => {
 	let engine: Engine<RègleModèleSocial>
 	let smic: number
 	beforeEach(() => {
-		engine = new Engine(rules)
+		engine = new Engine(rules, { warn: false })
+	})
+
+	describe('Applicabilité', () => {
+		it('la Lodeom n’est pas applicable à Mayotte avant le 1er juillet 2026', () => {
+			const e = engine.setSituation({
+				date: '30/06/2026',
+				'salarié . cotisations . exonérations . zones lodeom': "'mayotte'",
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom applicable à mayotte',
+				false
+			)
+			expect(e).not.toBeApplicable(
+				'salarié . cotisations . exonérations . zones lodeom . mayotte'
+			)
+			expect(e).not.toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un',
+				true
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . mayotte',
+				false
+			)
+		})
+
+		it('la Lodeom est applicable à Mayotte à partir du 1er juillet 2026', () => {
+			const e = engine.setSituation({
+				date: '01/07/2026',
+				'salarié . cotisations . exonérations . zones lodeom': "'mayotte'",
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom applicable à mayotte',
+				true
+			)
+			expect(e).toBeApplicable(
+				'salarié . cotisations . exonérations . zones lodeom . mayotte'
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un',
+				true
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . mayotte',
+				true
+			)
+		})
+
+		it('la zone un s’active en sélectionnant la zone "mayotte"', () => {
+			const e = engine.setSituation({
+				date: '01/07/2026',
+				'salarié . cotisations . exonérations . zones lodeom': "'mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un',
+				true
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . mayotte',
+				true
+			)
+		})
+
+		it('la zone un s’active en sélectionnant le département "Mayotte"', () => {
+			const e = engine.setSituation({
+				date: '01/07/2026',
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un',
+				true
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . mayotte',
+				true
+			)
+		})
 	})
 
 	describe('Calcul de la réduction et de sa répartition', () => {
