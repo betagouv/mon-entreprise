@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { Répartition as RépartitionType } from '@/contextes/salarié'
 import { Body, Li, Strong, Ul } from '@/design-system'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
 import RépartitionValue from '@/pages/simulateurs/lodeom/components/RépartitionValue'
-import { Répartition as RépartitionType } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	idPrefix: string

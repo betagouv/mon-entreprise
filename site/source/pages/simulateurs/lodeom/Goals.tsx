@@ -7,6 +7,20 @@ import { styled } from 'styled-components'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
+import {
+	getDataAfterGlobalOptionsChange,
+	getDataAfterOptionsChange,
+	getDataAfterRémunérationChange,
+	getDataAfterSituationChange,
+	heuresComplémentairesDottedName,
+	heuresSupplémentairesDottedName,
+	initialRéductionMoisParMois,
+	lodeomDottedName,
+	MonthState,
+	Options,
+	RégularisationMethod,
+	rémunérationBruteDottedName,
+} from '@/contextes/salarié'
 import { Body, Message } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { QuantitéAdapter } from '@/domaine/engine/QuantitéAdapter'
@@ -22,20 +36,6 @@ import {
 import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
-import {
-	getDataAfterGlobalOptionsChange,
-	getDataAfterOptionsChange,
-	getDataAfterRémunérationChange,
-	getDataAfterSituationChange,
-	heuresComplémentairesDottedName,
-	heuresSupplémentairesDottedName,
-	initialRéductionMoisParMois,
-	lodeomDottedName,
-	MonthState,
-	Options,
-	RégularisationMethod,
-	rémunérationBruteDottedName,
-} from '@/pages/simulateurs/lodeom/utils'
 import {
 	ajusteLaSituation,
 	supprimeLaRègleDeLaSituation,

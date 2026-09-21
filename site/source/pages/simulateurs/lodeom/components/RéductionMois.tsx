@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { lodeomDottedName, MonthState, Options } from '@/contextes/salarié'
 import {
 	Body,
 	Button,
@@ -14,11 +15,6 @@ import {
 } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
 import MonthOptions from '@/pages/simulateurs/lodeom/components/MonthOptions'
-import {
-	lodeomDottedName,
-	MonthState,
-	Options,
-} from '@/pages/simulateurs/lodeom/utils'
 
 import { MobileContainer } from './MobileContainer'
 import RémunérationInput from './RémunérationInput'
