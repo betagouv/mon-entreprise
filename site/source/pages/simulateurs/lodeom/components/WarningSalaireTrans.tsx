@@ -21,6 +21,7 @@ export default function WarningSalaireTrans() {
 		return null
 	}
 
+	const smic1erJanvier = zone !== 'mayotte'
 	const barèmeRule = engine.getRule(
 		`${barèmeLodeomDottedName(zone)} . ${currentBarème}` as DottedName
 	)
@@ -34,21 +35,35 @@ export default function WarningSalaireTrans() {
 	const smic = engine.evaluate({
 		valeur: 'SMIC',
 		unité: '€/an',
+		...(smic1erJanvier
+			? {
+					contexte: {
+						date: `01/01/${year}`,
+					},
+				}
+			: {}),
 	}).nodeValue as number
 	const plafond = formatValue(round(seuilDeSortie * smic, 2), {
 		displayedUnit: '€',
 	}) as string
 
-	return (
-		barème &&
-		seuil &&
-		year &&
-		plafond && (
-			<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire">
-				Le {{ barème }} concerne uniquement les salaires inférieurs à{' '}
-				{{ seuil }} Smic. C'est-à-dire, pour {{ year }}, une rémunération totale
-				qui ne dépasse pas <strong>{{ plafond }}</strong> bruts par an.
-			</Trans>
-		)
+	if (!barème || !seuil || !year || !plafond) {
+		return null
+	}
+
+	return smic1erJanvier ? (
+		<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.1er-janvier">
+			Le {{ barème }} concerne uniquement les salaires inférieurs à {{ seuil }}{' '}
+			Smic (valeur du 1er janvier). C'est-à-dire, pour {{ year }}, une
+			rémunération totale qui ne dépasse pas <strong>{{ plafond }}</strong>{' '}
+			bruts par an pour un temps plein sans heures supplémentaires.
+		</Trans>
+	) : (
+		<Trans i18nKey="pages.simulateurs.lodeom.warnings.salaire.courant">
+			Le {{ barème }} concerne uniquement les salaires inférieurs à {{ seuil }}{' '}
+			Smic. C'est-à-dire, pour {{ year }}, une rémunération totale qui ne
+			dépasse pas <strong>{{ plafond }}</strong> bruts par an pour un temps
+			plein sans heures supplémentaires.
+		</Trans>
 	)
 }
