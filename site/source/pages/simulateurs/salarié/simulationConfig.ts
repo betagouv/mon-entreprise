@@ -1,3 +1,4 @@
+import { situationSalarié } from '@/contextes/salarié'
 import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
 export const configSalarié: PublicodesSimulationConfig = {
@@ -180,9 +181,7 @@ export const configSalarié: PublicodesSimulationConfig = {
 	},
 	'unité par défaut': '€/mois',
 	situation: {
-		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
-		'entreprise . imposition': 'non',
+		...situationSalarié,
 		'salarié . activité partielle': 'non',
 		'impôt . méthode de calcul . par défaut': {
 			// On utilise le taux neutre qui est plus rapide à calculer et qui correspond
