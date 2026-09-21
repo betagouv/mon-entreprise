@@ -36,7 +36,10 @@ import {
 	RégularisationMethod,
 	rémunérationBruteDottedName,
 } from '@/pages/simulateurs/lodeom/utils'
-import { ajusteLaSituation } from '@/store/actions/actions'
+import {
+	ajusteLaSituation,
+	supprimeLaRègleDeLaSituation,
+} from '@/store/actions/actions'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
@@ -73,7 +76,8 @@ export default function LodeomSimulationGoals() {
 
 	useEffect(() => {
 		setData(initialRéductionMoisParMois)
-	}, [currentZone])
+		dispatch(supprimeLaRègleDeLaSituation(rémunérationBruteDottedName))
+	}, [currentZone, dispatch])
 
 	const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
 		pipe(
