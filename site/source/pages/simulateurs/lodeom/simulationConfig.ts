@@ -1,3 +1,4 @@
+import { situationSalarié } from '@/contextes/salarié'
 import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
 export const configLodeom: PublicodesSimulationConfig = {
@@ -47,11 +48,7 @@ export const configLodeom: PublicodesSimulationConfig = {
 		],
 	},
 	'unité par défaut': '€',
-	situation: {
-		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
-		'entreprise . imposition': 'non',
-	},
+	situation: situationSalarié,
 	'règles à ignorer pour déclencher les questions': [
 		'entreprise . salariés . effectif',
 		'salarié . cotisations . exonérations . zones lodeom',
