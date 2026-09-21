@@ -336,6 +336,7 @@ const getMonthlyRéduction = (
 	const date = getDateForContexte(year, monthIndex)
 	const SMIC = getSMICMensuelAvecOptions(
 		year,
+		monthIndex,
 		rémunérationBrute,
 		options,
 		engine
@@ -474,18 +475,17 @@ const getRépartition = (
 }
 
 /**
- * Le Smic à utiliser est celui du 1er janvier de l'année considérée.
- * (source : https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous)
- * Il faut toutefois l'adapter à la durée de travail réalisée ce mois-ci par le ou la salariée
- * (heures supplémentaires, temps partiel, mois incomplet...).
+ * Il faut adapter le Smic à la durée de travail réalisée ce mois-ci par le ou la
+ * salariée (heures supplémentaires, temps partiel, mois incomplet...).
  */
 const getSMICMensuelAvecOptions = (
 	year: number,
+	monthIndex: number,
 	rémunérationBrute: number,
 	options: Options,
 	engine: Engine<DottedName>
 ): number => {
-	const date = getDateForContexte(year)
+	const date = getDateForContexte(year, monthIndex)
 	const contexte = {
 		date,
 		[rémunérationBruteDottedName]: rémunérationBrute,
@@ -494,7 +494,7 @@ const getSMICMensuelAvecOptions = (
 	} as SituationPublicodes
 
 	const SMICMensuel = engine.evaluate({
-		valeur: 'salarié . temps de travail . SMIC',
+		valeur: 'salarié . cotisations . exonérations . lodeom . montant . smic',
 		unité: '€/mois',
 		contexte,
 	}).nodeValue as number
@@ -541,6 +541,7 @@ const getParamètresRéductionParMois = (
 
 			const SMIC = getSMICMensuelAvecOptions(
 				year,
+				monthIndex,
 				monthData.rémunérationBrute,
 				monthData.options,
 				engine

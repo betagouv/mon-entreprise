@@ -567,16 +567,21 @@ salarié . cotisations . exonérations . lodeom . montant:
           compte des éléments de rémunérations non impactés par cette absence (comme
           les primes) ;
         - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est toujours
-          celle du 1er janvier 2026.
+          celle du 1er janvier 2026, sauf à Mayotte.
+      # source Smic à utiliser à Mayotte : mail interne d'A.M.
       références:
         Détermination de la valeur du SMIC à retenir: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#titre-chapitre-5--exonerations-applica-section-3--modalites-dapplicatio-b-determination-de-la-valeur-du
         Réduction générale dégressive unique - Détermination de la valeur du salaire minimum à retenir: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous
-      valeur: temps de travail . SMIC
-      contexte:
-        date: période . début d'année
-        établissement . commune . département:
-          applicable si: lodeom . mayotte
-          valeur: "'Mayotte'"
+      variations:
+        - si: lodeom . mayotte
+          alors:
+            valeur: temps de travail . SMIC
+            contexte:
+              établissement . commune . département: "'Mayotte'"
+        - sinon:
+            valeur: temps de travail . SMIC
+            contexte:
+              date: période . début d'année
 
     seuil inflexion:
       variations:

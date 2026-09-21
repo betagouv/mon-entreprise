@@ -86,15 +86,15 @@ describe('Lodeom', () => {
 
 		describe('Mayotte', () => {
 			// T = 0,1996
-			// Smic (1er janvier) = 1415,05
+			// Smic (1er juin) = 1449,93
 			// Réduction = 3000 x cœefficient
 			it.each([
-				// Cœfficient = (1,3 x 0,1996 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0109
-				['compétitivité', 32.7, 4.59],
-				// Cœfficient = (2 x 0,1996 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1560
-				['compétitivité renforcée', 468, 65.65],
-				// Cœfficient = 1,7 * 0,1996 * 1415,05 / 3000 = 0,1601
-				['innovation et croissance', 480.3, 67.38],
+				// Cœfficient = (1,3 x 0,1996 / 0,9) x [(2,2 * 1449,93 / 3000) - 1] = 0,0182
+				['compétitivité', 54.6, 7.66],
+				// Cœfficient = (2 x 0,1996 / 0,7) x [(2,7 * 1449,93 / 3000) - 1] = 0,1739
+				['compétitivité renforcée', 521.7, 73.18],
+				// Cœfficient = 1,7 * 0,1996 * 1449,93 / 3000 = 0,1640
+				['innovation et croissance', 492, 69.02],
 			])('Barème %s', (barème, montantLodeom, montantChômage) => {
 				const e = engine.setSituation({
 					...situationMayotte,
@@ -265,15 +265,15 @@ describe('Lodeom', () => {
 
 		describe('À Mayotte', () => {
 			// T = 0,2036
-			// Smic (1er janvier) = 1415,05
+			// Smic (1er juin) = 1449,93
 			// Réduction = 3000 x cœefficient
 			it.each([
-				// Cœfficient = (1,3 x 0,2036 / 0,9) x [(2,2 * 1415,05 / 3000) - 1] = 0,0111
-				['compétitivité', 33.3],
-				// Cœfficient = (2 x 0,2036 / 0,7) x [(2,7 * 1415,05 / 3000) - 1] = 0,1591
-				['compétitivité renforcée', 477.3],
-				// Cœfficient = 1,7 * 0,2036 * 1415,05 / 3000 = 0,1633
-				['innovation et croissance', 489.9],
+				// Cœfficient = (1,3 x 0,2036 / 0,9) x [(2,2 * 1449,93 / 3000) - 1] = 0,0186
+				['compétitivité', 55.8],
+				// Cœfficient = (2 x 0,2036 / 0,7) x [(2,7 * 1449,93 / 3000) - 1] = 0,1774
+				['compétitivité renforcée', 532.2],
+				// Cœfficient = 1,7 * 0,2036 * 1449,93 / 3000 = 0,1673
+				['innovation et croissance', 501.9],
 			])('Barème %s', (barème, montantLodeom) => {
 				const e = engine.setSituation({
 					...situationMayotte,
