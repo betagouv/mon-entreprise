@@ -2441,9 +2441,15 @@ pages:
           Entreprise Innovante (JEI).
         barème: Veuillez sélectionner une localisation et un barème pour accéder au
           simulateur.
-        salaire: Le {{barème}} concerne uniquement les salaires inférieurs à {{seuil}}
-          Smic. C'est-à-dire, pour {{year}}, une rémunération totale qui ne
-          dépasse pas <8>{{plafond}}</8> bruts par an.
+        salaire:
+          1er-janvier: Le {{barème}} concerne uniquement les salaires inférieurs à
+            {{seuil}} Smic (valeur du 1er janvier). C'est-à-dire, pour {{year}},
+            une rémunération totale qui ne dépasse pas <8>{{plafond}}</8> bruts
+            par an pour un temps plein sans heures supplémentaires.
+          courant: Le {{barème}} concerne uniquement les salaires inférieurs à {{seuil}}
+            Smic. C'est-à-dire, pour {{year}}, une rémunération totale qui ne
+            dépasse pas <8>{{plafond}}</8> bruts par an pour un temps plein sans
+            heures supplémentaires.
         stage: L'exonération Lodeom ne s'applique pas sur les gratifications de stage.
     médecin:
       meta:

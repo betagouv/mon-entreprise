@@ -2331,9 +2331,15 @@ pages:
         JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
           (JEI) exemption.
         barème: Please select a location and a scale to access the simulator.
-        salaire: "{{barème}} concerns only salaries below {{seuil}} Smic. In other
-          words, for {{year}}, total remuneration does not exceed
-          <8>{{plafond}}</8> gross per year."
+        salaire:
+          1er-janvier: "{{barème}} applies only to salaries below {{seuil}} the minimum
+            wage (as of January 1). That is, for {{year}}, total compensation
+            not exceeding <8>{{plafond}} </8> gross per year for a full-time
+            position without overtime."
+          courant: "{{barème}} applies only to salaries below {{seuil}} the minimum wage.
+            That is, for {{year}}, total compensation that does not exceed
+            <8>{{plafond}} </8> gross per year for a full-time position
+            without overtime."
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
