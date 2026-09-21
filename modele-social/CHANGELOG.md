@@ -16,6 +16,7 @@
 ### Corrections
 - Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte
 - Supprime les cotisations retraite complémentaires obligatoires pour Mayotte
+- Supprime le forfait social à Mayotte
 - Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
