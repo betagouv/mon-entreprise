@@ -1,8 +1,8 @@
 salarié . mois incomplet:
   experimental: oui
   description: |
-    Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour le
-    calcul de l’exonération Lodeom.
+    Gestion des mois incomplets (absence, embauche, départ, etc) pour le calcul de
+    l’exonération Lodeom.
   références:
     Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-d-determination-de-la-valeur-du-4-determination-de-la-valeur-du
 
@@ -62,7 +62,8 @@ salarié . mois incomplet . SMIC équivalent:
   avec:
     SMIC mensuel proratisé:
       produit:
-        - SMIC
+        - SMIC horaire
+        - durée légale du travail . mensuelle
         - prorata
       unité: €/mois
       description: |
@@ -79,7 +80,7 @@ salarié . mois incomplet . SMIC équivalent:
     SMIC heures supplémentaires:
       produit:
         - temps de travail . heures supplémentaires
-        - SMIC . horaire
+        - SMIC horaire
       unité: €/mois
       références:
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-e-prise-en-compte-des-heures-com-1-heures-supplementaires
@@ -87,7 +88,24 @@ salarié . mois incomplet . SMIC équivalent:
     SMIC heures complémentaires:
       produit:
         - temps de travail . heures complémentaires
-        - SMIC . horaire
+        - SMIC horaire
       unité: €/mois
       références:
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-e-prise-en-compte-des-heures-com-2-heures-complementaires
+
+    SMIC horaire:
+      description: |
+        Le SMIC horaire à utiliser pour le calcul de l’exonération Lodeom sur un
+        mois incomplet.
+
+        À Mayotte, il faut prendre le SMIC horaire du mois courant. Ailleurs, il faut
+        prendre sa valeur au 1er janvier.
+      variations:
+      # cf salarié . cotisations . exonérations . lodeom . montant . smic
+      - si: cotisations . exonérations . lodeom . mayotte
+        alors:
+          valeur: SMIC . horaire
+          contexte:
+            établissement . commune . département: "'Mayotte'"
+      - sinon:
+          valeur: SMIC . horaire . début d'année
