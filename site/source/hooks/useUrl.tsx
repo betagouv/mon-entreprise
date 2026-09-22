@@ -1,4 +1,5 @@
-import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import { isPériodeDeCalcul } from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { PARAMÈTRE_SITUATION, PARAMÈTRE_UNITÉ } from '@/domaine/parametresUrl'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { useSearchParamsForSituation } from '@/hooks/useSearchParamsForSituation'
@@ -25,12 +26,17 @@ export function useUrl(options?: Options) {
 		? null
 		: searchParams.get(PARAMÈTRE_SITUATION)
 
-	const queryString =
-		situationEncodée === null
-			? searchParamsPublicodes
-			: new URLSearchParams({
-					[PARAMÈTRE_SITUATION]: situationEncodée,
-				}).toString()
+	if (situationEncodée === null) {
+		return siteUrl + path + '?' + searchParamsPublicodes
+	}
 
-	return siteUrl + path + '?' + queryString
+	const params = new URLSearchParams()
+	params.set(PARAMÈTRE_SITUATION, situationEncodée)
+
+	const unité = searchParams.get(PARAMÈTRE_UNITÉ)
+	if (isPériodeDeCalcul(unité)) {
+		params.set(PARAMÈTRE_UNITÉ, unité)
+	}
+
+	return siteUrl + path + '?' + params.toString()
 }

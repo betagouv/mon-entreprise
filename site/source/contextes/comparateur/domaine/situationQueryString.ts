@@ -2,7 +2,7 @@ import { pipe } from 'effect'
 import * as O from 'effect/Option'
 
 import { montantToNumber } from '@/domaine/Montant'
-import { eurosParAn } from '@/domaine/MontantRecurrent'
+import { eurosParAn, toEurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
 import { fromBase64Url, toBase64Url } from '@/utils/URLs'
 
@@ -32,10 +32,16 @@ export const encodeSituation = (situation: SituationComparée): string => {
 	const sérialisée: SituationSérialisée = {
 		chiffreDAffaires: pipe(
 			situation.chiffreDAffaires,
+			O.map(toEurosParAn),
 			O.map(montantToNumber),
 			O.getOrUndefined
 		),
-		charges: pipe(situation.charges, O.map(montantToNumber), O.getOrUndefined),
+		charges: pipe(
+			situation.charges,
+			O.map(toEurosParAn),
+			O.map(montantToNumber),
+			O.getOrUndefined
+		),
 		IRouIS: situation.IRouIS,
 		versementLibératoire: situation.versementLibératoire,
 		natureActivité: situation.natureActivité,
@@ -69,12 +75,12 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 
 	return {
 		...initialSituationComparée,
-		chiffreDAffaires: parsedCA
-			? O.some(eurosParAn(parsedCA))
-			: initialSituationComparée.chiffreDAffaires,
-		charges: parsedCharges
-			? O.some(eurosParAn(parsedCharges))
-			: initialSituationComparée.charges,
+		...(parsedCA !== undefined
+			? { chiffreDAffaires: O.some(eurosParAn(parsedCA)) }
+			: {}),
+		...(parsedCharges !== undefined
+			? { charges: O.some(eurosParAn(parsedCharges)) }
+			: {}),
 		IRouIS: (sérialisée.IRouIS as IRouIS) ?? initialSituationComparée.IRouIS,
 		versementLibératoire:
 			sérialisée.versementLibératoire ??
@@ -93,19 +99,19 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 		méthodeImposition:
 			(sérialisée.méthodeImposition as MéthodeImposition) ??
 			initialSituationComparée.méthodeImposition,
-		tauxImposition: parsedTauxImposition
-			? O.some(pourcentage(parsedTauxImposition))
-			: O.none(),
+		...(parsedTauxImposition !== undefined
+			? { tauxImposition: O.some(pourcentage(parsedTauxImposition)) }
+			: {}),
 		situationFamiliale:
 			(sérialisée.situationFamiliale as SituationFamiliale) ??
 			initialSituationComparée.situationFamiliale,
-		enfants: parsedEnfants
-			? quantité(parsedEnfants, 'enfant')
-			: initialSituationComparée.enfants,
+		...(parsedEnfants !== undefined
+			? { enfants: quantité(parsedEnfants, 'enfant') }
+			: {}),
 		parentIsolé: sérialisée.parentIsolé ?? initialSituationComparée.parentIsolé,
-		autresRevenus: parsedAutresRevenus
-			? eurosParAn(parsedAutresRevenus)
-			: initialSituationComparée.autresRevenus,
+		...(parsedAutresRevenus !== undefined
+			? { autresRevenus: eurosParAn(parsedAutresRevenus) }
+			: {}),
 	}
 }
 
