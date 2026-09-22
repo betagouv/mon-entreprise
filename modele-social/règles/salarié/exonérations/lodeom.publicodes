@@ -1,3 +1,8 @@
+salarié . cotisations . exonérations . lodeom applicable à mayotte:
+  valeur: date >= 07/2026
+  références:
+    Application à Mayotte de la réduction générale dégressive unique et de l’exonération Lodeom: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2026/janvier/mayotte---rgdu-et-exoneration-lo.html
+
 salarié . cotisations . exonérations . zones lodeom:
   question: Quelle est votre localisation ?
   une possibilité:
@@ -9,10 +14,7 @@ salarié . cotisations . exonérations . zones lodeom:
       valeur: zones lodeom = 'zone un'
       titre: Guadeloupe, Guyane, Martinique, La Réunion
     mayotte:
-      # Ici on permet la sélection de Mayotte dès le début de l'année 2026 car
-      # cette question sert dans le simulateur Lodeom qui fonctionne sur l'année
-      # entière et se charge de masquer les 6 premiers mois de 2026.
-      applicable si: date >= 01/2026
+      applicable si: lodeom applicable à mayotte
       valeur: zones lodeom = 'mayotte'
       titre: Mayotte
     zone deux:
@@ -71,15 +73,10 @@ salarié . cotisations . exonérations . lodeom . zone un:
   par défaut: non
   une de ces conditions:
     - zones lodeom = 'zone un'
-    - toutes ces conditions:
-        - est applicable: zones lodeom . mayotte
-        - zones lodeom = 'mayotte'
+    - lodeom . mayotte
     - établissement . commune . département = 'Guadeloupe'
     - établissement . commune . département = 'La Réunion'
     - établissement . commune . département = 'Martinique'
-    - toutes ces conditions:
-        - établissement . commune . département = 'Mayotte'
-        - date >= 07/2026
     - établissement . commune . département = 'Guyane'
   références:
     Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
@@ -301,13 +298,11 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
 salarié . cotisations . exonérations . lodeom . mayotte:
   par défaut: non
-  une de ces conditions:
-    - toutes ces conditions:
-        - est applicable: zones lodeom . mayotte
-        - zones lodeom = 'mayotte'
-    - toutes ces conditions:
-        - date >= 07/2026
-        - établissement . commune . département = 'Mayotte'
+  toutes ces conditions:
+    - lodeom applicable à mayotte
+    - une de ces conditions:
+      - zones lodeom = 'mayotte'
+      - établissement . commune . département = 'Mayotte'
 
 salarié . cotisations . exonérations . lodeom . zone deux:
   titre: Saint-Barthélémy, Saint-Martin
@@ -582,6 +577,7 @@ salarié . cotisations . exonérations . lodeom . montant:
             valeur: temps de travail . SMIC
             contexte:
               date: période . début d'année
+      unité: '€/mois'
 
     seuil inflexion:
       variations:
