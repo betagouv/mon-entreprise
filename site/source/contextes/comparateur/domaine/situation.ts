@@ -27,13 +27,6 @@ export interface SituationComparée extends Situation {
 	tva: boolean
 }
 
-export type Question = keyof Omit<
-	SituationComparée,
-	'chiffreDAffaires' | 'charges' | 'IRouIS' | 'versementLibératoire'
->
-
-export type Réponse<T extends Question> = SituationComparée[T]
-
 interface SituationComparéeValide extends SituationComparée {
 	chiffreDAffaires: O.Some<MontantRécurrent>
 }
