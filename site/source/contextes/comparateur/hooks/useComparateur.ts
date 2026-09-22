@@ -15,7 +15,7 @@ import { initialSituationComparée } from '../domaine/situation'
 import { useSituationContext } from './ComparaisonStatutsContext'
 
 export const useComparateur = () => {
-	const { modèles, situation, updateSituation, comparaison } =
+	const { modèles, situation, updateSituation, comparaison, unité, setUnité } =
 		useSituationContext()
 
 	const set = useMemo(
@@ -83,8 +83,10 @@ export const useComparateur = () => {
 			reset: () => {
 				updateSituation(() => initialSituationComparée)
 			},
+
+			unité: setUnité,
 		}),
-		[updateSituation]
+		[setUnité, updateSituation]
 	)
 
 	const documentationsDeRègle = useMemo(
@@ -101,5 +103,6 @@ export const useComparateur = () => {
 		set,
 		comparaison,
 		documentationsDeRègle,
+		unité,
 	}
 }

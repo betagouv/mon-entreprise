@@ -1,7 +1,7 @@
 import * as O from 'effect/Option'
 import { describe, expect, it } from 'vitest'
 
-import { eurosParAn } from '@/domaine/MontantRecurrent'
+import { eurosParAn, eurosParMois } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
 
 import { initialSituationComparée, SituationComparée } from './situation'
@@ -45,6 +45,18 @@ describe('encodeSituation / decodeSituation', () => {
 		expect(chaîne).toBe(encodeURIComponent(chaîne))
 	})
 
+	it('normalise les montants en €/an', () => {
+		const mensuelle: SituationComparée = {
+			...initialSituationComparée,
+			chiffreDAffaires: O.some(eurosParMois(4_000)),
+		}
+
+		expect(decodeSituation(encodeSituation(mensuelle))).toEqual({
+			...initialSituationComparée,
+			chiffreDAffaires: O.some(eurosParAn(48_000)),
+		})
+	})
+
 	it('retourne la situation initiale pour une chaîne invalide', () => {
 		expect(decodeSituation('n’importe quoi')).toEqual(initialSituationComparée)
 	})
@@ -55,5 +67,18 @@ describe('encodeSituation / decodeSituation', () => {
 		).toString('base64url')
 
 		expect(decodeSituation(chaîne)).toEqual(initialSituationComparée)
+	})
+
+	it('retourne un taux d’imposition à 0 %', () => {
+		const chaîne = Buffer.from(
+			JSON.stringify({
+				tauxImposition: 0,
+			})
+		).toString('base64url')
+
+		expect(decodeSituation(chaîne)).toEqual({
+			...initialSituationComparée,
+			tauxImposition: O.some(pourcentage(0)),
+		})
 	})
 })

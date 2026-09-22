@@ -8,7 +8,11 @@ import React, {
 	useState,
 } from 'react'
 
-import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import {
+	isPériodeDeCalcul,
+	PériodeDeCalcul,
+} from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { PARAMÈTRE_SITUATION, PARAMÈTRE_UNITÉ } from '@/domaine/parametresUrl'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 
@@ -34,6 +38,8 @@ type SituationContextType = {
 	updateSituation: (
 		updater: (prev: SituationComparée) => SituationComparée
 	) => void
+	unité: PériodeDeCalcul
+	setUnité: (unité: PériodeDeCalcul) => void
 	comparaison: Comparaison
 }
 
@@ -44,6 +50,12 @@ export const ComparateurProvider: React.FC<{
 	children: React.ReactNode
 }> = ({ modèles, children }) => {
 	const { searchParams, setSearchParams } = useNavigation()
+
+	const [unité, setUnité] = useState<PériodeDeCalcul>(() => {
+		const sauvegardée = searchParams.get(PARAMÈTRE_UNITÉ)
+
+		return isPériodeDeCalcul(sauvegardée) ? sauvegardée : '€/an'
+	})
 
 	const [situation, setSituation] = useState<SituationComparée>(() => {
 		const encodée = searchParams.get(PARAMÈTRE_SITUATION)
@@ -72,23 +84,31 @@ export const ComparateurProvider: React.FC<{
 		const encodée = simulationEstCommencée(situation)
 			? encodeSituation(situation)
 			: null
-		if (searchParams.get(PARAMÈTRE_SITUATION) === encodée) {
+
+		if (
+			searchParams.get(PARAMÈTRE_SITUATION) === encodée &&
+			(encodée === null || searchParams.get(PARAMÈTRE_UNITÉ) === unité)
+		) {
 			return
 		}
+
 		setSearchParams(
 			(précédents) => {
 				const suivants = new URLSearchParams(précédents)
+
 				if (encodée === null) {
 					suivants.delete(PARAMÈTRE_SITUATION)
+					suivants.delete(PARAMÈTRE_UNITÉ)
 				} else {
 					suivants.set(PARAMÈTRE_SITUATION, encodée)
+					suivants.set(PARAMÈTRE_UNITÉ, unité)
 				}
 
 				return suivants
 			},
 			{ replace: true }
 		)
-	}, [situation, searchParams, setSearchParams])
+	}, [situation, searchParams, setSearchParams, unité])
 
 	const updateSituation = useCallback(
 		(updater: (prev: SituationComparée) => SituationComparée) =>
@@ -97,8 +117,15 @@ export const ComparateurProvider: React.FC<{
 	)
 
 	const value = useMemo(
-		() => ({ modèles, situation, updateSituation, comparaison }),
-		[modèles, situation, updateSituation, comparaison]
+		() => ({
+			modèles,
+			situation,
+			updateSituation,
+			comparaison,
+			unité,
+			setUnité,
+		}),
+		[modèles, situation, updateSituation, comparaison, unité]
 	)
 
 	return (
