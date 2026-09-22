@@ -50,38 +50,23 @@ export function PianoTrackerProvider({
 	}, [])
 
 	useEffect(() => {
-		if (script) {
-			if (injected) {
-				return () => {
-					document.body.removeChild(script)
-				}
-			}
+		if (!script) {
+			return
+		}
 
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.ready
-					.then(() => {
-						scheduleWhenIdle(() => {
-							document.body.appendChild(script)
-							setInjected(true)
-						})
-					})
-					.catch((error) => {
-						// eslint-disable-next-line no-console
-						console.error(
-							'Impossible d’initialiser le suivi car le service worker n’a pas démarré',
-							error
-						)
-					})
-			} else {
-				document.body.appendChild(script)
-				setInjected(true)
+		if (injected) {
+			return () => {
+				document.body.removeChild(script)
 			}
 		}
-	}, [script, injected])
 
-	if (!tracker) {
-		return <>{children}</>
-	}
+		const appendScript = () => {
+			document.body.appendChild(script)
+			setInjected(true)
+		}
+
+		scheduleWhenIdle(appendScript)
+	}, [script, injected])
 
 	return (
 		<PianoTrackerContext.Provider value={tracker}>
