@@ -13,7 +13,6 @@ import {
 	eurosParAn,
 	eurosParJour,
 	eurosParMois,
-	MontantRécurrent,
 } from '@/domaine/MontantRecurrent'
 import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -22,12 +21,11 @@ import {
 	quantité,
 	trimestresValidésParAn,
 } from '@/domaine/Quantite'
-import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { IRouIS } from './imposition'
 import { ModèleComparable, ValeurDocumentée } from './modeleComparable'
-import { initialSituationComparée } from './situation'
+import { initialSituationComparée, SituationComparée } from './situation'
 
 const nomModèle = 'modele-ti'
 
@@ -80,167 +78,73 @@ export const ModèleTravailleurIndépendant: ModèleComparable = {
 	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
 
 	set: {
-		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
+		situation: (situation: SituationComparée) => {
+			const nouvelleSituation = {
+				'entreprise . date de création': "période . début d'année",
+				...(O.isSome(situation.chiffreDAffaires)
+					? {
+							"entreprise . chiffre d'affaires": PublicodesAdapter.encode(
+								situation.chiffreDAffaires
+							),
+						}
+					: {}),
+				...(O.isSome(situation.charges)
+					? {
+							'entreprise . charges': PublicodesAdapter.encode(
+								situation.charges
+							),
+						}
+					: {}),
+				'entreprise . imposition': PublicodesAdapter.encode(
+					O.some(situation.IRouIS)
+				),
+				'entreprise . activité': PublicodesAdapter.encode(
+					O.some(situation.natureActivité)
+				),
+				...(situation.natureActivité === 'libérale'
+					? {}
+					: {
+							'entreprise . activité . principale': PublicodesAdapter.encode(
+								O.some(situation.typeActivité)
+							),
+						}),
+				...(situation.natureActivité === 'libérale'
+					? {
+							'entreprise . activité . libérale . réglementée':
+								PublicodesAdapter.encode(
+									O.some(toOuiNon(situation.activitéLibéraleRéglementée))
+								),
+						}
+					: {}),
+				'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
+					PublicodesAdapter.encode(O.some(toOuiNon(situation.acre))),
+				'impôt . méthode de calcul': PublicodesAdapter.encode(
+					O.some(situation.méthodeImposition)
+				),
+				...(O.isSome(situation.tauxImposition)
+					? {
+							'impôt . taux personnalisé': PublicodesAdapter.encode(
+								situation.tauxImposition
+							),
+						}
+					: {}),
+				'impôt . foyer fiscal . situation de famille . question':
+					PublicodesAdapter.encode(O.some(situation.situationFamiliale)),
+				'impôt . foyer fiscal . enfants à charge': PublicodesAdapter.encode(
+					O.some(situation.enfants)
+				),
+				'impôt . foyer fiscal . parent isolé': PublicodesAdapter.encode(
+					O.some(toOuiNon(situation.parentIsolé))
+				),
+				'impôt . foyer fiscal . autres revenus imposables':
+					PublicodesAdapter.encode(O.some(situation.autresRevenus)),
+			}
+
 			if (!engine) {
 				engine = initEngine()
 			}
 
-			if (O.isNone(montant)) {
-				const situation = engine.getSituation()
-				engine.setSituation(omit(situation, "entreprise . chiffre d'affaires"))
-			} else {
-				engine?.setSituation(
-					{
-						"entreprise . chiffre d'affaires":
-							PublicodesAdapter.encode(montant),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-		},
-
-		charges: (montant: O.Option<MontantRécurrent>) => {
-			if (!engine) {
-				engine = initEngine()
-			}
-
-			if (O.isNone(montant)) {
-				const situation = engine.getSituation()
-				engine.setSituation(omit(situation, 'entreprise . charges'))
-			} else {
-				engine?.setSituation(
-					{
-						'entreprise . charges': PublicodesAdapter.encode(montant),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-		},
-
-		IRouIS: (valeur: IRouIS) => {
-			if (!engine) {
-				engine = initEngine()
-			}
-
-			engine.setSituation(
-				{
-					'entreprise . imposition': PublicodesAdapter.encode(O.some(valeur)),
-				},
-				{ keepPreviousSituation: true }
-			)
-		},
-
-		réponse: (question, valeur) => {
-			if (!engine) {
-				engine = initEngine()
-			}
-
-			if (question === 'natureActivité') {
-				engine.setSituation(
-					{
-						'entreprise . activité': PublicodesAdapter.encode(O.some(valeur)),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'typeActivité') {
-				engine.setSituation(
-					{
-						'entreprise . activité . principale': PublicodesAdapter.encode(
-							O.some(valeur)
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'activitéLibéraleRéglementée') {
-				engine.setSituation(
-					{
-						'entreprise . activité . libérale . réglementée':
-							PublicodesAdapter.encode(O.some(toOuiNon(valeur))),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'acre') {
-				engine.setSituation(
-					{
-						'indépendant . cotisations et contributions . cotisations . exonérations . Acre':
-							PublicodesAdapter.encode(O.some(toOuiNon(valeur))),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'méthodeImposition') {
-				engine.setSituation(
-					{
-						'impôt . méthode de calcul': PublicodesAdapter.encode(
-							O.some(valeur)
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'tauxImposition') {
-				if (O.isNone(valeur)) {
-					const situation = engine.getSituation()
-					engine.setSituation(omit(situation, 'impôt . taux personnalisé'))
-				} else {
-					engine.setSituation(
-						{
-							'impôt . taux personnalisé': PublicodesAdapter.encode(valeur),
-						},
-						{ keepPreviousSituation: true }
-					)
-				}
-			}
-
-			if (question === 'situationFamiliale') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . situation de famille . question':
-							PublicodesAdapter.encode(O.some(valeur)),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'enfants') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . enfants à charge': PublicodesAdapter.encode(
-							O.some(valeur)
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'parentIsolé') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . parent isolé': PublicodesAdapter.encode(
-							O.some(toOuiNon(valeur))
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'autresRevenus') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . autres revenus imposables':
-							PublicodesAdapter.encode(O.some(valeur)),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
+			engine?.setSituation(nouvelleSituation)
 		},
 	},
 

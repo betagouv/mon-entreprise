@@ -1,13 +1,14 @@
+import { Option } from 'effect'
 import React, {
 	createContext,
 	useCallback,
 	useContext,
 	useEffect,
-	useMemo,
 	useState,
 } from 'react'
 
 import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 
 import { ModèleComparable } from '../domaine/modeleComparable'
@@ -21,12 +22,18 @@ import {
 	encodeSituation,
 } from '../domaine/situationQueryString'
 
+type Comparaison = Array<
+	ModèleComparable['get'] & {
+		nomModèle: NomModèle
+	}
+>
 type SituationContextType = {
 	modèles: ModèleComparable[]
 	situation: SituationComparée
 	updateSituation: (
 		updater: (prev: SituationComparée) => SituationComparée
 	) => void
+	comparaison: Comparaison
 }
 
 const SituationContext = createContext<SituationContextType | null>(null)
@@ -42,6 +49,23 @@ export const ComparateurProvider: React.FC<{
 
 		return encodée ? decodeSituation(encodée) : initialSituationComparée
 	})
+
+	const [comparaison, setComparaison] = useState<Comparaison>([])
+
+	useEffect(() => {
+		modèles.forEach((modèle) => {
+			modèle.set.situation(situation)
+		})
+
+		if (Option.isSome(situation.chiffreDAffaires)) {
+			setComparaison(
+				modèles.map((modèle) => ({
+					nomModèle: modèle.nom,
+					...modèle.get,
+				}))
+			)
+		}
+	}, [modèles, situation])
 
 	useEffect(() => {
 		const encodée = simulationEstCommencée(situation)
@@ -71,10 +95,7 @@ export const ComparateurProvider: React.FC<{
 		[]
 	)
 
-	const value = useMemo(
-		() => ({ modèles, situation, updateSituation }),
-		[modèles, situation, updateSituation]
-	)
+	const value = { modèles, situation, updateSituation, comparaison }
 
 	return (
 		<SituationContext.Provider value={value}>

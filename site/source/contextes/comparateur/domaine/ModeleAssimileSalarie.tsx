@@ -16,7 +16,6 @@ import {
 	eurosParJour,
 	eurosParMois,
 	moins,
-	MontantRécurrent,
 } from '@/domaine/MontantRecurrent'
 import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -25,16 +24,14 @@ import {
 	quantité,
 	trimestresValidésParAn,
 } from '@/domaine/Quantite'
-import { omit } from '@/utils'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { ModèleComparable, ValeurDocumentée } from './modeleComparable'
+import { SituationComparée } from './situation'
 
 const nomModèle = 'modele-as'
 
 let engine: Engine<DottedName> | null = null
-let chiffreDAffaires: O.Option<MontantRécurrent> = O.none()
-let charges: O.Option<MontantRécurrent> = O.none()
 
 const initEngine = () => {
 	engine = engineFactory(rules, nomModèle)
@@ -88,37 +85,12 @@ const valeurDocumentée = <V,>(
 		dottedName
 	)
 
-const getRémunérationTotale = () => {
-	return pipe(
-		chiffreDAffaires,
-		O.map(moins(O.getOrElse(charges, () => eurosParAn(0))))
-	)
-}
-
-const setRémunérationTotale = () => {
-	const rémunérationTotale = getRémunérationTotale()
-
-	if (O.isNone(rémunérationTotale)) {
-		return
-	}
-
-	if (!engine) {
-		engine = initEngine()
-	}
-
-	engine.setSituation(
-		{
-			'assimilé salarié . rémunération . totale':
-				PublicodesAdapter.encode(rémunérationTotale),
-		},
-		{ keepPreviousSituation: true }
-	)
-}
-
+const getRémunérationTotale = () =>
+	évalue('assimilé salarié . rémunération . totale', eurosParMois(0))
 const rémunérationEstPositive = () => {
 	const rémunérationTotale = getRémunérationTotale()
 
-	return O.isSome(rémunérationTotale) && estPositif(rémunérationTotale.value)
+	return estPositif(rémunérationTotale)
 }
 
 export const ModèleAssimiléSalarié: ModèleComparable = {
@@ -127,109 +99,53 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
 
 	set: {
-		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {
-			chiffreDAffaires = montant
-			setRémunérationTotale()
-		},
+		situation: (situation: SituationComparée) => {
+			const rémunérationTotale = pipe(
+				situation.chiffreDAffaires,
+				O.map(moins(O.getOrElse(situation.charges, () => eurosParAn(0))))
+			)
 
-		charges: (montant: O.Option<MontantRécurrent>) => {
-			charges = montant
-			setRémunérationTotale()
-		},
+			const nouvelleSituation = {
+				'entreprise . date de création': "période . début d'année",
+				...(O.isSome(rémunérationTotale)
+					? {
+							'assimilé salarié . rémunération . totale':
+								PublicodesAdapter.encode(rémunérationTotale),
+						}
+					: {}),
+				'assimilé salarié . exonérations . Acre': PublicodesAdapter.encode(
+					O.some(toOuiNon(situation.acre))
+				),
+				'entreprise . TVA': PublicodesAdapter.encode(
+					O.some(toOuiNon(situation.tva))
+				),
+				'impôt . méthode de calcul': PublicodesAdapter.encode(
+					O.some(situation.méthodeImposition)
+				),
+				...(O.isSome(situation.tauxImposition)
+					? {
+							'impôt . taux personnalisé': PublicodesAdapter.encode(
+								situation.tauxImposition
+							),
+						}
+					: {}),
+				'impôt . foyer fiscal . situation de famille . question':
+					PublicodesAdapter.encode(O.some(situation.situationFamiliale)),
+				'impôt . foyer fiscal . enfants à charge': PublicodesAdapter.encode(
+					O.some(situation.enfants)
+				),
+				'impôt . foyer fiscal . parent isolé': PublicodesAdapter.encode(
+					O.some(toOuiNon(situation.parentIsolé))
+				),
+				'impôt . foyer fiscal . autres revenus imposables':
+					PublicodesAdapter.encode(O.some(situation.autresRevenus)),
+			}
 
-		réponse: (question, valeur) => {
 			if (!engine) {
 				engine = initEngine()
 			}
 
-			if (question === 'acre') {
-				engine.setSituation(
-					{
-						'assimilé salarié . exonérations . Acre': PublicodesAdapter.encode(
-							O.some(toOuiNon(valeur))
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'tva') {
-				engine.setSituation(
-					{
-						'entreprise . TVA': PublicodesAdapter.encode(
-							O.some(toOuiNon(valeur))
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'méthodeImposition') {
-				engine.setSituation(
-					{
-						'impôt . méthode de calcul': PublicodesAdapter.encode(
-							O.some(valeur)
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'tauxImposition') {
-				if (O.isNone(valeur)) {
-					const situation = engine.getSituation()
-					engine.setSituation(omit(situation, 'impôt . taux personnalisé'))
-				} else {
-					engine.setSituation(
-						{
-							'impôt . taux personnalisé': PublicodesAdapter.encode(valeur),
-						},
-						{ keepPreviousSituation: true }
-					)
-				}
-			}
-
-			if (question === 'situationFamiliale') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . situation de famille . question':
-							PublicodesAdapter.encode(O.some(valeur)),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'enfants') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . enfants à charge': PublicodesAdapter.encode(
-							O.some(valeur)
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'parentIsolé') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . parent isolé': PublicodesAdapter.encode(
-							O.some(toOuiNon(valeur))
-						),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
-
-			if (question === 'autresRevenus') {
-				engine.setSituation(
-					{
-						'impôt . foyer fiscal . autres revenus imposables':
-							PublicodesAdapter.encode(O.some(valeur)),
-					},
-					{ keepPreviousSituation: true }
-				)
-			}
+			engine?.setSituation(nouvelleSituation)
 		},
 	},
 
@@ -250,10 +166,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 		},
 
 		revenu: () => {
-			const bénéfice = évalue(
-				'assimilé salarié . rémunération . totale',
-				eurosParMois(0)
-			)
+			const bénéfice = getRémunérationTotale()
 
 			const revenuNetAprèsImpôt = !engine
 				? eurosParMois(0)
@@ -262,7 +175,7 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 							'assimilé salarié . rémunération . nette . après impôt',
 							eurosParMois(0)
 						)
-					: O.getOrElse(getRémunérationTotale(), () => eurosParMois(0))
+					: bénéfice
 
 			return {
 				bénéfice: documenté(
