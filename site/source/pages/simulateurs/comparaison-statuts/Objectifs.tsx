@@ -1,11 +1,7 @@
 import * as O from 'effect/Option'
-import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {
-	ChoixPériodeDeCalcul,
-	PériodeDeCalcul,
-} from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { ChoixPériodeDeCalcul } from '@/components/Simulateur/ChoixPeriodeDeCalcul'
 import {
 	ChampSaisieProps,
 	ObjectifSaisissableDeSimulation,
@@ -21,7 +17,7 @@ export const Objectifs = () => {
 	const { t } = useTranslation()
 	const { situation, set } = useComparateur()
 
-	const [unitéCible, setUnitéCible] = useState<PériodeDeCalcul>('€/an')
+	const { unité, setUnité } = useComparateur()
 
 	const chiffreDAffaires = situation.chiffreDAffaires
 	const charges = situation.charges
@@ -39,8 +35,8 @@ export const Objectifs = () => {
 			id={id}
 			aria={aria}
 			value={O.getOrUndefined(chiffreDAffaires)}
-			unité={unitéCible}
-			unitéRécurrenteCible={unitéCible}
+			unité={unité}
+			unitéRécurrenteCible={unité}
 			onChange={handleCAChange}
 		/>
 	)
@@ -50,15 +46,15 @@ export const Objectifs = () => {
 			id={id}
 			aria={aria}
 			value={O.getOrUndefined(charges)}
-			unité={unitéCible}
-			unitéRécurrenteCible={unitéCible}
+			unité={unité}
+			unitéRécurrenteCible={unité}
 			onChange={handleChargesChange}
 		/>
 	)
 
 	return (
 		<>
-			<ChoixPériodeDeCalcul unité={unitéCible} onChange={setUnitéCible} />
+			<ChoixPériodeDeCalcul unité={unité} onChange={setUnité} />
 
 			<ObjectifSaisissableDeSimulation
 				id="comparaison-status-CA"

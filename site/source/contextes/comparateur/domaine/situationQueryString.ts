@@ -1,7 +1,8 @@
 import { Option, pipe } from 'effect'
 import * as O from 'effect/Option'
 
-import { montantToNumber } from '@/domaine/Montant'
+import { PériodeDeCalcul } from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { montant, montantToNumber } from '@/domaine/Montant'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
 import { fromBase64Url, toBase64Url } from '@/utils/URLs'
@@ -58,7 +59,10 @@ export const encodeSituation = (situation: SituationComparée): string => {
 	return toBase64Url(JSON.stringify(sérialisée))
 }
 
-export const decodeSituation = (chaîne: string): SituationComparée => {
+export const decodeSituation = (
+	chaîne: string,
+	unité: PériodeDeCalcul
+): SituationComparée => {
 	const sérialisée = parseSituationSérialisée(chaîne)
 
 	const parsedCA = parseNombre(sérialisée.chiffreDAffaires)
@@ -69,12 +73,12 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 
 	return {
 		...initialSituationComparée,
-		chiffreDAffaires: parsedCA
-			? Option.some(eurosParAn(parsedCA))
-			: initialSituationComparée.chiffreDAffaires,
-		charges: parsedCharges
-			? Option.some(eurosParAn(parsedCharges))
-			: initialSituationComparée.charges,
+		...(parsedCA
+			? { chiffreDAffaires: Option.some(montant(parsedCA, unité)) }
+			: {}),
+		...(parsedCharges
+			? { charges: Option.some(montant(parsedCharges, unité)) }
+			: {}),
 		IRouIS: (sérialisée.IRouIS as IRouIS) ?? initialSituationComparée.IRouIS,
 		versementLibératoire:
 			sérialisée.versementLibératoire ??
@@ -93,19 +97,17 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 		méthodeImposition:
 			(sérialisée.méthodeImposition as MéthodeImposition) ??
 			initialSituationComparée.méthodeImposition,
-		tauxImposition: parsedTauxImposition
-			? O.some(pourcentage(parsedTauxImposition))
-			: O.none(),
+		...(parsedTauxImposition
+			? { tauxImposition: O.some(pourcentage(parsedTauxImposition)) }
+			: {}),
 		situationFamiliale:
 			(sérialisée.situationFamiliale as SituationFamiliale) ??
 			initialSituationComparée.situationFamiliale,
-		enfants: parsedEnfants
-			? quantité(parsedEnfants, 'enfant')
-			: initialSituationComparée.enfants,
+		...(parsedEnfants ? { enfants: quantité(parsedEnfants, 'enfant') } : {}),
 		parentIsolé: sérialisée.parentIsolé ?? initialSituationComparée.parentIsolé,
-		autresRevenus: parsedAutresRevenus
-			? eurosParAn(parsedAutresRevenus)
-			: initialSituationComparée.autresRevenus,
+		...(parsedAutresRevenus
+			? { autresRevenus: eurosParAn(parsedAutresRevenus) }
+			: {}),
 	}
 }
 

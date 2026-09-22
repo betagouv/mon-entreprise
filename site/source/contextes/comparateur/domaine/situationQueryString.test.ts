@@ -14,7 +14,7 @@ const situationComplète: SituationComparée = {
 
 describe('encodeSituation / decodeSituation', () => {
 	it('restitue la situation complète après un aller-retour', () => {
-		expect(decodeSituation(encodeSituation(situationComplète))).toEqual(
+		expect(decodeSituation(encodeSituation(situationComplète), '€/an')).toEqual(
 			situationComplète
 		)
 	})
@@ -25,7 +25,9 @@ describe('encodeSituation / decodeSituation', () => {
 			chiffreDAffaires: O.some(eurosParAn(48_000)),
 		}
 
-		expect(decodeSituation(encodeSituation(partielle))).toEqual(partielle)
+		expect(decodeSituation(encodeSituation(partielle), '€/an')).toEqual(
+			partielle
+		)
 	})
 
 	it('produit une chaîne utilisable telle quelle dans une URL', () => {
@@ -35,7 +37,9 @@ describe('encodeSituation / decodeSituation', () => {
 	})
 
 	it('retourne la situation initiale pour une chaîne invalide', () => {
-		expect(decodeSituation('n’importe quoi')).toEqual(initialSituationComparée)
+		expect(decodeSituation('n’importe quoi', '€/an')).toEqual(
+			initialSituationComparée
+		)
 	})
 
 	it('ignore les champs mal formés', () => {
@@ -43,6 +47,6 @@ describe('encodeSituation / decodeSituation', () => {
 			JSON.stringify({ chiffreDAffaires: 'pas-un-montant' })
 		).toString('base64url')
 
-		expect(decodeSituation(chaîne)).toEqual(initialSituationComparée)
+		expect(decodeSituation(chaîne, '€/an')).toEqual(initialSituationComparée)
 	})
 })
