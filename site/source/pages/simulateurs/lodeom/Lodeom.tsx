@@ -2,7 +2,6 @@ import { Trans } from 'react-i18next'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Body, Emoji } from '@/design-system'
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
@@ -43,7 +42,6 @@ export default function LodeomSimulation() {
 				<Simulation
 					questionsPublicodes={questions}
 					raccourcisPublicodes={raccourcis}
-					afterQuestionsSlot={<YearSelectionBanner />}
 				>
 					<SimulateurWarning
 						metadata={metadata}
