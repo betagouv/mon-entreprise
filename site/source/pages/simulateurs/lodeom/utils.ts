@@ -536,7 +536,6 @@ export const getSMICMensuelAvecOptions = (
 
 	const SMICMensuel = engine.evaluate({
 		valeur: 'salarié . cotisations . exonérations . lodeom . montant . smic',
-		unité: '€/mois',
 		contexte,
 	}).nodeValue as number
 
