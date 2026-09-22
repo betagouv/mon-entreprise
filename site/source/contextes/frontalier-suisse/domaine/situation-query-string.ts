@@ -3,6 +3,7 @@ import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
+import { fromBase64Url, toBase64Url } from '@/utils/URLs'
 
 import {
 	initialSituationFrontalierSuisse,
@@ -96,13 +97,3 @@ const parseMontant = (valeur: unknown): O.Option<Montant<'€/an'>> =>
 	typeof valeur === 'number' && Number.isFinite(valeur) && valeur >= 0
 		? O.some(eurosParAn(valeur))
 		: O.none()
-
-const toBase64Url = (chaîne: string): string =>
-	btoa(chaîne).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '')
-
-const fromBase64Url = (chaîne: string): string => {
-	const base64 = chaîne.replaceAll('-', '+').replaceAll('_', '/')
-	const padding = '='.repeat((4 - (base64.length % 4)) % 4)
-
-	return atob(base64 + padding)
-}

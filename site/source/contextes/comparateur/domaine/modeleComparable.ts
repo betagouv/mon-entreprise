@@ -1,4 +1,3 @@
-import * as O from 'effect/Option'
 import { TFunction } from 'i18next'
 import { ComponentType, ReactNode } from 'react'
 
@@ -9,8 +8,7 @@ import { MontantRécurrent } from '@/domaine/MontantRecurrent'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { Quantité } from '@/domaine/Quantite'
 
-import { IRouIS } from './imposition'
-import { Question, Réponse } from './situation'
+import { SituationComparée } from './situation'
 
 export type ValeurDocumentée = {
 	documentation: DocumentationDeValeur
@@ -28,15 +26,7 @@ export interface ModèleComparable {
 	DocumentationDeRègle: ComponentType<{ basePath: string }>
 
 	set: {
-		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => void
-		charges: (montant: O.Option<MontantRécurrent>) => void
-		IRouIS?: (valeur: IRouIS) => void
-		versementLibératoire?: (valeur: boolean) => void
-		réponse: (
-			...args: {
-				[K in Question]: [question: K, valeur: Réponse<K>]
-			}[Question]
-		) => void
+		situation: (situation: SituationComparée) => void
 	}
 
 	get: {

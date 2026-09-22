@@ -1,4 +1,4 @@
-import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import { PARAMÈTRE_SITUATION, PARAMÈTRE_UNITÉ } from '@/domaine/parametresUrl'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
 import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { useSearchParamsForSituation } from '@/hooks/useSearchParamsForSituation'
@@ -30,6 +30,7 @@ export function useUrl(options?: Options) {
 			? searchParamsPublicodes
 			: new URLSearchParams({
 					[PARAMÈTRE_SITUATION]: situationEncodée,
+					[PARAMÈTRE_UNITÉ]: searchParams.get(PARAMÈTRE_UNITÉ) ?? '€/an',
 				}).toString()
 
 	return siteUrl + path + '?' + queryString
