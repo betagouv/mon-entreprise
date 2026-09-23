@@ -1,3 +1,5 @@
+import { sumAll } from 'effect/Number'
+
 import { Options } from './Options'
 import { emptyRépartition, Répartition } from './Repartition'
 
@@ -33,3 +35,6 @@ export const initialRéductionMoisParMois = Array(12).fill({
 		répartition: emptyRépartition,
 	},
 }) as MonthState[]
+
+export const rémunérationBruteAnnuelle = (données: MonthState[]): number =>
+	sumAll(données.map((mois) => mois.rémunérationBrute))
