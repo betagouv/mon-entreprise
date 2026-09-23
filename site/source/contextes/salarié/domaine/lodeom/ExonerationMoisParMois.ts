@@ -4,7 +4,11 @@ import Engine from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { MonthState, RégularisationMethod } from './MoisParMois'
+import {
+	MonthState,
+	RégularisationMethod,
+	rémunérationBruteAnnuelle,
+} from './MoisParMois'
 import { Options } from './Options'
 import { getParamètresRéductionParMois } from './ParametresReduction'
 import { getMonthlyRéduction, getTotalRéduction } from './Reduction'
@@ -74,11 +78,8 @@ const reevaluateRéductionMoisParMois = (
 	// Les zones qui ne donnent pas lieu à régularisation n'affichent pas non plus
 	// la répartition de l'exonération.
 	const avecRépartition = régularisation !== 'sans'
-	const totalRémunérationBrute = sumAll(
-		data.map((monthData) => monthData.rémunérationBrute)
-	)
 
-	const aucuneRémunération = !totalRémunérationBrute
+	const aucuneRémunération = !rémunérationBruteAnnuelle(data)
 	if (aucuneRémunération) {
 		return data.map((monthData) => {
 			return {
