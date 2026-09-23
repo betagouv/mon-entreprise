@@ -4,12 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
-import {
-	lodeomDottedName,
-	MonthState,
-	Options,
-	rémunérationBruteDottedName,
-} from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import useYear from '@/hooks/useYear'
@@ -19,9 +14,9 @@ import RécapitulatifTrimestre from './RécapitulatifTrimestre'
 import RéductionMois from './RéductionMois'
 
 type Props = {
-	data: MonthState[]
+	data: Lodeom.MonthState[]
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 	caption: string
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
@@ -106,10 +101,10 @@ export default function RéductionMoisParMois({
 							<tr>
 								<th scope="col">{t('Mois')}</th>
 								<th scope="col">
-									<RuleLink dottedName={rémunérationBruteDottedName} />
+									<RuleLink dottedName={Lodeom.rémunérationBruteDottedName} />
 								</th>
 								<th scope="col">
-									<RuleLink dottedName={lodeomDottedName} />
+									<RuleLink dottedName={Lodeom.lodeomDottedName} />
 								</th>
 								{withRépartitionAndRégularisation && (
 									<th scope="col">

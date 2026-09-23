@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
-import { Options } from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import {
 	baseTheme,
 	Body,
@@ -24,8 +24,8 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 type Props = {
 	month: string
 	index: number
-	options: Options
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	options: Lodeom.Options
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 }
 
 export default function MonthOptions({
