@@ -6,6 +6,7 @@ export {
 	heuresComplémentairesDottedName,
 	heuresSupplémentairesDottedName,
 	initialRéductionMoisParMois,
+	rémunérationBruteAnnuelle,
 	lodeomDottedName,
 	type MonthState,
 	type Options,
