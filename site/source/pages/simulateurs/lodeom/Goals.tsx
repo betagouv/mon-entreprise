@@ -1,5 +1,5 @@
 import { Option, pipe } from 'effect'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
@@ -51,6 +51,17 @@ export default function LodeomSimulationGoals() {
 	const [régularisationMethod, setRégularisationMethod] =
 		useState<Lodeom.RégularisationMethod>('progressive')
 
+	const paramètresDeCalcul: Lodeom.ParamètresDeCalcul = useMemo(
+		() => ({
+			année: year,
+			moteur: engine,
+			régularisation: withRépartitionAndRégularisation
+				? régularisationMethod
+				: 'sans',
+		}),
+		[year, engine, régularisationMethod, withRépartitionAndRégularisation]
+	)
+
 	const { t } = useTranslation()
 
 	const codeRéduction = engine.evaluate(
@@ -81,21 +92,9 @@ export default function LodeomSimulationGoals() {
 
 	useEffect(() => {
 		setData((previousData) =>
-			Lodeom.getDataAfterSituationChange(
-				previousData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
-			)
+			Lodeom.getDataAfterSituationChange(previousData, paramètresDeCalcul)
 		)
-	}, [
-		engine,
-		régularisationMethod,
-		year,
-		withRépartitionAndRégularisation,
-		situation,
-	])
+	}, [paramètresDeCalcul, situation])
 
 	useEffect(() => {
 		setData((previousData) =>
@@ -105,10 +104,7 @@ export default function LodeomSimulationGoals() {
 					heuresComplémentaires: heuresComplémentairesGlobales,
 				},
 				previousData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
+				paramètresDeCalcul
 			)
 		)
 		// Seules les heures supplémentaires/complémentaires globales doivent réétaler
@@ -123,10 +119,7 @@ export default function LodeomSimulationGoals() {
 				monthIndex,
 				rémunérationBrute,
 				lodeomMoisParMoisData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
+				paramètresDeCalcul
 			)
 
 			setData(nouvellesDonnées)
@@ -138,14 +131,7 @@ export default function LodeomSimulationGoals() {
 				} as Record<DottedName, ValeurPublicodes>)
 			)
 		},
-		[
-			dispatch,
-			engine,
-			lodeomMoisParMoisData,
-			régularisationMethod,
-			withRépartitionAndRégularisation,
-			year,
-		]
+		[dispatch, lodeomMoisParMoisData, paramètresDeCalcul]
 	)
 
 	const onOptionsChange = useCallback(
@@ -155,14 +141,11 @@ export default function LodeomSimulationGoals() {
 					monthIndex,
 					options,
 					previousData,
-					year,
-					engine,
-					régularisationMethod,
-					withRépartitionAndRégularisation
+					paramètresDeCalcul
 				)
 			)
 		},
-		[engine, régularisationMethod, withRépartitionAndRégularisation, year]
+		[paramètresDeCalcul]
 	)
 
 	return (

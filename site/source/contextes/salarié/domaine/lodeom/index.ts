@@ -3,6 +3,7 @@ export {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
+	type ParamètresDeCalcul,
 } from './ExonerationMoisParMois'
 export {
 	initialRéductionMoisParMois,
