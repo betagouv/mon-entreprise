@@ -10,7 +10,7 @@ export type Répartition = {
 	chômage: number
 }
 
-export const emptyRépartition = {
+export const emptyRépartition: Répartition = {
 	IRC: 0,
 	Urssaf: 0,
 	chômage: 0,
