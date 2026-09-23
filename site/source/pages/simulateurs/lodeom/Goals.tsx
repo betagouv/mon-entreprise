@@ -1,5 +1,4 @@
 import { Option, pipe } from 'effect'
-import { sumAll } from 'effect/Number'
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +18,7 @@ import {
 	MonthState,
 	Options,
 	RégularisationMethod,
+	rémunérationBruteAnnuelle,
 	rémunérationBruteDottedName,
 } from '@/contextes/salarié'
 import { Body, Message } from '@/design-system'
@@ -133,28 +133,23 @@ export default function LodeomSimulationGoals() {
 
 	const onRémunérationChange = useCallback(
 		(monthIndex: number, rémunérationBrute: number) => {
-			const rémunérationBruteAnnuelle =
-				sumAll(
-					lodeomMoisParMoisData.map((monthData, index) =>
-						index === monthIndex ? 0 : monthData.rémunérationBrute
-					)
-				) + rémunérationBrute
-			dispatch(
-				ajusteLaSituation({
-					[rémunérationBruteDottedName]: eurosParAn(rémunérationBruteAnnuelle),
-				} as Record<DottedName, ValeurPublicodes>)
+			const nouvellesDonnées = getDataAfterRémunérationChange(
+				monthIndex,
+				rémunérationBrute,
+				lodeomMoisParMoisData,
+				year,
+				engine,
+				régularisationMethod,
+				withRépartitionAndRégularisation
 			)
 
-			setData((previousData) =>
-				getDataAfterRémunérationChange(
-					monthIndex,
-					rémunérationBrute,
-					previousData,
-					year,
-					engine,
-					régularisationMethod,
-					withRépartitionAndRégularisation
-				)
+			setData(nouvellesDonnées)
+			dispatch(
+				ajusteLaSituation({
+					[rémunérationBruteDottedName]: eurosParAn(
+						rémunérationBruteAnnuelle(nouvellesDonnées)
+					),
+				} as Record<DottedName, ValeurPublicodes>)
 			)
 		},
 		[
