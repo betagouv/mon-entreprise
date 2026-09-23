@@ -1,3 +1,4 @@
+import { sumAll } from 'effect/Number'
 import { describe, expect, it } from 'vitest'
 
 import {
@@ -6,12 +7,13 @@ import {
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
 } from './ExonerationMoisParMois'
-import { initialRéductionMoisParMois } from './MoisParMois'
+import { initialRéductionMoisParMois, MonthState } from './MoisParMois'
 import { Options } from './Options'
 import { annéeAvec, moteurZoneUn } from './test/fixtures'
 
 const janvier = 0
 const février = 1
+const décembre = 11
 const année = 2025
 const moteur = moteurZoneUn('3500 €/an')
 
@@ -115,6 +117,42 @@ describe('getDataAfterOptionsChange', () => {
 
 		expect(données[janvier].options.heuresSupplémentaires).toBe(10)
 		expect(données[février].options.heuresSupplémentaires).toBe(0)
+	})
+})
+
+describe('régularisation', () => {
+	// Un mois nettement mieux payé que les autres crée un trop-perçu de réduction,
+	// qu'il faut reprendre.
+	const annéeAvecUnMoisÉlevé = annéeAvec([
+		3500,
+		4500,
+		...Array<number>(10).fill(3500),
+	])
+	const totalAnnuel = (données: MonthState[]) =>
+		sumAll(données.map((m) => m.réduction.value + m.régularisation.value))
+
+	const selon = (méthode: 'progressive' | 'annuelle') =>
+		getDataAfterSituationChange(annéeAvecUnMoisÉlevé, année, moteur, méthode)
+
+	it('reprend le trop-perçu dès le mois où il apparaît, en progressive', () => {
+		const données = selon('progressive')
+
+		expect(données[février].régularisation.value).toBeLessThan(0)
+		expect(données[février].réduction.value).toBe(0)
+	})
+
+	it('ne reprend le trop-perçu qu’en décembre, en annuelle', () => {
+		const données = selon('annuelle')
+
+		expect(données[février].régularisation.value).toBe(0)
+		expect(données[décembre].régularisation.value).toBeLessThan(0)
+	})
+
+	it('aboutit au même total annuel quelle que soit la méthode', () => {
+		expect(totalAnnuel(selon('progressive'))).toBeCloseTo(
+			totalAnnuel(selon('annuelle')),
+			2
+		)
 	})
 })
 
