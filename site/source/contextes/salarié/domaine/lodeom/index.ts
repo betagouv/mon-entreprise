@@ -6,6 +6,7 @@ export {
 } from './ExonerationMoisParMois'
 export {
 	initialRéductionMoisParMois,
+	rémunérationBruteAnnuelle,
 	type MonthState,
 	type RégularisationMethod,
 } from './MoisParMois'
