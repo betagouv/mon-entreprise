@@ -8,7 +8,6 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 
 import { Options } from './Options'
 import {
-	isParamètresRéductionAvecRémunération,
 	ParamètresRéduction,
 	ParamètresRéductionAvecRémunération,
 } from './ParametresReduction'
@@ -64,7 +63,7 @@ export const getTotalRéduction = (
 			>,
 			paramètresRéductionMois
 		) => {
-			if (!isParamètresRéductionAvecRémunération(paramètresRéductionMois)) {
+			if (!paramètresRéductionMois.moisRémunéré) {
 				return paramètresRéductionParPériode
 			}
 
@@ -84,10 +83,9 @@ export const getTotalRéduction = (
 
 			const rémunérationBruteCumulée =
 				dernierParamètresRéductionDeLaPériodeEnCours.rémunérationBrute
-			const SMICCumulé = dernierParamètresRéductionDeLaPériodeEnCours.SMIC.value
-			const dernierCoefT =
-				dernierParamètresRéductionDeLaPériodeEnCours.coefT.value
-			const coefTMois = paramètresRéductionMois.coefT.value
+			const SMICCumulé = dernierParamètresRéductionDeLaPériodeEnCours.SMIC
+			const dernierCoefT = dernierParamètresRéductionDeLaPériodeEnCours.coefT
+			const coefTMois = paramètresRéductionMois.coefT
 
 			if (coefTMois !== dernierCoefT) {
 				const nouvellePériode = [paramètresRéductionMois]
@@ -96,13 +94,13 @@ export const getTotalRéduction = (
 				return paramètresRéductionParPériode
 			}
 
-			const paramètresRéductionCumulés = {
+			périodeEnCours.push({
+				moisRémunéré: true,
 				rémunérationBrute:
 					rémunérationBruteCumulée + paramètresRéductionMois.rémunérationBrute,
-				SMIC: O.some(SMICCumulé + paramètresRéductionMois.SMIC.value),
-				coefT: O.some(dernierCoefT),
-			} as ParamètresRéductionAvecRémunération
-			périodeEnCours.push(paramètresRéductionCumulés)
+				SMIC: SMICCumulé + paramètresRéductionMois.SMIC,
+				coefT: dernierCoefT,
+			})
 
 			return paramètresRéductionParPériode
 		},
@@ -126,8 +124,7 @@ const getRéduction =
 			arrondi: 'non',
 			contexte: {
 				[rémunérationBruteDottedName]: paramètresRéduction.rémunérationBrute,
-				'salarié . temps de travail . SMIC': paramètresRéduction.SMIC.value,
-				'salarié . cotisations . exonérations . T':
-					paramètresRéduction.coefT.value,
+				'salarié . temps de travail . SMIC': paramètresRéduction.SMIC,
+				'salarié . cotisations . exonérations . T': paramètresRéduction.coefT,
 			},
 		}).nodeValue as number
