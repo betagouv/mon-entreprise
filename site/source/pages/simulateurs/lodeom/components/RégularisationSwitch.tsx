@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
-import { RégularisationMethod } from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import { ChoixUnique } from '@/design-system'
 
 type Props = {
-	régularisationMethod: RégularisationMethod
-	setRégularisationMethod: (value: RégularisationMethod) => void
+	régularisationMethod: Lodeom.RégularisationMethod
+	setRégularisationMethod: (value: Lodeom.RégularisationMethod) => void
 }
 
 export default function RégularisationSwitch({
@@ -46,7 +46,7 @@ export default function RégularisationSwitch({
 				options={options}
 				value={régularisationMethod}
 				onChange={(value) => {
-					setRégularisationMethod(value as RégularisationMethod)
+					setRégularisationMethod(value as Lodeom.RégularisationMethod)
 				}}
 				aria={{ labelledby: 'régularisation-switch-label' }}
 			/>

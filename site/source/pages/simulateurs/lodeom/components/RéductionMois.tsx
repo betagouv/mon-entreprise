@@ -5,7 +5,7 @@ import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
-import { lodeomDottedName, MonthState, Options } from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import {
 	Body,
 	Button,
@@ -21,10 +21,10 @@ import RémunérationInput from './RémunérationInput'
 
 type Props = {
 	monthName: string
-	data: MonthState
+	data: Lodeom.MonthState
 	index: number
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
 	withRépartitionAndRégularisation?: boolean
@@ -71,7 +71,7 @@ export default function RéductionMois({
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`${lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				id={`${Lodeom.lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -87,7 +87,7 @@ export default function RéductionMois({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`${lodeomDottedName.replace(
+				id={`${Lodeom.lodeomDottedName.replace(
 					/\s|\./g,
 					'_'
 				)}__régularisation-${monthName}`}
@@ -122,7 +122,7 @@ export default function RéductionMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={lodeomDottedName} />
+					<RuleLink dottedName={Lodeom.lodeomDottedName} />
 				</Grid>
 				<Grid item>
 					<StyledBody>
