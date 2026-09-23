@@ -6,6 +6,7 @@ import {
 	getDataAfterOptionsChange,
 	getDataAfterRémunérationChange,
 	getDataAfterSituationChange,
+	type ParamètresDeCalcul,
 } from './ExonerationMoisParMois'
 import { initialRéductionMoisParMois, MonthState } from './MoisParMois'
 import { Options } from './Options'
@@ -16,6 +17,11 @@ const février = 1
 const décembre = 11
 const année = 2025
 const moteur = moteurZoneUn('3500 €/an')
+const calcul: ParamètresDeCalcul = {
+	année,
+	moteur,
+	régularisation: 'progressive',
+}
 
 const heuresSupplémentaires = (nombre: number): Options => ({
 	heuresSupplémentaires: nombre,
@@ -30,9 +36,7 @@ describe('getDataAfterRémunérationChange', () => {
 			janvier,
 			3500,
 			initialRéductionMoisParMois,
-			année,
-			moteur,
-			'progressive'
+			calcul
 		)
 
 		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
@@ -44,9 +48,7 @@ describe('getDataAfterRémunérationChange', () => {
 			janvier,
 			3500,
 			initialRéductionMoisParMois,
-			année,
-			moteurZoneUn(),
-			'progressive'
+			{ ...calcul, moteur: moteurZoneUn() }
 		)
 
 		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
@@ -57,9 +59,7 @@ describe('getDataAfterRémunérationChange', () => {
 			février,
 			3000,
 			annéeAvec([3500]),
-			année,
-			moteur,
-			'progressive'
+			calcul
 		)
 
 		expect(données[janvier].rémunérationBrute).toBe(3500)
@@ -72,9 +72,7 @@ describe('getDataAfterGlobalOptionsChange', () => {
 		getDataAfterGlobalOptionsChange(
 			{ heuresSupplémentaires: heures },
 			annéeAvec([3500]),
-			année,
-			moteur,
-			'progressive'
+			calcul
 		)
 
 	it('applique les heures supplémentaires du cadre bleu aux douze mois', () => {
@@ -94,9 +92,7 @@ describe('getDataAfterGlobalOptionsChange', () => {
 		const données = getDataAfterGlobalOptionsChange(
 			{ heuresSupplémentaires: 5 },
 			annéeAvec([3500, 3000]),
-			année,
-			moteur,
-			'progressive'
+			calcul
 		)
 
 		expect(données[janvier].rémunérationBrute).toBe(3500)
@@ -110,9 +106,7 @@ describe('getDataAfterOptionsChange', () => {
 			janvier,
 			heuresSupplémentaires(10),
 			annéeAvec([3500]),
-			année,
-			moteur,
-			'progressive'
+			calcul
 		)
 
 		expect(données[janvier].options.heuresSupplémentaires).toBe(10)
@@ -132,7 +126,10 @@ describe('régularisation', () => {
 		sumAll(données.map((m) => m.réduction.value + m.régularisation.value))
 
 	const selon = (méthode: 'progressive' | 'annuelle') =>
-		getDataAfterSituationChange(annéeAvecUnMoisÉlevé, année, moteur, méthode)
+		getDataAfterSituationChange(annéeAvecUnMoisÉlevé, {
+			...calcul,
+			régularisation: méthode,
+		})
 
 	it('reprend le trop-perçu dès le mois où il apparaît, en progressive', () => {
 		const données = selon('progressive')
@@ -146,6 +143,31 @@ describe('régularisation', () => {
 
 		expect(données[février].régularisation.value).toBe(0)
 		expect(données[décembre].régularisation.value).toBeLessThan(0)
+	})
+
+	it('ne reprend rien là où la zone n’y donne pas droit', () => {
+		const données = getDataAfterSituationChange(annéeAvecUnMoisÉlevé, {
+			...calcul,
+			régularisation: 'sans',
+		})
+
+		expect(données.map((mois) => mois.régularisation.value)).toStrictEqual(
+			Array(12).fill(0)
+		)
+	})
+
+	it('n’y ventile pas non plus la réduction entre organismes', () => {
+		const données = getDataAfterSituationChange(annéeAvecUnMoisÉlevé, {
+			...calcul,
+			régularisation: 'sans',
+		})
+
+		expect(données[janvier].réduction.value).toBeGreaterThan(0)
+		expect(données[janvier].réduction.répartition).toStrictEqual({
+			IRC: 0,
+			Urssaf: 0,
+			chômage: 0,
+		})
 	})
 
 	it('aboutit au même total annuel quelle que soit la méthode', () => {
@@ -162,12 +184,10 @@ describe('getDataAfterSituationChange', () => {
 			index === janvier ? { ...mois, options: heuresSupplémentaires(10) } : mois
 		)
 
-		const données = getDataAfterSituationChange(
-			avecOptionsEnJanvier,
-			année,
-			moteur,
-			'annuelle'
-		)
+		const données = getDataAfterSituationChange(avecOptionsEnJanvier, {
+			...calcul,
+			régularisation: 'annuelle',
+		})
 
 		expect(données[janvier].options.heuresSupplémentaires).toBe(10)
 	})
@@ -179,12 +199,7 @@ describe('getDataAfterSituationChange', () => {
 				: mois
 		)
 
-		const données = getDataAfterSituationChange(
-			avecUneRéductionFausse,
-			année,
-			moteur,
-			'progressive'
-		)
+		const données = getDataAfterSituationChange(avecUneRéductionFausse, calcul)
 
 		expect(données[janvier].réduction.value).toBeCloseTo(214.2, 2)
 	})

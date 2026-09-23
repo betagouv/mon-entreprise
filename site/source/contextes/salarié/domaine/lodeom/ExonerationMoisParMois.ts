@@ -10,28 +10,21 @@ import { getParamètresRéductionParMois } from './ParametresReduction'
 import { getMonthlyRéduction, getTotalRéduction } from './Reduction'
 import { emptyRépartition, getRépartition } from './Repartition'
 
+export type ParamètresDeCalcul = {
+	année: number
+	moteur: Engine<DottedName>
+	régularisation: RégularisationMethod | 'sans'
+}
+
 export const getDataAfterSituationChange = (
 	data: MonthState[],
-	year: number,
-	engine: Engine<DottedName>,
-	régularisationMethod: RégularisationMethod,
-	withRépartitionAndRégularisation: boolean = true
-): MonthState[] =>
-	reevaluateRéductionMoisParMois(
-		data,
-		year,
-		engine,
-		withRépartitionAndRégularisation,
-		withRépartitionAndRégularisation ? régularisationMethod : undefined
-	)
+	paramètres: ParamètresDeCalcul
+): MonthState[] => reevaluateRéductionMoisParMois(data, paramètres)
 
 export const getDataAfterGlobalOptionsChange = (
 	options: Partial<Options>,
 	previousData: MonthState[],
-	year: number,
-	engine: Engine<DottedName>,
-	régularisationMethod: RégularisationMethod,
-	withRépartitionAndRégularisation: boolean = true
+	paramètres: ParamètresDeCalcul
 ): MonthState[] => {
 	const updatedData = previousData.map((data) => ({
 		...data,
@@ -41,23 +34,14 @@ export const getDataAfterGlobalOptionsChange = (
 		},
 	}))
 
-	return reevaluateRéductionMoisParMois(
-		updatedData,
-		year,
-		engine,
-		withRépartitionAndRégularisation,
-		withRépartitionAndRégularisation ? régularisationMethod : undefined
-	)
+	return reevaluateRéductionMoisParMois(updatedData, paramètres)
 }
 
 export const getDataAfterRémunérationChange = (
 	monthIndex: number,
 	rémunérationBrute: number,
 	previousData: MonthState[],
-	year: number,
-	engine: Engine<DottedName>,
-	régularisationMethod: RégularisationMethod,
-	withRépartitionAndRégularisation: boolean = true
+	paramètres: ParamètresDeCalcul
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -65,23 +49,14 @@ export const getDataAfterRémunérationChange = (
 		rémunérationBrute,
 	}
 
-	return reevaluateRéductionMoisParMois(
-		updatedData,
-		year,
-		engine,
-		withRépartitionAndRégularisation,
-		withRépartitionAndRégularisation ? régularisationMethod : undefined
-	)
+	return reevaluateRéductionMoisParMois(updatedData, paramètres)
 }
 
 export const getDataAfterOptionsChange = (
 	monthIndex: number,
 	options: Options,
 	previousData: MonthState[],
-	year: number,
-	engine: Engine<DottedName>,
-	régularisationMethod: RégularisationMethod,
-	withRépartitionAndRégularisation: boolean = true
+	paramètres: ParamètresDeCalcul
 ): MonthState[] => {
 	const updatedData = [...previousData]
 	updatedData[monthIndex] = {
@@ -89,22 +64,16 @@ export const getDataAfterOptionsChange = (
 		options,
 	}
 
-	return reevaluateRéductionMoisParMois(
-		updatedData,
-		year,
-		engine,
-		withRépartitionAndRégularisation,
-		withRépartitionAndRégularisation ? régularisationMethod : undefined
-	)
+	return reevaluateRéductionMoisParMois(updatedData, paramètres)
 }
 
 const reevaluateRéductionMoisParMois = (
 	data: MonthState[],
-	year: number,
-	engine: Engine<DottedName>,
-	withRépartition: boolean,
-	régularisationMethod?: RégularisationMethod
+	{ année, moteur, régularisation }: ParamètresDeCalcul
 ): MonthState[] => {
+	// Les zones qui ne donnent pas lieu à régularisation n'affichent pas non plus
+	// la répartition de l'exonération.
+	const avecRépartition = régularisation !== 'sans'
 	const totalRémunérationBrute = sumAll(
 		data.map((monthData) => monthData.rémunérationBrute)
 	)
@@ -128,8 +97,8 @@ const reevaluateRéductionMoisParMois = (
 
 	const paramètresRéductionParMois = getParamètresRéductionParMois(
 		data,
-		year,
-		engine
+		année,
+		moteur
 	)
 
 	const reevaluatedData = data.reduce(
@@ -140,8 +109,8 @@ const reevaluateRéductionMoisParMois = (
 			const aucunMontant = { value: 0, répartition: emptyRépartition }
 			const montantRéparti = (value: number) => ({
 				value,
-				répartition: withRépartition
-					? getRépartition(rémunérationBrute, value, engine)
+				répartition: avecRépartition
+					? getRépartition(rémunérationBrute, value, moteur)
 					: emptyRépartition,
 			})
 
@@ -166,11 +135,11 @@ const reevaluateRéductionMoisParMois = (
 				// La régularisation progressive du mois N compare la réduction due pour la
 				// rémunération cumulée jusqu'à N — face au SMIC équivalent de ces N mois —
 				// aux N-1 réductions déjà accordées, régularisations comprises.
-				if (régularisationMethod === 'progressive' && rémunérationBrute) {
+				if (régularisation === 'progressive' && rémunérationBrute) {
 					return ventile(
 						getTotalRéduction(
 							take(paramètresRéductionParMois, monthIndex + 1),
-							engine
+							moteur
 						) -
 							cumul((mois) => mois.réduction.value + mois.régularisation.value)
 					)
@@ -178,9 +147,9 @@ const reevaluateRéductionMoisParMois = (
 
 				// La régularisation annuelle suit la même logique, mais sur l'année entière
 				// et au seul mois de décembre.
-				if (régularisationMethod === 'annuelle' && décembre) {
+				if (régularisation === 'annuelle' && décembre) {
 					return ventile(
-						getTotalRéduction(paramètresRéductionParMois, engine) -
+						getTotalRéduction(paramètresRéductionParMois, moteur) -
 							cumul((mois) => mois.réduction.value)
 					)
 				}
@@ -190,11 +159,11 @@ const reevaluateRéductionMoisParMois = (
 					return {
 						réduction: montantRéparti(
 							getMonthlyRéduction(
-								year,
+								année,
 								monthIndex,
 								rémunérationBrute,
 								options,
-								engine
+								moteur
 							)
 						),
 						régularisation: aucunMontant,
