@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
-import {
-	rémunérationBruteDottedName,
-	Répartition as RépartitionType,
-} from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import { EyeIcon, FlexCenter, Tooltip, WarningIcon } from '@/design-system'
 import Répartition from '@/pages/simulateurs/lodeom/components/Répartition'
 
@@ -15,7 +12,7 @@ type Props = {
 	id: string
 	rémunérationBrute: number
 	réduction: number
-	répartition: RépartitionType
+	répartition: Lodeom.Répartition
 	displayedUnit: string
 	language: string
 	warningCondition?: PublicodesExpression
@@ -79,7 +76,7 @@ export default function Montant({
 				<Condition
 					expression={warningCondition}
 					contexte={{
-						[rémunérationBruteDottedName]: rémunérationBrute,
+						[Lodeom.rémunérationBruteDottedName]: rémunérationBrute,
 					}}
 				>
 					<Tooltip tooltip={warningTooltip}>

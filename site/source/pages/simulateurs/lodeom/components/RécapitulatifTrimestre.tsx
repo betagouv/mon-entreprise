@@ -2,7 +2,7 @@ import { sumAll } from 'effect/Number'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { MonthState } from '@/contextes/salarié'
+import { Lodeom } from '@/contextes/salarié'
 import { Body, Grid } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
 
@@ -10,7 +10,7 @@ import { MobileContainer } from './MobileContainer'
 
 type Props = {
 	label: string
-	data: MonthState[]
+	data: Lodeom.MonthState[]
 	codeRéduction?: string
 	codeRégularisation?: string
 	withRépartitionAndRégularisation?: boolean
