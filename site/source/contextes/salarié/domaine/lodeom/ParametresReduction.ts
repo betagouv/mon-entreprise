@@ -1,4 +1,3 @@
-import * as O from 'effect/Option'
 import Engine from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -10,58 +9,41 @@ import { getSMICMensuelAvecOptions } from './SmicEquivalent'
 export type ParamètresRéduction =
 	| ParamètresRéductionAvecRémunération
 	| ParamètresRéductionSansRémunération
+
 export interface ParamètresRéductionAvecRémunération {
+	moisRémunéré: true
 	rémunérationBrute: number
-	SMIC: O.Some<number>
-	coefT: O.Some<number>
-}
-interface ParamètresRéductionSansRémunération {
-	rémunérationBrute: 0
-	SMIC: O.None<number>
-	coefT: O.None<number>
+	SMIC: number
+	coefT: number
 }
 
-export const isParamètresRéductionAvecRémunération = (
-	params: ParamètresRéduction
-): params is ParamètresRéductionAvecRémunération => params.rémunérationBrute > 0
+interface ParamètresRéductionSansRémunération {
+	moisRémunéré: false
+}
 
 export const getParamètresRéductionParMois = (
 	data: MonthState[],
 	year: number,
 	engine: Engine<DottedName>
-): Array<ParamètresRéduction> => {
-	return data.reduce(
-		(paramètres: Array<ParamètresRéduction>, monthData, monthIndex) => {
-			const rémunérationBrute = monthData.rémunérationBrute
-			// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
-			// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
-			if (!rémunérationBrute) {
-				paramètres.push({
-					rémunérationBrute,
-					SMIC: O.none(),
-					coefT: O.none(),
-				} as ParamètresRéduction)
+): Array<ParamètresRéduction> =>
+	data.map((monthData, monthIndex) => {
+		const rémunérationBrute = monthData.rémunérationBrute
+		// S'il n'y a pas de rémunération ce mois-ci, il n'y a pas de réduction
+		// et il ne faut pas compter le SMIC de ce mois-ci dans le SMIC cumulé.
+		if (rémunérationBrute <= 0) {
+			return { moisRémunéré: false }
+		}
 
-				return paramètres
-			}
-
-			const SMIC = getSMICMensuelAvecOptions(
+		return {
+			moisRémunéré: true,
+			rémunérationBrute,
+			SMIC: getSMICMensuelAvecOptions(
 				year,
 				monthIndex,
-				monthData.rémunérationBrute,
+				rémunérationBrute,
 				monthData.options,
 				engine
-			)
-			const coefT = getCoefT(year, monthIndex, rémunérationBrute, engine)
-
-			paramètres.push({
-				rémunérationBrute,
-				SMIC: O.some(SMIC),
-				coefT: O.some(coefT),
-			} as ParamètresRéduction)
-
-			return paramètres
-		},
-		[]
-	)
-}
+			),
+			coefT: getCoefT(year, monthIndex, rémunérationBrute, engine),
+		}
+	})

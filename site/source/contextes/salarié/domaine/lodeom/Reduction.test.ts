@@ -52,4 +52,10 @@ describe('getTotalRéduction', () => {
 			getTotalRéduction(paramètresPourLesRémunérations([3500]), moteur)
 		).toBeCloseTo(214.2, 2)
 	})
+
+	it('ignore aussi un mois dont la rémunération saisie est négative', () => {
+		expect(
+			getTotalRéduction(paramètresPourLesRémunérations([3500, -100]), moteur)
+		).toBeCloseTo(214.2, 2)
+	})
 })
