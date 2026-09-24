@@ -52,14 +52,6 @@ const étiquette = 'SASU'
 const documentation = (dottedName: RègleModèleAssimiléSalarié) =>
 	documentationPublicodes(getEngine, dottedName, étiquette)
 
-const documenté = <V,>(
-	valeur: V,
-	dottedName: RègleModèleAssimiléSalarié
-): V & ValeurDocumentée => ({
-	...valeur,
-	documentation: documentation(dottedName),
-})
-
 const évalue = <V,>(
 	expression:
 		| RègleModèleAssimiléSalarié
@@ -78,15 +70,14 @@ const valeurDocumentée = <V,>(
 	dottedName: RègleModèleAssimiléSalarié,
 	défaut: V,
 	unité?: string
-): V & ValeurDocumentée =>
-	documenté(
-		évalue(
-			unité ? { valeur: dottedName, unité } : dottedName,
-			défaut,
-			rémunérationEstPositive()
-		),
-		dottedName
-	)
+): V & ValeurDocumentée => ({
+	...évalue(
+		unité ? { valeur: dottedName, unité } : dottedName,
+		défaut,
+		rémunérationEstPositive()
+	),
+	documentation: documentation(dottedName),
+})
 
 const getRémunérationTotale = () => {
 	return pipe(
@@ -265,14 +256,18 @@ export const ModèleAssimiléSalarié: ModèleComparable = {
 					: O.getOrElse(getRémunérationTotale(), () => eurosParMois(0))
 
 			return {
-				bénéfice: documenté(
-					bénéfice,
-					'assimilé salarié . rémunération . totale'
-				),
-				revenuNetAprèsImpôt: documenté(
-					revenuNetAprèsImpôt,
-					'assimilé salarié . rémunération . nette . après impôt'
-				),
+				bénéfice: {
+					...bénéfice,
+					documentation: documentation(
+						'assimilé salarié . rémunération . totale'
+					),
+				},
+				revenuNetAprèsImpôt: {
+					...revenuNetAprèsImpôt,
+					documentation: documentation(
+						'assimilé salarié . rémunération . nette . après impôt'
+					),
+				},
 			}
 		},
 
