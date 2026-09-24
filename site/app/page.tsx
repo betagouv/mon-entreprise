@@ -33,13 +33,13 @@ export default function Home() {
 					)}
 					picture="/images/home-banner-decorative.svg"
 				>
-					<Intro $xxl>
+					<IntroEnTête $xxl>
 						<Trans i18nKey="pages.landing.subtitle">
 							Des <Strong>assistants et simulateurs</Strong> pour obtenir des{' '}
 							<Strong>réponses personnalisées</Strong> à vos questions sur la{' '}
 							création et la gestion de votre entreprise.
 						</Trans>
-					</Intro>
+					</IntroEnTête>
 
 					<ParagrapheEnTête>
 						{t(
@@ -77,14 +77,16 @@ export default function Home() {
 
 			<ListeDesStatutsEtRechercheEntrepriseContainer>
 				<BlocListeDesStatuts>
-					<H2>{t('pages.landing.section.by-status', 'Par statut')}</H2>
+					<TitreDeSection>
+						{t('pages.landing.section.by-status', 'Par statut')}
+					</TitreDeSection>
 
-					<H3>
+					<TitreDeSousSection>
 						{t(
 							'pages.landing.sub-section.employees-and-employers',
 							'Travailleurs salariés et employeurs'
 						)}
-					</H3>
+					</TitreDeSousSection>
 
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
@@ -95,12 +97,20 @@ export default function Home() {
 						/>
 					</Grid>
 
-					<H3>
-						{t(
-							'pages.landing.sub-section.self-employed',
-							'Travailleurs indépendants'
-						)}
-					</H3>
+					<Titre3AvecSousTitre>
+						<TitreDeSousSection>
+							{t(
+								'pages.landing.sub-section.self-employed',
+								'Travailleurs indépendants'
+							)}
+						</TitreDeSousSection>
+						<SousTitre>
+							{t(
+								'pages.landing.sub-section.self-employed-description',
+								"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
+							)}
+						</SousTitre>
+					</Titre3AvecSousTitre>
 
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
@@ -140,14 +150,18 @@ export default function Home() {
 						/>
 					</Grid>
 
-					<H2>{t('pages.landing.section.by-occupation', 'Par profession')}</H2>
+					<Titre2AvecSousTitre>
+						<TitreDeSection>
+							{t('pages.landing.section.by-occupation', 'Par profession')}
+						</TitreDeSection>
 
-					<Body>
-						{t(
-							'pages.landing.sub-section.self-employed-description',
-							"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
-						)}
-					</Body>
+						<SousTitre>
+							{t(
+								'pages.landing.sub-section.by-occupation-description',
+								"Calculez vos cotisations et votre revenu net après impôt à partir du chiffre d'affaires et inversement"
+							)}
+						</SousTitre>
+					</Titre2AvecSousTitre>
 
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
@@ -183,7 +197,9 @@ export default function Home() {
 						/>
 					</Grid>
 
-					<H2>{t('pages.landing.section.other-tools', 'Autres outils')}</H2>
+					<TitreDeSection>
+						{t('pages.landing.section.other-tools', 'Autres outils')}
+					</TitreDeSection>
 
 					<Grid role="list" container spacing={4}>
 						<SimulateurCard
@@ -227,8 +243,12 @@ export default function Home() {
 	)
 }
 
+const IntroEnTête = styled(Intro)`
+	margin: ${({ theme }) => theme.spacings.md} 0;
+`
+
 const ParagrapheEnTête = styled(Body)`
-	padding-bottom: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: ${({ theme }) => theme.spacings.xl};
 `
 
 const ExplorerLesStatutsContainer = styled(Container)`
@@ -236,12 +256,36 @@ const ExplorerLesStatutsContainer = styled(Container)`
 `
 
 const ListeDesStatutsEtRechercheEntrepriseContainer = styled(Container)`
-	padding-bottom: ${({ theme }) => theme.spacings.xl};
+	margin-bottom: ${({ theme }) => theme.spacings.xl};
 `
 
 const BlocListeDesStatuts = styled.div`
 	display: flex;
 	flex-direction: column;
 	row-gap: ${({ theme }) => theme.spacings.lg};
-	padding-bottom: ${({ theme }) => theme.spacings.lg};
+	margin-bottom: ${({ theme }) => theme.spacings.xxl};
+`
+
+const TitreDeSection = styled(H2)`
+	margin: ${({ theme }) => theme.spacings.xxxl} 0 0;
+`
+
+const TitreDeSousSection = styled(H3)`
+	margin: ${({ theme }) => theme.spacings.lg} 0 0;
+`
+
+const Titre3AvecSousTitre = styled.div`
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.xs};
+`
+
+const Titre2AvecSousTitre = styled.div`
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({ theme }) => theme.spacings.md};
+`
+
+const SousTitre = styled(Body)`
+	margin: 0;
 `
