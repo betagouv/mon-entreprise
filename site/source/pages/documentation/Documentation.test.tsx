@@ -29,17 +29,21 @@ const afficherLaDocumentation = (cheminDemandé: string) => {
 						/>
 					}
 				/>
-				<Route path="/404" element={<p>Page introuvable</p>} />
 			</Routes>
 		</TestProvider>
 	)
 }
 
 describe('Documentation', () => {
-	it("renvoie vers la page 404 lorsque l'URL ne désigne aucune règle", async () => {
+	it("affiche la 404 sans quitter l'URL lorsqu'elle ne désigne aucune règle", async () => {
 		afficherLaDocumentation('règle-inexistante')
 
-		expect(await screen.findByText('Page introuvable')).toBeInTheDocument()
+		expect(
+			await screen.findByText(/Cette page n'existe pas/i)
+		).toBeInTheDocument()
+		expect(decodeURI(window.location.pathname)).toBe(
+			`${BASE_PATH}/règle-inexistante`
+		)
 	})
 
 	it(
