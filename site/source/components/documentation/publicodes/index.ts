@@ -1,0 +1,5 @@
+export { documentationDeRègle } from './documentationDeRegle'
+export { RéférencesDeRègle } from './ReferencesDeRegle'
+export { RésuméDeRègle } from './ResumeDeRegle'
+export { useRègleDuCheminCourant } from './useRegleDuCheminCourant'
+export { Visualiseur } from './Visualiseur'

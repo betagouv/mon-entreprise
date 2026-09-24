@@ -5,7 +5,7 @@ import { useMemo } from 'react'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useNavigation } from '@/lib/navigation'
 
-export const useRègleDocumentée = ({
+export const useRègleDuCheminCourant = ({
 	documentationPath,
 	engine,
 }: {
