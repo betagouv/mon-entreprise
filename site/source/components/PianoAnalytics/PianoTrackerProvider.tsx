@@ -1,5 +1,5 @@
-import i18next from 'i18next'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
 	createPianoTracker,
@@ -16,6 +16,7 @@ export function PianoTrackerProvider({
 }: {
 	children: React.ReactNode
 }) {
+	const { i18n } = useTranslation()
 	const [tracker, setTracker] = useState<PianoTracker | null>(null)
 	const [script, setScript] = useState<HTMLScriptElement | null>(null)
 	const [injected, setInjected] = useState<boolean>(false)
@@ -35,7 +36,7 @@ export function PianoTrackerProvider({
 			)
 
 			const instance = new PianoTrackerClass({
-				language: parseLangue(i18next.language),
+				language: parseLangue(i18n.language),
 			})
 
 			setTracker(instance)
@@ -47,7 +48,7 @@ export function PianoTrackerProvider({
 		}
 
 		setScript(script)
-	}, [])
+	}, [i18n])
 
 	useEffect(() => {
 		if (!script) {
