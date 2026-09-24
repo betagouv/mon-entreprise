@@ -1,10 +1,7 @@
 import Engine from 'publicodes'
 import { Route, Routes } from 'react-router-dom'
 
-import {
-	useRègleDocumentée,
-	VisualiseurPublicodes,
-} from '@/components/documentation'
+import { PublicodesDoc } from '@/components/documentation'
 import { Popover } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useNavigation } from '@/lib/navigation'
@@ -46,7 +43,10 @@ const ModaleDeDocumentation = ({
 	basePath: string
 }) => {
 	const { navigate } = useNavigation()
-	const règle = useRègleDocumentée({ documentationPath, engine })
+	const règle = PublicodesDoc.useRègleDuCheminCourant({
+		documentationPath,
+		engine,
+	})
 
 	if (!règle) {
 		return null
@@ -61,7 +61,7 @@ const ModaleDeDocumentation = ({
 					navigate(basePath, { replace: true })
 				}}
 			>
-				<VisualiseurPublicodes
+				<PublicodesDoc.Visualiseur
 					engine={engine}
 					documentationPath={documentationPath}
 					nomModèle="modele-social"

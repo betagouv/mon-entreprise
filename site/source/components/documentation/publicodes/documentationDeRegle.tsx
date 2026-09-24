@@ -3,14 +3,14 @@ import Engine from 'publicodes'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 
-import { VisualiseurPublicodes } from './VisualiseurPublicodes'
+import { Visualiseur } from './Visualiseur'
 
-export const documentationDeRèglePublicodes = (
+export const documentationDeRègle = (
 	engine: () => Engine<DottedName>,
 	nomModèle: NomModèle
 ) => {
 	const DocumentationDeRègle = ({ basePath }: { basePath: string }) => (
-		<VisualiseurPublicodes
+		<Visualiseur
 			engine={engine()}
 			documentationPath={basePath}
 			nomModèle={nomModèle}
