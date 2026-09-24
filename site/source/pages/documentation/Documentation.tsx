@@ -1,6 +1,6 @@
 import Engine from 'publicodes'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
 import { PublicodesDoc } from '@/components/documentation'
 import { TrackPage } from '@/components/PianoAnalytics'
@@ -11,6 +11,7 @@ import { Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
+import Page404 from '@/pages/404'
 
 import BackToSimulation from './BackToSimulation'
 import DocumentationLanding from './DocumentationLanding'
@@ -52,7 +53,7 @@ const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
 	})
 
 	if (!règle) {
-		return <Navigate to="/404" replace />
+		return <Page404 />
 	}
 
 	return (
