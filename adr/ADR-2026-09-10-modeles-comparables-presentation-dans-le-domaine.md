@@ -143,7 +143,7 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
 - **L'API devra embarquer la pile de rendu du site** pour le contenu riche : React, styled-components, i18next, routeur, compilation MDX. Aujourd'hui l'API Koa ne dépend que de `publicodes` et des paquets `modele-*`. Utiliser les modèles comparables suppose de les extraire de `site` dans un paquet du monorepo, et ce paquet sera lourd. Si l'API migre dans l'application Next.js, ce coût disparaît presque entièrement. La décision sur l'hébergement de l'API conditionne donc le coût réel de celle-ci.
 - **`renderToString` ne gère ni `lazy` ni Suspense** : les MDX devront être importés avant le rendu, ou rendus avec `renderToPipeableStream`.
 - **Rendre la documentation d'une valeur dans l'API demande un routeur** : il faut rendre le `DocumentationRoutes` du modèle sous un `StaticRouter` positionné sur `basePath/chemin` pour obtenir l'HTML de la page de cette valeur. Ça suppose que l'explorateur de règles de publicodes-react se rende côté serveur sans toucher au DOM, ce qui n'a pas été vérifié.
-- **Les tests de texte du contenu riche passent par un rendu** (`renderToString` suffit, sans DOM). Les tests de présence ou d'absence d'un avertissement restent de simples égalités.
+- **Tester le texte d'un contenu riche demande un rendu** : là où un libellé plat se compare par égalité, un `ReactNode` doit passer par `renderToString`. Seuls les tests de présence ou d'absence d'un avertissement restent de simples égalités.
 
 ## Alternatives considérées
 
