@@ -1249,12 +1249,14 @@ pages:
       explore-status: Explore statuses
       other-tools: Other tools
     sub-section:
+      by-occupation-description: Calculate your contributions and your net income
+        after tax based on your revenue, and vice versa
       employees-and-employers: Employees and employers
       self-employed: Self-employed
-      self-employed-description: Calculate your contributions and your net income after
-        tax based on your turnover, and vice versa
-    subtitle: <1>Assistants and simulators</1> to get <4>personalised</4> answers to your questions 
-      about setting up and running your business.
+      self-employed-description: Calculate your contributions and your net income
+        after tax based on your revenue, and vice versa
+    subtitle: <1>Assistants and simulators</1> to get <4>personalised</4> answers to
+      your questions about setting up and running your business.
     title: Official tools for entrepreneurs
   offline:
     description: You are currently offline.
