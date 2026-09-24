@@ -1,9 +1,8 @@
-import { getDocumentationSiteMap } from '@publicodes/react-ui'
 import Engine from 'publicodes'
-import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 
+import { PublicodesDoc } from '@/components/documentation'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
@@ -12,64 +11,71 @@ import { Spacing } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
+import Page404 from '@/pages/404'
 
 import BackToSimulation from './BackToSimulation'
 import DocumentationLanding from './DocumentationLanding'
-import DocumentationPageBody from './DocumentationPageBody'
+
+type Props = {
+	documentationPath: string
+	engine: Engine<DottedName>
+	nomModèle: NomModèle
+}
 
 export default function Documentation({
 	documentationPath,
 	engine,
 	nomModèle,
-}: {
-	documentationPath: string
-	engine: Engine<DottedName>
-	nomModèle: NomModèle
-}) {
-	const { t } = useTranslation()
-	const { currentPath } = useNavigation()
-	const pathname = decodeURI(currentPath ?? '')
-	const documentationSitePaths = useMemo(
-		() => getDocumentationSiteMap({ engine, documentationPath }),
-		[engine, documentationPath]
-	)
-
+}: Props) {
 	return (
 		<Routes>
 			<Route index element={<DocumentationLanding />} />
 			<Route
 				path="*"
 				element={
-					!documentationSitePaths[pathname] ? (
-						<Navigate to="/404" replace />
-					) : (
-						<>
-							<Meta
-								title={t('pages.documentation.meta.title', 'Documentation')}
-								description={t(
-									'pages.documentation.meta.description',
-									'Documentation des règles de calcul de nos simulateurs et assistants'
-								)}
-							/>
-							<div id="mobile-menu-portal-id" />
-							<FromBottom>
-								<TrackPage
-									chapter1="documentation"
-									name={documentationSitePaths[pathname]}
-								/>
-								<ScrollToTop key={pathname} />
-								<BackToSimulation />
-								<Spacing xl />
-								<DocumentationPageBody
-									engine={engine}
-									documentationPath={documentationPath}
-									nomModèle={nomModèle}
-								/>
-							</FromBottom>
-						</>
-					)
+					<PageDeLaRègle
+						documentationPath={documentationPath}
+						engine={engine}
+						nomModèle={nomModèle}
+					/>
 				}
 			/>
 		</Routes>
+	)
+}
+
+const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
+	const { t } = useTranslation()
+	const { currentPath } = useNavigation()
+	const règle = PublicodesDoc.useRègleDuCheminCourant({
+		documentationPath,
+		engine,
+	})
+
+	if (!règle) {
+		return <Page404 />
+	}
+
+	return (
+		<>
+			<Meta
+				title={t('pages.documentation.meta.title', 'Documentation')}
+				description={t(
+					'pages.documentation.meta.description',
+					'Documentation des règles de calcul de nos simulateurs et assistants'
+				)}
+			/>
+			<FromBottom>
+				<TrackPage chapter1="documentation" name={règle} />
+				<ScrollToTop key={currentPath} />
+				<BackToSimulation />
+				<Spacing xl />
+			</FromBottom>
+			<PublicodesDoc.Visualiseur
+				documentationPath={documentationPath}
+				engine={engine}
+				nomModèle={nomModèle}
+			/>
+		</>
 	)
 }
