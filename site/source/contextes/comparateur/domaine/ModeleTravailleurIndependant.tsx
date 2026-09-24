@@ -4,7 +4,7 @@ import rules, { RègleModèleTravailleurIndépendant } from 'modele-ti'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { documentationDeRèglePublicodes } from '@/components/documentation'
+import { PublicodesDoc } from '@/components/documentation'
 import { Strong } from '@/design-system'
 import { documentationPublicodes } from '@/domaine/documentation/documentationPublicodes'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
@@ -68,7 +68,10 @@ const valeurDocumentée = <V,>(
 export const ModèleTravailleurIndépendant: ModèleComparable = {
 	nom: nomModèle,
 
-	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
+	DocumentationDeRègle: PublicodesDoc.documentationDeRègle(
+		getEngine,
+		nomModèle
+	),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {

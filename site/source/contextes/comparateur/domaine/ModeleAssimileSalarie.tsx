@@ -5,7 +5,7 @@ import rules, { RègleModèleAssimiléSalarié } from 'modele-as'
 import Engine from 'publicodes'
 import { Trans } from 'react-i18next'
 
-import { documentationDeRèglePublicodes } from '@/components/documentation'
+import { PublicodesDoc } from '@/components/documentation'
 import { Strong } from '@/design-system'
 import { documentationPublicodes } from '@/domaine/documentation/documentationPublicodes'
 import { PublicodesAdapter } from '@/domaine/engine/PublicodesAdapter'
@@ -115,7 +115,10 @@ const rémunérationEstPositive = () => {
 export const ModèleAssimiléSalarié: ModèleComparable = {
 	nom: nomModèle,
 
-	DocumentationDeRègle: documentationDeRèglePublicodes(getEngine, nomModèle),
+	DocumentationDeRègle: PublicodesDoc.documentationDeRègle(
+		getEngine,
+		nomModèle
+	),
 
 	set: {
 		chiffreDAffaires: (montant: O.Option<MontantRécurrent>) => {

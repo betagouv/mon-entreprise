@@ -2,10 +2,7 @@ import Engine from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import {
-	useRègleDocumentée,
-	VisualiseurPublicodes,
-} from '@/components/documentation'
+import { PublicodesDoc } from '@/components/documentation'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
@@ -49,7 +46,10 @@ export default function Documentation({
 const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
-	const règle = useRègleDocumentée({ documentationPath, engine })
+	const règle = PublicodesDoc.useRègleDuCheminCourant({
+		documentationPath,
+		engine,
+	})
 
 	if (!règle) {
 		return <Navigate to="/404" replace />
@@ -70,7 +70,7 @@ const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
 				<BackToSimulation />
 				<Spacing xl />
 			</FromBottom>
-			<VisualiseurPublicodes
+			<PublicodesDoc.Visualiseur
 				documentationPath={documentationPath}
 				engine={engine}
 				nomModèle={nomModèle}

@@ -12,7 +12,7 @@ type Props = {
 	nomModèle: NomModèle
 }
 
-export const VisualiseurPublicodes = ({
+export const Visualiseur = ({
 	documentationPath,
 	engine,
 	nomModèle,
