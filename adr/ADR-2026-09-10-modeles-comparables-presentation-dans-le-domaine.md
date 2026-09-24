@@ -74,8 +74,8 @@ export interface ModèleComparable {
             imposition: () => ReactNode
         }
         revenu: () => { bénéfice: MontantRécurrentDocumenté /* … */ }
-        // … maladie, retraite, etc. : inchangés, chaque valeur peut porter un avertissement
-        // plus de `warning`
+        // … maladie, retraite, etc. : inchangés, chaque valeur peut porter un avertissement.
+        // `warning` disparaît de `get`.
     }
 }
 ```
