@@ -41,9 +41,9 @@ describe('getTotalRéduction', () => {
 	const paramètresPourLesRémunérations = (rémunérations: number[]) =>
 		getParamètresRéductionParMois(annéeAvec(rémunérations), 2025, moteur)
 
-	it('cumule la réduction sur les mois rémunérés', () => {
+	it('calcule la réduction sur la rémunération cumulée, pas mois par mois', () => {
 		expect(
-			getTotalRéduction(paramètresPourLesRémunérations([3500, 3500]), moteur)
+			getTotalRéduction(paramètresPourLesRémunérations([4500, 2500]), moteur)
 		).toBeCloseTo(428.4, 2)
 	})
 
