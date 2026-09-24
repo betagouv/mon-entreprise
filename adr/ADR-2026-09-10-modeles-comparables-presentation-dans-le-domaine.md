@@ -5,7 +5,7 @@
 
 ## Contexte
 
-Le comparateur de statuts est devenu multi-modèles (PR #4635). Chaque statut (auto-entrepreneur, assimilé salarié, travailleur indépendant) est décrit par un objet qui implémente l'interface `ModèleComparable`, et le comparateur se contente de mettre les modèles côte à côte. Les PR #4650, #4651 et #4654 ajoutent la documentation des valeurs et des questions, au travers de composants React (`DocumentationRoutes`, MDX).
+Le comparateur de statuts est devenu multi-modèles (PR [#4635](https://github.com/betagouv/mon-entreprise/pull/4635)). Chaque statut (auto-entrepreneur, assimilé salarié, travailleur indépendant) est décrit par un objet qui implémente l'interface `ModèleComparable`, et le comparateur se contente de mettre les modèles côte à côte. Les PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650), [#4651](https://github.com/betagouv/mon-entreprise/pull/4651) et [#4654](https://github.com/betagouv/mon-entreprise/pull/4654) ajoutent la documentation des valeurs et des questions, au travers de composants React (`DocumentationRoutes`, MDX).
 
 Deux réusinages avaient été convenus en pair, et ils se contredisent :
 
@@ -84,7 +84,7 @@ export interface ModèleComparable {
 
 À première lecture, `DocumentationDeValeur` ressemble à une référence plutôt qu'à du contenu, ce qui semble contredire la règle 1. Ce n'est pas le cas : le contenu est bien produit par le modèle, mais il l'est en un seul endroit, `DocumentationRoutes`, et `chemin` est l'adresse d'une valeur dans ce contenu.
 
-Fonctionnement mis en place par la PR #4650 :
+Fonctionnement mis en place par la PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650) :
 
 1. Le bouton « i » d'une valeur navigue vers une URL construite à partir de `chemin`, du type `/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette`.
 2. Le comparateur détecte cette URL, ouvre une `Popover`, et y rend le `DocumentationRoutes` du modèle concerné avec le `basePath` correspondant.
@@ -170,7 +170,7 @@ Le modèle possède le message (clé i18n, texte par défaut, valeurs typées), 
 **Rejetée** car :
 
 - réduit la capacité d'expression des modèles aux balises `<0>` de `<Trans>` : pas de liste, pas de composant, pas de MDX ;
-- oblige la documentation à redevenir une simple référence, ce qui, en pratique, réintroduit un nom de règle Publicodes dans le contrat que la PR #4650 venait d'en sortir.
+- oblige la documentation à redevenir une simple référence, ce qui, en pratique, réintroduit un nom de règle Publicodes dans le contrat que la PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650) venait d'en sortir.
 
 ### Alternative 3 : `ReactNode` pour tous les libellés, y compris plats
 
@@ -193,8 +193,8 @@ Un seul type de présentation dans le contrat, `TFunction` disparaît. `régime`
 
 ## Références
 
-- PR #4635 : comparateur de statuts multi-modèles (MVP)
-- PR #4650 : documentation des valeurs du comparateur
-- PR #4651 : style de la documentation MDX
-- PR #4654 : documentation des questions du comparateur
+- PR [#4635](https://github.com/betagouv/mon-entreprise/pull/4635) : comparateur de statuts multi-modèles (MVP)
+- PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650) : documentation des valeurs du comparateur
+- PR [#4651](https://github.com/betagouv/mon-entreprise/pull/4651) : style de la documentation MDX
+- PR [#4654](https://github.com/betagouv/mon-entreprise/pull/4654) : documentation des questions du comparateur
 - [Hexagonal Architecture - Ports & Adapters](https://alistair.cockburn.us/hexagonal-architecture/)
