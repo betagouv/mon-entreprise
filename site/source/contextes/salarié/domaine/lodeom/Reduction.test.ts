@@ -47,6 +47,17 @@ describe('getTotalRéduction', () => {
 		).toBeCloseTo(428.4, 2)
 	})
 
+	it('sépare les périodes de part et d’autre d’un changement de coefficient T', () => {
+		const janvierEtDécembre = [3500, ...Array<number>(10).fill(0), 3500]
+
+		expect(
+			getTotalRéduction(
+				paramètresPourLesRémunérations(janvierEtDécembre),
+				moteur
+			)
+		).toBeCloseTo(428.05, 2)
+	})
+
 	it('ignore les mois sans rémunération', () => {
 		expect(
 			getTotalRéduction(paramètresPourLesRémunérations([3500]), moteur)
