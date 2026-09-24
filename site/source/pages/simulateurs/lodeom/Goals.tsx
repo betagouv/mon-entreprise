@@ -115,20 +115,24 @@ export default function LodeomSimulationGoals() {
 
 	const onRémunérationChange = useCallback(
 		(monthIndex: number, rémunérationBrute: number) => {
-			const nouvellesDonnées = Lodeom.getDataAfterRémunérationChange(
-				monthIndex,
-				rémunérationBrute,
-				lodeomMoisParMoisData,
-				paramètresDeCalcul
-			)
+			const brutAnnuel =
+				Lodeom.rémunérationBruteAnnuelle(lodeomMoisParMoisData) -
+				lodeomMoisParMoisData[monthIndex].rémunérationBrute +
+				rémunérationBrute
 
-			setData(nouvellesDonnées)
 			dispatch(
 				ajusteLaSituation({
-					[Lodeom.rémunérationBruteDottedName]: eurosParAn(
-						Lodeom.rémunérationBruteAnnuelle(nouvellesDonnées)
-					),
+					[Lodeom.rémunérationBruteDottedName]: eurosParAn(brutAnnuel),
 				} as Record<DottedName, ValeurPublicodes>)
+			)
+
+			setData((previousData) =>
+				Lodeom.getDataAfterRémunérationChange(
+					monthIndex,
+					rémunérationBrute,
+					previousData,
+					paramètresDeCalcul
+				)
 			)
 		},
 		[dispatch, lodeomMoisParMoisData, paramètresDeCalcul]
