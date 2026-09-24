@@ -4,14 +4,8 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 
-import { getSMICMensuelAvecOptions } from './utils'
-
-const sansOptions = {
-	heuresSupplémentaires: 0,
-	heuresComplémentaires: 0,
-	rémunérationETP: 0,
-	rémunérationPrimes: 0,
-}
+import { getSMICMensuelAvecOptions } from './SmicEquivalent'
+import { sansOptions } from './test/fixtures'
 
 describe('Calculs pour la Lodeom', () => {
 	let engine: Engine<RègleModèleSocial>

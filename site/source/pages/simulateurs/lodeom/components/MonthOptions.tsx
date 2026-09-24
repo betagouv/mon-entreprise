@@ -2,6 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { Appear } from '@/components/ui/animate'
+import { Lodeom } from '@/contextes/salarié'
 import {
 	baseTheme,
 	Body,
@@ -18,14 +19,13 @@ import {
 import { euros } from '@/domaine/MontantPonctuel'
 import { heuresParMois } from '@/domaine/Quantite'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import { Options } from '@/pages/simulateurs/lodeom/utils'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 type Props = {
 	month: string
 	index: number
-	options: Options
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	options: Lodeom.Options
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 }
 
 export default function MonthOptions({
