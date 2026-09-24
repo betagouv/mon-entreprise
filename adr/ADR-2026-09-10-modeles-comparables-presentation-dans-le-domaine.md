@@ -5,7 +5,7 @@
 
 ## Contexte
 
-Le comparateur de statuts est devenu multi-modèles (PR [#4635](https://github.com/betagouv/mon-entreprise/pull/4635)). Chaque statut (auto-entrepreneur, assimilé salarié, travailleur indépendant) est décrit par un objet qui implémente l'interface `ModèleComparable`, et le comparateur se contente de mettre les modèles côte à côte. Les PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650), [#4651](https://github.com/betagouv/mon-entreprise/pull/4651) et [#4654](https://github.com/betagouv/mon-entreprise/pull/4654) ajoutent la documentation des valeurs et des questions, au travers de composants React (`DocumentationRoutes`, MDX).
+Le comparateur de statuts est devenu multi-modèles (PR [#4635](https://github.com/betagouv/mon-entreprise/pull/4635)). Chaque statut (auto-entrepreneur, assimilé salarié, travailleur indépendant) est décrit par un objet qui implémente l'interface `ModèleComparable`, et le comparateur se contente de mettre les modèles côte à côte. Les PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650), [#4651](https://github.com/betagouv/mon-entreprise/pull/4651) et [#4654](https://github.com/betagouv/mon-entreprise/pull/4654) ajoutent la documentation des valeurs et des questions, au travers de composants React (`DocumentationDeRègle`, MDX).
 
 Deux réusinages avaient été convenus en pair, et ils se contredisent :
 
@@ -43,7 +43,7 @@ Le code actuel porte les symptômes de cette indécision :
 ```typescript
 // Défini par la PR #4650, allégé de `Résumé` et `Références`
 // puisque la modale ouvre directement la documentation complète.
-// `chemin` est l'adresse de la valeur dans `DocumentationRoutes`, voir ci-dessous.
+// `chemin` est l'adresse de la valeur dans `DocumentationDeRègle`, voir ci-dessous.
 type DocumentationDeValeur = {
     titre: () => string
     chemin: string
@@ -60,7 +60,7 @@ export type QuantitéDocumentée = Quantité & ValeurDocumentée
 
 export interface ModèleComparable {
     nom: NomModèle
-    DocumentationRoutes: ComponentType<{ basePath: string }>
+    DocumentationDeRègle: ComponentType<{ basePath: string }>
 
     set: {
         /* inchangé */
@@ -82,19 +82,19 @@ export interface ModèleComparable {
 
 ### Documentation d'une valeur : une application navigable et une adresse
 
-À première lecture, `DocumentationDeValeur` ressemble à une référence plutôt qu'à du contenu, ce qui semble contredire la règle 1. Ce n'est pas le cas : le contenu est bien produit par le modèle, mais il l'est en un seul endroit, `DocumentationRoutes`, et `chemin` est l'adresse d'une valeur dans ce contenu.
+À première lecture, `DocumentationDeValeur` ressemble à une référence plutôt qu'à du contenu, ce qui semble contredire la règle 1. Ce n'est pas le cas : le contenu est bien produit par le modèle, mais il l'est en un seul endroit, `DocumentationDeRègle`, et `chemin` est l'adresse d'une valeur dans ce contenu.
 
 Fonctionnement mis en place par la PR [#4650](https://github.com/betagouv/mon-entreprise/pull/4650) :
 
 1. Le bouton « i » d'une valeur navigue vers une URL construite à partir de `chemin`, du type `/comparaison-régimes-sociaux/EI/indépendant/rémunération/nette`.
-2. Le comparateur détecte cette URL, ouvre une `Popover`, et y rend le `DocumentationRoutes` du modèle concerné avec le `basePath` correspondant.
-3. Le `DocumentationRoutes` d'un modèle Publicodes rend l'explorateur de règles de publicodes-react, avec ses liens d'une règle à l'autre.
+2. Le comparateur détecte cette URL, ouvre une `Popover`, et y rend le `DocumentationDeRègle` du modèle concerné avec le `basePath` correspondant.
+3. Le `DocumentationDeRègle` d'un modèle Publicodes rend l'explorateur de règles de publicodes-react, avec ses liens d'une règle à l'autre.
 
 La documentation d'un modèle n'est donc pas une collection de pages indépendantes, c'est une application navigable : la page d'une règle renvoie vers les règles dont elle dépend, et la popover doit pouvoir suivre ces liens. C'est pour cela que la valeur expose une adresse et non un composant :
 
-- un `Contenu: ComponentType` par valeur rendrait la première page, mais les liens qu'elle contient auraient quand même besoin de `DocumentationRoutes` pour fonctionner. On aurait deux mécanismes pour le prix d'un ;
+- un `Contenu: ComponentType` par valeur rendrait la première page, mais les liens qu'elle contient auraient quand même besoin de `DocumentationDeRègle` pour fonctionner. On aurait deux mécanismes pour le prix d'un ;
 - le passage par l'URL donne un lien partageable vers l'explication d'une valeur, et le bouton retour du navigateur fonctionne dans la popover ;
-- la forme est indépendante du moteur : un futur modèle en TypeScript pur fournira un `DocumentationRoutes` qui rend des pages MDX derrière des routes, et `chemin` sera l'adresse de la page qui explique la valeur.
+- la forme est indépendante du moteur : un futur modèle en TypeScript pur fournira un `DocumentationDeRègle` qui rend des pages MDX derrière des routes, et `chemin` sera l'adresse de la page qui explique la valeur.
 
 `titre` est le titre de la règle dans le moteur du modèle. Le moteur étant construit par langue, ce titre respecte la règle 4 par ce biais, et non par un `t` fourni à l'appel.
 
@@ -130,7 +130,7 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
 - **Comparateur générique** : ajouter un modèle ou un avertissement ne touche ni `ComparaisonListe` ni `ComparaisonÉlément`. La prop `warning` de `ComparaisonÉlément` et le fourre-tout `get.warning` disparaissent.
 - **Présentation regroupée par modèle** : toutes les phrases d'un modèle sont lisibles d'un coup, et le fichier de calcul ne dépend plus de React.
 - **Libellés plats testables par égalité** et exposables tels quels en JSON par l'API.
-- **Cohérence avec la documentation** déjà en place (`DocumentationRoutes`, MDX).
+- **Cohérence avec la documentation** déjà en place (`DocumentationDeRègle`, MDX).
 - **Documentation navigable et partageable** : on suit les liens entre règles dans la popover, et l'URL d'une explication se partage.
 - **Pleine capacité d'expression** pour le contenu riche : listes, liens, composants du design-system, MDX.
 - **Réutilisation dans l'API** possible : les chaînes se traduisent avec le `t` de la requête, les `ReactNode` se rendent en HTML avec `renderToString`.
@@ -142,7 +142,7 @@ indemnitésArrêtMaladie.avertissement = rémunérationEstPositive()
 - **La rédaction n'est plus sur la même ligne que la condition** qui la déclenche, mais dans le fichier voisin.
 - **L'API devra embarquer la pile de rendu du site** pour le contenu riche : React, styled-components, i18next, routeur, compilation MDX. Aujourd'hui l'API Koa ne dépend que de `publicodes` et des paquets `modele-*`. Utiliser les modèles comparables suppose de les extraire de `site` dans un paquet du monorepo, et ce paquet sera lourd. Si l'API migre dans l'application Next.js, ce coût disparaît presque entièrement. La décision sur l'hébergement de l'API conditionne donc le coût réel de celle-ci.
 - **`renderToString` ne gère ni `lazy` ni Suspense** : les MDX devront être importés avant le rendu, ou rendus avec `renderToPipeableStream`.
-- **Rendre la documentation d'une valeur dans l'API demande un routeur** : il faut rendre le `DocumentationRoutes` du modèle sous un `StaticRouter` positionné sur `basePath/chemin` pour obtenir l'HTML de la page de cette valeur. Ça suppose que l'explorateur de règles de publicodes-react se rende côté serveur sans toucher au DOM, ce qui n'a pas été vérifié.
+- **Rendre la documentation d'une valeur dans l'API demande un routeur** : il faut rendre le `DocumentationDeRègle` du modèle sous un `StaticRouter` positionné sur `basePath/chemin` pour obtenir l'HTML de la page de cette valeur. Ça suppose que l'explorateur de règles de publicodes-react se rende côté serveur sans toucher au DOM, ce qui n'a pas été vérifié.
 - **Tester le texte d'un contenu riche demande un rendu** : là où un libellé plat se compare par égalité, un `ReactNode` doit passer par `renderToString`. Seuls les tests de présence ou d'absence d'un avertissement restent de simples égalités.
 
 ## Alternatives considérées
@@ -186,7 +186,7 @@ Un seul type de présentation dans le contrat, `TFunction` disparaît. `régime`
 
 1. Ajouter `avertissement?: ReactNode` à `ValeurDocumentée` et l'afficher génériquement dans `ComparaisonÉlément`, puis supprimer la prop `warning` et `get.warning`.
 2. Traduire `nom` sur le modèle de `régime`, garder `imposition` en `ReactNode`, et extraire le `<Trans>` IR/IS dupliqué dans un composant partagé.
-3. Créer un dossier par modèle avec un module de présentation, y déplacer statut, avertissements et `DocumentationRoutes` ; le fichier de calcul redevient un `.ts`.
+3. Créer un dossier par modèle avec un module de présentation, y déplacer statut, avertissements et `DocumentationDeRègle` ; le fichier de calcul redevient un `.ts`.
 4. Renommer les clés i18n des modèles par modèle et régénérer les traductions.
 5. Ajouter le test garde-fou qui rend chaque avertissement et chaque documentation avec `renderToString`.
 6. Réécrire les deux TODO de `modeleComparable.ts` à la lumière de cet ADR.
