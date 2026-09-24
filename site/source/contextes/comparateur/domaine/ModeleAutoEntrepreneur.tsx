@@ -54,30 +54,21 @@ const étiquette = 'AE'
 const documentation = (dottedName: RègleModèleSocial) =>
 	documentationPublicodes(getEngine, dottedName, étiquette)
 
-const documenté = <V,>(
-	valeur: V,
-	dottedName: RègleModèleSocial
-): V & ValeurDocumentée => ({
-	...valeur,
-	documentation: documentation(dottedName),
-})
-
 const valeurDocumentée = <V,>(
 	dottedName: RègleModèleSocial,
 	défaut: V,
 	unité?: string
-): V & ValeurDocumentée =>
-	documenté(
-		engine
-			? (O.getOrElse(
-					PublicodesAdapter.decode(
-						engine.evaluate(unité ? { valeur: dottedName, unité } : dottedName)
-					),
-					() => défaut
-				) as V)
-			: défaut,
-		dottedName
-	)
+): V & ValeurDocumentée => ({
+	...(engine
+		? (O.getOrElse(
+				PublicodesAdapter.decode(
+					engine.evaluate(unité ? { valeur: dottedName, unité } : dottedName)
+				),
+				() => défaut
+			) as V)
+		: défaut),
+	documentation: documentation(dottedName),
+})
 
 export const ModèleAutoEntrepreneur: ModèleComparable = {
 	nom: nomModèle,
