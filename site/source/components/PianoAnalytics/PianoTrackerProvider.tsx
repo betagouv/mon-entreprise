@@ -1,5 +1,5 @@
-import i18next from 'i18next'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 import {
 	createPianoTracker,
@@ -16,6 +16,7 @@ export function PianoTrackerProvider({
 }: {
 	children: React.ReactNode
 }) {
+	const { i18n } = useTranslation()
 	const [tracker, setTracker] = useState<PianoTracker | null>(null)
 	const [script, setScript] = useState<HTMLScriptElement | null>(null)
 	const [injected, setInjected] = useState<boolean>(false)
@@ -35,7 +36,7 @@ export function PianoTrackerProvider({
 			)
 
 			const instance = new PianoTrackerClass({
-				language: parseLangue(i18next.language),
+				language: parseLangue(i18n.language),
 			})
 
 			setTracker(instance)
@@ -47,41 +48,26 @@ export function PianoTrackerProvider({
 		}
 
 		setScript(script)
-	}, [])
+	}, [i18n])
 
 	useEffect(() => {
-		if (script) {
-			if (injected) {
-				return () => {
-					document.body.removeChild(script)
-				}
-			}
+		if (!script) {
+			return
+		}
 
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.ready
-					.then(() => {
-						scheduleWhenIdle(() => {
-							document.body.appendChild(script)
-							setInjected(true)
-						})
-					})
-					.catch((error) => {
-						// eslint-disable-next-line no-console
-						console.error(
-							'Impossible d’initialiser le suivi car le service worker n’a pas démarré',
-							error
-						)
-					})
-			} else {
-				document.body.appendChild(script)
-				setInjected(true)
+		if (injected) {
+			return () => {
+				document.body.removeChild(script)
 			}
 		}
-	}, [script, injected])
 
-	if (!tracker) {
-		return <>{children}</>
-	}
+		const appendScript = () => {
+			document.body.appendChild(script)
+			setInjected(true)
+		}
+
+		scheduleWhenIdle(appendScript)
+	}, [script, injected])
 
 	return (
 		<PianoTrackerContext.Provider value={tracker}>

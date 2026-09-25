@@ -33,10 +33,7 @@ export default function CotisationsUrssaf({
 				href="https://www.urssaf.fr/portail/home.html"
 				target="_blank"
 				rel="noreferrer"
-				aria-label={t(
-					'aria-label.urssaf',
-					'Urssaf, accéder à urssaf.fr, nouvelle fenêtre'
-				)}
+				aria-label={t('aria-label.urssaf', 'Urssaf, nouvelle fenêtre')}
 			>
 				<img src={URSSAF} alt="Urssaf" />
 			</InstitutionLogo>

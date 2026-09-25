@@ -1,7 +1,7 @@
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 
 import IndépendantBase from '../indépendant/IndépendantBase'
-import { AvertissementProfessionLibérale } from './AvertissementProfessionLibérale'
+import { Avertissement } from './Avertissement'
 import { professionLibéraleMetadata } from './metadata'
 import { configProfessionLibérale } from './simulationConfig'
 
@@ -12,7 +12,7 @@ export function ProfessionLibérale() {
 		<IndépendantBase
 			metadata={metadata}
 			simulation={configProfessionLibérale}
-			avertissement={<AvertissementProfessionLibérale />}
+			avertissement={<Avertissement />}
 			conseillersEntreprisesVariant="professions_liberales"
 		/>
 	)

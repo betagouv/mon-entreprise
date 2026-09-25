@@ -7,7 +7,7 @@ import { Link } from '@/lib/navigation'
 import { H6 } from '../typography/heading'
 import { NewWindowLinkIcon, useExternalLinkProps } from '../typography/link'
 import { SmallBody } from '../typography/paragraphs'
-import { GenericCardProps, getTitleProps } from './Card'
+import { GenericCardProps } from './Card'
 
 export function SmallCard({
 	icon,
@@ -25,7 +25,6 @@ export function SmallCard({
 		>,
 		ref
 	)
-	const titleProps = getTitleProps(title, 'h4')
 	const linkProps = useExternalLinkProps(ariaButtonProps)
 
 	// Remove role to avoid contradiction with final HTML tag
@@ -45,13 +44,16 @@ export function SmallCard({
 					style={{
 						margin: '0',
 					}}
-					{...titleProps}
 					as="span"
 				>
-					{titleProps.children}
+					{title}
 					{linkProps.target === '_blank' && <NewWindowLinkIcon />}
 				</H6>
-				{children && <SmallBody>{children}</SmallBody>}
+				{children && (
+					<SmallBodyWithoutBottomMargin>
+						{children}
+					</SmallBodyWithoutBottomMargin>
+				)}
 			</Content>
 		</Container>
 	)
@@ -109,4 +111,8 @@ const Content = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 	margin-left: 1rem;
+`
+
+const SmallBodyWithoutBottomMargin = styled(SmallBody)`
+	margin-bottom: 0;
 `
