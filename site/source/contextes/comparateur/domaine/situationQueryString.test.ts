@@ -63,7 +63,15 @@ describe('encodeSituation / decodeSituation', () => {
 
 	it('ignore les champs mal formés', () => {
 		const chaîne = Buffer.from(
-			JSON.stringify({ chiffreDAffaires: 'pas-un-montant' })
+			JSON.stringify({
+				chiffreDAffaires: 'pas-un-montant',
+				IRouIS: 'pas-une-imposition',
+				versementLibératoire: 'pas-un-booléen',
+				natureActivité: 'pas-une-activité',
+				typeActivité: 'pas-un-type-d-activité',
+				méthodeImposition: 'pas-une-méthode-d-imposition',
+				situationFamiliale: 'pas-une-situation-familiale',
+			})
 		).toString('base64url')
 
 		expect(decodeSituation(chaîne)).toEqual(initialSituationComparée)
