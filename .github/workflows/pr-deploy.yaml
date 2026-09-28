@@ -122,12 +122,17 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR_NUMBER: ${{ needs.deploy-context.outputs.pr_number }}
+          CHECKED_SHA: ${{ github.event.workflow_run.head_sha }}
         run: |
-          pull_request=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json state)
+          pull_request=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json state,headRefOid)
           state=$(jq -re .state <<< "$pull_request")
-          echo "PR $PR_NUMBER : $state"
+          head=$(jq -re .headRefOid <<< "$pull_request")
+          echo "PR $PR_NUMBER : $state, tête $head, vérifiée sur $CHECKED_SHA"
           if [ "$state" != OPEN ]; then
             echo "::notice::PR $PR_NUMBER $state, pas de review app"
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          elif [ "$head" != "$CHECKED_SHA" ]; then
+            echo "::notice::la PR $PR_NUMBER a avancé depuis $CHECKED_SHA, déploiement ignoré"
             echo "deploy=false" >> "$GITHUB_OUTPUT"
           else
             echo "deploy=true" >> "$GITHUB_OUTPUT"
