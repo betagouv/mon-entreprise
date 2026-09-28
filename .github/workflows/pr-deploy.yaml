@@ -104,6 +104,7 @@ jobs:
     timeout-minutes: 45
     permissions:
       contents: read
+      pull-requests: read
     concurrency:
       group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}
       cancel-in-progress: false
@@ -115,9 +116,25 @@ jobs:
       CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
       APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
     steps:
+      - name: Déterminer s'il faut déployer
+        id: pull-request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ needs.deploy-context.outputs.pr_number }}
+        run: |
+          pull_request=$(gh pr view "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --json state)
+          state=$(jq -re .state <<< "$pull_request")
+          echo "PR $PR_NUMBER : $state"
+          if [ "$state" != OPEN ]; then
+            echo "::notice::PR $PR_NUMBER $state, pas de review app"
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
       - name: Checkout de la branche par défaut
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Checkout du code de la PR
+        if: steps.pull-request.outputs.deploy == 'true'
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: refs/pull/${{ needs.deploy-context.outputs.pr_number }}/merge
@@ -125,6 +142,7 @@ jobs:
           fetch-depth: 0
       - uses: ./.github/actions/clever-tools
       - name: Préparer l'application
+        if: steps.pull-request.outputs.deploy == 'true'
         working-directory: pr
         run: |
           if ! clever link --org "$CLEVER_ORGA_ID" "$APP_NAME"; then
@@ -135,6 +153,7 @@ jobs:
           clever scale --build-flavor XL
       - name: Déployer la review app
         id: deploy
+        if: steps.pull-request.outputs.deploy == 'true'
         working-directory: pr
         run: |
           git switch -c "$APP_NAME"
