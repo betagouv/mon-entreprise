@@ -107,6 +107,7 @@ jobs:
       pull-requests: read
     concurrency:
       group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}
+      queue: max
       cancel-in-progress: false
     outputs:
       url: ${{ steps.deploy.outputs.url }}
