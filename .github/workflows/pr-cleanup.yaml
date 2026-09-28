@@ -34,6 +34,9 @@ jobs:
   clevercloud-review-app-rm:
     runs-on: ubuntu-22.04
     timeout-minutes: 10
+    concurrency:
+      group: review-app-clevercloud-${{ github.event.number }}
+      cancel-in-progress: false
     env:
       CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
       CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
