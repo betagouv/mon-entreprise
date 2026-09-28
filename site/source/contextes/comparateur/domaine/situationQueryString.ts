@@ -6,8 +6,12 @@ import { eurosParAn, toEurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
 import { fromBase64Url, toBase64Url } from '@/utils/URLs'
 
-import { NatureActivité, TypeActivité } from './activite'
-import { IRouIS, MéthodeImposition, SituationFamiliale } from './imposition'
+import { NaturesActivité, TypesActivité } from './activite'
+import {
+	Impositions,
+	MéthodesImposition,
+	SituationsFamiliales,
+} from './imposition'
 import { initialSituationComparée, SituationComparée } from './situation'
 
 type SituationSérialisée = {
@@ -81,34 +85,51 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 		...(parsedCharges !== undefined
 			? { charges: O.some(eurosParAn(parsedCharges)) }
 			: {}),
-		IRouIS: (sérialisée.IRouIS as IRouIS) ?? initialSituationComparée.IRouIS,
-		versementLibératoire:
-			sérialisée.versementLibératoire ??
-			initialSituationComparée.versementLibératoire,
-		natureActivité:
-			(sérialisée.natureActivité as NatureActivité) ??
-			initialSituationComparée.natureActivité,
-		typeActivité:
-			(sérialisée.typeActivité as TypeActivité) ??
-			initialSituationComparée.typeActivité,
-		activitéLibéraleRéglementée:
-			sérialisée.activitéLibéraleRéglementée ??
-			initialSituationComparée.activitéLibéraleRéglementée,
-		acre: sérialisée.acre ?? initialSituationComparée.acre,
-		tva: sérialisée.tva ?? initialSituationComparée.tva,
-		méthodeImposition:
-			(sérialisée.méthodeImposition as MéthodeImposition) ??
-			initialSituationComparée.méthodeImposition,
+		IRouIS: parseOption(
+			Impositions,
+			sérialisée.IRouIS,
+			initialSituationComparée.IRouIS
+		),
+		versementLibératoire: parseBooléen(
+			sérialisée.versementLibératoire,
+			initialSituationComparée.versementLibératoire
+		),
+		natureActivité: parseOption(
+			NaturesActivité,
+			sérialisée.natureActivité,
+			initialSituationComparée.natureActivité
+		),
+		typeActivité: parseOption(
+			TypesActivité,
+			sérialisée.typeActivité,
+			initialSituationComparée.typeActivité
+		),
+		activitéLibéraleRéglementée: parseBooléen(
+			sérialisée.activitéLibéraleRéglementée,
+			initialSituationComparée.activitéLibéraleRéglementée
+		),
+		acre: parseBooléen(sérialisée.acre, initialSituationComparée.acre),
+		tva: parseBooléen(sérialisée.tva, initialSituationComparée.tva),
+		méthodeImposition: parseOption(
+			MéthodesImposition,
+			sérialisée.méthodeImposition,
+			initialSituationComparée.méthodeImposition
+		),
 		...(parsedTauxImposition !== undefined
 			? { tauxImposition: O.some(pourcentage(parsedTauxImposition)) }
 			: {}),
-		situationFamiliale:
-			(sérialisée.situationFamiliale as SituationFamiliale) ??
-			initialSituationComparée.situationFamiliale,
+		situationFamiliale: parseOption(
+			SituationsFamiliales,
+			sérialisée.situationFamiliale,
+			initialSituationComparée.situationFamiliale
+		),
 		...(parsedEnfants !== undefined
 			? { enfants: quantité(parsedEnfants, 'enfant') }
 			: {}),
-		parentIsolé: sérialisée.parentIsolé ?? initialSituationComparée.parentIsolé,
+		parentIsolé: parseBooléen(
+			sérialisée.parentIsolé,
+			initialSituationComparée.parentIsolé
+		),
 		...(parsedAutresRevenus !== undefined
 			? { autresRevenus: eurosParAn(parsedAutresRevenus) }
 			: {}),
@@ -131,3 +152,12 @@ const parseNombre = (valeur: unknown): number | undefined =>
 	typeof valeur === 'number' && Number.isFinite(valeur) && valeur >= 0
 		? valeur
 		: undefined
+
+const parseBooléen = (valeur: unknown, défaut: boolean): boolean =>
+	typeof valeur === 'boolean' ? valeur : défaut
+
+const parseOption = <T extends string>(
+	possibilités: readonly T[],
+	valeur: unknown,
+	défaut: T
+): T => (possibilités.includes(valeur as T) ? (valeur as T) : défaut)
