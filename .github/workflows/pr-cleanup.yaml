@@ -36,6 +36,7 @@ jobs:
     timeout-minutes: 10
     concurrency:
       group: review-app-clevercloud-${{ github.event.number }}
+      queue: max
       cancel-in-progress: false
     env:
       CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
