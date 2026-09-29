@@ -9,18 +9,22 @@ import { initialSituationComparée, SituationComparée } from './situation'
 import { decodeSituation, encodeSituation } from './situationQueryString'
 
 const situationComplète: SituationComparée = {
-	...initialSituationComparée,
+	_tag: 'Situation',
+	_type: 'comparaison-statuts',
 	chiffreDAffaires: O.some(eurosParAn(48_000)),
 	charges: O.some(eurosParAn(12_000)),
-	IRouIS: 'IR',
+	IRouIS: 'IS',
 	versementLibératoire: true,
 	natureActivité: 'artisanale',
 	typeActivité: 'service',
+	activitéLibéraleRéglementée: true,
 	acre: true,
+	tva: false,
 	méthodeImposition: 'taux personnalisé',
 	tauxImposition: O.some(pourcentage(18)),
 	situationFamiliale: 'couple',
 	enfants: quantité(2, 'enfant'),
+	parentIsolé: true,
 	autresRevenus: eurosParAn(77_000),
 }
 
