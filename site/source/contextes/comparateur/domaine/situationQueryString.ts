@@ -33,36 +33,56 @@ type SituationSérialisée = {
 }
 
 export const encodeSituation = (situation: SituationComparée): string => {
+	const sérialiseChamp = <
+		C extends keyof SituationSérialisée & keyof SituationComparée,
+	>(
+		clé: C,
+		valeur: SituationSérialisée[C]
+	): Partial<SituationSérialisée> =>
+		situation[clé] === initialSituationComparée[clé] ? {} : { [clé]: valeur }
+
 	const sérialisée: SituationSérialisée = {
-		chiffreDAffaires: pipe(
-			situation.chiffreDAffaires,
-			O.map(toEurosParAn),
-			O.map(montantToNumber),
-			O.getOrUndefined
+		...sérialiseChamp(
+			'chiffreDAffaires',
+			pipe(
+				situation.chiffreDAffaires,
+				O.map(toEurosParAn),
+				O.map(montantToNumber),
+				O.getOrUndefined
+			)
 		),
-		charges: pipe(
-			situation.charges,
-			O.map(toEurosParAn),
-			O.map(montantToNumber),
-			O.getOrUndefined
+		...sérialiseChamp(
+			'charges',
+			pipe(
+				situation.charges,
+				O.map(toEurosParAn),
+				O.map(montantToNumber),
+				O.getOrUndefined
+			)
 		),
-		IRouIS: situation.IRouIS,
-		versementLibératoire: situation.versementLibératoire,
-		natureActivité: situation.natureActivité,
-		typeActivité: situation.typeActivité,
-		activitéLibéraleRéglementée: situation.activitéLibéraleRéglementée,
-		acre: situation.acre,
-		tva: situation.tva,
-		méthodeImposition: situation.méthodeImposition,
-		tauxImposition: pipe(
-			situation.tauxImposition,
-			O.map((quantité) => quantité.valeur),
-			O.getOrUndefined
+		...sérialiseChamp('IRouIS', situation.IRouIS),
+		...sérialiseChamp('versementLibératoire', situation.versementLibératoire),
+		...sérialiseChamp('natureActivité', situation.natureActivité),
+		...sérialiseChamp('typeActivité', situation.typeActivité),
+		...sérialiseChamp(
+			'activitéLibéraleRéglementée',
+			situation.activitéLibéraleRéglementée
 		),
-		situationFamiliale: situation.situationFamiliale,
-		enfants: situation.enfants.valeur,
-		parentIsolé: situation.parentIsolé,
-		autresRevenus: situation.autresRevenus.valeur,
+		...sérialiseChamp('acre', situation.acre),
+		...sérialiseChamp('tva', situation.tva),
+		...sérialiseChamp('méthodeImposition', situation.méthodeImposition),
+		...sérialiseChamp(
+			'tauxImposition',
+			pipe(
+				situation.tauxImposition,
+				O.map((quantité) => quantité.valeur),
+				O.getOrUndefined
+			)
+		),
+		...sérialiseChamp('situationFamiliale', situation.situationFamiliale),
+		...sérialiseChamp('enfants', situation.enfants.valeur),
+		...sérialiseChamp('parentIsolé', situation.parentIsolé),
+		...sérialiseChamp('autresRevenus', situation.autresRevenus.valeur),
 	}
 
 	return toBase64Url(JSON.stringify(sérialisée))
