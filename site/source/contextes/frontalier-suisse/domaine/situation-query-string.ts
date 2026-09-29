@@ -3,7 +3,7 @@ import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
-import { fromBase64Url, toBase64Url } from '@/utils/URLs'
+import { parseSituationSérialisée, toBase64Url } from '@/utils/URLs'
 
 import {
 	initialSituationFrontalierSuisse,
@@ -47,7 +47,7 @@ export const encodeSituation = (
 }
 
 export const decodeSituation = (chaîne: string): SituationFrontalierSuisse => {
-	const sérialisée = parseSituationSérialisée(chaîne)
+	const sérialisée = parseSituationSérialisée<SituationSérialisée>(chaîne)
 
 	return {
 		...initialSituationFrontalierSuisse,
@@ -55,18 +55,6 @@ export const decodeSituation = (chaîne: string): SituationFrontalierSuisse => {
 		dateFinAffiliation: parseDate(sérialisée.dateFinAffiliation),
 		salaires: parseMontant(sérialisée.salaires),
 		autresRevenus: parseMontant(sérialisée.autresRevenus),
-	}
-}
-
-const parseSituationSérialisée = (chaîne: string): SituationSérialisée => {
-	try {
-		const parsed: unknown = JSON.parse(fromBase64Url(chaîne))
-
-		return typeof parsed === 'object' && parsed !== null
-			? (parsed as SituationSérialisée)
-			: {}
-	} catch {
-		return {}
 	}
 }
 

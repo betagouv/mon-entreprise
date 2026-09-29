@@ -4,7 +4,7 @@ import * as O from 'effect/Option'
 import { montantToNumber } from '@/domaine/Montant'
 import { eurosParAn, toEurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
-import { fromBase64Url, toBase64Url } from '@/utils/URLs'
+import { parseSituationSérialisée, toBase64Url } from '@/utils/URLs'
 
 import { NaturesActivité, TypesActivité } from './activite'
 import {
@@ -69,7 +69,7 @@ export const encodeSituation = (situation: SituationComparée): string => {
 }
 
 export const decodeSituation = (chaîne: string): SituationComparée => {
-	const sérialisée = parseSituationSérialisée(chaîne)
+	const sérialisée = parseSituationSérialisée<SituationSérialisée>(chaîne)
 
 	const parsedCA = parseNombre(sérialisée.chiffreDAffaires)
 	const parsedCharges = parseNombre(sérialisée.charges)
@@ -133,18 +133,6 @@ export const decodeSituation = (chaîne: string): SituationComparée => {
 		...(parsedAutresRevenus !== undefined
 			? { autresRevenus: eurosParAn(parsedAutresRevenus) }
 			: {}),
-	}
-}
-
-const parseSituationSérialisée = (chaîne: string): SituationSérialisée => {
-	try {
-		const parsed: unknown = JSON.parse(fromBase64Url(chaîne))
-
-		return typeof parsed === 'object' && parsed !== null
-			? (parsed as SituationSérialisée)
-			: {}
-	} catch {
-		return {}
 	}
 }
 
