@@ -2,11 +2,7 @@ import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { SimulationGoalRadio } from '@/components/Simulation/SimulationGoalRadio'
-
-export type PériodeDeCalcul = '€/mois' | '€/an'
-
-export const isPériodeDeCalcul = (value?: unknown): value is PériodeDeCalcul =>
-	typeof value === 'string' && (value === '€/mois' || value === '€/an')
+import { isPériodeDeCalcul, PériodeDeCalcul } from '@/domaine/Unites'
 
 type Props = {
 	unité: PériodeDeCalcul

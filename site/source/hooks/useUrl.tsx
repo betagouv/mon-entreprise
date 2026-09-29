@@ -1,6 +1,6 @@
-import { isPériodeDeCalcul } from '@/components/Simulateur/ChoixPeriodeDeCalcul'
 import { PARAMÈTRE_SITUATION, PARAMÈTRE_UNITÉ } from '@/domaine/parametresUrl'
 import { SituationPublicodes } from '@/domaine/SituationPublicodes'
+import { isPériodeDeCalcul } from '@/domaine/Unites'
 import { useCurrentSimulatorMetadata } from '@/hooks/useCurrentSimulatorMetadata'
 import { useSearchParamsForSituation } from '@/hooks/useSearchParamsForSituation'
 import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'

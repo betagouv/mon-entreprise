@@ -8,12 +8,9 @@ import React, {
 	useState,
 } from 'react'
 
-import {
-	isPériodeDeCalcul,
-	PériodeDeCalcul,
-} from '@/components/Simulateur/ChoixPeriodeDeCalcul'
 import { PARAMÈTRE_SITUATION, PARAMÈTRE_UNITÉ } from '@/domaine/parametresUrl'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
+import { isPériodeDeCalcul, PériodeDeCalcul } from '@/domaine/Unites'
 import { useNavigation } from '@/lib/navigation'
 
 import { ModèleComparable } from '../domaine/modeleComparable'
