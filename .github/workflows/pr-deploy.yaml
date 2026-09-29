@@ -138,6 +138,7 @@ jobs:
             echo "deploy=true" >> "$GITHUB_OUTPUT"
           fi
       - name: Checkout de la branche par défaut
+        if: steps.pull-request.outputs.deploy == 'true'
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Checkout du code de la PR
         if: steps.pull-request.outputs.deploy == 'true'
@@ -146,7 +147,9 @@ jobs:
           ref: refs/pull/${{ needs.deploy-context.outputs.pr_number }}/merge
           path: pr
           fetch-depth: 0
-      - uses: ./.github/actions/clever-tools
+      - name: Installer clever-tools
+        if: steps.pull-request.outputs.deploy == 'true'
+        uses: ./.github/actions/clever-tools
       - name: Préparer l'application
         if: steps.pull-request.outputs.deploy == 'true'
         working-directory: pr
