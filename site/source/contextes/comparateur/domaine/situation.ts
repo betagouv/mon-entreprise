@@ -58,8 +58,32 @@ export const estSituationValide = (
 	estPositif(situation.chiffreDAffaires.value)
 
 export const simulationEstCommencée = (situation: SituationComparée): boolean =>
-	Object.keys(situation).some(
-		(élémentSituation) =>
-			situation[élémentSituation as keyof SituationComparée] !==
-			initialSituationComparée[élémentSituation as keyof SituationComparée]
+	Object.keys(situation).some((champ) =>
+		champModifié(situation, champ as keyof SituationComparée)
 	)
+
+export const champModifié = (
+	situation: SituationComparée,
+	champ: keyof SituationComparée
+): boolean => {
+	if (champ === 'chiffreDAffaires' || champ === 'charges') {
+		return O.isSome(situation[champ])
+	}
+
+	if (champ === 'tauxImposition') {
+		return O.isSome(situation[champ])
+	}
+
+	if (champ === 'enfants') {
+		return situation.enfants.valeur !== initialSituationComparée.enfants.valeur
+	}
+
+	if (champ === 'autresRevenus') {
+		return (
+			situation.autresRevenus.valeur !==
+			initialSituationComparée.autresRevenus.valeur
+		)
+	}
+
+	return situation[champ] !== initialSituationComparée[champ]
+}
