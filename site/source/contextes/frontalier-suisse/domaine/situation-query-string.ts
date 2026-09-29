@@ -3,7 +3,10 @@ import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
-import { parseSituationSérialisée, toBase64Url } from '@/utils/URLs'
+import {
+	encodeSituationSérialisée,
+	parseSituationSérialisée,
+} from '@/utils/URLs'
 
 import {
 	initialSituationFrontalierSuisse,
@@ -43,7 +46,7 @@ export const encodeSituation = (
 		),
 	}
 
-	return toBase64Url(JSON.stringify(sérialisée))
+	return encodeSituationSérialisée(sérialisée)
 }
 
 export const decodeSituation = (chaîne: string): SituationFrontalierSuisse => {

@@ -4,7 +4,10 @@ import * as O from 'effect/Option'
 import { montantToNumber } from '@/domaine/Montant'
 import { eurosParAn, toEurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
-import { parseSituationSérialisée, toBase64Url } from '@/utils/URLs'
+import {
+	encodeSituationSérialisée,
+	parseSituationSérialisée,
+} from '@/utils/URLs'
 
 import { NaturesActivité, TypesActivité } from './activite'
 import {
@@ -85,7 +88,7 @@ export const encodeSituation = (situation: SituationComparée): string => {
 		...sérialiseChamp('autresRevenus', situation.autresRevenus.valeur),
 	}
 
-	return toBase64Url(JSON.stringify(sérialisée))
+	return encodeSituationSérialisée(sérialisée)
 }
 
 export const decodeSituation = (chaîne: string): SituationComparée => {
