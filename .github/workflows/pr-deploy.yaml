@@ -117,6 +117,10 @@ jobs:
       CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
       APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
     steps:
+      # Cette vérification doit rester un step de ce job : c'est lui qui porte le groupe de
+      # concurrence, donc elle lit l'état de la PR après l'attente dans la file. Remontée dans un
+      # job amont, elle le lirait avant, et laisserait passer un déploiement que la file a rendu
+      # caduc entre-temps.
       - name: Déterminer s'il faut déployer
         id: pull-request
         env:
