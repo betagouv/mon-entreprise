@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { eurosParAn, eurosParMois } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
-import { toBase64Url } from '@/utils/URLs'
+import { encodeSituationSérialisée } from '@/utils/URLs'
 
 import { initialSituationComparée, SituationComparée } from './situation'
 import { decodeSituation, encodeSituation } from './situationQueryString'
@@ -65,11 +65,9 @@ describe('encodeSituation / decodeSituation', () => {
 		}
 
 		expect(encodeSituation(partielle)).toEqual(
-			toBase64Url(
-				JSON.stringify({
-					chiffreDAffaires: 48_000,
-				})
-			)
+			encodeSituationSérialisée({
+				chiffreDAffaires: 48_000,
+			})
 		)
 	})
 

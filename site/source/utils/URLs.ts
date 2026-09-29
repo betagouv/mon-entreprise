@@ -1,8 +1,11 @@
 export const getUrlDomain = (url: string): string =>
 	new URL(url).hostname.replace('www.', '')
 
-export const toBase64Url = (chaîne: string): string =>
+const toBase64Url = (chaîne: string): string =>
 	btoa(chaîne).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '')
+
+export const encodeSituationSérialisée = (situation: unknown): string =>
+	toBase64Url(JSON.stringify(situation))
 
 const fromBase64Url = (chaîne: string): string => {
 	const base64 = chaîne.replaceAll('-', '+').replaceAll('_', '/')
