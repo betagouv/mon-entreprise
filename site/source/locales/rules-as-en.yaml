@@ -575,15 +575,6 @@ assimilé salarié . cotisations . maladie:
   titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 assimilé salarié . cotisations . prévoyances:
   avec:
-    conventionnelle:
-      titre.en: '[automatic] conventional'
-      titre.fr: conventionnelle
-    conventionnelle . employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    conventionnelle . salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
     employeur:
       avec:
         non déductible socialement:
@@ -604,13 +595,6 @@ assimilé salarié . cotisations . prévoyances:
       titre.en: '[automatic] frames'
       titre.fr: cadres
     incapacité invalidité décès:
-      avec:
-        employeur:
-          titre.en: '[automatic] employer'
-          titre.fr: employeur
-        salarié:
-          titre.en: '[automatic] employee'
-          titre.fr: salarié
       titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
       titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
@@ -991,8 +975,8 @@ assimilé salarié . exonérations . JEI:
     - employees for whom the employer is subject to the obligation to provide
     unemployment insurance
 
-    - corporate officers who participate, as their primary occupation, in the
-    company’s research and development project
+    - corporate officers who are primarily involved in the company’s research
+    and development project
 
 
     For simplicity’s sake, an employee will be deemed eligible for the exemption
