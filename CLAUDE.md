@@ -34,6 +34,14 @@ Dans un nouveau worktree git, exécuter aussitôt `direnv allow` et `yarn instal
 - Toujours exécuter les tests ajoutés ou modifiés, et vérifier qu'un nouveau test échoue avant d'implémenter.
 - Avant chaque commit : `prettier --write` et `yarn lint` sur les fichiers modifiés, puis `yarn test:type` si du TypeScript a changé, car Vitest ne vérifie pas les types.
 
+## Frontières et responsabilités
+
+Ces principes prolongent l'[ADR sur les frontières de modules](./adr/ADR-2025-05-29-module-boundaries.md) là où aucun outil ne les fait respecter.
+
+- **Le sens des dépendances ne s'inverse pas** : le réutilisable ne dépend pas du particulier, un composant ne dépend pas d'une page. Quand un composant a besoin d'une page, c'est la page qu'il faut découper.
+- **Un index est une façade tournée vers l'extérieur** : aucun fichier d'un module ne passe par son propre index, sous peine de créer un cycle. Aucune règle de lint ne signale les imports circulaires dans ce dépôt : c'est à la lecture qu'on les attrape.
+- **Un composant réutilisable ne suppose rien du contexte où il est rendu** : ni qu'il occupe l'URL, ni qu'il est seul à l'écran, ni ce que ses ancêtres imposent à sa mise en page. Ce qui n'a de sens que monté à une URL appartient à la page.
+
 ## Pièges connus
 
 - `import.meta.env` (API Vite) vaut `undefined` sous Next : passer par l'adaptateur d'environnement.
