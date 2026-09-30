@@ -1,8 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 
 import { DocumentationBasePathProvider } from '@/components/documentation'
+import { PianoTracker } from '@/components/PianoAnalytics/PianoTracker'
+import { PianoTrackerContext } from '@/components/PianoAnalytics/PianoTrackerContext'
 import {
 	ComparateurProvider,
 	ModèleAssimiléSalarié,
@@ -38,13 +40,27 @@ const afficherLaDocumentation = (
 		`/simulateurs/comparaison-régimes-sociaux/${cheminDeLaRègle}`
 	)
 
+	const sendEvent = vi.fn()
+	const traceur = {
+		setProperties: () => {},
+		sendEvent,
+		consent: { setMode: () => {}, getMode: () => ({ name: 'opt-out' }) },
+	} as unknown as PianoTracker
+
 	render(
 		<TestProvider>
-			<ComparateurProvider modèles={[modèle]}>
-				<DocumentationDuComparateur />
-			</ComparateurProvider>
+			<PianoTrackerContext.Provider value={traceur}>
+				<ComparateurProvider modèles={[modèle]}>
+					<DocumentationDuComparateur />
+				</ComparateurProvider>
+			</PianoTrackerContext.Provider>
 		</TestProvider>
 	)
+
+	return {
+		vuesDePage: () =>
+			sendEvent.mock.calls.filter(([type]) => type === 'page.display'),
+	}
 }
 
 const déplierRéutiliserCeCalcul = async (
@@ -72,6 +88,25 @@ describe('ModaleDeDocumentation', () => {
 		expect(
 			await screen.findByRole('heading', { name: /Rémunération nette/ })
 		).toBeInTheDocument()
+	})
+
+	it('compte une vue de documentation à l’ouverture de la modale', async () => {
+		const { vuesDePage } = afficherLaDocumentation(
+			ModèleTravailleurIndépendant,
+			'EI/indépendant/rémunération/nette'
+		)
+
+		await screen.findByRole('heading', { name: /Rémunération nette/ })
+
+		expect(vuesDePage()).toEqual([
+			[
+				'page.display',
+				expect.objectContaining({
+					page_chapter1: 'documentation',
+					page: 'independant___remuneration___nette',
+				}),
+			],
+		])
 	})
 
 	it('documente une valeur SASU avec le modèle assimilé salarié', async () => {

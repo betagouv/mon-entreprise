@@ -65,6 +65,7 @@ const ModaleDeDocumentation = ({
 					engine={engine}
 					documentationPath={documentationPath}
 					nomModèle="modele-social"
+					règle={règle}
 				/>
 			</Popover>
 		</div>

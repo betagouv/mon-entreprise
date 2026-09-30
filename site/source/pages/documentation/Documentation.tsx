@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
 import { PublicodesDoc } from '@/components/documentation'
-import { TrackPage } from '@/components/PianoAnalytics'
 import { FromBottom } from '@/components/ui/animate'
 import Meta from '@/components/utils/Meta'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
@@ -66,7 +65,6 @@ const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
 				)}
 			/>
 			<FromBottom>
-				<TrackPage chapter1="documentation" name={règle} />
 				<ScrollToTop key={currentPath} />
 				<BackToSimulation />
 				<Spacing xl />
@@ -75,6 +73,7 @@ const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
 				documentationPath={documentationPath}
 				engine={engine}
 				nomModèle={nomModèle}
+				règle={règle}
 			/>
 		</>
 	)
