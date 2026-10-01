@@ -16055,6 +16055,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"fast-check@npm:^4.6.0":
+  version: 4.6.0
+  resolution: "fast-check@npm:4.6.0"
+  dependencies:
+    pure-rand: "npm:^8.0.0"
+  checksum: 10/b53b88ebf6247ea0eaa7f3f6d8923035e0cfd6f78bc8c393754cc1ccbdb591756dfbff02058a136b472e011279594fa72c05a30378177d6055a08ad7ed1b823e
+  languageName: node
+  linkType: hard
+
 "fast-content-type-parse@npm:^1.0.0":
   version: 1.0.0
   resolution: "fast-content-type-parse@npm:1.0.0"
@@ -23902,6 +23911,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"pure-rand@npm:^8.0.0":
+  version: 8.4.0
+  resolution: "pure-rand@npm:8.4.0"
+  checksum: 10/baaee81b6647c89e426458fa0a6fcf51a42315db3db6a2c1c48d676813dd7cebf46dc56d352ce352c3bdfacd5a965b9c7783ba2a92f38cf2e64a9a8186469c3e
+  languageName: node
+  linkType: hard
+
 "qs@npm:6.11.0":
   version: 6.11.0
   resolution: "qs@npm:6.11.0"
@@ -26255,6 +26271,7 @@ __metadata:
     effect: "npm:^3.0.0"
     eslint-plugin-testing-library: "npm:^6.2.0"
     exoneration-covid: "workspace:^"
+    fast-check: "npm:^4.6.0"
     focus-trap-react: "npm:^10.2.1"
     fuse.js: "npm:^6.6.2"
     happy-dom: "npm:^20.0.0"

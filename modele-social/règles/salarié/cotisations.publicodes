@@ -309,7 +309,7 @@ salarié . cotisations . allocations familiales:
 
         Dans ce cas, la réduction du taux s'applique si la rémunération est
         inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
-      applicable si: exonérations . lodeom
+      applicable si: exonérations . lodeom . barème applicable
       valeur: cotisations . assiette < plafond
       avec:
         plafond:
@@ -822,7 +822,7 @@ salarié . cotisations . maladie:
 
             Dans ce cas, la réduction du taux s'applique si la rémunération est
             inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
-          applicable si: exonérations . lodeom
+          applicable si: exonérations . lodeom . barème applicable
           valeur: cotisations . assiette < plafond
           avec:
             plafond:
@@ -1331,29 +1331,3 @@ salarié . cotisations . assiette forfaitaire:
 #       produit:
 #         - cotisations . assiette
 #         - 0 %
-
-salarié . cotisations . Mayotte:
-  applicable si: établissement . commune . département . outre-mer . Mayotte
-  valeur: oui
-  type: notification
-  sévérité: avertissement
-  titre: Cotisations Mayotte
-  résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
-  description: |
-    Les **taux de cotisations sociales** patronales et salariales ainsi que
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
-    simulateur.
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
-
-    > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet 2026.
-  références:
-    Taux de cotisations - Employeurs à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/cotisations-employeurs-mayotte.html
-    Les services de l’État à Mayotte - Réduction générale dégressive unique (RGDU) de cotisations patronales: https://www.mayotte.gouv.fr/Demarches/Demarches-PARTICULIERS#!/professionnels/page/F24542
-    Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-    Application à Mayotte de la réduction générale dégressive unique et de l’exonération Lodeom: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2026/janvier/mayotte---rgdu-et-exoneration-lo.html

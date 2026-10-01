@@ -190,7 +190,13 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - barème compétitivité renforcée
           - barème innovation et croissance
       une de ces conditions:
-        - barèmes . compétitivité
+        # Le barème choisi par l’usager ne vaut que si la question lui a été posée
+        # (simulateur Lodeom). Sans elle il reste indéterminé, et cette
+        # indétermination empêcherait de conclure que l’employeur n’est éligible à
+        # aucun barème — auquel cas aucun allègement ne s’affiche.
+        - toutes ces conditions:
+            - est défini: barèmes
+            - barèmes . compétitivité
         - entreprise . salariés . effectif < 11
         - secteurs d'activité éligibles
       description: |
@@ -420,7 +426,11 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . moins de 11 salariés
+          # cf. le barème de compétitivité en zone un : le choix de l’usager ne
+          # vaut que si la question lui a été posée.
+          - toutes ces conditions:
+              - est défini: barèmes
+              - barèmes . moins de 11 salariés
           - entreprise . salariés . effectif < 11
       description: |
         L’exonération est applicable aux employeurs occupant **moins de 11 salariés**.
@@ -437,7 +447,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       non applicable si: barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . sectoriel
+          - toutes ces conditions:
+              - est défini: barèmes
+              - barèmes . sectoriel
           - toutes ces conditions:
             - barème moins de 11 salariés = non
             - barème renforcé = non
@@ -513,6 +525,22 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       références:
         Exonération Lodéom - Détail du calcul à Saint-Barthélemy et à Saint-Martin: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-a-saint-barth
         Champ d’application du barème réservé aux employeurs de moins de 11 salariés: https://boss.gouv.fr/portail/accueil/exonerations/exonerations-zonees.html#1560
+
+salarié . cotisations . exonérations . lodeom . barème applicable:
+  titre: éligibilité à un barème Lodeom
+  description: |
+    Être situé dans une zone Lodeom ne suffit pas à en bénéficier : encore
+    faut-il relever d’un de ses barèmes.
+
+    Cette distinction commande les taux réduits de maladie et d’allocations
+    familiales, qui sont réservés aux bénéficiaires du dispositif.
+  une de ces conditions:
+    - zone un . barème compétitivité
+    - zone un . barème compétitivité renforcée
+    - zone un . barème innovation et croissance
+    - zone deux . barème moins de 11 salariés
+    - zone deux . barème sectoriel
+    - zone deux . barème renforcé
 
 salarié . cotisations . exonérations . lodeom . montant:
   non applicable si: rémunération . brut = 0
