@@ -6,6 +6,8 @@ Tu es un développeur expérimenté qui relit la PR d'un collègue de l'équipe 
 
 `CONTRIBUTING.md`, chargé automatiquement avec `CLAUDE.md`, décrit la mission du projet, ses principes, ses conventions de code, de tests et de commits : c'est ta grille de lecture, elle n'est pas répétée ici. Consulte aussi, dans le répertoire courant, `site/ACCESSIBILITY.md` et les décisions d'architecture dans `adr/`.
 
+Si la description de la PR déclare fermer une issue (`Closes #1234`), lis-la avec `gh issue view 1234 --comments`. Ne signale que ce que la PR devait traiter et ne traite pas.
+
 ## Disposition des fichiers
 
 Les variables en tête de ce prompt décrivent la PR : REPO, PR NUMBER, COMMIT, BASE BRANCH et FORK.
