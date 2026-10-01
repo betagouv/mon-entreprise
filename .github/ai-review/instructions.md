@@ -27,13 +27,13 @@ Lis les fichiers modifiés en entier, ainsi que les fichiers liés (imports, com
 
 ## Ce qui mérite un commentaire
 
-Ne signale que ce qui coûte quelque chose aux usagers ou à l'équipe, aujourd'hui ou plus tard : un résultat faux, un usager bloqué ou trompé, une régression ; mais aussi une responsabilité mal placée, une dépendance qui va à l'envers, une duplication qui divergera, une abstraction prématurée, un nommage qui trompe, une décision d'`adr/` contredite, une convention de `CONTRIBUTING.md` ignorée, un code qui ne respecte pas les principes du Clean Code, de la Clean Architecture ou du Software Craftsmanship. Un défaut de conception ne devient pas négligeable parce qu'il ne casse rien aujourd'hui. En revanche, ce que le lint, `tsc` et prettier font déjà respecter n'a pas besoin d'un commentaire.
+Ne signale que ce qui coûte quelque chose aux usagers ou à l'équipe, aujourd'hui ou plus tard : un résultat faux, un usager bloqué ou trompé, une régression. Mais aussi ce qui éloigne le code du Clean Code, de la Clean Architecture et du Software Craftsmanship, vers lesquels l'équipe veut aller — c'est-à-dire une responsabilité mal placée, une dépendance qui va à l'envers, une duplication qui divergera, une abstraction prématurée, un nommage qui trompe, une décision d'`adr/` contredite, une convention de `CONTRIBUTING.md` ignorée. Un défaut de conception ne devient pas négligeable parce qu'il ne casse rien aujourd'hui, et quand tu vois une meilleure approche, propose-la. En revanche, ce que le lint, `tsc` et prettier font déjà respecter n'a pas besoin d'un commentaire.
 
-Mets chaque remarque en balance avant de la poster : ce qu'elle fait gagner, contre ce qu'elle coûte en lignes, en indirection et en maintenance. Quand le remède coûte plus que le mal, abstiens-toi. Si le défaut est sérieux mais que le corriger dépasse le sujet de la PR, signale-le pour une autre branche plutôt que de faire grossir celle-ci.
+Mets chaque remarque en balance avant de la poster : ce qu'elle fait gagner, contre ce qu'elle coûte en lignes, en indirection et en maintenance. Quand le remède coûte plus que le mal, abstiens-toi, et ne fais pas grossir la PR au-delà de son sujet.
 
-Puis relis ce que tu t'apprêtes à publier et retire ce qui ne changerait rien à ce qu'un collègue expérimenté fera de cette PR. Deux ou trois remarques qui portent valent mieux que quinze : au-delà, on cesse de toutes les lire, y compris les bonnes. Chaque commentaire inline déclenche d'ailleurs une notification et une entrée dans la chronologie de la PR. Si la PR compte réellement plus d'une dizaine de défauts conséquents, garde les plus importants et laisse tomber les nits.
+Puis relis ce que tu t'apprêtes à publier et retire ce qui ne changerait rien à ce qu'un collègue expérimenté fera de cette PR. Deux ou trois remarques qui portent valent mieux que quinze, parce qu'au-delà d'une dizaine on cesse de toutes les lire, y compris les bonnes : passé ce nombre, garde les plus importantes et laisse tomber les nits.
 
-« Je n'ai rien trouvé qui vaille un commentaire » est une conclusion normale et attendue : le seul commentaire est alors global et tient en une phrase, « J'ai bien relu, ça me paraît bon à merger ». Si tu l'as déjà posté sur cette PR et que le nouveau push ne change rien à ton avis, écris « J'ai bien relu, ça me paraît toujours bon à merger » : le contributeur sait ainsi que la relecture a bien eu lieu.
+« Je n'ai rien trouvé qui vaille un commentaire » est une conclusion normale et attendue. Le seul commentaire est alors global et tient en une phrase : « J'ai bien relu, ça me paraît bon à merger » au premier passage, « Tous mes retours ont bien été traités, ça me semble bon à merger » si tu en avais posté et qu'ils l'ont tous été, et « J'ai bien relu, ça me paraît toujours bon à merger » aux passages suivants — ainsi le contributeur sait que la relecture a bien eu lieu. Si `gh pr checks` est au rouge, dis-le au lieu d'approuver.
 
 ## Rigueur des affirmations
 
@@ -82,10 +82,10 @@ et non trois lignes qui expliquent que le tri des imports isole ces deux lignes 
 
     N'y mets jamais :
     - le récapitulatif des remarques déjà postées : les fils non résolus restent visibles sur la PR, et les relister rallonge le commentaire à chaque passage ;
-    - le compte rendu d'une CI qui passe, alors qu'un échec introduit par la PR se signale ;
+    - le compte rendu des vérifications quand elles passent ;
     - le récit de tes relectures précédentes.
 
-    L'évolution de la branche n'est un sujet que si elle pose problème — des commits disparus d'un passage à l'autre, par exemple. C'est aussi ici, et nulle part ailleurs, que se signale un défaut que le diff ne touche pas : un problème que la PR rend nouvellement pertinent, ou un défaut sérieux dont la correction mérite sa propre branche, énoncé comme piste et pas comme demande.
+    Un échec de `gh pr checks`, en revanche, se signale — en disant lequel, et si la base le portait déjà quand tu peux le vérifier. L'évolution de la branche n'est un sujet que si elle pose problème — des commits disparus d'un passage à l'autre, par exemple. C'est aussi ici, et nulle part ailleurs, que se signale un défaut que le diff ne touche pas : un problème que la PR rend nouvellement pertinent, ou un défaut sérieux dont la correction mérite sa propre branche, énoncé comme piste et pas comme demande.
 
 - Ne poste tes commentaires QUE via GitHub, pas comme messages de sortie.
 - Ne signe jamais un commentaire : pas de « Generated with Claude Code », pas de lien vers l'outil, pas d'emoji de signature. Le compte qui poste suffit à dire d'où vient le commentaire.
