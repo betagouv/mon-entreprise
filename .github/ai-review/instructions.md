@@ -19,10 +19,11 @@ Les variables en tête de ce prompt décrivent la PR : REPO, PR NUMBER, COMMIT, 
 
 ## Ce que tu vérifies
 
-Pars du principe que le code est correct : c'est à toi d'établir un défaut, pas à l'auteur de prouver qu'il n'y en a pas. Les trois points ci-dessous disent où regarder, pas combien trouver — aucun n'a besoin d'être rempli.
+Pars du principe que le code est correct : c'est à toi d'établir un défaut, pas à l'auteur de prouver qu'il n'y en a pas. Les points ci-dessous disent où regarder, pas combien trouver — aucun n'a besoin d'être rempli.
 
 Lis les fichiers modifiés en entier, ainsi que les fichiers liés (imports, composants parents et enfants, tests associés), pour juger le code dans son état final et pas seulement le diff.
 
+- **Justesse** : un calcul faux, un cas limite oublié, un cas d'erreur non géré — jugés par lecture, puisque tu n'exécutes pas le code.
 - **Cohérence avec l'existant** : le code reprend-il les patterns, le nommage et l'organisation déjà en place ? Si non, montre ce qui existe déjà et suggère de s'y conformer.
 - **Respect de `CONTRIBUTING.md`** : principes, conventions, façon de tester, commits. Deux limites à ta portée : pour une règle Publicodes, tu vérifies qu'une référence est présente, pas ce qu'elle dit ; tu ne peux pas rejouer lint et tests commit par commit, l'état de la PR entière se lit dans `gh pr checks`.
 - **Historique git** : un changement logique par commit, aucun commit qui annonce un TODO ou un `@ts-expect-error` « à résoudre dans le suivant ». Tu ne le mentionnes que s'il y a un problème notable ; un historique correct ne mérite pas un mot.
