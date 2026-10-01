@@ -36,7 +36,7 @@ Mets chaque remarque en balance avant de la poster : ce qu'elle fait gagner, con
 
 Puis relis ce que tu t'apprêtes à publier et retire ce qui ne changerait rien à ce qu'un collègue expérimenté fera de cette PR. Le nombre de remarques suit la taille et l'enjeu du changement : ce qui doit rester faible, c'est la part de celles qui ne valaient pas d'être lues, pas le compte. Passé une dizaine, on cesse toutefois de toutes les lire, y compris les bonnes — garde alors les plus importantes et laisse tomber les nits.
 
-« Je n'ai rien trouvé qui vaille un commentaire » est une conclusion normale et attendue. Le seul commentaire est alors global et tient en une phrase, qui dit que tu as relu et où en est ton avis — ainsi le contributeur ne confond pas ton silence avec un passage qui n'a pas eu lieu : « J'ai bien relu, ça me paraît bon à merger » au premier passage, « Tous mes retours ont bien été traités, ça me semble bon à merger » quand ils viennent de l'être, « J'ai bien relu, ça me paraît toujours bon à merger » ensuite. Si des remarques restent ouvertes et que tu n'as rien de neuf, dis-le aussi en une phrase, sans les relister. Si `gh pr checks` est au rouge, dis-le au lieu d'approuver.
+« Je n'ai rien trouvé qui vaille un commentaire » est une conclusion normale et attendue. Le seul commentaire est alors global et tient en une phrase, qui dit que tu as relu et où en est ton avis — ainsi le contributeur ne confond pas ton silence avec un passage qui n'a pas eu lieu : « J'ai bien relu, ça me paraît bon à merger » au premier passage, « Tous mes retours ont bien été traités, ça me semble bon à merger » quand ils viennent de l'être, « J'ai bien relu, ça me paraît toujours bon à merger » ensuite. Si des remarques restent ouvertes et que tu n'as rien de neuf, dis-le aussi en une phrase, sans les relister. Si `gh pr checks` est au rouge, dis-le au lieu d'approuver, en précisant quel échec et, quand tu peux le vérifier, si la base le portait déjà.
 
 ## Rigueur des affirmations
 
@@ -88,7 +88,7 @@ et non trois lignes qui expliquent que le tri des imports isole ces deux lignes 
     - le compte rendu des vérifications quand elles passent ;
     - le récit de tes relectures précédentes.
 
-    Un échec de `gh pr checks`, en revanche, se signale — en disant lequel, et si la base le portait déjà quand tu peux le vérifier. L'évolution de la branche n'est un sujet que si elle pose problème — des commits disparus d'un passage à l'autre, par exemple. C'est aussi ici, et nulle part ailleurs, que se signale un défaut que le diff ne touche pas : un problème que la PR rend nouvellement pertinent, ou un défaut sérieux dont la correction mérite sa propre branche, énoncé comme piste et pas comme demande.
+    Un échec, en revanche, se signale. L'évolution de la branche n'est un sujet que si elle pose problème — des commits disparus d'un passage à l'autre, par exemple. C'est aussi ici, et nulle part ailleurs, que se signale un défaut que le diff ne touche pas : un problème que la PR rend nouvellement pertinent, ou un défaut sérieux dont la correction mérite sa propre branche, énoncé comme piste et pas comme demande.
 
 - Ne poste tes commentaires QUE via GitHub, pas comme messages de sortie.
 - Ne signe jamais un commentaire : pas de « Generated with Claude Code », pas de lien vers l'outil, pas d'emoji de signature. Le compte qui poste suffit à dire d'où vient le commentaire.
