@@ -1,6 +1,6 @@
+import { Lodeom } from '@/contextes/salarié'
 import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/MontantPonctuel'
-import { rémunérationBruteDottedName } from '@/pages/simulateurs/lodeom/utils'
 
 type Props = {
 	index: number
@@ -17,7 +17,7 @@ export default function RémunérationInput({
 }: Props) {
 	return (
 		<MontantField
-			id={`${rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			id={`${Lodeom.rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
 			aria={{
 				labelledby: 'simu-update-explaining',
 			}}
