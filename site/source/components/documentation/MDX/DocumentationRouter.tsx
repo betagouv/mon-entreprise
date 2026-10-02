@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import { DocumentationPage } from '@/design-system'
 
-import { MDXDocumentation } from './createMDXDocumentation'
+import { MDXDocumentation } from './createDocumentation'
 
 export interface MDXAutoRouterProps {
 	documentations: MDXDocumentation[]

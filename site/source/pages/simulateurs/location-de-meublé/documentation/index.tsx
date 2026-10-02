@@ -1,10 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	createMDXDocumentationFromGlob,
-	DocumentationRouter,
-	MDXDocumentationIndex,
-} from '@/components/documentation'
+import { MDXDoc } from '@/components/documentation'
 import { useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
 import { useSitePaths } from '@/sitePaths'
@@ -21,11 +17,11 @@ export const DocumentationHub = () => {
 	const docUrl = baseUrl + '/documentation'
 
 	const { documentations, indexComponent, indexMetadata } =
-		createMDXDocumentationFromGlob(mdxModules, parseLangue(i18n.language))
+		MDXDoc.createDocumentationFromGlob(mdxModules, parseLangue(i18n.language))
 
 	if (!isIndex) {
 		return (
-			<DocumentationRouter
+			<MDXDoc.DocumentationRouter
 				documentations={documentations}
 				baseUrl={baseUrl}
 				docUrl={docUrl}
@@ -34,7 +30,7 @@ export const DocumentationHub = () => {
 	}
 
 	return (
-		<MDXDocumentationIndex
+		<MDXDoc.DocumentationIndex
 			documentations={documentations}
 			baseUrl={baseUrl}
 			docUrl={docUrl}
