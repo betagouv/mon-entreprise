@@ -1,0 +1,18 @@
+{
+  "url": "https://geo.api.gouv.fr/communes/91174?fields=nom,code,departement,region,codesPostaux",
+  "body": {
+    "nom": "Corbeil-Essonnes",
+    "code": "91174",
+    "codesPostaux": [
+      "91100"
+    ],
+    "departement": {
+      "code": "91",
+      "nom": "Essonne"
+    },
+    "region": {
+      "code": "11",
+      "nom": "Île-de-France"
+    }
+  }
+}
