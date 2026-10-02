@@ -258,8 +258,11 @@ components:
       cotisations: Social security contributions
       salaire-brut: Gross salary
       salaire-net: Net salary
+  help-button:
+    aria-label: Help with {{ subject }}
   info:
     aria-label: About {{ subject }}
+  liens-utiles: Useful Links
   more-infos-on-us:
     budget: The Budget
     code-source: The source code
@@ -291,7 +294,6 @@ components:
       lien-documentation:
         aria-label: Read the documentation on {{ règle }}
         texte: Read the documentation
-      références: Useful links
   select-taux-risque:
     aria-label:
       card: "{{nature}} ({{taux}}), select this rate"
