@@ -12,7 +12,7 @@ import {
 	Spacing,
 } from '@/design-system'
 
-import { MDXDocumentation } from './createMDXDocumentation'
+import { MDXDocumentation } from './createDocumentation'
 
 export interface MDXDocumentationIndexProps {
 	documentations: MDXDocumentation[]
@@ -25,7 +25,7 @@ export interface MDXDocumentationIndexProps {
 	indexComponent?: React.ComponentType
 }
 
-export const MDXDocumentationIndex = ({
+export const DocumentationIndex = ({
 	documentations,
 	baseUrl,
 	docUrl,

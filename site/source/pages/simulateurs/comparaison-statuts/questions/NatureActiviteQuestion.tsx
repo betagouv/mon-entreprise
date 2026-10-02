@@ -1,7 +1,7 @@
 import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import { documentationMDX } from '@/components/documentation'
+import { MDXDoc } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import {
 	NatureActivité,
@@ -74,7 +74,7 @@ NatureActivitéQuestion.typeRadioGroup = true
 NatureActivitéQuestion.applicable = () => true
 NatureActivitéQuestion.Valeur = NatureActivitéValeur
 NatureActivitéQuestion.documentation = {
-	Documentation: documentationMDX(
+	Documentation: MDXDoc.documentation(
 		(langue) => import(`./NatureActiviteDocumentation.${langue}.mdx`)
 	),
 	références: {
