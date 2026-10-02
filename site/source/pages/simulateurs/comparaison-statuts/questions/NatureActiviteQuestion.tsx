@@ -1,4 +1,4 @@
-import { Key, useCallback } from 'react'
+import { Key, lazy, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
@@ -7,7 +7,8 @@ import {
 	SituationComparée,
 	useComparateur,
 } from '@/contextes/comparateur'
-import { RadioChoiceGroup } from '@/design-system'
+import { MDXWrapper, RadioChoiceGroup } from '@/design-system'
+import i18n from '@/locales/i18n'
 
 export const NatureActivitéQuestion: ComposantQuestionFournie<
 	SituationComparée
@@ -62,6 +63,10 @@ const NatureActivitéValeur = () => {
 	return situation.natureActivité
 }
 
+const NatureActivitéDocumentation = lazy(
+	() => import(`./NatureActiviteDocumentation.${i18n.language}.mdx`)
+)
+
 NatureActivitéQuestion._tag = 'QuestionFournie'
 NatureActivitéQuestion.id = 'activité-nature'
 NatureActivitéQuestion.libellé = (t) =>
@@ -72,3 +77,14 @@ NatureActivitéQuestion.libellé = (t) =>
 NatureActivitéQuestion.typeRadioGroup = true
 NatureActivitéQuestion.applicable = () => true
 NatureActivitéQuestion.Valeur = NatureActivitéValeur
+NatureActivitéQuestion.documentation = {
+	Documentation: () => (
+		<MDXWrapper>
+			<NatureActivitéDocumentation />
+		</MDXWrapper>
+	),
+	références: {
+		'Création d’entreprise : déterminer la nature de l’activité d’une entreprise':
+			'https://entreprendre.service-public.gouv.fr/vosdroits/F32887',
+	},
+}
