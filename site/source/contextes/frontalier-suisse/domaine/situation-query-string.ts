@@ -3,6 +3,10 @@ import * as O from 'effect/Option'
 
 import { Montant } from '@/domaine/Montant'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
+import {
+	encodeSituationSérialisée,
+	parseSituationSérialisée,
+} from '@/utils/URLs'
 
 import {
 	initialSituationFrontalierSuisse,
@@ -42,11 +46,11 @@ export const encodeSituation = (
 		),
 	}
 
-	return toBase64Url(JSON.stringify(sérialisée))
+	return encodeSituationSérialisée(sérialisée)
 }
 
 export const decodeSituation = (chaîne: string): SituationFrontalierSuisse => {
-	const sérialisée = parseSituationSérialisée(chaîne)
+	const sérialisée = parseSituationSérialisée<SituationSérialisée>(chaîne)
 
 	return {
 		...initialSituationFrontalierSuisse,
@@ -54,18 +58,6 @@ export const decodeSituation = (chaîne: string): SituationFrontalierSuisse => {
 		dateFinAffiliation: parseDate(sérialisée.dateFinAffiliation),
 		salaires: parseMontant(sérialisée.salaires),
 		autresRevenus: parseMontant(sérialisée.autresRevenus),
-	}
-}
-
-const parseSituationSérialisée = (chaîne: string): SituationSérialisée => {
-	try {
-		const parsed: unknown = JSON.parse(fromBase64Url(chaîne))
-
-		return typeof parsed === 'object' && parsed !== null
-			? (parsed as SituationSérialisée)
-			: {}
-	} catch {
-		return {}
 	}
 }
 
@@ -96,13 +88,3 @@ const parseMontant = (valeur: unknown): O.Option<Montant<'€/an'>> =>
 	typeof valeur === 'number' && Number.isFinite(valeur) && valeur >= 0
 		? O.some(eurosParAn(valeur))
 		: O.none()
-
-const toBase64Url = (chaîne: string): string =>
-	btoa(chaîne).replaceAll('+', '-').replaceAll('/', '_').replace(/=+$/, '')
-
-const fromBase64Url = (chaîne: string): string => {
-	const base64 = chaîne.replaceAll('-', '+').replaceAll('_', '/')
-	const padding = '='.repeat((4 - (base64.length % 4)) % 4)
-
-	return atob(base64 + padding)
-}

@@ -21,6 +21,11 @@ export const isUnitéMonétaireRécurrente = (
 	unité !== '€' &&
 	unité !== '€/titre-restaurant'
 
+export type PériodeDeCalcul = '€/mois' | '€/an'
+
+export const isPériodeDeCalcul = (value?: unknown): value is PériodeDeCalcul =>
+	typeof value === 'string' && (value === '€/mois' || value === '€/an')
+
 const UNITÉS_QUANTITÉS = [
 	'%',
 	'heures/mois',
