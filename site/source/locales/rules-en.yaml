@@ -11308,52 +11308,6 @@ salarié . cotisations . FNAL:
     le financement de l’allocation logement.
   titre.en: '[automatic] Contribution to the National Housing Assistance Fund'
   titre.fr: Contribution au Fonds National d’Aide au Logement
-salarié . cotisations . Mayotte:
-  description.en: >
-    [automatic] The employer and employee **social security contribution
-    rates**, as well as
-
-    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
-    this
-
-    simulator.
-
-
-    However, the calculation of the **RGDU** (General Degressive Reduction
-
-    ) specific to Mayotte is **not yet available**.
-
-    > The Lodeom exemption does not apply in Mayotte until July 1, 2026.
-  description.fr: >
-    Les **taux de cotisations sociales** patronales et salariales ainsi que
-
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
-
-    simulateur.
-
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
-
-
-    > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet
-    2026.
-  résumé.en: >
-    [automatic] This simulator correctly applies the **social security
-    contribution rates** and
-
-    the **Lodeom** exemption in effect in Mayotte since July 1, 2026.
-
-
-    However, the calculation of the **RGDU** is not yet available.
-  résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
-  titre.en: '[automatic] Contributions in Mayotte'
-  titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
   description.en: '[automatic] Participation of employers in the construction effort'
   description.fr: Participation des employeurs à l'effort de construction
@@ -11627,18 +11581,43 @@ salarié . cotisations . exonérations . JEI . montant:
   titre.fr: Exonération JEI
 salarié . cotisations . exonérations . RGDU:
   avec:
+    A:
+      description.en: >
+        [automatic] A multiple of the minimum wage at which the reduction no
+        longer applies.
+
+
+        It also determines the rate of the degressive scale, through the factor
+        1 / (A - 1)
+
+        of the coefficient.
+      description.fr: |
+        Multiple du Smic à partir duquel la réduction ne s’applique plus.
+
+        Il fixe aussi la pente de la dégressivité, par le facteur 1 / (A - 1)
+        du cœfficient.
+      titre.en: minimum wage multiple at which the reduction ends
+      titre.fr: multiple du Smic de sortie
     P:
-      titre.en: '[automatic] P'
-      titre.fr: P
+      description.en: >
+        [automatic] Exponent applied to the decreasing term of the coefficient.
+        It equals 1 in
+
+        Mayotte, where the decreasing term is therefore linear.
+      description.fr: |
+        Exposant appliqué au terme dégressif du cœfficient. Il vaut 1 à
+        Mayotte, où la dégressivité est donc sans courbure.
+      titre.en: degressivity exponent
+      titre.fr: exposant de dégressivité
     SMIC:
       description.en: >
         [automatic] The minimum wage (SMIC) amount used in the calculation of
         the RGDU, for the
 
-        eligibility threshold and for the calculation of the coefficient.
+        eligibility threshold and for calculating the coefficient.
 
 
-        The minimum wage is prorated based on hours worked in cases of
+        The SMIC is prorated based on hours worked in the case of
 
         part-time work or overtime.
 
@@ -11646,7 +11625,9 @@ salarié . cotisations . exonérations . RGDU:
         Despite the increase in the minimum wage effective June 1, the value
         used is still
 
-        that of January 1, 2026.
+        that of January 1, 2026, except in Mayotte, where adjustments to the
+
+        Mayotte minimum wage are taken into account.
       description.fr: >
         Montant du Smic utilisé dans le calcul de la RGDU, pour le plafond
 
@@ -11661,7 +11642,9 @@ salarié . cotisations . exonérations . RGDU:
         Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
         toujours
 
-        celle du 1er janvier 2026.
+        celle du 1er janvier 2026, sauf à Mayotte où les revalorisations du Smic
+
+        mahorais sont prises en compte.
       titre.en: '[automatic] Minimum Wage'
       titre.fr: SMIC
     caisse de congés payés:
@@ -11706,6 +11689,14 @@ salarié . cotisations . exonérations . RGDU:
     as of
 
     January 1, 2026.
+
+
+    **In Mayotte**, the RGDU follows the same formula but uses its own scale: it
+
+    ceases at **1.6 times the minimum wage**, and the reference minimum wage is
+    the Mayotte minimum wage for
+
+    that period, including any adjustments.
   description.fr: >
     Le dispositif de réduction générale de cotisations patronales permet à
 
@@ -11732,6 +11723,13 @@ salarié . cotisations . exonérations . RGDU:
     le calcul de son coefficient continuent de se baser sur la valeur du Smic au
 
     1er janvier 2026.
+
+
+    **À Mayotte**, la RGDU suit la même formule mais un barème propre : elle
+
+    s’éteint dès **1,6 Smic**, et le Smic de référence est le Smic mahorais de
+
+    la période, revalorisations comprises.
   titre.en: '[automatic] RGDU'
   titre.fr: RGDU
 salarié . cotisations . exonérations . T:
@@ -11745,9 +11743,39 @@ salarié . cotisations . exonérations . T:
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
 salarié . cotisations . exonérations . Tdelta:
+  description.en: >
+    [automatic] Range of the RGDU coefficient’s degressivity: the sum of the
+
+    contribution rates covered by the reduction, minus Tmin.
+
+
+    In Mayotte, the covered contributions are those applicable locally:
+
+    family allowances 5.40%, sickness and maternity 5.80%, old age 9.90%,
+
+    work-related accidents and occupational diseases 0.49%, Fnal 0.10% (0.50%
+    for employers with 50 or more employees), and unemployment
+
+    2.80%. The supplemental pension plan is not eligible in Mayotte.
+  description.fr: |
+    Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux des
+    cotisations que la réduction couvre, diminuée de Tmin.
+
+    À Mayotte, les cotisations couvertes sont celles applicables localement :
+    allocations familiales 5,40 %, maladie-maternité 5,80 %, vieillesse 9,90 %,
+    AT-MP 0,49 %, Fnal 0,10 % (0,50 % à partir de 50 salariés) et chômage
+    2,80 %. La retraite complémentaire n’y est pas éligible.
   titre.en: '[automatic] Tdelta'
   titre.fr: Tdelta
 salarié . cotisations . exonérations . Tmin:
+  description.en: >
+    [automatic] The lower bound of the RGDU coefficient, reached just before
+    exiting the
+
+    system. It is zero in Mayotte.
+  description.fr: |
+    Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
+    dispositif. Il est nul à Mayotte.
   titre.en: '[automatic] Tmin'
   titre.fr: Tmin
 salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
