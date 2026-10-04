@@ -1,3 +1,4 @@
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { Lodeom } from '@/contextes/salarié'
 import { MontantField } from '@/design-system'
 import { euros } from '@/domaine/MontantPonctuel'
@@ -17,7 +18,7 @@ export default function RémunérationInput({
 }: Props) {
 	return (
 		<MontantField
-			id={`${Lodeom.rémunérationBruteDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+			id={`${normalizeRuleName(Lodeom.rémunérationBruteDottedName)}-${monthName}`}
 			aria={{
 				labelledby: 'simu-update-explaining',
 			}}

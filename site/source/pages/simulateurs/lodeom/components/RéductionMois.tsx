@@ -5,6 +5,7 @@ import { styled } from 'styled-components'
 
 import RuleLink from '@/components/RuleLink'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { Lodeom } from '@/contextes/salarié'
 import {
 	Body,
@@ -18,6 +19,8 @@ import MonthOptions from '@/pages/simulateurs/lodeom/components/MonthOptions'
 
 import { MobileContainer } from './MobileContainer'
 import RémunérationInput from './RémunérationInput'
+
+const idPrefix = normalizeRuleName(Lodeom.lodeomDottedName)
 
 type Props = {
 	monthName: string
@@ -71,7 +74,7 @@ export default function RéductionMois({
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`${Lodeom.lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				id={`${idPrefix}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -87,10 +90,7 @@ export default function RéductionMois({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`${Lodeom.lodeomDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}__régularisation-${monthName}`}
+				id={`${idPrefix}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}
