@@ -9,21 +9,121 @@ salarié . cotisations:
   avec:
     employeur:
       titre: part employeur
-      somme:
-        - maladie . employeur
-        - prévoyances . santé . employeur
-        - ATMP
-        - vieillesse . plafonnée . employeur
-        - vieillesse . déplafonnée . employeur
-        # TODO: séparer T1 et T2
-        - retraite complémentaire-CEG-CET . employeur
-        - allocations familiales
-        - assurance chômage
-        - APEC . employeur
-        - autres employeur
-        - prévoyances . incapacité invalidité décès . employeur
-        # - retraite supplémentaire . employeur
-      abattement: exonérations . employeur
+      description: |
+        Les dispositifs d’allègement des cotisations patronales sont mutuellement
+        exclusifs, et ils ne se distinguent pas seulement par leur montant : le
+        Lodeom ouvre aussi des taux réduits de maladie et d’allocations
+        familiales, que la réduction générale ne permet pas de conserver.
+
+        Chaque régime est donc calculé de bout en bout, et c’est le moins
+        coûteux pour l’employeur qui s’applique, sans lui demander de choisir.
+      références:
+        Réduction générale des cotisations patronales - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
+        Exonération Lodéom - Cumul avec d’autres dispositifs d’exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
+      le minimum de:
+        - régimes . sans dispositif
+        - régimes . avec Lodeom
+        - régimes . avec RGDU
+        - régimes . avec JEI
+        - régimes . avec Acre
+
+      avec:
+        cotisations dues:
+          titre: cotisations patronales avant allègement
+          somme:
+            - maladie . employeur
+            - prévoyances . santé . employeur
+            - ATMP
+            - vieillesse . plafonnée . employeur
+            - vieillesse . déplafonnée . employeur
+            # TODO: séparer T1 et T2
+            - retraite complémentaire-CEG-CET . employeur
+            - allocations familiales
+            - assurance chômage
+            - APEC . employeur
+            - autres employeur
+            - prévoyances . incapacité invalidité décès . employeur
+            # - retraite supplémentaire . employeur
+
+        régimes:
+          titre: régimes d’exonération
+          description: |
+            Les cotisations patronales sous chacun des régimes d’exonération
+            possibles. Chaque régime retranche des cotisations dues
+            l’exonération qui lui correspond, dans
+            `salarié . cotisations . exonérations . employeur . régimes`.
+
+            Un régime est non applicable quand l’employeur n’a pas droit au
+            dispositif qui le définit.
+          avec:
+            sans dispositif:
+              titre: sans dispositif d’exonération
+              valeur: salarié . cotisations . employeur . cotisations dues
+              abattement: salarié . cotisations . exonérations . employeur . régimes . sans dispositif
+
+            avec Lodeom:
+              titre: avec l’exonération Lodeom
+              applicable si:
+                est applicable: salarié . cotisations . exonérations . lodeom . montant
+              valeur: aux taux réduits
+              abattement: salarié . cotisations . exonérations . employeur . régimes . avec Lodeom
+              avec:
+                aux taux réduits:
+                  titre: cotisations dues aux taux réduits
+                  valeur: salarié . cotisations . employeur . cotisations dues
+                  contexte:
+                    salarié . cotisations . exonérations . taux réduits: oui
+
+            avec RGDU:
+              titre: avec la réduction générale dégressive unique
+              applicable si:
+                est applicable: salarié . cotisations . exonérations . RGDU
+              valeur: salarié . cotisations . employeur . cotisations dues
+              abattement: salarié . cotisations . exonérations . employeur . régimes . avec RGDU
+
+            avec JEI:
+              titre: avec l’exonération jeune entreprise innovante
+              applicable si:
+                est applicable: salarié . cotisations . exonérations . JEI . montant
+              valeur: salarié . cotisations . employeur . cotisations dues
+              abattement: salarié . cotisations . exonérations . employeur . régimes . avec JEI
+
+            avec Acre:
+              titre: avec l’exonération Acre
+              # La condition d’application de l’Acre est portée par la règle
+              # `Acre` elle-même. Tester `Acre . employeur` à sa place fausse
+              # ensuite la valeur de `Acre . employeur`, qui devient non nulle
+              # pour un salarié non dirigeant.
+              applicable si:
+                est applicable: salarié . cotisations . exonérations . Acre
+              valeur: salarié . cotisations . employeur . cotisations dues
+              abattement: salarié . cotisations . exonérations . employeur . régimes . avec Acre
+
+            le plus avantageux:
+              titre: régime d’exonération le plus avantageux
+              description: |
+                Le régime dont le coût est celui de `cotisations . employeur`. À
+                coût égal, le premier de la liste l’emporte.
+
+                Aucune règle de cotisation ne peut lire cette valeur, puisque
+                les régimes comparés en dépendraient eux-mêmes. Elle sert à la
+                fiche de paie, qui affiche les cotisations et l’exonération de
+                ce régime.
+              note: |
+                Sous les conventions collectives qui remplacent
+                `cotisations . employeur` (spectacle vivant privé, BTP, sport),
+                la comparaison porte sur la valeur remplacée et ne désigne pas
+                le bon régime.
+              variations:
+                - si: sans dispositif = salarié . cotisations . employeur
+                  alors: "'sans dispositif'"
+                - si: avec Lodeom = salarié . cotisations . employeur
+                  alors: "'avec Lodeom'"
+                - si: avec RGDU = salarié . cotisations . employeur
+                  alors: "'avec RGDU'"
+                - si: avec JEI = salarié . cotisations . employeur
+                  alors: "'avec JEI'"
+                - sinon: "'avec Acre'"
 
     salarié:
       titre: part salarié
@@ -309,8 +409,9 @@ salarié . cotisations . allocations familiales:
 
         Dans ce cas, la réduction du taux s'applique si la rémunération est
         inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
-      applicable si: exonérations . lodeom
-      valeur: cotisations . assiette < plafond
+      toutes ces conditions:
+        - exonérations . taux réduits
+        - cotisations . assiette < plafond
       avec:
         plafond:
           produit:
@@ -822,8 +923,9 @@ salarié . cotisations . maladie:
 
             Dans ce cas, la réduction du taux s'applique si la rémunération est
             inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
-          applicable si: exonérations . lodeom
-          valeur: cotisations . assiette < plafond
+          toutes ces conditions:
+            - exonérations . taux réduits
+            - cotisations . assiette < plafond
           avec:
             plafond:
               produit:
@@ -1331,29 +1433,3 @@ salarié . cotisations . assiette forfaitaire:
 #       produit:
 #         - cotisations . assiette
 #         - 0 %
-
-salarié . cotisations . Mayotte:
-  applicable si: établissement . commune . département . outre-mer . Mayotte
-  valeur: oui
-  type: notification
-  sévérité: avertissement
-  titre: Cotisations Mayotte
-  résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
-  description: |
-    Les **taux de cotisations sociales** patronales et salariales ainsi que
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
-    simulateur.
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
-
-    > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet 2026.
-  références:
-    Taux de cotisations - Employeurs à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/cotisations-employeurs-mayotte.html
-    Les services de l’État à Mayotte - Réduction générale dégressive unique (RGDU) de cotisations patronales: https://www.mayotte.gouv.fr/Demarches/Demarches-PARTICULIERS#!/professionnels/page/F24542
-    Exonération Lodéom - Détail du calcul en Guadeloupe, Guyane, Martinique, La Réunion ou à Mayotte: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-calcul-declaration-en-guadeloupe
-    Application à Mayotte de la réduction générale dégressive unique et de l’exonération Lodeom: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2026/janvier/mayotte---rgdu-et-exoneration-lo.html
