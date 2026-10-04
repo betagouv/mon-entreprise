@@ -11583,12 +11583,12 @@ salarié . cotisations . exonérations . RGDU:
   avec:
     A:
       description.en: >
-        [automatic] A multiple of the minimum wage at which the reduction no
+        [automatic] A multiple of the minimum wage above which the reduction no
         longer applies.
 
 
-        It also determines the rate of the degressive scale, through the factor
-        1 / (A - 1)
+        It also determines the rate of the degressive scale, using the factor 1
+        / (A - 1)
 
         of the coefficient.
       description.fr: |
@@ -11647,6 +11647,48 @@ salarié . cotisations . exonérations . RGDU:
         mahorais sont prises en compte.
       titre.en: '[automatic] Minimum Wage'
       titre.fr: SMIC
+    Tdelta:
+      description.en: >
+        [automatic] Range of the RGDU coefficient’s degressivity: the sum of the
+
+        contribution rates covered by the reduction, minus Tmin.
+
+
+        In Mayotte, the contributions covered are those applicable locally:
+
+        family allowances 5.40%, sickness and maternity 5.80%, old age
+
+        9.90%, work-related accidents and occupational diseases 0.49%, Fnal
+        0.10% (0.50% for companies with 50 or more employees), and
+
+        unemployment 2.80%. The supplemental pension is not eligible there.
+      description.fr: >
+        Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux
+
+        des cotisations que la réduction couvre, diminuée de Tmin.
+
+
+        À Mayotte, les cotisations couvertes sont celles applicables localement
+        :
+
+        allocations familiales 5,40 %, maladie-maternité 5,80 %, vieillesse
+
+        9,90 %, AT-MP 0,49 %, Fnal 0,10 % (0,50 % à partir de 50 salariés) et
+
+        chômage 2,80 %. La retraite complémentaire n’y est pas éligible.
+      titre.en: '[automatic] degree of degressivity'
+      titre.fr: amplitude de la dégressivité
+    Tmin:
+      description.en: >
+        [automatic] The lower bound of the RGDU coefficient, reached just before
+        exiting the
+
+        system. It is zero in Mayotte.
+      description.fr: |
+        Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
+        dispositif. Il est nul à Mayotte.
+      titre.en: '[automatic] coefficient floor'
+      titre.fr: plancher du cœfficient
     caisse de congés payés:
       question.en: '[automatic] Are you obliged to use a vacation pay fund?'
       question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
@@ -11742,42 +11784,6 @@ salarié . cotisations . exonérations . T:
       titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
-salarié . cotisations . exonérations . Tdelta:
-  description.en: >
-    [automatic] Range of the RGDU coefficient’s degressivity: the sum of the
-
-    contribution rates covered by the reduction, minus Tmin.
-
-
-    In Mayotte, the covered contributions are those applicable locally:
-
-    family allowances 5.40%, sickness and maternity 5.80%, old age 9.90%,
-
-    work-related accidents and occupational diseases 0.49%, Fnal 0.10% (0.50%
-    for employers with 50 or more employees), and unemployment
-
-    2.80%. The supplemental pension plan is not eligible in Mayotte.
-  description.fr: |
-    Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux des
-    cotisations que la réduction couvre, diminuée de Tmin.
-
-    À Mayotte, les cotisations couvertes sont celles applicables localement :
-    allocations familiales 5,40 %, maladie-maternité 5,80 %, vieillesse 9,90 %,
-    AT-MP 0,49 %, Fnal 0,10 % (0,50 % à partir de 50 salariés) et chômage
-    2,80 %. La retraite complémentaire n’y est pas éligible.
-  titre.en: '[automatic] Tdelta'
-  titre.fr: Tdelta
-salarié . cotisations . exonérations . Tmin:
-  description.en: >
-    [automatic] The lower bound of the RGDU coefficient, reached just before
-    exiting the
-
-    system. It is zero in Mayotte.
-  description.fr: |
-    Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
-    dispositif. Il est nul à Mayotte.
-  titre.en: '[automatic] Tmin'
-  titre.fr: Tmin
 salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre

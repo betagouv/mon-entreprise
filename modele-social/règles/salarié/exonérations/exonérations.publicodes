@@ -87,42 +87,6 @@ salarié . cotisations . exonérations . heures supplémentaires:
       plafond: 11.31%
 
 
-salarié . cotisations . exonérations . Tmin:
-  description: |
-    Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
-    dispositif. Il est nul à Mayotte.
-  variations:
-    - si: établissement . commune . département . outre-mer . Mayotte
-      alors: 0
-    - sinon: 0.0200
-  références:
-    Le calcul du cœfficient de la réduction: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
-
-salarié . cotisations . exonérations . Tdelta:
-  description: |
-    Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux des
-    cotisations que la réduction couvre, diminuée de Tmin.
-
-    À Mayotte, les cotisations couvertes sont celles applicables localement :
-    allocations familiales 5,40 %, maladie-maternité 5,80 %, vieillesse 9,90 %,
-    AT-MP 0,49 %, Fnal 0,10 % (0,50 % à partir de 50 salariés) et chômage
-    2,80 %. La retraite complémentaire n’y est pas éligible.
-  variations:
-    - si: établissement . commune . département . outre-mer . Mayotte
-      alors:
-        variations:
-          - si: entreprise . salariés . effectif < 50
-            alors: 0.2449
-          - sinon: 0.2489
-    - sinon:
-        variations:
-          - si: entreprise . salariés . effectif < 50
-            alors: 0.3781
-          - sinon: 0.3821
-  références:
-    Les cotisations exonérées: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
-    Taux de cotisations - Employeurs à Mayotte: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/cotisations-employeurs-mayotte.html
-
 salarié . cotisations . exonérations . T:
   titre: Coefficient T
   unité: ''
