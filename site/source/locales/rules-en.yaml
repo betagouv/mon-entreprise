@@ -11007,6 +11007,119 @@ salarié . convention collective . sport . refus exonération cotisation AT:
 salarié . cotisations:
   avec:
     employeur:
+      avec:
+        cotisations dues:
+          titre.en: '[automatic] employer contributions before the reduction'
+          titre.fr: cotisations patronales avant allègement
+        régimes:
+          avec:
+            avec Acre:
+              titre.en: '[automatic] with the Acre exemption'
+              titre.fr: avec l’exonération Acre
+            avec JEI:
+              titre.en: '[automatic] with the tax exemption for innovative startups'
+              titre.fr: avec l’exonération jeune entreprise innovante
+            avec Lodeom:
+              avec:
+                aux taux réduits:
+                  titre.en: '[automatic] contributions due at reduced rates'
+                  titre.fr: cotisations dues aux taux réduits
+              titre.en: '[automatic] with the Lodeom exemption'
+              titre.fr: avec l’exonération Lodeom
+            avec RGDU:
+              titre.en: '[automatic] with the single, generally applied, degressive discount'
+              titre.fr: avec la réduction générale dégressive unique
+            le plus avantageux:
+              description.en: >
+                [automatic] The plan whose cost is that of `employer
+                contributions`. At
+
+                equal cost, the first one on the list takes precedence.
+
+
+                No contribution rule can read this value, since
+
+                the plans being compared would themselves depend on it. It is
+                used for the
+
+                pay stub, which displays the contributions and exemptions
+
+                for this plan.
+              description.fr: |
+                Le régime dont le coût est celui de `cotisations . employeur`. À
+                coût égal, le premier de la liste l’emporte.
+
+                Aucune règle de cotisation ne peut lire cette valeur, puisque
+                les régimes comparés en dépendraient eux-mêmes. Elle sert à la
+                fiche de paie, qui affiche les cotisations et l’exonération de
+                ce régime.
+              note.en: >
+                [automatic] Under collective bargaining agreements that replace
+
+                `employer contributions` (private performing arts, construction,
+                sports),
+
+                the comparison is based on the replaced amount and does not
+                indicate
+
+                the appropriate plan.
+              note.fr: |
+                Sous les conventions collectives qui remplacent
+                `cotisations . employeur` (spectacle vivant privé, BTP, sport),
+                la comparaison porte sur la valeur remplacée et ne désigne pas
+                le bon régime.
+              titre.en: '[automatic] most favorable tax exemption scheme'
+              titre.fr: régime d’exonération le plus avantageux
+            sans dispositif:
+              titre.en: '[automatic] without an exemption provision'
+              titre.fr: sans dispositif d’exonération
+          description.en: |
+            [automatic] Employer contributions under each of the possible
+            exemption schemes. Each scheme deducts the corresponding
+            exemption from the contributions due, in
+            `employee . contributions . exemptions . employer . schemes`.
+
+            A plan is inapplicable when the employer is not eligible for
+            the provision that defines it.
+          description.fr: |
+            Les cotisations patronales sous chacun des régimes d’exonération
+            possibles. Chaque régime retranche des cotisations dues
+            l’exonération qui lui correspond, dans
+            `salarié . cotisations . exonérations . employeur . régimes`.
+
+            Un régime est non applicable quand l’employeur n’a pas droit au
+            dispositif qui le définit.
+          titre.en: '[automatic] exemption schemes'
+          titre.fr: régimes d’exonération
+      description.en: >
+        [automatic] The schemes for reducing employer contributions are mutually
+
+        exclusive, and they differ not only in terms of their amount: the
+
+        Lodeom also provides reduced rates for health insurance and family
+
+        allowances, which the general reduction does not allow employers to
+        retain.
+
+
+        Each scheme is therefore calculated from start to finish, and the least
+
+        costly option for the employer is applied, without requiring the
+        employer to choose.
+      description.fr: >
+        Les dispositifs d’allègement des cotisations patronales sont
+        mutuellement
+
+        exclusifs, et ils ne se distinguent pas seulement par leur montant : le
+
+        Lodeom ouvre aussi des taux réduits de maladie et d’allocations
+
+        familiales, que la réduction générale ne permet pas de conserver.
+
+
+        Chaque régime est donc calculé de bout en bout, et c’est le moins
+
+        coûteux pour l’employeur qui s’applique, sans lui demander de choisir.
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
     salarié:
@@ -11490,11 +11603,25 @@ salarié . cotisations . contribution au dialogue social:
 salarié . cotisations . exonérations:
   avec:
     employeur:
-      description.en: '[automatic] With the exception of the overtime deduction,
-        employer contribution reduction schemes are mutually exclusive.'
-      description.fr: À l'exception de la déduction heure supplémentaire, les
-        dispositifs de réduction de cotisations patronales sont mutuellement
-        exclusif.
+      description.en: >-
+        [automatic] With the exception of the overtime deduction, the various
+        schemes for reducing employer contributions are mutually exclusive.
+
+
+        This amount is the amount of the highest exemption. Since it does not
+        account for the savings provided by the reduced Lodeom rates, it may
+        exceed the exemption actually obtained, which is that of the plan
+        designated as “employer contributions . plans . most advantageous.”
+      description.fr: >-
+        À l'exception de la déduction heure supplémentaire, les dispositifs de
+        réduction de cotisations patronales sont mutuellement exclusif.
+
+
+        Ce montant est celui du dispositif d'exonération le plus élevé. Comme il
+        ne rend pas compte de l'économie que procurent les taux réduits du
+        Lodeom, il peut dépasser l'exonération réellement obtenue, qui est celle
+        du régime désigné par `cotisations . employeur . régimes . le plus
+        avantageux`.
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
     salarié:
@@ -11790,6 +11917,53 @@ salarié . cotisations . exonérations . cotisations patronales exonérées Acre
 salarié . cotisations . exonérations . cotisations salariales exonérées Acre:
   titre.en: '[automatic] Exempt employee contributions Acre'
   titre.fr: cotisations salariales exonérées Acre
+salarié . cotisations . exonérations . employeur . régimes:
+  avec:
+    avec Acre:
+      titre.en: '[automatic] Exemption with Acre'
+      titre.fr: exonération avec Acre
+    avec JEI:
+      titre.en: '[automatic] Exemption under the JEI'
+      titre.fr: exonération avec JEI
+    avec Lodeom:
+      titre.en: '[automatic] Exemption under Lodeom'
+      titre.fr: exonération avec Lodeom
+    avec RGDU:
+      titre.en: '[automatic] Exemption under the RGDU'
+      titre.fr: exonération avec RGDU
+    sans dispositif:
+      description.en: |
+        [automatic] No exemption provisions apply: only the deduction for
+        overtime is subtracted.
+      description.fr: |
+        Aucun dispositif d'exonération ne s'applique : seule la déduction pour
+        heures supplémentaires est retranchée.
+      titre.en: '[automatic] exemption without a mechanism'
+      titre.fr: exonération sans dispositif
+  description.en: >
+    [automatic] Everything that each “contributions . employer . plans” scheme
+    deducts
+
+    from the contributions due: the exemption that defines the scheme, and the
+    deduction
+
+    for overtime, which applies to all schemes.
+
+
+    The savings resulting from the reduced Lodeom rates are not included here:
+    they are
+
+    reflected in the contributions themselves, which are calculated at those
+    rates.
+  description.fr: |
+    Tout ce que chaque régime de `cotisations . employeur . régimes` retranche
+    des cotisations dues : l'exonération qui définit le régime, et la déduction
+    pour heures supplémentaires, qui s'applique dans tous les régimes.
+
+    L'économie que procurent les taux réduits du Lodeom n'y figure pas : elle se
+    lit dans les cotisations elles-mêmes, calculées à ces taux.
+  titre.en: '[automatic] Employer exemption by plan'
+  titre.fr: exonération patronale par régime
 salarié . cotisations . exonérations . heures supplémentaires:
   avec:
     employeur:
@@ -12950,6 +13124,53 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre.fr: barèmes
   titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
   titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
+salarié . cotisations . exonérations . taux réduits:
+  description.en: >
+    [automatic] A program distinct from contribution exemptions, but limited to
+
+    employers who qualify for one of them: it reduces the rates of
+
+    health insurance and family allowance contributions.
+
+
+    Several programs qualify for this benefit: the Lodeom, metropolitan
+    area-based exemptions
+
+    (ZRR, ZFRR, ZRD, ZFU), and home care assistance. Only the Lodeom is
+
+    modeled for employees.
+
+
+    These rates cannot be combined with the general reduction. Each scheme under
+
+    `contributions . employer . schemes` therefore determines for itself whether
+    it qualifies,
+
+    and the default value is “no”: only the scheme with Lodeom enables them.
+
+    To determine whether this is the most advantageous plan—and thus at what
+    rates the
+
+    contributions are ultimately due—see
+
+    `contributions . employer . plans . most advantageous`.
+  description.fr: |
+    Dispositif distinct des exonérations de cotisations, mais réservé aux
+    employeurs qui bénéficient de l’une d’elles : il réduit les taux des
+    cotisations maladie et d’allocations familiales.
+
+    Plusieurs dispositifs y ouvrent droit : le Lodeom, les exonérations zonées
+    de métropole (ZRR, ZFRR, ZRD, ZFU) et l’aide à domicile. Seul le Lodeom est
+    modélisé pour les salariés.
+
+    Ces taux ne se cumulent pas avec la réduction générale. Chaque régime de
+    `cotisations . employeur . régimes` fixe donc lui-même s'il en bénéficie,
+    et la valeur par défaut est « non » : seul le régime avec Lodeom les ouvre.
+    Pour savoir si c'est ce régime le plus avantageux, et donc à quels taux les
+    cotisations sont finalement dues, voir
+    `cotisations . employeur . régimes . le plus avantageux`.
+  titre.en: '[automatic] proportional rate reductions'
+  titre.fr: réductions proportionnelles de taux
 salarié . cotisations . exonérations . zones lodeom:
   avec:
     mayotte:

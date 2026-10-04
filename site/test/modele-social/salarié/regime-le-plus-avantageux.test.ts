@@ -5,36 +5,37 @@ import { beforeEach, describe, expect, it } from 'vitest'
 
 const PROPERTY_TEST_TIMEOUT = 30_000
 
+const RÉGIMES = 'salarié . cotisations . employeur . régimes'
+
 const montant = (engine: Engine<RègleModèleSocial>, règle: string) => {
 	const valeur = engine.evaluate(règle).nodeValue
 
 	return typeof valeur === 'number' ? valeur : null
 }
 
-type SituationMahoraise = {
+type SituationZoneUn = {
+	département: string
 	date: string
 	seuilEffectif: string
 	secteurÉligible: 'oui' | 'non'
 	brut: number
 }
 
-type Dispositif = 'RGDU' | 'Lodeom'
+type SituationMahoraise = Omit<SituationZoneUn, 'département'>
 
-const règleDu: Record<Dispositif, string> = {
-	RGDU: 'salarié . cotisations . exonérations . RGDU',
-	Lodeom: 'salarié . cotisations . exonérations . lodeom . montant',
-}
+type Régime = 'avec RGDU' | 'avec Lodeom'
 
-const situationMahoraise = ({
+const situationZoneUn = ({
+	département,
 	date,
 	seuilEffectif,
 	secteurÉligible,
 	brut,
-}: SituationMahoraise) => ({
+}: SituationZoneUn) => ({
 	dirigeant: 'non',
 	'entreprise . catégorie juridique': "''",
 	'entreprise . imposition': 'non',
-	'établissement . commune . département': "'Mayotte'",
+	'établissement . commune . département': `'${département}'`,
 	'salarié . contrat . salaire brut': `${brut} €/mois`,
 	date,
 	'entreprise . salariés . effectif . seuil': `'${seuilEffectif}'`,
@@ -46,17 +47,16 @@ const situationMahoraise = ({
 		'non',
 })
 
-const dispositifRetenu = (engine: Engine<RègleModèleSocial>) => {
-	const RGDU = montant(engine, règleDu.RGDU)
-	const lodeom = montant(engine, règleDu.Lodeom)
+const situationMahoraise = (situation: SituationMahoraise) =>
+	situationZoneUn({ ...situation, département: 'Mayotte' })
 
-	if (RGDU !== null && RGDU > 0) return 'RGDU'
-	if (lodeom !== null && lodeom > 0) return 'Lodeom'
+const régimeLePlusAvantageux = (engine: Engine<RègleModèleSocial>) =>
+	engine.evaluate(`${RÉGIMES} . le plus avantageux`).nodeValue
 
-	return 'aucun'
-}
+const coûtDuRégime = (engine: Engine<RègleModèleSocial>, régime: string) =>
+	montant(engine, `${RÉGIMES} . ${régime}`)
 
-describe('Dispositif d’allègement retenu', () => {
+describe('Régime d’exonération le plus avantageux', () => {
 	let engine: Engine<RègleModèleSocial>
 	beforeEach(() => {
 		engine = new Engine(rules)
@@ -74,12 +74,12 @@ describe('Dispositif d’allègement retenu', () => {
 
 		const casMahorais: [
 			libellé: string,
-			dispositif: Dispositif,
+			régime: Régime,
 			situation: Omit<SituationMahoraise, 'brut'>,
 		][] = [
 			[
 				'La RGDU s’applique avant l’ouverture du Lodeom, en mars 2026',
-				'RGDU',
+				'avec RGDU',
 				{
 					date: '03/2026',
 					seuilEffectif: 'moins de 5',
@@ -88,7 +88,7 @@ describe('Dispositif d’allègement retenu', () => {
 			],
 			[
 				'Le Lodeom s’applique à un employeur de moins de 11 salariés',
-				'Lodeom',
+				'avec Lodeom',
 				{
 					date: '08/2026',
 					seuilEffectif: 'moins de 5',
@@ -97,7 +97,7 @@ describe('Dispositif d’allègement retenu', () => {
 			],
 			[
 				'Le Lodeom s’applique à un employeur d’un secteur éligible',
-				'Lodeom',
+				'avec Lodeom',
 				{
 					date: '08/2026',
 					seuilEffectif: 'moins de 20',
@@ -106,7 +106,7 @@ describe('Dispositif d’allègement retenu', () => {
 			],
 			[
 				'La RGDU s’applique à un employeur ne relevant d’aucun barème Lodeom',
-				'RGDU',
+				'avec RGDU',
 				{
 					date: '08/2026',
 					seuilEffectif: 'moins de 20',
@@ -115,19 +115,19 @@ describe('Dispositif d’allègement retenu', () => {
 			],
 		]
 
-		it.each(casMahorais)('%s', (_libellé, dispositif, situation) => {
+		it.each(casMahorais)('%s', (_libellé, régime, situation) => {
 			const e = engine.setSituation(
 				situationMahoraise({ ...situation, brut: 1500 })
 			)
 
-			expect(dispositifRetenu(e)).toBe(dispositif)
-			expect(
-				montant(e, 'salarié . cotisations . exonérations . employeur')
-			).toBe(montant(e, règleDu[dispositif]))
+			expect(régimeLePlusAvantageux(e)).toBe(régime)
+			expect(montant(e, 'salarié . cotisations . employeur')).toBe(
+				coûtDuRégime(e, régime)
+			)
 		})
 
 		describe('Au-delà de 1,6 Smic, avant l’ouverture du Lodeom', () => {
-			it('ne laisse aucun allègement à l’employeur', () => {
+			it('ne laisse aucun dispositif d’exonération à l’employeur', () => {
 				const brut = Math.ceil(1.6 * SmicMahorais('03/2026'))
 				const e = engine.setSituation(
 					situationMahoraise({
@@ -138,10 +138,10 @@ describe('Dispositif d’allègement retenu', () => {
 					})
 				)
 
-				expect(dispositifRetenu(e)).toBe('aucun')
-				expect(
-					montant(e, 'salarié . cotisations . exonérations . employeur')
-				).toBe(0)
+				expect(régimeLePlusAvantageux(e)).toBe('sans dispositif')
+				expect(montant(e, 'salarié . cotisations . employeur')).toBe(
+					coûtDuRégime(e, 'sans dispositif')
+				)
 			})
 		})
 
@@ -160,12 +160,7 @@ describe('Dispositif d’allègement retenu', () => {
 					situationMahoraise({ date: '08/2026', brut, ...config })
 				)
 			const cotisationsDues = (e: Engine<RègleModèleSocial>) =>
-				e.evaluate({
-					valeur: 'salarié . cotisations . employeur',
-					contexte: {
-						'salarié . cotisations . exonérations . employeur': '0 €/mois',
-					},
-				}).nodeValue as number
+				montant(e, 'salarié . cotisations . employeur . cotisations dues') ?? 0
 
 			const coûtEnRenonçantAuLodeom = (e: Engine<RègleModèleSocial>) =>
 				e.evaluate({
@@ -213,7 +208,7 @@ describe('Dispositif d’allègement retenu', () => {
 			)
 
 			it(
-				'le régime retenu est le plus avantageux des deux',
+				'ne coûte jamais plus que de renoncer au Lodeom',
 				() => {
 					fc.assert(
 						fc.property(brutMahorais, configurations, (brut, config) => {
@@ -228,6 +223,100 @@ describe('Dispositif d’allègement retenu', () => {
 				},
 				PROPERTY_TEST_TIMEOUT
 			)
+
+			it(
+				'désigne un régime dont le coût est celui de l’employeur',
+				() => {
+					fc.assert(
+						fc.property(brutMahorais, configurations, (brut, config) => {
+							const e = simulation(brut, config)
+
+							expect(coûtDuRégime(e, régimeLePlusAvantageux(e) as string)).toBe(
+								montant(e, 'salarié . cotisations . employeur')
+							)
+						}),
+						{ numRuns: 20 }
+					)
+				},
+				PROPERTY_TEST_TIMEOUT
+			)
+		})
+	})
+
+	describe('En Guadeloupe, au-delà de 2,5 Smic du 31 décembre 2023', () => {
+		const situation = situationZoneUn({
+			département: 'Guadeloupe',
+			date: '08/2026',
+			seuilEffectif: 'moins de 5',
+			secteurÉligible: 'non',
+			brut: 4400,
+		})
+
+		it('désigne la RGDU, dont l’exonération dépasse celle du Lodeom épuisée', () => {
+			const e = engine.setSituation(situation)
+
+			expect(régimeLePlusAvantageux(e)).toBe('avec RGDU')
+		})
+
+		it('fait cotiser l’employeur aux taux pleins, qu’il ne bénéficie plus du Lodeom', () => {
+			const e = engine.setSituation(situation)
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . maladie . employeur . taux',
+				13
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . allocations familiales . taux',
+				5.25
+			)
+		})
+	})
+
+	describe('Pour une jeune entreprise innovante', () => {
+		it('désigne le régime avec JEI', () => {
+			const e = engine.setSituation({
+				dirigeant: 'non',
+				'entreprise . catégorie juridique': "''",
+				'entreprise . imposition': 'non',
+				'salarié . contrat . salaire brut': '3000 €/mois',
+				'salarié . cotisations . exonérations . JEI': 'oui',
+				date: '08/2026',
+			})
+
+			expect(régimeLePlusAvantageux(e)).toBe('avec JEI')
+		})
+	})
+
+	describe('Pour un président de SAS qui bénéficie de l’Acre', () => {
+		it('désigne le régime avec Acre', () => {
+			const e = engine.setSituation({
+				'entreprise . catégorie juridique': "'SAS'",
+				'entreprise . associés': "'unique'",
+				'dirigeant . exonérations . ACRE': 'oui',
+				'entreprise . date de création': '01/03/2026',
+				'salarié . contrat . salaire brut': '2000 €/mois',
+				date: '08/2026',
+			})
+
+			expect(régimeLePlusAvantageux(e)).toBe('avec Acre')
+		})
+	})
+
+	describe('Pour un salarié qui n’est pas dirigeant', () => {
+		it('ne compte aucune exonération Acre, même une fois ses cotisations calculées', () => {
+			const e = engine.setSituation({
+				dirigeant: 'non',
+				'entreprise . catégorie juridique': "''",
+				'entreprise . imposition': 'non',
+				'salarié . contrat . salaire brut': '2000 €/mois',
+				date: '08/2026',
+			})
+			e.evaluate('salarié . cotisations . employeur')
+
+			expect(
+				e.evaluate('salarié . cotisations . exonérations . Acre . employeur')
+					.nodeValue
+			).toBeNull()
 		})
 	})
 })

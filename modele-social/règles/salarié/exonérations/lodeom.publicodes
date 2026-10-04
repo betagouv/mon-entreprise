@@ -522,7 +522,6 @@ salarié . cotisations . exonérations . lodeom . zone deux:
 
 salarié . cotisations . exonérations . lodeom . montant:
   non applicable si: rémunération . brut = 0
-  rend non applicable: RGDU
   titre: montant de l’exonération
   références:
     Exonération Lodéom: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html

@@ -13,6 +13,13 @@ salarié . cotisations . exonérations:
       description: >-
         À l'exception de la déduction heure supplémentaire, les dispositifs de
         réduction de cotisations patronales sont mutuellement exclusif.
+
+
+        Ce montant est celui du dispositif d'exonération le plus élevé. Comme
+        il ne rend pas compte de l'économie que procurent les taux réduits du
+        Lodeom, il peut dépasser l'exonération réellement obtenue, qui est celle
+        du régime désigné par
+        `cotisations . employeur . régimes . le plus avantageux`.
       somme:
         - heures supplémentaires . employeur
         - le maximum de:
@@ -30,6 +37,47 @@ salarié . cotisations . exonérations:
       somme:
         - heures supplémentaires . salarié
         - Acre . salarié
+
+salarié . cotisations . exonérations . employeur . régimes:
+  titre: exonération patronale par régime
+  description: |
+    Tout ce que chaque régime de `cotisations . employeur . régimes` retranche
+    des cotisations dues : l'exonération qui définit le régime, et la déduction
+    pour heures supplémentaires, qui s'applique dans tous les régimes.
+
+    L'économie que procurent les taux réduits du Lodeom n'y figure pas : elle se
+    lit dans les cotisations elles-mêmes, calculées à ces taux.
+  avec:
+    sans dispositif:
+      titre: exonération sans dispositif
+      description: |
+        Aucun dispositif d'exonération ne s'applique : seule la déduction pour
+        heures supplémentaires est retranchée.
+      valeur: salarié . cotisations . exonérations . heures supplémentaires . employeur
+
+    avec Lodeom:
+      titre: exonération avec Lodeom
+      somme:
+        - salarié . cotisations . exonérations . heures supplémentaires . employeur
+        - salarié . cotisations . exonérations . lodeom . montant
+
+    avec RGDU:
+      titre: exonération avec RGDU
+      somme:
+        - salarié . cotisations . exonérations . heures supplémentaires . employeur
+        - salarié . cotisations . exonérations . RGDU
+
+    avec JEI:
+      titre: exonération avec JEI
+      somme:
+        - salarié . cotisations . exonérations . heures supplémentaires . employeur
+        - salarié . cotisations . exonérations . JEI . montant
+
+    avec Acre:
+      titre: exonération avec Acre
+      somme:
+        - salarié . cotisations . exonérations . heures supplémentaires . employeur
+        - salarié . cotisations . exonérations . Acre . employeur
 
 salarié . cotisations . exonérations . heures supplémentaires:
   somme:
@@ -87,11 +135,39 @@ salarié . cotisations . exonérations . heures supplémentaires:
       plafond: 11.31%
 
 
+salarié . cotisations . exonérations . taux réduits:
+  titre: réductions proportionnelles de taux
+  description: |
+    Dispositif distinct des exonérations de cotisations, mais réservé aux
+    employeurs qui bénéficient de l’une d’elles : il réduit les taux des
+    cotisations maladie et d’allocations familiales.
+
+    Plusieurs dispositifs y ouvrent droit : le Lodeom, les exonérations zonées
+    de métropole (ZRR, ZFRR, ZRD, ZFU) et l’aide à domicile. Seul le Lodeom est
+    modélisé pour les salariés.
+
+    Ces taux ne se cumulent pas avec la réduction générale. Chaque régime de
+    `cotisations . employeur . régimes` fixe donc lui-même s'il en bénéficie,
+    et la valeur par défaut est « non » : seul le régime avec Lodeom les ouvre.
+    Pour savoir si c'est ce régime le plus avantageux, et donc à quels taux les
+    cotisations sont finalement dues, voir
+    `cotisations . employeur . régimes . le plus avantageux`.
+  références:
+    Réduction du taux de la cotisation maladie: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/maladie-maternite-invalidite.html#ancre-reduction-du-taux-de-la-cotisati
+    Réduction générale des cotisations patronales - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
+  valeur: non
+
 salarié . cotisations . exonérations . T:
   titre: Coefficient T
   unité: ''
   arrondi: 4 décimales
-  variations:
+  # Le cœfficient somme les taux dont bénéficie un employeur sous Lodeom : il se
+  # calcule donc sous cette hypothèse, quel que soit le régime de
+  # `cotisations . employeur . régimes` qui s'avère le plus avantageux.
+  contexte:
+    taux réduits: oui
+  valeur:
+    variations:
     - si: lodeom . zone deux
       alors:
         somme:
