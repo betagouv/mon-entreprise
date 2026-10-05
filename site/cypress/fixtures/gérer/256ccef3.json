@@ -1,0 +1,15 @@
+{
+  "url": "https://geo.api.gouv.fr/communes/34160?fields=departement,region",
+  "body": {
+    "nom": "Mons",
+    "code": "34160",
+    "departement": {
+      "code": "34",
+      "nom": "Hérault"
+    },
+    "region": {
+      "code": "76",
+      "nom": "Occitanie"
+    }
+  }
+}
