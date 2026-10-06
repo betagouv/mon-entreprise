@@ -1,0 +1,1312 @@
+établissement . taux ATMP . taux collectif:
+  unité: '%'
+  variations:
+    - si: code risque = 'code 27-1ZF'
+      alors: 6.34%
+    - si: code risque = 'code 27-4CH'
+      alors: 4.95%
+    - si: code risque = 'code 27-5EB'
+      alors: 6.23%
+    - si: code risque = 'code 28-1AD'
+      alors: 4.08%
+    - si: code risque = 'code 28-1CB'
+      alors: 3.05%
+    - si: code risque = 'code 28-3CG'
+      alors: 5.13%
+    - si: code risque = 'code 28-3CH'
+      alors: 3.76%
+    - si: code risque = 'code 28-4AD'
+      alors: 3.25%
+    - si: code risque = 'code 28-4BI'
+      alors: 2.91%
+    - si: code risque = 'code 28-5AA'
+      alors: 3.65%
+    - si: code risque = 'code 28-5DA'
+      alors: 3.25%
+    - si: code risque = 'code 28-5DF'
+      alors: 2.32%
+    - si: code risque = 'code 28-5DG'
+      alors: 4.53%
+    - si: code risque = 'code 28-6DF'
+      alors: 2.19%
+    - si: code risque = 'code 28-6FB'
+      alors: 2.06%
+    - si: code risque = 'code 29-1AF'
+      alors: 2.30%
+    - si: code risque = 'code 29-1FB'
+      alors: 2.07%
+    - si: code risque = 'code 29-2FI'
+      alors: 3.13%
+    - si: code risque = 'code 29-3DC'
+      alors: 2.69%
+    - si: code risque = 'code 31-2AG'
+      alors: 2.18%
+    - si: code risque = 'code 32-1BC'
+      alors: 1.09%
+    - si: code risque = 'code 33-1BC'
+      alors: 1.58%
+    - si: code risque = 'code 33-2BK'
+      alors: 1.19%
+    - si: code risque = 'code 34-1ZE'
+      alors: 2.70%
+    - si: code risque = 'code 34-2AB'
+      alors: 4.17%
+    - si: code risque = 'code 34-3ZE'
+      alors: 2.70%
+    - si: code risque = 'code 35-1BF'
+      alors: 6.34%
+    - si: code risque = 'code 35-3BC'
+      alors: 0.93%
+    - si: code risque = 'code 45-3AA'
+      alors: 2.85%
+    - si: code risque = 'code 50-1ZF'
+      alors: 2.50%
+    - si: code risque = 'code 50-2ZH'
+      alors: 3.17%
+    - si: code risque = 'code 00-00A'
+      alors: 0.71%
+    - si: code risque = 'code 45-1AA'
+      alors: 4.59%
+    - si: code risque = 'code 45-2BE'
+      alors: 7.39%
+    - si: code risque = 'code 45-2CD'
+      alors: 4.36%
+    - si: code risque = 'code 45-2ED'
+      alors: 4.73%
+    - si: code risque = 'code 45-2JD'
+      alors: 8.73%
+    - si: code risque = 'code 45-2PB'
+      alors: 4.06%
+    - si: code risque = 'code 45-3AF'
+      alors: 3.77%
+    - si: code risque = 'code 45-4CE'
+      alors: 5.49%
+    - si: code risque = 'code 45-4LE'
+      alors: 6.16%
+    - si: code risque = 'code 45-4MC'
+      alors: 2.08%
+    - si: code risque = 'code 45-5ZB'
+      alors: 4.67%
+    - si: code risque = 'code 74-2CE'
+      alors: 0.86%
+    - si: code risque = 'code 75-3CA'
+      alors: 5.99%
+    - si: code risque = 'code 75-3CB'
+      alors: 3.67%
+    - si: code risque = 'code 91-1AA'
+      alors: 0.49%
+    - si: code risque = 'code 22-2CD'
+      alors: 2.02%
+    - si: code risque = 'code 37-1ZF'
+      alors: 4.40%
+    - si: code risque = 'code 40-1ZE'
+      alors: 0.16%
+    - si: code risque = 'code 40-1ZF'
+      alors: 2.05%
+    - si: code risque = 'code 40-3ZE'
+      alors: 2.05%
+    - si: code risque = 'code 41-0ZA'
+      alors: 1.88%
+    - si: code risque = 'code 60-1ZA'
+      alors: 1.14%
+    - si: code risque = 'code 60-2BD'
+      alors: 3.96%
+    - si: code risque = 'code 60-2CA'
+      alors: 3.96%
+    - si: code risque = 'code 60-2MG'
+      alors: 5.40%
+    - si: code risque = 'code 60-2NA'
+      alors: 6.56%
+    - si: code risque = 'code 62-1ZC'
+      alors: 1.65%
+    - si: code risque = 'code 63-1AZ'
+      alors: 35.00%
+    - si: code risque = 'code 63-1BE'
+      alors: 8.06%
+    - si: code risque = 'code 63-1EE'
+      alors: 3.27%
+    - si: code risque = 'code 63-2CF'
+      alors: 1.99%
+    - si: code risque = 'code 63-3ZC'
+      alors: 0.85%
+    - si: code risque = 'code 63-4AA'
+      alors: 4.11%
+    - si: code risque = 'code 63-4CI'
+      alors: 1.71%
+    - si: code risque = 'code 64-1AA'
+      alors: 2.50%
+    - si: code risque = 'code 64-1CA'
+      alors: 4.21%
+    - si: code risque = 'code 64-2BB'
+      alors: 0.88%
+    - si: code risque = 'code 74-4BB'
+      alors: 1.14%
+    - si: code risque = 'code 74-6ZB'
+      alors: 3.28%
+    - si: code risque = 'code 74-7ZE'
+      alors: 3.99%
+    - si: code risque = 'code 74-8GB'
+      alors: 2.02%
+    - si: code risque = 'code 75-3CC'
+      alors: 0.49%
+    - si: code risque = 'code 85-1JA'
+      alors: 4.11%
+    - si: code risque = 'code 90-0AA'
+      alors: 3.84%
+    - si: code risque = 'code 90-0BF'
+      alors: 4.62%
+    - si: code risque = 'code 91-1AE'
+      alors: 0.49%
+    - si: code risque = 'code 91-3EA'
+      alors: 1.20%
+    - si: code risque = 'code 92-1CC'
+      alors: 1.07%
+    - si: code risque = 'code 92-3AD'
+      alors: 1.50%
+    - si: code risque = 'code 92-6AA'
+      alors: 1.69%
+    - si: code risque = 'code 92-6CG'
+      alors: 1.15%
+    - si: code risque = 'code 92-6CH'
+      alors: 6.07%
+    - si: code risque = 'code 92-6CI'
+      alors: 1.22%
+    - si: code risque = 'code 92-7AB'
+      alors: 1.27%
+    - si: code risque = 'code 92-7CC'
+      alors: 1.78%
+    - si: code risque = 'code 01-1AA'
+      alors: 5.40%
+    - si: code risque = 'code 15-1AE'
+      alors: 6.44%
+    - si: code risque = 'code 15-1EC'
+      alors: 4.59%
+    - si: code risque = 'code 15-5CC'
+      alors: 2.54%
+    - si: code risque = 'code 15-8AC'
+      alors: 3.60%
+    - si: code risque = 'code 15-8CD'
+      alors: 2.12%
+    - si: code risque = 'code 15-9SC'
+      alors: 1.76%
+    - si: code risque = 'code 51-1NB'
+      alors: 0.87%
+    - si: code risque = 'code 51-3TC'
+      alors: 2.54%
+    - si: code risque = 'code 52-1BC'
+      alors: 2.07%
+    - si: code risque = 'code 52-1FB'
+      alors: 3.58%
+    - si: code risque = 'code 52-2CB'
+      alors: 2.95%
+    - si: code risque = 'code 55-2EC'
+      alors: 2.06%
+    - si: code risque = 'code 55-3AC'
+      alors: 1.78%
+    - si: code risque = 'code 55-3BC'
+      alors: 1.55%
+    - si: code risque = 'code 55-5AA'
+      alors: 4.13%
+    - si: code risque = 'code 63-1DA'
+      alors: 3.90%
+    - si: code risque = 'code 11-1ZC'
+      alors: 1.74%
+    - si: code risque = 'code 23-3ZA'
+      alors: 1.41%
+    - si: code risque = 'code 24-1GN'
+      alors: 3.74%
+    - si: code risque = 'code 24-3ZC'
+      alors: 2.15%
+    - si: code risque = 'code 24-4CC'
+      alors: 1.43%
+    - si: code risque = 'code 25-1AC'
+      alors: 2.55%
+    - si: code risque = 'code 25-2HK'
+      alors: 3.15%
+    - si: code risque = 'code 73-1ZB'
+      alors: 1.41%
+    - si: code risque = 'code 14-1AH'
+      alors: 3.98%
+    - si: code risque = 'code 14-5ZM'
+      alors: 2.61%
+    - si: code risque = 'code 17-1KB'
+      alors: 4.50%
+    - si: code risque = 'code 17-2AC'
+      alors: 3.40%
+    - si: code risque = 'code 17-7AB'
+      alors: 3.30%
+    - si: code risque = 'code 18-2CB'
+      alors: 2.36%
+    - si: code risque = 'code 19-2ZH'
+      alors: 2.25%
+    - si: code risque = 'code 19-3ZL'
+      alors: 4.06%
+    - si: code risque = 'code 20-1AF'
+      alors: 7.00%
+    - si: code risque = 'code 20-1BB'
+      alors: 4.55%
+    - si: code risque = 'code 20-3ZF'
+      alors: 4.23%
+    - si: code risque = 'code 20-4ZI'
+      alors: 4.70%
+    - si: code risque = 'code 21-2BD'
+      alors: 3.12%
+    - si: code risque = 'code 26-1EE'
+      alors: 4.03%
+    - si: code risque = 'code 26-2AG'
+      alors: 4.85%
+    - si: code risque = 'code 26-2AH'
+      alors: 3.88%
+    - si: code risque = 'code 26-2CA'
+      alors: 6.54%
+    - si: code risque = 'code 26-5AB'
+      alors: 2.60%
+    - si: code risque = 'code 26-6AA'
+      alors: 5.40%
+    - si: code risque = 'code 26-6EB'
+      alors: 3.38%
+    - si: code risque = 'code 26-6JB'
+      alors: 99.00%
+    - si: code risque = 'code 26-7ZD'
+      alors: 5.88%
+    - si: code risque = 'code 35-1EB'
+      alors: 4.04%
+    - si: code risque = 'code 36-1GC'
+      alors: 4.04%
+    - si: code risque = 'code 36-1MD'
+      alors: 4.13%
+    - si: code risque = 'code 51-5EG'
+      alors: 2.77%
+    - si: code risque = 'code 52-7AC'
+      alors: 2.66%
+    - si: code risque = 'code 71-4AC'
+      alors: 4.12%
+    - si: code risque = 'code 93-0BA'
+      alors: 2.36%
+    - si: code risque = 'code 50-3AD'
+      alors: 1.87%
+    - si: code risque = 'code 50-5ZB'
+      alors: 2.46%
+    - si: code risque = 'code 51-1RB'
+      alors: 0.86%
+    - si: code risque = 'code 51-5CC'
+      alors: 2.34%
+    - si: code risque = 'code 51-5FA'
+      alors: 1.99%
+    - si: code risque = 'code 51-6GC'
+      alors: 0.94%
+    - si: code risque = 'code 51-6KC'
+      alors: 1.39%
+    - si: code risque = 'code 51-6LC'
+      alors: 1.55%
+    - si: code risque = 'code 51-6NC'
+      alors: 2.41%
+    - si: code risque = 'code 52-3AC'
+      alors: 0.93%
+    - si: code risque = 'code 52-4CD'
+      alors: 1.41%
+    - si: code risque = 'code 52-4HC'
+      alors: 2.08%
+    - si: code risque = 'code 52-4LA'
+      alors: 1.65%
+    - si: code risque = 'code 52-4PB'
+      alors: 2.56%
+    - si: code risque = 'code 52-4WA'
+      alors: 1.15%
+    - si: code risque = 'code 52-4XB'
+      alors: 1.94%
+    - si: code risque = 'code 52-4ZD'
+      alors: 1.75%
+    - si: code risque = 'code 70-3AD'
+      alors: 1.25%
+    - si: code risque = 'code 70-3CB'
+      alors: 3.47%
+    - si: code risque = 'code 71-4AB'
+      alors: 1.99%
+    - si: code risque = 'code 65-1AB'
+      alors: 0.70%
+    - si: code risque = 'code 66-0AB'
+      alors: 0.79%
+    - si: code risque = 'code 72-3ZA'
+      alors: 0.82%
+    - si: code risque = 'code 73-1ZE'
+      alors: 0.91%
+    - si: code risque = 'code 74-1GB'
+      alors: 0.70%
+    - si: code risque = 'code 74-1GD'
+      alors: 0.70%
+    - si: code risque = 'code 74-1JB'
+      alors: 0.70%
+    - si: code risque = 'code 74-2CB'
+      alors: 0.82%
+    - si: code risque = 'code 74-3BA'
+      alors: 1.12%
+    - si: code risque = 'code 75-1AG'
+      alors: 0.88%
+    - si: code risque = 'code 75-1BA'
+      alors: 1.66%
+    - si: code risque = 'code 75-2EE'
+      alors: 0.90%
+    - si: code risque = 'code 75-3AA'
+      alors: 0.96%
+    - si: code risque = 'code 75-3BB'
+      alors: 0.79%
+    - si: code risque = 'code 80-1ZA'
+      alors: 1.25%
+    - si: code risque = 'code 80-2AA'
+      alors: 0.0010%
+    - si: code risque = 'code 80-2CA'
+      alors: 0.0093%
+    - si: code risque = 'code 91-3EJ'
+      alors: 1.20%
+    - si: code risque = 'code 74-5BC'
+      alors: 1.00%
+    - si: code risque = 'code 74-5BD'
+      alors: 2.78%
+    - si: code risque = 'code 74-5BE'
+      alors: 1.00%
+    - si: code risque = 'code 74-6ZA'
+      alors: 2.67%
+    - si: code risque = 'code 74-7ZF'
+      alors: 3.92%
+    - si: code risque = 'code 74-8DA'
+      alors: 3.83%
+    - si: code risque = 'code 74-8KC'
+      alors: 1.09%
+    - si: code risque = 'code 75-1CC'
+      alors: 1.30%
+    - si: code risque = 'code 75-1CD'
+      alors: 1.64%
+    - si: code risque = 'code 75-1CE'
+      alors: 1.30%
+    - si: code risque = 'code 85-1AC'
+      alors: 2.25%
+    - si: code risque = 'code 85-1AD'
+      alors: 2.25%
+    - si: code risque = 'code 85-1CB'
+      alors: 1.06%
+    - si: code risque = 'code 85-1CD'
+      alors: 1.19%
+    - si: code risque = 'code 85-1GA'
+      alors: 2.25%
+    - si: code risque = 'code 85-1KA'
+      alors: 1.19%
+    - si: code risque = 'code 85-2ZB'
+      alors: 2.25%
+    - si: code risque = 'code 85-3AB'
+      alors: 3.71%
+    - si: code risque = 'code 85-3AC'
+      alors: 3.71%
+    - si: code risque = 'code 85-3AD'
+      alors: 3.71%
+    - si: code risque = 'code 85-3AE'
+      alors: 3.71%
+    - si: code risque = 'code 85-3BA'
+      alors: 3.71%
+    - si: code risque = 'code 85-3HA'
+      alors: 2.08%
+    - si: code risque = 'code 85-3HB'
+      alors: 1.61%
+    - si: code risque = 'code 85-3KL'
+      alors: 3.56%
+    - si: code risque = 'code 93-0DB'
+      alors: 1.96%
+    - si: code risque = 'code 93-0HB'
+      alors: 3.74%
+    - si: code risque = 'code 93-0NC'
+      alors: 3.56%
+    - si: code risque = 'code 51-1TG'
+      alors: 0.79%
+    - si: code risque = 'code 51-1TH'
+      alors: 0.73%
+    - si: code risque = 'code 52-4RB'
+      alors: 1.90%
+    - si: code risque = 'code 52-6GA'
+      alors: 2.07%
+    - si: code risque = 'code 85-3CA'
+      alors: 0.91%
+    - si: code risque = 'code 95-0ZA'
+      alors: 2.06%
+    - si: code risque = 'code 95-0ZC'
+      alors: 0.64%
+    - si: code risque = 'code 95-0ZD'
+      alors: 7.39%
+    - si: code risque = 'code 00-00B'
+      alors: 0.64%
+    - sinon: salarié . cotisations . ATMP . taux moyen
+  note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+    implémentés
+  références:
+    Taux collectifs AT/MP 2026 par code risque: https://github.com/betagouv/taux-collectifs-cotisation-atmp
+
+établissement . taux ATMP . code risque:
+  question: De quel domaine d'activité dépend votre entreprise ?
+  par défaut: non
+  meta:
+    affichage: select
+  une possibilité:
+    - code 27-1ZF
+    - code 27-4CH
+    - code 27-5EB
+    - code 28-1AD
+    - code 28-1CB
+    - code 28-3CG
+    - code 28-3CH
+    - code 28-4AD
+    - code 28-4BI
+    - code 28-5AA
+    - code 28-5DA
+    - code 28-5DF
+    - code 28-5DG
+    - code 28-6DF
+    - code 28-6FB
+    - code 29-1AF
+    - code 29-1FB
+    - code 29-2FI
+    - code 29-3DC
+    - code 31-2AG
+    - code 32-1BC
+    - code 33-1BC
+    - code 33-2BK
+    - code 34-1ZE
+    - code 34-2AB
+    - code 34-3ZE
+    - code 35-1BF
+    - code 35-3BC
+    - code 45-3AA
+    - code 50-1ZF
+    - code 50-2ZH
+    - code 00-00A
+    - code 45-1AA
+    - code 45-2BE
+    - code 45-2CD
+    - code 45-2ED
+    - code 45-2JD
+    - code 45-2PB
+    - code 45-3AF
+    - code 45-4CE
+    - code 45-4LE
+    - code 45-4MC
+    - code 45-5ZB
+    - code 74-2CE
+    - code 75-3CA
+    - code 75-3CB
+    - code 91-1AA
+    - code 22-2CD
+    - code 37-1ZF
+    - code 40-1ZE
+    - code 40-1ZF
+    - code 40-3ZE
+    - code 41-0ZA
+    - code 60-1ZA
+    - code 60-2BD
+    - code 60-2CA
+    - code 60-2MG
+    - code 60-2NA
+    - code 62-1ZC
+    - code 63-1AZ
+    - code 63-1BE
+    - code 63-1EE
+    - code 63-2CF
+    - code 63-3ZC
+    - code 63-4AA
+    - code 63-4CI
+    - code 64-1AA
+    - code 64-1CA
+    - code 64-2BB
+    - code 74-4BB
+    - code 74-6ZB
+    - code 74-7ZE
+    - code 74-8GB
+    - code 75-3CC
+    - code 85-1JA
+    - code 90-0AA
+    - code 90-0BF
+    - code 91-1AE
+    - code 91-3EA
+    - code 92-1CC
+    - code 92-3AD
+    - code 92-6AA
+    - code 92-6CG
+    - code 92-6CH
+    - code 92-6CI
+    - code 92-7AB
+    - code 92-7CC
+    - code 01-1AA
+    - code 15-1AE
+    - code 15-1EC
+    - code 15-5CC
+    - code 15-8AC
+    - code 15-8CD
+    - code 15-9SC
+    - code 51-1NB
+    - code 51-3TC
+    - code 52-1BC
+    - code 52-1FB
+    - code 52-2CB
+    - code 55-2EC
+    - code 55-3AC
+    - code 55-3BC
+    - code 55-5AA
+    - code 63-1DA
+    - code 11-1ZC
+    - code 23-3ZA
+    - code 24-1GN
+    - code 24-3ZC
+    - code 24-4CC
+    - code 25-1AC
+    - code 25-2HK
+    - code 73-1ZB
+    - code 14-1AH
+    - code 14-5ZM
+    - code 17-1KB
+    - code 17-2AC
+    - code 17-7AB
+    - code 18-2CB
+    - code 19-2ZH
+    - code 19-3ZL
+    - code 20-1AF
+    - code 20-1BB
+    - code 20-3ZF
+    - code 20-4ZI
+    - code 21-2BD
+    - code 26-1EE
+    - code 26-2AG
+    - code 26-2AH
+    - code 26-2CA
+    - code 26-5AB
+    - code 26-6AA
+    - code 26-6EB
+    - code 26-6JB
+    - code 26-7ZD
+    - code 35-1EB
+    - code 36-1GC
+    - code 36-1MD
+    - code 51-5EG
+    - code 52-7AC
+    - code 71-4AC
+    - code 93-0BA
+    - code 50-3AD
+    - code 50-5ZB
+    - code 51-1RB
+    - code 51-5CC
+    - code 51-5FA
+    - code 51-6GC
+    - code 51-6KC
+    - code 51-6LC
+    - code 51-6NC
+    - code 52-3AC
+    - code 52-4CD
+    - code 52-4HC
+    - code 52-4LA
+    - code 52-4PB
+    - code 52-4WA
+    - code 52-4XB
+    - code 52-4ZD
+    - code 70-3AD
+    - code 70-3CB
+    - code 71-4AB
+    - code 65-1AB
+    - code 66-0AB
+    - code 72-3ZA
+    - code 73-1ZE
+    - code 74-1GB
+    - code 74-1GD
+    - code 74-1JB
+    - code 74-2CB
+    - code 74-3BA
+    - code 75-1AG
+    - code 75-1BA
+    - code 75-2EE
+    - code 75-3AA
+    - code 75-3BB
+    - code 80-1ZA
+    - code 80-2AA
+    - code 80-2CA
+    - code 91-3EJ
+    - code 74-5BC
+    - code 74-5BD
+    - code 74-5BE
+    - code 74-6ZA
+    - code 74-7ZF
+    - code 74-8DA
+    - code 74-8KC
+    - code 75-1CC
+    - code 75-1CD
+    - code 75-1CE
+    - code 85-1AC
+    - code 85-1AD
+    - code 85-1CB
+    - code 85-1CD
+    - code 85-1GA
+    - code 85-1KA
+    - code 85-2ZB
+    - code 85-3AB
+    - code 85-3AC
+    - code 85-3AD
+    - code 85-3AE
+    - code 85-3BA
+    - code 85-3HA
+    - code 85-3HB
+    - code 85-3KL
+    - code 93-0DB
+    - code 93-0HB
+    - code 93-0NC
+    - code 51-1TG
+    - code 51-1TH
+    - code 52-4RB
+    - code 52-6GA
+    - code 85-3CA
+    - code 95-0ZA
+    - code 95-0ZC
+    - code 95-0ZD
+    - code 00-00B
+  avec:
+    code 27-1ZF:
+      titre: Fonderie de fonte, d'acier moulé ou de fonte malléable. Fabrication de fonte, d'acier, d'articles ou tubes en fonte. Fabrication de radiateurs, de chaudières pour le chauffage central, la cuisine.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 27-4CH:
+      titre: Métallurgie des métaux non ferreux et précieux. Laminage à chaud ou relaminage sans fabrication de fonte ni d'acier.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 27-5EB:
+      titre: Fonderie des métaux légers ou non ferreux.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-1AD:
+      titre: Construction métallique, fabrication de charpentes ; fournitures et armatures métalliques préparées pour le béton armé (préparation des armatures en ateliers hors chantiers). Travail à froid des métaux (étirage, laminage, profilage, pliage, tréfilage) et métallurgie des ferro-alliages.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-1CB:
+      titre: Fabrication d'articles, de meubles et menuiseries, de fûts et emballages métalliques, de fils et câbles isolés. Fabrication de bouchage, d'emballage, de ferblanterie, de conditionnement métallique. Repoussage des métaux en feuilles. Fabrication d'accessoires d'ameublement en bronze et/ou fer forgé.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-3CG:
+      titre: Chaudronnerie et soudure.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-3CH:
+      titre: Fabrication de tubes en acier ou de tubes isolateurs (sauf tubes en fonte). Fabrication de chaudronnerie de contenants (réservoirs, citernes, bouteilles pour gaz comprimés), de générateurs de vapeur et accessoires, d'équipements généralement sous pression et de chaudronnerie nucléaire. Fabrication de tuyaux métalliques flexibles.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-4AD:
+      titre: Forge, estampage, matriçage. Métallurgie des poudres et frittage.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-4BI:
+      titre: Découpage, emboutissage. Sciage des métaux, graveurs-estampeurs. Décolletage.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-5AA:
+      titre: Traitement et revêtement des métaux.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-5DA:
+      titre: Mécanique industrielle.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-5DF:
+      titre: Usinage de précision ou réparation d'articles métalliques divers.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-5DG:
+      titre: Travaux d'intervention, de montage, démontage et entretien de matériels divers dans les usines. - Réparateurs mécaniciens. - Fabrication de manèges pour fêtes foraines.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-6DF:
+      titre: 'Fabrication, montage, installation, entretien, réparation de machines, équipements, outillages : machine-outil, machine pour les industries de process, du textile, du cuir, de la chaussure ; matériel fixe et roulant pour le transport guidé ; matériel incendie ; ascenseur, monte-charge, porte automatique et escalier mécanique ; équipements de levage et de manutention.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 28-6FB:
+      titre: Fabrication de boulonnerie, ressorts, visseries et quincaillerie. Fabrication et/ou entretien de couverts, couteaux, ciseaux, rasoirs. Fabrication d'articles de sport, jeux, jouets, articles de puériculture non classés par ailleurs.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 29-1AF:
+      titre: 'Fabrication de composants mécaniques : transmissions hydrauliques et pneumatiques, turbines, compresseurs, roulements, matrices, poinçons, moules et modèles, organes mécaniques de transmission. Fabrication de moteurs autres que pour aéronefs, automobiles et motocycles. Reconstruction de moteurs sauf pour l''aéronautique.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 29-1FB:
+      titre: Fabrication de pompes et d'articles de robinetterie.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 29-2FI:
+      titre: Fabrication, installation, entretien, réparation de matériels aérauliques et thermiques, de fours et de brûleurs, d'appareils frigorifiques domestiques et industriels. Fabrication d'appareils ménagers électriques.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 29-3DC:
+      titre: 'Fabrication et/ou réparation d''engins mobiles et systèmes pour : la construction, les mines, le forage, la préparation des minerais et matériaux, le matériel agricole.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 31-2AG:
+      titre: 'Fabrication, réparation, entretien de : matériels électriques, électromagnétiques industriels, appareillages électriques d''installation, accumulateurs, isolateurs, piles, condensateurs, lampes électriques, matériels électriques pour moteurs et véhicules. Montage de petits matériels électriques. Réparation, entretien de matériels ménagers.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 32-1BC:
+      titre: 'Fabrication, installation, entretien, réparation de : matériels et appareils électroniques de réception, de téléphonie, d''enregistrement, d''imagerie médicale, de composants, d''éléments chauffants. Fabrication, installation, entretien, réparation de matériel bureautique, informatique et activités connexes.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 33-1BC:
+      titre: Fabrication, réparation de matériel médico-chirurgical, de prothèses y compris dentaires, d'instruments de précision, d'optique, d'horlogerie, de laboratoire. Emaillage, bijouterie, joaillerie, orfèvrerie, gravage de médailles, de monnaies (hors commerce).
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 33-2BK:
+      titre: Fabrication, installation d'appareils de mesure, de comptage, de signalisation, de contrôle, de sécurité, de régulation. Conception et installation de systèmes de contrôle et de production automatisée.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 34-1ZE:
+      titre: Construction de véhicules automobiles. Succursales et filiales des constructeurs.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 34-2AB:
+      titre: Construction de carrosseries, bennes, remorques autres que de tourisme. Fabrication de caravanes et véhicules de loisirs.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 34-3ZE:
+      titre: Fabrication d'équipements, de parties, d'accessoires et de pièces détachées pour l'automobile y compris équipements de carrosserie et de châssis.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 35-1BF:
+      titre: Construction, réparation ou peinture de navires en acier (y compris équipements spécifiques de bord).
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 35-3BC:
+      titre: 'Recherche, fabrication, entretien, maintenance, réparation, reconditionnement pour : aéronautique, aérospatiale, missiles, armement, structures, équipements.'
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 45-3AA:
+      titre: Entreprises spécialisées dans l'installation de machines électriques dans les usines et établissements industriels.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 50-1ZF:
+      titre: Importation, commerce, entretien, réparation de véhicules automobiles de marque (importateurs, concessionnaires, agents, réparateurs agréés), commerce et réparation indépendante (à l'exception des 502ZH et 341ZE). Fabrication, réparation, commerce de motocycles, cycles et véhicules divers (y compris pièces et équipements). Electricité automobile.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 50-2ZH:
+      titre: Dépannage, remorquage de véhicules automobiles (sans atelier de réparation et non annexé à un garage). Mécaniciens-réparateurs n'appartenant pas à un réseau de marque automobile. Fabrication ou fabrication associée à la réparation de menuiserie, tôlerie, sellerie, peintures spécialisées de voitures. Récupération de matières métalliques recyclables.
+      description: INDUSTRIES DE LA MÉTALLURGIE
+    code 00-00A:
+      titre: Salariés occupant des fonctions supports de nature administrative dans des entreprises du BTP.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-1AA:
+      titre: Terrassements courants et travaux préparatoires spécialisés (y compris travaux paysagers sauf horticulture).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-2BE:
+      titre: 'Autres travaux de gros œuvre. Entreprise générale du bâtiment. Construction métallique : montage, levage. Fumisterie industrielle.'
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-2CD:
+      titre: Ouvrages d'art, autres travaux d'infrastructures spécialisés (forages et sondages, fondations spéciales, travaux souterrains, de voies ferrées, maritimes et fluviaux).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-2ED:
+      titre: Construction et entretien de réseaux (électricité, eaux, gaz, télécommunications, etc…) et autres réseaux non classés par ailleurs.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-2JD:
+      titre: Travaux de couverture, de charpente en bois, d'étanchéité.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-2PB:
+      titre: Construction et entretien de chaussées (y compris sols sportifs et pavage). Fabrication de produits asphaltés ou enrobés (avec transport et mise en œuvre).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-3AF:
+      titre: Travaux de plomberie, de génie climatique, d'électricité, autres travaux d'installation technique non classés par ailleurs.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-4CE:
+      titre: Travaux de menuiserie extérieure.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-4LE:
+      titre: Travaux d'isolation, travaux de finitions (travaux d'aménagements intérieurs).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-4MC:
+      titre: Ateliers des entreprises du bâtiment et des travaux publics relevant du CTN B et rattachées aux numéros de risque 45.2BE, 45.2JD, 45.3AF, 45.4CE et 45.4LE.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 45-5ZB:
+      titre: Entretien, réparation, location et montage de matériel pour le bâtiment et les travaux publics.
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 74-2CE:
+      titre: Conception de projets architecturaux y compris décoration, ingénierie du BTP (y compris topographie, métrés, hygiène et sécurité, etc…).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 75-3CA:
+      titre: 'Allocations complémentaires aux indemnités journalières de sécurité sociale versées soit par des organismes de prévoyance soit par des employeurs : activités de bâtiment (gros œuvre) et travaux publics.'
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 75-3CB:
+      titre: 'Allocations complémentaires aux indemnités journalières de sécurité sociale versées soit par des organismes de prévoyance soit par des employeurs : autres activités.'
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 91-1AA:
+      titre: Caisses de congés payés du bâtiment et des travaux publics (en ce qui concerne les indemnités versées par ces organismes).
+      description: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+    code 22-2CD:
+      titre: Édition, imprimerie. Reprographie et activités connexes (reliure, dorure main, affiches, composition, photocomposition, gravure et photogravure). Routage.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 37-1ZF:
+      titre: Traitement des déchets des activités industrielles, économiques et des ménages, récupération, tri, recyclage, valorisation matière y compris démantèlement, désamorçage, démolition de munitions.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 40-1ZE:
+      titre: Agents statutaires des industries électriques et gazières.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 40-1ZF:
+      titre: Salariés non statutaires des industries électriques et gazières.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 40-3ZE:
+      titre: Production et distribution de chauffage urbain, exploitants de chauffage d'immeubles, opérateurs d'efficacité énergétique, valorisation énergétique des déchets, usine d'incinération de résidus urbains.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 41-0ZA:
+      titre: Captage, traitement et distribution de l'eau.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 60-1ZA:
+      titre: Transport ferroviaire.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 60-2BD:
+      titre: Transports terrestres de voyageurs, y compris par taxi.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 60-2CA:
+      titre: Téléphériques, remontées mécaniques.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 60-2MG:
+      titre: Transports routiers de marchandises. Location de véhicules avec chauffeur.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 60-2NA:
+      titre: Déménagement et garde-meubles.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 62-1ZC:
+      titre: 'Transports aériens réguliers et non réguliers : personnel navigant et non navigant. Services aéroportuaires.'
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-1AZ:
+      titre: Ouvriers dockers maritimes intermittents, soumis au régime de la vignette, et effectuant quel que soit le classement de l'entreprise qui les emploie, des opérations de chargement, de déchargement ou de manutention de marchandises.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-1BE:
+      titre: Manutention, chargement, déchargement, entreposage de marchandises ou fret dans les ports maritimes et fluviaux, et les aéroports.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-1EE:
+      titre: Entreposage et stockage non frigorifique non reliés à une voie d'eau. Entreposage de liquides en vrac.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-2CF:
+      titre: Transports par eau de marchandises et de passagers, et services auxiliaires.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-3ZC:
+      titre: Agences de voyage. Offices de tourisme.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-4AA:
+      titre: Entreprises de groupage effectuant directement ou non l'enlèvement ou la livraison à domicile des marchandises, messagerie, fret express.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 63-4CI:
+      titre: Affrètement et organisation des transports maritimes, routiers ou aériens. Gares routières et exploitation d'ouvrages routiers à péage.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 64-1AA:
+      titre: Services postaux et financiers.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 64-1CA:
+      titre: 'Autres activités de courrier : activités autres que celles exercées par La Poste. - Acheminement du courrier, lettre, colis généralement en express. - Activités de coursiers urbains et taxis-marchandises.'
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 64-2BB:
+      titre: Activités de télécommunications, y compris les activités de télésurveillance (sans personnel d'intervention sur le site surveillé).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 74-4BB:
+      titre: 'Créateurs et intermédiaires de publicité : régies publicitaires. Agences de presse y compris journalistes et photographes indépendants.'
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 74-6ZB:
+      titre: Transports de fonds et services sécurisés.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 74-7ZE:
+      titre: Entreprises de travaux connexes aux sociétés de transports ferroviaires y compris la manutention dans les gares ferroviaires. Entreprises de nettoyage de matériel roulant sur les emprises de chemin de fer.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 74-8GB:
+      titre: Acheminement et distribution de presse gratuite ou payante.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 75-3CC:
+      titre: Caisses de congés payés dans les ports et dans certaines entreprises de manutention et de transports (en ce qui concerne les indemnités versées par ces organismes).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 85-1JA:
+      titre: Ambulances.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 90-0AA:
+      titre: Services d'assainissement (sauf ceux visés sous le numéro 74.7ZF). Collecte et traitement des eaux usées.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 90-0BF:
+      titre: Collecte des déchets ménagers ou d'activités, dangereux ou non dangereux. Nettoiement de voirie-balayage, lavage.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 91-1AE:
+      titre: Caisses des congés payés des spectacles (en ce qui concerne les indemnités versées par ces organismes).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 91-3EA:
+      titre: Associations culturelles et socio-éducatives ne gérant pas d'équipements.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-1CC:
+      titre: Production de films et de programmes pour le cinéma, la télévision, la radiodiffusion, etc. … Enregistrement sonore et édition musicale. Distribution et projection de films. Activités photographiques (hors agences de presse). Gestion d'activités de spectacles et gestion d'activités culturelles et socio-éducatives.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-3AD:
+      titre: Création et interprétation littéraires et artistiques (y compris les artistes). Services annexes des spectacles (tout intermittent du spectacle).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-6AA:
+      titre: Gestion d'équipements et centres sportifs (personnel non visé par ailleurs et notamment aux risques 92.6CH et 92.6CI).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-6CG:
+      titre: Associations ou sociétés sportives ne gérant pas d'équipements.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-6CH:
+      titre: 'Sportifs professionnels, y compris entraîneurs joueurs, quel que soit le classement de l''établissement qui les emploie : rugby, escalade, moto, handball, basket, hockey, équitation, volley-ball, football, ski, cyclisme.'
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-6CI:
+      titre: Sportifs professionnels, pour les sports non visés par ailleurs, incluant également les entraîneurs non joueurs des sports visés par le 926CH, quel que soit le classement de l'établissement qui les emploie, arbitres et juges.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-7AB:
+      titre: Organisation de jeux de hasard et d'argent (dont courses de chevaux et de taureaux).
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 92-7CC:
+      titre: Attractions foraines avec et sans montage de manèges ou de chapiteaux, et autres spectacles et services récréatifs.
+      description: INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE, DU LIVRE ET DE LA COMMUNICATION
+    code 01-1AA:
+      titre: Cultures et élevage dans les départements d'outre-mer.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-1AE:
+      titre: Abattage du bétail, découpe et commerce de gros de viandes de boucherie. Production de viandes de volailles.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-1EC:
+      titre: Transformation et conservation de la viande et préparation de produits à base de viande (y compris boyauderie). Transformation et conservation du poisson.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-5CC:
+      titre: Autres industries alimentaires non classées par ailleurs et transformation du tabac.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-8AC:
+      titre: Transformation et conservation de légumes et de fruits. Fabrication industrielle de produits de boulangerie, pâtisserie et pizza.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-8CD:
+      titre: Commerce de détail (avec ou sans fabrication) de pain, pâtisserie, confiserie et chocolats.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 15-9SC:
+      titre: Fabrication et transformation de café et épices. Fabrication de boissons sauf produits laitiers.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 51-1NB:
+      titre: Intermédiaires de commerce en produits agricoles et alimentaires et vente par correspondance sans manutention, ni livraison, ni stockage, ni conditionnement.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 51-3TC:
+      titre: Commerce de gros (commerce interentreprises) alimentaire non spécialisé.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 52-1BC:
+      titre: Commerce de détail de produits laitiers, de produits surgelés, de fruits et légumes, de boissons et d'alimentation générale.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 52-1FB:
+      titre: Grande et moyenne distribution et Drive - Vente par automate.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 52-2CB:
+      titre: Commerce de détail de viandes, poissons, charcuterie artisanale y compris traiteurs, organisateurs de réception.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 55-2EC:
+      titre: Installations d'hébergement à équipements légers ou développés.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 55-3AC:
+      titre: Restaurants, café-tabac, hôtels avec ou sans restaurant et foyers.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 55-3BC:
+      titre: Restauration type rapide y compris wagons-lits et wagons-restaurants.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 55-5AA:
+      titre: Restauration collective.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 63-1DA:
+      titre: Entreposage frigorifique.
+      description: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+    code 11-1ZC:
+      titre: Production, transport par conduite et raffinage de pétrole et de gaz. Fabrication d'ingrédients et additifs pour carburation et lubrification, de produits asphaltés et bitumeux. Commerce de gros des produits pétroliers. Fabrication de produits chimiques organiques de base. Fabrication de caoutchoucs synthétiques, d'élastomères, de matières plastiques.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 23-3ZA:
+      titre: Production et transformation de matières nucléaires.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 24-1GN:
+      titre: Fabrication de produits chimiques minéraux et inorganiques, organiques de synthèse ou dérivés du bois, de produits azotés et d'engrais, d'abrasifs, de pigments, colorants, émaux, de produits photographiques, d'électrodes. Métallurgie de l'aluminium, des ferro-alliages et métaux légers. Electrométallurgie, électrochimie. Dénaturation d'éthanol.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 24-3ZC:
+      titre: Fabrication de peintures, vernis, colles, encres, mastics. Fabrication de gélatines et de leurs dérivés. Fabrication de produits d'entretien. Fabrication d'explosifs, d'articles de pyrotechnie, de poudres propulsives.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 24-4CC:
+      titre: Fabrication de préparations pharmaceutiques, de cosmétiques et de parfums. Fabrication et transformation d'extraits de végétaux, d'algues, bois résineux. Fabrication de produits de base pour détergents, de produits détergents, de pesticides et de biocides. Fabrication et traitement chimique de corps gras.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 25-1AC:
+      titre: Fabrication d'articles en caoutchouc naturel ou synthétique à partir d'élastomères secs ou sous forme latex ou en solution.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 25-2HK:
+      titre: Fabrication, assemblage d'articles et pièces en matières plastiques, y compris composites.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 73-1ZB:
+      titre: Chimie expert. Laboratoires de recherches chimiques.
+      description: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+    code 14-1AH:
+      titre: Extraction et préparation de matériaux issus des carrières de roches meubles ou massives.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 14-5ZM:
+      titre: Extraction, broyage et préparation de produits minéraux divers.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 17-1KB:
+      titre: Travail des fibres textiles naturelles (filature, moulinage et retordage, préparation de la laine, fibres dures, ouates…).
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 17-2AC:
+      titre: Fabrication de tissu et articles textiles.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 17-7AB:
+      titre: Fabrication de mailles, dentelles, rubans, produits élastiques et d'articles divers.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 18-2CB:
+      titre: Confection. Fabrication d'accessoires de l'habillement et d'articles en toile.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 19-2ZH:
+      titre: Maroquinerie.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 19-3ZL:
+      titre: Chaussure. Cuirs et peaux.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 20-1AF:
+      titre: Scieries, y compris prestations de service, abattage et coupe de bois dans les DOM, fabrication de charbon de bois à usage domestique.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 20-1BB:
+      titre: Travail mécanique du bois, traitement et fabrication d'objets en bois.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 20-3ZF:
+      titre: Menuiserie, charpentes et panneaux à base de bois et commerce menuiserie et panneaux.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 20-4ZI:
+      titre: Fabrication d'emballages issus du bois et d'articles de tonnellerie.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 21-2BD:
+      titre: Production et transformation des pâtes à papier et carton.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-1EE:
+      titre: Fabrication, façonnage et travail technique du verre.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-2AG:
+      titre: Fabrication de vaisselle et d'objets en porcelaine ou en faïence.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-2AH:
+      titre: Fabrication de tuiles et briques et de produits céramiques non désignés par ailleurs.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-2CA:
+      titre: Fabrication d'appareils sanitaires en céramique.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-5AB:
+      titre: Fabrication de ciment, chaux, plâtre, produits en plâtre, agrégats légers, matériaux enrobés d'étanchéité et produits non désignés ailleurs.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-6AA:
+      titre: Fabrication de produits en béton.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-6EB:
+      titre: Préparation et livraison de béton prêt à l'emploi (sans mise en œuvre).
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-6JB:
+      titre: Fabrication de produits en fibre-ciment.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 26-7ZD:
+      titre: Fabrication et pose de produits de marbrerie.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 35-1EB:
+      titre: Fabrication et réparation de navires en bois et en polyester stratifié.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 36-1GC:
+      titre: Fabrication et réparation de meubles et de cercueils en bois ou en matière similaire et d'instruments de musique.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 36-1MD:
+      titre: Fabrication et réparation de sièges, de matelas et sommiers et d'articles de literie et pour voiliers.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 51-5EG:
+      titre: Commerce du bois.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 52-7AC:
+      titre: Autres industries du cuir.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 71-4AC:
+      titre: Blanchisserie et teinturerie de gros, y compris la location de linge et vêtements professionnels blanchis.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 93-0BA:
+      titre: Blanchisserie et teinturerie de détail, y compris laverie automatique.
+      description: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A FEU
+    code 50-3AD:
+      titre: Commerce et location de véhicules automobiles et d'équipements associés, de machines et équipements agricoles. Ecoles de conduite. Exploitation de parkings.
+      description: COMMERCES NON ALIMENTAIRES
+    code 50-5ZB:
+      titre: Commerce de combustibles, charbons, carburants et lavages automatiques.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-1RB:
+      titre: Commerce de gros sans manutention. Centrales d'achats et intermédiaires du commerce non alimentaire.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-5CC:
+      titre: Commerce de métaux, de biens d'occasion et commerce non alimentaire sur éventaires et marchés.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-5FA:
+      titre: Commerce de gros de matériaux de construction.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-6GC:
+      titre: Commerce de gros et location de matériel de bureau, électroménager, multimédia et informatique.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-6KC:
+      titre: Commerce de gros d'équipement industriel et de la maison, d'équipement de la personne et de produits pharmaceutiques.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-6LC:
+      titre: Intermédiaires du commerce avec manutention. Commerce de gros de produits chimiques et autres.
+      description: COMMERCES NON ALIMENTAIRES
+    code 51-6NC:
+      titre: Commerce de gros ou location de matériel de construction (bâtiment et travaux publics) et agricole.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-3AC:
+      titre: Commerce de détail de produits pharmaceutiques, d'articles médicaux et orthopédiques, d'optique et photographiques, de parfumerie et de produits de beauté.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4CD:
+      titre: Commerce de détail de l'habillement, textiles, chaussures, maroquinerie. Vente à distance. Commerce de bijouterie, d'horlogerie, et d'orfèvrerie.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4HC:
+      titre: Grands magasins, magasins multi-commerces ou magasins populaires, commerces de meubles et de décoration de la maison.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4LA:
+      titre: Commerce de détail et location de matériel électroménager, multimédia, informatique.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4PB:
+      titre: Commerce de détail de bricolage (surface de vente supérieure ou égale à 400 m2).
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4WA:
+      titre: Commerce de détail et location associée d'articles de sport et de loisirs, y compris cycles.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4XB:
+      titre: Commerce de fleurs et d'animaux d'agrément.
+      description: COMMERCES NON ALIMENTAIRES
+    code 52-4ZD:
+      titre: Commerce de détail de quincaillerie et de droguerie (surface de vente inférieure à 400 m2), céramique mobilière, arts de la table, jouets, instruments de musique, et autres.
+      description: COMMERCES NON ALIMENTAIRES
+    code 70-3AD:
+      titre: Promotion, vente, location ou administration de biens immobiliers.
+      description: COMMERCES NON ALIMENTAIRES
+    code 70-3CB:
+      titre: Concierges et employés d'immeubles.
+      description: COMMERCES NON ALIMENTAIRES
+    code 71-4AB:
+      titre: Location de biens de consommation (mobiliers, linges, bâches, sacs, etc.) et d'autres biens d'équipements.
+      description: COMMERCES NON ALIMENTAIRES
+    code 65-1AB:
+      titre: Organismes et auxiliaires financiers - Bourse de commerce.
+      description: ACTIVITÉS DE SERVICES I
+    code 66-0AB:
+      titre: Assurances et auxiliaires d'assurances.
+      description: ACTIVITÉS DE SERVICES I
+    code 72-3ZA:
+      titre: Travaux informatiques à façon.
+      description: ACTIVITÉS DE SERVICES I
+    code 73-1ZE:
+      titre: Etablissements de recherche scientifique et technique.
+      description: ACTIVITÉS DE SERVICES I
+    code 74-1GB:
+      titre: Groupements d'employeurs. Coopératives d'activité et d'emploi. Services divers rendus principalement aux entreprises non désignés par ailleurs.
+      description: ACTIVITÉS DE SERVICES I
+    code 74-1GD:
+      titre: Crédit-bail mobilier et immobilier, location de brevets. Cabinets juridiques et offices publics ou ministériels. Cabinets d'expertise comptable et d'analyse financière. Cabinets d'études informatiques et d'organisation.
+      description: ACTIVITÉS DE SERVICES I
+    code 74-1JB:
+      titre: Holdings. Cabinets de conseils en information et documentation. Cabinets d'études économiques, sociologiques, marchandisage.
+      description: ACTIVITÉS DE SERVICES I
+    code 74-2CB:
+      titre: 'Cabinets d''études techniques : agences de brevets, expertises, expertises en œuvre d''art. - Expert chargé d''évaluer les dommages (ou les risques).'
+      description: ACTIVITÉS DE SERVICES I
+    code 74-3BA:
+      titre: Bureaux d'essais, bancs d'essais.
+      description: ACTIVITÉS DE SERVICES I
+    code 75-1AG:
+      titre: Administration centrale et services extérieurs des administrations (y compris leurs établissements publics). Représentation diplomatique étrangère en France. Organismes internationaux. - Service des armées alliées.
+      description: ACTIVITÉS DE SERVICES I
+    code 75-1BA:
+      titre: Collectivités territoriales (communales, départementales, régionales…) y compris leurs établissements publics hors secteur médico-social.
+      description: ACTIVITÉS DE SERVICES I
+    code 75-2EE:
+      titre: Personnes détenues, quelle que soit l'activité exercée.
+      description: ACTIVITÉS DE SERVICES I
+    code 75-3AA:
+      titre: Activités générales de sécurité sociale.
+      description: ACTIVITÉS DE SERVICES I
+    code 75-3BB:
+      titre: Couverture du risque chômage et autres garanties du maintien de revenu, y compris la caisse nationale de surcompensation du bâtiment et des travaux publics et caisses de retraite ne relevant pas de la législation sur les assurances.
+      description: ACTIVITÉS DE SERVICES I
+    code 80-1ZA:
+      titre: Personnel enseignant et administratif des établissements d'enseignement privés et des organismes de formation.
+      description: ACTIVITÉS DE SERVICES I
+    code 80-2AA:
+      titre: Elèves et étudiants des établissements publics ou privés d'enseignement secondaire, supérieur ou spécialisé visés à l'article L. 412-8 (2°, b) du code de la sécurité sociale.
+      description: ACTIVITÉS DE SERVICES I
+    code 80-2CA:
+      titre: Elèves et étudiants des établissements publics et privés d'enseignement technique visés à l'article L. 412-8 (2°, a) du code de la sécurité sociale.
+      description: ACTIVITÉS DE SERVICES I
+    code 91-3EJ:
+      titre: Activités des organisations consulaires et patronales, des organisations professionnelles, des syndicats de salariés, des organisations religieuses, des organisations politiques et des organisations associatives non classées ailleurs.
+      description: ACTIVITÉS DE SERVICES I
+    code 74-5BC:
+      titre: Personnel permanent des entreprises de travail temporaire.
+      description: ACTIVITÉS DE SERVICES II
+    code 74-5BD:
+      titre: Toutes catégories de personnel de travail temporaire.
+      description: ACTIVITÉS DE SERVICES II
+    code 74-5BE:
+      titre: 'Travail temporaire : personnel de bureau et personnel paramédical.'
+      description: ACTIVITÉS DE SERVICES II
+    code 74-6ZA:
+      titre: Agences privées de recherches, entreprises de surveillance (sans transports de fonds).
+      description: ACTIVITÉS DE SERVICES II
+    code 74-7ZF:
+      titre: Services de nettoyage de locaux et d'objets divers. Activités de désinfection, de désinsectisation et de dératisation.
+      description: ACTIVITÉS DE SERVICES II
+    code 74-8DA:
+      titre: Entreprises de conditionnement non spécialisées.
+      description: ACTIVITÉS DE SERVICES II
+    code 74-8KC:
+      titre: Travaux à façon divers sauf la location de brevets, entreposage d'archives d'entreprises (y compris la consultation d'archives). Ionisation de produits divers.
+      description: ACTIVITÉS DE SERVICES II
+    code 75-1CC:
+      titre: Etablissements publics médico-sociaux des collectivités territoriales.
+      description: ACTIVITÉS DE SERVICES II
+    code 75-1CD:
+      titre: Accueil à domicile à titre onéreux, d'enfants, de personnes âgées ou d'adultes handicapés confiés par des organismes publics, des œuvres, des établissements ou des services de soins.
+      description: ACTIVITÉS DE SERVICES II
+    code 75-1CE:
+      titre: Administration hospitalière, y compris ses établissements publics.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1AC:
+      titre: Services de soins privés médicaux exclusivement à domicile.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1AD:
+      titre: Etablissements de soins privés y compris les centres de réadaptation fonctionnelle, autres instituts pour la santé (établissements thermaux, etc.).
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1CB:
+      titre: Médecine systématique et de dépistage (y compris les centres interentreprises de médecine du travail).
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1CD:
+      titre: 'Cabinets de soins : médicaux et dentaires.'
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1GA:
+      titre: Cabinets d'auxiliaires médicaux.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-1KA:
+      titre: Laboratoires d'analyses médicales extrahospitaliers.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-2ZB:
+      titre: Centres de transfusion sanguine et banques d'organes. Vétérinaires. Cliniques vétérinaires.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3AB:
+      titre: Services d'aide sociale à domicile (auxiliaires de vie, aides ménagères…).
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3AC:
+      titre: Accueil, hébergement en établissement pour personnes âgées (maisons de retraite…).
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3AD:
+      titre: Accueil, hébergement en établissement pour personnes handicapées (enfants et adultes).
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3AE:
+      titre: Accueil, hébergement, prévention pour petite enfance, l'enfance, l'adolescence.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3BA:
+      titre: Action sociale sous toutes ses formes hors risques 853AB/853AC/853AD/853AE.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3HA:
+      titre: Stagiaires des centres de formation professionnelle, de réadaptation fonctionnelle, de rééducation professionnelle.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3HB:
+      titre: Travailleurs handicapés des établissements ou services d'aide par le travail.
+      description: ACTIVITÉS DE SERVICES II
+    code 85-3KL:
+      titre: Association intermédiaire (personnes dépourvues d'emploi et mises à disposition).
+      description: ACTIVITÉS DE SERVICES II
+    code 93-0DB:
+      titre: Coiffure. Fabrication de postiches. Esthétique corporelle.
+      description: ACTIVITÉS DE SERVICES II
+    code 93-0HB:
+      titre: Pompes funèbres et services annexes, y compris le commerce d'articles funéraires.
+      description: ACTIVITÉS DE SERVICES II
+    code 93-0NC:
+      titre: Services personnels divers (y compris cabinets de graphologie, agences matrimoniales).
+      description: ACTIVITÉS DE SERVICES II
+    code 51-1TG:
+      titre: Voyageurs de commerce, représentants, placier non exclusif (au service de plusieurs employeurs).
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 51-1TH:
+      titre: Salariés d'un employeur ne comportant pas d'établissement en France, visé à l'article L 243-1-2 du code de la sécurité sociale.
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 52-4RB:
+      titre: Vendeurs colporteurs de presse, porteurs de presse visés à l'article L. 311-3 (18°) du code de la sécurité sociale.
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 52-6GA:
+      titre: Vendeurs à domicile visés à l'article L. 311-3 (20°) du code de la sécurité sociale.
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 85-3CA:
+      titre: Accueil à domicile, à titre onéreux, d'enfants pour le compte de particuliers et de personnes âgées ou d'adultes handicapés sur leur propre demande ou pour le compte de particuliers.
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 95-0ZA:
+      titre: 'Toute personne occupée exclusivement au service de particuliers : employés de maison (femme de ménage, lingère, couturière, blanchisseuse à la journée, chauffeur de maître).'
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 95-0ZC:
+      titre: 'Toute personne effectuant des travaux de courte durée pour le compte de particuliers : travaux de bureaux ou assimilables.'
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 95-0ZD:
+      titre: 'Toute personne effectuant des travaux de courte durée pour le compte de particuliers : travaux industriels (relevant généralement de professions du bâtiment).'
+      description: CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE DE LA SÉCURITÉ SOCIALE
+    code 00-00B:
+      titre: Salariés occupant des fonctions supports de nature administrative dans des entreprises relevant de branches professionnelles autres que celle du BTP.
+      description: CATÉGORIES DE PERSONNELS VISÉS A L'ARTICLE 1er (III) DE L'ARRÊTÉ DU 17 OCTOBRE 1995 RELATIF A LA TARIFICATION DES RISQUES D'ACCIDENTS DU TRAVAIL ET DE MALADIES PROFESSIONNELLES
