@@ -365,6 +365,12 @@ design-system:
     open-selector: Ouvrir le sélecteur de date
     prev-month: Mois précédent
     year: Année
+  search-choice-group:
+    aria-label:
+      option: "{{label}}, sélectionner"
+      option-avec-détail: "{{label}} ({{detail}}), sélectionner"
+    no-result: Aucun résultat
+    placeholder: Rechercher
 entreprise:
   détails: Entreprise créée le <1></1> et domiciliée à <3></3>.
 error:

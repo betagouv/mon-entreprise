@@ -76,6 +76,7 @@
 		"effect": "^3.0.0",
 		"exoneration-covid": "workspace:^",
 		"focus-trap-react": "^10.2.1",
+		"fuse.js": "^7.0.0",
 		"iframe-resizer": "^4.3.7",
 		"markdown-to-jsx": "^7.3.2",
 		"modele-as": "workspace:^",

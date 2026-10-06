@@ -26250,6 +26250,7 @@ __metadata:
     eslint-plugin-testing-library: "npm:^6.2.0"
     exoneration-covid: "workspace:^"
     focus-trap-react: "npm:^10.2.1"
+    fuse.js: "npm:^7.0.0"
     happy-dom: "npm:^20.0.0"
     i18next-parser: "npm:^8.7.0"
     iframe-resizer: "npm:^4.3.7"

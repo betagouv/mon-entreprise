@@ -253,13 +253,14 @@ export default function RuleInput({
 		const type =
 			inputType ??
 			(meta.affichage &&
-			['radio', 'card', 'toggle', 'select'].includes(meta.affichage)
+			['radio', 'card', 'toggle', 'select', 'search'].includes(meta.affichage)
 				? (meta.affichage as ChoiceDisplayType)
 				: 'radio')
 
 		return (
 			<UnePossibilité
 				dottedName={dottedName}
+				engine={engineValue}
 				value={value || defaultValue}
 				onChange={(value) => onChange(value, dottedName)}
 				id={inputId}

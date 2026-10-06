@@ -348,6 +348,12 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
+  search-choice-group:
+    aria-label:
+      option: "{{label}}, select"
+      option-avec-détail: "{{label}} ({{detail}}), select"
+    no-result: No results
+    placeholder: Search
 entreprise:
   détails: Company created on <1> </1> and domiciled at <3></3>.
 error:

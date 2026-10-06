@@ -4,6 +4,7 @@ import {
 	CardChoiceGroup,
 	ChoiceDisplayType,
 	RadioChoiceGroup,
+	SearchChoiceGroup,
 	SelectChoiceGroup,
 	ToggleChoiceGroup,
 } from '../ChoiceGroup'
@@ -14,6 +15,7 @@ export type SimpleChoiceOptionWithValue = {
 	isDefaultSelected?: boolean
 	label: string
 	description?: string
+	detail?: string
 	emoji?: string
 }
 type SimpleChoiceOptionWithChildren = {
@@ -78,6 +80,7 @@ export function ChoixUnique({
 		value: option.value,
 		label: option.label,
 		description: option.description,
+		detail: option.detail,
 		emoji: option.emoji,
 		isDefaultSelected: option.isDefaultSelected || option.value === value,
 	})
@@ -133,6 +136,17 @@ export function ChoixUnique({
 					autoFocus={autoFocus}
 					defaultValue={defaultValue}
 					title={title}
+					aria={aria}
+				/>
+			)
+		case 'search':
+			return (
+				<SearchChoiceGroup
+					value={value}
+					onChange={handleChange}
+					options={choiceOptions}
+					/* eslint-disable-next-line jsx-a11y/no-autofocus */
+					autoFocus={autoFocus}
 					aria={aria}
 				/>
 			)
