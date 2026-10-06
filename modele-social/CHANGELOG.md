@@ -12,6 +12,7 @@
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+- `salarié . rémunération . avantages en nature . ntic` vaut `non` par défaut : l'avantage NTIC n'est plus compté s'il n'a pas été déclaré
 
 ### Corrections
 - Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte

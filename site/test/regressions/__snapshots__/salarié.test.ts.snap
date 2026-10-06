@@ -191,19 +191,19 @@ salarié . rémunération . net . à payer avant impôt: 1540"
 exports[`calculate simulations-salarié > avantages 2`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2449
+salarié . coût total employeur: 2439
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1517
-salarié . rémunération . net . à payer avant impôt: 1539"
+salarié . rémunération . net . payé après impôt: 1518
+salarié . rémunération . net . à payer avant impôt: 1540"
 `;
 
 exports[`calculate simulations-salarié > avantages 3`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2370
+salarié . coût total employeur: 2354
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1540
-salarié . rémunération . net . à payer avant impôt: 1548"
+salarié . rémunération . net . payé après impôt: 1541
+salarié . rémunération . net . à payer avant impôt: 1550"
 `;
 
 exports[`calculate simulations-salarié > cadre 1`] = `
