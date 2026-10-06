@@ -857,7 +857,7 @@ salarié . rémunération . avantages en nature:
         abonnements:
           question:
             Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
-            par l'employeur ?
+            par l'entreprise ?
           par défaut: 20 €/mois
           suggestions:
             aucun: 0 €/mois
