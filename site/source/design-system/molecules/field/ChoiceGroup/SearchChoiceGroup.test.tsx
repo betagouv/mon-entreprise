@@ -115,6 +115,19 @@ describe('SearchChoiceGroup', () => {
 		).not.toBeInTheDocument()
 	})
 
+	it('remet le focus sur le champ après le choix d’une option', async () => {
+		const { user, champ } = monterRecherche()
+
+		await user.type(champ, 'fonderie')
+		await user.click(
+			screen.getByRole('button', {
+				name: 'Fonderie des métaux légers ou non ferreux. (6,23 %), sélectionner',
+			})
+		)
+
+		expect(champ).toHaveFocus()
+	})
+
 	it('n’échappe pas les apostrophes dans le nom accessible des options', async () => {
 		const { user, champ } = monterRecherche()
 
