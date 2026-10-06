@@ -57,6 +57,7 @@ export function ChoixUnique({
 	defaultValue,
 	options,
 	onChange,
+	id,
 	title,
 	autoFocus,
 	variant = 'radio',
@@ -142,6 +143,7 @@ export function ChoixUnique({
 		case 'search':
 			return (
 				<SearchChoiceGroup
+					id={id}
 					value={value}
 					onChange={handleChange}
 					options={choiceOptions}

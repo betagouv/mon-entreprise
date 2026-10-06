@@ -1,5 +1,5 @@
 import Fuse from 'fuse.js'
-import { Key, useMemo, useState } from 'react'
+import { Key, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
@@ -55,6 +55,7 @@ export default function SearchChoiceGroup({
 		() => toutesLesOptions.find((option) => option.value === value)?.label ?? ''
 	)
 	const [résultats, setRésultats] = useState<ChoiceOptionWithValue[]>()
+	const champ = useRef<HTMLInputElement>(null!)
 
 	const handleRecherche = (saisie: string) => {
 		setRecherche(saisie)
@@ -69,12 +70,14 @@ export default function SearchChoiceGroup({
 		setRecherche(option.label)
 		setRésultats(undefined)
 		onChange(option.value)
+		champ.current?.focus()
 	}
 
 	return (
 		<>
 			<TextField
 				id={id}
+				inputRef={champ}
 				type="search"
 				value={recherche}
 				onChange={handleRecherche}
