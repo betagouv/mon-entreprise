@@ -1,3 +1,6 @@
+import Engine, { formatValue } from 'publicodes'
+import { useTranslation } from 'react-i18next'
+
 import { Choice, isChoice } from '@/components/conversation/Choice'
 import {
 	ChoiceDisplayType,
@@ -16,6 +19,7 @@ export type { ChoiceDisplayType } from '@/design-system'
 
 interface UnePossibilitéProps {
 	dottedName: DottedName
+	engine: Engine<DottedName>
 	value: ValeurPublicodes | undefined
 	choices: Choice
 	onChange?: (value: ValeurPublicodes | undefined) => void
@@ -36,6 +40,7 @@ interface UnePossibilitéProps {
  */
 export const UnePossibilité = ({
 	dottedName,
+	engine,
 	value,
 	choices,
 	onChange = NoOp,
@@ -49,6 +54,15 @@ export const UnePossibilité = ({
 		value,
 		onChange,
 	})
+	const { i18n } = useTranslation()
+
+	const détail = (possibilité: DottedName) => {
+		const évaluation = engine.evaluate(possibilité)
+
+		return typeof évaluation.nodeValue === 'number'
+			? (formatValue(évaluation, { language: i18n.language }) as string)
+			: undefined
+	}
 
 	const getSimpleChoiceOptionWithValue = (node: {
 		dottedName: string
@@ -64,6 +78,10 @@ export const UnePossibilité = ({
 			value: relativeValue,
 			label: node.title,
 			description: node.rawNode.description,
+			detail:
+				variant === 'search'
+					? détail(node.dottedName as DottedName)
+					: undefined,
 			emoji: node.rawNode.icônes,
 		}
 	}
@@ -79,14 +97,7 @@ export const UnePossibilité = ({
 			}
 		}
 
-		const relativeValue = relativeDottedName(dottedName, node.dottedName)
-
-		return {
-			value: relativeValue,
-			label: node.title,
-			description: node.rawNode.description,
-			emoji: node.rawNode.icônes,
-		}
+		return getSimpleChoiceOptionWithValue(node)
 	})
 
 	const valueAsString = isMontant(currentSelection)

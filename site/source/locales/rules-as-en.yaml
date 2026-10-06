@@ -3494,6 +3494,2052 @@ situation personnelle . domiciliation fiscale à l'étranger:
 établissement . SIRET:
   titre.en: '[automatic] SIRET'
   titre.fr: SIRET
+établissement . code risque:
+  avec:
+    code 00-00A:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Employees in administrative support functions in
+        construction and public works companies.'
+      titre.fr:
+        Salariés occupant des fonctions supports de nature administrative dans
+        des entreprises du BTP.
+    code 00-00B:
+      description.en:
+        '[automatic] CATEGORIES OF STAFF REFERRED TO IN ARTICLE 1 (III)
+        OF THE DECREE OF 17 OCTOBER 1995 ON THE PRICING OF OCCUPATIONAL ACCIDENT
+        AND DISEASE RISKS'
+      description.fr:
+        CATÉGORIES DE PERSONNELS VISÉS A L'ARTICLE 1er (III) DE L'ARRÊTÉ
+        DU 17 OCTOBRE 1995 RELATIF A LA TARIFICATION DES RISQUES D'ACCIDENTS DU
+        TRAVAIL ET DE MALADIES PROFESSIONNELLES
+      titre.en: '[automatic] Employees in administrative support functions in
+        companies belonging to professional sectors other than construction and
+        public works.'
+      titre.fr:
+        Salariés occupant des fonctions supports de nature administrative dans
+        des entreprises relevant de branches professionnelles autres que celle
+        du BTP.
+    code 01-1AA:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Crops and livestock farming in the overseas departments.'
+      titre.fr: Cultures et élevage dans les départements d'outre-mer.
+    code 11-1ZC:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en:
+        '[automatic] Production, pipeline transport and refining of oil and
+        gas. Manufacture of ingredients and additives for fuels and lubricants,
+        asphalt and bituminous products. Wholesale of petroleum products.
+        Manufacture of basic organic chemicals. Manufacture of synthetic rubber,
+        elastomers and plastics.'
+      titre.fr:
+        Production, transport par conduite et raffinage de pétrole et de gaz.
+        Fabrication d'ingrédients et additifs pour carburation et lubrification,
+        de produits asphaltés et bitumeux. Commerce de gros des produits
+        pétroliers. Fabrication de produits chimiques organiques de base.
+        Fabrication de caoutchoucs synthétiques, d'élastomères, de matières
+        plastiques.
+    code 14-1AH:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Extraction and preparation of materials from loose or
+        solid rock quarries.'
+      titre.fr:
+        Extraction et préparation de matériaux issus des carrières de roches
+        meubles ou massives.
+    code 14-5ZM:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Extraction, crushing and preparation of various mineral
+        products.'
+      titre.fr: Extraction, broyage et préparation de produits minéraux divers.
+    code 15-1AE:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: "[automatic] Slaughter of livestock, cutting and wholesale of
+        butcher's meat. Production of poultry meat."
+      titre.fr: Abattage du bétail, découpe et commerce de gros de viandes de
+        boucherie. Production de viandes de volailles.
+    code 15-1EC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Processing and preserving of meat and preparation of meat
+        products (including casings). Processing and preserving of fish.'
+      titre.fr:
+        Transformation et conservation de la viande et préparation de produits
+        à base de viande (y compris boyauderie). Transformation et conservation
+        du poisson.
+    code 15-5CC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Other food industries not classified elsewhere and
+        tobacco processing.'
+      titre.fr: Autres industries alimentaires non classées par ailleurs et
+        transformation du tabac.
+    code 15-8AC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Processing and preserving of vegetables and fruit.
+        Industrial manufacture of bakery, pastry and pizza products.'
+      titre.fr:
+        Transformation et conservation de légumes et de fruits. Fabrication
+        industrielle de produits de boulangerie, pâtisserie et pizza.
+    code 15-8CD:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Retail sale (with or without manufacture) of bread,
+        pastries, confectionery and chocolates.'
+      titre.fr:
+        Commerce de détail (avec ou sans fabrication) de pain, pâtisserie,
+        confiserie et chocolats.
+    code 15-9SC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Manufacture and processing of coffee and spices.
+        Manufacture of beverages except dairy products.'
+      titre.fr: Fabrication et transformation de café et épices. Fabrication de
+        boissons sauf produits laitiers.
+    code 17-1KB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Processing of natural textile fibres (spinning, throwing
+        and twisting, wool preparation, hard fibres, wadding, etc.).'
+      titre.fr: Travail des fibres textiles naturelles (filature, moulinage et
+        retordage, préparation de la laine, fibres dures, ouates…).
+    code 17-2AC:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture of fabrics and textile articles.'
+      titre.fr: Fabrication de tissu et articles textiles.
+    code 17-7AB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture of knitwear, lace, ribbons, elastic products
+        and various articles.'
+      titre.fr:
+        Fabrication de mailles, dentelles, rubans, produits élastiques et
+        d'articles divers.
+    code 18-2CB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Clothing manufacture. Manufacture of clothing accessories
+        and canvas articles.'
+      titre.fr:
+        Confection. Fabrication d'accessoires de l'habillement et d'articles
+        en toile.
+    code 19-2ZH:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Leather goods.'
+      titre.fr: Maroquinerie.
+    code 19-3ZL:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Footwear. Leather and hides.'
+      titre.fr: Chaussure. Cuirs et peaux.
+    code 20-1AF:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Sawmills, including services, felling and cutting of wood
+        in the overseas departments, manufacture of charcoal for domestic use.'
+      titre.fr:
+        Scieries, y compris prestations de service, abattage et coupe de bois
+        dans les DOM, fabrication de charbon de bois à usage domestique.
+    code 20-1BB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Mechanical woodworking, treatment and manufacture of
+        wooden objects.'
+      titre.fr: Travail mécanique du bois, traitement et fabrication d'objets en bois.
+    code 20-3ZF:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Joinery, frameworks and wood-based panels, and trade in
+        joinery and panels.'
+      titre.fr: Menuiserie, charpentes et panneaux à base de bois et commerce
+        menuiserie et panneaux.
+    code 20-4ZI:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture of wooden packaging and cooperage articles.'
+      titre.fr: Fabrication d'emballages issus du bois et d'articles de tonnellerie.
+    code 21-2BD:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Production and processing of paper pulp and cardboard.'
+      titre.fr: Production et transformation des pâtes à papier et carton.
+    code 22-2CD:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Publishing, printing. Reprography and related activities
+        (binding, hand gilding, posters, typesetting, photocomposition,
+        engraving and photoengraving). Mailing.'
+      titre.fr:
+        Édition, imprimerie. Reprographie et activités connexes (reliure,
+        dorure main, affiches, composition, photocomposition, gravure et
+        photogravure). Routage.
+    code 23-3ZA:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en: '[automatic] Production and processing of nuclear materials.'
+      titre.fr: Production et transformation de matières nucléaires.
+    code 24-1GN:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en:
+        '[automatic] Manufacture of mineral and inorganic chemicals, synthetic
+        organic or wood-derived chemicals, nitrogen products and fertilisers,
+        abrasives, pigments, dyes, enamels, photographic products and
+        electrodes. Metallurgy of aluminium, ferro-alloys and light metals.
+        Electrometallurgy, electrochemistry. Denaturing of ethanol.'
+      titre.fr:
+        Fabrication de produits chimiques minéraux et inorganiques, organiques
+        de synthèse ou dérivés du bois, de produits azotés et d'engrais,
+        d'abrasifs, de pigments, colorants, émaux, de produits photographiques,
+        d'électrodes. Métallurgie de l'aluminium, des ferro-alliages et métaux
+        légers. Electrométallurgie, électrochimie. Dénaturation d'éthanol.
+    code 24-3ZC:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en: '[automatic] Manufacture of paints, varnishes, glues, inks and
+        sealants. Manufacture of gelatines and their derivatives. Manufacture of
+        cleaning products. Manufacture of explosives, pyrotechnic articles and
+        propellant powders.'
+      titre.fr:
+        Fabrication de peintures, vernis, colles, encres, mastics. Fabrication
+        de gélatines et de leurs dérivés. Fabrication de produits d'entretien.
+        Fabrication d'explosifs, d'articles de pyrotechnie, de poudres
+        propulsives.
+    code 24-4CC:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en:
+        '[automatic] Manufacture of pharmaceutical preparations, cosmetics and
+        perfumes. Manufacture and processing of plant, seaweed and softwood
+        extracts. Manufacture of basic products for detergents, detergents,
+        pesticides and biocides. Manufacture and chemical treatment of fats.'
+      titre.fr:
+        Fabrication de préparations pharmaceutiques, de cosmétiques et de
+        parfums. Fabrication et transformation d'extraits de végétaux, d'algues,
+        bois résineux. Fabrication de produits de base pour détergents, de
+        produits détergents, de pesticides et de biocides. Fabrication et
+        traitement chimique de corps gras.
+    code 25-1AC:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en:
+        '[automatic] Manufacture of natural or synthetic rubber articles from
+        dry elastomers or in latex or solution form.'
+      titre.fr:
+        Fabrication d'articles en caoutchouc naturel ou synthétique à partir
+        d'élastomères secs ou sous forme latex ou en solution.
+    code 25-2HK:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en:
+        '[automatic] Manufacture and assembly of plastic articles and parts,
+        including composites.'
+      titre.fr:
+        Fabrication, assemblage d'articles et pièces en matières plastiques, y
+        compris composites.
+    code 26-1EE:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture, shaping and technical working of glass.'
+      titre.fr: Fabrication, façonnage et travail technique du verre.
+    code 26-2AG:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture of porcelain or earthenware tableware and
+        objects.'
+      titre.fr: Fabrication de vaisselle et d'objets en porcelaine ou en faïence.
+    code 26-2AH:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture of tiles, bricks and ceramic products not
+        specified elsewhere.'
+      titre.fr: Fabrication de tuiles et briques et de produits céramiques non
+        désignés par ailleurs.
+    code 26-2CA:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture of ceramic sanitary fixtures.'
+      titre.fr: Fabrication d'appareils sanitaires en céramique.
+    code 26-5AB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture of cement, lime, plaster, plaster products,
+        lightweight aggregates, coated waterproofing materials and products not
+        specified elsewhere.'
+      titre.fr:
+        Fabrication de ciment, chaux, plâtre, produits en plâtre, agrégats
+        légers, matériaux enrobés d'étanchéité et produits non désignés
+        ailleurs.
+    code 26-6AA:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture of concrete products.'
+      titre.fr: Fabrication de produits en béton.
+    code 26-6EB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Preparation and delivery of ready-mixed concrete (without
+        installation).'
+      titre.fr: Préparation et livraison de béton prêt à l'emploi (sans mise en œuvre).
+    code 26-6JB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture of fibre-cement products.'
+      titre.fr: Fabrication de produits en fibre-ciment.
+    code 26-7ZD:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Manufacture and installation of marble products.'
+      titre.fr: Fabrication et pose de produits de marbrerie.
+    code 27-1ZF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Foundry of cast iron, cast steel or malleable cast iron.
+        Manufacture of cast iron, steel, cast iron articles or tubes.
+        Manufacture of radiators and boilers for central heating and cooking.'
+      titre.fr:
+        Fonderie de fonte, d'acier moulé ou de fonte malléable. Fabrication de
+        fonte, d'acier, d'articles ou tubes en fonte. Fabrication de radiateurs,
+        de chaudières pour le chauffage central, la cuisine.
+    code 27-4CH:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Metallurgy of non-ferrous and precious metals. Hot
+        rolling or re-rolling without manufacture of cast iron or steel.'
+      titre.fr:
+        Métallurgie des métaux non ferreux et précieux. Laminage à chaud ou
+        relaminage sans fabrication de fonte ni d'acier.
+    code 27-5EB:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Foundry of light or non-ferrous metals.'
+      titre.fr: Fonderie des métaux légers ou non ferreux.
+    code 28-1AD:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Metal construction, manufacture of frameworks; metal
+        supplies and reinforcements prepared for reinforced concrete
+        (preparation of reinforcements in off-site workshops). Cold working of
+        metals (drawing, rolling, profiling, bending, wire drawing) and
+        metallurgy of ferro-alloys.'
+      titre.fr:
+        Construction métallique, fabrication de charpentes ; fournitures et
+        armatures métalliques préparées pour le béton armé (préparation des
+        armatures en ateliers hors chantiers). Travail à froid des métaux
+        (étirage, laminage, profilage, pliage, tréfilage) et métallurgie des
+        ferro-alliages.
+    code 28-1CB:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture of metal articles, furniture and joinery,
+        metal drums and packaging, insulated wires and cables. Manufacture of
+        metal closures, packaging, tinware and containers. Metal sheet spinning.
+        Manufacture of furnishing accessories in bronze and/or wrought iron.'
+      titre.fr: Fabrication d'articles, de meubles et menuiseries, de fûts et
+        emballages métalliques, de fils et câbles isolés. Fabrication de
+        bouchage, d'emballage, de ferblanterie, de conditionnement métallique.
+        Repoussage des métaux en feuilles. Fabrication d'accessoires
+        d'ameublement en bronze et/ou fer forgé.
+    code 28-3CG:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Boilermaking and welding.'
+      titre.fr: Chaudronnerie et soudure.
+    code 28-3CH:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture of steel tubes or insulating tubes (except
+        cast iron tubes). Manufacture of boilermaking containers (tanks,
+        cisterns, compressed gas cylinders), steam generators and accessories,
+        equipment generally under pressure and nuclear boilermaking. Manufacture
+        of flexible metal pipes.'
+      titre.fr:
+        Fabrication de tubes en acier ou de tubes isolateurs (sauf tubes en
+        fonte). Fabrication de chaudronnerie de contenants (réservoirs,
+        citernes, bouteilles pour gaz comprimés), de générateurs de vapeur et
+        accessoires, d'équipements généralement sous pression et de
+        chaudronnerie nucléaire. Fabrication de tuyaux métalliques flexibles.
+    code 28-4AD:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Forging, stamping, die-forging. Powder metallurgy and
+        sintering.'
+      titre.fr: Forge, estampage, matriçage. Métallurgie des poudres et frittage.
+    code 28-4BI:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Cutting, deep drawing. Metal sawing, engravers-stampers.
+        Bar turning.'
+      titre.fr: Découpage, emboutissage. Sciage des métaux, graveurs-estampeurs.
+        Décolletage.
+    code 28-5AA:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Treatment and coating of metals.'
+      titre.fr: Traitement et revêtement des métaux.
+    code 28-5DA:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Industrial mechanics.'
+      titre.fr: Mécanique industrielle.
+    code 28-5DF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Precision machining or repair of various metal articles.'
+      titre.fr: Usinage de précision ou réparation d'articles métalliques divers.
+    code 28-5DG:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Intervention, assembly, dismantling and maintenance work
+        on various equipment in factories. - Repair mechanics. - Manufacture of
+        fairground rides.'
+      titre.fr: Travaux d'intervention, de montage, démontage et entretien de
+        matériels divers dans les usines. - Réparateurs mécaniciens. -
+        Fabrication de manèges pour fêtes foraines.
+    code 28-6DF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture, assembly, installation, maintenance and
+        repair of machines, equipment and tooling: machine tools, machines for
+        process industries, textiles, leather and footwear; fixed and rolling
+        stock for guided transport; fire-fighting equipment; lifts, goods lifts,
+        automatic doors and escalators; lifting and handling equipment.'
+      titre.fr: 'Fabrication, montage, installation, entretien, réparation de
+        machines, équipements, outillages : machine-outil, machine pour les
+        industries de process, du textile, du cuir, de la chaussure ; matériel
+        fixe et roulant pour le transport guidé ; matériel incendie ; ascenseur,
+        monte-charge, porte automatique et escalier mécanique ; équipements de
+        levage et de manutention.'
+    code 28-6FB:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Manufacture of bolts, springs, screws and hardware.
+        Manufacture and/or maintenance of cutlery, knives, scissors and razors.
+        Manufacture of sports articles, games, toys and childcare articles not
+        classified elsewhere.'
+      titre.fr:
+        Fabrication de boulonnerie, ressorts, visseries et quincaillerie.
+        Fabrication et/ou entretien de couverts, couteaux, ciseaux, rasoirs.
+        Fabrication d'articles de sport, jeux, jouets, articles de puériculture
+        non classés par ailleurs.
+    code 29-1AF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Manufacture of mechanical components: hydraulic and
+        pneumatic transmissions, turbines, compressors, bearings, dies, punches,
+        moulds and patterns, mechanical transmission parts. Manufacture of
+        engines other than for aircraft, cars and motorcycles. Rebuilding of
+        engines except for aeronautics.'
+      titre.fr:
+        "Fabrication de composants mécaniques : transmissions hydrauliques et
+        pneumatiques, turbines, compresseurs, roulements, matrices, poinçons,
+        moules et modèles, organes mécaniques de transmission. Fabrication de
+        moteurs autres que pour aéronefs, automobiles et motocycles.
+        Reconstruction de moteurs sauf pour l'aéronautique."
+    code 29-1FB:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Manufacture of pumps and valves.'
+      titre.fr: Fabrication de pompes et d'articles de robinetterie.
+    code 29-2FI:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture, installation, maintenance and repair of
+        ventilation and thermal equipment, furnaces and burners, domestic and
+        industrial refrigeration appliances. Manufacture of electrical household
+        appliances.'
+      titre.fr: Fabrication, installation, entretien, réparation de matériels
+        aérauliques et thermiques, de fours et de brûleurs, d'appareils
+        frigorifiques domestiques et industriels. Fabrication d'appareils
+        ménagers électriques.
+    code 29-3DC:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture and/or repair of mobile machinery and systems
+        for: construction, mining, drilling, preparation of ores and materials,
+        agricultural equipment.'
+      titre.fr:
+        "Fabrication et/ou réparation d'engins mobiles et systèmes pour : la
+        construction, les mines, le forage, la préparation des minerais et
+        matériaux, le matériel agricole."
+    code 31-2AG:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture, repair and maintenance of: electrical and
+        industrial electromagnetic equipment, electrical installation equipment,
+        accumulators, insulators, batteries, capacitors, electric lamps,
+        electrical equipment for engines and vehicles. Assembly of small
+        electrical equipment. Repair and maintenance of household equipment.'
+      titre.fr: "Fabrication, réparation, entretien de : matériels électriques,
+        électromagnétiques industriels, appareillages électriques
+        d'installation, accumulateurs, isolateurs, piles, condensateurs, lampes
+        électriques, matériels électriques pour moteurs et véhicules. Montage de
+        petits matériels électriques. Réparation, entretien de matériels
+        ménagers."
+    code 32-1BC:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture, installation, maintenance and repair of:
+        electronic equipment and devices for reception, telephony, recording,
+        medical imaging, components, heating elements. Manufacture,
+        installation, maintenance and repair of office and computer equipment
+        and related activities.'
+      titre.fr:
+        "Fabrication, installation, entretien, réparation de : matériels et
+        appareils électroniques de réception, de téléphonie, d'enregistrement,
+        d'imagerie médicale, de composants, d'éléments chauffants. Fabrication,
+        installation, entretien, réparation de matériel bureautique,
+        informatique et activités connexes."
+    code 33-1BC:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture and repair of medical and surgical equipment,
+        prostheses including dental, precision instruments, optics, watchmaking,
+        laboratory equipment. Enamelling, jewellery, goldsmithing, engraving of
+        medals and coins (excluding trade).'
+      titre.fr:
+        Fabrication, réparation de matériel médico-chirurgical, de prothèses y
+        compris dentaires, d'instruments de précision, d'optique, d'horlogerie,
+        de laboratoire. Emaillage, bijouterie, joaillerie, orfèvrerie, gravage
+        de médailles, de monnaies (hors commerce).
+    code 33-2BK:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture and installation of measuring, metering,
+        signalling, control, safety and regulating devices. Design and
+        installation of control and automated production systems.'
+      titre.fr: Fabrication, installation d'appareils de mesure, de comptage, de
+        signalisation, de contrôle, de sécurité, de régulation. Conception et
+        installation de systèmes de contrôle et de production automatisée.
+    code 34-1ZE:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture of motor vehicles. Branches and subsidiaries
+        of manufacturers.'
+      titre.fr:
+        Construction de véhicules automobiles. Succursales et filiales des
+        constructeurs.
+    code 34-2AB:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture of bodywork, skips and trailers other than
+        for tourism. Manufacture of caravans and recreational vehicles.'
+      titre.fr: Construction de carrosseries, bennes, remorques autres que de
+        tourisme. Fabrication de caravanes et véhicules de loisirs.
+    code 34-3ZE:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Manufacture of equipment, parts, accessories and spare
+        parts for motor vehicles, including bodywork and chassis equipment.'
+      titre.fr:
+        Fabrication d'équipements, de parties, d'accessoires et de pièces
+        détachées pour l'automobile y compris équipements de carrosserie et de
+        châssis.
+    code 35-1BF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en: '[automatic] Construction, repair or painting of steel ships
+        (including specific on-board equipment).'
+      titre.fr:
+        Construction, réparation ou peinture de navires en acier (y compris
+        équipements spécifiques de bord).
+    code 35-1EB:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Construction and repair of wooden and laminated polyester
+        boats.'
+      titre.fr: Fabrication et réparation de navires en bois et en polyester stratifié.
+    code 35-3BC:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Research, manufacture, maintenance, servicing, repair and
+        reconditioning for: aeronautics, aerospace, missiles, armaments,
+        structures, equipment.'
+      titre.fr: 'Recherche, fabrication, entretien, maintenance, réparation,
+        reconditionnement pour : aéronautique, aérospatiale, missiles, armement,
+        structures, équipements.'
+    code 36-1GC:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture and repair of furniture and coffins in wood
+        or similar material, and of musical instruments.'
+      titre.fr:
+        Fabrication et réparation de meubles et de cercueils en bois ou en
+        matière similaire et d'instruments de musique.
+    code 36-1MD:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en:
+        '[automatic] Manufacture and repair of seats, mattresses, bed bases,
+        bedding articles and articles for sailing boats.'
+      titre.fr: Fabrication et réparation de sièges, de matelas et sommiers et
+        d'articles de literie et pour voiliers.
+    code 37-1ZF:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Treatment of industrial, commercial and household waste,
+        recovery, sorting, recycling, material recovery including dismantling,
+        defusing and demolition of munitions.'
+      titre.fr:
+        Traitement des déchets des activités industrielles, économiques et des
+        ménages, récupération, tri, recyclage, valorisation matière y compris
+        démantèlement, désamorçage, démolition de munitions.
+    code 40-1ZE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Statutory employees of the electricity and gas industries.'
+      titre.fr: Agents statutaires des industries électriques et gazières.
+    code 40-1ZF:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Non-statutory employees of the electricity and gas
+        industries.'
+      titre.fr: Salariés non statutaires des industries électriques et gazières.
+    code 40-3ZE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Production and distribution of district heating, building
+        heating operators, energy efficiency operators, energy recovery from
+        waste, urban waste incineration plants.'
+      titre.fr: Production et distribution de chauffage urbain, exploitants de
+        chauffage d'immeubles, opérateurs d'efficacité énergétique, valorisation
+        énergétique des déchets, usine d'incinération de résidus urbains.
+    code 41-0ZA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Water collection, treatment and distribution.'
+      titre.fr: Captage, traitement et distribution de l'eau.
+    code 45-1AA:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Ordinary earthworks and specialised preparatory works
+        (including landscaping except horticulture).'
+      titre.fr:
+        Terrassements courants et travaux préparatoires spécialisés (y compris
+        travaux paysagers sauf horticulture).
+    code 45-2BE:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Other structural works. General building contractors.
+        Metal construction: assembly, lifting. Industrial flue work.'
+      titre.fr: 'Autres travaux de gros œuvre. Entreprise générale du bâtiment.
+        Construction métallique : montage, levage. Fumisterie industrielle.'
+    code 45-2CD:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Civil engineering structures, other specialised
+        infrastructure works (drilling and boring, special foundations,
+        underground works, railway, maritime and river works).'
+      titre.fr:
+        Ouvrages d'art, autres travaux d'infrastructures spécialisés (forages
+        et sondages, fondations spéciales, travaux souterrains, de voies
+        ferrées, maritimes et fluviaux).
+    code 45-2ED:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Construction and maintenance of networks (electricity,
+        water, gas, telecommunications, etc.) and other networks not classified
+        elsewhere.'
+      titre.fr: Construction et entretien de réseaux (électricité, eaux, gaz,
+        télécommunications, etc…) et autres réseaux non classés par ailleurs.
+    code 45-2JD:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Roofing, timber framing and waterproofing works.'
+      titre.fr: Travaux de couverture, de charpente en bois, d'étanchéité.
+    code 45-2PB:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Construction and maintenance of roads (including sports
+        surfaces and paving). Manufacture of asphalt or coated products (with
+        transport and laying).'
+      titre.fr:
+        Construction et entretien de chaussées (y compris sols sportifs et
+        pavage). Fabrication de produits asphaltés ou enrobés (avec transport et
+        mise en œuvre).
+    code 45-3AA:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Companies specialising in the installation of electrical
+        machines in factories and industrial establishments.'
+      titre.fr:
+        Entreprises spécialisées dans l'installation de machines électriques
+        dans les usines et établissements industriels.
+    code 45-3AF:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Plumbing, heating, ventilation and air-conditioning, and
+        electrical works, other technical installation works not classified
+        elsewhere.'
+      titre.fr: Travaux de plomberie, de génie climatique, d'électricité, autres
+        travaux d'installation technique non classés par ailleurs.
+    code 45-4CE:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Exterior joinery works.'
+      titre.fr: Travaux de menuiserie extérieure.
+    code 45-4LE:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Insulation works, finishing works (interior fitting-out
+        works).'
+      titre.fr:
+        Travaux d'isolation, travaux de finitions (travaux d'aménagements
+        intérieurs).
+    code 45-4MC:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Workshops of construction and public works companies
+        under CTN B and attached to risk numbers 45.2BE, 45.2JD, 45.3AF, 45.4CE
+        and 45.4LE.'
+      titre.fr:
+        Ateliers des entreprises du bâtiment et des travaux publics relevant
+        du CTN B et rattachées aux numéros de risque 45.2BE, 45.2JD, 45.3AF,
+        45.4CE et 45.4LE.
+    code 45-5ZB:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en:
+        '[automatic] Maintenance, repair, rental and assembly of equipment for
+        construction and public works.'
+      titre.fr: Entretien, réparation, location et montage de matériel pour le
+        bâtiment et les travaux publics.
+    code 50-1ZF:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Import, trade, maintenance and repair of branded motor
+        vehicles (importers, dealers, agents, approved repairers), independent
+        trade and repair (except 502ZH and 341ZE). Manufacture, repair and trade
+        of motorcycles, cycles and various vehicles (including parts and
+        equipment). Automotive electrics.'
+      titre.fr:
+        Importation, commerce, entretien, réparation de véhicules automobiles
+        de marque (importateurs, concessionnaires, agents, réparateurs agréés),
+        commerce et réparation indépendante (à l'exception des 502ZH et 341ZE).
+        Fabrication, réparation, commerce de motocycles, cycles et véhicules
+        divers (y compris pièces et équipements). Electricité automobile.
+    code 50-2ZH:
+      description.en: '[automatic] METALLURGICAL INDUSTRIES'
+      description.fr: INDUSTRIES DE LA MÉTALLURGIE
+      titre.en:
+        '[automatic] Breakdown service and towing of motor vehicles (without
+        repair workshop and not attached to a garage). Mechanics-repairers not
+        belonging to a car brand network. Manufacture, or manufacture combined
+        with repair, of joinery, sheet metal, upholstery and specialised car
+        painting. Recovery of recyclable metal materials.'
+      titre.fr: Dépannage, remorquage de véhicules automobiles (sans atelier de
+        réparation et non annexé à un garage). Mécaniciens-réparateurs
+        n'appartenant pas à un réseau de marque automobile. Fabrication ou
+        fabrication associée à la réparation de menuiserie, tôlerie, sellerie,
+        peintures spécialisées de voitures. Récupération de matières métalliques
+        recyclables.
+    code 50-3AD:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Sale and rental of motor vehicles and associated
+        equipment, agricultural machinery and equipment. Driving schools. Car
+        park operation.'
+      titre.fr: Commerce et location de véhicules automobiles et d'équipements
+        associés, de machines et équipements agricoles. Ecoles de conduite.
+        Exploitation de parkings.
+    code 50-5ZB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Trade in fuels, coal, motor fuels and automatic car washes.'
+      titre.fr: Commerce de combustibles, charbons, carburants et lavages automatiques.
+    code 51-1NB:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Intermediaries in the trade of agricultural and food
+        products and mail-order sales without handling, delivery, storage or
+        packaging.'
+      titre.fr:
+        Intermédiaires de commerce en produits agricoles et alimentaires et
+        vente par correspondance sans manutention, ni livraison, ni stockage, ni
+        conditionnement.
+    code 51-1RB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Wholesale without handling. Purchasing centres and
+        non-food trade intermediaries.'
+      titre.fr: Commerce de gros sans manutention. Centrales d'achats et
+        intermédiaires du commerce non alimentaire.
+    code 51-1TG:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Travelling salespeople, representatives, non-exclusive
+        canvassers (working for several employers).'
+      titre.fr:
+        Voyageurs de commerce, représentants, placier non exclusif (au service
+        de plusieurs employeurs).
+    code 51-1TH:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Employees of an employer with no establishment in France,
+        referred to in article L 243-1-2 of the social security code.'
+      titre.fr:
+        Salariés d'un employeur ne comportant pas d'établissement en France,
+        visé à l'article L 243-1-2 du code de la sécurité sociale.
+    code 51-3TC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Non-specialised food wholesale (business-to-business
+        trade).'
+      titre.fr: Commerce de gros (commerce interentreprises) alimentaire non spécialisé.
+    code 51-5CC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Trade in metals, second-hand goods and non-food trade on
+        stalls and markets.'
+      titre.fr:
+        Commerce de métaux, de biens d'occasion et commerce non alimentaire
+        sur éventaires et marchés.
+    code 51-5EG:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Timber trade.'
+      titre.fr: Commerce du bois.
+    code 51-5FA:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Wholesale of construction materials.'
+      titre.fr: Commerce de gros de matériaux de construction.
+    code 51-6GC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Wholesale and rental of office equipment, household
+        appliances, multimedia and computer equipment.'
+      titre.fr:
+        Commerce de gros et location de matériel de bureau, électroménager,
+        multimédia et informatique.
+    code 51-6KC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Wholesale of industrial and household equipment, personal
+        equipment and pharmaceutical products.'
+      titre.fr:
+        Commerce de gros d'équipement industriel et de la maison, d'équipement
+        de la personne et de produits pharmaceutiques.
+    code 51-6LC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Trade intermediaries with handling. Wholesale of chemical
+        and other products.'
+      titre.fr: Intermédiaires du commerce avec manutention. Commerce de gros de
+        produits chimiques et autres.
+    code 51-6NC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Wholesale or rental of construction (building and public
+        works) and agricultural equipment.'
+      titre.fr:
+        Commerce de gros ou location de matériel de construction (bâtiment et
+        travaux publics) et agricole.
+    code 52-1BC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Retail sale of dairy products, frozen products, fruit and
+        vegetables, beverages and general groceries.'
+      titre.fr:
+        Commerce de détail de produits laitiers, de produits surgelés, de
+        fruits et légumes, de boissons et d'alimentation générale.
+    code 52-1FB:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Large and medium-sized retail and Drive - Vending machine
+        sales.'
+      titre.fr: Grande et moyenne distribution et Drive - Vente par automate.
+    code 52-2CB:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Retail sale of meat, fish, artisanal delicatessen
+        including caterers and event organisers.'
+      titre.fr:
+        Commerce de détail de viandes, poissons, charcuterie artisanale y
+        compris traiteurs, organisateurs de réception.
+    code 52-3AC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Retail sale of pharmaceutical products, medical and
+        orthopaedic articles, optical and photographic goods, perfumery and
+        beauty products.'
+      titre.fr:
+        Commerce de détail de produits pharmaceutiques, d'articles médicaux et
+        orthopédiques, d'optique et photographiques, de parfumerie et de
+        produits de beauté.
+    code 52-4CD:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        "[automatic] Retail sale of clothing, textiles, footwear and leather
+        goods. Distance selling. Trade in jewellery, watches and goldsmiths'
+        wares."
+      titre.fr: Commerce de détail de l'habillement, textiles, chaussures,
+        maroquinerie. Vente à distance. Commerce de bijouterie, d'horlogerie, et
+        d'orfèvrerie.
+    code 52-4HC:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Department stores, multi-shop or variety stores,
+        furniture and home decoration shops.'
+      titre.fr:
+        Grands magasins, magasins multi-commerces ou magasins populaires,
+        commerces de meubles et de décoration de la maison.
+    code 52-4LA:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Retail sale and rental of household appliances,
+        multimedia and computer equipment.'
+      titre.fr:
+        Commerce de détail et location de matériel électroménager, multimédia,
+        informatique.
+    code 52-4PB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] DIY retail (sales area of 400 m2 or more).'
+      titre.fr:
+        Commerce de détail de bricolage (surface de vente supérieure ou égale
+        à 400 m2).
+    code 52-4RB:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Newspaper hawkers and newspaper deliverers referred to in
+        article L. 311-3 (18°) of the social security code.'
+      titre.fr:
+        Vendeurs colporteurs de presse, porteurs de presse visés à l'article
+        L. 311-3 (18°) du code de la sécurité sociale.
+    code 52-4WA:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Retail sale and associated rental of sports and leisure
+        articles, including cycles.'
+      titre.fr:
+        Commerce de détail et location associée d'articles de sport et de
+        loisirs, y compris cycles.
+    code 52-4XB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Trade in flowers and pets.'
+      titre.fr: Commerce de fleurs et d'animaux d'agrément.
+    code 52-4ZD:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Retail sale of hardware and household goods (sales area
+        under 400 m2), ceramic furnishings, tableware, toys, musical
+        instruments, and others.'
+      titre.fr:
+        Commerce de détail de quincaillerie et de droguerie (surface de vente
+        inférieure à 400 m2), céramique mobilière, arts de la table, jouets,
+        instruments de musique, et autres.
+    code 52-6GA:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Door-to-door sellers referred to in article L. 311-3
+        (20°) of the social security code.'
+      titre.fr:
+        Vendeurs à domicile visés à l'article L. 311-3 (20°) du code de la
+        sécurité sociale.
+    code 52-7AC:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Other leather industries.'
+      titre.fr: Autres industries du cuir.
+    code 55-2EC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Accommodation facilities with light or developed equipment.'
+      titre.fr: Installations d'hébergement à équipements légers ou développés.
+    code 55-3AC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Restaurants, café-tobacconists, hotels with or without
+        restaurant, and hostels.'
+      titre.fr: Restaurants, café-tabac, hôtels avec ou sans restaurant et foyers.
+    code 55-3BC:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en:
+        '[automatic] Fast-food restaurants, including sleeping cars and dining
+        cars.'
+      titre.fr: Restauration type rapide y compris wagons-lits et wagons-restaurants.
+    code 55-5AA:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Catering for institutions.'
+      titre.fr: Restauration collective.
+    code 60-1ZA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Rail transport.'
+      titre.fr: Transport ferroviaire.
+    code 60-2BD:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Land passenger transport, including by taxi.'
+      titre.fr: Transports terrestres de voyageurs, y compris par taxi.
+    code 60-2CA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Cable cars, ski lifts.'
+      titre.fr: Téléphériques, remontées mécaniques.
+    code 60-2MG:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Road freight transport. Rental of vehicles with driver.'
+      titre.fr: Transports routiers de marchandises. Location de véhicules avec
+        chauffeur.
+    code 60-2NA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Removals and furniture storage.'
+      titre.fr: Déménagement et garde-meubles.
+    code 62-1ZC:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Scheduled and non-scheduled air transport: flight and
+        ground staff. Airport services.'
+      titre.fr:
+        'Transports aériens réguliers et non réguliers : personnel navigant et
+        non navigant. Services aéroportuaires.'
+    code 63-1AZ:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        "[automatic] Intermittent dock workers, subject to the 'vignette'
+        scheme, carrying out loading, unloading or cargo handling operations,
+        whatever the classification of the company employing them."
+      titre.fr: Ouvriers dockers maritimes intermittents, soumis au régime de la
+        vignette, et effectuant quel que soit le classement de l'entreprise qui
+        les emploie, des opérations de chargement, de déchargement ou de
+        manutention de marchandises.
+    code 63-1BE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Handling, loading, unloading and storage of goods or
+        freight in sea and river ports and airports.'
+      titre.fr:
+        Manutention, chargement, déchargement, entreposage de marchandises ou
+        fret dans les ports maritimes et fluviaux, et les aéroports.
+    code 63-1DA:
+      description.en: '[automatic] FOOD SERVICES, TRADE AND INDUSTRIES'
+      description.fr: SERVICES, COMMERCES ET INDUSTRIES DE L'ALIMENTATION
+      titre.en: '[automatic] Refrigerated warehousing.'
+      titre.fr: Entreposage frigorifique.
+    code 63-1EE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Non-refrigerated warehousing and storage not connected to
+        a waterway. Storage of bulk liquids.'
+      titre.fr:
+        Entreposage et stockage non frigorifique non reliés à une voie d'eau.
+        Entreposage de liquides en vrac.
+    code 63-2CF:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Water transport of goods and passengers, and auxiliary
+        services.'
+      titre.fr: Transports par eau de marchandises et de passagers, et services
+        auxiliaires.
+    code 63-3ZC:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Travel agencies. Tourist offices.'
+      titre.fr: Agences de voyage. Offices de tourisme.
+    code 63-4AA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Groupage companies carrying out, directly or not, the
+        collection or home delivery of goods, parcel services, express freight.'
+      titre.fr:
+        Entreprises de groupage effectuant directement ou non l'enlèvement ou
+        la livraison à domicile des marchandises, messagerie, fret express.
+    code 63-4CI:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Chartering and organisation of sea, road or air
+        transport. Bus stations and operation of toll roads.'
+      titre.fr:
+        Affrètement et organisation des transports maritimes, routiers ou
+        aériens. Gares routières et exploitation d'ouvrages routiers à péage.
+    code 64-1AA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Postal and financial services.'
+      titre.fr: Services postaux et financiers.
+    code 64-1CA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Other mail activities: activities other than those
+        carried out by La Poste. - Conveyance of mail, letters and parcels,
+        generally by express. - Urban courier and goods taxi activities.'
+      titre.fr:
+        'Autres activités de courrier : activités autres que celles exercées
+        par La Poste. - Acheminement du courrier, lettre, colis généralement en
+        express. - Activités de coursiers urbains et taxis-marchandises.'
+    code 64-2BB:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Telecommunications activities, including remote
+        monitoring (without on-site intervention staff).'
+      titre.fr: Activités de télécommunications, y compris les activités de
+        télésurveillance (sans personnel d'intervention sur le site surveillé).
+    code 65-1AB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Financial institutions and auxiliaries - Commodity
+        exchange.'
+      titre.fr: Organismes et auxiliaires financiers - Bourse de commerce.
+    code 66-0AB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Insurance and insurance auxiliaries.'
+      titre.fr: Assurances et auxiliaires d'assurances.
+    code 70-3AD:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Development, sale, rental or management of real estate.'
+      titre.fr: Promotion, vente, location ou administration de biens immobiliers.
+    code 70-3CB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en: '[automatic] Caretakers and building employees.'
+      titre.fr: Concierges et employés d'immeubles.
+    code 71-4AB:
+      description.en: '[automatic] NON-FOOD TRADE'
+      description.fr: COMMERCES NON ALIMENTAIRES
+      titre.en:
+        '[automatic] Rental of consumer goods (furniture, linen, tarpaulins,
+        bags, etc.) and other capital goods.'
+      titre.fr:
+        Location de biens de consommation (mobiliers, linges, bâches, sacs,
+        etc.) et d'autres biens d'équipements.
+    code 71-4AC:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Wholesale laundry and dyeing, including rental of
+        laundered linen and work clothes.'
+      titre.fr:
+        Blanchisserie et teinturerie de gros, y compris la location de linge
+        et vêtements professionnels blanchis.
+    code 72-3ZA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Contract IT work.'
+      titre.fr: Travaux informatiques à façon.
+    code 73-1ZB:
+      description.en: '[automatic] CHEMICAL, RUBBER AND PLASTICS INDUSTRIES'
+      description.fr: INDUSTRIES DE LA CHIMIE, DU CAOUTCHOUC ET DE LA PLASTURGIE
+      titre.en: '[automatic] Expert chemistry. Chemical research laboratories.'
+      titre.fr: Chimie expert. Laboratoires de recherches chimiques.
+    code 73-1ZE:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Scientific and technical research establishments.'
+      titre.fr: Etablissements de recherche scientifique et technique.
+    code 74-1GB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Employer groups. Business and employment cooperatives.
+        Miscellaneous services provided mainly to businesses, not specified
+        elsewhere.'
+      titre.fr: Groupements d'employeurs. Coopératives d'activité et d'emploi.
+        Services divers rendus principalement aux entreprises non désignés par
+        ailleurs.
+    code 74-1GD:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Equipment and real estate leasing, patent licensing. Law
+        firms and public or ministerial offices. Chartered accountancy and
+        financial analysis firms. IT and organisation consultancy firms.'
+      titre.fr:
+        Crédit-bail mobilier et immobilier, location de brevets. Cabinets
+        juridiques et offices publics ou ministériels. Cabinets d'expertise
+        comptable et d'analyse financière. Cabinets d'études informatiques et
+        d'organisation.
+    code 74-1JB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Holding companies. Information and documentation
+        consultancy firms. Economic, sociological and merchandising research
+        firms.'
+      titre.fr: Holdings. Cabinets de conseils en information et documentation.
+        Cabinets d'études économiques, sociologiques, marchandisage.
+    code 74-2CB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Technical consultancy firms: patent agencies, appraisals,
+        art appraisals. - Experts responsible for assessing damage (or risks).'
+      titre.fr: "Cabinets d'études techniques : agences de brevets, expertises,
+        expertises en œuvre d'art. - Expert chargé d'évaluer les dommages (ou
+        les risques)."
+    code 74-2CE:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Architectural project design including decoration,
+        construction engineering (including surveying, quantity surveying,
+        health and safety, etc.).'
+      titre.fr:
+        Conception de projets architecturaux y compris décoration, ingénierie
+        du BTP (y compris topographie, métrés, hygiène et sécurité, etc…).
+    code 74-3BA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Testing offices, test benches.'
+      titre.fr: Bureaux d'essais, bancs d'essais.
+    code 74-4BB:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Advertising creators and intermediaries: advertising
+        agencies. Press agencies, including freelance journalists and
+        photographers.'
+      titre.fr:
+        'Créateurs et intermédiaires de publicité : régies publicitaires.
+        Agences de presse y compris journalistes et photographes indépendants.'
+    code 74-5BC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Permanent staff of temporary employment agencies.'
+      titre.fr: Personnel permanent des entreprises de travail temporaire.
+    code 74-5BD:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] All categories of temporary agency staff.'
+      titre.fr: Toutes catégories de personnel de travail temporaire.
+    code 74-5BE:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Temporary work: office staff and paramedical staff.'
+      titre.fr: 'Travail temporaire : personnel de bureau et personnel paramédical.'
+    code 74-6ZA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Private investigation agencies, security companies
+        (without cash transport).'
+      titre.fr: Agences privées de recherches, entreprises de surveillance (sans
+        transports de fonds).
+    code 74-6ZB:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Cash transport and secure services.'
+      titre.fr: Transports de fonds et services sécurisés.
+    code 74-7ZE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Companies carrying out work related to rail transport
+        companies, including handling in railway stations. Companies cleaning
+        rolling stock on railway premises.'
+      titre.fr: Entreprises de travaux connexes aux sociétés de transports
+        ferroviaires y compris la manutention dans les gares ferroviaires.
+        Entreprises de nettoyage de matériel roulant sur les emprises de chemin
+        de fer.
+    code 74-7ZF:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Cleaning services for premises and various objects.
+        Disinfection, insect control and pest control activities.'
+      titre.fr: Services de nettoyage de locaux et d'objets divers. Activités de
+        désinfection, de désinsectisation et de dératisation.
+    code 74-8DA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Non-specialised packaging companies.'
+      titre.fr: Entreprises de conditionnement non spécialisées.
+    code 74-8GB:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Conveyance and distribution of free or paid newspapers.'
+      titre.fr: Acheminement et distribution de presse gratuite ou payante.
+    code 74-8KC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Various contract work except patent licensing, storage of
+        company archives (including archive consultation). Ionisation of various
+        products.'
+      titre.fr: Travaux à façon divers sauf la location de brevets, entreposage
+        d'archives d'entreprises (y compris la consultation d'archives).
+        Ionisation de produits divers.
+    code 75-1AG:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Central administration and external services of public
+        administrations (including their public establishments). Foreign
+        diplomatic representation in France. International organisations. -
+        Allied armed forces services.'
+      titre.fr:
+        Administration centrale et services extérieurs des administrations (y
+        compris leurs établissements publics). Représentation diplomatique
+        étrangère en France. Organismes internationaux. - Service des armées
+        alliées.
+    code 75-1BA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Local authorities (municipal, departmental, regional,
+        etc.) including their public establishments, excluding the medico-social
+        sector.'
+      titre.fr:
+        Collectivités territoriales (communales, départementales, régionales…)
+        y compris leurs établissements publics hors secteur médico-social.
+    code 75-1CC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Public medico-social establishments of local authorities.'
+      titre.fr: Etablissements publics médico-sociaux des collectivités territoriales.
+    code 75-1CD:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Paid home care of children, elderly people or disabled
+        adults placed by public bodies, charities, establishments or care
+        services.'
+      titre.fr:
+        Accueil à domicile à titre onéreux, d'enfants, de personnes âgées ou
+        d'adultes handicapés confiés par des organismes publics, des œuvres, des
+        établissements ou des services de soins.
+    code 75-1CE:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Hospital administration, including its public
+        establishments.'
+      titre.fr: Administration hospitalière, y compris ses établissements publics.
+    code 75-2EE:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Prisoners, whatever the activity carried out.'
+      titre.fr: Personnes détenues, quelle que soit l'activité exercée.
+    code 75-3AA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] General social security activities.'
+      titre.fr: Activités générales de sécurité sociale.
+    code 75-3BB:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Unemployment insurance and other income maintenance
+        guarantees, including the national over-compensation fund for
+        construction and public works and pension funds not subject to insurance
+        legislation.'
+      titre.fr: Couverture du risque chômage et autres garanties du maintien de
+        revenu, y compris la caisse nationale de surcompensation du bâtiment et
+        des travaux publics et caisses de retraite ne relevant pas de la
+        législation sur les assurances.
+    code 75-3CA:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Supplementary allowances to social security daily
+        benefits paid either by provident institutions or by employers: building
+        (structural work) and public works activities.'
+      titre.fr:
+        'Allocations complémentaires aux indemnités journalières de sécurité
+        sociale versées soit par des organismes de prévoyance soit par des
+        employeurs : activités de bâtiment (gros œuvre) et travaux publics.'
+    code 75-3CB:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Supplementary allowances to social security daily
+        benefits paid either by provident institutions or by employers: other
+        activities.'
+      titre.fr:
+        'Allocations complémentaires aux indemnités journalières de sécurité
+        sociale versées soit par des organismes de prévoyance soit par des
+        employeurs : autres activités.'
+    code 75-3CC:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Paid leave funds in ports and in certain handling and
+        transport companies (regarding the allowances paid by these bodies).'
+      titre.fr:
+        Caisses de congés payés dans les ports et dans certaines entreprises
+        de manutention et de transports (en ce qui concerne les indemnités
+        versées par ces organismes).
+    code 80-1ZA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en:
+        '[automatic] Teaching and administrative staff of private educational
+        establishments and training organisations.'
+      titre.fr: Personnel enseignant et administratif des établissements
+        d'enseignement privés et des organismes de formation.
+    code 80-2AA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Pupils and students of public or private secondary,
+        higher or specialised educational establishments referred to in article
+        L. 412-8 (2°, b) of the social security code.'
+      titre.fr: Elèves et étudiants des établissements publics ou privés
+        d'enseignement secondaire, supérieur ou spécialisé visés à l'article L.
+        412-8 (2°, b) du code de la sécurité sociale.
+    code 80-2CA:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: '[automatic] Pupils and students of public and private technical
+        educational establishments referred to in article L. 412-8 (2°, a) of
+        the social security code.'
+      titre.fr: Elèves et étudiants des établissements publics et privés
+        d'enseignement technique visés à l'article L. 412-8 (2°, a) du code de
+        la sécurité sociale.
+    code 85-1AC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Private medical care services exclusively at home.'
+      titre.fr: Services de soins privés médicaux exclusivement à domicile.
+    code 85-1AD:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Private care establishments including functional
+        rehabilitation centres, other health institutes (spas, etc.).'
+      titre.fr:
+        Etablissements de soins privés y compris les centres de réadaptation
+        fonctionnelle, autres instituts pour la santé (établissements thermaux,
+        etc.).
+    code 85-1CB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Systematic and screening medicine (including
+        inter-company occupational health centres).'
+      titre.fr: Médecine systématique et de dépistage (y compris les centres
+        interentreprises de médecine du travail).
+    code 85-1CD:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Medical and dental practices.'
+      titre.fr: 'Cabinets de soins : médicaux et dentaires.'
+    code 85-1GA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Paramedical practices.'
+      titre.fr: Cabinets d'auxiliaires médicaux.
+    code 85-1JA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Ambulances.'
+      titre.fr: Ambulances.
+    code 85-1KA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Non-hospital medical analysis laboratories.'
+      titre.fr: Laboratoires d'analyses médicales extrahospitaliers.
+    code 85-2ZB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Blood transfusion centres and organ banks. Veterinarians.
+        Veterinary clinics.'
+      titre.fr:
+        Centres de transfusion sanguine et banques d'organes. Vétérinaires.
+        Cliniques vétérinaires.
+    code 85-3AB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Home social assistance services (carers, home helps, etc.).'
+      titre.fr: Services d'aide sociale à domicile (auxiliaires de vie, aides
+        ménagères…).
+    code 85-3AC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Residential care for elderly people (retirement homes,
+        etc.).'
+      titre.fr:
+        Accueil, hébergement en établissement pour personnes âgées (maisons de
+        retraite…).
+    code 85-3AD:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Residential care for disabled people (children and adults).'
+      titre.fr: Accueil, hébergement en établissement pour personnes handicapées
+        (enfants et adultes).
+    code 85-3AE:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Reception, accommodation and prevention for early
+        childhood, childhood and adolescence.'
+      titre.fr: Accueil, hébergement, prévention pour petite enfance, l'enfance,
+        l'adolescence.
+    code 85-3BA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Social action in all its forms excluding risks
+        853AB/853AC/853AD/853AE.'
+      titre.fr: Action sociale sous toutes ses formes hors risques
+        853AB/853AC/853AD/853AE.
+    code 85-3CA:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en: '[automatic] Paid home care of children on behalf of private
+        individuals, and of elderly people or disabled adults at their own
+        request or on behalf of private individuals.'
+      titre.fr: Accueil à domicile, à titre onéreux, d'enfants pour le compte de
+        particuliers et de personnes âgées ou d'adultes handicapés sur leur
+        propre demande ou pour le compte de particuliers.
+    code 85-3HA:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Trainees in vocational training, functional
+        rehabilitation and vocational rehabilitation centres.'
+      titre.fr:
+        Stagiaires des centres de formation professionnelle, de réadaptation
+        fonctionnelle, de rééducation professionnelle.
+    code 85-3HB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Disabled workers in sheltered employment establishments
+        or services (ESAT).'
+      titre.fr:
+        Travailleurs handicapés des établissements ou services d'aide par le
+        travail.
+    code 85-3KL:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Intermediary associations (unemployed people made
+        available to employers).'
+      titre.fr:
+        Association intermédiaire (personnes dépourvues d'emploi et mises à
+        disposition).
+    code 90-0AA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Sanitation services (except those under number 74.7ZF).
+        Collection and treatment of wastewater.'
+      titre.fr:
+        Services d'assainissement (sauf ceux visés sous le numéro 74.7ZF).
+        Collecte et traitement des eaux usées.
+    code 90-0BF:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Collection of household or business waste, hazardous or
+        non-hazardous. Street cleaning, sweeping, washing.'
+      titre.fr: Collecte des déchets ménagers ou d'activités, dangereux ou non
+        dangereux. Nettoiement de voirie-balayage, lavage.
+    code 91-1AA:
+      description.en: '[automatic] CONSTRUCTION AND PUBLIC WORKS INDUSTRIES'
+      description.fr: INDUSTRIES DU BATIMENT ET DES TRAVAUX PUBLICS
+      titre.en: '[automatic] Paid leave funds for construction and public works
+        (regarding the allowances paid by these bodies).'
+      titre.fr:
+        Caisses de congés payés du bâtiment et des travaux publics (en ce qui
+        concerne les indemnités versées par ces organismes).
+    code 91-1AE:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Paid leave funds for the performing arts (regarding the
+        allowances paid by these bodies).'
+      titre.fr: Caisses des congés payés des spectacles (en ce qui concerne les
+        indemnités versées par ces organismes).
+    code 91-3EA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Cultural and socio-educational associations not managing
+        facilities.'
+      titre.fr: Associations culturelles et socio-éducatives ne gérant pas d'équipements.
+    code 91-3EJ:
+      description.en: '[automatic] SERVICE ACTIVITIES I'
+      description.fr: ACTIVITÉS DE SERVICES I
+      titre.en: "[automatic] Activities of chambers of commerce and employers'
+        organisations, professional organisations, trade unions, religious
+        organisations, political organisations and associations not classified
+        elsewhere."
+      titre.fr: Activités des organisations consulaires et patronales, des
+        organisations professionnelles, des syndicats de salariés, des
+        organisations religieuses, des organisations politiques et des
+        organisations associatives non classées ailleurs.
+    code 92-1CC:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Production of films and programmes for cinema,
+        television, radio, etc. Sound recording and music publishing. Film
+        distribution and projection. Photographic activities (excluding press
+        agencies). Management of performing arts activities and of cultural and
+        socio-educational activities.'
+      titre.fr:
+        Production de films et de programmes pour le cinéma, la télévision, la
+        radiodiffusion, etc. … Enregistrement sonore et édition musicale.
+        Distribution et projection de films. Activités photographiques (hors
+        agences de presse). Gestion d'activités de spectacles et gestion
+        d'activités culturelles et socio-éducatives.
+    code 92-3AD:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Literary and artistic creation and performance (including
+        artists). Ancillary services to the performing arts (all intermittent
+        performing arts workers).'
+      titre.fr:
+        Création et interprétation littéraires et artistiques (y compris les
+        artistes). Services annexes des spectacles (tout intermittent du
+        spectacle).
+    code 92-6AA:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Management of sports facilities and centres (staff not
+        covered elsewhere, in particular under risks 92.6CH and 92.6CI).'
+      titre.fr:
+        Gestion d'équipements et centres sportifs (personnel non visé par
+        ailleurs et notamment aux risques 92.6CH et 92.6CI).
+    code 92-6CG:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en: '[automatic] Sports associations or clubs not managing facilities.'
+      titre.fr: Associations ou sociétés sportives ne gérant pas d'équipements.
+    code 92-6CH:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Professional athletes, including player-coaches, whatever
+        the classification of the establishment employing them: rugby, climbing,
+        motorcycling, handball, basketball, hockey, horse riding, volleyball,
+        football, skiing, cycling.'
+      titre.fr:
+        "Sportifs professionnels, y compris entraîneurs joueurs, quel que soit
+        le classement de l'établissement qui les emploie : rugby, escalade,
+        moto, handball, basket, hockey, équitation, volley-ball, football, ski,
+        cyclisme."
+    code 92-6CI:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Professional athletes in sports not covered elsewhere,
+        also including non-player coaches of the sports covered by 926CH,
+        whatever the classification of the establishment employing them,
+        referees and judges.'
+      titre.fr: Sportifs professionnels, pour les sports non visés par ailleurs,
+        incluant également les entraîneurs non joueurs des sports visés par le
+        926CH, quel que soit le classement de l'établissement qui les emploie,
+        arbitres et juges.
+    code 92-7AB:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Organisation of gambling and betting (including horse
+        races and bullfights).'
+      titre.fr:
+        Organisation de jeux de hasard et d'argent (dont courses de chevaux et
+        de taureaux).
+    code 92-7CC:
+      description.en: '[automatic] TRANSPORT, WATER, GAS, ELECTRICITY, BOOK AND
+        COMMUNICATION INDUSTRIES'
+      description.fr:
+        INDUSTRIES DES TRANSPORTS, DE L'EAU, DU GAZ, DE L'ÉLECTRICITE,
+        DU LIVRE ET DE LA COMMUNICATION
+      titre.en:
+        '[automatic] Fairground attractions with or without assembly of rides
+        or marquees, and other entertainment and recreational services.'
+      titre.fr:
+        Attractions foraines avec et sans montage de manèges ou de chapiteaux,
+        et autres spectacles et services récréatifs.
+    code 93-0BA:
+      description.en:
+        '[automatic] WOOD, FURNITURE, PAPER AND CARDBOARD, TEXTILE,
+        CLOTHING, LEATHER AND HIDES, AND STONE AND FIRECLAY INDUSTRIES'
+      description.fr: INDUSTRIES DU BOIS, DE L'AMEUBLEMENT, DU PAPIER-CARTON, DU
+        TEXTILE, DU VÊTEMENT, DES CUIRS ET DES PEAUX ET DES PIERRES ET TERRES A
+        FEU
+      titre.en: '[automatic] Retail laundry and dry cleaning, including launderettes.'
+      titre.fr: Blanchisserie et teinturerie de détail, y compris laverie automatique.
+    code 93-0DB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en: '[automatic] Hairdressing. Manufacture of hairpieces. Beauty care.'
+      titre.fr: Coiffure. Fabrication de postiches. Esthétique corporelle.
+    code 93-0HB:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Funeral services and related services, including the sale
+        of funeral articles.'
+      titre.fr:
+        Pompes funèbres et services annexes, y compris le commerce d'articles
+        funéraires.
+    code 93-0NC:
+      description.en: '[automatic] SERVICE ACTIVITIES II'
+      description.fr: ACTIVITÉS DE SERVICES II
+      titre.en:
+        '[automatic] Miscellaneous personal services (including graphology
+        firms, matchmaking agencies).'
+      titre.fr:
+        Services personnels divers (y compris cabinets de graphologie, agences
+        matrimoniales).
+    code 95-0ZA:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Any person employed exclusively in the service of private
+        individuals: domestic workers (cleaner, linen maid, seamstress, day
+        laundress, private chauffeur).'
+      titre.fr:
+        'Toute personne occupée exclusivement au service de particuliers :
+        employés de maison (femme de ménage, lingère, couturière, blanchisseuse
+        à la journée, chauffeur de maître).'
+    code 95-0ZC:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Any person carrying out short-term work on behalf of
+        private individuals: office or similar work.'
+      titre.fr:
+        'Toute personne effectuant des travaux de courte durée pour le compte
+        de particuliers : travaux de bureaux ou assimilables.'
+    code 95-0ZD:
+      description.en:
+        '[automatic] CATEGORIES OF WORKERS REFERRED TO IN ARTICLE D.
+        242-6-22 OF THE SOCIAL SECURITY CODE'
+      description.fr:
+        CATÉGORIES DE TRAVAILLEURS VISÉS L'ARTICLE D. 242-6-22 DU CODE
+        DE LA SÉCURITÉ SOCIALE
+      titre.en:
+        '[automatic] Any person carrying out short-term work on behalf of
+        private individuals: industrial work (generally in building trades).'
+      titre.fr:
+        'Toute personne effectuant des travaux de courte durée pour le compte
+        de particuliers : travaux industriels (relevant généralement de
+        professions du bâtiment).'
+  question.en: '[automatic] What field of activity does your company belong to?'
+  question.fr: De quel domaine d'activité dépend votre entreprise ?
+  titre.en: '[automatic] risk code'
+  titre.fr: code risque
 établissement . commune:
   avec:
     code postal:
@@ -3524,18 +5570,6 @@ situation personnelle . domiciliation fiscale à l'étranger:
   titre.en: '[automatic] commune'
   titre.fr: commune
 établissement . taux ATMP:
-  avec:
-    taux collectif:
-      note.en:
-        '[automatic] Collective rates specific to the Alsace-Moselle scheme are
-        not implemented'
-      note.fr:
-        Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
-        implémentés
-      question.en: '[automatic] What business is your company in?'
-      question.fr: De quel domaine d'activité dépend votre entreprise ?
-      titre.en: '[automatic] collective rate'
-      titre.fr: taux collectif
   description.en: >
     [automatic] The AT/MP contribution rate is determined for each establishment
     on the basis of the following factors
@@ -3579,3 +5613,11 @@ situation personnelle . domiciliation fiscale à l'étranger:
   question.fr: Quel est le taux de la cotisation AT/MP pour l'établissement ?
   titre.en: '[automatic] ATMP rate'
   titre.fr: taux ATMP
+établissement . taux ATMP . taux collectif:
+  note.en:
+    '[automatic] The specific collective rates of the Alsace-Moselle scheme
+    are not implemented'
+  note.fr: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
+    implémentés
+  titre.en: '[automatic] collective rate'
+  titre.fr: taux collectif
