@@ -9,6 +9,7 @@
 - Calcul de la Lodeom à Mayotte
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
+- Taux collectifs AT/MP 2026 par code risque : la règle `établissement . taux ATMP . code risque` permet de choisir le domaine d'activité, dont `établissement . taux ATMP . taux collectif` déduit le taux (le taux moyen reste la valeur par défaut, et `taux collectif` peut toujours être saisi directement)
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026

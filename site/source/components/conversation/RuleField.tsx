@@ -20,7 +20,6 @@ import RuleInput from './RuleInput'
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'
 const RADIO_GROUP = '<RadioGroup />'
-const SELECT_ATMP = '<SelectAtmp />'
 const SELECT_COMMUNE = '<SelectCommune />'
 const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
@@ -31,9 +30,6 @@ function getRuleFieldNature(
 	value: ValeurPublicodes | undefined
 ): string {
 	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
-
-	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
-		return SELECT_ATMP
 
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 

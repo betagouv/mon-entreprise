@@ -306,12 +306,6 @@ components:
         aria-label: Lire la documentation sur {{ règle }}
         texte: Lire la documentation
       références: Liens utiles
-  select-taux-risque:
-    aria-label:
-      card: "{{nature}} ({{taux}}), sélectionner ce taux"
-      field: Votre domaine d’activité
-    no-result: Aucun résultat
-    placeholder: Saisissez votre domaine d’activité
   simulateur:
     conseillers-entreprise:
       bouton: Échanger avec un conseiller

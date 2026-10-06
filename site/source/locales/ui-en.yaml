@@ -292,12 +292,6 @@ components:
         aria-label: Read the documentation on {{ règle }}
         texte: Read the documentation
       références: Useful links
-  select-taux-risque:
-    aria-label:
-      card: "{{nature}} ({{taux}}), select this rate"
-      field: Your field of activity
-    no-result: No results
-    placeholder: Enter your industry
   simulateur:
     conseillers-entreprise:
       bouton: Talk to an advisor

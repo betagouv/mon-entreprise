@@ -46,7 +46,6 @@ import { DateInput } from './DateInput'
 import { OuiNonInput } from './OuiNonInput'
 import { PlusieursPossibilités } from './PlusieursPossibilités'
 import SelectCommune from './select/SelectCommune'
-import SelectAtmp from './select/SelectTauxRisque'
 import TextInput from './TextInput'
 import { UnePossibilité } from './UnePossibilité'
 
@@ -55,7 +54,6 @@ export const UNE_POSSIBILITE = 'UnePossibilité'
 export const OUI_NON_INPUT = 'OuiNonInput'
 const SELECT_COMMUNE = 'SelectCommune'
 const NON_EXISTING_API = 'NonExistingAPI'
-const SELECT_ATMP = 'SelectAtmp'
 const DATE_INPUT = 'DateInput'
 const TEXT_INPUT = 'TextInput'
 const MONTANT_FIELD = 'MontantField'
@@ -73,7 +71,6 @@ type RuleInputNature =
 	| typeof OUI_NON_INPUT
 	| typeof SELECT_COMMUNE
 	| typeof NON_EXISTING_API
-	| typeof SELECT_ATMP
 	| typeof DATE_INPUT
 	| typeof TEXT_INPUT
 	| typeof MONTANT_FIELD
@@ -97,9 +94,6 @@ export function getRuleInputNature(
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
 	if (rule.rawNode.API) return NON_EXISTING_API
-
-	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
-		return SELECT_ATMP
 
 	if ((rule.rawNode.type as string | undefined)?.startsWith('date')) {
 		return DATE_INPUT
@@ -297,22 +291,6 @@ export default function RuleInput({
 	if (inputNature === NON_EXISTING_API) {
 		throw new Error(
 			"Les seules API implémentées sont 'commune' et 'pays détachement'"
-		)
-	}
-
-	// Cas spécifique pour ATMP
-	if (inputNature === SELECT_ATMP) {
-		return (
-			<SelectAtmp
-				id={inputId}
-				onChange={(value) =>
-					onChange(
-						value === undefined ? undefined : parseInt(value),
-						dottedName
-					)
-				}
-				onSubmit={onSubmit}
-			/>
 		)
 	}
 
