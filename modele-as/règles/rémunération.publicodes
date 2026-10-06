@@ -195,7 +195,7 @@ assimilé salarié . rémunération . avantages en nature:
       question: >
         L'entreprise vous fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
-      par défaut: oui
+      par défaut: non
       références:
         'Avantages en nature : ordinateurs, téléphones': https://www.urssaf.fr/accueil/employeur/cotisations/avantages-en-nature.html#ancre-ordinateurs-telephones
 
