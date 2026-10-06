@@ -1,10 +1,16 @@
-export type ChoiceDisplayType = 'radio' | 'card' | 'toggle' | 'select'
+export type ChoiceDisplayType =
+	| 'radio'
+	| 'card'
+	| 'toggle'
+	| 'select'
+	| 'search'
 
 export type ChoiceOptionWithValue = {
 	key: string
 	value: string
 	label: string
 	description?: string
+	detail?: string
 	emoji?: string
 	isDefaultSelected?: boolean
 	isDisabled?: boolean

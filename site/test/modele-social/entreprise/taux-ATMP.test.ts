@@ -16,7 +16,7 @@ describe('établissement . taux ATMP . taux collectif', () => {
 
 	it('vaut le taux net du code risque choisi', () => {
 		const e = engine.setSituation({
-			'établissement . taux ATMP . code risque': "'code 27-1ZF'",
+			'établissement . code risque': "'code 27-1ZF'",
 		})
 
 		expect(e).toEvaluate('établissement . taux ATMP . taux collectif', 6.34)
@@ -24,10 +24,22 @@ describe('établissement . taux ATMP . taux collectif', () => {
 
 	it('ne tronque pas les décimales du taux net', () => {
 		const e = engine.setSituation({
-			'établissement . taux ATMP . code risque': "'code 55-3AC'",
+			'établissement . code risque': "'code 55-3AC'",
 		})
 
 		expect(e).toEvaluate('établissement . taux ATMP . taux collectif', 1.78)
+	})
+
+	it('applique par défaut au taux AT/MP le taux du code risque choisi', () => {
+		const e = engine.setSituation({
+			'établissement . code risque': "'code 19-2ZH'",
+		})
+
+		expect(e).toEvaluate('établissement . taux ATMP', 2.25)
+	})
+
+	it('porte le taux net sur chaque code risque, pour pouvoir l’afficher', () => {
+		expect(engine).toEvaluate('établissement . code risque . code 27-1ZF', 6.34)
 	})
 
 	it('prend en compte un taux collectif saisi directement', () => {
