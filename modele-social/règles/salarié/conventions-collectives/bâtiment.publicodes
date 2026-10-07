@@ -142,26 +142,69 @@ salarié . convention collective . BTP . congés intempéries:
       - cotisations . assiette
       - variations:
           - si: caisse de rattachement = 'idf'
-            alors: 19.80%
+            alors:
+              variations:
+                - si: date >= 01/04/2026
+                  alors: 20.20%
+                - sinon: 19.80%
           - si: caisse de rattachement = 'nord ouest'
-            alors: 19.95%
+            alors:
+              variations:
+                - si: date >= 01/01/2026
+                  alors: 20.70%
+                - sinon: 19.95%
           - si: caisse de rattachement = 'grand ouest'
-            alors: 19.95%
+            alors:
+              variations:
+                - si: date >= 01/01/2026
+                  alors: 20.70%
+                - sinon: 19.95%
           - si: caisse de rattachement = 'centre ouest'
-            alors: 20.30%
+            alors:
+              variations:
+                - si: date >= 01/01/2026
+                  alors: 20.70%
+                - sinon: 20.30%
           - si: caisse de rattachement = 'centre'
-            alors: 20.40%
+            alors:
+              variations:
+                - si: date >= 01/01/2026
+                  alors: 20.70%
+                - sinon: 20.40%
           - si: caisse de rattachement = 'grand est'
-            alors: 20.00%
+            alors:
+              variations:
+                - si: date >= 01/01/2026
+                  alors: 20.35%
+                - sinon: 20.00%
           - si: caisse de rattachement = 'rhône alpes auvergne'
-            alors: 19.80%
+            alors:
+              variations:
+                - si: date >= 01/04/2026
+                  alors: 20.30%
+                - sinon: 19.80%
           - si: caisse de rattachement = 'méditerranée'
             alors: 19.60%
           - si: caisse de rattachement = 'sud ouest'
-            alors: 19.90%
+            alors:
+              variations:
+                - si: date >= 01/04/2026
+                  alors: 20.20%
+                - sinon: 19.90%
+  note: |
+    La caisse Centre-Ouest a fusionné avec la caisse du Centre, qui couvre aussi le
+    Limousin et la Dordogne : « centre ouest » applique désormais le taux du Centre.
   références:
     CIBTP: https://www.cibtp.fr/
     Article L3141-30 du Code du Travail: https://www.legifrance.gouv.fr/affichCodeArticle.do;jsessionid=DF6E6424807679A6EDC2915496BEA32D.tplgfr22s_2?idArticle=LEGIARTI000033020675&cidTexte=LEGITEXT000006072050&dateTexte=20200320
+    CIBTP Île-de-France, Flash info mars 2026 (20,20 % au 1er avril 2026): https://www.cibtp-idf.fr/media/ile-de-france/institutionnel/flash-info/cibtp_idf_flash-info_2026-03.pdf
+    CIBTP Nord-Ouest, évolution du taux au 1er janvier 2026: https://www.cibtp-no.fr/entreprise/nous-connaitre/evolution-du-taux-de-cotisation-a-compter-du-1er-janvier-2026
+    CIBTP Grand Ouest, cotisations congés payés: https://www.cibtp-grandouest.fr/entreprise/declarations-cotisations/cotisations-conges-payes
+    CIBTP Centre, lettre Repères 2026 (hausse au 1er janvier 2026): https://www.cibtp-centre.fr/media/commun/1_Documents/lettre-reperes/cen_reperes_26.pdf
+    CIBTP Grand Est, taux au 1er janvier 2026: https://www.cibtp-grandest.fr/media/grand-est/adhesion-cotisation/Synthese_des_taux_1er_janvier_2026.pdf
+    CIBTP Rhône-Alpes Auvergne, cotisations congés payés: https://www.cibtp-raa.fr/entreprise/declarations-cotisations/cotisations-conges-payes
+    CIBTP Méditerranée, cotisations congés payés: https://www.cibtp-mediterranee.fr/entreprise/declarations-cotisations/cotisations-conges-payes
+    CIBTP Sud-Ouest, évolution du taux au 1er avril 2026: https://www.cibtp-sud-ouest.fr/entreprise/declarations-cotisations/evolution-du-taux-de-cotisation-conges
 
 salarié . convention collective . BTP . congés intempéries . caisse de rattachement:
   question: À quelle caisse l'entreprise est-elle rattachée pour le versement de
