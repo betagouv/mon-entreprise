@@ -11861,21 +11861,21 @@ salarié . cotisations . exonérations . lodeom . montant:
         [automatic] The minimum wage (SMIC) amount used in calculating the
         Lodeom exemption, for the
 
-        eligibility cap and for calculating the coefficient.
+        eligibility threshold and for calculating the coefficient.
 
 
         The value to be used is the same as that used to calculate the
 
         Single General Degressive Reduction (RGDU). In other words:
 
-        - The minimum wage is prorated based on hours worked in the case of
+        - The minimum wage is prorated based on hours worked in cases of
           part-time work or overtime;
         - The minimum wage is prorated for incomplete months of work, taking
           into account compensation components not affected by the absence (such as
           bonuses);
         - Despite the increase in the minimum wage effective June 1, the value
         used is still
-          that of January 1, 2026.
+          that of January 1, 2026, except in Mayotte.
       description.fr: >
         Montant du Smic utilisé dans le calcul de l’exonération Lodeom, pour le
 
@@ -11893,7 +11893,7 @@ salarié . cotisations . exonérations . lodeom . montant:
           les primes) ;
         - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
         toujours
-          celle du 1er janvier 2026.
+          celle du 1er janvier 2026, sauf à Mayotte.
       titre.en: '[automatic] minimum wage'
       titre.fr: smic
   titre.en: '[automatic] exemption amount'
@@ -12916,6 +12916,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre.fr: barèmes
   titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
   titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
+salarié . cotisations . exonérations . lodeom applicable à mayotte:
+  titre.en: '[automatic] Lodeom applicable to Mayotte'
+  titre.fr: lodeom applicable à mayotte
 salarié . cotisations . exonérations . zones lodeom:
   avec:
     mayotte:
@@ -13506,15 +13509,15 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   titre.fr: éligible
 salarié . mois incomplet:
   description.en: >
-    [automatic] Management of incomplete months (absence, hiring, departure,
-    etc.), in particular for calculating
+    [automatic] Handling of partial months (absences, hires, terminations, etc.)
+    for the calculation of
 
-    Lodeom exemption calculation.
+    the Lodeom exemption.
   description.fr: >
-    Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour
-    le
+    Gestion des mois incomplets (absence, embauche, départ, etc) pour le calcul
+    de
 
-    calcul de l’exonération Lodeom.
+    l’exonération Lodeom.
   titre.en: '[automatic] incomplete month'
   titre.fr: mois incomplet
 salarié . mois incomplet . SMIC équivalent:
@@ -13525,6 +13528,30 @@ salarié . mois incomplet . SMIC équivalent:
     SMIC heures supplémentaires:
       titre.en: '[automatic] SMIC overtime'
       titre.fr: SMIC heures supplémentaires
+    SMIC horaire:
+      description.en: >
+        [automatic] The hourly minimum wage to use when calculating the Lodeom
+        exemption for an
+
+        incomplete month.
+
+
+        In Mayotte, use the hourly minimum wage for the current month.
+        Elsewhere, use
+
+        the rate in effect as of January 1.
+      description.fr: >
+        Le SMIC horaire à utiliser pour le calcul de l’exonération Lodeom sur un
+
+        mois incomplet.
+
+
+        À Mayotte, il faut prendre le SMIC horaire du mois courant. Ailleurs, il
+        faut
+
+        prendre sa valeur au 1er janvier.
+      titre.en: '[automatic] Hourly minimum wage'
+      titre.fr: SMIC horaire
     SMIC mensuel proratisé:
       description.en: >
         [automatic] This amount corresponds to the SMIC equivalent for an
