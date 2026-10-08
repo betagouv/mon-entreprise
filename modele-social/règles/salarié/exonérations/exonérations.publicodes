@@ -87,14 +87,6 @@ salarié . cotisations . exonérations . heures supplémentaires:
       plafond: 11.31%
 
 
-salarié . cotisations . exonérations . Tmin: 0.0200
-
-salarié . cotisations . exonérations . Tdelta:
-  variations:
-    - si: entreprise . salariés . effectif < 50
-      alors: 0.3781
-    - sinon: 0.3821
-
 salarié . cotisations . exonérations . T:
   titre: Coefficient T
   unité: ''

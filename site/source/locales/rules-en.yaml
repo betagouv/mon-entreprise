@@ -11627,18 +11627,43 @@ salarié . cotisations . exonérations . JEI . montant:
   titre.fr: Exonération JEI
 salarié . cotisations . exonérations . RGDU:
   avec:
+    A:
+      description.en: >
+        [automatic] A multiple of the minimum wage above which the reduction no
+        longer applies.
+
+
+        It also determines the rate of the degressive scale, using the factor 1
+        / (A - 1)
+
+        of the coefficient.
+      description.fr: |
+        Multiple du Smic à partir duquel la réduction ne s’applique plus.
+
+        Il fixe aussi la pente de la dégressivité, par le facteur 1 / (A - 1)
+        du cœfficient.
+      titre.en: '[automatic] a multiple of the minimum wage at the time of termination'
+      titre.fr: multiple du Smic de sortie
     P:
-      titre.en: '[automatic] P'
-      titre.fr: P
+      description.en: >
+        [automatic] Exponent applied to the decreasing term of the coefficient.
+        It equals 1 in
+
+        Mayotte, where the decreasing term is therefore linear.
+      description.fr: |
+        Exposant appliqué au terme dégressif du cœfficient. Il vaut 1 à
+        Mayotte, où la dégressivité est donc sans courbure.
+      titre.en: '[automatic] decreasing-return exponent'
+      titre.fr: exposant de dégressivité
     SMIC:
       description.en: >
-        [automatic] The minimum wage (SMIC) amount used in the calculation of
-        the RGDU, for the
+        [automatic] The minimum wage (SMIC) amount used in calculating the RGDU,
+        for the
 
-        eligibility threshold and for the calculation of the coefficient.
+        eligibility threshold and for calculating the coefficient.
 
 
-        The minimum wage is prorated based on hours worked in cases of
+        The SMIC is prorated based on hours worked in cases of
 
         part-time work or overtime.
 
@@ -11646,7 +11671,9 @@ salarié . cotisations . exonérations . RGDU:
         Despite the increase in the minimum wage effective June 1, the value
         used is still
 
-        that of January 1, 2026.
+        that of January 1, 2026, except in Mayotte, where adjustments to the
+
+        Mayotte minimum wage are taken into account.
       description.fr: >
         Montant du Smic utilisé dans le calcul de la RGDU, pour le plafond
 
@@ -11661,9 +11688,65 @@ salarié . cotisations . exonérations . RGDU:
         Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
         toujours
 
-        celle du 1er janvier 2026.
+        celle du 1er janvier 2026, sauf à Mayotte où les revalorisations du Smic
+
+        mahorais sont prises en compte.
       titre.en: '[automatic] Minimum Wage'
       titre.fr: SMIC
+    Tdelta:
+      description.en: >
+        [automatic] Range of the RGDU coefficient’s degressivity: the sum of the
+        rates
+
+        of contributions exempted by the reduction, minus Tmin.
+
+
+        The exempt contributions are:
+
+        - health, maternity, disability, and death,
+
+        - old age,
+
+        - family allowances,
+
+        - work-related accidents and occupational diseases (AT-MP),
+
+        - National Housing Assistance Fund (Fnal)
+
+        - unemployment insurance
+
+        And in metropolitan France and the DOM-ROM (excluding Mayotte):
+
+        - mandatory supplemental pension (Agirc-Arrco)
+
+        - solidarity contribution for autonomy (CSA)
+      description.fr: |
+        Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux
+        des cotisations exonérées par la réduction, diminuée de Tmin.
+
+        Les cotisations exonérées sont :
+        - maladie-maternité-invalidité-décès,
+        - vieillesse,
+        - allocations familiales,
+        - accidents du travail et maladies professionnelles (AT-MP),
+        - fonds national d’aide au logement (Fnal)
+        - assurance chômage
+        Et en métropole et Drom hors Mayotte :
+        - retraite complémentaire obligatoire (Agirc-Arrco)
+        - contribution solidarité pour l’autonomie (CSA)
+      titre.en: '[automatic] degree of degressivity'
+      titre.fr: amplitude de la dégressivité
+    Tmin:
+      description.en: >
+        [automatic] The lower bound of the RGDU coefficient, reached just before
+        exiting the
+
+        system. It is zero in Mayotte.
+      description.fr: |
+        Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
+        dispositif. Il est nul à Mayotte.
+      titre.en: '[automatic] coefficient floor'
+      titre.fr: plancher du cœfficient
     caisse de congés payés:
       question.en: '[automatic] Are you obliged to use a vacation pay fund?'
       question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
@@ -11681,8 +11764,7 @@ salarié . cotisations . exonérations . RGDU:
   description.en: >
     [automatic] The general reduction in employer contributions program allows
 
-    employers to lower the amount of their contributions. Effective January 1,
-    2026,
+    employers to lower the amount of their contributions. As of January 1, 2026,
 
     the contribution relief program has been renamed
 
@@ -11696,7 +11778,7 @@ salarié . cotisations . exonérations . RGDU:
 
     degressive. The contribution relief no longer applies for
 
-    remuneration equal to 3 times the minimum wage.
+    earnings equal to 3 times the minimum wage.
 
 
     Despite the increase in the minimum wage effective June 1, 2026, eligibility
@@ -11706,6 +11788,14 @@ salarié . cotisations . exonérations . RGDU:
     as of
 
     January 1, 2026.
+
+
+    **In Mayotte**, the RGDU follows the same formula but uses its own scale: it
+
+    ceases at **1.6 times the minimum wage**, and the reference minimum wage is
+    the Mayotte minimum wage for
+
+    that period, including any adjustments.
   description.fr: >
     Le dispositif de réduction générale de cotisations patronales permet à
 
@@ -11732,6 +11822,13 @@ salarié . cotisations . exonérations . RGDU:
     le calcul de son coefficient continuent de se baser sur la valeur du Smic au
 
     1er janvier 2026.
+
+
+    **À Mayotte**, la RGDU suit la même formule mais un barème propre : elle
+
+    s’éteint dès **1,6 Smic**, et le Smic de référence est le Smic mahorais de
+
+    la période, revalorisations comprises.
   titre.en: '[automatic] RGDU'
   titre.fr: RGDU
 salarié . cotisations . exonérations . T:
@@ -11744,12 +11841,6 @@ salarié . cotisations . exonérations . T:
       titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
-salarié . cotisations . exonérations . Tdelta:
-  titre.en: '[automatic] Tdelta'
-  titre.fr: Tdelta
-salarié . cotisations . exonérations . Tmin:
-  titre.en: '[automatic] Tmin'
-  titre.fr: Tmin
 salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre
