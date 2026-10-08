@@ -12,6 +12,7 @@
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+- Reformule de façon neutre les questions posées à la fois aux salariés et aux dirigeants assimilés salariés (taux réduits, profession, fonction support AT/MP, complémentaire santé, abonnement NTIC)
 
 ### Corrections
 - Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte

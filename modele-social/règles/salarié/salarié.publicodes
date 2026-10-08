@@ -328,15 +328,13 @@ salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  question: La profession exercée bénéficie-t-elle de taux de cotisations réduits ?
   par défaut: non
   références:
     Les taux réduits cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
 salarié . régimes spécifiques . taux réduits . profession:
-  question:
-    Quelle est la profession du salarié pour l'application de taux de cotisations
-    réduits ?
+  question: Quelle profession ouvre droit à ces taux réduits ?
   une possibilité:
     - VRP multicarte
     - journaliste
