@@ -4,11 +4,13 @@
 
 ### Breaking changes
 - Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
+- Déplace `salarié . cotisations . exonérations . Tmin` et `salarié . cotisations . exonérations . Tdelta` sous `salarié . cotisations . exonérations . RGDU`
 
 ### Nouveautés
-- Calcul de la Lodeom à Mayotte
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
+- Calcul de la Lodeom à Mayotte
+- Calcul de la RGDU à Mayotte
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
