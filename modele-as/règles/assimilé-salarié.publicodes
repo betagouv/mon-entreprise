@@ -40,13 +40,13 @@ assimilé salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question: Votre rémunération relève-t-elle d'un régime de taux de cotisations réduits ?
+  question: Votre profession bénéficie-t-elle de taux de cotisations réduits ?
   par défaut: non
   références:
     Les taux réduits cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
 assimilé salarié . régimes spécifiques . taux réduits . profession:
-  question: Quelle profession vous ouvre droit à ces taux réduits ?
+  question: Quelle profession bénéficiant de taux de cotisations réduits exercez-vous ?
   une possibilité:
     - VRP multicarte
     - journaliste

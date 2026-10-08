@@ -14129,10 +14129,8 @@ salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question.en:
-    '[automatic] Is the remuneration subject to a reduced contribution
-    rate scheme?'
-  question.fr: La rémunération relève-t-elle d'un régime de taux de cotisations réduits ?
+  question.en: '[automatic] Does the profession practised benefit from reduced contribution rates?'
+  question.fr: La profession exercée bénéficie-t-elle de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
 salarié . régimes spécifiques . taux réduits . profession:

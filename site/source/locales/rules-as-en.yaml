@@ -1076,10 +1076,8 @@ assimilé salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question.en:
-    '[automatic] Is your remuneration subject to a reduced contribution
-    rate scheme?'
-  question.fr: Votre rémunération relève-t-elle d'un régime de taux de cotisations réduits ?
+  question.en: '[automatic] Does your profession benefit from reduced contribution rates?'
+  question.fr: Votre profession bénéficie-t-elle de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
 assimilé salarié . régimes spécifiques . taux réduits . profession:
@@ -1151,8 +1149,8 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
         plusieurs employeurs relevant du régime général.
       titre.en: '[automatic] medical profession'
       titre.fr: profession médicale
-  question.en: '[automatic] Which profession entitles you to these reduced rates?'
-  question.fr: Quelle profession vous ouvre droit à ces taux réduits ?
+  question.en: '[automatic] Which profession with reduced contribution rates do you practise?'
+  question.fr: Quelle profession bénéficiant de taux de cotisations réduits exercez-vous ?
   titre.en: '[automatic] profession'
   titre.fr: profession
 assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
