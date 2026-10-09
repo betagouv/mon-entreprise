@@ -11313,45 +11313,32 @@ salarié . cotisations . Mayotte:
     [automatic] The employer and employee **social security contribution
     rates**, as well as
 
-    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
-    this
+    the **Lodeom** exemption and the **Single General Degressive Reduction**
 
-    simulator.
+    (RGDU) in effect in Mayotte, are fully incorporated into this simulator.
 
 
-    However, the calculation of the **RGDU** (General Degressive Reduction
-
-    ) specific to Mayotte is **not yet available**.
-
-    > The Lodeom exemption does not apply in Mayotte until July 1, 2026.
+    > The Lodeom exemption will not apply in Mayotte until July 1, 2026.
   description.fr: >
     Les **taux de cotisations sociales** patronales et salariales ainsi que
 
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    l’exonération **Lodeom** et la **Réduction Générale Dégressive Unique**
 
-    simulateur.
-
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
+    (RGDU) en vigueur à Mayotte sont bien intégrés dans ce simulateur.
 
 
     > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet
     2026.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
-    contribution rates** and
+    contribution rates**, the **RGDU**,
 
-    the **Lodeom** exemption in effect in Mayotte since July 1, 2026.
+    and the **Lodeom** exemption in effect in Mayotte.
+  résumé.fr: >
+    Ce simulateur applique bien les **taux de cotisations sociales**, la
+    **RGDU**
 
-
-    However, the calculation of the **RGDU** is not yet available.
-  résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
+    et l’exonération **Lodeom** en vigueur à Mayotte.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
@@ -11627,18 +11614,43 @@ salarié . cotisations . exonérations . JEI . montant:
   titre.fr: Exonération JEI
 salarié . cotisations . exonérations . RGDU:
   avec:
+    A:
+      description.en: >
+        [automatic] A multiple of the minimum wage above which the reduction no
+        longer applies.
+
+
+        It also determines the rate of the degressive scale, using the factor 1
+        / (A - 1)
+
+        of the coefficient.
+      description.fr: |
+        Multiple du Smic à partir duquel la réduction ne s’applique plus.
+
+        Il fixe aussi la pente de la dégressivité, par le facteur 1 / (A - 1)
+        du cœfficient.
+      titre.en: '[automatic] a multiple of the minimum wage at the time of termination'
+      titre.fr: multiple du Smic de sortie
     P:
-      titre.en: '[automatic] P'
-      titre.fr: P
+      description.en: >
+        [automatic] Exponent applied to the decreasing term of the coefficient.
+        It equals 1 in
+
+        Mayotte, where the decreasing term is therefore linear.
+      description.fr: |
+        Exposant appliqué au terme dégressif du cœfficient. Il vaut 1 à
+        Mayotte, où la dégressivité est donc sans courbure.
+      titre.en: '[automatic] decreasing-return exponent'
+      titre.fr: exposant de dégressivité
     SMIC:
       description.en: >
-        [automatic] The minimum wage (SMIC) amount used in the calculation of
-        the RGDU, for the
+        [automatic] The minimum wage (SMIC) amount used in calculating the RGDU,
+        for the
 
-        eligibility threshold and for the calculation of the coefficient.
+        eligibility threshold and for calculating the coefficient.
 
 
-        The minimum wage is prorated based on hours worked in cases of
+        The SMIC is prorated based on hours worked in cases of
 
         part-time work or overtime.
 
@@ -11646,7 +11658,9 @@ salarié . cotisations . exonérations . RGDU:
         Despite the increase in the minimum wage effective June 1, the value
         used is still
 
-        that of January 1, 2026.
+        that of January 1, 2026, except in Mayotte, where adjustments to the
+
+        Mayotte minimum wage are taken into account.
       description.fr: >
         Montant du Smic utilisé dans le calcul de la RGDU, pour le plafond
 
@@ -11661,9 +11675,65 @@ salarié . cotisations . exonérations . RGDU:
         Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
         toujours
 
-        celle du 1er janvier 2026.
+        celle du 1er janvier 2026, sauf à Mayotte où les revalorisations du Smic
+
+        mahorais sont prises en compte.
       titre.en: '[automatic] Minimum Wage'
       titre.fr: SMIC
+    Tdelta:
+      description.en: >
+        [automatic] Range of the RGDU coefficient’s degressivity: the sum of the
+        rates
+
+        of contributions exempted by the reduction, minus Tmin.
+
+
+        The exempt contributions are:
+
+        - health, maternity, disability, and death,
+
+        - old age,
+
+        - family allowances,
+
+        - work-related accidents and occupational diseases (AT-MP),
+
+        - National Housing Assistance Fund (Fnal)
+
+        - unemployment insurance
+
+        And in metropolitan France and the DOM-ROM (excluding Mayotte):
+
+        - mandatory supplemental pension (Agirc-Arrco)
+
+        - solidarity contribution for autonomy (CSA)
+      description.fr: |
+        Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux
+        des cotisations exonérées par la réduction, diminuée de Tmin.
+
+        Les cotisations exonérées sont :
+        - maladie-maternité-invalidité-décès,
+        - vieillesse,
+        - allocations familiales,
+        - accidents du travail et maladies professionnelles (AT-MP),
+        - fonds national d’aide au logement (Fnal)
+        - assurance chômage
+        Et en métropole et Drom hors Mayotte :
+        - retraite complémentaire obligatoire (Agirc-Arrco)
+        - contribution solidarité pour l’autonomie (CSA)
+      titre.en: '[automatic] degree of degressivity'
+      titre.fr: amplitude de la dégressivité
+    Tmin:
+      description.en: >
+        [automatic] The lower bound of the RGDU coefficient, reached just before
+        exiting the
+
+        system. It is zero in Mayotte.
+      description.fr: |
+        Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
+        dispositif. Il est nul à Mayotte.
+      titre.en: '[automatic] coefficient floor'
+      titre.fr: plancher du cœfficient
     caisse de congés payés:
       question.en: '[automatic] Are you obliged to use a vacation pay fund?'
       question.fr: Avez-vous l’obligation de recourir à une caisse de congés payés ?
@@ -11681,8 +11751,7 @@ salarié . cotisations . exonérations . RGDU:
   description.en: >
     [automatic] The general reduction in employer contributions program allows
 
-    employers to lower the amount of their contributions. Effective January 1,
-    2026,
+    employers to lower the amount of their contributions. As of January 1, 2026,
 
     the contribution relief program has been renamed
 
@@ -11696,7 +11765,7 @@ salarié . cotisations . exonérations . RGDU:
 
     degressive. The contribution relief no longer applies for
 
-    remuneration equal to 3 times the minimum wage.
+    earnings equal to 3 times the minimum wage.
 
 
     Despite the increase in the minimum wage effective June 1, 2026, eligibility
@@ -11706,6 +11775,14 @@ salarié . cotisations . exonérations . RGDU:
     as of
 
     January 1, 2026.
+
+
+    **In Mayotte**, the RGDU follows the same formula but uses its own scale: it
+
+    ceases at **1.6 times the minimum wage**, and the reference minimum wage is
+    the Mayotte minimum wage for
+
+    that period, including any adjustments.
   description.fr: >
     Le dispositif de réduction générale de cotisations patronales permet à
 
@@ -11732,6 +11809,13 @@ salarié . cotisations . exonérations . RGDU:
     le calcul de son coefficient continuent de se baser sur la valeur du Smic au
 
     1er janvier 2026.
+
+
+    **À Mayotte**, la RGDU suit la même formule mais un barème propre : elle
+
+    s’éteint dès **1,6 Smic**, et le Smic de référence est le Smic mahorais de
+
+    la période, revalorisations comprises.
   titre.en: '[automatic] RGDU'
   titre.fr: RGDU
 salarié . cotisations . exonérations . T:
@@ -11744,12 +11828,6 @@ salarié . cotisations . exonérations . T:
       titre.fr: sécurité sociale et chômage
   titre.en: '[automatic] Coefficient T'
   titre.fr: Coefficient T
-salarié . cotisations . exonérations . Tdelta:
-  titre.en: '[automatic] Tdelta'
-  titre.fr: Tdelta
-salarié . cotisations . exonérations . Tmin:
-  titre.en: '[automatic] Tmin'
-  titre.fr: Tmin
 salarié . cotisations . exonérations . cotisations patronales exonérées Acre:
   titre.en: '[automatic] Exempt employer contributions Acre'
   titre.fr: cotisations patronales exonérées Acre
@@ -11861,21 +11939,21 @@ salarié . cotisations . exonérations . lodeom . montant:
         [automatic] The minimum wage (SMIC) amount used in calculating the
         Lodeom exemption, for the
 
-        eligibility cap and for calculating the coefficient.
+        eligibility threshold and for calculating the coefficient.
 
 
         The value to be used is the same as that used to calculate the
 
         Single General Degressive Reduction (RGDU). In other words:
 
-        - The minimum wage is prorated based on hours worked in the case of
+        - The minimum wage is prorated based on hours worked in cases of
           part-time work or overtime;
         - The minimum wage is prorated for incomplete months of work, taking
           into account compensation components not affected by the absence (such as
           bonuses);
         - Despite the increase in the minimum wage effective June 1, the value
         used is still
-          that of January 1, 2026.
+          that of January 1, 2026, except in Mayotte.
       description.fr: >
         Montant du Smic utilisé dans le calcul de l’exonération Lodeom, pour le
 
@@ -11893,7 +11971,7 @@ salarié . cotisations . exonérations . lodeom . montant:
           les primes) ;
         - Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est
         toujours
-          celle du 1er janvier 2026.
+          celle du 1er janvier 2026, sauf à Mayotte.
       titre.en: '[automatic] minimum wage'
       titre.fr: smic
   titre.en: '[automatic] exemption amount'
@@ -12916,6 +12994,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
       titre.fr: barèmes
   titre.en: '[automatic] Guadeloupe, French Guiana, Martinique, Mayotte, Réunion'
   titre.fr: Guadeloupe, Guyane, Martinique, Mayotte, La Réunion
+salarié . cotisations . exonérations . lodeom applicable à mayotte:
+  titre.en: '[automatic] Lodeom applicable to Mayotte'
+  titre.fr: lodeom applicable à mayotte
 salarié . cotisations . exonérations . zones lodeom:
   avec:
     mayotte:
@@ -13506,15 +13587,15 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   titre.fr: éligible
 salarié . mois incomplet:
   description.en: >
-    [automatic] Management of incomplete months (absence, hiring, departure,
-    etc.), in particular for calculating
+    [automatic] Handling of partial months (absences, hires, terminations, etc.)
+    for the calculation of
 
-    Lodeom exemption calculation.
+    the Lodeom exemption.
   description.fr: >
-    Gestion des mois incomplets (absence, embauche, départ, etc), notamment pour
-    le
+    Gestion des mois incomplets (absence, embauche, départ, etc) pour le calcul
+    de
 
-    calcul de l’exonération Lodeom.
+    l’exonération Lodeom.
   titre.en: '[automatic] incomplete month'
   titre.fr: mois incomplet
 salarié . mois incomplet . SMIC équivalent:
@@ -13525,6 +13606,30 @@ salarié . mois incomplet . SMIC équivalent:
     SMIC heures supplémentaires:
       titre.en: '[automatic] SMIC overtime'
       titre.fr: SMIC heures supplémentaires
+    SMIC horaire:
+      description.en: >
+        [automatic] The hourly minimum wage to use when calculating the Lodeom
+        exemption for an
+
+        incomplete month.
+
+
+        In Mayotte, use the hourly minimum wage for the current month.
+        Elsewhere, use
+
+        the rate in effect as of January 1.
+      description.fr: >
+        Le SMIC horaire à utiliser pour le calcul de l’exonération Lodeom sur un
+
+        mois incomplet.
+
+
+        À Mayotte, il faut prendre le SMIC horaire du mois courant. Ailleurs, il
+        faut
+
+        prendre sa valeur au 1er janvier.
+      titre.en: '[automatic] Hourly minimum wage'
+      titre.fr: SMIC horaire
     SMIC mensuel proratisé:
       description.en: >
         [automatic] This amount corresponds to the SMIC equivalent for an
