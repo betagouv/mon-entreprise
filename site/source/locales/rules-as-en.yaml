@@ -1637,26 +1637,28 @@ entreprise . SIREN:
   titre.fr: SIREN
 entreprise . TVA:
   description.en: >
-    [automatic] Certain types of company are not subject to VAT.
+    [automatic] Certain types of businesses are not subject to VAT.
 
-    These companies pay payroll tax in return.
-
-
-    Examples include banking, financial and insurance establishments. This is
-    also the case for teaching activities.
+    Instead, they pay payroll tax.
 
 
-    **Note**: don't confuse VAT exemption (which depends on your activity) with
-    the basic tax-free regime (which depends on your sales).
-  description.fr: >
+    This applies, for example, to banking, financial, and
+
+    insurance institutions. It also applies to educational activities.
+
+
+    **Note**: Do not confuse the VAT exemption (which depends on
+
+    your business activity) with the basic exemption threshold (which depends on
+    your
+
+    revenue).
+  description.fr: |
     Certains types d’entreprises ne sont pas assujetties à la TVA.
-
     Ces dernières payent la taxe sur les salaires en contrepartie.
-
 
     C’est le cas par exemple des établissements bancaires, financiers ou
     d’assurance. C’est aussi le cas des activités d’enseignement.
-
 
     **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de
     votre activité) et le régime en franchise de base (qui dépend de votre

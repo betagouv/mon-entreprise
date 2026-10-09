@@ -1,6 +1,7 @@
 import { Option } from 'effect'
 import { useCallback } from 'react'
 
+import { MDXDoc } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { SituationComparée, useComparateur } from '@/contextes/comparateur'
 import { QuantitéField } from '@/design-system'
@@ -46,3 +47,9 @@ TauxImpositionQuestion.applicable = (
 	situation: SituationComparée | undefined
 ) => situation?.méthodeImposition === 'taux personnalisé'
 TauxImpositionQuestion.Valeur = TauxImpositionValeur
+TauxImpositionQuestion.documentation = {
+	Documentation: MDXDoc.documentation(
+		(langue) => import(`./TauxImpositionDocumentation.${langue}.mdx`)
+	),
+	références: {},
+}
