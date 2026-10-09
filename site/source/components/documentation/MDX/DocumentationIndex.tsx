@@ -1,4 +1,5 @@
 import React from 'react'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
@@ -12,7 +13,7 @@ import {
 	Spacing,
 } from '@/design-system'
 
-import { MDXDocumentation } from './createMDXDocumentation'
+import { MDXDocumentation } from './createDocumentation'
 
 export interface MDXDocumentationIndexProps {
 	documentations: MDXDocumentation[]
@@ -25,7 +26,7 @@ export interface MDXDocumentationIndexProps {
 	indexComponent?: React.ComponentType
 }
 
-export const MDXDocumentationIndex = ({
+export const DocumentationIndex = ({
 	documentations,
 	baseUrl,
 	docUrl,
@@ -47,9 +48,11 @@ export const MDXDocumentationIndex = ({
 			<H1>{title}</H1>
 
 			{IndexComponent && (
-				<MDXWrapper>
-					<IndexComponent />
-				</MDXWrapper>
+				<PageContainer>
+					<MDXWrapper>
+						<IndexComponent />
+					</MDXWrapper>
+				</PageContainer>
 			)}
 
 			<Spacing lg />
@@ -70,3 +73,7 @@ export const MDXDocumentationIndex = ({
 		</>
 	)
 }
+
+const PageContainer = styled.div`
+	max-width: 45rem;
+`

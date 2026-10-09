@@ -34,13 +34,13 @@ export interface MDXModule {
  * import AbattementMDX from './abattement-forfaitaire.mdx'
  * import MicroBicMDX from './micro-bic.mdx'
  *
- * const docs = createMDXDocumentation({
+ * const docs = createDocumentation({
  *   'abattement-forfaitaire': AbattementMDX,
  *   'micro-bic': MicroBicMDX,
  * })
  * ```
  */
-function createMDXDocumentation(
+function createDocumentation(
 	mdxModules: Record<string, MDXModule | ComponentType>
 ): MDXDocumentation[] {
 	return Object.entries(mdxModules).map(([slug, module]) => {
@@ -79,7 +79,7 @@ export interface MDXDocumentationResult {
  * const { documentations, indexComponent } = createMDXDocumentationFromGlob(modules)
  * ```
  */
-export function createMDXDocumentationFromGlob(
+export function createDocumentationFromGlob(
 	globModules: Record<string, unknown>,
 	langue: AvailableLang = 'fr'
 ): MDXDocumentationResult {
@@ -99,7 +99,7 @@ export function createMDXDocumentationFromGlob(
 	})
 
 	return {
-		documentations: createMDXDocumentation(processedModules),
+		documentations: createDocumentation(processedModules),
 		indexComponent,
 		indexMetadata,
 	}

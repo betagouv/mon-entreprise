@@ -38,11 +38,17 @@ export const DocumentationPage = ({
 				</NavigationContainer>
 			)}
 
-			<MDXWrapper>{children}</MDXWrapper>
+			<PageContainer>
+				<MDXWrapper>{children}</MDXWrapper>
+			</PageContainer>
 		</>
 	)
 }
 
 export const NavigationContainer = styled.nav`
 	margin-bottom: 2rem;
+`
+
+const PageContainer = styled.div`
+	max-width: 45rem;
 `

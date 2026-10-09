@@ -1,6 +1,7 @@
 import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { MDXDoc } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import {
 	SituationComparée,
@@ -65,3 +66,14 @@ TypeActivitéQuestion.typeRadioGroup = true
 TypeActivitéQuestion.applicable = (situation: SituationComparée | undefined) =>
 	situation?.natureActivité !== 'libérale'
 TypeActivitéQuestion.Valeur = TypeActivitéValeur
+TypeActivitéQuestion.documentation = {
+	Documentation: MDXDoc.documentation(
+		(langue) => import(`./TypeActiviteDocumentation.${langue}.mdx`)
+	),
+	références: {
+		'Achat/vente de biens':
+			'https://www.impots.gouv.fr/professionnel/achatvente-de-biens',
+		'Prestations entre assujettis':
+			'https://www.impots.gouv.fr/professionnel/prestations-entre-assujettis',
+	},
+}
