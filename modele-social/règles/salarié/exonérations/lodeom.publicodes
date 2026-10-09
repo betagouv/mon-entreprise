@@ -190,7 +190,9 @@ salarié . cotisations . exonérations . lodeom . zone un:
           - barème compétitivité renforcée
           - barème innovation et croissance
       une de ces conditions:
-        - barèmes . compétitivité
+        - toutes ces conditions:
+            - est défini: barèmes
+            - barèmes . compétitivité
         - entreprise . salariés . effectif < 11
         - secteurs d'activité éligibles
       description: |
@@ -420,7 +422,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
           - barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . moins de 11 salariés
+          - toutes ces conditions:
+              - est défini: barèmes
+              - barèmes . moins de 11 salariés
           - entreprise . salariés . effectif < 11
       description: |
         L’exonération est applicable aux employeurs occupant **moins de 11 salariés**.
@@ -437,7 +441,9 @@ salarié . cotisations . exonérations . lodeom . zone deux:
       non applicable si: barème renforcé
       formule:
         une de ces conditions:
-          - barèmes . sectoriel
+          - toutes ces conditions:
+              - est défini: barèmes
+              - barèmes . sectoriel
           - toutes ces conditions:
             - barème moins de 11 salariés = non
             - barème renforcé = non
