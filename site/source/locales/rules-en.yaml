@@ -5162,7 +5162,7 @@ entreprise . activité . nature:
         médecin…
 
 
-        Il s’agit des autres personnes qui pratiquent, une science ou un art et
+        Il s’agit des autres personnes qui pratiquent une science ou un art et
         dont l’activité intellectuelle joue le principal rôle. Leurs recettes
         doivent représenter la rémunération d’un travail personnel, sans lien de
         subordination, tout en engageant leur responsabilité technique et
@@ -5441,7 +5441,7 @@ entreprise . activités:
         médecin…
 
 
-        Il s’agit des autres personnes qui pratiquent, une science ou un art et
+        Il s’agit des autres personnes qui pratiquent une science ou un art et
         dont l’activité intellectuelle joue le principal rôle. Leurs recettes
         doivent représenter la rémunération d’un travail personnel, sans lien de
         subordination, tout en engageant leur responsabilité technique et
@@ -7694,7 +7694,7 @@ impôt . méthode de calcul . taux personnalisé:
   description.fr:
     Vous pouvez utiliser directement le taux personnalisé communiqué
     par l’administration fiscale pour calculer votre impôt. Pour le connaître,
-    vous pouvez-vous rendre sur votre [espace fiscal
+    vous pouvez vous rendre sur votre [espace fiscal
     personnel](https://impots.gouv.fr).
   titre.en: '[automatic] with a personalized rate'
   titre.fr: avec un taux personnalisé
