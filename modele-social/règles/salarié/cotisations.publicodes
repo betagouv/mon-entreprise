@@ -1339,17 +1339,12 @@ salarié . cotisations . Mayotte:
   sévérité: avertissement
   titre: Cotisations Mayotte
   résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
+    Ce simulateur applique bien les **taux de cotisations sociales**, la **RGDU**
+    et l’exonération **Lodeom** en vigueur à Mayotte.
   description: |
     Les **taux de cotisations sociales** patronales et salariales ainsi que
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
-    simulateur.
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
+    l’exonération **Lodeom** et la **Réduction Générale Dégressive Unique**
+    (RGDU) en vigueur à Mayotte sont bien intégrés dans ce simulateur.
 
     > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet 2026.
   références:
