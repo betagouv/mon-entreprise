@@ -31,10 +31,13 @@ export const MDXWrapper = ({ children }: Props) => (
 )
 
 const MDXContent = styled.div`
-	/* max-width: 45rem; */
 	font-family: ${({ theme }) => theme.fonts.main};
 	color: ${({ theme }) =>
 		theme.darkMode
 			? theme.colors.extended.grey[100]
 			: theme.colors.extended.grey[800]};
+`
+
+export const MDXPageContainer = styled.div`
+	max-width: 45rem;
 `
