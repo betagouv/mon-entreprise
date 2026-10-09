@@ -1851,17 +1851,17 @@ pages:
             label: Handcrafted
           commerciale:
             label: Sales
-          libellé: Primary Activity
+          libellé: Primary activity
           libérale:
             label: Liberal
         activité-réglementée:
-          libellé: Regulated Activity
+          libellé: Regulated activity
         activité-type:
-          libellé: Type of Activity
+          libellé: Type of activity
           service:
-            label: Service Provision
+            label: Service provision
           vente:
-            label: Retail, Food Service, or Lodging
+            label: Retail, food service, or lodging
         autres-revenus:
           libellé: Other taxable income
         enfants:
@@ -1871,12 +1871,12 @@ pages:
           acre: Acre
           activité: Activity
           autres-revenus: Other taxable income
-          foyer-fiscal: Tax Household
-          impôt: Method for Calculating Income Tax
+          foyer-fiscal: Tax household
+          impôt: Method for calculating income tax
         méthode-impôt:
           barème:
             label: using the standard scale
-          libellé: Method for Calculating Income Tax
+          libellé: Method for calculating income tax
           taux:
             label: with a personalized rate
         parent-isolé:
@@ -1886,11 +1886,11 @@ pages:
             label: Married or in a civil partnership
           célibataire:
             label: Single, divorced, or in a common-law relationship
-          libellé: Marital Status
+          libellé: Marital status
           veuf:
             label: Widower/Widow
         taux-imposition:
-          libellé: Tax Rates
+          libellé: Tax rate
         tva:
           libellé: VAT-registered business
       réponses:
@@ -1899,19 +1899,19 @@ pages:
           commerciale: Sales
           libérale-non-réglementée: Unregulated private practice
           libérale-réglementée: Regulated private practice
-          service: service provision
-          vente: sale
+          service: Service provision
+          vente: Sale
         foyer-fiscal:
           couple: Married or in a civil partnership
           célibataire: Single
           enfant_many: "{{ count }} children"
           enfant_one: "{{ count }} child"
           enfant_other: "{{ count }} children"
-          parent-isolé: single parent
+          parent-isolé: Single parent
           veuf: Widower/Widow
         impôt:
-          barème: Standard Scale
-          taux: Custom Rate
+          barème: Standard scale
+          taux: Personalized rate
       shortname: Status comparison
       title: Legal status comparator
       warning:

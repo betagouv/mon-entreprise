@@ -2,7 +2,7 @@ import { GroupeDeQuestionsFournies } from '@/components/Simulateur/Questions/Com
 import { SituationComparée } from '@/contextes/comparateur'
 
 import { AcreQuestion } from './AcreQuestion'
-import { ActivitéRéglementéeQuestion } from './ActiviteRéglementeeQuestion'
+import { ActivitéRéglementéeQuestion } from './ActiviteReglementeeQuestion'
 import { AutresRevenusQuestion } from './AutresRevenusQuestion'
 import { EnfantsQuestion } from './EnfantsQuestion'
 import { MéthodeImpôtQuestion } from './MethodeImpotQuestion'
