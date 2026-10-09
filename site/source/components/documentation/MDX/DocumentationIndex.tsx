@@ -1,4 +1,5 @@
 import React from 'react'
+import { styled } from 'styled-components'
 
 import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
@@ -47,9 +48,11 @@ export const DocumentationIndex = ({
 			<H1>{title}</H1>
 
 			{IndexComponent && (
-				<MDXWrapper>
-					<IndexComponent />
-				</MDXWrapper>
+				<PageContainer>
+					<MDXWrapper>
+						<IndexComponent />
+					</MDXWrapper>
+				</PageContainer>
 			)}
 
 			<Spacing lg />
@@ -70,3 +73,7 @@ export const DocumentationIndex = ({
 		</>
 	)
 }
+
+const PageContainer = styled.div`
+	max-width: 45rem;
+`

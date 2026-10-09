@@ -31,7 +31,6 @@ export const MDXWrapper = ({ children }: Props) => (
 )
 
 const MDXContent = styled.div`
-	/* max-width: 45rem; */
 	font-family: ${({ theme }) => theme.fonts.main};
 	color: ${({ theme }) =>
 		theme.darkMode
