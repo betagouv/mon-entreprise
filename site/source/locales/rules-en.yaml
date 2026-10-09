@@ -11313,45 +11313,32 @@ salarié . cotisations . Mayotte:
     [automatic] The employer and employee **social security contribution
     rates**, as well as
 
-    the **Lodeom** exemption in effect in Mayotte, are fully incorporated into
-    this
+    the **Lodeom** exemption and the **Single General Degressive Reduction**
 
-    simulator.
+    (RGDU) in effect in Mayotte, are fully incorporated into this simulator.
 
 
-    However, the calculation of the **RGDU** (General Degressive Reduction
-
-    ) specific to Mayotte is **not yet available**.
-
-    > The Lodeom exemption does not apply in Mayotte until July 1, 2026.
+    > The Lodeom exemption will not apply in Mayotte until July 1, 2026.
   description.fr: >
     Les **taux de cotisations sociales** patronales et salariales ainsi que
 
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
+    l’exonération **Lodeom** et la **Réduction Générale Dégressive Unique**
 
-    simulateur.
-
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
+    (RGDU) en vigueur à Mayotte sont bien intégrés dans ce simulateur.
 
 
     > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet
     2026.
   résumé.en: >
     [automatic] This simulator correctly applies the **social security
-    contribution rates** and
+    contribution rates**, the **RGDU**,
 
-    the **Lodeom** exemption in effect in Mayotte since July 1, 2026.
+    and the **Lodeom** exemption in effect in Mayotte.
+  résumé.fr: >
+    Ce simulateur applique bien les **taux de cotisations sociales**, la
+    **RGDU**
 
-
-    However, the calculation of the **RGDU** is not yet available.
-  résumé.fr: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
+    et l’exonération **Lodeom** en vigueur à Mayotte.
   titre.en: '[automatic] Contributions in Mayotte'
   titre.fr: Cotisations Mayotte
 salarié . cotisations . PEEC:
