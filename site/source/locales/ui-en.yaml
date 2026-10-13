@@ -68,7 +68,6 @@ Impôts: Taxes
 Insérer dans le champ la valeur du {{text}}: Insert the value of the {{text}}
 Intégrer le module Web: Integrating the Web module
 Intégrer nos simulateurs: Integrate our simulators
-Jours: Days
 Le montant demandé n'est <2>pas calculable…</2>: The amount requested <2>cannot be calculated...</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Simulation data is automatically updated when you modify a field. <2>A panel
@@ -80,7 +79,6 @@ Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
 "Mettre la valeur :": "Set value to:"
 Modifier mes réponses: Modify my answers
-Mois: Month
 Mon entreprise: My company
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
@@ -403,6 +401,7 @@ footer:
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: semantic version management, learn more, new window
 global:
   fermer: Close
+  jours: Days
   mois:
     août: August
     avril: April
@@ -413,6 +412,7 @@ global:
     juin: June
     mai: May
     mars: March
+    mois: Month
     novembre: November
     octobre: October
     septembre: September
@@ -2333,6 +2333,10 @@ pages:
       effectif:
         moins-de-50: Fewer than 50 employees
         plus-de-50: More than 50 employees
+      en-tête:
+        exonération: Amount of the Exemption
+        régularisation: Adjustment
+        rémunération: Gross Compensation
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.

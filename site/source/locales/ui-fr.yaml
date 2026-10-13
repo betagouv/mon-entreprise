@@ -70,7 +70,6 @@ Impôts: Impôts
 Insérer dans le champ la valeur du {{text}}: Insérer dans le champ la valeur du {{text}}
 Intégrer le module Web: Intégrer le module Web
 Intégrer nos simulateurs: Intégrer nos simulateurs
-Jours: Jours
 Le montant demandé n'est <2>pas calculable…</2>: Le montant demandé n'est <2>pas calculable…</2>
 Les données de simulations se mettront automatiquement à jour après la modification d'un champ. <2>Un panneau s'ouvrira pour vous permettre d'apporter des précisions à la simulation, des résultats détaillés s'afficheront en dessous du formulaire et seront mis à jour quand vous modifierez ce dernier.</2>:
   Les données de simulations se mettront automatiquement à jour après la
@@ -84,7 +83,6 @@ Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
 "Mettre la valeur :": "Mettre la valeur :"
 Modifier mes réponses: Modifier mes réponses
-Mois: Mois
 Mon entreprise: Mon entreprise
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
@@ -421,6 +419,7 @@ footer:
 gestion sémantique de version, en savoir plus, nouvelle fenêtre: gestion sémantique de version, en savoir plus, nouvelle fenêtre
 global:
   fermer: Fermer
+  jours: Jours
   mois:
     août: août
     avril: avril
@@ -431,6 +430,7 @@ global:
     juin: juin
     mai: mai
     mars: mars
+    mois: Mois
     novembre: novembre
     octobre: octobre
     septembre: septembre
@@ -2441,6 +2441,10 @@ pages:
       effectif:
         moins-de-50: Moins de 50 salariés
         plus-de-50: Plus de 50 salariés
+      en-tête:
+        exonération: Montant de l’exonération
+        régularisation: Régularisation
+        rémunération: Rémunération brute
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
