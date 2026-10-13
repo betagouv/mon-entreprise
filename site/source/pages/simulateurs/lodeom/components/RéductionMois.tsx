@@ -3,7 +3,6 @@ import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { Lodeom } from '@/contextes/salarié'
@@ -13,6 +12,7 @@ import {
 	Grid,
 	RotatingChevronIcon,
 	Spacing,
+	Strong,
 } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
 import MonthOptions from '@/pages/simulateurs/lodeom/components/MonthOptions'
@@ -106,7 +106,14 @@ export default function RéductionMois({
 			<StyledMonth>{monthName}</StyledMonth>
 			<GridContainer container spacing={2}>
 				<Grid item xs={7} sm={4}>
-					<RuleLink dottedName="salarié . rémunération . brut" />
+					<StyledBody>
+						<Strong>
+							{t(
+								'pages.simulateurs.lodeom.en-tête.rémunération',
+								'Rémunération brute'
+							)}
+						</Strong>
+					</StyledBody>
 				</Grid>
 				<Grid item xs={5} sm={5}>
 					<RémunérationInput
@@ -122,7 +129,14 @@ export default function RéductionMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={Lodeom.lodeomDottedName} />
+					<StyledBody>
+						<Strong>
+							{t(
+								'pages.simulateurs.lodeom.en-tête.exonération',
+								'Montant de l’exonération'
+							)}
+						</Strong>
+					</StyledBody>
 				</Grid>
 				<Grid item>
 					<StyledBody>
@@ -133,9 +147,16 @@ export default function RéductionMois({
 
 			{withRépartitionAndRégularisation && (
 				<GridContainer container spacing={2}>
-					<StyledGrid item>
-						<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
-					</StyledGrid>
+					<Grid item>
+						<StyledBody>
+							<Strong>
+								{t(
+									'pages.simulateurs.lodeom.en-tête.régularisation',
+									'Régularisation'
+								)}
+							</Strong>
+						</StyledBody>
+					</Grid>
 					<Grid item>
 						<StyledBody>
 							<MontantRégularisation />
@@ -214,9 +235,6 @@ const StyledMonth = styled(Body)`
 const GridContainer = styled(Grid)`
 	align-items: baseline;
 	justify-content: space-between;
-`
-const StyledGrid = styled(Grid)`
-	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
 const StyledBody = styled(Body)`
 	margin-top: 0;
