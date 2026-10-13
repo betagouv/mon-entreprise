@@ -2336,7 +2336,7 @@ pages:
         plus-de-50: More than 50 employees
       en-tête:
         exonération: Amount of the Exemption
-        régularisation: Adjustment
+        régularisation: Regularization
         rémunération: Gross Compensation
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
@@ -2376,9 +2376,9 @@ pages:
         header-réduction: Calculated reduction
         header-régularisation: Calculated regularization
       régularisation:
-        annuelle: Annual adjustment
+        annuelle: Annual regularization
         progressive: Progressive regularization
-        type: What type of regulation would you like?
+        type: What type of regularization would you like?
       répartition:
         CSSM: CSSM
         chômage: of which unemployment
