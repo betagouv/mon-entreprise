@@ -1,0 +1,35 @@
+name: Sonde token cross-repo
+# Jetable : mesure si le GITHUB_TOKEN d'un workflow peut lire les PR associées à un commit
+# dans le dépôt d'un fork. À supprimer avec sa branche une fois la réponse obtenue.
+on: push
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  sonde:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          sonde() {
+            echo "=== repos/$1/commits/$2/pulls — attendu : $3"
+            if sortie="$(gh api "repos/$1/commits/$2/pulls" 2>&1)"; then
+              jq -r 'if length == 0 then "    RÉSULTAT : tableau vide" else (.[] | "    RÉSULTAT : PR \(.number) (\(.state)), base \(.base.repo.full_name)") end' <<< "$sortie"
+            else
+              echo "    RÉSULTAT : échec — $sortie"
+            fi
+          }
+          sonde Ibzer/mon-entreprise 5bc1677eeb1fca16b1820b3c002432c6de602842 "PR 4707"
+          sonde Catwallon/mon-entreprise ba3ec0e3e9a43c4b37152420009607107e760bb5 "PR 4702"
+          sonde "$GITHUB_REPOSITORY" 394bdd637ebc5135fd8ada9567829242b9bb9a2b "témoin interne"
+
+          echo "=== témoin : dépôt public sans aucun lien"
+          if sortie="$(gh api "repos/octocat/Hello-World" --jq .full_name 2>&1)"; then
+            echo "    RÉSULTAT : lecture publique tierce OK — $sortie"
+          else
+            echo "    RÉSULTAT : lecture publique tierce refusée — $sortie"
+          fi
