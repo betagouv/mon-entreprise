@@ -63,8 +63,11 @@ jobs:
             number="$(jq -rs --arg sha "$RUN_HEAD_SHA" '[.[][] | select(.head.sha == $sha)] | .[0].number // empty' <<< "$open_pulls")"
           fi
           if [ -z "$number" ]; then
-            echo "::error::Aucune PR ne correspond au commit $RUN_HEAD_SHA"
-            exit 1
+            # La PR a été fermée, ou sa tête a bougé depuis la vérification — et c'est alors la
+            # vérification de la nouvelle tête qui déclenche la revue.
+            echo "::warning::Aucune PR ouverte n'a pour tête le commit $RUN_HEAD_SHA : revue sautée"
+            echo "review-needed=false" >> "$GITHUB_OUTPUT"
+            exit 0
           fi
           pr="$(gh pr view "$number" --repo "$GITHUB_REPOSITORY" --json number,headRefOid,baseRefName,isDraft,isCrossRepository,state)"
           {
