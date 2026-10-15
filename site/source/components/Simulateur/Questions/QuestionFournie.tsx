@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
+import { css, styled } from 'styled-components'
 
 import { DocumentationHelpButton } from '@/components/documentation'
 import { H3, H3Style } from '@/design-system'
@@ -16,14 +16,16 @@ export const QuestionFournie = <S extends Situation>({
 }: Props<S>) => {
 	const { t } = useTranslation()
 
+	const libellé = Question.libellé(t)
+
 	if (Question.typeRadioGroup) {
 		return (
 			<StyledFieldset>
 				<StyledLegend>
-					{Question.libellé(t)}
+					{libellé}
 					{Question.documentation && (
 						<DocumentationHelpButton
-							sujet={Question.libellé(t)}
+							sujet={libellé}
 							documentation={Question.documentation}
 						/>
 					)}
@@ -38,15 +40,17 @@ export const QuestionFournie = <S extends Situation>({
 
 	return (
 		<>
-			<LabelWithMargin as="label" id={labelId} htmlFor={Question.id}>
-				{Question.libellé(t)}
+			<LibelléEtAide>
+				<StyledLabel as="label" id={labelId} htmlFor={Question.id}>
+					{libellé}
+				</StyledLabel>
 				{Question.documentation && (
 					<DocumentationHelpButton
-						sujet={Question.libellé(t)}
+						sujet={libellé}
 						documentation={Question.documentation}
 					/>
 				)}
-			</LabelWithMargin>
+			</LibelléEtAide>
 
 			<Question labelId={labelId} />
 		</>
@@ -63,14 +67,22 @@ const StyledFieldset = styled.fieldset`
 	border: none;
 `
 
+const LibelléStyle = css`
+	display: flex;
+	align-items: center;
+	margin-top: ${({ theme }) => theme.spacings.lg};
+`
 const StyledLegend = styled.legend`
 	${H3Style}
-
-	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xxs}`};
+	${LibelléStyle}
+	margin-bottom: ${({ theme }) => theme.spacings.xxs};
+`
+const LibelléEtAide = styled.div`
+	${LibelléStyle}
+	margin-bottom: ${({ theme }) => theme.spacings.xs};
 `
 
-const LabelWithMargin = styled(H3)`
+const StyledLabel = styled(H3)`
 	display: inline-block;
-
-	margin: ${({ theme }) => `${theme.spacings.lg} 0 ${theme.spacings.xs}`};
+	margin: 0;
 `
