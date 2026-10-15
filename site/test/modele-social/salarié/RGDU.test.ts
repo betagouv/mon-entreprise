@@ -224,5 +224,22 @@ describe('Réduction générale dégressive unique', () => {
 			expect(coefficient(1700)).toBeGreaterThan(coefficient(1950))
 			expect(coefficient(1950)).toBeGreaterThan(coefficient(2200))
 		})
+
+		it('s’applique une fois la Lodeom en vigueur, quand aucun de ses barèmes ne joue', () => {
+			const e = engine.setSituation({
+				...situationMayotte,
+				date: '07/2026',
+				'entreprise . salariés . effectif': '20',
+				'salarié . contrat . salaire brut': '1600 €/mois',
+			})
+
+			expect(e).not.toBeApplicable(
+				'salarié . cotisations . exonérations . lodeom . montant'
+			)
+			expect(e).toBeApplicable('salarié . cotisations . exonérations . RGDU')
+			expect(
+				e.evaluate('salarié . cotisations . exonérations . employeur').nodeValue
+			).toBeGreaterThan(0)
+		})
 	})
 })
