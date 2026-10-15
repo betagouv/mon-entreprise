@@ -4,5 +4,5 @@ import { Références } from '@/domaine/documentation/References'
 
 export type DocumentationDeQuestion = {
 	Documentation: ComponentType
-	références: Références
+	références?: Références
 }

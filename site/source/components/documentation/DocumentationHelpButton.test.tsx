@@ -73,7 +73,6 @@ describe('DocumentationHelpButton', () => {
 	it('n’affiche pas de section de liens utiles si aucune référence n’est fournie', async () => {
 		const documentationSansRéférences: DocumentationDeQuestion = {
 			Documentation: () => <p>Documentation sans références</p>,
-			références: {},
 		}
 
 		const { user, button } = renderDocumentationHelpButton(

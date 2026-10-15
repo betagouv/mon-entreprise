@@ -6,7 +6,7 @@ import { Références } from '@/domaine/documentation/References'
 import { ListeDeRéférences } from './ListeDeReferences'
 
 type Props = {
-	références: Références
+	références?: Références
 }
 
 export const LiensUtiles = ({ références }: Props) => {
