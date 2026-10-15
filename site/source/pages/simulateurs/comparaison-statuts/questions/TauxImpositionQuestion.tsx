@@ -51,5 +51,4 @@ TauxImpositionQuestion.documentation = {
 	Documentation: MDXDoc.documentation(
 		(langue) => import(`./TauxImpositionDocumentation.${langue}.mdx`)
 	),
-	références: {},
 }
