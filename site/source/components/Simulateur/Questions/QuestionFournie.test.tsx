@@ -1,14 +1,14 @@
 import { render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 
-import { DocumentationDeChamp } from '@/domaine/documentation/DocumentationDeChamp'
+import { DocumentationDeQuestion } from '@/components/documentation'
 import { Situation } from '@/domaine/Situation'
 import { TestProvider } from '@/test/TestProvider'
 
 import { ComposantQuestionFournie } from './ComposantQuestionFournie'
 import { QuestionFournie } from './QuestionFournie'
 
-const documentation: DocumentationDeChamp = {
+const documentation: DocumentationDeQuestion = {
 	Documentation: () => <p>Ceci est une documentation</p>,
 	références: {
 		'Site officiel': 'https://example.com',

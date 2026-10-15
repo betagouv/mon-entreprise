@@ -1,7 +1,7 @@
 import { Predicate } from 'effect/Predicate'
 import { TFunction } from 'i18next'
 
-import { DocumentationDeChamp } from '@/domaine/documentation/DocumentationDeChamp'
+import { DocumentationDeQuestion } from '@/components/documentation'
 import { Situation } from '@/domaine/Situation'
 
 export type ComposantQuestionFournie<S extends Situation> =
@@ -12,7 +12,7 @@ export type ComposantQuestionFournie<S extends Situation> =
 		typeRadioGroup: boolean
 		applicable: Predicate<S | undefined>
 		Valeur: React.FunctionComponent
-		documentation?: DocumentationDeChamp
+		documentation?: DocumentationDeQuestion
 	}
 
 export type GroupeDeQuestionsFournies<S extends Situation> = {

@@ -5,6 +5,7 @@ export {
 	DocumentationBasePathProvider,
 	useDocumentationBasePath,
 } from './DocumentationBasePathProvider'
+export type { DocumentationDeQuestion } from './DocumentationDeQuestion'
 export { DocumentationHelpButton } from './DocumentationHelpButton'
 export { DocumentationLink } from './DocumentationLink'
 export { ListeDeRéférences } from './References/ListeDeReferences'

@@ -2,12 +2,12 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it } from 'vitest'
 
-import { DocumentationDeChamp } from '@/domaine/documentation/DocumentationDeChamp'
+import { DocumentationDeQuestion } from '@/components/documentation'
 import { TestProvider } from '@/test/TestProvider'
 
 import { DocumentationHelpButton } from './DocumentationHelpButton'
 
-const documentation: DocumentationDeChamp = {
+const documentation: DocumentationDeQuestion = {
 	Documentation: () => <p>Telle est la question</p>,
 	références: {
 		'Site officiel': 'https://example.com',
@@ -15,7 +15,9 @@ const documentation: DocumentationDeChamp = {
 	},
 }
 
-const renderDocumentationHelpButton = (documentation: DocumentationDeChamp) => {
+const renderDocumentationHelpButton = (
+	documentation: DocumentationDeQuestion
+) => {
 	const user = userEvent.setup()
 
 	render(
@@ -69,7 +71,7 @@ describe('DocumentationHelpButton', () => {
 	})
 
 	it('n’affiche pas de section de liens utiles si aucune référence n’est fournie', async () => {
-		const documentationSansRéférences: DocumentationDeChamp = {
+		const documentationSansRéférences: DocumentationDeQuestion = {
 			Documentation: () => <p>Documentation sans références</p>,
 			références: {},
 		}
