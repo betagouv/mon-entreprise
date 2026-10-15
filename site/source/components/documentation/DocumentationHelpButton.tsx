@@ -1,11 +1,11 @@
 import { HelpButton } from '@/design-system'
-import { DocumentationDeChamp } from '@/domaine/documentation/DocumentationDeChamp'
 
+import { DocumentationDeQuestion } from './DocumentationDeQuestion'
 import { LiensUtiles } from './References/LiensUtiles'
 
 type Props = {
 	sujet: string
-	documentation: DocumentationDeChamp
+	documentation: DocumentationDeQuestion
 }
 
 export const DocumentationHelpButton = ({ sujet, documentation }: Props) => {
