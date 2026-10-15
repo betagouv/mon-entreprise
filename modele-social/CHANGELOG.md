@@ -20,6 +20,7 @@
 - Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
+- Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
 
 ## 11.1.0
 
