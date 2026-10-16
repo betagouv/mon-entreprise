@@ -11086,8 +11086,12 @@ salarié . cotisations . ATMP:
         - la gestion financière ;
 
         - les ressources humaines.
-      question.en: '[automatic] '
-      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      question.en:
+        '[automatic] Is the activity carried out an administrative support
+        function?'
+      question.fr:
+        L'activité exercée relève-t-elle d'une fonction support de nature
+        administrative ?
       titre.en: '[automatic] '
       titre.fr: taux fonctions support
     taux minimum:
@@ -13134,10 +13138,10 @@ salarié . cotisations . prévoyances . santé:
         La complémentaire santé d'entreprise doit prendre en charge un minimum
         de garanties.
       question.en: "[automatic] What is the total monthly amount (employee and
-        employer) of the company's complementary health insurance?"
-      question.fr:
-        Quel est le montant mensuel total (salarié et employeur) de la
-        complémentaire santé de l'entreprise (mutuelle) ?
+        employer shares) of the company's supplementary health insurance
+        (mutuelle)?"
+      question.fr: Quel est le montant mensuel total (part salariale et part
+        patronale) de la complémentaire santé de l'entreprise (mutuelle) ?
       suggestions.alsace moselle basique.en: '[automatic] alsace moselle basic'
       suggestions.alsace moselle basique.fr: alsace moselle basique
       suggestions.basique.en: '[automatic] basic'
@@ -13167,9 +13171,9 @@ salarié . cotisations . prévoyances . santé:
         Part de la complémentaire santé payée par l'employeur. Doit être
         de 50% minimum
       question.en:
-        '[automatic] How much of the complementary health insurance is paid
-        by the employer?'
-      question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
+        '[automatic] What share of the supplementary health insurance is
+        paid by the company?'
+      question.fr: Quelle est la part de la complémentaire santé payée par l'entreprise ?
       suggestions.100%.en: '[automatic] 100%'
       suggestions.100%.fr: 100%
       suggestions.50%.en: '[automatic] 50%'
@@ -14125,8 +14129,8 @@ salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
-  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  question.en: '[automatic] Does the profession practised benefit from reduced contribution rates?'
+  question.fr: La profession exercée bénéficie-t-elle de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
 salarié . régimes spécifiques . taux réduits . profession:
@@ -14198,11 +14202,8 @@ salarié . régimes spécifiques . taux réduits . profession:
         plusieurs employeurs relevant du régime général.
       titre.en: '[automatic] medical profession'
       titre.fr: profession médicale
-  question.en:
-    "[automatic] What is the employee's occupation for the application
-    of reduced contribution rates?"
-  question.fr: Quelle est la profession du salarié pour l'application de taux de
-    cotisations réduits ?
+  question.en: '[automatic] Which profession gives entitlement to these reduced rates?'
+  question.fr: Quelle profession ouvre droit à ces taux réduits ?
   titre.en: '[automatic] profession'
   titre.fr: profession
 salarié . régimes spécifiques . taux réduits . réduction de taux:
@@ -14385,11 +14386,11 @@ salarié . rémunération . avantages en nature:
       avec:
         abonnements:
           question.en:
-            '[automatic] What is the cost of the subscription (mobile package,
-            etc.) covered by the employer?'
+            '[automatic] What is the cost of the subscription (mobile plan,
+            etc.) paid by the company?'
           question.fr:
             Quel est le coût de l'abonnement (forfait mobile, etc.) pris en
-            charge par l'employeur ?
+            charge par l'entreprise ?
           suggestions.aucun.en: '[automatic] no'
           suggestions.aucun.fr: aucun
           suggestions.international.en: '[automatic] international'
