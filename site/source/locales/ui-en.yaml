@@ -271,7 +271,7 @@ components:
       beta-gouv: beta.gouv.fr manifesto, new window
       urssaf: Urssaf, new window
       équipe: small team, new window
-    texte: "<0>We are a <2>small team&lt;/2> —an independent, multidisciplinary team
+    texte: "<0>We are a <2>small team</2> —an independent, multidisciplinary team
       within<5>Urssaf</5>. We are committed to staying attuned to your needs in
       order to continuously improve this site in accordance with <8>the
       beta.gouv.fr manifesto</8>.</0><1>We developed this site to support
@@ -2331,6 +2331,56 @@ pages:
         chambre-hôte: Bed &amp; Breakfast
         meublé-tourisme: Furnished tourist accommodation
     lodeom:
+      documentation:
+        T:
+          default: In your case, the maximum rate T is <2>{{taux}}</2>.
+          mayotte: "In Mayotte, the rate also depends on income. The possible values are:"
+          taux: The maximum rate T is equal to the sum of the rates of the exempt employer
+            contributions.
+          titre: T Value
+        coefficient:
+          inflexion: Up to <2>{{seuilInflexion}}  Smic</2> inclusive, the coefficient
+            is equal to the maximum rate T;
+          intermediaire: "Between these two values, the coefficient decreases gradually.
+            Its formula changes to <2>{{seuilIntermediaire}} Minimum Wage</2>:"
+          sortie: Starting at <2>{{seuilSortie}} Minimum Wage</2>, the coefficient is
+            zero;
+          taux: "The value of the coefficient varies with gross pay:"
+          titre: Calculation of the coefficient
+        conditions:
+          sortie: The exemption applies to <2>earnings below {{seuilSortie}} times the
+            minimum wage</2>.
+          titre: Conditions of Application
+        formule:
+          "1":
+            code: Coefficient = {{seuilInflexion}} × T × Minimum Wage ÷ gross pay
+            texte: "Between {{seuilInflexion}} and {{seuilIntermediaire}} Minimum Wage:"
+          "2":
+            code: Coefficient = {{seuilInflexion}} × T {{diviseur }} × ({{seuilSortie}} ×
+              minimum wage ÷ gross pay − 1)
+            texte: "Between {{seuilIntermediaire}} and {{seuilSortie}} Minimum Wage:"
+          "3":
+            code: Coefficient = {{seuilInflexion}} × T ÷ {{diviseur}} × ({{seuilSortie}} ×
+              minimum wage ÷ gross pay − 1)
+            texte: "Between these two values, the coefficient decreases gradually as gross
+              pay increases:"
+        formuleMontant: Exemption amount = gross pay × coefficient
+        montant: The amount of the exemption is calculated by multiplying the gross
+          compensation by a <1>coefficient</1>.
+        smic:
+          ajustements: <0>The minimum wage (SMIC) used to calculate the exemption depends
+            on the number of hours worked and the period worked:</0><1><0>In the
+            case of <1>part-time work</1> or<3>overtime</3>, the minimum wage is
+            adjusted based on the number of<3>hours</3> worked.</0><1>In the
+            case of <1>an incomplete month</1>, the minimum wage is adjusted on
+            a pro-rata basis, taking into account compensation components that
+            are not affected by the absence (such as certain bonuses).</1></1>
+          titre: Minimum Wage Amount
+          valeur:
+            default: Excluding Mayotte, the reference value is that as of <2>January 1,
+              2026</2>.
+            mayotte: In Mayotte, this refers to the current minimum wage.
+        titre: Calculation of the Lodeom Exemption
       effectif:
         moins-de-50: Fewer than 50 employees
         plus-de-50: More than 50 employees
@@ -2338,6 +2388,12 @@ pages:
         exonération: Amount of the Exemption
         régularisation: Regularization
         rémunération: Gross Compensation
+      externalLinks:
+        "1":
+          description: "URSSAF provides a detailed fact sheet on the Lodeom exemption:
+            eligibility requirements, combination with other exemptions,
+            calculation, reporting, and more…"
+          title: Lodéom Exemption
       meta:
         description: Estimated amount of Lodeom exemption. This exemption applies, under
           certain conditions, to overseas employees.
@@ -2399,8 +2455,8 @@ pages:
             position without overtime."
           courant: "{{barème}} applies only to salaries below {{seuil}} the minimum wage.
             That is, for {{year}}, total compensation that does not exceed
-            <8>{{plafond}} </8> gross per year for a full-time position
-            without overtime."
+            <8>{{plafond}} </8> gross per year for a full-time position without
+            overtime."
         stage: The Lodeom exemption does not apply to internship bonuses.
     médecin:
       meta:
