@@ -11980,40 +11980,40 @@ salarié . cotisations . exonérations . lodeom . régularisation:
     [automatic] ### Progressive regularization
 
 
-    At each due date, you accumulate :
+    At each pay period, you total:
 
-    - the employee's gross earnings since the beginning of the year or since
-    being hired ;
+    - the employee’s gross pay received since the beginning of the year or since
+    their hire date;
 
-    - and calculate the amount of the gross Smic over the same period.
+    - and you calculate the gross minimum wage (SMIC) for that same period.
 
 
-    The adjustment corresponds to the difference between the amount calculated
-    in this way and the cumulative amount of
+    The regularization corresponds to the difference between the amount calculated
+    in this way and the cumulative
 
-    reductions applied over the previous months or quarters of the year.
+    amount of reductions applied in the previous months or quarters of the year.
 
 
     ### Annual regularization
 
 
     This corresponds to the difference between the amount of the reduction
-    calculated according to the annual formula
+    calculated using the annual formula
 
     and the amount of reductions applied in advance to previous periods of the
     year.
 
 
-    It is applied :
+    It applies:
 
-    - on contributions due for the month of December, for "monthly" employers ;
+    - to contributions due for the month of December, for “monthly” employers;
 
-    - or for the last quarter of the year for "quarterly" employers.
+    - or for the last quarter of the year, for “quarterly” employers.
   description.fr: >
     ### Régularisation progressive
 
 
-    À chaque échéance, vous cumulez :
+    À chaque échéance, vous cumulez :
 
     - les rémunérations brutes du salarié perçues depuis le début de l’année ou
     depuis son embauche ;
@@ -12037,13 +12037,13 @@ salarié . cotisations . exonérations . lodeom . régularisation:
     précédentes de l’année.
 
 
-    Elle intervient :
+    Elle intervient :
 
     - sur les cotisations dues au titre du mois de décembre, pour les employeurs
-    « mensuels » ;
+    « mensuels » ;
 
     - ou au titre du dernier trimestre de l’année pour les employeurs «
-    trimestriels ».
+    trimestriels ».
   titre.en: '[automatic] regularization'
   titre.fr: régularisation
 salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles:

@@ -3,7 +3,6 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { Lodeom } from '@/contextes/salarié'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
@@ -99,16 +98,25 @@ export default function RéductionMoisParMois({
 						<caption className="sr-only">{caption}</caption>
 						<thead>
 							<tr>
-								<th scope="col">{t('Mois')}</th>
+								<th scope="col">{t('global.mois.mois', 'Mois')}</th>
 								<th scope="col">
-									<RuleLink dottedName={Lodeom.rémunérationBruteDottedName} />
+									{t(
+										'pages.simulateurs.lodeom.en-tête.rémunération',
+										'Rémunération brute'
+									)}
 								</th>
 								<th scope="col">
-									<RuleLink dottedName={Lodeom.lodeomDottedName} />
+									{t(
+										'pages.simulateurs.lodeom.en-tête.exonération',
+										'Montant de l’exonération'
+									)}
 								</th>
 								{withRépartitionAndRégularisation && (
 									<th scope="col">
-										<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
+										{t(
+											'pages.simulateurs.lodeom.en-tête.régularisation',
+											'Régularisation'
+										)}
 									</th>
 								)}
 							</tr>

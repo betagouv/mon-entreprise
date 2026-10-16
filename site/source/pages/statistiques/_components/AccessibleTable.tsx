@@ -41,7 +41,11 @@ export const AccessibleTable = ({
 				<thead>
 					<tr>
 						{period && (
-							<th scope="col">{period === 'mois' ? t('Mois') : t('Jours')}</th>
+							<th scope="col">
+								{period === 'mois'
+									? t('global.mois.mois', 'Mois')
+									: t('global.jours', 'Jours')}
+							</th>
 						)}
 
 						{Object.keys(data[0].nombre).map((key) => (
