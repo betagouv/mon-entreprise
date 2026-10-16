@@ -1,0 +1,19 @@
+{
+  "url": "https://entreprise.data.gouv.fr/api/sirene/v1/full_text/menoz?per_page=15",
+  "body": {
+    "message": "no results found",
+    "spellcheck": null,
+    "suggestions": [
+      "menoz",
+      "menozzi*albertini/marie agnes/",
+      "menozzi*dominique emile/",
+      "menoz compagnie yado",
+      "menozzi champagne",
+      "menozzi cite",
+      "menozzi holding",
+      "menozzi industrie",
+      "menozzi vaise",
+      "menozzi*amerio/laurence/"
+    ]
+  }
+}

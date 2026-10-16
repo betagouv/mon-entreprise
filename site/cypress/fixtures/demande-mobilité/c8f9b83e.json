@@ -1,0 +1,18 @@
+{
+  "url": "https://geo.api.gouv.fr/communes/65164?fields=nom,code,departement,region,codesPostaux",
+  "body": {
+    "nom": "Escoubès-Pouts",
+    "code": "65164",
+    "codesPostaux": [
+      "65100"
+    ],
+    "departement": {
+      "code": "65",
+      "nom": "Hautes-Pyrénées"
+    },
+    "region": {
+      "code": "76",
+      "nom": "Occitanie"
+    }
+  }
+}
