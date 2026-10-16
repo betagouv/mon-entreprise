@@ -5,9 +5,8 @@ import { useTranslation } from 'react-i18next'
 
 import RuleLink from '@/components/RuleLink'
 import { useEngine } from '@/utils/publicodes/EngineContext'
-import { findReferenceInNode } from '@/utils/publicodes/publicodes'
 
-import { Namespace } from './utils'
+import { Namespace, partPatronale, partSalariale } from './utils'
 
 type Props = {
 	namespace: Namespace
@@ -18,22 +17,8 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 	const language = useTranslation().i18n.language
 	const engine = useEngine()
 
-	const partSalariale = engine.evaluate({
-		valeur:
-			findReferenceInNode(
-				dottedName,
-				engine.getRule(`${namespace} . cotisations . salarié`)
-			) ?? '0',
-		unité: '€/mois',
-	})
-	const partPatronale = engine.evaluate({
-		valeur:
-			findReferenceInNode(
-				dottedName,
-				engine.getRule(`${namespace} . cotisations . employeur`)
-			) ?? '0',
-		unité: '€/mois',
-	})
+	const employeur = partPatronale(engine, namespace, dottedName)
+	const salarié = partSalariale(engine, namespace, dottedName)
 
 	const isExoneration = (
 		dottedName: RègleModèleSocial | RègleModèleAssimiléSalarié
@@ -46,15 +31,15 @@ export const CotisationLine = ({ namespace, dottedName }: Props) => {
 				<RuleLink dottedName={dottedName} />
 			</th>
 			<td>
-				{partPatronale?.nodeValue
+				{employeur?.nodeValue
 					? signePlusOuMoins +
-						formatValue(partPatronale, { displayedUnit: '€', language })
+						formatValue(employeur, { displayedUnit: '€', language })
 					: '–'}
 			</td>
 			<td>
-				{partSalariale?.nodeValue
+				{salarié?.nodeValue
 					? signePlusOuMoins +
-						formatValue(partSalariale, { displayedUnit: '€', language })
+						formatValue(salarié, { displayedUnit: '€', language })
 					: '–'}
 			</td>
 		</tr>
