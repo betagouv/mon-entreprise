@@ -2438,6 +2438,49 @@ pages:
         chambre-hôte: Chambre d'hôtes
         meublé-tourisme: Meublé de tourisme
     lodeom:
+      documentation:
+        T:
+          default: Pour votre situation, le taux maximal T est de <2>{{taux}}</2>.
+          mayotte: "À Mayotte, le taux dépend également de la rémunération. Les valeurs
+            possibles sont :"
+          taux: Le taux maximal T correspond à la somme des taux des cotisations
+            patronales exonérées.
+          titre: Valeur de T
+        coefficient:
+          inflexion: Jusqu'à <1>{{seuilInflexion}}&nbsp;Smic</1> inclus, le cœfficient est
+            égal au taux maximal T&nbsp;;
+          intermediaire: "Entre ces deux valeurs, le cœfficient diminue progressivement.
+            Sa formule change à <2>{{seuilIntermediaire}}&nbsp;Smic</2>&nbsp;:"
+          sortie: À partir de <1>{{seuilSortie}}&nbsp;Smic</1>, le cœfficient est
+            nul&nbsp;;
+          taux: "La valeur du cœfficient évolue avec la rémunération brute :"
+          titre: Calcul du cœfficient
+        conditions:
+          sortie: L’exonération s’applique pour les <2>rémunérations inférieures à
+            {{seuilSortie}}&nbsp;Smic</2>.
+          titre: Condition d’application
+        formule:
+          "1": "Entre {{seuilInflexion}} et {{seuilIntermediaire}}&nbsp;Smic&nbsp;:"
+          "2": "Entre {{seuilIntermediaire}} et {{seuilSortie}}&nbsp;Smic&nbsp;:"
+          "3": "Entre ces deux valeurs, le cœfficient diminue progressivement en fonction
+            de la rémunération brute&nbsp;:"
+        formuleMontant: Montant de l’exonération = rémunération brute × cœfficient
+        montant: Le montant de l’exonération est obtenu en multipliant la rémunération
+          brute par un <1>cœfficient</1>.
+        smic:
+          ajustements: <0>Le Smic utilisé pour calculer l’exonération dépend du temps de
+            travail et de la période travaillée&nbsp;:</0><1><0>En cas de
+            <1>temps partiel</1> ou d’<3>heures supplémentaires</3>, le Smic est
+            ajusté au temps de travail.</0><1>En cas de <1>mois incomplet</1>,
+            le Smic est ajusté au pro-rata en tenant compte des éléments de
+            rémunération qui ne sont pas affectés par l’absence (comme certaines
+            primes).</1></1>
+          titre: Valeur du Smic
+          valeur:
+            default: Hors Mayotte, la valeur de référence est celle du <2>1er janvier
+              2026</2>.
+            mayotte: À Mayotte, il s’agit de la valeur du Smic en vigueur.
+        titre: Calcul de l’exonération Lodeom
       effectif:
         moins-de-50: Moins de 50 salariés
         plus-de-50: Plus de 50 salariés
@@ -2445,6 +2488,11 @@ pages:
         exonération: Montant de l’exonération
         régularisation: Régularisation
         rémunération: Rémunération brute
+      externalLinks:
+        "1":
+          description: "L’Urssaf met à votre disposition une fiche détaillée sur
+            l’exonération Lodeom : conditions, cumul, calcul, déclaration…"
+          title: Exonération Lodéom
       meta:
         description: Estimation du montant de l'exonération Lodeom. Cette exonération
           est applicable, sous conditions, aux salariés d'Outre-mer.
