@@ -332,10 +332,10 @@ exports[`e2e test mon-entreprise api > Test evaluate brut => net + super brut 2`
         "salarié . rémunération . primes . activité . base",
         "salarié . rémunération . primes . fin d'année",
         "salarié . temps de travail . heures supplémentaires",
+        "établissement . code risque",
         "établissement . commune . département",
         "établissement . commune . département . outre-mer",
         "établissement . taux ATMP",
-        "établissement . taux ATMP . taux collectif",
       ],
       "nodeValue": 4807.51,
       "unit": {

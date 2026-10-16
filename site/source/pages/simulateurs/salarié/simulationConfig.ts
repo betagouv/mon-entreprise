@@ -137,7 +137,7 @@ export const configSalarié: PublicodesSimulationConfig = {
 			'établissement . commune',
 			// ## Taux AT/MP
 			'établissement . taux ATMP',
-			'établissement . taux ATMP . taux collectif',
+			'établissement . code risque',
 			'salarié . cotisations . ATMP . taux fonctions support',
 			// ## TVA
 			'entreprise . TVA',

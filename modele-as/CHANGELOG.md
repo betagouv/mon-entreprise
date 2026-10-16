@@ -10,6 +10,7 @@
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
+- Taux collectifs AT/MP 2026 par code risque : la règle `établissement . code risque` permet de choisir le domaine d'activité, dont `établissement . taux ATMP . taux collectif` déduit le taux (le taux moyen reste la valeur par défaut, et `taux collectif` peut toujours être saisi directement)
 
 ## 0.1.0
 

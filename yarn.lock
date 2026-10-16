@@ -16895,13 +16895,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^6.6.2":
-  version: 6.6.2
-  resolution: "fuse.js@npm:6.6.2"
-  checksum: 10/4768725963ee07dacfcb4abb001a12ea5e6e44c95d4e0918fcbfe0469107c5ad3ece2f1930396eb6c210383edf4c14ca083b91a2fc54950c5d021935a63d89de
-  languageName: node
-  linkType: hard
-
 "fuse.js@npm:^7.0.0":
   version: 7.1.0
   resolution: "fuse.js@npm:7.1.0"
@@ -26257,7 +26250,7 @@ __metadata:
     eslint-plugin-testing-library: "npm:^6.2.0"
     exoneration-covid: "workspace:^"
     focus-trap-react: "npm:^10.2.1"
-    fuse.js: "npm:^6.6.2"
+    fuse.js: "npm:^7.0.0"
     happy-dom: "npm:^20.0.0"
     i18next-parser: "npm:^8.7.0"
     iframe-resizer: "npm:^4.3.7"

@@ -66,10 +66,3 @@
     Connaître le taux AT/MP de votre entreprise sur votre compte AT/MP: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp
     Comment calculer les cotisations accidents du travail et maladies professionnelles (AT/MP) ?: https://entreprendre.service-public.fr/vosdroits/F33665
   plancher: assimilé salarié . cotisations . ATMP . taux minimum
-  avec:
-    taux collectif:
-      question: De quel domaine d'activité dépend votre entreprise ?
-      par défaut: assimilé salarié . cotisations . ATMP . taux moyen
-      unité: '%'
-      note: Les taux collectifs spécifiques du régime Alsace-Moselle ne sont pas
-        implémentés
