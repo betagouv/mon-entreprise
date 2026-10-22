@@ -1990,7 +1990,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
 
     The amount of the 26% deduction is subject to a minimum and
 
-    a maximum (except in Mayotte).
+    a maximum limit.
   description.fr: >
     Avec la réforme du calcul de l’assiette de cotisations et contributions
 
@@ -2008,7 +2008,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
 
     Le montant de l’abattement de 26 % est encadré par un plancher et
 
-    un plafond (sauf à Mayotte).
+    un plafond.
   note.en:
     '[automatic] Before the reform, only the taxable portion of replacement
     income was deducted from the CSG base, since the non-taxable portion had
