@@ -8,9 +8,11 @@
 - Supprime les règles vides `assimilé salarié . cotisations . prévoyances . conventionnelle`
 - Supprime les règles enfants de `assimilé salarié . cotisations . prévoyances . incapacité invalidité décès`
 - Corrige les possibilités de `entreprise . salariés . effectif . seuil`
+- Supprime la règle enfant `assimilé salarié . rémunération . nette . imposable . sans déductions` (utiliser directement `assimilé salarié . rémunération . nette . imposable`)
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
+- Ajoute les dividendes
 
 ### Mises à jour
 - Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
