@@ -341,7 +341,7 @@ export const SeoExplanations = () => {
 					</Li>
 					<Li>
 						En cas de <Strong>mois incomplet</Strong>, le Smic est ajusté au
-						pro-rata en tenant compte des éléments de rémunération qui ne sont
+						prorata en tenant compte des éléments de rémunération qui ne sont
 						pas affectés par l’absence (comme certaines primes).
 					</Li>
 				</Ul>
