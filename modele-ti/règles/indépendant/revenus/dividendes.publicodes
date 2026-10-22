@@ -117,7 +117,7 @@ indépendant . dividendes . imposition:
 
           Le montant imposable des dividendes est alors leur montant brut après
           **abattement de 40 %** puis déduction d’une partie de la CSG. Ce montant
-          imposable est ensuite ajouté aux autres revenus d’activité (après leur
+          imposable est ensuite ajouté à la rémunération imposable (après son
           abattement de 10 % pour frais professionnels).
   par défaut: "'PFU'"
   références:
