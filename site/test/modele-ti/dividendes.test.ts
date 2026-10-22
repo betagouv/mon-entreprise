@@ -15,16 +15,16 @@ describe('Dividendes', () => {
 			'indépendant . dividendes . soumis à prélèvements sociaux': `${dividendes} €/an`,
 		}
 
-		it('sont soumis à 17,2% de prélèvements sociaux', () => {
+		it('sont soumis à 18,6% de prélèvements sociaux', () => {
 			const e = engine.setSituation(defaultSituationAvecDividendes)
 
 			expect(e).toEvaluate(
 				'indépendant . dividendes . soumis à prélèvements sociaux',
-				1000
+				dividendes
 			)
 			expect(e).toEvaluate(
 				'indépendant . dividendes . prélèvements sociaux',
-				186
+				(18.6 * dividendes) / 100
 			)
 		})
 

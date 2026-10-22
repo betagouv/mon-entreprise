@@ -1,5 +1,5 @@
 assimilé salarié . cotisations:
-  description: Total des cotisations et contributions à la sécurité sociales
+  description: Total des cotisations et contributions à la sécurité sociale
     versées pour ce salarié. Il comprends une part employeur et une part
     employé.
   somme:
@@ -35,6 +35,17 @@ assimilé salarié . cotisations:
         - CSG-CRDS . CSG . déductible
         - CSG-CRDS . sur revenus imposables non déductible
       abattement: exonérations . salarié
+
+assimilé salarié . cotisations . avec dividendes:
+  titre: Cotisations et contributions
+  résumé: Inclue les prélèvements sociaux sur les dividendes
+  description: |
+    C’est le montant total dû au titre des cotisations et contributions
+    obligatoires, y compris le montant des prélèvements sociaux sur les
+    dividendes.
+  somme:
+    - cotisations
+    - dividendes . prélèvements sociaux
 
 assimilé salarié . cotisations . catégories:
   avec:
