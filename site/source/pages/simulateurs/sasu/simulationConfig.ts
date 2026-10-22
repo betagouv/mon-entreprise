@@ -5,12 +5,14 @@ export const configSASU: PublicodesSimulationConfig = {
 	'objectifs exclusifs': [
 		'assimilé salarié . rémunération . totale',
 		'assimilé salarié . rémunération . brute',
-		'assimilé salarié . rémunération . nette . à payer avant impôt',
-		'assimilé salarié . rémunération . nette . après impôt',
+		'assimilé salarié . rémunération . nette . avec dividendes',
+		'assimilé salarié . rémunération . nette . après impôt . avec dividendes',
 	],
 	objectifs: [
+		'assimilé salarié . dividendes',
 		'assimilé salarié . rémunération . impôt',
-		'assimilé salarié . cotisations',
+		'assimilé salarié . rémunération . impôt . avec dividendes',
+		'assimilé salarié . cotisations . avec dividendes',
 	],
 	questions: {
 		raccourcis: [
@@ -38,5 +40,7 @@ export const configSASU: PublicodesSimulationConfig = {
 		],
 	},
 	'unité par défaut': '€/an',
-	situation: {},
+	situation: {
+		'entreprise . imposition': "'IS'",
+	},
 }
