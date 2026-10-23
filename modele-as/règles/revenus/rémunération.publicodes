@@ -10,6 +10,7 @@ assimilé salarié . rémunération . totale:
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   somme:
     - rémunération . brute
+    - dividendes
     - cotisations . employeur
     - régimes spécifiques . taxe sur les salaires
   unité: €/an
@@ -33,16 +34,16 @@ assimilé salarié . rémunération . salaire brut:
     - rémunération . totale
     - rémunération . brute
     - rémunération . nette
-    - rémunération . nette . à payer avant impôt
-    - rémunération . nette . après impôt
+    - rémunération . nette . avec dividendes
+    - rémunération . nette . après impôt . avec dividendes
 
 assimilé salarié . rémunération . nette:
-  unité: €/an
   titre: Rémunération nette
   résumé: Après déduction des cotisations, contributions et charges
   somme:
     - rémunération . brute
     - (- cotisations . salarié)
+  unité: €/an
 
 assimilé salarié . rémunération . nette . à payer avant impôt:
   titre: Salaire net
@@ -57,39 +58,76 @@ assimilé salarié . rémunération . nette . à payer avant impôt:
     - rémunération . nette
     - (- avantages en nature . montant)
 
+assimilé salarié . rémunération . nette . avec dividendes:
+  titre: Rémunération nette
+  résumé: Après déduction des prélèvements sociaux, cotisations, contributions et charges
+  somme:
+    - rémunération . nette . à payer avant impôt
+    - dividendes . nets
+  arrondi: oui
+  unité: €/mois
+
 assimilé salarié . rémunération . nette . imposable:
   titre: Salaire net imposable
   description: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
-  valeur: sans déductions
-  références:
-    DSN: https://dsn-info.custhelp.com/app/answers/detail/a_id/2110
+  somme:
+    - rémunération . nette
+    - cotisations . CSG-CRDS . non déductible
+    - cotisations . prévoyances . employeur
+    - cotisations . prévoyances . salarié . non déductible
 
-  avec:
-    sans déductions:
-      description: Le net imposable avant les exonérations et déductions
-      somme:
-        - rémunération . nette
-        - cotisations . CSG-CRDS . non déductible
-        - cotisations . prévoyances . employeur
-        - cotisations . prévoyances . salarié . non déductible
+assimilé salarié . rémunération . nette . imposable . avec dividendes:
+  titre: Rémunération nette imposable
+  description: |
+    Somme du salaire net imposable et du montant imposable des dividendes
+    perçus, dans le cas d’une imposition des dividendes au barème progressif.
+  somme:
+    - rémunération . nette . imposable
+    - dividendes . imposables
 
 assimilé salarié . rémunération . impôt:
-  titre: impôt sur le revenu
+  titre: Impôt sur le revenu
   description: |
     Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
     salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
     cas du calcul avec le barème standard, des autres revenus imposables du
     foyer fiscal.
-
-    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
-    entreprises soumises à l’impôt sur les revenus (IR).
   valeur: impôt . montant
   unité: €/an
   contexte:
     paramètres . impôt . revenu imposable: rémunération . nette . imposable
     paramètres . impôt . revenu d'activité: rémunération . nette . imposable
+    # NB : l'option "taux neutre" n'est plus proposée
     paramètres . impôt . taux neutre applicable: oui
+
+assimilé salarié . rémunération . impôt . avec dividendes au barème progressif:
+  titre: Impôt sur le revenu
+  description: |
+    Montant de l’impôt sur le revenu sur :
+    - la rémunération de la ou du dirigeant assimilé salarié d’une entreprise soumise à
+    l’impôt sur les sociétés (IS) ;
+    - dans le cas d’une imposition des dividendes au barème progressif, des
+    dividendes perçus par la ou le dirigeant assimilé salarié ;
+    - dans le cas du calcul avec le barème standard, des autres revenus imposables
+    du foyer fiscal.
+  valeur: impôt . montant
+  unité: €/an
+  contexte:
+    paramètres . impôt . revenu imposable: rémunération . nette . imposable . avec dividendes
+    paramètres . impôt . revenu d'activité: rémunération . nette . imposable . avec dividendes
+
+assimilé salarié . rémunération . impôt . avec dividendes:
+  titre: Impôt sur le revenu
+  résumé: Inclue l'impôt sur les dividendes
+  variations:
+    - si: dividendes . imposition = 'PFU'
+      alors:
+        somme:
+          - rémunération . impôt
+          - dividendes . PFU
+    - sinon: rémunération . impôt . avec dividendes au barème progressif
+  unité: €/an
 
 assimilé salarié . rémunération . nette . après impôt:
   titre: Salaire net après impôt
@@ -97,12 +135,24 @@ assimilé salarié . rémunération . nette . après impôt:
   type: salaire
   unité: €/mois
   description: |
-    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevés.
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les
+    cotisations et l'impôt prélevés.
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
   somme:
     - rémunération . nette . à payer avant impôt
-    - (- impôt)
+    - (- rémunération . impôt)
+
+assimilé salarié . rémunération . nette . après impôt . avec dividendes:
+  titre: Rémunération nette après impôt
+  description: |
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevés.
+  références:
+    Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
+  somme:
+    - rémunération . nette . avec dividendes
+    - (- impôt . avec dividendes)
+  unité: €/mois
 
 assimilé salarié . rémunération . avantages en nature:
   icônes: 🛏️🚗🥗📱
