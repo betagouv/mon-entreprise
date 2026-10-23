@@ -11,6 +11,9 @@
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
 
+### Mises à jour
+- Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
+
 ## 0.1.0
 
 ### Mises à jour
