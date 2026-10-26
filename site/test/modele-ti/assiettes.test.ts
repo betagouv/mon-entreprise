@@ -64,7 +64,7 @@ describe('Indépendant', () => {
 			)
 		})
 
-		it('ne plafonne pas l’abattement à Mayotte', () => {
+		it('applique le plafond d’abattement à Mayotte avec la Pass métropolitain', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '250000 €/an',
@@ -73,11 +73,11 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
-				Math.round((250_000 * 26) / 100)
+				Math.round(1.3 * Pass)
 			)
 		})
 
-		it('n’applique pas d’abattement plancher à Mayotte', () => {
+		it('applique le plancher d’abattement à Mayotte avec le Pass métropolitain', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '1000 €/an',
@@ -86,7 +86,7 @@ describe('Indépendant', () => {
 
 			expect(e).toEvaluate(
 				'indépendant . cotisations et contributions . assiette CSG-CRDS . abattement',
-				Math.round((1_000 * 26) / 100)
+				Math.round((1.76 / 100) * Pass)
 			)
 		})
 	})
