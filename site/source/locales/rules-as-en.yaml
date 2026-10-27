@@ -127,10 +127,8 @@ assimilé salarié . cotisations . ATMP:
         - la gestion financière ;
 
         - les ressources humaines.
-      question.en:
-        '[automatic] Does the employee perform an administrative support
-        function?'
-      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      question.en: '[automatic] Do you hold an administrative support function?'
+      question.fr: Occupez-vous une fonction support de nature administrative ?
       titre.en: '[automatic] support function rate'
       titre.fr: taux fonctions support
     taux minimum:
@@ -644,11 +642,11 @@ assimilé salarié . cotisations . prévoyances . santé:
         négocie le contrat et assure son suivi auprès de l'organisme assureur.
         La complémentaire santé d'entreprise doit prendre en charge un minimum
         de garanties.
-      question.en: "[automatic] What is the total monthly amount (employee and
-        employer) of the company's complementary health insurance (mutuelle)?"
-      question.fr:
-        Quel est le montant mensuel total (salarié et employeur) de la
-        complémentaire santé de l'entreprise (mutuelle) ?
+      question.en: '[automatic] What is the total monthly amount (employee and
+        employer shares) of your company supplementary health insurance
+        (mutuelle)?'
+      question.fr: Quel est le montant mensuel total (part salariale et part
+        patronale) de votre complémentaire santé d'entreprise (mutuelle) ?
       suggestions.alsace moselle basique.en: '[automatic] alsace moselle basique'
       suggestions.alsace moselle basique.fr: alsace moselle basique
       suggestions.basique.en: '[automatic] basic'
@@ -677,9 +675,9 @@ assimilé salarié . cotisations . prévoyances . santé:
         Part de la complémentaire santé payée par l'employeur. Doit être
         de 50% minimum
       question.en:
-        '[automatic] How much of the supplementary health insurance is paid
-        for by the employer?'
-      question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
+        '[automatic] What share of your supplementary health insurance is
+        paid by the company?'
+      question.fr: Quelle est la part de votre complémentaire santé payée par l'entreprise ?
       suggestions.100%.en: '[automatic] 100%'
       suggestions.100%.fr: 100%
       suggestions.50%.en: '[automatic] 50%'
@@ -1078,8 +1076,8 @@ assimilé salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
-  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  question.en: '[automatic] Does your profession benefit from reduced contribution rates?'
+  question.fr: Votre profession bénéficie-t-elle de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
 assimilé salarié . régimes spécifiques . taux réduits . profession:
@@ -1151,11 +1149,8 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
         plusieurs employeurs relevant du régime général.
       titre.en: '[automatic] medical profession'
       titre.fr: profession médicale
-  question.en:
-    "[automatic] What is the employee's occupation for the application
-    of reduced contribution rates?"
-  question.fr: Quelle est la profession du salarié pour l'application de taux de
-    cotisations réduits ?
+  question.en: '[automatic] Which profession with reduced contribution rates do you practise?'
+  question.fr: Quelle profession bénéficiant de taux de cotisations réduits exercez-vous ?
   titre.en: '[automatic] profession'
   titre.fr: profession
 assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
@@ -1286,21 +1281,20 @@ assimilé salarié . rémunération . avantages en nature:
         les
 
         cas un avantage en nature.
-      question.en: |
-        [automatic] Does the company provide free meals?
+      question.en: '[automatic] Does the company provide you with free meals?'
       question.fr: |
-        L'entreprise fournit-elle gratuitement des repas ?
+        L'entreprise vous fournit-elle gratuitement des repas ?
       titre.en: '[automatic] food'
       titre.fr: nourriture
     ntic:
       avec:
         abonnements:
           question.en:
-            '[automatic] What is the cost of the subscription (mobile package,
-            etc.) covered by the employer?'
+            '[automatic] What is the cost of the subscription (mobile plan,
+            etc.) paid by the company?'
           question.fr:
             Quel est le coût de l'abonnement (forfait mobile, etc.) pris en
-            charge par l'employeur ?
+            charge par l'entreprise ?
           suggestions.aucun.en: '[automatic] no'
           suggestions.aucun.fr: aucun
           suggestions.international.en: '[automatic] international'
@@ -1421,11 +1415,11 @@ assimilé salarié . rémunération . avantages en nature:
         outils), soit de l’existence de factures détaillées permettant d’établir
 
         une utilisation privée.
-      question.en: >
-        [automatic] Does the company provide a free NICT tool (computer,
-        telephone, tablet, etc.)?
+      question.en:
+        '[automatic] Does the company provide you with a free ICT device
+        (computer, phone, tablet, etc.)?'
       question.fr: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        L'entreprise vous fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       titre.en: '[automatic] ntic'
       titre.fr: ntic
@@ -1461,11 +1455,10 @@ assimilé salarié . rémunération . avantages en nature:
     du
 
     salaire net imposable, il sera déduit du salaire net à verser.
-  question.en: '[automatic] Does the company provide benefits in kind (meals,
-    vehicle, telephone, discounts, accommodation, etc.)?'
-  question.fr:
-    L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement…) ?
+  question.en: '[automatic] Does the company provide you with benefits in kind
+    (meals, vehicle, telephone, discounts, housing…)?'
+  question.fr: L'entreprise vous fournit-elle des avantages en nature (repas,
+    véhicule, téléphone, réductions, logement…) ?
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 assimilé salarié . rémunération . brute:
