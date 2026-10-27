@@ -7,12 +7,13 @@ import {
 	Grid,
 	H1,
 	Link,
+	MDXPageContainer,
 	MDXWrapper,
 	NavigationContainer,
 	Spacing,
 } from '@/design-system'
 
-import { MDXDocumentation } from './createMDXDocumentation'
+import { MDXDocumentation } from './createDocumentation'
 
 export interface MDXDocumentationIndexProps {
 	documentations: MDXDocumentation[]
@@ -25,7 +26,7 @@ export interface MDXDocumentationIndexProps {
 	indexComponent?: React.ComponentType
 }
 
-export const MDXDocumentationIndex = ({
+export const DocumentationIndex = ({
 	documentations,
 	baseUrl,
 	docUrl,
@@ -47,9 +48,11 @@ export const MDXDocumentationIndex = ({
 			<H1>{title}</H1>
 
 			{IndexComponent && (
-				<MDXWrapper>
-					<IndexComponent />
-				</MDXWrapper>
+				<MDXPageContainer>
+					<MDXWrapper>
+						<IndexComponent />
+					</MDXWrapper>
+				</MDXPageContainer>
 			)}
 
 			<Spacing lg />

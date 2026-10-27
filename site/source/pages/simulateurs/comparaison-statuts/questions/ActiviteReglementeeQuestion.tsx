@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 
 import { OuiNonInput } from '@/components/conversation/OuiNonInput'
+import { MDXDoc } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import { SituationComparée, useComparateur } from '@/contextes/comparateur'
 import { fromOuiNon, OuiNon, toOuiNon } from '@/domaine/OuiNon'
@@ -43,3 +44,14 @@ ActivitéRéglementéeQuestion.applicable = (
 	situation: SituationComparée | undefined
 ) => situation?.natureActivité === 'libérale'
 ActivitéRéglementéeQuestion.Valeur = ActivitéRéglementéeValeur
+ActivitéRéglementéeQuestion.documentation = {
+	Documentation: MDXDoc.documentation(
+		(langue) => import(`./ActiviteReglementeeDocumentation.${langue}.mdx`)
+	),
+	références: {
+		'Professions libérales réglementées et non réglementées':
+			'https://entreprendre.service-public.gouv.fr/vosdroits/F23458',
+		'Liste des professions libérales réglementées':
+			'https://bpifrance-creation.fr/encyclopedie/trouver-proteger-tester-son-idee/definir-nature-son-activite/liste-professions',
+	},
+}

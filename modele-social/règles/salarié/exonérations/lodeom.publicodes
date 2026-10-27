@@ -185,6 +185,7 @@ salarié . cotisations . exonérations . lodeom . zone un:
 
     barème compétitivité:
       titre: barème de compétitivité
+      par défaut: non
       non applicable si:
         une de ces conditions:
           - barème compétitivité renforcée
