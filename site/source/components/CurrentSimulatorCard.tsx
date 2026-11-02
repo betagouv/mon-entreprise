@@ -9,19 +9,12 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { SimulateurCard } from './SimulateurCard'
 
-export function CurrentSimulatorCard({
-	fromGérer = false,
-}: {
-	fromGérer?: boolean
-}) {
+export function CurrentSimulatorCard() {
 	const dirigeantSimulateur = infereSimulateurRevenuFromSituation(useEngine())
 	const simulateurs = useSimulatorsMetadata()
 
 	return dirigeantSimulateur ? (
-		<SimulateurCard
-			fromGérer={fromGérer}
-			{...simulateurs[dirigeantSimulateur]}
-		/>
+		<SimulateurCard {...simulateurs[dirigeantSimulateur]} />
 	) : (
 		<Grid
 			item

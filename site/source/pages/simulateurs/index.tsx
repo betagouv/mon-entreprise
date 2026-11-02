@@ -1,13 +1,10 @@
-import { Trans } from 'react-i18next'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Page404 } from '@/components/Page404'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Link } from '@/design-system'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
+import { LienDeRetour } from '@/simulateurs'
 import { Salarié } from '@/simulateurs/salarié'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
@@ -43,8 +40,6 @@ import { SASUSimulation } from './sasu/SASU'
 export default function Simulateurs() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
-	const [lastState] = useNavigationOrigin()
-	const isEmbedded = useIsEmbedded()
 	const simulateurs = relativeSitePaths.simulateurs
 	const professionLibérale = simulateurs['profession-libérale']
 
@@ -52,26 +47,7 @@ export default function Simulateurs() {
 		<>
 			<ScrollToTop key={currentPath} />
 
-			{currentPath !== absoluteSitePaths.simulateurs.index &&
-				(lastState?.fromGérer ? (
-					<Link
-						to={absoluteSitePaths.assistants['pour-mon-entreprise'].index}
-						noUnderline
-					>
-						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
-					</Link>
-				) : !isEmbedded ? (
-					(!lastState || lastState?.fromSimulateurs) && (
-						<Link
-							className="print-hidden"
-							to={absoluteSitePaths.simulateurs.index}
-							noUnderline
-						>
-							<span aria-hidden>←</span>{' '}
-							<Trans>Voir les autres simulateurs</Trans>
-						</Link>
-					)
-				) : null)}
+			<LienDeRetour />
 			<Routes>
 				<Route
 					index
