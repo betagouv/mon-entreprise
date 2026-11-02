@@ -11,6 +11,7 @@ const déployé: EnvironnementDéployé = sousVite
 			| undefined) ?? 'développement')
 
 export const environnement = {
+	isServerSide: typeof document === 'undefined',
 	déployé,
 	branche: sousVite
 		? (typeof BRANCH_NAME !== 'undefined' && BRANCH_NAME) || ''
