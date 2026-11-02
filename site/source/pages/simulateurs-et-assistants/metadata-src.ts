@@ -29,8 +29,8 @@ import { pamcMetadata } from '@/pages/simulateurs/pamc/metadata'
 import { pharmacienMetadata } from '@/pages/simulateurs/pharmacien/metadata'
 import { professionLibéraleMetadata } from '@/pages/simulateurs/profession-libérale/metadata'
 import { sageFemmeMetadata } from '@/pages/simulateurs/sage-femme/metadata'
-import { salariéMetadata } from '@/pages/simulateurs/salarié/metadata'
 import { sasuMetadata } from '@/pages/simulateurs/sasu/metadata'
+import { salariéMetadata } from '@/simulateurs/salarié/metadata'
 import { ImmutableType } from '@/types/utils'
 
 /**

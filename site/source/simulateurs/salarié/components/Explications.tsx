@@ -2,7 +2,8 @@ import { useTranslation } from 'react-i18next'
 
 import SalaryExplanation from '@/components/simulationExplanation/SalaryExplanation/SalaryExplanation'
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { FicheDePaie } from '@/pages/simulateurs/salarié/components/FicheDePaie/FicheDePaie'
+
+import { FicheDePaie } from './FicheDePaie/FicheDePaie'
 
 export default function Explications() {
 	const { t } = useTranslation()
