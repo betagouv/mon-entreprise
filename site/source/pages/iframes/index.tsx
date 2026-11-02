@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Outlet, Route, Routes } from 'react-router-dom'
 
+import { ChromeIframe } from '@/components/layout/ChromeIframe'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import {
 	MergedSimulatorMetadata,
@@ -41,19 +42,16 @@ import { SageFemme } from '@/pages/simulateurs/sage-femme/SageFemme'
 import { SASUSimulation } from '@/pages/simulateurs/sasu/SASU'
 import { Salarié } from '@/simulateurs/salarié'
 
-import IframeFooter from './IframeFooter'
-
-const ChromeIframe = ({
+const RouteAvecChromeIframe = ({
 	avecAvis = false,
 	avecLogo = false,
 }: {
 	avecAvis?: boolean
 	avecLogo?: boolean
 }) => (
-	<>
+	<ChromeIframe avecAvis={avecAvis} avecLogo={avecLogo}>
 		<Outlet />
-		<IframeFooter avecAvis={avecAvis} avecLogo={avecLogo} />
-	</>
+	</ChromeIframe>
 )
 
 const PageIframe = ({
@@ -93,7 +91,7 @@ export default function Iframes() {
 			*/}
 			<base target="_parent" />
 			<Routes>
-				<Route element={<ChromeIframe avecAvis />}>
+				<Route element={<RouteAvecChromeIframe avecAvis />}>
 					{routeIframe(simulateurs.salarié, <Salarié />)}
 					{routeIframe(
 						simulateurs['entreprise-individuelle'],
@@ -155,7 +153,7 @@ export default function Iframes() {
 					)}
 				</Route>
 
-				<Route element={<ChromeIframe avecAvis avecLogo />}>
+				<Route element={<RouteAvecChromeIframe avecAvis avecLogo />}>
 					{routeIframe(simulateurs['choix-statut'], <ChoixDuStatut />)}
 					{routeIframe(
 						simulateurs['pour-mon-entreprise'],
