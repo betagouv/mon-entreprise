@@ -1,19 +1,12 @@
 import Engine from 'publicodes'
-import { useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 
-import { PublicodesDoc } from '@/components/documentation'
-import { Page404 } from '@/components/Page404'
-import { FromBottom } from '@/components/ui/animate'
-import Meta from '@/components/utils/Meta'
-import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Spacing } from '@/design-system'
+import {
+	AccueilDeLaDocumentation,
+	PageDeRègle,
+} from '@/components/documentation'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
-import { useNavigation } from '@/lib/navigation'
-
-import BackToSimulation from './BackToSimulation'
-import DocumentationLanding from './DocumentationLanding'
 
 type Props = {
 	documentationPath: string
@@ -28,11 +21,11 @@ export default function Documentation({
 }: Props) {
 	return (
 		<Routes>
-			<Route index element={<DocumentationLanding />} />
+			<Route index element={<AccueilDeLaDocumentation />} />
 			<Route
 				path="*"
 				element={
-					<PageDeLaRègle
+					<PageDeRègle
 						documentationPath={documentationPath}
 						engine={engine}
 						nomModèle={nomModèle}
@@ -40,41 +33,5 @@ export default function Documentation({
 				}
 			/>
 		</Routes>
-	)
-}
-
-const PageDeLaRègle = ({ documentationPath, engine, nomModèle }: Props) => {
-	const { t } = useTranslation()
-	const { currentPath } = useNavigation()
-	const règle = PublicodesDoc.useRègleDuCheminCourant({
-		documentationPath,
-		engine,
-	})
-
-	if (!règle) {
-		return <Page404 />
-	}
-
-	return (
-		<>
-			<Meta
-				title={t('pages.documentation.meta.title', 'Documentation')}
-				description={t(
-					'pages.documentation.meta.description',
-					'Documentation des règles de calcul de nos simulateurs et assistants'
-				)}
-			/>
-			<FromBottom>
-				<ScrollToTop key={currentPath} />
-				<BackToSimulation />
-				<Spacing xl />
-			</FromBottom>
-			<PublicodesDoc.Visualiseur
-				documentationPath={documentationPath}
-				engine={engine}
-				nomModèle={nomModèle}
-				règle={règle}
-			/>
-		</>
 	)
 }

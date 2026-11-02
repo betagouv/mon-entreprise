@@ -8,7 +8,7 @@ import { Body, H1 } from '@/design-system'
 
 const LazySearchRules = lazy(() => import('@/components/search/SearchRules'))
 
-export default function DocumentationLanding() {
+export function AccueilDeLaDocumentation() {
 	const { t } = useTranslation()
 
 	return (

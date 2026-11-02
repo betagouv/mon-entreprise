@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Button, Emoji, Spacing } from '@/design-system'
 import { simulationUrlSelector } from '@/store/selectors/simulation/simulationUrl.selector'
 
-export default function BackToSimulation() {
+export function RetourÀLaSimulation() {
 	const url = useSelector(simulationUrlSelector)
 	const { t } = useTranslation()
 
