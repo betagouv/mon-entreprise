@@ -9,13 +9,13 @@ import { serviceEmployeur } from '@/external-links/serviceEmployeur'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
-import ExplicationsSalaire from '@/pages/simulateurs/salarié/components/Explications'
-import { MessageDirigeantSASU } from '@/pages/simulateurs/salarié/components/MessageDirigeantSASU'
-import { SeoExplanations } from '@/pages/simulateurs/salarié/components/SeoExplanations'
-import { SimulateurPageLayout } from '@/simulateurs'
 import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
+import { SimulateurPageLayout } from '../SimulateurPageLayout'
+import ExplicationsSalaire from './components/Explications'
+import { MessageDirigeantSASU } from './components/MessageDirigeantSASU'
+import { SeoExplanations } from './components/SeoExplanations'
 import SalariéSimulationGoals from './Goals'
 import { salariéMetadata } from './metadata'
 import { salariéOpenGraph } from './opengraph'
@@ -23,7 +23,7 @@ import { configSalarié } from './simulationConfig'
 
 const nextSteps = ['activité-partielle'] satisfies SimulateurId[]
 
-export default function SalariéSimulation() {
+export function Salarié() {
 	const metadata = usePageMetadata(salariéMetadata)
 	const { isReady, engine, questions, raccourcis } = useSimulationPublicodes(
 		metadata,
