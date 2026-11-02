@@ -1,0 +1,1 @@
+export { environnement } from './environnement'

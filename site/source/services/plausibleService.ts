@@ -1,6 +1,6 @@
 import Plausible from 'plausible-tracker'
 
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 import * as safeLocalStorage from '@/storage/safeLocalStorage'
 
 class PlausibleService {

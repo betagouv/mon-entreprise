@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 export const DisableAnimationContext = createContext(false)
 

@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 // https://github.com/juliencrn/usehooks-ts/blob/master/packages/usehooks-ts/src/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.ts
 

@@ -16,7 +16,7 @@ import {
 import { useSitePaths } from '@/hooks/useSitePaths'
 import { NavigationAPI, useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 import { alternatePathname } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
