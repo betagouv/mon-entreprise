@@ -7,6 +7,7 @@ export {
 	useDocumentationBasePath,
 } from './DocumentationBasePathProvider'
 export type { DocumentationDeQuestion } from './DocumentationDeQuestion'
+export { DocumentationDuModèle } from './DocumentationDuModele'
 export { DocumentationHelpButton } from './DocumentationHelpButton'
 export { DocumentationLink } from './DocumentationLink'
 export { PageDeRègle } from './PageDeRegle'
