@@ -1,4 +1,4 @@
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 export function removeItem(key: string) {
 	if (environnement.isServerSide) {
