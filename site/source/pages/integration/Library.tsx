@@ -16,7 +16,7 @@ import {
 	SmallBody,
 	Strong,
 } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import Meta from '../../components/utils/Meta'
 import { StyledExempleIframe } from './API'

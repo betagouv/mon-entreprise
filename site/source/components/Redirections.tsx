@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 interface Props {
 	children: React.ReactNode

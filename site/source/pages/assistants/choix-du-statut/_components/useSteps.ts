@@ -1,7 +1,8 @@
 import { useMemo } from 'react'
 
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { RelativeSitePaths, useSitePaths } from '@/sitePaths'
+import { RelativeSitePaths } from '@/sitePaths'
 
 type ChoixStatut = RelativeSitePaths['assistants']['choix-du-statut']
 type Step = Exclude<keyof ChoixStatut, 'résultat'>

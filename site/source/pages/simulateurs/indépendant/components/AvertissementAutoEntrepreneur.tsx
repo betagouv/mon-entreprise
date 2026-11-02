@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import { Body, Emoji, Link, Strong } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export function AvertissementAutoEntrepreneur() {
 	const { absoluteSitePaths } = useSitePaths()

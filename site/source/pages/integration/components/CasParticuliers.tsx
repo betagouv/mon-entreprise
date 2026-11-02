@@ -15,7 +15,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { useEngineFromModèle } from '@/hooks/useEngineFromModèle'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 export function CasParticuliers() {

@@ -6,9 +6,9 @@ import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button, Grid, H4, Li, StatusCard, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { getGridSizes } from '@/pages/assistants/choix-du-statut/_components/DetailsRowCards'
 import { EngineComparison } from '@/pages/simulateurs/comparaison-statuts/EngineComparison'
-import { useSitePaths } from '@/sitePaths'
 
 const StatutChoice = ({
 	namedEngines,
