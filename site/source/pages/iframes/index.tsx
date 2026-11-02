@@ -3,12 +3,12 @@ import { Helmet } from 'react-helmet-async'
 import { Outlet, Route, Routes } from 'react-router-dom'
 
 import { ChromeIframe } from '@/components/layout/ChromeIframe'
+import { Page404 } from '@/components/Page404'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import {
 	MergedSimulatorMetadata,
 	useSimulatorsMetadata,
 } from '@/hooks/useSimulatorsMetadata'
-import Page404 from '@/pages/404'
 import ChoixDuStatut from '@/pages/assistants/choix-du-statut'
 import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import SearchCodeApePage from '@/pages/assistants/recherche-code-ape'

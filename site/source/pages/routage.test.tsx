@@ -4,7 +4,7 @@ import { ReactElement } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { describe, expect, it } from 'vitest'
 
-import Page404 from '@/pages/404'
+import { Page404 } from '@/components/Page404'
 import Assistants from '@/pages/assistants'
 import Iframes from '@/pages/iframes'
 import Simulateurs from '@/pages/simulateurs'
