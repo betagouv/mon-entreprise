@@ -1,3 +1,5 @@
+'use client'
+
 import { Trans, useTranslation } from 'react-i18next'
 
 import SimulateurWarning from '@/components/SimulateurWarning'
