@@ -4,6 +4,7 @@ import { css, styled } from 'styled-components'
 import { ConseillersEntreprisesButton } from '@/components/ConseillersEntreprisesButton'
 import RuleLink from '@/components/RuleLink'
 import { Body, H2, Li, Link, Strong, Ul } from '@/design-system'
+import { urlAsset } from '@/utils/asset'
 
 import urlIllustrationNetBrutEn from '../images/illustration-net-brut-en.png'
 import urlIllustrationNetBrut from '../images/illustration-net-brut.png'
@@ -31,11 +32,11 @@ export const SeoExplanations = () => {
 					etc.).
 				</Body>
 				<StyledImage
-					src={
+					src={urlAsset(
 						i18n.language === 'fr'
 							? urlIllustrationNetBrut
 							: urlIllustrationNetBrutEn
-					}
+					)}
 					alt={t(
 						'pages.simulateurs.salarié.alt-image1',
 						'Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit dans le contrat de travail) moins cotisations salariales (retraite, csg, etc)'
