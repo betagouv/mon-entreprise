@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import { Outlet, Route, Routes } from 'react-router-dom'
 
 import { ChromeIframe } from '@/components/layout/ChromeIframe'
+import { OuvreLesLiensDansLaPageParente } from '@/components/layout/OuvreLesLiensDansLaPageParente'
 import { Page404 } from '@/components/Page404'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import {
@@ -85,11 +86,7 @@ export default function Iframes() {
 
 	return (
 		<>
-			{/** Open external links in the parent frame.
-			This behavior can be configured on individual link, eg <a target="_blank" />.
-			Our own link are handled in-app by the router, and aren't affected by this directive.
-			*/}
-			<base target="_parent" />
+			<OuvreLesLiensDansLaPageParente />
 			<Routes>
 				<Route element={<RouteAvecChromeIframe avecAvis />}>
 					{routeIframe(simulateurs.salarié, <Salarié />)}
