@@ -30,7 +30,7 @@ type Props = {
 	externalLinks?: ExternalLink[]
 }
 
-export default function SimulateurPageLayout({
+export function SimulateurPageLayout({
 	children,
 	metadata,
 	openGraph,

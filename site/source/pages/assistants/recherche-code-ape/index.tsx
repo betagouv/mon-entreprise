@@ -3,7 +3,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import { Body, Link, Message, SmallBody, Spacing } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
-import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
+import { SimulateurPageLayout } from '@/simulateurs'
 
 import { SeoExplanations } from './components/SeoExplanations'
 import { rechercheCodeApeMetadata } from './metadata'

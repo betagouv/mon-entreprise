@@ -24,9 +24,9 @@ import {
 	RecettesCourteDuréeQuestion,
 	TypeDuréeQuestion,
 } from '@/pages/simulateurs/location-de-meublé/questions'
+import { SimulateurPageLayout } from '@/simulateurs'
 import { URSSAF } from '@/utils/logos'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
 import { locationDeMeubleMetadata } from './metadata'
 import { locationDeMeubleOpenGraph } from './opengraph'
