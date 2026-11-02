@@ -1,11 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
-import { FadeIn } from '@/components/ui/animate'
-import BrowserOnly from '@/components/utils/BrowserOnly'
-import { Body, Emoji, Link, Message, SmallBody, Strong } from '@/design-system'
+import { Body, Link, Strong } from '@/design-system'
 import { embaucherGérerSalariés } from '@/external-links/embaucherGérerSalariés'
 import { nouvelEmployeur } from '@/external-links/nouvelEmployeur'
 import { serviceEmployeur } from '@/external-links/serviceEmployeur'
@@ -13,8 +10,8 @@ import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
 import ExplicationsSalaire from '@/pages/simulateurs/salarié/components/Explications'
+import { MessageDirigeantSASU } from '@/pages/simulateurs/salarié/components/MessageDirigeantSASU'
 import { SeoExplanations } from '@/pages/simulateurs/salarié/components/SeoExplanations'
-import { useSitePaths } from '@/sitePaths'
 import { CODE_DU_TRAVAIL_NUMERIQUE } from '@/utils/logos'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
@@ -56,7 +53,6 @@ export default function SalariéSimulation() {
 		embaucherGérerSalariés,
 		nouvelEmployeur,
 	]
-	const { absoluteSitePaths } = useSitePaths()
 
 	return (
 		<EngineProvider value={engine}>
@@ -77,34 +73,7 @@ export default function SalariéSimulation() {
 						'simulation-end.hiring.text',
 						'Vous pouvez maintenant concrétiser votre projet d’embauche.'
 					)}
-					afterQuestionsSlot={
-						<BrowserOnly>
-							{/** L'équipe Code Du Travail Numérique ne souhaite pas référencer
-							 * le simulateur dirigeant de SASU sur son site. */}
-							{!import.meta.env.SSR &&
-								!document.referrer?.includes('code.travail.gouv.fr') && (
-									<WhenNotAlreadyDefined dottedName="entreprise . catégorie juridique">
-										<FadeIn>
-											<Message
-												border={false}
-												mini
-												icon={<Emoji emoji="👨‍✈️" />}
-												className="print-hidden"
-											>
-												<SmallBody>
-													<Trans i18nKey="pages.simulateurs.salarié.SASU">
-														Vous êtes dirigeant d'une SAS(U) ?{' '}
-														<Link to={absoluteSitePaths.simulateurs.sasu}>
-															Accédez au simulateur de revenu dédié
-														</Link>
-													</Trans>
-												</SmallBody>
-											</Message>
-										</FadeIn>
-									</WhenNotAlreadyDefined>
-								)}
-						</BrowserOnly>
-					}
+					afterQuestionsSlot={<MessageDirigeantSASU />}
 				>
 					<SimulateurWarning
 						metadata={metadata}
