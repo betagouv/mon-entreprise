@@ -1,10 +1,7 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import {
-	PageMetadata,
-	PageMetadataParams,
-} from '@/pages/simulateurs/_configs/types'
+import { PageMetadata, PageMetadataParams } from '@/domaine/PageMetadata'
 import { useSitePaths } from '@/sitePaths'
 import { ImmutableType } from '@/types/utils'
 

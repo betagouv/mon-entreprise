@@ -3,7 +3,7 @@ import { join, resolve } from 'path'
 
 import { defineConfig } from 'vite'
 
-import { PageMetadata } from '@/pages/simulateurs/_configs/types'
+import { PageMetadata } from '@/domaine/PageMetadata'
 
 export default defineConfig({
 	resolve: {

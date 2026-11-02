@@ -10,13 +10,13 @@ import { PublicodesDateChip } from '@/components/PublicodesDateChip'
 import Loader from '@/components/utils/Loader'
 import Meta, { OpenGraph } from '@/components/utils/Meta'
 import { H1, Intro } from '@/design-system'
+import { ExternalLink } from '@/domaine/PageMetadata'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import {
 	MergedSimulatorMetadata,
 	SimulateurId,
 } from '@/hooks/useSimulatorsMetadata'
 
-import { ExternalLink } from './_configs/types'
 import NextSteps from './NextSteps'
 
 type Props = {

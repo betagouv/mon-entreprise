@@ -1,4 +1,4 @@
-import { PageMetadataParams } from '../_configs/types'
+import { PageMetadataParams } from '@/domaine/PageMetadata'
 
 export function médecinMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
