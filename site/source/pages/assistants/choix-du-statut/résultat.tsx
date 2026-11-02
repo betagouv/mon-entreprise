@@ -26,8 +26,8 @@ import {
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsEmbeddedOnBPISite } from '@/hooks/useIsEmbeddedOnBPISite'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 

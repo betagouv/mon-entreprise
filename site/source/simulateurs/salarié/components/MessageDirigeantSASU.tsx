@@ -4,7 +4,7 @@ import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDe
 import { FadeIn } from '@/components/ui/animate'
 import BrowserOnly from '@/components/utils/BrowserOnly'
 import { Emoji, Link, Message, SmallBody } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 /**
  * Invite le visiteur qui simule un salaire alors qu'il dirige une SAS(U) à

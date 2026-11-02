@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 
 import { Body, Emoji, Link, Message } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import { getItem, setItem } from '../../storage/safeLocalStorage'
 

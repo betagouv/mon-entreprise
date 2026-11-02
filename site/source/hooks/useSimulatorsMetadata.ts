@@ -1,11 +1,11 @@
 import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { useSitePaths } from '@/hooks/useSitePaths'
 import getMetadataSrc, {
 	SimulatorMetadata,
 	SimulatorsMetadata,
 } from '@/pages/simulateurs-et-assistants/metadata-src'
-import { useSitePaths } from '@/sitePaths'
 import { Merge, ToOptional } from '@/types/utils'
 
 export type SimulateurId = keyof SimulatorsMetadata

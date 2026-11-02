@@ -13,10 +13,11 @@ import {
 	GithubIcon,
 	Link,
 } from '@/design-system'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { NavigationAPI, useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
 import { environnement } from '@/services/environnement/environnement'
-import { alternatePathname, useSitePaths } from '@/sitePaths'
+import { alternatePathname } from '@/sitePaths'
 import { isNotNull } from '@/utils'
 
 import Contact from './Contact'
