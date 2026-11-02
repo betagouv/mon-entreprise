@@ -6,7 +6,7 @@ import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button, Container, Spacing } from '@/design-system'
 
-export default function Page404() {
+export function Page404() {
 	const { t } = useTranslation()
 
 	return (
