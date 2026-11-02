@@ -1,0 +1,1 @@
+export { SimulateurPageLayout } from './SimulateurPageLayout'

@@ -5,7 +5,7 @@ import { IsBPIProvider } from '@/hooks/useIsEmbeddedOnBPISite'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
-import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
+import { SimulateurPageLayout } from '@/simulateurs'
 import { useSitePaths } from '@/sitePaths'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 

@@ -12,8 +12,8 @@ import { docCotisationFrontalierSuisse } from '@/external-links/docCotisationFro
 import { docDeclarerRevenusFrontalierSuisse } from '@/external-links/docDeclarerRevenusFrontalierSuisse'
 import { docFrontalierSuisse } from '@/external-links/docFrontalierSuisse'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
+import { SimulateurPageLayout } from '@/simulateurs'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DocumentationHub } from './documentation'
 import { cotisationMaladieFrontalierSuisseMetadata } from './metadata'
 import { ObjectifAutresRevenus } from './objectifs/ObjectifAutresRevenus'
