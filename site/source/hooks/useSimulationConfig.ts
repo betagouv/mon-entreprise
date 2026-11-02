@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useSetupSafeSituation } from '@/hooks/useSetupSafeSituation'
+import { environnement } from '@/services/environnement/environnement'
 import {
 	chargeLaSimulationPrécédente,
 	configureLaSimulation,
@@ -23,7 +24,7 @@ export default function useSimulationConfig({
 	const dispatch = useDispatch()
 
 	// Initialize redux store in SSR mode
-	if (import.meta.env.SSR) {
+	if (environnement.isServerSide) {
 		dispatch(configureLaSimulation(config ?? {}, url, key))
 	}
 
@@ -32,7 +33,7 @@ export default function useSimulationConfig({
 
 	// useLayoutEffect like useEffect does nothing in SSR mode but triggers a warning,
 	// so we replace it with useEffect which does not trigger any warning
-	const useLayoutEffectWithoutWarnInSSR = import.meta.env.SSR
+	const useLayoutEffectWithoutWarnInSSR = environnement.isServerSide
 		? useEffect
 		: useLayoutEffect
 
