@@ -7,6 +7,7 @@ import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { useNavigation } from '@/lib/navigation'
 import Page404 from '@/pages/404'
+import { Salarié } from '@/simulateurs/salarié'
 import { useSitePaths } from '@/sitePaths'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
@@ -37,7 +38,6 @@ import { Pharmacien } from './pharmacien/Pharmacien'
 import { ProfessionLibérale } from './profession-libérale/ProfessionLibérale'
 import { RéductionGénérale } from './reduction-generale'
 import { SageFemme } from './sage-femme/SageFemme'
-import SalariéSimulation from './salarié/Salarié'
 import { SASUSimulation } from './sasu/SASU'
 
 export default function Simulateurs() {
@@ -84,10 +84,7 @@ export default function Simulateurs() {
 					element={<RéductionGénérale />}
 				/>
 
-				<Route
-					path={simulateurs.salarié + '/*'}
-					element={<SalariéSimulation />}
-				/>
+				<Route path={simulateurs.salarié + '/*'} element={<Salarié />} />
 				<Route
 					path={simulateurs['entreprise-individuelle'] + '/*'}
 					element={<EntrepriseIndividuelle />}

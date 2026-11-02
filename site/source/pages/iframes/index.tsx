@@ -38,8 +38,8 @@ import { PAMCHome } from '@/pages/simulateurs/pamc/PAMCHome'
 import { Pharmacien } from '@/pages/simulateurs/pharmacien/Pharmacien'
 import { ProfessionLibérale } from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 import { SageFemme } from '@/pages/simulateurs/sage-femme/SageFemme'
-import SalariéSimulation from '@/pages/simulateurs/salarié/Salarié'
 import { SASUSimulation } from '@/pages/simulateurs/sasu/SASU'
+import { Salarié } from '@/simulateurs/salarié'
 
 import IframeFooter from './IframeFooter'
 
@@ -94,7 +94,7 @@ export default function Iframes() {
 			<base target="_parent" />
 			<Routes>
 				<Route element={<ChromeIframe avecAvis />}>
-					{routeIframe(simulateurs.salarié, <SalariéSimulation />)}
+					{routeIframe(simulateurs.salarié, <Salarié />)}
 					{routeIframe(
 						simulateurs['entreprise-individuelle'],
 						<EntrepriseIndividuelle />
