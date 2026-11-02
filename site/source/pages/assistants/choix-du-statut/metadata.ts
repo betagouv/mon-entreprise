@@ -1,4 +1,4 @@
-import { PageMetadataParams } from '../../simulateurs/_configs/types'
+import { PageMetadataParams } from '@/domaine/PageMetadata'
 
 export function choixDuStatutMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
