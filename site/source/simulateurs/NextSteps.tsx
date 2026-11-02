@@ -5,12 +5,12 @@ import { useSelector } from 'react-redux'
 import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { ExternalLink } from '@/domaine/PageMetadata'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
-import { AnnuaireEntreprises } from '@/pages/assistants/pour-mon-entreprise/AnnuaireEntreprises'
-import { IframeIntegrationCard } from '@/pages/simulateurs/cards/IframeIntegrationCard'
-import { SimulatorRessourceCard } from '@/pages/simulateurs/cards/SimulatorRessourceCard'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
+import { AnnuaireEntreprises } from './AnnuaireEntreprises'
 import ExternalLinkCard from './cards/ExternalLinkCard'
+import { IframeIntegrationCard } from './cards/IframeIntegrationCard'
+import { SimulatorRessourceCard } from './cards/SimulatorRessourceCard'
 
 interface NextStepsProps {
 	simulateur?: SimulateurId

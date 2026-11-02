@@ -7,8 +7,8 @@ import { premiersMoisUrssaf } from '@/external-links/premiersMoisUrssaf'
 import { servicePAM } from '@/external-links/servicePAM'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { SimulateurPageLayout } from '@/simulateurs'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { pamcMetadata } from './metadata'
 
 const externalLinks = [servicePAM, premiersMoisUrssaf]

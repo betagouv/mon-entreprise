@@ -23,10 +23,10 @@ import {
 } from '@/hooks/useSimulatorsMetadata'
 import ExplicationsIndépendant from '@/pages/simulateurs/indépendant/components/Explications'
 import { ObjectifsIndépendant } from '@/pages/simulateurs/indépendant/components/Objectifs'
+import { SimulateurPageLayout } from '@/simulateurs'
 import { ajusteLaSituation } from '@/store/actions/actions'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { AvertissementAnnéeCotisationsIndépendant } from './components/AvertissementAnnéeCotisationsIndépendant'
 import { AvertissementAutoEntrepreneur } from './components/AvertissementAutoEntrepreneur'
 import { AvertissementDoubleRégimeIndépendant } from './components/AvertissementDoubleRégimeIndépendant'

@@ -10,9 +10,9 @@ import { DarkLi, Grid, H3, Ul } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
+import { SimulateurPageLayout } from '@/simulateurs'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { coûtCréationEntrepriseMetadata } from './metadata'
 import { configCoûtCréationEntreprise } from './simulationConfig'
 
