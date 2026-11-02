@@ -103,7 +103,7 @@ _À noter : une migration vers `nextJS` est en cours._
 Pour ajouter un nouveau simulateur, il faut :
 
 -   Créer un nouveau dossier dans `site/source/pages/simulateurs/` (ou `/assistant` si il s'agit d'un outil avec un parcours sur plusieurs pages).
--   Créer un fichier `config.tsx` dans ce dossier, qui contient informations reliées au simulateur (nom, description, icône, etc.). Le type est [PageConfig](./source/pages/simulateurs/_configs/types.ts). **[Voir un exemple](./source/pages/simulateurs/salarié/config.ts)**
+-   Créer un fichier `metadata.ts` dans ce dossier, qui contient les informations reliées au simulateur (nom, description, icône, etc.). Le type est [PageMetadata](./source/domaine/PageMetadata.ts). **[Voir un exemple](./source/pages/simulateurs/salarié/metadata.ts)**
 -   Créer la config de simulation dans le fichier `simulationConfig.ts`. Cette dernière contient la situation Publicodes et les paramètres pour configurer le simulateur. **[Voir un exemple](./source/pages/simulateurs/salarié/simulationConfig.ts)**
 -   Ajouter le simulateur sur la page /simulateurs-et-assistants, dans le fichier `site/source/pages/simulateurs-et-assistants/index.tsx`
 -   Ajouter une route pour le simulateur dans le fichier `sitePaths`, avec la version anglaise également.

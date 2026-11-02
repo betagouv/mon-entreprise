@@ -1,11 +1,7 @@
+import { PageMetadata, PageMetadataParams, parId } from '@/domaine/PageMetadata'
 import { choixDuStatutMetadata } from '@/pages/assistants/choix-du-statut/metadata'
 import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entreprise/metadata'
 import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
-import {
-	PageMetadata,
-	PageMetadataParams,
-	parId,
-} from '@/pages/simulateurs/_configs/types'
 import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
 import { artisanMetadata } from '@/pages/simulateurs/artisan/metadata'
 import { artisteAuteurMetadata } from '@/pages/simulateurs/artiste-auteur/metadata'

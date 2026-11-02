@@ -1,4 +1,4 @@
-import { PageMetadataParams } from '../_configs/types'
+import { PageMetadataParams } from '@/domaine/PageMetadata'
 
 export function autoEntrepreneurMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {

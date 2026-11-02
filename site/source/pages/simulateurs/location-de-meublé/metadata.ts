@@ -1,4 +1,4 @@
-import { PageMetadataParams } from '@/pages/simulateurs/_configs/types'
+import { PageMetadataParams } from '@/domaine/PageMetadata'
 
 export function locationDeMeubleMetadata({ t, sitePaths }: PageMetadataParams) {
 	return {
