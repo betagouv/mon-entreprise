@@ -4,7 +4,7 @@ import { styled } from 'styled-components'
 import { TrackPage } from '@/components/PianoAnalytics'
 import { H1, Li, Link, Ul } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import Meta from '../components/utils/Meta'
 

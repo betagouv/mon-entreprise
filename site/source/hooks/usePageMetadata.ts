@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import { PageMetadata, PageMetadataParams } from '@/domaine/PageMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { ImmutableType } from '@/types/utils'
 
 import { MergedSimulatorMetadata } from './useSimulatorsMetadata'

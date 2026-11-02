@@ -9,8 +9,8 @@ import {
 	SituationFrontalierSuisseValide,
 } from '@/contextes/frontalier-suisse'
 import { Body, Link, Message } from '@/design-system'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { LOCALE_PAR_LANGUE, parseLangue } from '@/locales/langue'
-import { useSitePaths } from '@/sitePaths'
 
 export const RésultatCotisation = ({
 	situation,

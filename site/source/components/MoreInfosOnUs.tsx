@@ -9,8 +9,8 @@ import {
 	Spacing,
 	Ul,
 } from '@/design-system'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 export default function MoreInfosOnUs() {
 	const { currentPath } = useNavigation()
