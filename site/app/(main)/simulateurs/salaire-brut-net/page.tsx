@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 import i18next, { langue } from '@/locales/i18n-server'
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 import { Salarié } from '@/simulateurs/salarié'
 import { salariéMetadata } from '@/simulateurs/salarié/metadata'
 import { salariéOpenGraph } from '@/simulateurs/salarié/opengraph'
