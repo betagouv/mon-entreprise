@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 
-// Import direct de la frontière client : l'index du module agrège aussi des
-// composants que Next ne peut pas charger depuis un Server Component.
-import { AccueilDeLaDocumentation } from '@/components/documentation/AccueilDeLaDocumentation'
+import { AccueilDeLaDocumentation } from '@/components/documentation'
 import i18next from '@/locales/i18n-server'
 
 export const metadata: Metadata = {

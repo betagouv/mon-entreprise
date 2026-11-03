@@ -1,3 +1,5 @@
+'use client'
+
 import { HelpButton } from '@/design-system'
 
 import { DocumentationDeQuestion } from './DocumentationDeQuestion'
