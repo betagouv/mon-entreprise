@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
+import BrowserOnly from '@/components/utils/BrowserOnly'
 import { Grid, H2, Spacing, Ul } from '@/design-system'
 import { ExternalLink } from '@/domaine/PageMetadata'
 import { SimulateurId } from '@/hooks/useSimulatorsMetadata'
@@ -23,8 +24,6 @@ export default function NextSteps({
 	nextSteps,
 	externalLinks,
 }: NextStepsProps) {
-	const existingCompany = !!useSelector(companySirenSelector)
-
 	if (!simulateur && !nextSteps && !externalLinks) {
 		return null
 	}
@@ -35,11 +34,9 @@ export default function NextSteps({
 				<Trans i18nKey="common.useful-resources">Ressources utiles</Trans>
 			</H2>
 			<Grid as={Ul} container spacing={3}>
-				{existingCompany && (
-					<GridItem>
-						<AnnuaireEntreprises />
-					</GridItem>
-				)}
+				<BrowserOnly>
+					<CarteAnnuaireEntreprises />
+				</BrowserOnly>
 
 				{nextSteps &&
 					nextSteps.map((simulatorId) => (
@@ -64,6 +61,21 @@ export default function NextSteps({
 
 			<Spacing lg />
 		</section>
+	)
+}
+
+// L'entreprise enregistrée est restaurée du stockage, inconnue du serveur.
+const CarteAnnuaireEntreprises = () => {
+	const entrepriseEnregistrée = !!useSelector(companySirenSelector)
+
+	if (!entrepriseEnregistrée) {
+		return null
+	}
+
+	return (
+		<GridItem>
+			<AnnuaireEntreprises />
+		</GridItem>
 	)
 }
 
