@@ -23,13 +23,12 @@ export default function useSimulationConfig({
 	const autoloadLastSimulation = config?.autoloadLastSimulation ?? false
 	const dispatch = useDispatch()
 
-	// Initialize redux store in SSR mode
-	if (environnement.isServerSide) {
-		dispatch(configureLaSimulation(config ?? {}, url, key))
-	}
-
 	const lastConfig = useSelector(configSelector)
 	const lastKey = useSelector(simulationKeySelector)
+
+	if (key !== lastKey || (config && lastConfig !== config)) {
+		dispatch(configureLaSimulation(config ?? {}, url, key))
+	}
 
 	// useLayoutEffect like useEffect does nothing in SSR mode but triggers a warning,
 	// so we replace it with useEffect which does not trigger any warning
@@ -38,13 +37,10 @@ export default function useSimulationConfig({
 		: useLayoutEffect
 
 	useLayoutEffectWithoutWarnInSSR(() => {
-		if (key !== lastKey || (config && lastConfig !== config)) {
-			dispatch(configureLaSimulation(config ?? {}, url, key))
-		}
 		if (autoloadLastSimulation) {
 			dispatch(chargeLaSimulationPrécédente())
 		}
-	}, [config, dispatch, lastConfig, key])
+	}, [autoloadLastSimulation, dispatch])
 
 	useSetupSafeSituation(config?.nomModèle)
 }
