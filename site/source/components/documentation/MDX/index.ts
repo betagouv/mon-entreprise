@@ -1,3 +1,5 @@
+'use client'
+
 export { DocumentationRouter } from './DocumentationRouter'
 export { createDocumentationFromGlob } from './createDocumentation'
 export { DocumentationIndex } from './DocumentationIndex'
