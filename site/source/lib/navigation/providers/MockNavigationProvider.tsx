@@ -121,6 +121,7 @@ export function MockNavigationProvider({
 			},
 			currentPath,
 			searchParams,
+			searchParamsKnown: true,
 			setSearchParams,
 			locationHash,
 			navigationType: initialNavigationType,
