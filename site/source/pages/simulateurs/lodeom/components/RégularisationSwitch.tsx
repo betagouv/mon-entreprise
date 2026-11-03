@@ -40,7 +40,10 @@ export default function RégularisationSwitch({
 					'pages.simulateurs.lodeom.régularisation.type',
 					'Quel type de régularisation souhaitez-vous ?'
 				)}
-				<ExplicableRule dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
+				<ExplicableRule
+					dottedName="salarié . cotisations . exonérations . lodeom . régularisation"
+					hasLinkToDoc={false}
+				/>
 			</SwitchLabel>
 
 			<ChoixUnique

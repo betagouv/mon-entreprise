@@ -9,9 +9,11 @@ import { useEngine } from '@/utils/publicodes/EngineContext'
 export function ExplicableRule<Names extends string = DottedName>({
 	dottedName,
 	title,
+	hasLinkToDoc = true,
 }: {
 	dottedName: Names
 	title?: string
+	hasLinkToDoc?: boolean
 }) {
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
@@ -28,19 +30,21 @@ export function ExplicableRule<Names extends string = DottedName>({
 				dottedName={dottedName as DottedName}
 			/>
 
-			<RuleLink
-				dottedName={dottedName as DottedName}
-				aria-label={t(
-					'components.règle.info.lien-documentation.aria-label',
-					'Lire la documentation sur {{ règle }}',
-					{ règle: rule.title }
-				)}
-			>
-				{t(
-					'components.règle.info.lien-documentation.texte',
-					'Lire la documentation'
-				)}
-			</RuleLink>
+			{hasLinkToDoc && (
+				<RuleLink
+					dottedName={dottedName as DottedName}
+					aria-label={t(
+						'components.règle.info.lien-documentation.aria-label',
+						'Lire la documentation sur {{ règle }}',
+						{ règle: rule.title }
+					)}
+				>
+					{t(
+						'components.règle.info.lien-documentation.texte',
+						'Lire la documentation'
+					)}
+				</RuleLink>
+			)}
 
 			<PublicodesDoc.RéférencesDeRègle
 				engine={engine}
