@@ -42,10 +42,6 @@ export function SimulateurPageLayout({
 }: Props) {
 	const inIframe = useIsEmbedded()
 
-	if (!isReady) {
-		return <Loader />
-	}
-
 	const {
 		id,
 		tracking,
@@ -57,6 +53,8 @@ export function SimulateurPageLayout({
 	} = metadata
 
 	const { chapter1, chapter2, chapter3 } = tracking as TrackingChapters
+
+	const simulation = isReady ? children : <Loader />
 
 	return (
 		<TrackingChaptersProvider
@@ -83,7 +81,7 @@ export function SimulateurPageLayout({
 				</>
 			)}
 
-			{inIframe ? <Conteneur>{children}</Conteneur> : children}
+			{inIframe ? <Conteneur>{simulation}</Conteneur> : simulation}
 
 			{!inIframe && (
 				<>
