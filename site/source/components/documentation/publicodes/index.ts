@@ -1,3 +1,5 @@
+'use client'
+
 export { BoutonDeDocumentation } from './BoutonDeDocumentation'
 export { documentationDeRègle } from './documentationDeRegle'
 export { LienVersLaDocumentationProvider } from './LienVersLaDocumentationContext'

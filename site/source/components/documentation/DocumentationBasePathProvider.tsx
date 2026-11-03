@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, PropsWithChildren, useContext } from 'react'
 
 const BasePathContext = createContext<string | null>(null)
