@@ -4,6 +4,7 @@ import NextLink from 'next/link'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import {
 	ReactNode,
+	Suspense,
 	useCallback,
 	useEffect,
 	useMemo,
@@ -57,6 +58,22 @@ function NextJsNavLink({
 	)
 }
 
+const NO_SEARCH_PARAMS = new URLSearchParams()
+
+function SearchParamsReporter({
+	onRead,
+}: {
+	onRead: (searchParams: URLSearchParams) => void
+}) {
+	const searchParams = useSearchParams()
+
+	useEffect(() => {
+		onRead(new URLSearchParams(searchParams.toString()))
+	}, [searchParams, onRead])
+
+	return null
+}
+
 interface Props {
 	children: ReactNode
 }
@@ -64,7 +81,16 @@ interface Props {
 export function NextJsNavigationProvider({ children }: Props) {
 	const router = useRouter()
 	const pathname = usePathname()
-	const searchParams = useSearchParams()
+
+	const [searchParamsRead, rememberSearchParams] = useState<URLSearchParams>()
+
+	const onSearchParamsRead = useCallback((read: URLSearchParams) => {
+		rememberSearchParams((current) =>
+			current?.toString() === read.toString() ? current : read
+		)
+	}, [])
+
+	const searchParams = searchParamsRead ?? NO_SEARCH_PARAMS
 
 	const subscribersRef = useRef(new Set<() => void>())
 	const previousPathnameRef = useRef(pathname)
@@ -164,6 +190,7 @@ export function NextJsNavigationProvider({ children }: Props) {
 			navigate,
 			currentPath: pathname,
 			searchParams: new URLSearchParams(searchParams.toString()),
+			searchParamsKnown: searchParamsRead !== undefined,
 			setSearchParams,
 			locationHash,
 			navigationType,
@@ -176,6 +203,7 @@ export function NextJsNavigationProvider({ children }: Props) {
 			navigate,
 			pathname,
 			searchParams,
+			searchParamsRead,
 			setSearchParams,
 			locationHash,
 			navigationType,
@@ -187,6 +215,9 @@ export function NextJsNavigationProvider({ children }: Props) {
 
 	return (
 		<NavigationContext.Provider value={navigation}>
+			<Suspense>
+				<SearchParamsReporter onRead={onSearchParamsRead} />
+			</Suspense>
 			{children}
 		</NavigationContext.Provider>
 	)
