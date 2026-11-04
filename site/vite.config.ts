@@ -19,6 +19,19 @@ const env = (mode: string) => loadEnv(mode, process.cwd(), '')
 
 const branch = (mode: string) => getBranch(mode)
 
+const VARIABLES_REQUISES = ['VITE_FR_BASE_URL', 'VITE_EN_BASE_URL']
+
+const vérifieLesVariablesRequises = (mode: string) => {
+	const chargées = env(mode)
+	const manquantes = VARIABLES_REQUISES.filter((nom) => !chargées[nom])
+
+	if (manquantes.length > 0) {
+		throw new Error(
+			`Variables d'environnement manquantes : ${manquantes.join(', ')}. Voir site/.env.template.`
+		)
+	}
+}
+
 const sentryReleaseName = (mode: string) =>
 	env(mode).VITE_GITHUB_SHA
 		? `${branch(mode).split('/').at(-1)}-` +
@@ -72,6 +85,12 @@ export default defineConfig(({ command, mode }) => ({
 			: {}),
 	},
 	plugins: [
+		command === 'build' &&
+			mode !== 'test' && {
+				name: 'verifie-les-variables-requises',
+				buildStart: () => vérifieLesVariablesRequises(mode),
+			},
+
 		command === 'build' &&
 			replace({
 				__SENTRY_DEBUG__: false,
