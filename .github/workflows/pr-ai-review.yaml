@@ -19,10 +19,12 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   context:
+    permissions:
+      contents: read
+      pull-requests: read
     if: >-
       github.event_name == 'workflow_dispatch'
       || (github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion != 'cancelled')
@@ -90,6 +92,9 @@ jobs:
 
   review:
     needs: context
+    permissions:
+      contents: read
+      pull-requests: write
     if: needs.context.outputs.review-needed == 'true'
     runs-on: ubuntu-22.04
     timeout-minutes: 30
