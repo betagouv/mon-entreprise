@@ -2,7 +2,7 @@ import { Preview } from '@storybook/react'
 
 import { DesignSystemThemeProvider } from '../source/design-system/root'
 import { theme } from '../source/design-system/theme'
-import { MockNavigationProvider } from '../source/lib/navigation'
+import { MockNavigationProvider } from '../source/lib/navigation/providers/MockNavigationProvider'
 
 const preview: Preview = {
 	decorators: [

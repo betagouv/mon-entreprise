@@ -12,7 +12,7 @@ import { ThemeColorsProvider } from '@/components/utils/colors'
 import { DisableAnimationOnPrintProvider } from '@/components/utils/DisableAnimationContext'
 import { DesignSystemThemeProvider } from '@/design-system'
 import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
-import { ReactRouterNavigationProvider } from '@/lib/navigation'
+import { ReactRouterNavigationProvider } from '@/lib/navigation/providers/ReactRouterNavigationProvider'
 
 import { makeStore } from '../store/store'
 import { ErrorFallback } from './ErrorPage'
