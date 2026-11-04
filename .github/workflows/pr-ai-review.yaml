@@ -3,7 +3,9 @@ name: Revue IA
 # pour les PR de fork, qui n'exécutent « Vérification PR » qu'après approbation d'un mainteneur.
 # Le code d'un fork n'est jamais checkouté : l'agent le lit par l'API GitHub. Les consignes de
 # l'agent sont lues depuis la branche par défaut, comme ce workflow. Le checkout d'une PR interne
-# est gardé par une expression sur le payload de workflow_run, la seule forme reconnue par CodeQL.
+# est gardé par une expression sur le payload de workflow_run, la seule forme reconnue par CodeQL,
+# et par le dépôt de tête de la PR. Les deux portent sur la même PR parce que seule celle dont le
+# run atteste le commit de tête est relue.
 on:
   workflow_run:
     workflows: ['Vérification PR']
@@ -70,9 +72,17 @@ jobs:
             exit 0
           fi
           pr="$(gh pr view "$number" --repo "$GITHUB_REPOSITORY" --json number,headRefOid,baseRefName,isDraft,isCrossRepository,state)"
+          sha="$(jq -r .headRefOid <<< "$pr")"
+          if [ -n "$RUN_HEAD_SHA" ] && [ "$sha" != "$RUN_HEAD_SHA" ]; then
+            # La tête a bougé entre les deux appels : le checkout porterait sur un commit que
+            # « Vérification PR » n'a pas vérifié, alors que sa garde lit le payload du run.
+            echo "::warning::La PR $number a avancé depuis $RUN_HEAD_SHA : revue sautée"
+            echo "review-needed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
           {
             echo "number=$number"
-            echo "sha=$(jq -r .headRefOid <<< "$pr")"
+            echo "sha=$sha"
             echo "base-branch=$(jq -r .baseRefName <<< "$pr")"
             echo "fork=$(jq -r .isCrossRepository <<< "$pr")"
             echo "review-needed=$(jq -r --argjson manual "$MANUAL_TRIGGER" '.state == "OPEN" and ((.isDraft | not) or $manual)' <<< "$pr")"
@@ -87,7 +97,10 @@ jobs:
       group: ai-review-${{ needs.context.outputs.number }}
       cancel-in-progress: true
     steps:
-      - if: github.event.workflow_run.head_repository.full_name == github.repository || (github.event_name == 'workflow_dispatch' && needs.context.outputs.fork == 'false')
+      - if: >-
+          needs.context.outputs.fork == 'false'
+          && (github.event.workflow_run.head_repository.full_name == github.repository
+          || github.event_name == 'workflow_dispatch')
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
           ref: ${{ needs.context.outputs.sha }}
