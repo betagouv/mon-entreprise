@@ -5,6 +5,7 @@ import illustration from '@/assets/images/illustrations/road-sign.svg'
 import PageHeader from '@/components/PageHeader'
 import Meta from '@/components/utils/Meta'
 import { Button, Container, Spacing } from '@/design-system'
+import { urlAsset } from '@/utils/asset'
 
 export function Page404() {
 	const { t } = useTranslation()
@@ -28,7 +29,7 @@ export function Page404() {
 						Cette page n'existe pas ou n'existe plus
 					</Trans>
 				}
-				picture={illustration}
+				picture={urlAsset(illustration)}
 			>
 				<Button size="XL" to={'/'}>
 					<Trans i18nKey="pages.404.action">Revenir en lieu sûr</Trans>
