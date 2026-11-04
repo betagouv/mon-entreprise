@@ -1,6 +1,6 @@
 import type { TFunction } from 'i18next'
 
-import { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
+import type { TrackingChapters } from '@/components/PianoAnalytics/TrackingChaptersContext'
 import { AbsoluteSitePaths } from '@/sitePaths'
 import { ImmutableType } from '@/types/utils'
 
