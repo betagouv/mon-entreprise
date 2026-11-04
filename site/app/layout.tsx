@@ -7,10 +7,8 @@ import { environnement } from '@/services/environnement'
 import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
 
-const urlDuSite = environnement.urls[langue]
-
 export const metadata: Metadata = {
-	metadataBase: urlDuSite ? new URL(urlDuSite) : undefined,
+	metadataBase: new URL(environnement.urls[langue]),
 	title: {
 		template: i18next.t('site.titleTemplate', '%s - Mon-entreprise'),
 		default: i18next.t('site.defaultTitle', 'Mon-entreprise'),
