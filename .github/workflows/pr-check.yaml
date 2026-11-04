@@ -119,6 +119,9 @@ jobs:
 
   build-next:
     runs-on: ubuntu-22.04
+    needs: deploy-context
+    env:
+      NEXT_PUBLIC_FR_BASE_URL: https://mon-entreprise-pr-${{ needs.deploy-context.outputs.env-name }}.cleverapps.io
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install

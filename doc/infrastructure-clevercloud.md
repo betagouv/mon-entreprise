@@ -64,6 +64,7 @@ La configuration est versionnée dans `clevercloud/next-fr.env` et `clevercloud/
 | `CC_POST_BUILD_HOOK`        | Build Next.js, après l'installation des dépendances                  |
 | `CC_RUN_COMMAND`            | Démarrage du serveur Next.js                                          |
 | `NEXT_PUBLIC_ENVIRONNEMENT` | Environnement exposé au client (`site/source/services/environnement`) |
+| `NEXT_PUBLIC_<LANGUE>_BASE_URL` | URL absolue du site, requise au build pour `metadataBase` ; surchargée par son propre domaine sur une review app |
 
 ### Pourquoi `CC_NODE_DEV_DEPENDENCIES=install`
 
