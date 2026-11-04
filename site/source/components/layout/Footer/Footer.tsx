@@ -14,34 +14,16 @@ import {
 	Link,
 } from '@/design-system'
 import { useSitePaths } from '@/hooks/useSitePaths'
-import { NavigationAPI, useNavigation } from '@/lib/navigation'
+import { useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
 import { environnement } from '@/services/environnement'
-import { alternatePathname } from '@/sitePaths'
-import { isNotNull } from '@/utils'
 
 import Contact from './Contact'
 import InscriptionBetaTesteur from './InscriptionBetaTesteur'
 import LegalNotice from './LegalNotice'
+import { lienVersLAutreLangue } from './lienVersLAutreLangue'
 import PrivacyPolicy from './PrivacyPolicy'
 import TermsOfUse from './TermsOfUse'
-
-const altPathname = alternatePathname()
-
-const getAltPathnamesWithParams = (
-	lang: keyof typeof altPathname,
-	path: string,
-	matchPath: NavigationAPI['matchPath'],
-	generatePath: NavigationAPI['generatePath']
-) =>
-	Object.entries(altPathname[lang])
-		.filter(([pth]) => /\/:/.test(pth))
-		.map(([pth, alt]) => {
-			const match = matchPath(pth, path)
-
-			return match && generatePath(alt, match.params)
-		})
-		.filter(isNotNull)
 
 export default function Footer() {
 	const { absoluteSitePaths } = useSitePaths()
@@ -53,11 +35,13 @@ export default function Footer() {
 		currentPath.replace(/^\/(mon-entreprise|infrance)/, '')
 	)
 	const altLang = language === 'en' ? 'fr' : 'en'
-	const altHref =
-		(language === 'en' ? environnement.urls.fr : environnement.urls.en) +
-		(altPathname[language][path] ??
-			getAltPathnamesWithParams(language, path, matchPath, generatePath)?.[0] ??
-			'/')
+	const altHref = lienVersLAutreLangue({
+		urlDeLAutreLangue: environnement.urls[altLang],
+		langue: language,
+		chemin: path,
+		matchPath,
+		generatePath,
+	})
 
 	const isFrenchMode = language === 'fr'
 
