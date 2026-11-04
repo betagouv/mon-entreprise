@@ -111,7 +111,6 @@ Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
 Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Replier: Replier
-Retour à mon activité: Retour à mon activité
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Règles de calculs: Règles de calculs
@@ -497,7 +496,6 @@ messages:
 metadata:
   description: "L'assistant officiel de l'entrepreneur : simulateurs de
     cotisations, choix du statut, et plus encore."
-  titre: Mon entreprise
 moins: moins
 mois: mois
 navbar:
