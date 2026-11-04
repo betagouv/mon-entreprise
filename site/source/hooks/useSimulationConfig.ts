@@ -26,6 +26,8 @@ export default function useSimulationConfig({
 	const lastConfig = useSelector(configSelector)
 	const lastKey = useSelector(simulationKeySelector)
 
+	// Configuring the store in an effect would run after hydration, so the client's
+	// first render would no longer match the server HTML.
 	if (key !== lastKey || (config && lastConfig !== config)) {
 		dispatch(configureLaSimulation(config ?? {}, url, key))
 	}
