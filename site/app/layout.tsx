@@ -6,7 +6,10 @@ import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
 
 export const metadata = {
-	title: i18next.t('metadata.titre', 'Mon entreprise'),
+	title: {
+		template: i18next.t('site.titleTemplate', '%s - Mon-entreprise'),
+		default: i18next.t('site.defaultTitle', 'Mon-entreprise'),
+	},
 	description: i18next.t(
 		'metadata.description',
 		"L'assistant officiel de l'entrepreneur : simulateurs de cotisations, choix du statut, et plus encore."
