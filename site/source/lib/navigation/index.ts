@@ -7,3 +7,4 @@ export type {
 	NavLinkState,
 } from './NavigationAPI'
 export { Link } from './Link'
+export { generatePath, matchPath } from './pathUtils'

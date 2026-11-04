@@ -42,6 +42,8 @@ Job `review-app-clevercloud` de [`.github/workflows/pr-deploy.yaml`](../.github/
 
 Chaque PR obtient une application éphémère, en français seulement, servie sur `mon-entreprise-pr-<numéro>.cleverapps.io`. Elle est créée au premier déploiement, redéployée à chaque push, et supprimée à la fermeture de la PR par un job de [`pr-cleanup.yaml`](../.github/workflows/pr-cleanup.yaml).
 
+Comme il n'existe pas d'application anglaise de review, le déploiement retire `NEXT_PUBLIC_EN_BASE_URL` après l'import de la configuration : le pied de page n'affiche alors aucun lien de bascule de langue, plutôt qu'un lien qui ferait quitter la preview pour le site de production.
+
 Le déclencheur est `workflow_run` sur « Vérification PR », et non `pull_request_target`. C'est ce qui rend les review apps sûres pour les contributions externes : une PR de fork n'exécute « Vérification PR » qu'après approbation d'un mainteneur, donc aucune application n'est créée tant que personne n'a regardé le code. Un workflow `pull_request_target` s'exécuterait au contraire sans approbation, puisqu'il tourne dans le contexte de la branche de base — n'importe qui pourrait alors faire construire et exécuter son code sur l'organisation Clever Cloud.
 
 C'est le commit de fusion (`refs/pull/<n>/merge`) qui est déployé, comme pour la preview Netlify : les deux previews montrent donc le même code, celui que « Vérification PR » a validé. Une PR en conflit n'a pas de commit de fusion et ne se déploie pas.
@@ -64,7 +66,10 @@ La configuration est versionnée dans `clevercloud/next-fr.env` et `clevercloud/
 | `CC_POST_BUILD_HOOK`        | Build Next.js, après l'installation des dépendances                  |
 | `CC_RUN_COMMAND`            | Démarrage du serveur Next.js                                          |
 | `NEXT_PUBLIC_ENVIRONNEMENT` | Environnement exposé au client (`site/source/services/environnement`) |
-| `NEXT_PUBLIC_<LANGUE>_BASE_URL` | URL absolue du site, requise au build pour `metadataBase` ; surchargée par son propre domaine sur une review app |
+| `NEXT_PUBLIC_FR_BASE_URL`   | URL absolue du site français                                         |
+| `NEXT_PUBLIC_EN_BASE_URL`   | URL absolue du site anglais                                          |
+
+Chaque application lit les deux URL : celle de sa propre langue sert de `metadataBase` et son absence fait échouer le build ; celle de l'autre langue est la cible du lien de bascule du pied de page, et son absence fait simplement disparaître ce lien. Sur une review app, l'URL française est remplacée par le domaine de la preview.
 
 ### Pourquoi `CC_NODE_DEV_DEPENDENCIES=install`
 
