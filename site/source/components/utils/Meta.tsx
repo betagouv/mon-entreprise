@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 import { useTranslation } from 'react-i18next'
 
+import { environnement } from '@/services/environnement'
+
 export type OpenGraph = {
 	title?: string
 	description?: string
@@ -21,6 +23,10 @@ type PropType = {
  */
 export default function Meta({ title, description, openGraph }: PropType) {
 	const { t, i18n } = useTranslation()
+
+	if (!environnement.sousVite) {
+		return null
+	}
 
 	return (
 		<Helmet
