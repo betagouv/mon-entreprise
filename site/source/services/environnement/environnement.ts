@@ -10,16 +10,6 @@ const déployé: EnvironnementDéployé = sousVite
 			| EnvironnementDéployé
 			| undefined) ?? 'développement')
 
-const urlRequise = (nom: string, valeur: string | undefined): string => {
-	if (!valeur) {
-		throw new Error(
-			`La variable d'environnement ${nom} n'est pas configurée : les URL absolues du site ne peuvent pas être construites.`
-		)
-	}
-
-	return valeur
-}
-
 export const environnement = {
 	isServerSide: typeof document === 'undefined',
 	sousVite,
@@ -42,22 +32,12 @@ export const environnement = {
 			: (process.env.NEXT_PUBLIC_ALGOLIA_INDEX_PREFIX ?? ''),
 	},
 	urls: {
-		get fr(): string {
-			return urlRequise(
-				sousVite ? 'VITE_FR_BASE_URL' : 'NEXT_PUBLIC_FR_BASE_URL',
-				sousVite
-					? import.meta.env.VITE_FR_BASE_URL
-					: process.env.NEXT_PUBLIC_FR_BASE_URL
-			)
-		},
-		get en(): string {
-			return urlRequise(
-				sousVite ? 'VITE_EN_BASE_URL' : 'NEXT_PUBLIC_EN_BASE_URL',
-				sousVite
-					? import.meta.env.VITE_EN_BASE_URL
-					: process.env.NEXT_PUBLIC_EN_BASE_URL
-			)
-		},
+		fr: sousVite
+			? import.meta.env.VITE_FR_BASE_URL
+			: (process.env.NEXT_PUBLIC_FR_BASE_URL ?? ''),
+		en: sousVite
+			? import.meta.env.VITE_EN_BASE_URL
+			: (process.env.NEXT_PUBLIC_EN_BASE_URL ?? ''),
 	},
 	features: {
 		économieCollaborative: {
