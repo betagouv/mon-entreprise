@@ -1,11 +1,16 @@
+import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
 import i18next, { langue } from '@/locales/i18n-server'
+import { environnement } from '@/services/environnement'
 
 import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
 
-export const metadata = {
+const urlDuSite = environnement.urls[langue]
+
+export const metadata: Metadata = {
+	metadataBase: urlDuSite ? new URL(urlDuSite) : undefined,
 	title: {
 		template: i18next.t('site.titleTemplate', '%s - Mon-entreprise'),
 		default: i18next.t('site.defaultTitle', 'Mon-entreprise'),
