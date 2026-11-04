@@ -3,7 +3,7 @@ import * as O from 'effect/Option'
 import rules from 'modele-social'
 import Engine from 'publicodes'
 import { useDispatch, useSelector } from 'react-redux'
-import { describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { eurosParTitreRestaurant } from '@/domaine/MontantPonctuel'
@@ -39,41 +39,61 @@ vi.mock('@/hooks/useEngineFromModèle', () => ({
 	useEngineFromModèle: vi.fn(),
 }))
 
+function donneLaNavigation({
+	searchParams,
+	searchParamsKnown = true,
+}: {
+	searchParams: URLSearchParams
+	searchParamsKnown?: boolean
+}) {
+	vi.mocked(useNavigation).mockReturnValue({
+		Link: () => null,
+		NavLink: () => null,
+		searchParams,
+		searchParamsKnown,
+		setSearchParams: setSearchParamsMock,
+		navigate: vi.fn(),
+		currentPath: '/',
+		locationHash: '',
+		navigationType: 'PUSH',
+		getHref: vi.fn((to: string) => to),
+		onNavigate: vi.fn(() => () => {}),
+		matchPath: vi.fn(() => null),
+		generatePath: vi.fn((pattern: string) => pattern),
+	})
+}
+
 describe('useSetSimulationFromSearchParams hook', () => {
-	it('récupère la situation et l’unité depuis les search params', () => {
-		const initialParams = new URLSearchParams({
-			'salarié . contrat': 'CDD',
-			'salarié . contrat . CDD . congés pris': '2.08 jours ouvrés',
-			'salarié . contrat . salaire brut': '2700 €/mois',
-			'salarié . rémunération . frais professionnels . titres-restaurant':
-				'oui',
-			'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire':
-				'12 €/titre-restaurant',
-			'salarié . rémunération . frais professionnels . titres-restaurant . nombre':
-				'22 titre-restaurant/mois',
-			'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur':
-				'60%',
-			'salarié . temps de travail . heures supplémentaires':
-				'17.33 heures/mois',
-			unité: '€/mois',
-		})
-		vi.mocked(useNavigation).mockReturnValue({
-			Link: () => null,
-			NavLink: () => null,
-			searchParams: initialParams,
-			searchParamsKnown: true,
-			setSearchParams: setSearchParamsMock,
-			navigate: vi.fn(),
-			currentPath: '/',
-			locationHash: '',
-			navigationType: 'PUSH',
-			getHref: vi.fn((to: string) => to),
-			onNavigate: vi.fn(() => () => {}),
-			matchPath: vi.fn(() => null),
-			generatePath: vi.fn((pattern: string) => pattern),
-		})
+	beforeEach(() => {
+		dispatchMock.mockClear()
+		setSearchParamsMock.mockClear()
 
 		vi.mocked(useDispatch).mockReturnValue(dispatchMock)
+		vi.mocked(useSelector).mockImplementation(() => [])
+		vi.mocked(useEngineFromModèle).mockReturnValue(
+			new Engine(rules) as Engine<DottedName>
+		)
+	})
+
+	it('récupère la situation et l’unité depuis les search params', () => {
+		donneLaNavigation({
+			searchParams: new URLSearchParams({
+				'salarié . contrat': 'CDD',
+				'salarié . contrat . CDD . congés pris': '2.08 jours ouvrés',
+				'salarié . contrat . salaire brut': '2700 €/mois',
+				'salarié . rémunération . frais professionnels . titres-restaurant':
+					'oui',
+				'salarié . rémunération . frais professionnels . titres-restaurant . montant unitaire':
+					'12 €/titre-restaurant',
+				'salarié . rémunération . frais professionnels . titres-restaurant . nombre':
+					'22 titre-restaurant/mois',
+				'salarié . rémunération . frais professionnels . titres-restaurant . taux employeur':
+					'60%',
+				'salarié . temps de travail . heures supplémentaires':
+					'17.33 heures/mois',
+				unité: '€/mois',
+			}),
+		})
 
 		vi.mocked(useSelector).mockImplementation((selector) => {
 			if (selector.name === 'configObjectifsSelector') {
@@ -88,9 +108,6 @@ describe('useSetSimulationFromSearchParams hook', () => {
 
 			return []
 		})
-
-		const engine = new Engine(rules) as Engine<DottedName>
-		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
 		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
@@ -121,35 +138,13 @@ describe('useSetSimulationFromSearchParams hook', () => {
 	})
 
 	it('ne supprime pas les search params hors situation et unité', () => {
-		const initialParams = new URLSearchParams({
-			'salarié . contrat': 'CDD',
-			unité: '€/mois',
-			utm_campaign: 'marketing',
+		donneLaNavigation({
+			searchParams: new URLSearchParams({
+				'salarié . contrat': 'CDD',
+				unité: '€/mois',
+				utm_campaign: 'marketing',
+			}),
 		})
-		vi.mocked(useNavigation).mockReturnValue({
-			Link: () => null,
-			NavLink: () => null,
-			searchParams: initialParams,
-			searchParamsKnown: true,
-			setSearchParams: setSearchParamsMock,
-			navigate: vi.fn(),
-			currentPath: '/',
-			locationHash: '',
-			navigationType: 'PUSH',
-			getHref: vi.fn((to: string) => to),
-			onNavigate: vi.fn(() => () => {}),
-			matchPath: vi.fn(() => null),
-			generatePath: vi.fn((pattern: string) => pattern),
-		})
-
-		vi.mocked(useDispatch).mockReturnValue(dispatchMock)
-
-		vi.mocked(useSelector).mockImplementation(() => {
-			return []
-		})
-
-		const engine = new Engine(rules) as Engine<DottedName>
-		vi.mocked(useEngineFromModèle).mockReturnValue(engine)
 
 		renderHook(() => useSetSimulationFromSearchParams('modele-social'))
 
@@ -159,5 +154,37 @@ describe('useSetSimulationFromSearchParams hook', () => {
 				replace: true,
 			}
 		)
+	})
+
+	it('n’applique rien tant que les search params ne sont pas connus', () => {
+		donneLaNavigation({
+			searchParams: new URLSearchParams(),
+			searchParamsKnown: false,
+		})
+
+		const { rerender } = renderHook(() =>
+			useSetSimulationFromSearchParams('modele-social')
+		)
+
+		expect(dispatchMock).not.toHaveBeenCalled()
+		expect(setSearchParamsMock).not.toHaveBeenCalled()
+
+		donneLaNavigation({
+			searchParams: new URLSearchParams({
+				'salarié . contrat . salaire brut': '2700 €/mois',
+			}),
+		})
+
+		rerender()
+
+		expect(dispatchMock).toHaveBeenCalledWith(
+			enregistreLesRéponsesAuxQuestions({
+				'salarié . contrat . salaire brut': O.some(eurosParMois(2700)),
+			} as Record<DottedName, O.Option<ValeurPublicodes>>)
+		)
+
+		expect(setSearchParamsMock).toHaveBeenCalledWith(new URLSearchParams(), {
+			replace: true,
+		})
 	})
 })
