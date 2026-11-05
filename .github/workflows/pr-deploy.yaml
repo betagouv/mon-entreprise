@@ -171,6 +171,8 @@ jobs:
         run: |
           git switch -c "$APP_NAME"
           clever env import < "$GITHUB_WORKSPACE/clevercloud/next-fr.env"
+          clever env set NEXT_PUBLIC_FR_BASE_URL "https://$APP_NAME.cleverapps.io"
+          clever env rm NEXT_PUBLIC_EN_BASE_URL
           clever deploy --force --same-commit-policy rebuild
           echo "url=https://$APP_NAME.cleverapps.io" >> "$GITHUB_OUTPUT"
 
