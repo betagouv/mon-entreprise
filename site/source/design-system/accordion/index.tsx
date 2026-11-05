@@ -1,6 +1,6 @@
 import { useAccordion, useAccordionItem } from '@react-aria/accordion'
 import { AriaAccordionProps } from '@react-types/accordion'
-import { ReactNode, useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import { animated, useSpring } from 'react-spring'
 import { Node, TreeState, useTreeState } from 'react-stately'
@@ -29,40 +29,12 @@ export const Accordion = <T extends object>(
 	const state = useTreeState<T>(props)
 	const ref = useRef<HTMLDivElement>(null)
 	const { accordionProps } = useAccordion(props, state, ref)
-	const [shouldOpenAll, setShouldOpenAll] = useState(false)
-	const [shouldCloseAll, setShouldCloseAll] = useState(false)
-
 	const openAll = () => {
-		setShouldOpenAll(true)
-		setTimeout(() => {
-			setShouldOpenAll(false)
-		}, 100)
+		state.setExpandedKeys(new Set(state.collection.getKeys()))
 	}
 
 	const closeAll = () => {
-		setShouldCloseAll(true)
-		setTimeout(() => {
-			setShouldCloseAll(false)
-		})
-	}
-
-	// State and useEffect ne fonctionnent pas ensemble
-	if (shouldOpenAll) {
-		const keys = state.collection.getKeys()
-		for (const key of keys) {
-			if (!state.expandedKeys.has(key)) {
-				state.expandedKeys.add(key)
-			}
-		}
-	}
-
-	if (shouldCloseAll) {
-		const keys = state.collection.getKeys()
-		for (const key of keys) {
-			if (state.expandedKeys.has(key)) {
-				state.expandedKeys.delete(key)
-			}
-		}
+		state.setExpandedKeys(new Set())
 	}
 
 	const allItemsOpen = Array.from(state.collection.getKeys()).every((key) =>
