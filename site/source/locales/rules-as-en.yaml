@@ -64,9 +64,9 @@ assimilé salarié . cotisations:
     salarié:
       titre.en: '[automatic] employee share'
       titre.fr: part salarié
-  description.en: '[automatic] Total social security contributions paid for this
-    employee. This includes both employer and employee contributions.'
-  description.fr: Total des cotisations et contributions à la sécurité sociales
+  description.en: "[automatic] Total social security contributions paid for this
+    employee. This includes both the employer's share and the employee's share."
+  description.fr: Total des cotisations et contributions à la sécurité sociale
     versées pour ce salarié. Il comprends une part employeur et une part
     employé.
   titre.en: '[automatic] contributions'
@@ -404,6 +404,22 @@ assimilé salarié . cotisations . assiette forfaitaire:
 assimilé salarié . cotisations . autres employeur:
   titre.en: '[automatic] Other employer charges'
   titre.fr: Autres charges dues par l'employeur
+assimilé salarié . cotisations . avec dividendes:
+  description.en: >
+    [automatic] This is the total amount due for mandatory contributions and
+    dues,
+
+    including social security withholdings on
+
+    dividends.
+  description.fr: |
+    C’est le montant total dû au titre des cotisations et contributions
+    obligatoires, y compris le montant des prélèvements sociaux sur les
+    dividendes.
+  résumé.en: '[automatic] Includes social security contributions on dividends'
+  résumé.fr: Inclue les prélèvements sociaux sur les dividendes
+  titre.en: '[automatic] Dues and Contributions'
+  titre.fr: Cotisations et contributions
 assimilé salarié . cotisations . catégories:
   avec:
     CSG-CRDS:
@@ -575,15 +591,6 @@ assimilé salarié . cotisations . maladie:
   titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 assimilé salarié . cotisations . prévoyances:
   avec:
-    conventionnelle:
-      titre.en: '[automatic] conventional'
-      titre.fr: conventionnelle
-    conventionnelle . employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    conventionnelle . salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
     employeur:
       avec:
         non déductible socialement:
@@ -604,13 +611,6 @@ assimilé salarié . cotisations . prévoyances:
       titre.en: '[automatic] frames'
       titre.fr: cadres
     incapacité invalidité décès:
-      avec:
-        employeur:
-          titre.en: '[automatic] employer'
-          titre.fr: employeur
-        salarié:
-          titre.en: '[automatic] employee'
-          titre.fr: salarié
       titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
       titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
@@ -829,6 +829,106 @@ assimilé salarié . cotisations . vieillesse:
   description.fr: Cotisation vieillesse pour le régime de retraite de base des salariés.
   titre.en: '[automatic] old age'
   titre.fr: vieillesse
+assimilé salarié . dividendes:
+  description.en: >
+    [automatic] This refers to the gross amount—**before the PFNL** (flat-rate
+    withholding tax that is not
+
+    final) of 12.8% and before the 40% tax deduction—of the dividends
+
+    received.
+
+
+    Dividends are subject to **social security contributions** as income
+
+    from assets.
+  description.fr: |
+    Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
+    libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes
+    perçus.
+
+    Les dividendes sont soumis aux **prélèvements sociaux** en tant que revenus
+    du patrimoine.
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
+assimilé salarié . dividendes . PFU:
+  description.en: >
+    [automatic] The portion of the PFU (single flat-rate levy) corresponding to
+    income tax
+
+    is **12.8%**.
+  description.fr: >
+    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur
+    le
+
+    revenu est égale à **12,8 %**.
+  titre.en: '[automatic] Single Flat-Rate Withholding Tax (PFU)'
+  titre.fr: Prélèvement forfaitaire unique (PFU)
+assimilé salarié . dividendes . imposables:
+  description.en: |
+    [automatic] When dividends are subject to the progressive income tax
+    brackets, a **40% deduction** is first applied to them.
+  description.fr: |
+    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
+    revenu, un **abattement de 40%** leur est d’abord appliqué.
+  titre.en: '[automatic] taxable'
+  titre.fr: imposables
+assimilé salarié . dividendes . imposition:
+  question.en: '[automatic] How are your dividends taxed?'
+  question.fr: Quel est le mode d’imposition de vos dividendes ?
+  titre.en: '[automatic] taxation'
+  titre.fr: imposition
+assimilé salarié . dividendes . nets:
+  description.en: >
+    [automatic] This is the amount of dividends received **after social security
+    deductions**.
+  description.fr: |
+    Il s’agit du montant **après prélèvements sociaux** des dividendes perçus.
+  titre.en: '[automatic] nets'
+  titre.fr: nets
+assimilé salarié . dividendes . prélèvements sociaux:
+  avec:
+    CRDS:
+      titre.en: '[automatic] CRDS'
+      titre.fr: CRDS
+    CSG déductible:
+      titre.en: '[automatic] Deductible CSG'
+      titre.fr: CSG déductible
+    CSG non déductible:
+      titre.en: '[automatic] Non-deductible CSG'
+      titre.fr: CSG non déductible
+    prélèvement de solidarité:
+      titre.en: '[automatic] solidarity levy'
+      titre.fr: prélèvement de solidarité
+  description.en: >
+    [automatic] As investment income, dividends are subject to social security
+    contributions.
+
+    These contributions are:
+
+    - General Social Contribution (CSG),
+
+    - Social Debt Repayment Contribution (CRDS),
+
+    - Solidarity Contribution.
+  description.fr: |
+    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
+    sociaux. Ces prélèvements sont :
+    - contribution sociale généralisée (CSG),
+    - contribution au remboursement de la dette sociale (CRDS),
+    - prélèvement de solidarité.
+  note.en: >
+    [automatic] The CSG on dividends subject to the PFU (single flat-rate
+    withholding tax) is
+
+    not deductible.
+  note.fr: >
+    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique)
+    n’est
+
+    pas déductible.
+  titre.en: '[automatic] social security contributions'
+  titre.fr: prélèvements sociaux
 assimilé salarié . exonérations:
   titre.en: '[automatic] exemptions'
   titre.fr: exonérations
@@ -991,8 +1091,8 @@ assimilé salarié . exonérations . JEI:
     - employees for whom the employer is subject to the obligation to provide
     unemployment insurance
 
-    - corporate officers who participate, as their primary occupation, in the
-    company’s research and development project
+    - corporate officers who are primarily involved in the company’s research
+    and development project
 
 
     For simplicity’s sake, an employee will be deemed eligible for the exemption
@@ -1494,31 +1594,62 @@ assimilé salarié . rémunération . brute:
   titre.fr: Rémunération brute
 assimilé salarié . rémunération . impôt:
   description.en: >
-    [automatic] Amount of income tax on the remuneration of an assimilated
-    employee
+    [automatic] Amount of income tax on the compensation of a de facto executive
 
-    of a company subject to corporation tax (IS) and, in the case of calculation
-    using the
+    who is an employee of a company subject to corporate income tax (IS) and, in
+    the
 
-    and, in the case of calculation using the standard scale, the other taxable
+    case of a calculation using the standard tax scale, on the other taxable
     income of the
 
-    taxable income.
-
-
-    This simulator does not include the calculation of income tax for companies
-
-    companies subject to income tax (IR).
+    tax household.
   description.fr: |
     Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
     salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
     cas du calcul avec le barème standard, des autres revenus imposables du
     foyer fiscal.
+  titre.en: '[automatic] Income Tax'
+  titre.fr: Impôt sur le revenu
+assimilé salarié . rémunération . impôt . avec dividendes:
+  résumé.en: '[automatic] Includes dividend tax'
+  résumé.fr: Inclue l'impôt sur les dividendes
+  titre.en: '[automatic] Income Tax'
+  titre.fr: Impôt sur le revenu
+assimilé salarié . rémunération . impôt . avec dividendes au barème progressif:
+  description.en: >
+    [automatic] Amount of income tax on:
 
-    Ce simulateur n'inclue pas le calcul de l’impôt sur les revenus pour les
-    entreprises soumises à l’impôt sur les revenus (IR).
-  titre.en: '[automatic] income tax'
-  titre.fr: impôt sur le revenu
+    - the compensation of the executive treated as an employee of a company
+    subject to
+
+    corporate income tax (IS);
+
+    - in the case of dividends taxed at the progressive rate, the
+
+    dividends received by the executive treated as an employee;
+
+    - in the case of calculation using the standard tax scale, other taxable
+    income
+
+    of the tax household.
+  description.fr: >
+    Montant de l’impôt sur le revenu sur :
+
+    - la rémunération de la ou du dirigeant assimilé salarié d’une entreprise
+    soumise à
+
+    l’impôt sur les sociétés (IS) ;
+
+    - dans le cas d’une imposition des dividendes au barème progressif, des
+
+    dividendes perçus par la ou le dirigeant assimilé salarié ;
+
+    - dans le cas du calcul avec le barème standard, des autres revenus
+    imposables
+
+    du foyer fiscal.
+  titre.en: '[automatic] Income Tax'
+  titre.fr: Impôt sur le revenu
 assimilé salarié . rémunération . montant net social:
   description.en: >
     [automatic] The net social amount, or NSA, corresponds to the reference
@@ -1555,28 +1686,53 @@ assimilé salarié . rémunération . nette:
   titre.fr: Rémunération nette
 assimilé salarié . rémunération . nette . après impôt:
   description.en: >
-    [automatic] This is the salary paid into the employee's bank account, once
+    [automatic] This is the salary deposited into the employee's bank account
+    after
+
     contributions and taxes have been deducted.
-  description.fr: >
+  description.fr: |
     C'est le salaire versé sur le compte bancaire du salarié, une fois les
     cotisations et l'impôt prélevés.
   résumé.en: '[automatic] Net salary paid'
   résumé.fr: Le salaire net payé
   titre.en: '[automatic] Net salary after tax'
   titre.fr: Salaire net après impôt
+assimilé salarié . rémunération . nette . après impôt . avec dividendes:
+  description.en: >
+    [automatic] This is the salary deposited into the employee's bank account
+    after deductions for social security contributions and taxes have been made.
+  description.fr: >
+    C'est le salaire versé sur le compte bancaire du salarié, une fois les
+    cotisations et l'impôt prélevés.
+  titre.en: '[automatic] Net compensation after taxes'
+  titre.fr: Rémunération nette après impôt
+assimilé salarié . rémunération . nette . avec dividendes:
+  résumé.en: '[automatic] After deducting social security withholdings,
+    contributions, and other charges'
+  résumé.fr:
+    Après déduction des prélèvements sociaux, cotisations, contributions
+    et charges
+  titre.en: '[automatic] Net pay'
+  titre.fr: Rémunération nette
 assimilé salarié . rémunération . nette . imposable:
-  avec:
-    sans déductions:
-      description.en: '[automatic] Net taxable income before exemptions and deductions'
-      description.fr: Le net imposable avant les exonérations et déductions
-      titre.en: '[automatic] without deductions'
-      titre.fr: sans déductions
   description.en: |
     [automatic] This is the base used to calculate income tax.
   description.fr: |
     C'est la base utilisée pour calculer l'impôt sur le revenu.
   titre.en: '[automatic] Net taxable salary'
   titre.fr: Salaire net imposable
+assimilé salarié . rémunération . nette . imposable . avec dividendes:
+  description.en: >
+    [automatic] The sum of the net taxable salary and the taxable amount of
+    dividends
+
+    received, in cases where dividends are taxed using the progressive tax
+    scale.
+  description.fr: |
+    Somme du salaire net imposable et du montant imposable des dividendes
+    perçus, dans le cas d’une imposition des dividendes au barème progressif.
+  titre.en: '[automatic] Net taxable income'
+  titre.fr: Rémunération nette imposable
 assimilé salarié . rémunération . nette . à payer avant impôt:
   description.en: >-
     [automatic] This is the amount that a salaried executive receives at the end
