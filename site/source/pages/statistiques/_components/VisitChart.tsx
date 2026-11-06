@@ -41,12 +41,8 @@ export default function VisitChart({
 					aria-labelledby="mode-affichage-label"
 					aria-controls="visites-panel"
 				>
-					<Radio value="jours">
-						<Trans>Jours</Trans>
-					</Radio>
-					<Radio value="mois">
-						<Trans>Mois</Trans>
-					</Radio>
+					<Radio value="jours">{t('global.jours.label', 'Jours')}</Radio>
+					<Radio value="mois">{t('global.mois.label', 'Mois')}</Radio>
 				</ToggleGroup>
 			</Body>
 
