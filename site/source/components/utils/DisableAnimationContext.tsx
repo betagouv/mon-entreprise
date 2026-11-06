@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 
+import { environnement } from '@/services/environnement'
+
 export const DisableAnimationContext = createContext(false)
 
 const useIsPrintContext = () => {
@@ -46,7 +48,7 @@ export function DisableAnimationOnPrintProvider({
 
 	return (
 		<DisableAnimationContext.Provider
-			value={isPrintContext || import.meta.env.SSR}
+			value={isPrintContext || environnement.isServerSide}
 		>
 			{children}
 		</DisableAnimationContext.Provider>

@@ -18,7 +18,7 @@ import {
 	Strong,
 } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import SearchOrCreate from './SearchOrCreate'
 

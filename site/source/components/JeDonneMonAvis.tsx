@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import donnerVotreAvisSvg from '@/assets/images/donner-votre-avis-services-publics.svg'
 import { Link } from '@/design-system'
+import { urlAsset } from '@/utils/asset'
 
 export const JeDonneMonAvis = ({ light }: { light?: boolean }) => {
 	const { t } = useTranslation()
@@ -19,7 +20,7 @@ export const JeDonneMonAvis = ({ light }: { light?: boolean }) => {
 			<img
 				src={
 					light
-						? donnerVotreAvisSvg
+						? urlAsset(donnerVotreAvisSvg)
 						: 'https://jedonnemonavis.numerique.gouv.fr/static/bouton-blanc.svg'
 				}
 				alt=""

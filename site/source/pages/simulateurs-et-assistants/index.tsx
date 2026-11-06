@@ -18,7 +18,7 @@ import {
 	Ul,
 } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export default function SimulateursEtAssistants() {
 	const { t } = useTranslation()

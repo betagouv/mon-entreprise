@@ -7,7 +7,7 @@ import { FilledContext, HelmetProvider } from 'react-helmet-async'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
-import { ReactRouterNavigationProvider } from '@/lib/navigation'
+import { ReactRouterNavigationProvider } from '@/lib/navigation/providers/ReactRouterNavigationProvider'
 import { AvailableLang } from '@/locales/langue'
 
 import i18next from '../locales/i18n'

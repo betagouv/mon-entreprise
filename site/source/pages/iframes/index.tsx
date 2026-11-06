@@ -2,12 +2,14 @@ import { ReactNode } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { Outlet, Route, Routes } from 'react-router-dom'
 
+import { ChromeIframe } from '@/components/layout/ChromeIframe'
+import { OuvreLesLiensDansLaPageParente } from '@/components/layout/OuvreLesLiensDansLaPageParente'
+import { Page404 } from '@/components/Page404'
 import { usePlausibleTracking } from '@/hooks/usePlausibleTracking'
 import {
 	MergedSimulatorMetadata,
 	useSimulatorsMetadata,
 } from '@/hooks/useSimulatorsMetadata'
-import Page404 from '@/pages/404'
 import ChoixDuStatut from '@/pages/assistants/choix-du-statut'
 import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import SearchCodeApePage from '@/pages/assistants/recherche-code-ape'
@@ -38,22 +40,19 @@ import { PAMCHome } from '@/pages/simulateurs/pamc/PAMCHome'
 import { Pharmacien } from '@/pages/simulateurs/pharmacien/Pharmacien'
 import { ProfessionLibérale } from '@/pages/simulateurs/profession-libérale/ProfessionLibérale'
 import { SageFemme } from '@/pages/simulateurs/sage-femme/SageFemme'
-import SalariéSimulation from '@/pages/simulateurs/salarié/Salarié'
 import { SASUSimulation } from '@/pages/simulateurs/sasu/SASU'
+import { Salarié } from '@/simulateurs/salarié'
 
-import IframeFooter from './IframeFooter'
-
-const ChromeIframe = ({
+const RouteAvecChromeIframe = ({
 	avecAvis = false,
 	avecLogo = false,
 }: {
 	avecAvis?: boolean
 	avecLogo?: boolean
 }) => (
-	<>
+	<ChromeIframe avecAvis={avecAvis} avecLogo={avecLogo}>
 		<Outlet />
-		<IframeFooter avecAvis={avecAvis} avecLogo={avecLogo} />
-	</>
+	</ChromeIframe>
 )
 
 const PageIframe = ({
@@ -87,14 +86,10 @@ export default function Iframes() {
 
 	return (
 		<>
-			{/** Open external links in the parent frame.
-			This behavior can be configured on individual link, eg <a target="_blank" />.
-			Our own link are handled in-app by the router, and aren't affected by this directive.
-			*/}
-			<base target="_parent" />
+			<OuvreLesLiensDansLaPageParente />
 			<Routes>
-				<Route element={<ChromeIframe avecAvis />}>
-					{routeIframe(simulateurs.salarié, <SalariéSimulation />)}
+				<Route element={<RouteAvecChromeIframe avecAvis />}>
+					{routeIframe(simulateurs.salarié, <Salarié />)}
 					{routeIframe(
 						simulateurs['entreprise-individuelle'],
 						<EntrepriseIndividuelle />
@@ -155,7 +150,7 @@ export default function Iframes() {
 					)}
 				</Route>
 
-				<Route element={<ChromeIframe avecAvis avecLogo />}>
+				<Route element={<RouteAvecChromeIframe avecAvis avecLogo />}>
 					{routeIframe(simulateurs['choix-statut'], <ChoixDuStatut />)}
 					{routeIframe(
 						simulateurs['pour-mon-entreprise'],

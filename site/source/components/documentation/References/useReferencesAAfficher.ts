@@ -1,3 +1,5 @@
+'use client'
+
 import { Références } from '@/domaine/documentation/References'
 import { useIsEmbeddedOnBPISite } from '@/hooks/useIsEmbeddedOnBPISite'
 

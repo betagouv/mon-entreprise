@@ -1,4 +1,4 @@
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 /**
  * Indique si le calcul des cotisations est activé en économie collaborative

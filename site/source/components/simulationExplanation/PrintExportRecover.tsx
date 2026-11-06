@@ -1,9 +1,19 @@
 import { Trans } from 'react-i18next'
 
+import BrowserOnly from '@/components/utils/BrowserOnly'
 import { Body, Link, Message } from '@/design-system'
 import { useUrl } from '@/hooks/useUrl'
 
 export default function PrintExportRecover() {
+	return (
+		<BrowserOnly>
+			<SectionÀImprimer />
+		</BrowserOnly>
+	)
+}
+
+// L'URL de la simulation et la date du jour ne sont connues que du navigateur.
+function SectionÀImprimer() {
 	return (
 		<section className="print-only">
 			<Message>

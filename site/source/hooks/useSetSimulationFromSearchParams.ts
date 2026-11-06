@@ -2,7 +2,7 @@ import { pipe } from 'effect'
 import * as A from 'effect/Array'
 import * as O from 'effect/Option'
 import * as R from 'effect/Record'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -26,21 +26,24 @@ import { simulationChargéeDepuisLien } from '@/store/slices/simulationSource.sl
 import { useEngineFromModèle } from './useEngineFromModèle'
 
 export default function useSetSimulationFromSearchParams(nomModèle: NomModèle) {
-	const { searchParams, setSearchParams } = useNavigation()
-	// saves params for development, as strict mode is running twice
-	const [initialSearchParams] = useState(new URLSearchParams(searchParams))
+	const { searchParams, searchParamsKnown, setSearchParams } = useNavigation()
+	const queryString = searchParams.toString()
+	const alreadyApplied = useRef(false)
 	const objectifs = useSelector(configObjectifsSelector)
 	const dispatch = useDispatch()
 
 	const engine = useEngineFromModèle(nomModèle)
 	const rules = useMemo(() => R.keys(engine.getParsedRules()), [engine])
 
-	const setNewTargetUnit = useCallback(() => {
-		const newTargetUnit = getTargetUnitFromSearchParams(initialSearchParams)
-		if (newTargetUnit) {
-			dispatch(updateUnit(newTargetUnit))
-		}
-	}, [dispatch, initialSearchParams])
+	const setNewTargetUnit = useCallback(
+		(searchParamsLus: URLSearchParams) => {
+			const newTargetUnit = getTargetUnitFromSearchParams(searchParamsLus)
+			if (newTargetUnit) {
+				dispatch(updateUnit(newTargetUnit))
+			}
+		},
+		[dispatch]
+	)
 
 	const setNewSituation = useCallback(
 		(newSituation: Record<DottedName, ValeurDomaine>) => {
@@ -72,28 +75,33 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 		[dispatch, objectifs]
 	)
 
-	const resetSearchParams = useCallback(() => {
-		const newSearchParams = searchParams
-		newSearchParams.delete(TARGET_UNIT_PARAM)
+	const resetSearchParams = useCallback(
+		(searchParamsLus: URLSearchParams) => {
+			const newSearchParams = new URLSearchParams(searchParamsLus)
+			newSearchParams.delete(TARGET_UNIT_PARAM)
 
-		rules.forEach((dottedName) => newSearchParams.delete(dottedName))
+			rules.forEach((dottedName) => newSearchParams.delete(dottedName))
 
-		setSearchParams(newSearchParams, { replace: true })
-	}, [rules, searchParams, setSearchParams])
+			setSearchParams(newSearchParams, { replace: true })
+		},
+		[rules, setSearchParams]
+	)
 
-	// On load:
 	useEffect(() => {
-		const newSituation = getSituationFromSearchParams(
-			initialSearchParams,
-			rules
-		)
+		if (!searchParamsKnown || alreadyApplied.current) {
+			return
+		}
+		alreadyApplied.current = true
 
-		setNewTargetUnit()
+		const searchParamsLus = new URLSearchParams(queryString)
+		const newSituation = getSituationFromSearchParams(searchParamsLus, rules)
+
+		setNewTargetUnit(searchParamsLus)
 		setNewSituation(newSituation)
 		setNewActiveTarget(newSituation)
 
 		const règlesIgnorées = getRèglesIgnoréesFromSearchParams(
-			initialSearchParams,
+			searchParamsLus,
 			rules
 		)
 
@@ -101,7 +109,15 @@ export default function useSetSimulationFromSearchParams(nomModèle: NomModèle)
 			dispatch(simulationChargéeDepuisLien(règlesIgnorées))
 		}
 
-		resetSearchParams()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+		resetSearchParams(searchParamsLus)
+	}, [
+		searchParamsKnown,
+		queryString,
+		rules,
+		setNewTargetUnit,
+		setNewSituation,
+		setNewActiveTarget,
+		dispatch,
+		resetSearchParams,
+	])
 }

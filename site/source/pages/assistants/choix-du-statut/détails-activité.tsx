@@ -28,7 +28,7 @@ import { toOuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useIsIdle } from '@/hooks/useIsIddle'
 import { usePublicodes } from '@/hooks/usePublicodes'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { guichetToPLMétier } from '@/utils/guichetToPLMétier'
 

@@ -1,13 +1,18 @@
+import type { Metadata } from 'next'
 import { ReactNode } from 'react'
 
-import { PageLayout } from '@/components/layout/PageLayout'
 import i18next, { langue } from '@/locales/i18n-server'
+import { environnement } from '@/services/environnement'
 
 import { montserrat, roboto } from './fonts'
 import { Providers } from './Providers'
 
-export const metadata = {
-	title: i18next.t('metadata.titre', 'Mon entreprise'),
+export const metadata: Metadata = {
+	metadataBase: new URL(environnement.urls[langue]),
+	title: {
+		template: i18next.t('site.titleTemplate', '%s - Mon-entreprise'),
+		default: i18next.t('site.defaultTitle', 'Mon-entreprise'),
+	},
 	description: i18next.t(
 		'metadata.description',
 		"L'assistant officiel de l'entrepreneur : simulateurs de cotisations, choix du statut, et plus encore."
@@ -35,9 +40,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 				<script dangerouslySetInnerHTML={{ __html: darkModeAntiFlashScript }} />
 			</head>
 			<body>
-				<Providers>
-					<PageLayout>{children}</PageLayout>
-				</Providers>
+				<Providers>{children}</Providers>
 			</body>
 		</html>
 	)

@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useContext, useState } from 'react'
 
 import { useNavigation } from '@/lib/navigation'
+import { environnement } from '@/services/environnement'
 
 const BPIContext = createContext(false)
 
@@ -11,7 +12,8 @@ export const IsBPIProvider = ({ children }: PropsWithChildren) => {
 		.toString()
 		.includes('bpifrance-creation')
 	const BPIInReferer =
-		!import.meta.env.SSR && document.referrer?.includes('bpifrance-creation')
+		!environnement.isServerSide &&
+		document.referrer?.includes('bpifrance-creation')
 	if (!isBPI && (BPIInSearchParams || BPIInReferer)) {
 		setIsBPI(true)
 	}

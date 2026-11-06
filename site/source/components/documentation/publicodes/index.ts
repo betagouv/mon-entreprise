@@ -1,3 +1,5 @@
+'use client'
+
 export { documentationDeRègle } from './documentationDeRegle'
 export { RéférencesDeRègle } from './ReferencesDeRegle'
 export { RésuméDeRègle } from './ResumeDeRegle'

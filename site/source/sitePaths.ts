@@ -1,6 +1,4 @@
-import { useTranslation } from 'react-i18next'
-
-import { AvailableLang, parseLangue } from '@/locales/langue'
+import { AvailableLang } from '@/locales/langue'
 import { SimulatorMetadata } from '@/pages/simulateurs-et-assistants/metadata-src'
 
 const rawSitePathsFr = {
@@ -262,7 +260,7 @@ const encodedAbsoluteSitePaths = {
 	en: constructAbsoluteSitePaths(rawSitePathsEn),
 }
 
-const relativeSitePaths = encodedRelativeSitePaths
+export const relativeSitePaths = encodedRelativeSitePaths
 
 export const absoluteSitePaths = encodedAbsoluteSitePaths
 
@@ -270,16 +268,6 @@ export type RelativeSitePaths =
 	(typeof relativeSitePaths)[keyof typeof relativeSitePaths]
 export type AbsoluteSitePaths =
 	(typeof absoluteSitePaths)[keyof typeof absoluteSitePaths]
-
-export const useSitePaths = <T extends AvailableLang>(lang?: T) => {
-	const { language } = useTranslation().i18n
-	lang ??= parseLangue(language) as T
-
-	return {
-		relativeSitePaths: relativeSitePaths[lang],
-		absoluteSitePaths: absoluteSitePaths[lang],
-	}
-}
 
 type SitePath = { [key: string]: string | SitePath } & { index: string }
 

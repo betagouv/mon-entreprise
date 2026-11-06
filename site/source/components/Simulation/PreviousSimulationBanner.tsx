@@ -2,11 +2,21 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import SimulationBanner from '@/components/Simulation/Banner'
+import BrowserOnly from '@/components/utils/BrowserOnly'
 import { Link } from '@/design-system'
 import { chargeLaSimulationPrécédente } from '@/store/actions/actions'
 import { previousSimulationSelector } from '@/store/selectors/previousSimulation.selector'
 
 export default function PreviousSimulationBanner() {
+	return (
+		<BrowserOnly>
+			<BandeauDeSimulationSauvegardée />
+		</BrowserOnly>
+	)
+}
+
+// La simulation sauvegardée est lue du stockage, inconnue du serveur.
+function BandeauDeSimulationSauvegardée() {
 	const previousSimulation = useSelector(previousSimulationSelector)
 	const dispatch = useDispatch()
 	const { t } = useTranslation()

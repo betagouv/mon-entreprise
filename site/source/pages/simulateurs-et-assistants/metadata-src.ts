@@ -1,11 +1,7 @@
+import { PageMetadata, PageMetadataParams, parId } from '@/domaine/PageMetadata'
 import { choixDuStatutMetadata } from '@/pages/assistants/choix-du-statut/metadata'
 import { pourMonEntrepriseMetadata } from '@/pages/assistants/pour-mon-entreprise/metadata'
 import { rechercheCodeApeMetadata } from '@/pages/assistants/recherche-code-ape/metadata'
-import {
-	PageMetadata,
-	PageMetadataParams,
-	parId,
-} from '@/pages/simulateurs/_configs/types'
 import { activitéPartielleMetadata } from '@/pages/simulateurs/activité-partielle/metadata'
 import { artisanMetadata } from '@/pages/simulateurs/artisan/metadata'
 import { artisteAuteurMetadata } from '@/pages/simulateurs/artiste-auteur/metadata'
@@ -33,8 +29,8 @@ import { pamcMetadata } from '@/pages/simulateurs/pamc/metadata'
 import { pharmacienMetadata } from '@/pages/simulateurs/pharmacien/metadata'
 import { professionLibéraleMetadata } from '@/pages/simulateurs/profession-libérale/metadata'
 import { sageFemmeMetadata } from '@/pages/simulateurs/sage-femme/metadata'
-import { salariéMetadata } from '@/pages/simulateurs/salarié/metadata'
 import { sasuMetadata } from '@/pages/simulateurs/sasu/metadata'
+import { salariéMetadata } from '@/simulateurs/salarié/metadata'
 import { ImmutableType } from '@/types/utils'
 
 /**

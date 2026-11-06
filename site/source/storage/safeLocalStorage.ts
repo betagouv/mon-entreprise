@@ -1,5 +1,7 @@
+import { environnement } from '@/services/environnement'
+
 export function removeItem(key: string) {
-	if (typeof window === 'undefined') {
+	if (environnement.isServerSide) {
 		return null
 	}
 	try {
@@ -17,7 +19,7 @@ export function removeItem(key: string) {
 }
 
 export function getItem(key: string) {
-	if (typeof window === 'undefined') {
+	if (environnement.isServerSide) {
 		return null
 	}
 	try {
@@ -33,7 +35,7 @@ export function getItem(key: string) {
 }
 
 export function setItem(key: string, value: string) {
-	if (typeof window === 'undefined') {
+	if (environnement.isServerSide) {
 		return null
 	}
 	try {

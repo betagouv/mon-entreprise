@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useSetupSafeSituation } from '@/hooks/useSetupSafeSituation'
+import { environnement } from '@/services/environnement'
 import {
 	chargeLaSimulationPrécédente,
 	configureLaSimulation,
@@ -22,28 +23,26 @@ export default function useSimulationConfig({
 	const autoloadLastSimulation = config?.autoloadLastSimulation ?? false
 	const dispatch = useDispatch()
 
-	// Initialize redux store in SSR mode
-	if (import.meta.env.SSR) {
-		dispatch(configureLaSimulation(config ?? {}, url, key))
-	}
-
 	const lastConfig = useSelector(configSelector)
 	const lastKey = useSelector(simulationKeySelector)
 
+	// Configuring the store in an effect would run after hydration, so the client's
+	// first render would no longer match the server HTML.
+	if (key !== lastKey || (config && lastConfig !== config)) {
+		dispatch(configureLaSimulation(config ?? {}, url, key))
+	}
+
 	// useLayoutEffect like useEffect does nothing in SSR mode but triggers a warning,
 	// so we replace it with useEffect which does not trigger any warning
-	const useLayoutEffectWithoutWarnInSSR = import.meta.env.SSR
+	const useLayoutEffectWithoutWarnInSSR = environnement.isServerSide
 		? useEffect
 		: useLayoutEffect
 
 	useLayoutEffectWithoutWarnInSSR(() => {
-		if (key !== lastKey || (config && lastConfig !== config)) {
-			dispatch(configureLaSimulation(config ?? {}, url, key))
-		}
 		if (autoloadLastSimulation) {
 			dispatch(chargeLaSimulationPrécédente())
 		}
-	}, [config, dispatch, lastConfig, key])
+	}, [autoloadLastSimulation, dispatch])
 
 	useSetupSafeSituation(config?.nomModèle)
 }

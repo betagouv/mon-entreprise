@@ -39,9 +39,9 @@ import { useEntreprisesRepository } from '@/hooks/useRepositories'
 import { useSetEntreprise } from '@/hooks/useSetEntreprise'
 import useSimulationPublicodes from '@/hooks/useSimulationPublicodes'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import SimulateurPageLayout from '@/pages/simulateurs/SimulateurPageLayout'
-import { useSitePaths } from '@/sitePaths'
+import { SimulateurPageLayout } from '@/simulateurs'
 import { resetCompany } from '@/store/actions/companyActions'
 import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { EngineProvider, useEngine } from '@/utils/publicodes/EngineContext'
@@ -176,7 +176,7 @@ function PourMonEntreprise() {
 									position: 'relative',
 								}}
 							>
-								<CurrentSimulatorCard fromGérer />
+								<CurrentSimulatorCard />
 
 								<Condition expression="entreprise . imposition . IS">
 									<Grid
@@ -189,11 +189,8 @@ function PourMonEntreprise() {
 										}}
 									>
 										<Grid container spacing={3} columns={2}>
-											<SmallSimulateurCard fromGérer {...simulateurs.is} />
-											<SmallSimulateurCard
-												fromGérer
-												{...simulateurs.dividendes}
-											/>
+											<SmallSimulateurCard {...simulateurs.is} />
+											<SmallSimulateurCard {...simulateurs.dividendes} />
 										</Grid>
 									</Grid>
 								</Condition>
@@ -210,11 +207,8 @@ function PourMonEntreprise() {
 								)}
 							</H2>
 							<Grid container spacing={3}>
-								<SimulateurCard fromGérer {...simulateurs['salarié']} />
-								<SimulateurCard
-									fromGérer
-									{...simulateurs['activité-partielle']}
-								/>
+								<SimulateurCard {...simulateurs['salarié']} />
+								<SimulateurCard {...simulateurs['activité-partielle']} />
 							</Grid>
 						</FromTop>
 					)}
