@@ -220,6 +220,37 @@ describe('Dispositif d’exonération de cotisations patronales', () => {
 		})
 	})
 
+	describe('Quand le dispositif choisi cesse d’être éligible', () => {
+		it('applique le premier dispositif éligible à la place de la RGDU au-delà de 3 Smic', () => {
+			engine.setSituation({
+				...guadeloupe(6000),
+				...jeuneEntrepriseInnovante,
+				...choisi('RGDU'),
+			})
+
+			expect(engine).toEvaluate(DISPOSITIF, 'JEI')
+			expect(
+				enEuros(engine, 'salarié . cotisations . exonérations . employeur')
+			).toBe(
+				enEuros(engine, 'salarié . cotisations . exonérations . JEI . montant')
+			)
+		})
+
+		it('ne fait plus bénéficier des taux réduits un employeur qui avait choisi le Lodeom hors de l’outre-mer', () => {
+			engine.setSituation({
+				...métropole(2000),
+				...jeuneEntrepriseInnovante,
+				...choisi('Lodeom'),
+			})
+
+			expect(engine).toEvaluate(DISPOSITIF, 'JEI')
+			expect(engine).toEvaluate(
+				'salarié . cotisations . maladie . employeur . taux',
+				13
+			)
+		})
+	})
+
 	describe('Dans le simulateur Lodeom', () => {
 		it('calcule le Lodeom d’une jeune entreprise innovante comme celui de tout employeur', () => {
 			const simulateurLodeom = (situation: Record<string, string>) =>
