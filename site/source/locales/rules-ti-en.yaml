@@ -172,34 +172,33 @@ entreprise . activité:
       titre.fr: libérale
     libérale . réglementée:
       description.en: >
-        [automatic] Certain liberal professions have been classified as liberal
-        by law
+        [automatic] Certain independent professions have been classified as such
 
-        by law, and their titles are protected. Their members must comply with
-        strict
+        by law, and their professional titles are protected. Members of these
+        professions must adhere to
 
-        rules of professional conduct and are subject to the control of their
-        professional
+        strict ethical standards and are subject to oversight by their
 
-        professional bodies (order, chamber or union).
+        professional bodies (orders, chambers, or associations).
 
 
-        > Examples of regulated professions: architect, lawyer, nurse,
-
-        > doctors...
-
-
-        These are other people who practice a science or art, and whose
-        intellectual
-
-        whose intellectual activity plays the main role. Their income must
-        represent remuneration for personal work, without any subordinate
-        relationship, while engaging their technical and moral responsibility.
+        > Examples of regulated professions: architect, lawyer, nurse,>
+        physician…
 
 
-        > Examples of non-regulated professions: developer, historian,
+        These are other individuals who practice a science or an art and
 
-        > urban planner...
+        whose intellectual activity plays the primary role. Their income
+
+        must represent compensation for personal work, without any relationship
+        of
+
+        subordination, while entailing their technical and moral responsibility.
+
+
+        > Examples of unregulated professions: software developer, historian,
+
+        > urban planner…
       description.fr: >
         Certaines professions libérales ont été classées dans le domaine libéral
 
@@ -219,7 +218,9 @@ entreprise . activité:
         Il s’agit des autres personnes qui pratiquent une science ou un art et
 
         dont l’activité intellectuelle joue le principal rôle. Leurs recettes
+
         doivent représenter la rémunération d’un travail personnel, sans lien de
+
         subordination, tout en engageant leur responsabilité technique et
         morale.
 
@@ -5728,6 +5729,41 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . dividendes imposables:
+  description.en: >
+    [automatic] This amount is added to the income from employment, after the
+    standard deduction, to calculate income tax
+
+    using the standard tax schedule.
+
+    This is the amount of dividends after a 40% deduction and minus the
+    deductible CSG
+
+    contribution.
+
+
+    It must be reported by corporate income tax-liable executives who pay
+    themselves dividends subject to
+
+    income tax.
+  description.fr: >
+    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le
+    revenu
+
+    avec le barème standard.
+
+    Il s’agit du montant des dividendes après abattement de 40 % et diminué de
+    la CSG
+
+    déductible.
+
+
+    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes
+    soumis à
+
+    l’impôt sur le revenu.
+  titre.en: '[automatic] taxable dividends'
+  titre.fr: dividendes imposables
 paramètres . impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
@@ -5741,16 +5777,15 @@ paramètres . impôt . foyer fiscal . situation de famille:
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
-    the standard
+    the
 
-    standard tax scale, and to which a flat-rate deduction of 10% for
-    professional
+    standard tax schedule, to which a flat-rate deduction of 10% for
 
-    business expenses.
+    business expenses is applied.
 
 
-    It must be entered for salaried employees, assimilated employees and
-    directors subject to corporation tax.
+    This information must be provided by employees, individuals treated as
+    employees, and executives subject to corporate income tax.
   description.fr: >
     C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
 
@@ -5761,7 +5796,7 @@ paramètres . impôt . revenu d'activité:
 
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
-    l'IS.
+    l’IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
 paramètres . impôt . revenu imposable:

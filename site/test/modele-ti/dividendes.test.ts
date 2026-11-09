@@ -134,27 +134,32 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('s’ajoutent à la rémunération nette imposable en cas d’imposition au barème progressif', () => {
-			const e1 = engine.setSituation({
-				'indépendant . rémunération . brute': '40000 €/an',
-			})
-			const rémunérationNetteImposableSansDividendes = e1.evaluate(
-				'indépendant . rémunération . nette . imposable'
-			).nodeValue as number
-
-			const e2 = engine.setSituation({
+		it('s’ajoutent au revenu imposable en cas d’imposition au barème progressif', () => {
+			const e1 = engine.shallowCopy().setSituation({
 				...defaultSituationAvecDividendes,
 				'indépendant . dividendes . imposition': "'barème progressif'",
 			})
-			const dividendesImposables = e2.evaluate(
+			const rémunérationNetteImposable = e1.evaluate(
+				'indépendant . rémunération . nette . imposable'
+			).nodeValue as number
+			const dividendesImposables = e1.evaluate(
 				'indépendant . dividendes . imposables'
 			).nodeValue as number
-			const rémunérationNetteImposableAvecDividendes = e2.evaluate(
-				'indépendant . rémunération . nette . imposable'
-			).nodeValue
 
-			expect(rémunérationNetteImposableAvecDividendes).toEqual(
-				rémunérationNetteImposableSansDividendes + dividendesImposables
+			// Revenu brut global = rémunération imposable abattue de 10% + dividendes imposables
+			const revenuBrutGlobal =
+				0.9 * rémunérationNetteImposable + dividendesImposables
+			const e2 = engine.setSituation({
+				'impôt . barème standard . revenu brut global': `${revenuBrutGlobal} €/an`,
+				// TODO: supprimer cette ligne une fois https://github.com/betagouv/mon-entreprise/issues/2746 corrigé
+				// et 'paramètres . impôt . revenu imposable' non utilisé en-dehors de 'impôt . barème standard . revenu brut global'
+				'paramètres . impôt . revenu imposable': `${revenuBrutGlobal} €/an`,
+			})
+			const impôtAttendu = e2.evaluate('impôt . montant').nodeValue as number
+
+			expect(e1).toEvaluate(
+				'indépendant . rémunération . impôt',
+				Math.round(impôtAttendu)
 			)
 		})
 	})
@@ -381,23 +386,32 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('s’ajoutent à la rémunération nette imposable en cas d’imposition au barème progressif', () => {
-			const e1 = engine.setSituation(defaultSituationAvecDividendes)
-			const rémunérationNetteImposablePFU = e1.evaluate(
-				'indépendant . rémunération . nette . imposable'
-			).nodeValue as number
-
-			const e2 = engine.setSituation({
+		it('s’ajoutent au revenu imposable en cas d’imposition au barème progressif', () => {
+			const e1 = engine.shallowCopy().setSituation({
 				...defaultSituationAvecDividendes,
 				'indépendant . dividendes . imposition': "'barème progressif'",
 			})
-			const dividendesImposables = e2.evaluate(
+			const rémunérationNetteImposable = e1.evaluate(
+				'indépendant . rémunération . nette . imposable'
+			).nodeValue as number
+			const dividendesImposables = e1.evaluate(
 				'indépendant . dividendes . imposables'
 			).nodeValue as number
 
-			expect(e2).toEvaluate(
-				'indépendant . rémunération . nette . imposable',
-				rémunérationNetteImposablePFU + dividendesImposables
+			// Revenu brut global = rémunération imposable abattue de 10% + dividendes imposables
+			const revenuBrutGlobal =
+				0.9 * rémunérationNetteImposable + dividendesImposables
+			const e2 = engine.setSituation({
+				'impôt . barème standard . revenu brut global': `${revenuBrutGlobal} €/an`,
+				// TODO: supprimer cette ligne une fois https://github.com/betagouv/mon-entreprise/issues/2746 corrigé
+				// et 'paramètres . impôt . revenu imposable' non utilisé en-dehors de 'impôt . barème standard . revenu brut global'
+				'paramètres . impôt . revenu imposable': `${revenuBrutGlobal} €/an`,
+			})
+			const impôtAttendu = e2.evaluate('impôt . montant').nodeValue as number
+
+			expect(e1).toEvaluate(
+				'indépendant . rémunération . impôt',
+				Math.round(impôtAttendu)
 			)
 		})
 	})
