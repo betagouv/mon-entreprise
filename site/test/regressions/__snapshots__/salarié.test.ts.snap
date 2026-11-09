@@ -1098,10 +1098,10 @@ salarié . rémunération . net . à payer avant impôt: 1950"
 exports[`calculate simulations-salarié > treizième mois 2`] = `
 "salarié . contrat . salaire brut: 2300
 salarié . contrat . salaire brut . équivalent temps plein: 3096
-salarié . coût total employeur: 3830
+salarié . coût total employeur: 3914
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 2101
-salarié . rémunération . net . à payer avant impôt: 2176"
+salarié . rémunération . net . payé après impôt: 2128
+salarié . rémunération . net . à payer avant impôt: 2219"
 `;
 
 exports[`calculate simulations-salarié > échelle de salaires 1`] = `
