@@ -25,7 +25,34 @@ class PlausibleService {
 		})
 
 		this.plausible.enableAutoPageviews()
-		this.plausible.enableAutoOutboundTracking()
+		this.suivreLesClicsSurLesLiensSortants()
+	}
+
+	/**
+	 * Remplace `enableAutoOutboundTracking` de plausible-tracker, qui annule le
+	 * clic puis navigue dans la fenêtre courante : il ignore `target="_blank"`
+	 * et, dans une iframe, ouvre le site externe dans l'iframe, ce que la
+	 * plupart des sites refusent.
+	 */
+	private suivreLesClicsSurLesLiensSortants() {
+		document.addEventListener(
+			'click',
+			(event) => {
+				const lien =
+					event.target instanceof Element
+						? event.target.closest('a[href]')
+						: null
+
+				if (
+					lien instanceof HTMLAnchorElement &&
+					lien.host !== window.location.host
+				) {
+					this.track('Outbound Link: Click', { url: lien.href })
+				}
+			},
+			// En phase de capture, car react-aria stoppe la propagation des clics
+			{ capture: true }
+		)
 	}
 
 	track(eventName: string, props?: Record<string, string | number>) {
