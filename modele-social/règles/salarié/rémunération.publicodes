@@ -281,12 +281,15 @@ salarié . rémunération . primes:
             Cette prime est le plus souvent versée en une seule fois à la fin de
             l'année.
 
-            Les salariés à temps partiel ont dont à la prime de fin d'année dans les
+            Les salariés à temps partiel ont droit à la prime de fin d'année dans les
             mêmes conditions que les autres salariés en proportion de leur durée du
-            travail.
+            travail. Leur salaire brut tenant déjà compte de cette durée, la prime
+            est calculée sur ce salaire, sans appliquer une seconde fois la quotité
+            de temps de travail.
+          références:
+            Code du travail - Article L3123-5: https://code.travail.gouv.fr/code-du-travail/l3123-5
           produit:
-            - assiette de vérification du SMIC * contrat . temps de travail .
-              quotité
+            - assiette de vérification du SMIC
             - (13 mois - 1 an) / 1 an
 
 salarié . rémunération . indemnités CDD:

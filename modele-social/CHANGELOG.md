@@ -23,6 +23,7 @@
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 - Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
+- Corrige `salarié . rémunération . primes . fin d'année . montant` à temps partiel : la quotité de temps de travail n'est plus appliquée une seconde fois au salaire brut
 
 ## 11.1.0
 
