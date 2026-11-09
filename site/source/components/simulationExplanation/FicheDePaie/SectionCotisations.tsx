@@ -4,7 +4,7 @@ import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
 import { CotisationLine } from '@/components/simulationExplanation/FicheDePaie/CotisationLine'
@@ -47,7 +47,7 @@ export const SectionCotisations = ({ namespace, ordreDesSections }: Props) => {
 					<Fragment key={section.dottedName}>
 						<Titre id={id}>
 							{section.title}
-							<ExplicableRule dottedName={section.dottedName} />
+							<BoutonDeDocumentation dottedName={section.dottedName} />
 						</Titre>
 						<Table aria-labelledby={id}>
 							<tbody>

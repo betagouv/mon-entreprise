@@ -1,12 +1,14 @@
 import { useTranslation } from 'react-i18next'
 
-import { PublicodesDoc } from '@/components/documentation'
 import RuleLink from '@/components/RuleLink'
 import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-export function ExplicableRule<Names extends string = DottedName>({
+import { RéférencesDeRègle } from './ReferencesDeRegle'
+import { RésuméDeRègle } from './ResumeDeRegle'
+
+export function BoutonDeDocumentation<Names extends string = DottedName>({
 	dottedName,
 	title,
 }: {
@@ -23,10 +25,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 
 	return (
 		<InfoButton subject={rule.title} popoverTitle={title}>
-			<PublicodesDoc.RésuméDeRègle
-				engine={engine}
-				dottedName={dottedName as DottedName}
-			/>
+			<RésuméDeRègle engine={engine} dottedName={dottedName as DottedName} />
 
 			<RuleLink
 				dottedName={dottedName as DottedName}
@@ -42,7 +41,7 @@ export function ExplicableRule<Names extends string = DottedName>({
 				)}
 			</RuleLink>
 
-			<PublicodesDoc.RéférencesDeRègle
+			<RéférencesDeRègle
 				engine={engine}
 				dottedName={dottedName as DottedName}
 			/>

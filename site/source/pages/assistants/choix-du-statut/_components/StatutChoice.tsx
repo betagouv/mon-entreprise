@@ -2,7 +2,7 @@ import Engine from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { StatutTag, StatutType, TAG_DATA } from '@/components/StatutTag'
 import { Button, Grid, H4, Li, StatusCard, Strong, Ul } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -87,7 +87,7 @@ function StatutBloc({
 						}).nodeValue
 							? t('Avec ACRE')
 							: t('Option ACRE non activée')}
-						<ExplicableRule dottedName="dirigeant . exonérations . ACRE" />
+						<BoutonDeDocumentation dottedName="dirigeant . exonérations . ACRE" />
 					</Li>
 				</StyledComplémentList>
 			</StatusCard.Complément>

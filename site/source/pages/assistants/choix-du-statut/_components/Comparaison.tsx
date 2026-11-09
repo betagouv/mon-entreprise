@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import {
@@ -273,7 +273,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.retraite.base.h4',
 							'Retraite de base'
 						)}
-						<ExplicableRule dottedName="protection sociale . retraite . trimestres" />
+						<BoutonDeDocumentation dottedName="protection sociale . retraite . trimestres" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.retraite.base.body">
@@ -322,7 +322,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.retraite.complémentaire.h4',
 							'Retraite complémentaire'
 						)}
-						<ExplicableRule dottedName="protection sociale . retraite . complémentaire" />
+						<BoutonDeDocumentation dottedName="protection sociale . retraite . complémentaire" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.retraite.complémentaire.body">
@@ -412,7 +412,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.santé.arrêt.h4',
 							'Arrêt maladie'
 						)}
-						<ExplicableRule dottedName="protection sociale . maladie . arrêt maladie" />
+						<BoutonDeDocumentation dottedName="protection sociale . maladie . arrêt maladie" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.santé.arrêt.body">
@@ -475,7 +475,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.santé.atmp.h4',
 							'Accident du travail et maladie professionnelle'
 						)}
-						<ExplicableRule dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
+						<BoutonDeDocumentation dottedName="protection sociale . maladie . accidents du travail et maladies professionnelles . indemmnités" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.santé.atmp.body">
@@ -538,7 +538,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.parentalité.maternité.h4',
 							'Maternité'
 						)}
-						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
+						<BoutonDeDocumentation dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos maternel" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.parentalité.maternité.body">
@@ -564,7 +564,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.parentalité.adoption.h4',
 							'Adoption'
 						)}
-						<ExplicableRule dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
+						<BoutonDeDocumentation dottedName="protection sociale . maladie . maternité paternité adoption . allocation forfaitaire de repos adoption" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.parentalité.adoption.body">
@@ -621,7 +621,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.prévoyance.invalidité.h4',
 							'Invalidité'
 						)}
-						<ExplicableRule dottedName="protection sociale . invalidité et décès" />
+						<BoutonDeDocumentation dottedName="protection sociale . invalidité et décès" />
 					</H4>
 					<Trans i18nKey="pages.assistants.choix-statut.items.prévoyance.invalidité.body.1">
 						<BodyNoMargin>
@@ -681,7 +681,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.prévoyance.décès.h4',
 							'Décès'
 						)}
-						<ExplicableRule dottedName="protection sociale . invalidité et décès . capital décès" />
+						<BoutonDeDocumentation dottedName="protection sociale . invalidité et décès . capital décès" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.prévoyance.décès.body.1">
@@ -772,7 +772,7 @@ export const Comparaison = ({
 							'pages.assistants.choix-statut.items.gestion.création.h4',
 							'Coût de création'
 						)}
-						<ExplicableRule dottedName="entreprise . coût formalités . création" />
+						<BoutonDeDocumentation dottedName="entreprise . coût formalités . création" />
 					</H4>
 					<Body>
 						<Trans i18nKey="pages.assistants.choix-statut.items.gestion.création.body">
