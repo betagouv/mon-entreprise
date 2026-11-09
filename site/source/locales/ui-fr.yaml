@@ -2492,8 +2492,6 @@ pages:
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
         pas pris en compte.
       warnings:
-        JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
-          Entreprise Innovante (JEI).
         barème: Veuillez sélectionner une localisation et un barème pour accéder au
           simulateur.
         salaire:

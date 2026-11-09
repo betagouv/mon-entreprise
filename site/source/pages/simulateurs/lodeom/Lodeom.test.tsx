@@ -122,10 +122,6 @@ describe('Simulateur Lodeom', () => {
 			{ timeout: 30000 }
 		)
 
-		expect(
-			screen.queryByRole('button', { name: 'Aller à la question : JEI' })
-		).not.toBeInTheDocument()
-
 		await utilisateur.click(
 			screen.getByRole('button', { name: /modifier mes réponses/i })
 		)
