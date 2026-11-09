@@ -22,10 +22,6 @@ export const configLodeom: PublicodesSimulationConfig = {
 				label: 'DFS',
 				dottedName: 'salarié . régimes spécifiques . DFS',
 			},
-			{
-				label: 'JEI',
-				dottedName: 'salarié . cotisations . exonérations . JEI',
-			},
 		],
 		'liste noire': [
 			'établissement . commune',
