@@ -11601,7 +11601,9 @@ salarié . cotisations . exonérations . JEI:
           texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
         si: dirigeant
       - sinon:
-          texte: L’employeur est-il éligible à l’exonération Jeune Entreprise Innovante (JEI) ?
+          texte:
+            L’employeur est-il éligible à l’exonération Jeune Entreprise Innovante
+            (JEI) ?
   titre.en: '[automatic] JEI'
   titre.fr: JEI
 salarié . cotisations . exonérations . JEI . montant:
@@ -13630,8 +13632,12 @@ salarié . dispositif d'exonération:
         L’employeur est éligible à plusieurs dispositifs d’exonération de
         cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
         applique, et le déclare dans sa DSN.
-      question.en: '[automatic] What employer contribution exemption program do you use?'
-      question.fr: Quel dispositif d’exonération de cotisations patronales appliquez-vous ?
+      question.en:
+        '[automatic] Which employer contribution exemption program does the
+        employer use?'
+      question.fr:
+        Quel dispositif d’exonération de cotisations patronales l’employeur
+        applique-t-il ?
       titre.en: '[automatic] exemption provision'
       titre.fr: dispositif d’exonération
     montant:
