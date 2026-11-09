@@ -309,7 +309,7 @@ salarié . cotisations . allocations familiales:
 
         Dans ce cas, la réduction du taux s'applique si la rémunération est
         inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
-      applicable si: exonérations . lodeom
+      applicable si: salarié . dispositif d'exonération . Lodeom
       valeur: cotisations . assiette < plafond
       avec:
         plafond:
@@ -822,7 +822,7 @@ salarié . cotisations . maladie:
 
             Dans ce cas, la réduction du taux s'applique si la rémunération est
             inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
-          applicable si: exonérations . lodeom
+          applicable si: salarié . dispositif d'exonération . Lodeom
           valeur: cotisations . assiette < plafond
           avec:
             plafond:
