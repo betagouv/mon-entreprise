@@ -44,7 +44,7 @@
     <element xsi:type="archimate:ApplicationInterface" name="Recherche de code APE" id="id-0519c30c206b49fd87101702740ab4f9"/>
     <element xsi:type="archimate:ApplicationInterface" name="Assistant demande mobilité" id="id-750a3f240d5248f089b088dc341076e5"/>
     <element xsi:type="archimate:ApplicationInterface" name="Comparateur de statuts" id="id-cf083429faa9419995a89c423d86318a"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Site Vite Next.js" id="id-884a69d9151e49188608e2c9b3aeaf0f"/>
+    <element xsi:type="archimate:ApplicationComponent" name="Site Next.js" id="id-884a69d9151e49188608e2c9b3aeaf0f"/>
     <element xsi:type="archimate:ApplicationInterface" name="iFrames" id="id-154c29925c454ae3996a157d1a939062">
       <documentation>Permet l’intégration des simulateurs en iFrame</documentation>
     </element>
