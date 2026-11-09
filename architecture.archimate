@@ -58,12 +58,6 @@
       <property key="Langage" value="Publicodes"/>
     </element>
     <element xsi:type="archimate:ApplicationComponent" name="Anthropic Claude Platform" id="id-3fcb5063398348cab4fad500f5a06f88"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique existante (copy)" id="id-b4058418508745d6a78db324825d8fca"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique nouvelle (copy)" id="id-207cbc9bad4e4588898204b1af614f98"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique modifiée (copy)" id="id-a6107a9eb7e2444e9a2d8f1f1a2259a0"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique décommissionnée (copy)" id="id-e7c2e5c3efd64ea8baaf92e7942cd793"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique en cours de cadrage (copy)" id="id-93182b8de1bf4231af2427060a436b27"/>
-    <element xsi:type="archimate:ApplicationComponent" name="Brique décommissionnée en 2027 (copy)" id="id-fbd4283edc19439e8045e51d081edec0"/>
     <element xsi:type="archimate:ApplicationComponent" name="Modèle assimilé salaré" id="id-34fb277ac43a4da19ffaa2dc5317d1ce">
       <documentation>Modèle de calcul écrit en Publicodes</documentation>
       <property key="Langage" value="Publicodes"/>
