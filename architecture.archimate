@@ -50,9 +50,7 @@
     </element>
     <element xsi:type="archimate:ApplicationComponent" name="Plausible" id="id-c57dd340277e4c4fbb39e2114d1757a8"/>
     <element xsi:type="archimate:ApplicationComponent" name="Brique décommissionnée en 2027" id="id-962c9f3e9e94445dbfc57baa9b91dd16"/>
-    <element xsi:type="archimate:ApplicationInterface" name="Simulateur Travailleurs Frontaliers Suisses" id="id-d2b7c44492c64c3a826609f107135ab3">
-      <documentation>dont Lodeom</documentation>
-    </element>
+    <element xsi:type="archimate:ApplicationInterface" name="Simulateur Travailleurs Frontaliers Suisses" id="id-d2b7c44492c64c3a826609f107135ab3"/>
     <element xsi:type="archimate:ApplicationComponent" name="Simulateurs et assistants" id="id-97e8f03f8f21456fb63ebe7089072ba0">
       <documentation>Modèle de calcul écrit en Publicodes</documentation>
       <property key="Langage" value="Publicodes"/>
