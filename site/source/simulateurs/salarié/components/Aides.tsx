@@ -1,16 +1,17 @@
 import { ASTNode, reduceAST } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
 import { FromTop } from '@/components/ui/animate'
-import { Emoji, SmallBody } from '@/design-system'
+import { Emoji } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
+
+import { MentionSousObjectif } from './MentionSousObjectif'
 
 export default function Aides() {
 	const targetUnit = useSelector(targetUnitSelector)
@@ -41,7 +42,7 @@ export default function Aides() {
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<FromTop>
-				<StyledInfo>
+				<MentionSousObjectif>
 					<RuleLink dottedName={aideLink}>
 						<Trans i18nKey="pages.simulateurs.salarié.aides">
 							en incluant{' '}
@@ -55,17 +56,8 @@ export default function Aides() {
 						</Trans>{' '}
 						<Emoji emoji={aides.rawNode.icônes as string} />
 					</RuleLink>
-				</StyledInfo>
+				</MentionSousObjectif>
 			</FromTop>
 		</Condition>
 	)
 }
-
-const StyledInfo = styled(SmallBody)`
-	position: relative;
-	text-align: right;
-	margin-top: -1.5rem;
-	margin-bottom: 1.5rem;
-	right: 0;
-	z-index: 3;
-`
