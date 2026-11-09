@@ -2,7 +2,7 @@ import { RègleModèleAssimiléSalarié } from 'modele-as'
 import { RègleModèleSocial } from 'modele-social'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import Value from '@/components/EngineValue/Value'
 
 import { Titre } from './styledComponents'
@@ -16,7 +16,7 @@ export const SalaireLine = ({ rule, title }: Props) => (
 	<Container>
 		<Titre>
 			{title}
-			<ExplicableRule dottedName={rule} />
+			<BoutonDeDocumentation dottedName={rule} />
 		</Titre>
 		<Value linkToRule={false} expression={rule} unit="€" displayedUnit="€" />
 	</Container>

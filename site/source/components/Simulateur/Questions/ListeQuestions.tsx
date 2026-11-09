@@ -4,13 +4,13 @@ import * as R from 'effect/Record'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
+import ScrollToElement from '@/components/utils/Scroll/ScrollToElement'
 import { Body, Button, EditIcon, Li, ReturnButton, Ul } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 import { GroupeDeQuestions } from '@/hooks/useQuestionsEditorialisees'
 import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
-import { ExplicableRule } from '../../conversation/Explicable'
-import ScrollToElement from '../../utils/Scroll/ScrollToElement'
 import { useAutoScrollToQuestions } from '../AutoScrollToQuestions'
 import { BoutonReset } from '../Boutons/BoutonReset'
 
@@ -55,7 +55,7 @@ export const ListeQuestions = <S extends Situation = Situation>({
 								<div>
 									<BodyWithoutMargin>{groupe.titre(t)}</BodyWithoutMargin>
 									{estPublicodes && (
-										<ExplicableRule dottedName={premièreQuestion.id} />
+										<BoutonDeDocumentation dottedName={premièreQuestion.id} />
 									)}
 								</div>
 

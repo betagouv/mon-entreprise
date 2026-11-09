@@ -4,8 +4,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import { RuleField } from '@/components/conversation/RuleField'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import Value from '@/components/EngineValue/Value'
 import { JeDonneMonAvis } from '@/components/JeDonneMonAvis'
 import {
@@ -270,7 +270,7 @@ function StepsTable({
 					<StyledAnswerLine as="li" container key={rule.dottedName}>
 						<Grid item xs>
 							{rule.title}
-							<ExplicableRule dottedName={rule.dottedName} />
+							<BoutonDeDocumentation dottedName={rule.dottedName} />
 						</Grid>
 						<StyledAnswer item xs="auto">
 							<AnswerElement {...rule} />
