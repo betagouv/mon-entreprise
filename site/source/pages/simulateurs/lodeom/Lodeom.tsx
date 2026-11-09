@@ -1,5 +1,6 @@
 import { Trans, useTranslation } from 'react-i18next'
 
+import { LienVersLaDocumentationProvider } from '@/components/documentation/publicodes'
 import SimulateurWarning from '@/components/SimulateurWarning'
 import Simulation from '@/components/Simulation'
 import { Body, Emoji } from '@/design-system'
@@ -55,25 +56,27 @@ export default function LodeomSimulation() {
 				externalLinks={externalLinks}
 				seoExplanations={<SeoExplanations />}
 			>
-				<Simulation
-					questionsPublicodes={questions}
-					raccourcisPublicodes={raccourcis}
-					avecSimulationPrécédente={false}
-					avecBoutonPartage={false}
-				>
-					<SimulateurWarning
-						metadata={metadata}
-						informationsComplémentaires={
-							<Body>
-								<Trans i18nKey="pages.simulateurs.lodeom.warning">
-									<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
-									dérogatoires ne sont pas pris en compte.
-								</Trans>
-							</Body>
-						}
-					/>
-					<LodeomSimulationGoals />
-				</Simulation>
+				<LienVersLaDocumentationProvider lienVersLaDocumentation={false}>
+					<Simulation
+						questionsPublicodes={questions}
+						raccourcisPublicodes={raccourcis}
+						avecSimulationPrécédente={false}
+						avecBoutonPartage={false}
+					>
+						<SimulateurWarning
+							metadata={metadata}
+							informationsComplémentaires={
+								<Body>
+									<Trans i18nKey="pages.simulateurs.lodeom.warning">
+										<Emoji emoji="⚠️" /> Les taux et répartitions de cotisations
+										dérogatoires ne sont pas pris en compte.
+									</Trans>
+								</Body>
+							}
+						/>
+						<LodeomSimulationGoals />
+					</Simulation>
+				</LienVersLaDocumentationProvider>
 			</SimulateurPageLayout>
 		</EngineProvider>
 	)

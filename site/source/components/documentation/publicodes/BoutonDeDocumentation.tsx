@@ -5,6 +5,7 @@ import { InfoButton } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
+import { useLienVersLaDocumentation } from './LienVersLaDocumentationContext'
 import { RéférencesDeRègle } from './ReferencesDeRegle'
 import { RésuméDeRègle } from './ResumeDeRegle'
 
@@ -18,6 +19,7 @@ export function BoutonDeDocumentation<Names extends string = DottedName>({
 	const engine = useEngine()
 	const rule = engine.getRule(dottedName as DottedName)
 	const { t } = useTranslation()
+	const hasLinkToDoc = useLienVersLaDocumentation()
 
 	if (rule.rawNode.description == null) {
 		return null
@@ -27,19 +29,21 @@ export function BoutonDeDocumentation<Names extends string = DottedName>({
 		<InfoButton subject={rule.title} popoverTitle={title}>
 			<RésuméDeRègle engine={engine} dottedName={dottedName as DottedName} />
 
-			<RuleLink
-				dottedName={dottedName as DottedName}
-				aria-label={t(
-					'components.règle.info.lien-documentation.aria-label',
-					'Lire la documentation sur {{ règle }}',
-					{ règle: rule.title }
-				)}
-			>
-				{t(
-					'components.règle.info.lien-documentation.texte',
-					'Lire la documentation'
-				)}
-			</RuleLink>
+			{hasLinkToDoc && (
+				<RuleLink
+					dottedName={dottedName as DottedName}
+					aria-label={t(
+						'components.règle.info.lien-documentation.aria-label',
+						'Lire la documentation sur {{ règle }}',
+						{ règle: rule.title }
+					)}
+				>
+					{t(
+						'components.règle.info.lien-documentation.texte',
+						'Lire la documentation'
+					)}
+				</RuleLink>
+			)}
 
 			<RéférencesDeRègle
 				engine={engine}
