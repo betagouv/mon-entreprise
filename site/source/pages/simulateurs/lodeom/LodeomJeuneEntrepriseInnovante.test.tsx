@@ -53,7 +53,7 @@ describe('Simulateur Lodeom à Mayotte', () => {
 		vi.setSystemTime(new Date(2026, 10, 9))
 	})
 
-	it('ne demande pas si l’employeur est éligible JEI, puisqu’il simule le Lodeom', async () => {
+	it('ne demande pas si l’employeur est éligible à l’exonération JEI, puisqu’il simule le Lodeom', async () => {
 		const utilisateur = await saisirJuilletÀMayotte()
 
 		expect(
