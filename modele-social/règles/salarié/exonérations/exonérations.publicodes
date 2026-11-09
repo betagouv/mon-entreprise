@@ -12,13 +12,12 @@ salarié . cotisations . exonérations:
       titre: part employeur
       description: >-
         À l'exception de la déduction heure supplémentaire, les dispositifs de
-        réduction de cotisations patronales sont mutuellement exclusif.
+        réduction de cotisations patronales sont mutuellement exclusif : seul
+        le dispositif appliqué est retenu.
       somme:
         - heures supplémentaires . employeur
         - le maximum de:
-            - RGDU
-            - lodeom . montant
-            - JEI . montant
+            - salarié . dispositif d'exonération . montant
             - Acre . employeur
       références:
         La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
@@ -30,6 +29,101 @@ salarié . cotisations . exonérations:
       somme:
         - heures supplémentaires . salarié
         - Acre . salarié
+
+salarié . dispositif d'exonération:
+  titre: dispositif d’exonération appliqué
+  description: |
+    La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
+    cumulent pas : un seul s’applique. Quand l’employeur est éligible à
+    plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
+    dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
+  références:
+    La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
+    Exonération Lodeom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
+    Les jeunes entreprises innovantes (JEI) - Règles de non-cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html#ancre-l-exoneration-jei-jeu-jec
+  variations:
+    - si:
+        est applicable: choix
+      alors: choix
+    - sinon: premier éligible
+
+  avec:
+    choix:
+      titre: dispositif d’exonération
+      question: Quel dispositif d’exonération de cotisations patronales appliquez-vous ?
+      description: |
+        L’employeur est éligible à plusieurs dispositifs d’exonération de
+        cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
+        applique, et le déclare dans sa DSN.
+      applicable si:
+        une de ces conditions:
+          - toutes ces conditions:
+              - éligibilité . JEI
+              - éligibilité . Lodeom
+          - toutes ces conditions:
+              - éligibilité . JEI
+              - éligibilité . RGDU
+          - toutes ces conditions:
+              - éligibilité . Lodeom
+              - éligibilité . RGDU
+      une possibilité:
+        - JEI
+        - Lodeom
+        - RGDU
+      par défaut: premier éligible
+
+      avec:
+        JEI:
+          titre: exonération jeune entreprise innovante (JEI)
+          applicable si: éligibilité . JEI
+          valeur: choix = 'JEI'
+        Lodeom:
+          titre: exonération Lodeom
+          applicable si: éligibilité . Lodeom
+          valeur: choix = 'Lodeom'
+        RGDU:
+          titre: réduction générale dégressive unique (RGDU)
+          applicable si: éligibilité . RGDU
+          valeur: choix = 'RGDU'
+
+    premier éligible:
+      variations:
+        - si: éligibilité . JEI
+          alors: "'JEI'"
+        - si: éligibilité . Lodeom
+          alors: "'Lodeom'"
+        - si: éligibilité . RGDU
+          alors: "'RGDU'"
+
+    éligibilité:
+      description: |
+        Les dispositifs d’exonération auxquels l’employeur a droit : la JEI s’il
+        l’a déclarée, le Lodeom si l’un de ses barèmes s’applique, et la RGDU
+        si la rémunération y ouvre droit.
+      avec:
+        JEI:
+          valeur: salarié . cotisations . exonérations . JEI
+        Lodeom:
+          valeur: salarié . cotisations . exonérations . lodeom . barème applicable
+        RGDU:
+          est applicable: salarié . cotisations . exonérations . RGDU
+
+    JEI:
+      valeur: dispositif d'exonération = 'JEI'
+    Lodeom:
+      valeur: dispositif d'exonération = 'Lodeom'
+    RGDU:
+      valeur: dispositif d'exonération = 'RGDU'
+
+    montant:
+      titre: exonération du dispositif appliqué
+      variations:
+        - si: JEI
+          alors: salarié . cotisations . exonérations . JEI . montant
+        - si: Lodeom
+          alors: salarié . cotisations . exonérations . lodeom . montant
+        - si: RGDU
+          alors: salarié . cotisations . exonérations . RGDU
 
 salarié . cotisations . exonérations . heures supplémentaires:
   somme:

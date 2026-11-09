@@ -5,9 +5,7 @@ salarié . cotisations . exonérations . JEI:
         alors:
           texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
       - sinon:
-          texte:
-            Le salarié bénéficie-t-il de l'exonération Jeune Entreprise Innovante
-            (JEI) ?
+          texte: L’employeur est-il éligible JEI ?
 
   description: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
@@ -33,12 +31,6 @@ salarié . cotisations . exonérations . JEI:
     Code général des impôts - Article 44 sexies-0 A: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048844070
 
   par défaut: non
-  rend non applicable:
-    - RGDU
-    - allocations familiales . éligible taux réduit
-    - maladie . employeur . éligible taux réduit
-    - lodeom
-    - zones lodeom
 
 salarié . cotisations . exonérations . JEI . montant:
   titre: Exonération JEI

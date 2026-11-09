@@ -48,7 +48,10 @@ export const configLodeom: PublicodesSimulationConfig = {
 		],
 	},
 	'unité par défaut': '€',
-	situation: situationSalarié,
+	situation: {
+		...situationSalarié,
+		"salarié . dispositif d'exonération": "'Lodeom'",
+	},
 	'règles à ignorer pour déclencher les questions': [
 		'entreprise . salariés . effectif',
 		'salarié . cotisations . exonérations . zones lodeom',

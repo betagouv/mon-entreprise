@@ -152,6 +152,8 @@ export const configSalarié: PublicodesSimulationConfig = {
 			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
 			// ## RGDU
 			'salarié . cotisations . exonérations . RGDU . caisse de congés payés',
+			// ## Dispositif d’exonération (si plusieurs sont éligibles)
+			"salarié . dispositif d'exonération . choix",
 			// # Salarié⋅e
 			// ## DFS
 			'salarié . régimes spécifiques . DFS',
