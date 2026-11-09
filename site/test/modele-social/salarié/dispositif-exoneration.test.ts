@@ -56,6 +56,21 @@ describe('Dispositif d’exonération de cotisations patronales', () => {
 		})
 	})
 
+	describe('Quand aucun dispositif n’est éligible', () => {
+		it.each([
+			['au-delà de 3 Smic', métropole(10000)],
+			['pour un stage', { ...métropole(700), 'salarié . contrat': "'stage'" }],
+		])(
+			'n’applique aucun dispositif ni ne demande de choisir, %s',
+			(_, situation) => {
+				engine.setSituation(situation)
+
+				expect(engine.evaluate(DISPOSITIF).nodeValue).toBeNull()
+				expect(engine).not.toBeApplicable(CHOIX)
+			}
+		)
+	})
+
 	describe('Par défaut, le premier dispositif éligible dans l’ordre JEI, Lodeom, RGDU', () => {
 		it('applique la JEI à une jeune entreprise innovante', () => {
 			engine.setSituation({ ...métropole(2000), ...jeuneEntrepriseInnovante })
@@ -89,6 +104,78 @@ describe('Dispositif d’exonération de cotisations patronales', () => {
 			expect(engine).toBeApplicable(`${CHOIX} . Lodeom`)
 			expect(engine).toBeApplicable(`${CHOIX} . RGDU`)
 			expect(engine).not.toBeApplicable(`${CHOIX} . JEI`)
+		})
+	})
+
+	describe('Quand une jeune entreprise innovante de métropole choisit la RGDU', () => {
+		it('ne lui propose que la JEI et la RGDU', () => {
+			engine.setSituation({ ...métropole(2000), ...jeuneEntrepriseInnovante })
+
+			expect(engine).toBeApplicable(`${CHOIX} . JEI`)
+			expect(engine).toBeApplicable(`${CHOIX} . RGDU`)
+			expect(engine).not.toBeApplicable(`${CHOIX} . Lodeom`)
+		})
+
+		it('applique la RGDU à la place de la JEI', () => {
+			engine.setSituation({
+				...métropole(2000),
+				...jeuneEntrepriseInnovante,
+				...choisi('RGDU'),
+			})
+
+			expect(engine).toEvaluate(DISPOSITIF, 'RGDU')
+			expect(
+				enEuros(engine, 'salarié . cotisations . exonérations . employeur')
+			).toBe(enEuros(engine, 'salarié . cotisations . exonérations . RGDU'))
+		})
+	})
+
+	describe('À Mayotte', () => {
+		const mayotte = (brut: number) => ({
+			...guadeloupe(brut),
+			'établissement . commune . département': "'Mayotte'",
+		})
+
+		it('applique le Lodeom par défaut, avec les taux réduits mahorais', () => {
+			engine.setSituation(mayotte(2000))
+
+			expect(engine).toEvaluate(DISPOSITIF, 'Lodeom')
+			expect(engine).toEvaluate(
+				'salarié . cotisations . maladie . employeur . taux',
+				3.12
+			)
+			expect(engine).toEvaluate(
+				'salarié . cotisations . allocations familiales . taux',
+				3.55
+			)
+		})
+
+		it('fait cotiser aux taux pleins mahorais l’employeur qui choisit la RGDU', () => {
+			engine.setSituation({ ...mayotte(2000), ...choisi('RGDU') })
+
+			expect(engine).toEvaluate(DISPOSITIF, 'RGDU')
+			expect(engine).toEvaluate(
+				'salarié . cotisations . maladie . employeur . taux',
+				5.8
+			)
+			expect(engine).toEvaluate(
+				'salarié . cotisations . allocations familiales . taux',
+				5.4
+			)
+		})
+
+		it('coûte moins cher à une jeune entreprise innovante sous le Lodeom que sous la JEI appliquée par défaut', () => {
+			const coûtTotal = (situation: Record<string, string>) =>
+				enEuros(
+					engine.setSituation({
+						...mayotte(2000),
+						...jeuneEntrepriseInnovante,
+						...situation,
+					}),
+					'salarié . coût total employeur'
+				) as number
+
+			expect(coûtTotal(choisi('Lodeom'))).toBeLessThan(coûtTotal({}))
 		})
 	})
 
