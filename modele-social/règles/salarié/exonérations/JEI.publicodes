@@ -5,7 +5,7 @@ salarié . cotisations . exonérations . JEI:
         alors:
           texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
       - sinon:
-          texte: L’employeur est-il éligible JEI ?
+          texte: L’employeur est-il éligible à l’exonération Jeune Entreprise Innovante (JEI) ?
 
   description: >-
     Le statut de jeune entreprise innovante (JEI) a été créé par la loi de
