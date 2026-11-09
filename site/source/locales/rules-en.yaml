@@ -11601,7 +11601,7 @@ salarié . cotisations . exonérations . JEI:
           texte: Bénéficiez-vous de l'exonération Jeune Entreprise Innovante (JEI) ?
         si: dirigeant
       - sinon:
-          texte: L’employeur est-il éligible JEI ?
+          texte: L’employeur est-il éligible à l’exonération Jeune Entreprise Innovante (JEI) ?
   titre.en: '[automatic] JEI'
   titre.fr: JEI
 salarié . cotisations . exonérations . JEI . montant:
