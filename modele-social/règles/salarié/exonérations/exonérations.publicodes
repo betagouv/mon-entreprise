@@ -53,7 +53,7 @@ salarié . dispositif d'exonération:
   avec:
     choix:
       titre: dispositif d’exonération
-      question: Quel dispositif d’exonération de cotisations patronales appliquez-vous ?
+      question: Quel dispositif d’exonération de cotisations patronales l’employeur applique-t-il ?
       description: |
         L’employeur est éligible à plusieurs dispositifs d’exonération de
         cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
