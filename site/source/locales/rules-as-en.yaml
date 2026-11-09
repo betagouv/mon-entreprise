@@ -575,15 +575,6 @@ assimilé salarié . cotisations . maladie:
   titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 assimilé salarié . cotisations . prévoyances:
   avec:
-    conventionnelle:
-      titre.en: '[automatic] conventional'
-      titre.fr: conventionnelle
-    conventionnelle . employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    conventionnelle . salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
     employeur:
       avec:
         non déductible socialement:
@@ -604,13 +595,6 @@ assimilé salarié . cotisations . prévoyances:
       titre.en: '[automatic] frames'
       titre.fr: cadres
     incapacité invalidité décès:
-      avec:
-        employeur:
-          titre.en: '[automatic] employer'
-          titre.fr: employeur
-        salarié:
-          titre.en: '[automatic] employee'
-          titre.fr: salarié
       titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
       titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
@@ -991,8 +975,8 @@ assimilé salarié . exonérations . JEI:
     - employees for whom the employer is subject to the obligation to provide
     unemployment insurance
 
-    - corporate officers who participate, as their primary occupation, in the
-    company’s research and development project
+    - corporate officers who are primarily involved in the company’s research
+    and development project
 
 
     For simplicity’s sake, an employee will be deemed eligible for the exemption
@@ -2440,6 +2424,41 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . dividendes imposables:
+  description.en: >
+    [automatic] This amount is added to the income from employment, after the
+    standard deduction, to calculate income tax
+
+    using the standard tax schedule.
+
+    This is the amount of dividends after a 40% deduction and minus the
+    deductible CSG
+
+    .
+
+
+    It must be reported by corporate income tax-liable executives who pay
+    themselves dividends subject to
+
+    income tax.
+  description.fr: >
+    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le
+    revenu
+
+    avec le barème standard.
+
+    Il s’agit du montant des dividendes après abattement de 40 % et diminué de
+    la CSG
+
+    déductible.
+
+
+    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes
+    soumis à
+
+    l’impôt sur le revenu.
+  titre.en: '[automatic] taxable dividends'
+  titre.fr: dividendes imposables
 paramètres . impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
@@ -2453,16 +2472,15 @@ paramètres . impôt . foyer fiscal . situation de famille:
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
-    the standard
+    the
 
-    standard tax scale, and to which a flat-rate deduction of 10% for
-    professional
+    standard tax schedule, to which a flat-rate deduction of 10% for
 
-    business expenses.
+    business expenses is applied.
 
 
-    It must be entered for salaried employees, assimilated employees and
-    directors subject to corporation tax.
+    This information must be provided by employees, individuals treated as
+    employees, and executives subject to corporate income tax.
   description.fr: >
     C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
 
@@ -2473,7 +2491,7 @@ paramètres . impôt . revenu d'activité:
 
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
-    l'IS.
+    l’IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
 paramètres . impôt . revenu imposable:

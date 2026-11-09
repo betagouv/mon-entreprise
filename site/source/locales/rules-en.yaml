@@ -5085,22 +5085,23 @@ entreprise . activité . nature:
       titre.fr: artisanale
     commerciale:
       description.en: >
-        [automatic] Your activity is commercial if you are in one of the
-        following situations:
+        [automatic] Your business is considered commercial if you fall into one
+        of the following categories:
 
 
-        - You buy goods or merchandise to resell them for profit, to make money.
+        - You purchase goods or merchandise to resell them for profit (to make
+        money, generate profit, or earn earnings)
 
-        - You sell services in the hotel, restaurant, transport, entertainment,
-        security, IT, design and other sectors.
+        - You sell services in the hospitality, food service, transportation,
+        entertainment, security, IT, design, or other related fields
 
-        - You rent out goods, merchandise or services
+        - You operate a business that rents out property, goods, or services
       description.fr: >
         Votre activité est commerciale si vous êtes dans l’un des cas suivants :
 
 
         - Vous achetez des biens ou des marchandises pour les revendre dans un
-        but lucratif : Qui rapporte de l’argent, du profit, des bénéfices
+        but lucratif (qui rapporte de l’argent, du profit, des bénéfices)
 
         - Vous vendez des services dans les domaines de l’hôtellerie, la
         restauration, les transports, les spectacles, la sécurité,
@@ -5363,23 +5364,23 @@ entreprise . activités:
       titre.fr: artisanale
     commerciale:
       description.en: >
-        [automatic] Your activity is commercial if you are in one of the
-        following situations:
+        [automatic] Your business is considered commercial if you fall into one
+        of the following categories:
 
 
-        - You buy goods or merchandise for resale with a view to making a
-        profit: making money, making a profit, making a profit.
+        - You purchase goods or merchandise to resell them for profit (to make
+        money, generate profit, or earn earnings)
 
-        - You sell services in the hotel, restaurant, transport, entertainment,
-        security, IT, design and other sectors.
+        - You sell services in the hospitality, restaurant, transportation,
+        entertainment, security, IT, design, or other related fields
 
-        - You rent out goods, merchandise or services
+        - You operate a business that rents out property, goods, or services
       description.fr: >
         Votre activité est commerciale si vous êtes dans l’un des cas suivants :
 
 
         - Vous achetez des biens ou des marchandises pour les revendre dans un
-        but lucratif : Qui rapporte de l’argent, du profit, des bénéfices
+        but lucratif (qui rapporte de l’argent, du profit, des bénéfices)
 
         - Vous vendez des services dans les domaines de l’hôtellerie, la
         restauration, les transports, les spectacles, la sécurité,
