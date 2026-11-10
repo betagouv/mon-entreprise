@@ -16,10 +16,7 @@ const règles = {
 	},
 }
 
-const moteurAvec = (situation: Record<string, unknown>) =>
-	(new Engine(règles) as Engine<DottedName>).setSituation(
-		situation as Parameters<Engine<DottedName>['setSituation']>[0]
-	)
+const moteur = () => new Engine(règles) as Engine<DottedName>
 
 const simulerUneVisiteDepuis = (referrer: string) =>
 	Object.defineProperty(document, 'referrer', {
@@ -27,10 +24,10 @@ const simulerUneVisiteDepuis = (referrer: string) =>
 		configurable: true,
 	})
 
-const afficherLeMessage = (situation: Record<string, unknown> = {}) =>
+const afficherLeMessage = (engine: Engine<DottedName> = moteur()) =>
 	render(
 		<TestProvider>
-			<EngineProvider value={moteurAvec(situation)}>
+			<EngineProvider value={engine}>
 				<MessageDirigeantSASU />
 			</EngineProvider>
 		</TestProvider>
@@ -57,7 +54,9 @@ describe('MessageDirigeantSASU', () => {
 	})
 
 	it("n'invite pas le visiteur qui a déjà renseigné sa catégorie juridique", () => {
-		afficherLeMessage({ 'entreprise . catégorie juridique': "'SAS'" })
+		afficherLeMessage(
+			moteur().setSituation({ 'entreprise . catégorie juridique': "'SAS'" })
+		)
 
 		expect(leMessage()).not.toBeInTheDocument()
 	})
