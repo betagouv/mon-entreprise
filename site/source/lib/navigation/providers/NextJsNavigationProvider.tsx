@@ -84,12 +84,6 @@ export function NextJsNavigationProvider({ children }: Props) {
 
 	const [searchParamsRead, rememberSearchParams] = useState<URLSearchParams>()
 
-	const onSearchParamsRead = useCallback((read: URLSearchParams) => {
-		rememberSearchParams((current) =>
-			current?.toString() === read.toString() ? current : read
-		)
-	}, [])
-
 	const searchParams = searchParamsRead ?? NO_SEARCH_PARAMS
 
 	const subscribersRef = useRef(new Set<() => void>())
@@ -216,7 +210,7 @@ export function NextJsNavigationProvider({ children }: Props) {
 	return (
 		<NavigationContext.Provider value={navigation}>
 			<Suspense>
-				<SearchParamsReporter onRead={onSearchParamsRead} />
+				<SearchParamsReporter onRead={rememberSearchParams} />
 			</Suspense>
 			{children}
 		</NavigationContext.Provider>
