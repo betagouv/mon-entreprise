@@ -14,7 +14,7 @@ const lien = (urlDeLAutreLangue: string, langue: 'fr' | 'en', chemin: string) =>
 	})
 
 describe('lienVersLAutreLangue', () => {
-	it('pointe vers le chemin équivalent sur le site de l’autre langue', () => {
+	it('traduit un chemin français vers son équivalent du site anglais', () => {
 		expect(
 			lien(
 				'https://mycompanyinfrance.urssaf.fr',
@@ -24,13 +24,13 @@ describe('lienVersLAutreLangue', () => {
 		).toBe('https://mycompanyinfrance.urssaf.fr/calculators/salary')
 	})
 
-	it('traduit aussi depuis l’anglais', () => {
+	it('traduit un chemin anglais vers son équivalent du site français', () => {
 		expect(
 			lien('https://mon-entreprise.urssaf.fr', 'en', '/calculators/salary')
 		).toBe('https://mon-entreprise.urssaf.fr/simulateurs/salaire-brut-net')
 	})
 
-	it('traduit aussi les chemins paramétrés', () => {
+	it('traduit un chemin paramétré en reportant ses paramètres', () => {
 		expect(
 			lien('https://mycompanyinfrance.urssaf.fr', 'fr', '/nouveautés/2024-03')
 		).toBe('https://mycompanyinfrance.urssaf.fr/news/2024-03')
