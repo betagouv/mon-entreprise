@@ -19,7 +19,7 @@ const simulerUneVisiteDepuis = (referrer: string) =>
 		configurable: true,
 	})
 
-const afficherLeMessage = (engine: Engine<DottedName> = moteur()) =>
+const afficherLeMessage = (engine: Engine<DottedName> = moteur()) => {
 	render(
 		<TestProvider>
 			<EngineProvider value={engine}>
@@ -28,31 +28,35 @@ const afficherLeMessage = (engine: Engine<DottedName> = moteur()) =>
 		</TestProvider>
 	)
 
-const leMessage = () =>
-	screen.queryByRole('link', { name: /simulateur de revenu dédié/i })
+	return {
+		leMessage: screen.queryByRole('link', {
+			name: /simulateur de revenu dédié/i,
+		}),
+	}
+}
 
 afterEach(() => simulerUneVisiteDepuis(''))
 
 describe('MessageDirigeantSASU', () => {
 	it('invite le visiteur vers le simulateur de dirigeant de SASU', () => {
-		afficherLeMessage()
+		const { leMessage } = afficherLeMessage()
 
-		expect(leMessage()).toBeInTheDocument()
+		expect(leMessage).toBeInTheDocument()
 	})
 
 	it("n'invite pas le visiteur venu de code.travail.gouv.fr, dont l'équipe ne souhaite pas référencer le simulateur de dirigeant de SASU", () => {
 		simulerUneVisiteDepuis('https://code.travail.gouv.fr/outils/simulateur')
 
-		afficherLeMessage()
+		const { leMessage } = afficherLeMessage()
 
-		expect(leMessage()).not.toBeInTheDocument()
+		expect(leMessage).not.toBeInTheDocument()
 	})
 
 	it("n'invite pas le visiteur qui a déjà renseigné sa catégorie juridique", () => {
-		afficherLeMessage(
+		const { leMessage } = afficherLeMessage(
 			moteur().setSituation({ 'entreprise . catégorie juridique': "'SAS'" })
 		)
 
-		expect(leMessage()).not.toBeInTheDocument()
+		expect(leMessage).not.toBeInTheDocument()
 	})
 })
