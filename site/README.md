@@ -100,6 +100,8 @@ _À noter : une migration vers `nextJS` est en cours._
 
 ### Comment ajouter un nouveau simulateur ?
 
+Premier choix à faire : un simulateur tient sur une seule page. Un outil avec un parcours sur plusieurs pages est un **assistant**, et son dossier va dans `site/source/pages/assistants/` — il n'est pas encore extrait de la couche de routage. **[Voir un exemple](./source/pages/assistants/choix-du-statut)**
+
 Pour ajouter un nouveau simulateur, il faut :
 
 -   Créer un nouveau dossier dans `site/source/simulateurs/`, qui contient le simulateur lui-même, indépendamment du routage : il est ainsi utilisable par Vite comme par Next. **[Voir un exemple](./source/simulateurs/salarié)**
@@ -109,8 +111,6 @@ Pour ajouter un nouveau simulateur, il faut :
 -   Déclarer la route Vite dans `site/source/pages/simulateurs/index.tsx`, et la route Next dans `site/app/`.
 -   Ajouter le simulateur sur la page /simulateurs-et-assistants, dans le fichier `site/source/pages/simulateurs-et-assistants/index.tsx`
 -   Ajouter une route pour le simulateur dans le fichier `sitePaths`, avec la version anglaise également.
-
-Pour un outil avec un parcours sur plusieurs pages, le dossier va dans `site/source/pages/assistants/`.
 
 ### Redirections
 
