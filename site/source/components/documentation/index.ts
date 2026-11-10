@@ -7,9 +7,9 @@ export {
 	useDocumentationBasePath,
 } from './DocumentationBasePathProvider'
 export type { DocumentationDeQuestion } from './DocumentationDeQuestion'
-export { DocumentationDuModèle } from './DocumentationDuModele'
+export { DocumentationDuModèle } from './publicodes'
 export { DocumentationHelpButton } from './DocumentationHelpButton'
 export { DocumentationLink } from './DocumentationLink'
-export { PageDeRègle } from './PageDeRegle'
+export { PageDeRègle } from './publicodes'
 export { ListeDeRéférences } from './References/ListeDeReferences'
 export { useRéférencesÀAfficher } from './References/useReferencesAAfficher'

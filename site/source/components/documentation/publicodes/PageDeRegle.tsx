@@ -12,8 +12,9 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { useNavigation } from '@/lib/navigation'
 
-import * as PublicodesDoc from './publicodes'
-import { RetourÀLaSimulation } from './RetourALaSimulation'
+import { RetourÀLaSimulation } from '../RetourALaSimulation'
+import { useRègleDuCheminCourant } from './useRegleDuCheminCourant'
+import { Visualiseur } from './Visualiseur'
 
 type Props = {
 	documentationPath: string
@@ -24,7 +25,7 @@ type Props = {
 export function PageDeRègle({ documentationPath, engine, nomModèle }: Props) {
 	const { t } = useTranslation()
 	const { currentPath } = useNavigation()
-	const règle = PublicodesDoc.useRègleDuCheminCourant({
+	const règle = useRègleDuCheminCourant({
 		documentationPath,
 		engine,
 	})
@@ -47,7 +48,7 @@ export function PageDeRègle({ documentationPath, engine, nomModèle }: Props) {
 				<RetourÀLaSimulation />
 				<Spacing xl />
 			</FromBottom>
-			<PublicodesDoc.Visualiseur
+			<Visualiseur
 				documentationPath={documentationPath}
 				engine={engine}
 				nomModèle={nomModèle}
