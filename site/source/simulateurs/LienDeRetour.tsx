@@ -10,9 +10,9 @@ import { useNavigation } from '@/lib/navigation'
 export function LienDeRetour() {
 	const { absoluteSitePaths } = useSitePaths()
 	const { currentPath } = useNavigation()
-	const estIntégré = useIsEmbedded()
+	const isEmbedded = useIsEmbedded()
 
-	if (estIntégré || currentPath === absoluteSitePaths.simulateurs.index) {
+	if (isEmbedded || currentPath === absoluteSitePaths.simulateurs.index) {
 		return null
 	}
 
