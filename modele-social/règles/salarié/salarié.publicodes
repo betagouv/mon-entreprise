@@ -9,7 +9,7 @@ salarié . ancienneté:
     - durée:
         depuis: contrat . date d'embauche
         jusqu'à: date
-    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - 1 jour # Le mécanisme durée n'inclut pas le dernier jour
 
 salarié . convention collective:
   experimental: oui

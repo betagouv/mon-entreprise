@@ -85,7 +85,7 @@ indépendant . rémunération . impôt:
 
 indépendant . rémunération . impôt . avec dividendes:
   titre: Impôt sur le revenu
-  résumé: Inclue l'impôt sur les dividendes
+  résumé: Inclut l'impôt sur les dividendes
   somme:
     - rémunération . impôt
     - dividendes . PFU
