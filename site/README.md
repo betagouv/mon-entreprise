@@ -110,6 +110,7 @@ Pour ajouter un nouveau simulateur, il faut :
 -   Exposer le composant du simulateur dans l'`index.ts` de ce dossier : c'est l'API publique du module, le reste en est privé (voir l'[ADR sur les frontières de modules](../adr/ADR-2025-05-29-module-boundaries.md)). L'`index.ts` n'exporte **que** le composant : les données pures (`metadata.ts`, `opengraph.ts`, `simulationConfig.ts`) s'importent par leur propre chemin, sinon un consommateur qui ne veut qu'une métadonnée charge tout le simulateur — ce qui casse le build `build:simulator-data`.
 -   Déclarer la route Vite dans `site/source/pages/simulateurs/index.tsx`, et la route Next dans `site/app/`.
 -   Ajouter le simulateur sur la page /simulateurs-et-assistants, dans le fichier `site/source/pages/simulateurs-et-assistants/index.tsx`
+-   Ajouter le simulateur sur la page d'accueil Next, dans le fichier `site/app/(main)/page.tsx` : contrairement à l'accueil Vite, qui ne met en avant que quelques simulateurs, elle les liste tous.
 -   Ajouter une route pour le simulateur dans le fichier `sitePaths`, avec la version anglaise également.
 
 ### Redirections
