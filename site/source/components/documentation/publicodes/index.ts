@@ -2,7 +2,9 @@
 
 export { BoutonDeDocumentation } from './BoutonDeDocumentation'
 export { documentationDeRègle } from './documentationDeRegle'
+export { DocumentationDuModèle } from './DocumentationDuModele'
 export { LienVersLaDocumentationProvider } from './LienVersLaDocumentationContext'
+export { PageDeRègle } from './PageDeRegle'
 export { RéférencesDeRègle } from './ReferencesDeRegle'
 export { RésuméDeRègle } from './ResumeDeRegle'
 export { useRègleDuCheminCourant } from './useRegleDuCheminCourant'
