@@ -1,22 +1,17 @@
 import { render, screen } from '@testing-library/react'
+import règles from 'modele-social'
 import Engine from 'publicodes'
 import { afterEach, describe, expect, it } from 'vitest'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { TestProvider } from '@/test/TestProvider'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
+import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import { MessageDirigeantSASU } from './MessageDirigeantSASU'
 
-const règles = {
-	entreprise: { titre: 'Entreprise' },
-	'entreprise . catégorie juridique': {
-		titre: 'Catégorie juridique',
-		question: 'Quelle est la catégorie juridique ?',
-	},
-}
-
-const moteur = () => new Engine(règles) as Engine<DottedName>
+const moteurDuModèle = engineFactory(règles)
+const moteur = () => moteurDuModèle.shallowCopy()
 
 const simulerUneVisiteDepuis = (referrer: string) =>
 	Object.defineProperty(document, 'referrer', {
