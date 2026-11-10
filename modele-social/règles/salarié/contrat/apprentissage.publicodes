@@ -57,7 +57,7 @@ salarié . contrat . apprentissage . ancienneté:
     - durée:
         depuis: contrat . date d'embauche
         jusqu'à: date
-    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - 1 jour # Le mécanisme durée n'inclut pas le dernier jour
   unité: an
   références:
     Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918

@@ -42,7 +42,7 @@ entreprise . durée d'activité:
     - durée:
         depuis: date de création
         jusqu'à: date
-    - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+    - 1 jour # Le mécanisme durée n'inclut pas le dernier jour
 
 entreprise . durée d'activité cette année:
   variations:
@@ -55,14 +55,14 @@ entreprise . durée d'activité cette année:
           - durée:
               depuis: date de création
               jusqu'à: date de cessation
-          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+          - 1 jour # Le mécanisme durée n'inclut pas le dernier jour
     - si: radiée cette année
       alors:
         somme:
           - durée:
               depuis: période . début d'année
               jusqu'à: date de cessation
-          - 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+          - 1 jour # Le mécanisme durée n'inclut pas le dernier jour
     - si: créée cette année
       alors: durée d'activité . en fin d'année
     - sinon: 1 an
@@ -80,7 +80,7 @@ entreprise . durée d'activité . en fin d'année:
         depuis: date de création
         jusqu'à: période . fin d'année
     - applicable si: date de création <= période . fin d'année
-      valeur: 1 jour # Le mécanisme durée n'inclue pas le dernier jour
+      valeur: 1 jour # Le mécanisme durée n'inclut pas le dernier jour
 
 entreprise . durée d'activité . en début d'année:
   durée:

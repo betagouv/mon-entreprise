@@ -351,7 +351,7 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('la rémunération nette après impôt inclue les dividendes après prélèvements sociaux et PFU', () => {
+		it('la rémunération nette après impôt inclut les dividendes après prélèvements sociaux et PFU', () => {
 			const e = engine.setSituation(defaultSituationAvecDividendes)
 			const rémunérationNette = e.evaluate('indépendant . rémunération . nette')
 				.nodeValue as number

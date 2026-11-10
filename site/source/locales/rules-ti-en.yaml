@@ -2083,7 +2083,7 @@ indépendant . cotisations et contributions . avec dividendes:
 
     Nous incluons ici le montant des prélèvements sociaux sur les dividendes.
   résumé.en: '[automatic] Includes social security contributions on dividends'
-  résumé.fr: Inclue les prélèvements sociaux sur les dividendes
+  résumé.fr: Inclut les prélèvements sociaux sur les dividendes
   titre.en: '[automatic] Dues and contributions'
   titre.fr: Cotisations et contributions
 indépendant . cotisations et contributions . contributions spéciales:
@@ -5229,43 +5229,40 @@ indépendant . profession libérale . réglementée . métier . santé:
   titre.fr: Professions de santé
 indépendant . revenu brut:
   description.en: >
-    [automatic] Gross or "super-gross" income corresponds to the cost of labor
-    or sales
+    [automatic] Gross income, or “super-gross” income, corresponds to labor
+    costs or
 
-    sales after deduction of professional operating expenses
+    revenue after deducting business operating expenses
 
-    (excluding social security contributions).
-
-
-    ### For income tax purposes
+    (excluding taxes and social security contributions).
 
 
-    Gross income corresponds to
-
-    **sales less expenses** incurred by the company in connection with its
-
-    expenses**, i.e. expenses other than social security contributions and
-
-    social security contributions.
+    ### For income tax ("IR")
 
 
-    For managing partners, sales are prorated according to their shares.
+    Gross income corresponds to the
 
-    prorated according to their shares.
+    **revenue minus the business’s operating expenses**, that is,
+
+    expenses other than taxes and social security contributions.
 
 
-    ### Corporate income tax
+    For managing partners, revenue is
+
+    prorated according to their ownership shares.
 
 
-    Gross income corresponds to **gross remuneration** and the portion of
+    ### For corporate income tax ("IS")
+
+
+    Gross income corresponds to **gross compensation** and the portion of
     dividends
 
-    exceeding 10% of share capital. The gross remuneration taken into account
+    exceeding 10% of the share capital. The gross compensation taken into
+    account
 
-    does not include the deduction of professional expenses, nor of social
-    security
-
-    social security contributions.
+    does not include deductions for business expenses, nor social security
+    contributions.
   description.fr: >
     Le revenu brut ou « super-brut » correspond au coût du travail ou encore au
 
@@ -5300,7 +5297,7 @@ indépendant . revenu brut:
 
     supérieure à 10 % du capital social. La rémunération brute prise en compte
 
-    n’inclue pas la déduction des frais professionnels, ni des contributions et
+    n’inclut pas la déduction des frais professionnels, ni des contributions et
 
     cotisations sociales.
   titre.en: '[automatic] gross income'
@@ -5693,7 +5690,7 @@ indépendant . rémunération . impôt:
   titre.fr: Impôt sur le revenu
 indépendant . rémunération . impôt . avec dividendes:
   résumé.en: '[automatic] Includes dividend tax'
-  résumé.fr: Inclue l'impôt sur les dividendes
+  résumé.fr: Inclut l'impôt sur les dividendes
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
 indépendant . rémunération . nette:
