@@ -128,6 +128,42 @@ salarié . dispositif d'exonération:
         - si: RGDU
           alors: salarié . cotisations . exonérations . RGDU
 
+    avantage:
+      titre: avantage du dispositif appliqué
+      description: |
+        Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
+        l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
+        cotisations maladie et allocations familiales par rapport aux taux pleins.
+
+        Les taux réduits sont déjà pris en compte dans le calcul des cotisations :
+        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
+        seconde fois.
+      somme:
+        - montant
+        - taux réduits
+
+      avec:
+        taux réduits:
+          titre: économie due aux taux réduits
+          applicable si: Lodeom
+          somme:
+            - maladie
+            - allocations familiales
+
+          avec:
+            maladie:
+              applicable si: salarié . cotisations . maladie . employeur . éligible taux réduit
+              valeur: >-
+                salarié . cotisations . maladie . employeur . assiette *
+                (salarié . cotisations . maladie . employeur . taux plein -
+                salarié . cotisations . maladie . employeur . taux réduit)
+            allocations familiales:
+              applicable si: salarié . cotisations . allocations familiales . éligible taux réduit
+              valeur: >-
+                salarié . cotisations . allocations familiales . assiette *
+                (salarié . cotisations . allocations familiales . taux plein -
+                salarié . cotisations . allocations familiales . taux réduit)
+
 salarié . cotisations . exonérations . heures supplémentaires:
   somme:
     - salarié
