@@ -11528,10 +11528,10 @@ salarié . cotisations . contribution au dialogue social:
 salarié . cotisations . exonérations:
   avec:
     employeur:
-      description.en:
-        '[automatic] With the exception of the overtime deduction, the
-        various programs for reducing employer contributions are mutually
-        exclusive: only the program that is applied is taken into account.'
+      description.en: |
+        Apart from the overtime deduction, the employer contribution reduction
+        schemes are mutually exclusive: only the applied scheme is taken into
+        account.
       description.fr: "À l'exception de la déduction heure supplémentaire, les
         dispositifs de réduction de cotisations patronales sont mutuellement
         exclusif : seul le dispositif appliqué est retenu."
@@ -11890,16 +11890,14 @@ salarié . cotisations . exonérations . lodeom:
   titre.en: '[automatic] lodeom'
   titre.fr: lodeom
 salarié . cotisations . exonérations . lodeom . barème applicable:
-  description.en: >
-    [automatic] The employer falls under one of the Lodeom exemption brackets,
-    in Zone 1
-
-    or Zone 2. If no applicable bracket exists, the employer is not eligible for
-    the Lodeom exemption.
+  description.en: |
+    The employer falls under one of the Lodeom exemption scales, in zone one
+    or zone two. Without an applicable scale, they are not entitled to the
+    Lodeom.
   description.fr: |
     L’employeur relève de l’un des barèmes de l’exonération Lodeom, en zone un
     ou en zone deux. Sans barème applicable, il n’a pas droit au Lodeom.
-  titre.en: '[automatic] A Lodeom fee schedule applies'
+  titre.en: a Lodeom scale applies
   titre.fr: un barème Lodeom s’applique
 salarié . cotisations . exonérations . lodeom . code réduction:
   description.en: >
@@ -13613,13 +13611,13 @@ salarié . coût total employeur . aides . emploi franc . éligible:
 salarié . dispositif d'exonération:
   avec:
     JEI:
-      titre.en: '[automatic] JEI'
+      titre.en: JEI
       titre.fr: JEI
     Lodeom:
-      titre.en: '[automatic] Lodeom'
+      titre.en: Lodeom
       titre.fr: Lodeom
     RGDU:
-      titre.en: '[automatic] RGDU'
+      titre.en: RGDU
       titre.fr: RGDU
     avantage:
       avec:
@@ -13661,80 +13659,66 @@ salarié . dispositif d'exonération:
     choix:
       avec:
         JEI:
-          titre.en: '[automatic] Innovative Start-up Exemption (JEI)'
+          titre.en: Young Innovative Company (JEI) exemption
           titre.fr: exonération jeune entreprise innovante (JEI)
         Lodeom:
-          titre.en: '[automatic] Lodeom exemption'
+          titre.en: Lodeom exemption
           titre.fr: exonération Lodeom
         RGDU:
-          titre.en: '[automatic] Single General Degressive Reduction (RGDU)'
+          titre.en: single general degressive reduction (RGDU)
           titre.fr: réduction générale dégressive unique (RGDU)
-      description.en: >
-        [automatic] Employers are eligible for several programs offering
-        exemptions from
-
-        employer contributions, which cannot be combined: they choose the one
-        they
-
-        wish to apply and report it in their DSN.
+      description.en: |
+        The employer is eligible for several employer contribution exemption
+        schemes, which cannot be combined: they choose the one they apply and
+        report it in their DSN.
       description.fr: |
         L’employeur est éligible à plusieurs dispositifs d’exonération de
         cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
         applique, et le déclare dans sa DSN.
-      question.en:
-        '[automatic] Which employer contribution exemption program does the
-        employer use?'
+      question.en: Which employer contribution exemption scheme does the employer apply?
       question.fr:
         Quel dispositif d’exonération de cotisations patronales l’employeur
         applique-t-il ?
-      titre.en: '[automatic] exemption provision'
+      titre.en: exemption scheme
       titre.fr: dispositif d’exonération
     montant:
-      titre.en: '[automatic] exemption from the applicable provisions'
+      titre.en: exemption of the applied scheme
       titre.fr: exonération du dispositif appliqué
     premier éligible:
-      titre.en: '[automatic] first eligible'
+      titre.en: first eligible scheme
       titre.fr: premier éligible
     éligibilité:
       avec:
         JEI:
-          titre.en: '[automatic] JEI'
+          titre.en: JEI
           titre.fr: JEI
         Lodeom:
-          titre.en: '[automatic] Lodeom'
+          titre.en: Lodeom
           titre.fr: Lodeom
         RGDU:
-          titre.en: '[automatic] RGDU'
+          titre.en: RGDU
           titre.fr: RGDU
-      description.en: >
-        [automatic] The tax exemption programs to which the employer is
-        entitled: the JEI if
-
-        the employer has filed for it, the Lodeom if one of its rate schedules
-        applies, and the RGDU
-
-        if the compensation qualifies for it.
+      description.en: |
+        The exemption schemes the employer is entitled to: the JEI if they have
+        declared it, the Lodeom if one of its scales applies, and the RGDU if
+        the pay qualifies for it.
       description.fr: |
         Les dispositifs d’exonération auxquels l’employeur a droit : la JEI s’il
         l’a déclarée, le Lodeom si l’un de ses barèmes s’applique, et la RGDU
         si la rémunération y ouvre droit.
-      titre.en: '[automatic] eligibility'
+      titre.en: eligibility
       titre.fr: éligibilité
-  description.en: >
-    [automatic] The JEI, the Lodeom, and the single general degressive reduction
-    (RGDU) cannot
-
-    be combined: only one applies. When an employer is eligible for
-
-    more than one, the employer chooses which one to apply. Otherwise, the first
-
-    eligible program applies, in the order of JEI, Lodeom, and RGDU.
+  description.en: |
+    The JEI, the Lodeom and the single general degressive reduction (RGDU)
+    cannot be combined: only one applies. When the employer is eligible for
+    several, they choose the one they apply. Otherwise, the first eligible
+    scheme applies, in the order JEI, Lodeom, RGDU.
   description.fr: |
     La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
     cumulent pas : un seul s’applique. Quand l’employeur est éligible à
     plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
     dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
-  titre.en: '[automatic] exemption provision applied'
+  titre.en: exemption scheme applied
   titre.fr: dispositif d’exonération appliqué
 salarié . mois incomplet:
   description.en: >
