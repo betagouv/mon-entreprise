@@ -11356,9 +11356,15 @@ salarié . cotisations . PEEC:
   titre.fr: Participation à l'effort de construction
 salarié . cotisations . allocations familiales:
   avec:
+    assiette:
+      titre.en: base
+      titre.fr: assiette
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
+    taux plein:
+      titre.en: full rate
+      titre.fr: taux plein
     taux réduit:
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
@@ -13098,9 +13104,15 @@ salarié . cotisations . maladie:
   avec:
     employeur:
       avec:
+        assiette:
+          titre.en: base
+          titre.fr: assiette
         taux:
           titre.en: '[automatic] rate'
           titre.fr: taux
+        taux plein:
+          titre.en: full rate
+          titre.fr: taux plein
         taux réduit:
           titre.en: '[automatic] reduced rate'
           titre.fr: taux réduit
