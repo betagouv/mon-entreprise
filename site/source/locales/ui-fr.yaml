@@ -2570,7 +2570,8 @@ pages:
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
-      dispositif-exoneration: "Dispositif d’exonération : {{titre}}"
+      dispositif-exoneration: "{{titre}} : − <3></3>"
+      dispositif-exoneration-taux-reduits: + taux réduits
       explications:
         répartition:
           cotisations: Cotisations
