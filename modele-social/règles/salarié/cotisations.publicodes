@@ -275,25 +275,30 @@ salarié . cotisations . allocations familiales:
     dû par: employeur
     branche: divers
   produit:
-    - valeur: cotisations . assiette
-      plafond:
-        applicable si: établissement . commune . département . outre-mer . Mayotte
-        valeur: temps de travail . plafond sécurité sociale
+    - assiette
     - taux
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/cotisation-allocation-familiale.html
     Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
   avec:
+    assiette:
+      valeur: cotisations . assiette
+      plafond:
+        applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: temps de travail . plafond sécurité sociale
+
     taux:
       variations:
         - si: éligible taux réduit
           alors: taux réduit
-        - sinon:
-            variations:
-              - si: établissement . commune . département . outre-mer . Mayotte
-                alors: 5.40%
-              - sinon: 5.25%
+        - sinon: taux plein
+
+    taux plein:
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 5.40%
+        - sinon: 5.25%
 
     taux réduit:
       variations:
@@ -793,20 +798,25 @@ salarié . cotisations . maladie:
   avec:
     employeur:
       produit:
-        - cotisations . assiette
+        - assiette
         - taux
       titre: part employeur
 
       avec:
+        assiette:
+          valeur: cotisations . assiette
+
         taux:
           variations:
             - si: éligible taux réduit
               alors: taux réduit
-            - sinon:
-                variations:
-                  - si: établissement . commune . département . outre-mer . Mayotte
-                    alors: 5.80%
-                  - sinon: 13%
+            - sinon: taux plein
+
+        taux plein:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 5.80%
+            - sinon: 13%
 
         taux réduit:
           variations:
