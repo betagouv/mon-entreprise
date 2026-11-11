@@ -293,4 +293,70 @@ describe('Dispositif d’exonération de cotisations patronales', () => {
 			)
 		})
 	})
+
+	describe('L’avantage du dispositif appliqué', () => {
+		const AVANTAGE = `${DISPOSITIF} . avantage`
+		const MONTANT = `${DISPOSITIF} . montant`
+
+		it('vaut le montant de l’exonération pour la RGDU', () => {
+			engine.setSituation({ ...guadeloupe(2000), ...choisi('RGDU') })
+
+			expect(enEuros(engine, AVANTAGE)).toBe(enEuros(engine, MONTANT))
+		})
+
+		it('vaut le montant de l’exonération pour la JEI', () => {
+			engine.setSituation({ ...métropole(2000), ...jeuneEntrepriseInnovante })
+
+			expect(enEuros(engine, AVANTAGE)).toBe(enEuros(engine, MONTANT))
+		})
+
+		it('ajoute au Lodeom l’économie due aux taux réduits de maladie et d’allocations familiales', () => {
+			engine.setSituation(guadeloupe(2000))
+
+			expect(
+				(enEuros(engine, AVANTAGE) as number) -
+					(enEuros(engine, MONTANT) as number)
+			).toBeCloseTo((0.13 - 0.07 + 0.0525 - 0.0345) * 2000, 2)
+		})
+
+		it('compte l’économie aux taux mahorais à Mayotte', () => {
+			engine.setSituation({
+				...guadeloupe(2000),
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(
+				(enEuros(engine, AVANTAGE) as number) -
+					(enEuros(engine, MONTANT) as number)
+			).toBeCloseTo((0.058 - 0.0312 + 0.054 - 0.0355) * 2000, 2)
+		})
+
+		it('ne compte que le taux réduit d’allocations familiales au-delà du plafond du taux réduit de maladie', () => {
+			engine.setSituation(guadeloupe(4500))
+
+			expect(enEuros(engine, MONTANT)).toBe(0)
+			expect(enEuros(engine, AVANTAGE)).toBeCloseTo((0.0525 - 0.0345) * 4500, 2)
+		})
+
+		it('départage le Lodeom et la RGDU du même écart que le coût total employeur', () => {
+			const avantageEtCoûtTotal = (dispositif: string) => {
+				engine.setSituation({ ...guadeloupe(2000), ...choisi(dispositif) })
+
+				return {
+					avantage: enEuros(engine, AVANTAGE) as number,
+					coûtTotal: enEuros(
+						engine,
+						'salarié . coût total employeur'
+					) as number,
+				}
+			}
+			const lodeom = avantageEtCoûtTotal('Lodeom')
+			const rgdu = avantageEtCoûtTotal('RGDU')
+
+			expect(lodeom.avantage - rgdu.avantage).toBeCloseTo(
+				rgdu.coûtTotal - lodeom.coûtTotal,
+				2
+			)
+		})
+	})
 })

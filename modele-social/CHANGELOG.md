@@ -11,6 +11,7 @@
 
 ### Nouveautés
 - Choix du dispositif d’exonération de cotisations patronales (`salarié . dispositif d'exonération . choix`) parmi ceux auxquels l’employeur est éligible ; à défaut, le premier éligible dans l’ordre JEI, Lodeom, RGDU
+- Avantage du dispositif d’exonération appliqué (`salarié . dispositif d'exonération . avantage`) : le montant de l’exonération et, pour le Lodeom, l’économie due aux taux réduits de maladie et d’allocations familiales
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 - Calcul de la Lodeom à Mayotte

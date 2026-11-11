@@ -13621,6 +13621,43 @@ salarié . dispositif d'exonération:
     RGDU:
       titre.en: '[automatic] RGDU'
       titre.fr: RGDU
+    avantage:
+      avec:
+        taux réduits:
+          avec:
+            allocations familiales:
+              titre.en: savings on the family allowance contribution
+              titre.fr: allocations familiales
+            maladie:
+              titre.en: savings on the health insurance contribution
+              titre.fr: maladie
+          titre.en: savings from reduced rates
+          titre.fr: économie due aux taux réduits
+      description.en: |
+        What the applied scheme saves the employer: the amount of the exemption
+        and, for the Lodeom, the savings from the reduced health insurance and
+        family allowance contribution rates compared with the full rates.
+
+        The reduced rates are already included in the contribution calculation:
+        this benefit is used to compare the schemes and is not deducted a second
+        time.
+      description.fr: >
+        Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
+
+        l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
+
+        cotisations maladie et allocations familiales par rapport aux taux
+        pleins.
+
+
+        Les taux réduits sont déjà pris en compte dans le calcul des cotisations
+        :
+
+        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
+
+        seconde fois.
+      titre.en: benefit of the applied scheme
+      titre.fr: avantage du dispositif appliqué
     choix:
       avec:
         JEI:
