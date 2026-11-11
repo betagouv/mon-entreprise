@@ -2,6 +2,7 @@ import PeriodSwitch from '@/components/PeriodSwitch'
 import { SimulationGoal, SimulationGoals } from '@/components/Simulation'
 
 import Aides from './components/Aides'
+import { DispositifExoneration } from './components/DispositifExoneration'
 import TitresRestaurant from './components/TitresRestaurant'
 
 export default function SalariéSimulationGoals() {
@@ -9,6 +10,7 @@ export default function SalariéSimulationGoals() {
 		<SimulationGoals>
 			<PeriodSwitch />
 			<SimulationGoal dottedName="salarié . coût total employeur" />
+			<DispositifExoneration />
 			<Aides />
 
 			<SimulationGoal dottedName="salarié . contrat . salaire brut" />

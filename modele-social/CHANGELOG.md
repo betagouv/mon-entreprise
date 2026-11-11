@@ -5,8 +5,13 @@
 ### Breaking changes
 - Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
 - Déplace `salarié . cotisations . exonérations . Tmin` et `salarié . cotisations . exonérations . Tdelta` sous `salarié . cotisations . exonérations . RGDU`
+- La JEI ne rend plus non applicables la RGDU, le Lodeom et ses taux réduits, et le Lodeom ne rend plus la RGDU non applicable : leur exclusion passe par `salarié . dispositif d'exonération`
+- Les taux réduits de maladie et d’allocations familiales s’appliquent quand le Lodeom est le dispositif appliqué, et non plus dès que l’employeur y est éligible
+- Le stage rend non applicables les règles d’exonération une à une, et non plus `salarié . cotisations . exonérations` dans son ensemble
 
 ### Nouveautés
+- Choix du dispositif d’exonération de cotisations patronales (`salarié . dispositif d'exonération . choix`) parmi ceux auxquels l’employeur est éligible ; à défaut, le premier éligible dans l’ordre JEI, Lodeom, RGDU
+- Avantage du dispositif d’exonération appliqué (`salarié . dispositif d'exonération . avantage`) : le montant de l’exonération et, pour le Lodeom, l’économie due aux taux réduits de maladie et d’allocations familiales
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
 - Calcul de la Lodeom à Mayotte

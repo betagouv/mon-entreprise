@@ -2384,8 +2384,6 @@ pages:
       warning: <0></0> Derogatory contribution rates and breakdowns are not taken into
         account.
       warnings:
-        JEI: The Lodeom exemption cannot be combined with the Young Innovative Company
-          (JEI) exemption.
         barème: Please select a location and a scale to access the simulator.
         salaire:
           1er-janvier: "{{barème}} applies only to salaries below {{seuil}} the minimum
@@ -2459,6 +2457,7 @@ pages:
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
+      dispositif-exoneration: "{{dispositif}} scheme: − <4></4>"
       explications:
         répartition:
           cotisations: Contributions

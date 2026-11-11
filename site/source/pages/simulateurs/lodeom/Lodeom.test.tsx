@@ -111,4 +111,24 @@ describe('Simulateur Lodeom', () => {
 		)
 		expect(exonérationDu('janvier')).toBeCloseTo(janvierSeul, 2)
 	}, 120000)
+
+	it('ne demande pas si l’employeur est éligible à l’exonération JEI, puisqu’il simule le Lodeom', async () => {
+		const utilisateur = await afficheLeSimulateurEnZoneUn()
+		await utilisateur.type(await champDeRémunérationDe('janvier'), '2000')
+		await waitFor(
+			() => {
+				expect(exonérationDu('janvier')).toBeGreaterThan(0)
+			},
+			{ timeout: 30000 }
+		)
+
+		await utilisateur.click(
+			screen.getByRole('button', { name: /modifier mes réponses/i })
+		)
+		const réponses = await screen.findByRole('dialog', {}, { timeout: 30000 })
+
+		expect(
+			within(réponses).queryByRole('button', { name: 'Modifier JEI' })
+		).not.toBeInTheDocument()
+	}, 120000)
 })

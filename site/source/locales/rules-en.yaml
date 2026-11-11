@@ -11356,9 +11356,15 @@ salarié . cotisations . PEEC:
   titre.fr: Participation à l'effort de construction
 salarié . cotisations . allocations familiales:
   avec:
+    assiette:
+      titre.en: base
+      titre.fr: assiette
     taux:
       titre.en: '[automatic] rate'
       titre.fr: taux
+    taux plein:
+      titre.en: full rate
+      titre.fr: taux plein
     taux réduit:
       titre.en: '[automatic] reduced rate'
       titre.fr: taux réduit
@@ -11522,11 +11528,13 @@ salarié . cotisations . contribution au dialogue social:
 salarié . cotisations . exonérations:
   avec:
     employeur:
-      description.en: '[automatic] With the exception of the overtime deduction,
-        employer contribution reduction schemes are mutually exclusive.'
-      description.fr: À l'exception de la déduction heure supplémentaire, les
+      description.en: |
+        Apart from the overtime deduction, the employer contribution reduction
+        schemes are mutually exclusive: only the applied scheme is taken into
+        account.
+      description.fr: "À l'exception de la déduction heure supplémentaire, les
         dispositifs de réduction de cotisations patronales sont mutuellement
-        exclusif.
+        exclusif : seul le dispositif appliqué est retenu."
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
     salarié:
@@ -11600,7 +11608,7 @@ salarié . cotisations . exonérations . JEI:
         si: dirigeant
       - sinon:
           texte:
-            Le salarié bénéficie-t-il de l'exonération Jeune Entreprise Innovante
+            L’employeur est-il éligible à l’exonération Jeune Entreprise Innovante
             (JEI) ?
   titre.en: '[automatic] JEI'
   titre.fr: JEI
@@ -11881,6 +11889,16 @@ salarié . cotisations . exonérations . lodeom:
     droite.
   titre.en: '[automatic] lodeom'
   titre.fr: lodeom
+salarié . cotisations . exonérations . lodeom . barème applicable:
+  description.en: |
+    The employer falls under one of the Lodeom exemption scales, in zone one
+    or zone two. Without an applicable scale, they are not entitled to the
+    Lodeom.
+  description.fr: |
+    L’employeur relève de l’un des barèmes de l’exonération Lodeom, en zone un
+    ou en zone deux. Sans barème applicable, il n’a pas droit au Lodeom.
+  titre.en: a Lodeom scale applies
+  titre.fr: un barème Lodeom s’applique
 salarié . cotisations . exonérations . lodeom . code réduction:
   description.en: >
     [automatic] Code type de personnel (CTP) to be used in your déclaration
@@ -13084,9 +13102,15 @@ salarié . cotisations . maladie:
   avec:
     employeur:
       avec:
+        assiette:
+          titre.en: base
+          titre.fr: assiette
         taux:
           titre.en: '[automatic] rate'
           titre.fr: taux
+        taux plein:
+          titre.en: full rate
+          titre.fr: taux plein
         taux réduit:
           titre.en: '[automatic] reduced rate'
           titre.fr: taux réduit
@@ -13584,6 +13608,118 @@ salarié . coût total employeur . aides . emploi franc . éligible:
   question.fr: Cette embauche est-elle éligible à l'aide emploi-franc ?
   titre.en: '[automatic] eligible'
   titre.fr: éligible
+salarié . dispositif d'exonération:
+  avec:
+    JEI:
+      titre.en: JEI
+      titre.fr: JEI
+    Lodeom:
+      titre.en: Lodeom
+      titre.fr: Lodeom
+    RGDU:
+      titre.en: RGDU
+      titre.fr: RGDU
+    avantage:
+      avec:
+        taux réduits:
+          avec:
+            allocations familiales:
+              titre.en: savings on the family allowance contribution
+              titre.fr: allocations familiales
+            maladie:
+              titre.en: savings on the health insurance contribution
+              titre.fr: maladie
+          titre.en: savings from reduced rates
+          titre.fr: économie due aux taux réduits
+      description.en: |
+        What the applied scheme saves the employer: the amount of the exemption
+        and, for the Lodeom, the savings from the reduced health insurance and
+        family allowance contribution rates compared with the full rates.
+
+        The reduced rates are already included in the contribution calculation:
+        this benefit is used to compare the schemes and is not deducted a second
+        time.
+      description.fr: >
+        Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
+
+        l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
+
+        cotisations maladie et allocations familiales par rapport aux taux
+        pleins.
+
+
+        Les taux réduits sont déjà pris en compte dans le calcul des cotisations
+        :
+
+        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
+
+        seconde fois.
+      titre.en: benefit of the applied scheme
+      titre.fr: avantage du dispositif appliqué
+    choix:
+      avec:
+        JEI:
+          titre.en: Young Innovative Company (JEI) exemption
+          titre.fr: exonération jeune entreprise innovante (JEI)
+        Lodeom:
+          titre.en: Lodeom exemption
+          titre.fr: exonération Lodeom
+        RGDU:
+          titre.en: single general degressive reduction (RGDU)
+          titre.fr: réduction générale dégressive unique (RGDU)
+      description.en: |
+        The employer is eligible for several employer contribution exemption
+        schemes, which cannot be combined: they choose the one they apply and
+        report it in their DSN.
+      description.fr: |
+        L’employeur est éligible à plusieurs dispositifs d’exonération de
+        cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
+        applique, et le déclare dans sa DSN.
+      question.en: Which employer contribution exemption scheme does the employer apply?
+      question.fr:
+        Quel dispositif d’exonération de cotisations patronales l’employeur
+        applique-t-il ?
+      titre.en: exemption scheme
+      titre.fr: dispositif d’exonération
+    montant:
+      titre.en: exemption of the applied scheme
+      titre.fr: exonération du dispositif appliqué
+    premier éligible:
+      titre.en: first eligible scheme
+      titre.fr: premier éligible
+    éligibilité:
+      avec:
+        JEI:
+          titre.en: JEI
+          titre.fr: JEI
+        Lodeom:
+          titre.en: Lodeom
+          titre.fr: Lodeom
+        RGDU:
+          titre.en: RGDU
+          titre.fr: RGDU
+      description.en: |
+        The exemption schemes the employer is entitled to: the JEI if they have
+        declared it, the Lodeom if one of its scales applies, and the RGDU if
+        the pay qualifies for it.
+      description.fr: |
+        Les dispositifs d’exonération auxquels l’employeur a droit : la JEI s’il
+        l’a déclarée, le Lodeom si l’un de ses barèmes s’applique, et la RGDU
+        si la rémunération y ouvre droit.
+      titre.en: eligibility
+      titre.fr: éligibilité
+  description.en: |
+    The JEI, the Lodeom and the single general degressive reduction (RGDU)
+    cannot be combined: only one applies. When the employer is eligible for
+    several, they choose the one they apply. Otherwise, the first eligible
+    scheme applies, in the order JEI, Lodeom, RGDU.
+  description.fr: |
+    La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
+    cumulent pas : un seul s’applique. Quand l’employeur est éligible à
+    plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
+    dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
+  titre.en: exemption scheme applied
+  titre.fr: dispositif d’exonération appliqué
 salarié . mois incomplet:
   description.en: >
     [automatic] Handling of partial months (absences, hires, terminations, etc.)

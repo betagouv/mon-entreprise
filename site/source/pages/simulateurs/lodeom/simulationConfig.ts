@@ -22,10 +22,6 @@ export const configLodeom: PublicodesSimulationConfig = {
 				label: 'DFS',
 				dottedName: 'salarié . régimes spécifiques . DFS',
 			},
-			{
-				label: 'JEI',
-				dottedName: 'salarié . cotisations . exonérations . JEI',
-			},
 		],
 		'liste noire': [
 			'établissement . commune',
@@ -48,7 +44,10 @@ export const configLodeom: PublicodesSimulationConfig = {
 		],
 	},
 	'unité par défaut': '€',
-	situation: situationSalarié,
+	situation: {
+		...situationSalarié,
+		"salarié . dispositif d'exonération": "'Lodeom'",
+	},
 	'règles à ignorer pour déclencher les questions': [
 		'entreprise . salariés . effectif',
 		'salarié . cotisations . exonérations . zones lodeom',

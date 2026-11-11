@@ -69,7 +69,14 @@ salarié . contrat:
         Un employeur qui accueille un stagiaire doit lui verser une gratification minimale. Celle-ci est en partie exonérée de cotisations sociales.
       valeur: contrat = 'stage'
       rend non applicable:
-        - cotisations . exonérations
+        - cotisations . exonérations . employeur
+        - cotisations . exonérations . salarié
+        - cotisations . exonérations . heures supplémentaires
+        - cotisations . exonérations . JEI
+        - cotisations . exonérations . zones lodeom
+        - cotisations . exonérations . lodeom
+        - cotisations . exonérations . RGDU
+        - cotisations . exonérations . Acre
         - cotisations . allocations familiales . éligible taux réduit
         - cotisations . maladie . employeur . éligible taux réduit
         - cotisations . retraite complémentaire

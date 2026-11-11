@@ -2492,8 +2492,6 @@ pages:
       warning: <0></0> Les taux et répartitions de cotisations dérogatoires ne sont
         pas pris en compte.
       warnings:
-        JEI: L'exonération Lodeom n'est pas cumulable avec l'exonération Jeune
-          Entreprise Innovante (JEI).
         barème: Veuillez sélectionner une localisation et un barème pour accéder au
           simulateur.
         salaire:
@@ -2572,6 +2570,7 @@ pages:
       alt-image1: Salaire net (perçu par le salarié) est égal à Salaire brut (inscrit
         dans le contrat de travail) moins cotisations salariales (retraite, csg,
         etc)
+      dispositif-exoneration: "Dispositif {{dispositif}} : − <4></4>"
       explications:
         répartition:
           cotisations: Cotisations

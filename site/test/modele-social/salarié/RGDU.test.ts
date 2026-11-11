@@ -233,9 +233,7 @@ describe('Réduction générale dégressive unique', () => {
 				'salarié . contrat . salaire brut': '1600 €/mois',
 			})
 
-			expect(e).not.toBeApplicable(
-				'salarié . cotisations . exonérations . lodeom . montant'
-			)
+			expect(e).toEvaluate("salarié . dispositif d'exonération", 'RGDU')
 			expect(e).toBeApplicable('salarié . cotisations . exonérations . RGDU')
 			expect(
 				e.evaluate('salarié . cotisations . exonérations . employeur').nodeValue

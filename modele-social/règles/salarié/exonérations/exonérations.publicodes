@@ -12,13 +12,12 @@ salarié . cotisations . exonérations:
       titre: part employeur
       description: >-
         À l'exception de la déduction heure supplémentaire, les dispositifs de
-        réduction de cotisations patronales sont mutuellement exclusif.
+        réduction de cotisations patronales sont mutuellement exclusif : seul
+        le dispositif appliqué est retenu.
       somme:
         - heures supplémentaires . employeur
         - le maximum de:
-            - RGDU
-            - lodeom . montant
-            - JEI . montant
+            - salarié . dispositif d'exonération . montant
             - Acre . employeur
       références:
         La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
@@ -30,6 +29,140 @@ salarié . cotisations . exonérations:
       somme:
         - heures supplémentaires . salarié
         - Acre . salarié
+
+salarié . dispositif d'exonération:
+  titre: dispositif d’exonération appliqué
+  description: |
+    La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
+    cumulent pas : un seul s’applique. Quand l’employeur est éligible à
+    plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
+    dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
+  références:
+    La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
+    Exonération Lodeom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
+    Les jeunes entreprises innovantes (JEI) - Règles de non-cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html#ancre-l-exoneration-jei-jeu-jec
+  variations:
+    - si: choix . JEI
+      alors: "'JEI'"
+    - si: choix . Lodeom
+      alors: "'Lodeom'"
+    - si: choix . RGDU
+      alors: "'RGDU'"
+    - sinon: premier éligible
+
+  avec:
+    choix:
+      titre: dispositif d’exonération
+      question: Quel dispositif d’exonération de cotisations patronales l’employeur applique-t-il ?
+      description: |
+        L’employeur est éligible à plusieurs dispositifs d’exonération de
+        cotisations patronales, qui ne se cumulent pas : il choisit celui qu’il
+        applique, et le déclare dans sa DSN.
+      applicable si:
+        une de ces conditions:
+          - toutes ces conditions:
+              - éligibilité . JEI
+              - éligibilité . Lodeom
+          - toutes ces conditions:
+              - éligibilité . JEI
+              - éligibilité . RGDU
+          - toutes ces conditions:
+              - éligibilité . Lodeom
+              - éligibilité . RGDU
+      une possibilité:
+        - JEI
+        - Lodeom
+        - RGDU
+      par défaut: premier éligible
+
+      avec:
+        JEI:
+          titre: exonération jeune entreprise innovante (JEI)
+          applicable si: éligibilité . JEI
+          valeur: choix = 'JEI'
+        Lodeom:
+          titre: exonération Lodeom
+          applicable si: éligibilité . Lodeom
+          valeur: choix = 'Lodeom'
+        RGDU:
+          titre: réduction générale dégressive unique (RGDU)
+          applicable si: éligibilité . RGDU
+          valeur: choix = 'RGDU'
+
+    premier éligible:
+      variations:
+        - si: éligibilité . JEI
+          alors: "'JEI'"
+        - si: éligibilité . Lodeom
+          alors: "'Lodeom'"
+        - si: éligibilité . RGDU
+          alors: "'RGDU'"
+
+    éligibilité:
+      description: |
+        Les dispositifs d’exonération auxquels l’employeur a droit : la JEI s’il
+        l’a déclarée, le Lodeom si l’un de ses barèmes s’applique, et la RGDU
+        si la rémunération y ouvre droit.
+      avec:
+        JEI:
+          valeur: salarié . cotisations . exonérations . JEI
+        Lodeom:
+          valeur: salarié . cotisations . exonérations . lodeom . barème applicable
+        RGDU:
+          est applicable: salarié . cotisations . exonérations . RGDU
+
+    JEI:
+      valeur: dispositif d'exonération = 'JEI'
+    Lodeom:
+      valeur: dispositif d'exonération = 'Lodeom'
+    RGDU:
+      valeur: dispositif d'exonération = 'RGDU'
+
+    montant:
+      titre: exonération du dispositif appliqué
+      variations:
+        - si: JEI
+          alors: salarié . cotisations . exonérations . JEI . montant
+        - si: Lodeom
+          alors: salarié . cotisations . exonérations . lodeom . montant
+        - si: RGDU
+          alors: salarié . cotisations . exonérations . RGDU
+
+    avantage:
+      titre: avantage du dispositif appliqué
+      description: |
+        Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
+        l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
+        cotisations maladie et allocations familiales par rapport aux taux pleins.
+
+        Les taux réduits sont déjà pris en compte dans le calcul des cotisations :
+        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
+        seconde fois.
+      somme:
+        - montant
+        - taux réduits
+
+      avec:
+        taux réduits:
+          titre: économie due aux taux réduits
+          applicable si: Lodeom
+          somme:
+            - maladie
+            - allocations familiales
+
+          avec:
+            maladie:
+              applicable si: salarié . cotisations . maladie . employeur . éligible taux réduit
+              valeur: >-
+                salarié . cotisations . maladie . employeur . assiette *
+                (salarié . cotisations . maladie . employeur . taux plein -
+                salarié . cotisations . maladie . employeur . taux réduit)
+            allocations familiales:
+              applicable si: salarié . cotisations . allocations familiales . éligible taux réduit
+              valeur: >-
+                salarié . cotisations . allocations familiales . assiette *
+                (salarié . cotisations . allocations familiales . taux plein -
+                salarié . cotisations . allocations familiales . taux réduit)
 
 salarié . cotisations . exonérations . heures supplémentaires:
   somme:
