@@ -11,6 +11,9 @@
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
 
+### Mises à jour
+- `assimilé salarié . rémunération . avantages en nature . ntic` vaut `non` par défaut : l'avantage NTIC n'est plus compté s'il n'a pas été déclaré
+
 ## 0.1.0
 
 ### Mises à jour
