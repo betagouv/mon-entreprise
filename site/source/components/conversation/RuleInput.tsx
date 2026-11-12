@@ -157,6 +157,14 @@ interface RuleInputProps {
 	'aria-describedby'?: string
 }
 
+/**
+ * Un montant saisi à une question a des centimes, sauf quand l’appelant demande
+ * explicitement de l’arrondir.
+ */
+export const accepteLesCentimes = (
+	formatOptions?: Intl.NumberFormatOptions
+): boolean => formatOptions?.maximumFractionDigits !== 0
+
 export default function RuleInput({
 	dottedName,
 	onChange,
@@ -407,7 +415,7 @@ export default function RuleInput({
 					labelledby: accessibilityProps['aria-labelledby'],
 					describedby: accessibilityProps['aria-describedby'],
 				}}
-				avecCentimes={!!accessibilityProps.formatOptions?.maximumFractionDigits}
+				avecCentimes={accepteLesCentimes(accessibilityProps.formatOptions)}
 			/>
 		)
 	}
