@@ -209,7 +209,9 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 				const utilisateur = await simuler('2000', 'Lyon')
 				await attendreLeCoûtTotal('2 249 €')
 
-				expect(texteDeLaMention()).toBe('Dispositif RGDU : − 629 €')
+				expect(texteDeLaMention()).toBe(
+					'Ce montant prend en compte l’économie réalisée grâce au dispositif RGDU : 629 €'
+				)
 				expect(await questionDuDispositifProposée(utilisateur)).toBe(false)
 			},
 			DURÉE_MAXIMALE
@@ -235,7 +237,9 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 				await répondre(utilisateur, 'Barème de compétitivité renforcée', 'Non')
 				await répondre(utilisateur, 'Barème d’innovation et croissance', 'Non')
 				await attendreLeCoûtTotal('2 082 €')
-				expect(texteDeLaMention()).toBe('Dispositif Lodeom : − 796 €')
+				expect(texteDeLaMention()).toBe(
+					'Ce montant prend en compte l’économie réalisée grâce au dispositif Lodeom : 796 €'
+				)
 
 				expect(await optionsDuDispositif(utilisateur)).toStrictEqual([
 					'Exonération Lodeom',
@@ -245,7 +249,9 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 				await répondre(utilisateur, 'Dispositif d’exonération', /RGDU/)
 
 				await attendreLeCoûtTotal('2 249 €')
-				expect(texteDeLaMention()).toBe('Dispositif RGDU : − 629 €')
+				expect(texteDeLaMention()).toBe(
+					'Ce montant prend en compte l’économie réalisée grâce au dispositif RGDU : 629 €'
+				)
 			},
 			DURÉE_MAXIMALE
 		)
