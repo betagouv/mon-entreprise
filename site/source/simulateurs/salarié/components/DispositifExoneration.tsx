@@ -34,16 +34,24 @@ export const DispositifExoneration = () => {
 		<FromTop>
 			<MentionSousObjectif>
 				<RuleLink dottedName={AVANTAGE}>
-					<Trans i18nKey="pages.simulateurs.salarié.dispositif-exoneration">
-						Dispositif {{ dispositif }} : −{' '}
-						<Value
-							expression={AVANTAGE}
-							displayedUnit="€"
-							unit={targetUnit}
-							precision={0}
-							linkToRule={false}
-						/>
-					</Trans>
+					<Trans
+						i18nKey="pages.simulateurs.salarié.dispositif-exoneration"
+						defaults={
+							'Ce montant prend en compte l’économie réalisée grâce au dispositif {{dispositif}}\u00a0: <montant></montant>'
+						}
+						values={{ dispositif }}
+						components={{
+							montant: (
+								<Value
+									expression={AVANTAGE}
+									displayedUnit="€"
+									unit={targetUnit}
+									precision={0}
+									linkToRule={false}
+								/>
+							),
+						}}
+					/>
 				</RuleLink>
 			</MentionSousObjectif>
 		</FromTop>
