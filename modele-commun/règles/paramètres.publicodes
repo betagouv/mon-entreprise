@@ -2,30 +2,21 @@ paramètres:
 
 paramètres . impôt:
 
-paramètres . impôt . revenu imposable:
+paramètres . impôt . bénéfices imposables:
   description: |
-    C’est le revenu à prendre en compte, sans y appliquer d'abattement
-    supplémentaire, pour calculer l’impôt sur le revenu.
+    C’est le montant imposable des revenus professionnels industriels, commerciaux
+    et non-commerciaux (BIC et BNC).
 
-    Il est à renseigner pour les dirigeants à l'IR.
-  unité: €/an
+    Il est à renseigner pour les dirigeants à l’IR.
+  par défaut: 0 €/an
+
 paramètres . impôt . revenu d'activité:
   description: |
-    C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
-    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
-    frais professionnels.
+    C’est le montant imposable des salaires et assimilés à utiliser dans le calcul
+    de l’impôt sur le revenu avec le barème standard et auquel appliquer un
+    abattement forfaitaire de 10 % pour les frais professionnels.
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l’IS.
-  par défaut: 0 €/an
-paramètres . impôt . dividendes imposables:
-  description: |
-    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le revenu
-    avec le barème standard.
-    Il s’agit du montant des dividendes après abattement de 40 % et diminué de la CSG
-    déductible.
-
-    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes soumis à
-    l’impôt sur le revenu.
   par défaut: 0 €/an
 
 paramètres . impôt . taux neutre applicable:
@@ -35,3 +26,26 @@ paramètres . impôt . foyer fiscal:
 paramètres . impôt . foyer fiscal . situation de famille:
   description: |
     Permet d'imposer une valeur à situation de famille.
+
+
+paramètres . dividendes:
+
+paramètres . dividendes . bruts:
+  description: |
+    C’est le montant brut total des dividendes, avant prélèvements sociaux et PFU
+    ou impôt sur le revenu.
+  par défaut: 0 €/an
+
+paramètres . dividendes . soumis à prélèvements sociaux:
+  description: |
+    C’est le montant des dividendes qui sera soumis aux prélèvements sociaux
+    (CSG, CRDS et prélèvement de solidarité).
+
+    En cas de dividendes dont le montant est supérieur à 10 % du capital social de
+    la société (ou, pour les entreprises individuelles, du bénéfice net de l’exercice
+    précédent ), il ne faut renseigner ici que la part des dividendes inférieure à
+    ce seuil.
+  par défaut: paramètres . dividendes . bruts
+
+paramètres . dividendes . imposition au barème progressif:
+  par défaut: non

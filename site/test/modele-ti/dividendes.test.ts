@@ -15,19 +15,6 @@ describe('Dividendes', () => {
 			'indépendant . dividendes . soumis à prélèvements sociaux': `${dividendes} €/an`,
 		}
 
-		it('sont soumis à 18,6% de prélèvements sociaux', () => {
-			const e = engine.setSituation(defaultSituationAvecDividendes)
-
-			expect(e).toEvaluate(
-				'indépendant . dividendes . soumis à prélèvements sociaux',
-				dividendes
-			)
-			expect(e).toEvaluate(
-				'indépendant . dividendes . prélèvements sociaux',
-				(18.6 * dividendes) / 100
-			)
-		})
-
 		it('s’ajoutent à la rémunération nette avec dividendes après prélèvements sociaux', () => {
 			const e1 = engine.setSituation({
 				'indépendant . rémunération . brute': '40000 €/an',
@@ -49,13 +36,6 @@ describe('Dividendes', () => {
 					dividendes -
 					prélèvementsSociauxDividendes
 			)
-		})
-
-		it('sont soumis par défaut à un PFU de 12,8%', () => {
-			const e = engine.setSituation(defaultSituationAvecDividendes)
-
-			expect(e).toEvaluate('indépendant . dividendes . PFU', 128)
-			expect(e).not.toBeApplicable('indépendant . dividendes . imposables')
 		})
 
 		it('ne modifient pas la rémunération imposable en cas de PFU', () => {
@@ -118,22 +98,6 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('peuvent être imposables au barème progressif de l’IR après abattement de 40% et soustraction de la CSG déductible', () => {
-			const e = engine.setSituation({
-				...defaultSituationAvecDividendes,
-				'indépendant . dividendes . imposition': "'barème progressif'",
-			})
-			const CSGDéductible = e.evaluate(
-				'indépendant . dividendes . prélèvements sociaux . CSG déductible'
-			).nodeValue as number
-
-			expect(e).not.toBeApplicable('indépendant . dividendes . PFU')
-			expect(e).toEvaluate(
-				'indépendant . dividendes . imposables',
-				Math.round(0.6 * dividendes) - CSGDéductible
-			)
-		})
-
 		it('s’ajoutent au revenu imposable en cas d’imposition au barème progressif', () => {
 			const e1 = engine.shallowCopy().setSituation({
 				...defaultSituationAvecDividendes,
@@ -142,18 +106,16 @@ describe('Dividendes', () => {
 			const rémunérationNetteImposable = e1.evaluate(
 				'indépendant . rémunération . nette . imposable'
 			).nodeValue as number
-			const dividendesImposables = e1.evaluate(
-				'indépendant . dividendes . imposables'
-			).nodeValue as number
 
-			// Revenu brut global = rémunération imposable abattue de 10% + dividendes imposables
+			// Revenu brut global = rémunération imposable abattue de 10%
+			// + dividendes imposables (dividendes bruts - 40%)
+			// - CSG déductible sur les dividendes soumis à prélèvements sociaux
 			const revenuBrutGlobal =
-				0.9 * rémunérationNetteImposable + dividendesImposables
+				0.9 * rémunérationNetteImposable +
+				(dividendes * (100 - 40)) / 100 -
+				(6.8 * dividendes) / 100
 			const e2 = engine.setSituation({
-				'impôt . barème standard . revenu brut global': `${revenuBrutGlobal} €/an`,
-				// TODO: supprimer cette ligne une fois https://github.com/betagouv/mon-entreprise/issues/2746 corrigé
-				// et 'paramètres . impôt . revenu imposable' non utilisé en-dehors de 'impôt . barème standard . revenu brut global'
-				'paramètres . impôt . revenu imposable': `${revenuBrutGlobal} €/an`,
+				'impôt . revenu . brut global': `${revenuBrutGlobal} €/an`,
 			})
 			const impôtAttendu = e2.evaluate('impôt . montant').nodeValue as number
 
@@ -175,7 +137,7 @@ describe('Dividendes', () => {
 			'indépendant . dividendes . soumis à cotisations sociales': `${dividendesSoumisÀCotisationsSociales} €/an`,
 		}
 
-		it('sont soumis à 17,2% de prélèvements sociaux sur la part inférieure à 10% du capital social', () => {
+		it('sont soumis à 18,6% de prélèvements sociaux sur la part inférieure à 10% du capital social', () => {
 			const e = engine.setSituation(defaultSituationAvecDividendes)
 
 			expect(e).toEvaluate(
@@ -303,13 +265,6 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('sont soumis par défaut à un PFU de 12,8%', () => {
-			const e = engine.setSituation(defaultSituationAvecDividendes)
-
-			expect(e).toEvaluate('indépendant . dividendes . PFU', 153.6)
-			expect(e).not.toBeApplicable('indépendant . dividendes . imposables')
-		})
-
 		it('ne s’ajoutent pas à la rémunération nette imposable', () => {
 			const e = engine.setSituation({
 				'indépendant . rémunération . brute': '40000 €/an',
@@ -370,22 +325,6 @@ describe('Dividendes', () => {
 			)
 		})
 
-		it('peuvent être imposables au barème progressif de l’IR après abattement de 40% et soustraction de la CSG déductible', () => {
-			const e = engine.setSituation({
-				...defaultSituationAvecDividendes,
-				'indépendant . dividendes . imposition': "'barème progressif'",
-			})
-			const CSGDéductible = e.evaluate(
-				'indépendant . dividendes . prélèvements sociaux . CSG déductible'
-			).nodeValue as number
-
-			expect(e).not.toBeApplicable('indépendant . dividendes . PFU')
-			expect(e).toEvaluate(
-				'indépendant . dividendes . imposables',
-				Math.round(0.6 * dividendes) - CSGDéductible
-			)
-		})
-
 		it('s’ajoutent au revenu imposable en cas d’imposition au barème progressif', () => {
 			const e1 = engine.shallowCopy().setSituation({
 				...defaultSituationAvecDividendes,
@@ -394,18 +333,16 @@ describe('Dividendes', () => {
 			const rémunérationNetteImposable = e1.evaluate(
 				'indépendant . rémunération . nette . imposable'
 			).nodeValue as number
-			const dividendesImposables = e1.evaluate(
-				'indépendant . dividendes . imposables'
-			).nodeValue as number
 
-			// Revenu brut global = rémunération imposable abattue de 10% + dividendes imposables
+			// Revenu brut global = rémunération imposable abattue de 10%
+			// + dividendes imposables (dividendes bruts - 40%)
+			// - CSG déductible sur les dividendes soumis à prélèvements sociaux
 			const revenuBrutGlobal =
-				0.9 * rémunérationNetteImposable + dividendesImposables
+				0.9 * rémunérationNetteImposable +
+				(dividendes * (100 - 40)) / 100 -
+				(6.8 * plafondDividendes) / 100
 			const e2 = engine.setSituation({
-				'impôt . barème standard . revenu brut global': `${revenuBrutGlobal} €/an`,
-				// TODO: supprimer cette ligne une fois https://github.com/betagouv/mon-entreprise/issues/2746 corrigé
-				// et 'paramètres . impôt . revenu imposable' non utilisé en-dehors de 'impôt . barème standard . revenu brut global'
-				'paramètres . impôt . revenu imposable': `${revenuBrutGlobal} €/an`,
+				'impôt . revenu . brut global': `${revenuBrutGlobal} €/an`,
 			})
 			const impôtAttendu = e2.evaluate('impôt . montant').nodeValue as number
 

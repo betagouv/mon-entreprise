@@ -23,7 +23,7 @@ impôt . taux neutre . barème métropole:
     - si: date >= 01/01/2026
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - plafond: 1635 €/mois
               montant: 0%
@@ -67,7 +67,7 @@ impôt . taux neutre . barème métropole:
     - si: date >= 01/05/2025
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - plafond: 1620 €/mois
               montant: 0%
@@ -111,7 +111,7 @@ impôt . taux neutre . barème métropole:
     - si: date >= 01/01/2024
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - plafond: 1591 €/mois
               montant: 0%
@@ -155,7 +155,7 @@ impôt . taux neutre . barème métropole:
     - si: date >= 01/01/2023
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - plafond: 1518 €/mois
               montant: 0%
@@ -198,7 +198,7 @@ impôt . taux neutre . barème métropole:
             - montant: 43 %
     - sinon:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1440 €/mois
@@ -250,7 +250,7 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
     - si: date >= 01/01/2026
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1875 €/mois
@@ -294,7 +294,7 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
     - si: date >= 01/05/2025
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1858 €/mois
@@ -338,7 +338,7 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
     - si: date >= 01/01/2024
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1825 €/mois
@@ -382,7 +382,7 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
     - si: date >= 01/01/2023
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1741 €/mois
@@ -425,7 +425,7 @@ impôt . taux neutre . barème Guadeloupe Réunion Martinique:
             - montant: 43%
     - sinon:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1652 €/mois
@@ -475,7 +475,7 @@ impôt . taux neutre . barème Guyane Mayotte:
     - si: date >= 01/01/2026
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 2008 €/mois
@@ -519,7 +519,7 @@ impôt . taux neutre . barème Guyane Mayotte:
     - si: date >= 01/05/2025
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1990 €/mois
@@ -563,7 +563,7 @@ impôt . taux neutre . barème Guyane Mayotte:
     - si: date >= 01/01/2024
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1955 €/mois
@@ -607,7 +607,7 @@ impôt . taux neutre . barème Guyane Mayotte:
     - si: date >= 01/01/2023
       alors:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1865 €/mois
@@ -650,7 +650,7 @@ impôt . taux neutre . barème Guyane Mayotte:
             - montant: 43%
     - sinon:
         grille:
-          assiette: paramètres . impôt . revenu imposable
+          assiette: paramètres . impôt . revenu d'activité
           tranches:
             - montant: 0%
               plafond: 1769 €/mois

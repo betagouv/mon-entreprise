@@ -17,12 +17,12 @@ assimilé salarié . rémunération . totale:
   plancher: 0€/an
 
 assimilé salarié . rémunération . brute:
+  titre: Rémunération brute
   description: |
     La rémunération brute correspond à l'intégralité des sommes perçues par le
     dirigeant assimilé salarié avant déduction des cotisations de sécurité sociale
     à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
     au remboursement de la dette sociale (CRDS).
-  titre: Rémunération brute
   unité: €/mois
   somme:
     - salaire brut
@@ -85,10 +85,12 @@ assimilé salarié . rémunération . impôt:
     salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
     cas du calcul avec le barème standard, des autres revenus imposables du
     foyer fiscal.
+
+    Ce montant n’inclut pas l’imposition des dividendes, qu’ils soient soumis au
+    PFU ou au barème progressif.
   valeur: impôt . montant
   unité: €/an
   contexte:
-    paramètres . impôt . revenu imposable: rémunération . nette . imposable
     paramètres . impôt . revenu d'activité: rémunération . nette . imposable
     # TODO : l'option "taux neutre" n'est plus proposée malgré ce paramètre,
     # sûrement parce que la question est évaluée en-dehors de ce contexte
@@ -107,23 +109,16 @@ assimilé salarié . rémunération . impôt . avec dividendes au barème progre
   valeur: impôt . montant
   unité: €/an
   contexte:
-    paramètres . impôt . revenu imposable:
-      somme:
-        - rémunération . nette . imposable
-        - dividendes . imposables
     paramètres . impôt . revenu d'activité: rémunération . nette . imposable
-    paramètres . impôt . dividendes imposables: dividendes . imposables
+    paramètres . dividendes . bruts: dividendes
+    paramètres . dividendes . imposition au barème progressif: dividendes . imposition = 'barème progressif'
 
 assimilé salarié . rémunération . impôt . avec dividendes:
   titre: Impôt sur le revenu
   résumé: Inclut l'impôt sur les dividendes
-  variations:
-    - si: dividendes . imposition = 'barème progressif'
-      alors: rémunération . impôt . avec dividendes au barème progressif
-    - sinon:
-        somme:
-          - rémunération . impôt
-          - dividendes . PFU
+  somme:
+    - rémunération . impôt . avec dividendes au barème progressif
+    - dividendes . PFU
   unité: €/an
 
 assimilé salarié . rémunération . nette . après impôt:
