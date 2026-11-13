@@ -1,7 +1,7 @@
 import { ExpirationPlugin } from 'workbox-expiration'
 import { cleanupOutdatedCaches, precacheAndRoute } from 'workbox-precaching'
 import { offlineFallback } from 'workbox-recipes'
-import { registerRoute, Route, setDefaultHandler } from 'workbox-routing'
+import { registerRoute, Route } from 'workbox-routing'
 import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
 
 declare let self: ServiceWorkerGlobalScope
@@ -40,20 +40,6 @@ offlineFallback({
 		? '/mon-entreprise.html'
 		: '/infrance.html',
 })
-
-// Set the default handler with network first so that every requests (css, js, html, image, etc.)
-// goes through the service worker and will be cache
-setDefaultHandler(
-	new NetworkFirst({
-		cacheName: 'default-network-first',
-		plugins: [
-			new ExpirationPlugin({
-				maxAgeSeconds: 3 * MONTH,
-				maxEntries: 40,
-			}),
-		],
-	})
-)
 
 const networkFirstJS = new Route(
 	({ sameOrigin, url }) => sameOrigin && /assets\/.*\.js$/.test(url.pathname),
@@ -111,23 +97,6 @@ const staleWhileRevalidate = new Route(
 
 registerRoute(staleWhileRevalidate)
 
-const networkFirstPolyfill = new Route(
-	({ sameOrigin, url }) => {
-		return !sameOrigin && url.hostname === 'polyfill.io'
-	},
-	new NetworkFirst({
-		cacheName: 'external-polyfill',
-		plugins: [
-			new ExpirationPlugin({
-				maxAgeSeconds: 3 * MONTH,
-				maxEntries: 5,
-			}),
-		],
-	})
-)
-
-registerRoute(networkFirstPolyfill)
-
 const networkFirstAPI = new Route(
 	({ sameOrigin, url }) => {
 		return (
@@ -152,3 +121,20 @@ const networkFirstAPI = new Route(
 )
 
 registerRoute(networkFirstAPI)
+
+// Doit rester la dernière route. Same-origin seulement : refaite ici, une requête
+// cross-origin relèverait de la CSP `connect-src` et non, p. ex., `img-src`.
+const networkFirstParDéfaut = new Route(
+	({ sameOrigin }) => sameOrigin,
+	new NetworkFirst({
+		cacheName: 'default-network-first',
+		plugins: [
+			new ExpirationPlugin({
+				maxAgeSeconds: 3 * MONTH,
+				maxEntries: 40,
+			}),
+		],
+	})
+)
+
+registerRoute(networkFirstParDéfaut)
