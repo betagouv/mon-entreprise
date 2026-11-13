@@ -24,6 +24,7 @@
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 - Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
+- Corrige les taux de la prévoyance conventionnelle HCR (`salarié . convention collective . HCR . prévoyance conventionnelle`) : 0,43 % pour l'employeur et 0,43 % pour le salarié, au lieu de 0,90 % et 0,47 %
 
 ## 11.1.0
 
