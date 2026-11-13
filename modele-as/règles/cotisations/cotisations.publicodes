@@ -289,7 +289,7 @@ assimilé salarié . cotisations . ATMP:
         - les affaires juridiques ;
         - la gestion financière ;
         - les ressources humaines.
-      question: Le salarié occupe-t-il une fonction support de nature administrative ?
+      question: Occupez-vous une fonction support de nature administrative ?
       par défaut: non
       références:
         Taux fonctions support: https://www.ameli.fr/entreprise/votre-entreprise/cotisation-atmp/calcul-taux-atmp-tpe-moins-20-salaries#text_66210
@@ -648,8 +648,8 @@ assimilé salarié . cotisations . prévoyances . santé:
       description: |
         En complément des garanties de base de la Sécurité sociale, un salarié peut bénéficier de prestations de la complémentaire santé de son entreprise (ou de l'association qui l'emploie). C'est l'employeur qui négocie le contrat et assure son suivi auprès de l'organisme assureur. La complémentaire santé d'entreprise doit prendre en charge un minimum de garanties.
 
-      question: Quel est le montant mensuel total (salarié et employeur) de la
-        complémentaire santé de l'entreprise (mutuelle) ?
+      question: Quel est le montant mensuel total (part salariale et part patronale)
+        de votre complémentaire santé d'entreprise (mutuelle) ?
       par défaut: 40 €/mois
       plancher: 0 €/mois
       suggestions:
@@ -667,7 +667,7 @@ assimilé salarié . cotisations . prévoyances . santé:
       description:
         Part de la complémentaire santé payée par l'employeur. Doit être de
         50% minimum
-      question: Quelle est la part de la complémentaire santé payée par l'employeur ?
+      question: Quelle est la part de votre complémentaire santé payée par l'entreprise ?
       suggestions:
         50%: 50%
         100%: 100%

@@ -115,7 +115,7 @@ assimilé salarié . rémunération . avantages en nature:
     L’avantage en nature doit figurer sur le bulletin de paie. Il sera indiqué au
     niveau du salaire brut pour être soumis à cotisations. Après détermination du
     salaire net imposable, il sera déduit du salaire net à verser.
-  question: L'entreprise fournit-elle des avantages en nature (repas, véhicule,
+  question: L'entreprise vous fournit-elle des avantages en nature (repas, véhicule,
     téléphone, réductions, logement…) ?
   par défaut: non
   références:
@@ -137,7 +137,7 @@ assimilé salarié . rémunération . avantages en nature:
     nourriture:
       icônes: 🍝
       question: >
-        L'entreprise fournit-elle gratuitement des repas ?
+        L'entreprise vous fournit-elle gratuitement des repas ?
       par défaut: non
       description: |
         Les titres-restaurant ne sont pas considérés comme un avantage en nature
@@ -193,7 +193,7 @@ assimilé salarié . rémunération . avantages en nature:
         outils), soit de l’existence de factures détaillées permettant d’établir
         une utilisation privée.
       question: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        L'entreprise vous fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       par défaut: oui
       références:
@@ -203,7 +203,7 @@ assimilé salarié . rémunération . avantages en nature:
         abonnements:
           question:
             Quel est le coût de l'abonnement (forfait mobile, etc.) pris en charge
-            par l'employeur ?
+            par l'entreprise ?
           par défaut: 20 €/mois
           suggestions:
             aucun: 0 €/mois
