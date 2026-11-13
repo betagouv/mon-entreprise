@@ -97,23 +97,6 @@ const staleWhileRevalidate = new Route(
 
 registerRoute(staleWhileRevalidate)
 
-const networkFirstPolyfill = new Route(
-	({ sameOrigin, url }) => {
-		return !sameOrigin && url.hostname === 'polyfill.io'
-	},
-	new NetworkFirst({
-		cacheName: 'external-polyfill',
-		plugins: [
-			new ExpirationPlugin({
-				maxAgeSeconds: 3 * MONTH,
-				maxEntries: 5,
-			}),
-		],
-	})
-)
-
-registerRoute(networkFirstPolyfill)
-
 const networkFirstAPI = new Route(
 	({ sameOrigin, url }) => {
 		return (
