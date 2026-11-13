@@ -1,0 +1,102 @@
+impôt . revenu:
+
+impôt . revenu . d'activité abattu:
+  titre: Revenu d’activité après abattement 10%
+  description: |
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
+  valeur: paramètres . impôt . revenu d'activité
+  abattement:
+    valeur: 10% * paramètres . impôt . revenu d'activité
+    plafond:
+      variations:
+        - si: date >= 01/2026
+          alors: 14555 €/an
+        - si: date >= 01/2025
+          alors: 14426 €/an
+        - si: date >= 01/2024
+          alors: 14171 €/an
+        - si: date >= 01/2023
+          alors: 13522 €/an
+        - sinon: 12829 €/an
+    plancher:
+      variations:
+        - si: date >= 01/2026
+          alors: 509 €/an
+        - si: date >= 01/2025
+          alors: 504 €/an
+        - si: date >= 01/2024
+          alors: 495 €/an
+        - si: date >= 01/2023
+          alors: 472 €/an
+        - sinon: 448 €/an
+  références:
+    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
+    Code des impôts - Article 83: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/
+
+impôt . revenu . brut global:
+  titre: Revenu brut global
+  description: |
+    Le **revenu brut global** est la somme de tous les revenus, après leur abattement :
+    - salaire net imposable,
+    - bénéfices (BIC et BNC),
+    - dividendes.
+
+    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
+    - pensions et retraites,
+    - bénéfices agricoles (BA),
+    - revenus fonciers,
+    - autres revenus mobiliers et plus-values sur valeurs mobilières,
+    - plus-values immobilières.
+  somme:
+    - revenu . d'activité abattu
+    - paramètres . impôt . bénéfices imposables
+    - dividendes . imposables
+    - foyer fiscal . autres revenus imposables
+
+impôt . revenu . net global:
+  titre: Revenu net global
+  description: |
+    Le **revenu net global** est le revenu brut global après déduction de certaines
+    charges comme :
+    - les pensions alimentaires versées,
+    - les cotisations d’épargne-retraite,
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
+      placement.
+  valeur: revenu . brut global
+  abattement: dividendes . prélèvements sociaux . CSG déductible
+
+impôt . revenu . net imposable:
+  titre: Revenu net imposable
+  description: |
+    Le **revenu net imposable** est le montant qui est utilisé pour calculer le
+    montant de l’impôt sur le revenu :
+    - soit en y appliquant directement un taux d’imposition donné ;
+    - soit en utilisant le barème standard avec la composition du foyer fiscal.
+
+    Ce montant est le revenu net global après abattements spéciaux. Vous pouvez
+    bénéficier d’un abattement spécial si vous êtes dans l’une des conditions
+    suivantes :
+    - vous avez 65 ans ou plus,
+    - vous êtes invalide,
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
+
+    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
+  valeur: revenu . net global
+
+impôt . revenu . fiscal de référence:
+  titre: Revenu fiscal de référence
+  description: |
+    Le **revenu fiscal de référence** correspond au revenu net imposable auquel
+    sont réintégrés certains abattements et exonérations, comme l’abattement de
+    40 % sur les dividendes.
+  somme:
+    - paramètres . impôt . bénéfices imposables
+    - revenu . d'activité abattu
+    - paramètres . dividendes . bruts
+    - foyer fiscal . autres revenus imposables
+  abattement: dividendes . prélèvements sociaux . CSG déductible
+  références:
+    Qu'est-ce que le revenu fiscal de référence ?: https://www.service-public.gouv.fr/particuliers/vosdroits/F13216
+    Article 1417 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000034596743

@@ -3,6 +3,7 @@
 ## next
 
 ### Breaking changes
+- Réorganise le calcul de l'impôt sur le revenu
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 - Supprime les règles vides `assimilé salarié . cotisations . prévoyances . conventionnelle`
@@ -16,6 +17,10 @@
 
 ### Mises à jour
 - Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
+
+### Corrections
+- Corrige le calcul de la CEHR
+
 
 ## 0.1.0
 

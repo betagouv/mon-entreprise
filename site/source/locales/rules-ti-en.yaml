@@ -36,6 +36,74 @@ SMIC . horaire:
 date:
   titre.en: '[automatic] date'
   titre.fr: date
+dividendes:
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
+dividendes . PFU:
+  description.en: >
+    [automatic] The portion of the PFU (single flat-rate levy) corresponding to
+    income tax
+
+    is **12.8%**.
+  description.fr: >
+    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur
+    le
+
+    revenu est égale à **12,8 %**.
+  titre.en: '[automatic] Single Flat-Rate Withholding Tax (PFU) on Dividends'
+  titre.fr: Prélèvement forfaitaire unique (PFU) sur les dividendes
+dividendes . imposables:
+  description.en: |
+    [automatic] When dividends are subject to the progressive income tax
+    brackets, a **40% deduction** is first applied to them.
+  description.fr: |
+    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
+    revenu, un **abattement de 40%** leur est d’abord appliqué.
+  titre.en: '[automatic] Taxable dividends'
+  titre.fr: Dividendes imposables
+dividendes . prélèvements sociaux:
+  avec:
+    CRDS:
+      titre.en: '[automatic] CRDS'
+      titre.fr: CRDS
+    CSG déductible:
+      titre.en: '[automatic] Deductible CSG'
+      titre.fr: CSG déductible
+    CSG non déductible:
+      titre.en: '[automatic] Non-deductible CSG'
+      titre.fr: CSG non déductible
+    prélèvement de solidarité:
+      titre.en: '[automatic] solidarity levy'
+      titre.fr: prélèvement de solidarité
+  description.en: >
+    [automatic] As investment income, dividends are subject to social security
+    contributions.
+
+    These contributions are:
+
+    - General Social Contribution (CSG),
+
+    - Social Debt Repayment Contribution (CRDS),
+
+    - Solidarity Contribution.
+  description.fr: |
+    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
+    sociaux. Ces prélèvements sont :
+    - contribution sociale généralisée (CSG),
+    - contribution au remboursement de la dette sociale (CRDS),
+    - prélèvement de solidarité.
+  note.en: >
+    [automatic] The CSG on dividends subject to the PFU (single flat-rate
+    withholding tax) is
+
+    not deductible.
+  note.fr: >
+    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique)
+    n’est
+
+    pas déductible.
+  titre.en: '[automatic] Social Security Contributions on Dividends'
+  titre.fr: Prélèvements sociaux sur les dividendes
 durée légale du travail:
   titre.en: '[automatic] legal working hours'
   titre.fr: durée légale du travail
@@ -1236,137 +1304,6 @@ impôt . barème standard . quotient familial . plafond avantage:
       titre.fr: plafonnement parent isolé
   titre.en: '[automatic] advantage ceiling'
   titre.fr: plafond avantage
-impôt . barème standard . revenu brut global:
-  description.en: |
-    [automatic] Total gross income** is the sum of all income after deductions:
-    - net taxable salary,
-    - profits (BIC and BNC),
-    - dividends.
-
-    Our simulators do not yet include all the income to be included:
-    - pensions and retirement,
-    - agricultural profits (BA),
-    - property income,
-    - other income from movable property and capital gains on securities,
-    - real estate capital gains.
-  description.fr: >
-    Le **revenu brut global** est la somme de tous les revenus, après leur
-    abattement :
-
-    - salaire net imposable,
-
-    - bénéfices (BIC et BNC),
-
-    - dividendes.
-
-
-    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
-
-    - pensions et retraites,
-
-    - bénéfices agricoles (BA),
-
-    - revenus fonciers,
-
-    - autres revenus mobiliers et plus-values sur valeurs mobilières,
-
-    - plus-values immobilières.
-  titre.en: '[automatic] gross aggregate income'
-  titre.fr: revenu brut global
-impôt . barème standard . revenu d'activité abattu:
-  description.en: >
-    [automatic] In the general case, tax is calculated after application of a
-    fixed lump-sum allowance.
-
-    fixed allowance. However, everyone can opt to declare their *actual*
-    expenses, which will replace the default flat rate.
-
-    *actual expenses*, which will replace the default flat rate.
-  description.fr: |
-    Dans le cas général, l’impôt est calculé après l’application d’un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
-    *frais réels*, qui viendront remplacer ce forfait par défaut.
-  titre.en: '[automatic] reduced business income'
-  titre.fr: revenu d'activité abattu
-impôt . barème standard . revenu net global:
-  description.en: >
-    [automatic] The **net global income** is the gross global income after
-    deduction of certain
-
-    expenses such as :
-
-    - maintenance payments,
-
-    - retirement savings contributions,
-
-    - part of the CSG levied on income from property and investments.
-      investment income.
-
-    As our simulators do not include these charges, overall net income here is
-    directly equal to overall gross income.
-
-    directly equal to overall gross income.
-  description.fr: >
-    Le **revenu net global** est le revenu brut global après déduction de
-    certaines
-
-    charges comme :
-
-    - les pensions alimentaires versées,
-
-    - les cotisations d’épargne-retraite,
-
-    - une partie de la CSG afférente aux revenus du patrimoine et aux produits
-    de
-      placement.
-
-    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est
-    ici
-
-    directement égal au revenu brut global.
-  titre.en: '[automatic] overall net income'
-  titre.fr: revenu net global
-impôt . barème standard . revenu net imposable:
-  description.en: >
-    [automatic] Net taxable income** is overall net income after special
-    allowances.
-
-
-    You can benefit from a special allowance if one of the following conditions
-    applies to you 
-
-    following conditions:
-
-    - you are 65 or over,
-
-    - you are disabled,
-
-    - you are attaching a married or civil union child to your household.
-
-
-    These allowances are not yet implemented in our simulators.
-  description.fr: >
-    Le **revenu net imposable** est le revenu net global après abattements
-    spéciaux.
-
-
-    Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
-
-    conditions suivantes :
-
-    - vous avez 65 ans ou plus,
-
-    - vous êtes invalide,
-
-    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
-
-
-    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
-  titre.en: '[automatic] net taxable income'
-  titre.fr: revenu net imposable
-impôt . barème standard . taux effectif:
-  titre.en: '[automatic] effective rate'
-  titre.fr: taux effectif
 impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
@@ -1543,9 +1480,150 @@ impôt . méthode de calcul:
   question.fr: Comment souhaitez-vous calculer l’impôt sur le revenu ?
   titre.en: '[automatic] calculation method'
   titre.fr: méthode de calcul
-impôt . taux d'imposition:
-  titre.en: '[automatic] tax rates'
-  titre.fr: taux d'imposition
+impôt . revenu:
+  titre.en: '[automatic] income'
+  titre.fr: revenu
+impôt . revenu . brut global:
+  description.en: >
+    [automatic] **Total gross income** is the sum of all income, after
+    deductions:
+
+    - net taxable salary,
+
+    - business profits (BIC and BNC),
+
+    - dividends.
+
+
+    Our calculators do not yet include all types of income that should be
+    factored in:
+
+    - pensions and retirement benefits,
+
+    - agricultural income (BA),
+
+    - property income,
+
+    - other investment income and capital gains on securities,
+
+    - capital gains on real estate.
+  description.fr: >
+    Le **revenu brut global** est la somme de tous les revenus, après leur
+    abattement :
+
+    - salaire net imposable,
+
+    - bénéfices (BIC et BNC),
+
+    - dividendes.
+
+
+    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
+
+    - pensions et retraites,
+
+    - bénéfices agricoles (BA),
+
+    - revenus fonciers,
+
+    - autres revenus mobiliers et plus-values sur valeurs mobilières,
+
+    - plus-values immobilières.
+  titre.en: '[automatic] Total Gross Income'
+  titre.fr: Revenu brut global
+impôt . revenu . d'activité abattu:
+  description.en: |
+    [automatic] In general, the tax is calculated after applying a
+    fixed flat-rate deduction. However, anyone may choose to report their
+    *actual expenses*, which will replace this default flat rate.
+  description.fr: |
+    Dans le cas général, l’impôt est calculé après l’application d’un abattement
+    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
+    *frais réels*, qui viendront remplacer ce forfait par défaut.
+  titre.en: '[automatic] Income from employment after a 10% deduction'
+  titre.fr: Revenu d’activité après abattement 10%
+impôt . revenu . fiscal de référence:
+  description.en: |
+    [automatic] The **taxable income base** is the net taxable income to which
+    certain deductions and exemptions are added back, such as the
+    40% deduction on dividends.
+  description.fr: |
+    Le **revenu fiscal de référence** correspond au revenu net imposable auquel
+    sont réintégrés certains abattements et exonérations, comme l’abattement de
+    40 % sur les dividendes.
+  titre.en: '[automatic] Taxable Income'
+  titre.fr: Revenu fiscal de référence
+impôt . revenu . net global:
+  description.en: >
+    [automatic] **Total net income** is total gross income after deducting
+    certain
+
+    expenses such as:
+
+    - alimony payments,
+
+    - retirement savings contributions,
+
+    - a portion of the CSG related to investment income and returns on
+      investments.
+  description.fr: >
+    Le **revenu net global** est le revenu brut global après déduction de
+    certaines
+
+    charges comme :
+
+    - les pensions alimentaires versées,
+
+    - les cotisations d’épargne-retraite,
+
+    - une partie de la CSG afférente aux revenus du patrimoine et aux produits
+    de
+      placement.
+  titre.en: '[automatic] Total Net Income'
+  titre.fr: Revenu net global
+impôt . revenu . net imposable:
+  description.en: >
+    [automatic] **Net taxable income** is the amount used to calculate the
+
+    amount of income tax:
+
+    - either by directly applying a given tax rate to it;
+
+    - or by using the standard tax schedule based on the composition of the tax
+    household.
+
+
+    This amount is the total net income after special deductions. You may
+
+    be eligible for a special deduction if you meet one of the following
+
+    conditions:
+
+    - you are 65 years of age or older,
+
+    - you are disabled,
+
+    - you claim your child who is married, in a civil partnership, or a head of
+    household.
+
+
+    These deductions have not yet been implemented in our simulators.
+  description.fr: |
+    Le **revenu net imposable** est le montant qui est utilisé pour calculer le
+    montant de l’impôt sur le revenu :
+    - soit en y appliquant directement un taux d’imposition donné ;
+    - soit en utilisant le barème standard avec la composition du foyer fiscal.
+
+    Ce montant est le revenu net global après abattements spéciaux. Vous pouvez
+    bénéficier d’un abattement spécial si vous êtes dans l’une des conditions
+    suivantes :
+    - vous avez 65 ans ou plus,
+    - vous êtes invalide,
+    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
+
+    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
+  titre.en: '[automatic] Net taxable income'
+  titre.fr: Revenu net imposable
 impôt . taux neutre:
   description.en: >
     [automatic] This is the scale to be applied to the monthly taxable salary to
@@ -3717,77 +3795,16 @@ indépendant . dividendes:
   titre.en: '[automatic] dividends'
   titre.fr: dividendes
 indépendant . dividendes . PFU:
-  description.en: >
-    [automatic] The income tax portion of the PFU (prélèvement forfaitaire
-    unique) is
-
-    is equal to 12.8%**.
-  description.fr: >
-    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur
-    le
-
-    revenu est égale à **12,8 %**.
-  titre.en: '[automatic] Single flat-rate withholding tax (PFU)'
-  titre.fr: Prélèvement forfaitaire unique (PFU)
-indépendant . dividendes . imposables:
-  description.en: >
-    [automatic] When dividends are subject to the progressive income tax scale,
-    a
-
-    income tax, a **abatement of 40%** is first applied.
-  description.fr: |
-    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
-    revenu, un **abattement de 40%** leur est d’abord appliqué.
-  titre.en: '[automatic] taxable'
-  titre.fr: imposables
+  titre.en: '[automatic] Single Flat-Rate Withholding Tax (PFU) on Dividends'
+  titre.fr: Prélèvement forfaitaire unique (PFU) sur les dividendes
 indépendant . dividendes . imposition:
   question.en: '[automatic] How are your dividends taxed?'
   question.fr: Quel est le mode d’imposition de vos dividendes ?
-  titre.en: '[automatic] taxation'
-  titre.fr: imposition
+  titre.en: '[automatic] Taxation of Dividends'
+  titre.fr: Imposition des dividendes
 indépendant . dividendes . prélèvements sociaux:
-  avec:
-    CRDS:
-      titre.en: '[automatic] CRDS'
-      titre.fr: CRDS
-    CSG déductible:
-      titre.en: '[automatic] Deductible CSG'
-      titre.fr: CSG déductible
-    CSG non déductible:
-      titre.en: '[automatic] Non-deductible CSG'
-      titre.fr: CSG non déductible
-    prélèvement de solidarité:
-      titre.en: '[automatic] solidarity levy'
-      titre.fr: prélèvement de solidarité
-  description.en: >
-    [automatic] As income from assets, dividends are subject to social security
-    deductions.
-
-    social security contributions. These deductions are
-
-    - contribution sociale généralisée (CSG),
-
-    - contribution au remboursement de la dette sociale (CRDS),
-
-    - solidarity levy.
-  description.fr: |
-    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
-    sociaux. Ces prélèvements sont :
-    - contribution sociale généralisée (CSG),
-    - contribution au remboursement de la dette sociale (CRDS),
-    - prélèvement de solidarité.
-  note.en: >
-    [automatic] The CSG on dividends subject to the PFU (prélèvement forfaitaire
-    unique) is not deductible.
-
-    deductible.
-  note.fr: >
-    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique)
-    n’est
-
-    pas déductible.
-  titre.en: '[automatic] social security contributions'
-  titre.fr: prélèvements sociaux
+  titre.en: '[automatic] Social Security Contributions on Dividends'
+  titre.fr: Prélèvements sociaux sur les dividendes
 indépendant . dividendes . soumis à cotisations sociales:
   description.en: >
     [automatic] Dividends
@@ -5723,44 +5740,77 @@ indépendant . rémunération . nette . imposable:
 paramètres:
   titre.en: '[automatic] settings'
   titre.fr: paramètres
+paramètres . dividendes:
+  titre.en: '[automatic] dividends'
+  titre.fr: dividendes
+paramètres . dividendes . bruts:
+  description.en: >
+    [automatic] This is the total gross amount of dividends, before social
+    security contributions and the flat tax rate (PFU)
+
+    or income tax.
+  description.fr: >
+    C’est le montant brut total des dividendes, avant prélèvements sociaux et
+    PFU
+
+    ou impôt sur le revenu.
+  titre.en: '[automatic] gross'
+  titre.fr: bruts
+paramètres . dividendes . imposition au barème progressif:
+  titre.en: '[automatic] progressive tax rate'
+  titre.fr: imposition au barème progressif
+paramètres . dividendes . soumis à prélèvements sociaux:
+  description.en: >
+    [automatic] The amount of dividends will be subject to social security
+    contributions
+
+    (CSG, CRDS, and solidarity contribution).
+
+
+    If the amount of dividends exceeds 10% of the company’s
+
+    share capital (or, for sole proprietorships, of the net income for the
+
+    previous fiscal year), only the portion of dividends below
+
+    this threshold should be reported here.
+  description.fr: >
+    C’est le montant des dividendes qui sera soumis aux prélèvements sociaux
+
+    (CSG, CRDS et prélèvement de solidarité).
+
+
+    En cas de dividendes dont le montant est supérieur à 10 % du capital social
+    de
+
+    la société (ou, pour les entreprises individuelles, du bénéfice net de
+    l’exercice
+
+    précédent ), il ne faut renseigner ici que la part des dividendes inférieure
+    à
+
+    ce seuil.
+  titre.en: '[automatic] subject to social security contributions'
+  titre.fr: soumis à prélèvements sociaux
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
-paramètres . impôt . dividendes imposables:
-  description.en: >
-    [automatic] This amount is added to the income from employment, after the
-    standard deduction, to calculate income tax
+paramètres . impôt . bénéfices imposables:
+  description.en: |
+    [automatic] This is the taxable amount of industrial, commercial,
+    and non-commercial business income (BIC and BNC).
 
-    using the standard tax schedule.
-
-    This is the amount of dividends after a 40% deduction and minus the
-    deductible CSG
-
-    contribution.
-
-
-    It must be reported by corporate income tax-liable executives who pay
-    themselves dividends subject to
-
-    income tax.
+    It must be reported by business owners for income tax purposes.
   description.fr: >
-    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le
-    revenu
+    C’est le montant imposable des revenus professionnels industriels,
+    commerciaux
 
-    avec le barème standard.
-
-    Il s’agit du montant des dividendes après abattement de 40 % et diminué de
-    la CSG
-
-    déductible.
+    et non-commerciaux (BIC et BNC).
 
 
-    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes
-    soumis à
-
-    l’impôt sur le revenu.
-  titre.en: '[automatic] taxable dividends'
-  titre.fr: dividendes imposables
+    Il est à renseigner pour les dirigeants à l’IR.
+  titre.en: '[automatic] taxable income'
+  titre.fr: bénéfices imposables
 paramètres . impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
@@ -5773,45 +5823,29 @@ paramètres . impôt . foyer fiscal . situation de famille:
   titre.fr: situation de famille
 paramètres . impôt . revenu d'activité:
   description.en: >
-    [automatic] This is the income to be used in calculating income tax using
-    the
+    [automatic] This is the taxable amount of wages and similar income to be
+    used in calculating
 
-    standard tax schedule, to which a flat-rate deduction of 10% for
+    income tax using the standard tax schedule, to which a
 
-    business expenses is applied.
+    flat-rate deduction of 10% for business expenses is applied.
 
 
-    This information must be provided by employees, individuals treated as
+    This information must be provided for employees, individuals treated as
     employees, and executives subject to corporate income tax.
   description.fr: >
-    C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
+    C’est le montant imposable des salaires et assimilés à utiliser dans le
+    calcul
 
-    barème standard et auquel appliquer un abattement forfaitaire de 10 % pour
-    les
+    de l’impôt sur le revenu avec le barème standard et auquel appliquer un
 
-    frais professionnels.
+    abattement forfaitaire de 10 % pour les frais professionnels.
 
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
     l’IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
-paramètres . impôt . revenu imposable:
-  description.en: >
-    [automatic] This is the income to be taken into account for income tax
-    purposes, without
-
-    to calculate income tax.
-
-
-    It must be filled in for directors liable to income tax.
-  description.fr: |
-    C’est le revenu à prendre en compte, sans y appliquer d'abattement
-    supplémentaire, pour calculer l’impôt sur le revenu.
-
-    Il est à renseigner pour les dirigeants à l'IR.
-  titre.en: '[automatic] taxable income'
-  titre.fr: revenu imposable
 paramètres . impôt . taux neutre applicable:
   titre.en: '[automatic] applicable neutral rate'
   titre.fr: taux neutre applicable
