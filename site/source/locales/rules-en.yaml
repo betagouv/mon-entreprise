@@ -10742,9 +10742,6 @@ salarié . convention collective . HCR . prévoyance conventionnelle:
     salarié:
       titre.en: '[automatic] employee'
       titre.fr: salarié
-  note.en: '[automatic] Specific rates for employees under the Alsace-Moselle
-    local regime'
-  note.fr: Taux spécifiques pour les salariés relevant du régime local Alsace-Moselle
   titre.en: '[automatic] conventional provident fund'
   titre.fr: prévoyance conventionnelle
 salarié . convention collective . SVP:

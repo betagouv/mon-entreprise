@@ -581,10 +581,10 @@ salarié . rémunération . net . à payer avant impôt: 1636"
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 4`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2345
+salarié . coût total employeur: 2336
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1607
-salarié . rémunération . net . à payer avant impôt: 1616
+salarié . rémunération . net . payé après impôt: 1609
+salarié . rémunération . net . à payer avant impôt: 1617
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
@@ -592,10 +592,10 @@ Notifications affichées : salarié . convention collective . avertissement conv
 exports[`calculate simulations-salarié > heures supplémentaires et complémentaires 5`] = `
 "salarié . contrat . salaire brut: 2000
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 2314
+salarié . coût total employeur: 2304
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1581
-salarié . rémunération . net . à payer avant impôt: 1589
+salarié . rémunération . net . payé après impôt: 1583
+salarié . rémunération . net . à payer avant impôt: 1591
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
