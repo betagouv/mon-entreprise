@@ -31,6 +31,7 @@
 - Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
 - Corrige les taux de la prévoyance conventionnelle HCR (`salarié . convention collective . HCR . prévoyance conventionnelle`) : 0,43 % pour l'employeur et 0,43 % pour le salarié, au lieu de 0,90 % et 0,47 %
 - Corrige `salarié . rémunération . primes . fin d'année . montant` à temps partiel : la quotité de temps de travail n'est plus appliquée une seconde fois au salaire brut
+- Corrige l'année d'exécution du contrat d'apprentissage (`salarié . contrat . apprentissage . ancienneté`), qui changeait un jour trop tôt (deux avec un 29 février)
 
 ## 11.1.0
 
