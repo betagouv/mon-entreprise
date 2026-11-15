@@ -1,5 +1,5 @@
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export const useDocumentationPath = (nomModèle?: NomModèle) => {
 	const { absoluteSitePaths } = useSitePaths()

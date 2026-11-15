@@ -14,6 +14,7 @@
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+- Taux 2026 de la cotisation congés payés des caisses CIBTP du bâtiment (`salarié . convention collective . BTP . congés intempéries`), datés selon leur entrée en vigueur au 1er janvier, au 1er avril ou au 1er novembre 2026 ; les taux antérieurs des caisses Île-de-France, Nord-Ouest, Grand Ouest, Centre, Grand Est et Sud-Ouest sont corrigés
 
 ### Corrections
 - Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte

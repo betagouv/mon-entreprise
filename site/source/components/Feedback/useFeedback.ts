@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 const PAGE_TITLE = 'Un avis sur cette page ?'
 const SIMULATOR_TITLE = 'Un avis sur cet outil ?'

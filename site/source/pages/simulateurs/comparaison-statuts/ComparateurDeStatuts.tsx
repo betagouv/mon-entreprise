@@ -12,9 +12,9 @@ import {
 } from '@/contextes/comparateur'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
+import { SimulateurPageLayout } from '@/simulateurs'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DetailSimulation'
 import { ModaleDeDocumentation } from './components/ModaleDeDocumentation'
 import { comparaisonStatutsMetadata } from './metadata'

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
 import { Lodeom } from '@/contextes/salarié'
 import { ChoixUnique } from '@/design-system'
@@ -39,6 +40,7 @@ export default function RégularisationSwitch({
 					'pages.simulateurs.lodeom.régularisation.type',
 					'Quel type de régularisation souhaitez-vous ?'
 				)}
+				<BoutonDeDocumentation dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
 			</SwitchLabel>
 
 			<ChoixUnique

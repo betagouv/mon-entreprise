@@ -5,8 +5,8 @@ import { TrackingChaptersProvider } from '@/components/PianoAnalytics/TrackingCh
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Banner, Emoji, InnerBanner, Link } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 import API from './API'
 import Home from './Home'

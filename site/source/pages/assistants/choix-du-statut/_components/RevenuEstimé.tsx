@@ -5,7 +5,7 @@ import Value from '@/components/EngineValue/Value'
 import { WhenAlreadyDefined } from '@/components/EngineValue/WhenAlreadyDefined'
 import { WhenNotAlreadyDefined } from '@/components/EngineValue/WhenNotAlreadyDefined'
 import { Body, CardContainer, EditIcon, Grid, Link, Ul } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 const RevenuEstimé = () => {
 	const { absoluteSitePaths } = useSitePaths()

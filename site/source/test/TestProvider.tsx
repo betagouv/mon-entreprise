@@ -5,7 +5,7 @@ import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import { DesignSystemThemeProvider } from '@/design-system'
-import { ReactRouterNavigationProvider } from '@/lib/navigation'
+import { ReactRouterNavigationProvider } from '@/lib/navigation/providers/ReactRouterNavigationProvider'
 import { createI18nClient } from '@/locales/i18n-client'
 import { AvailableLang } from '@/locales/langue'
 import { makeStore } from '@/store/store'

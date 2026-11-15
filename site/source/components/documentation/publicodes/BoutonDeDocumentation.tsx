@@ -1,0 +1,54 @@
+import { useTranslation } from 'react-i18next'
+
+import RuleLink from '@/components/RuleLink'
+import { InfoButton } from '@/design-system'
+import { DottedName } from '@/domaine/publicodes/DottedName'
+import { useEngine } from '@/utils/publicodes/EngineContext'
+
+import { useLienVersLaDocumentation } from './LienVersLaDocumentationContext'
+import { RéférencesDeRègle } from './ReferencesDeRegle'
+import { RésuméDeRègle } from './ResumeDeRegle'
+
+export function BoutonDeDocumentation<Names extends string = DottedName>({
+	dottedName,
+	title,
+}: {
+	dottedName: Names
+	title?: string
+}) {
+	const engine = useEngine()
+	const rule = engine.getRule(dottedName as DottedName)
+	const { t } = useTranslation()
+	const hasLinkToDoc = useLienVersLaDocumentation()
+
+	if (rule.rawNode.description == null) {
+		return null
+	}
+
+	return (
+		<InfoButton subject={rule.title} popoverTitle={title}>
+			<RésuméDeRègle engine={engine} dottedName={dottedName as DottedName} />
+
+			{hasLinkToDoc && (
+				<RuleLink
+					dottedName={dottedName as DottedName}
+					aria-label={t(
+						'components.règle.info.lien-documentation.aria-label',
+						'Lire la documentation sur {{ règle }}',
+						{ règle: rule.title }
+					)}
+				>
+					{t(
+						'components.règle.info.lien-documentation.texte',
+						'Lire la documentation'
+					)}
+				</RuleLink>
+			)}
+
+			<RéférencesDeRègle
+				engine={engine}
+				dottedName={dottedName as DottedName}
+			/>
+		</InfoButton>
+	)
+}

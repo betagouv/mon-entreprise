@@ -2,11 +2,9 @@ import { useTranslation } from 'react-i18next'
 
 import { Card, Chip, Emoji, Grid } from '@/design-system'
 import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
 type SimulateurCardProps = MergedSimulatorMetadata & {
-	fromGérer?: boolean
 	role?: string
 	darkerBackground?: boolean
 	stretched?: boolean
@@ -25,7 +23,6 @@ export function SimulateurCard({
 	beta,
 	darkerBackground = false,
 	stretched = false,
-	fromGérer = false,
 	role,
 	withoutDescription = false,
 	subtitle,
@@ -33,13 +30,6 @@ export function SimulateurCard({
 }: SimulateurCardProps) {
 	const isIframe = useIsEmbedded()
 	const { t } = useTranslation()
-	const [, setNavigationOrigin] = useNavigationOrigin()
-
-	const handlePress = () => {
-		setNavigationOrigin(
-			fromGérer ? { fromGérer: true } : { fromSimulateurs: true }
-		)
-	}
 
 	const ctaLabel =
 		pathId.startsWith('assistants') || pathId.startsWith('gérer')
@@ -70,7 +60,6 @@ export function SimulateurCard({
 					pathname:
 						(isIframe && `/iframes/${encodeURI(iframePath ?? '')}`) || path,
 				}}
-				onPress={handlePress}
 				subtitle={subtitle}
 			>
 				{!withoutDescription && meta?.description}

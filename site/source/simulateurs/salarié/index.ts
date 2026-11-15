@@ -1,0 +1,1 @@
+export { Salarié } from './Salarié'

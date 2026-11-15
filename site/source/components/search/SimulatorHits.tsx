@@ -11,7 +11,6 @@ import {
 	SmallBody,
 	SmallCard,
 } from '@/design-system'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { MergedSimulatorMetadata } from '@/hooks/useSimulatorsMetadata'
 
 import { FromTop } from '../ui/animate'
@@ -30,13 +29,10 @@ type SimulatorHitsProps = {
 }
 
 const SimulateurCardHit = ({ hit }: { hit: AlgoliaSimulatorHit }) => {
-	const [, setNavigationOrigin] = useNavigationOrigin()
-
 	return (
 		<StyledSmallCard
 			icon={<Emoji emoji={hit.icône} />}
 			to={{ pathname: hit.path ?? '/' }}
-			onPress={() => setNavigationOrigin({ fromSimulateurs: true })}
 			title={
 				<>
 					<Highlight hit={hit} attribute="title" />{' '}

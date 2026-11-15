@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Body, H2, Link } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export const SeoExplanations = () => {
 	const { absoluteSitePaths } = useSitePaths()

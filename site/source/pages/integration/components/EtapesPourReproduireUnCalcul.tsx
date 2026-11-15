@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Body, Code, Li, Link, Ol, Strong } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 type Props = {
 	mode: 'api' | 'npm'

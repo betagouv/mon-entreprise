@@ -7,6 +7,8 @@ import { Node, TreeState, useTreeState } from 'react-stately'
 import useMeasure from 'react-use-measure'
 import { css, styled } from 'styled-components'
 
+import { urlAsset } from '@/utils/asset'
+
 import { Button } from '../buttons'
 import { FocusStyle } from '../global-style'
 import { ChevronIcon } from '../icons'
@@ -245,7 +247,7 @@ const StyledButton = styled.button<{ $variant?: 'light' }>`
 		`}
 `
 
-const ChevronRightMedium = styled.img.attrs({ src: chevronImg })<{
+const ChevronRightMedium = styled.img.attrs({ src: urlAsset(chevronImg) })<{
 	$isOpen?: boolean
 }>`
 	transition: transform 0.3s;

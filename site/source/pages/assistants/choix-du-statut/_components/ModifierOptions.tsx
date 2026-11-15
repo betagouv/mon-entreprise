@@ -1,9 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import { OuiNonSwitch } from '@/components/conversation/OuiNonSwitch'
 import RuleInput from '@/components/conversation/RuleInput'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import {
 	ArrowRightIcon,
 	Body,
@@ -77,7 +77,7 @@ export default function ModifierOptions() {
 						'pages.assistants.choix-statut.modifier-options.acre.title',
 						'Acre'
 					)}{' '}
-					<ExplicableRule
+					<BoutonDeDocumentation
 						dottedName={DOTTEDNAME_ACRE}
 						title={t(
 							'pages.assistants.choix-statut.modifier-options.acre.info-title',
@@ -188,7 +188,7 @@ export default function ModifierOptions() {
 						'pages.assistants.choix-statut.modifier-options.imposition.versement-libératoire.title',
 						'Versement libératoire (pour AE)'
 					)}{' '}
-					<ExplicableRule
+					<BoutonDeDocumentation
 						dottedName={DOTTEDNAME_AUTOENTREPRENEUR_VERSEMENT_LIBERATOIRE}
 					/>
 				</H5>

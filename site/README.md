@@ -100,12 +100,17 @@ _À noter : une migration vers `nextJS` est en cours._
 
 ### Comment ajouter un nouveau simulateur ?
 
+Premier choix à faire : un simulateur tient sur une seule page. Un outil avec un parcours sur plusieurs pages est un **assistant**, et son dossier va dans `site/source/pages/assistants/` — il n'est pas encore extrait de la couche de routage. **[Voir un exemple](./source/pages/assistants/choix-du-statut)**
+
 Pour ajouter un nouveau simulateur, il faut :
 
--   Créer un nouveau dossier dans `site/source/pages/simulateurs/` (ou `/assistant` si il s'agit d'un outil avec un parcours sur plusieurs pages).
--   Créer un fichier `config.tsx` dans ce dossier, qui contient informations reliées au simulateur (nom, description, icône, etc.). Le type est [PageConfig](./source/pages/simulateurs/_configs/types.ts). **[Voir un exemple](./source/pages/simulateurs/salarié/config.ts)**
--   Créer la config de simulation dans le fichier `simulationConfig.ts`. Cette dernière contient la situation Publicodes et les paramètres pour configurer le simulateur. **[Voir un exemple](./source/pages/simulateurs/salarié/simulationConfig.ts)**
+-   Créer un nouveau dossier dans `site/source/simulateurs/`, qui contient le simulateur lui-même, indépendamment du routage : il est ainsi utilisable par Vite comme par Next. **[Voir un exemple](./source/simulateurs/salarié)**
+-   Créer un fichier `metadata.ts` dans ce dossier, qui contient les informations reliées au simulateur (nom, description, icône, etc.). Le type est [PageMetadata](./source/domaine/PageMetadata.ts). **[Voir un exemple](./source/simulateurs/salarié/metadata.ts)**
+-   Créer la config de simulation dans le fichier `simulationConfig.ts`. Cette dernière contient la situation Publicodes et les paramètres pour configurer le simulateur. **[Voir un exemple](./source/simulateurs/salarié/simulationConfig.ts)**
+-   Exposer le composant du simulateur dans l'`index.ts` de ce dossier : c'est l'API publique du module, le reste en est privé (voir l'[ADR sur les frontières de modules](../adr/ADR-2025-05-29-module-boundaries.md)). L'`index.ts` n'exporte **que** le composant : les données pures (`metadata.ts`, `opengraph.ts`, `simulationConfig.ts`) s'importent par leur propre chemin, sinon un consommateur qui ne veut qu'une métadonnée charge tout le simulateur — ce qui casse le build `build:simulator-data`.
+-   Déclarer la route Vite dans `site/source/pages/simulateurs/index.tsx`, et la route Next dans `site/app/`.
 -   Ajouter le simulateur sur la page /simulateurs-et-assistants, dans le fichier `site/source/pages/simulateurs-et-assistants/index.tsx`
+-   Ajouter le simulateur sur la page d'accueil Next, dans le fichier `site/app/(main)/page.tsx` : contrairement à l'accueil Vite, qui ne met en avant que quelques simulateurs, elle les liste tous.
 -   Ajouter une route pour le simulateur dans le fichier `sitePaths`, avec la version anglaise également.
 
 ### Redirections

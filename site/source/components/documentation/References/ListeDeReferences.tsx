@@ -1,3 +1,5 @@
+'use client'
+
 import { Li, Ul } from '@/design-system'
 import { Références } from '@/domaine/documentation/References'
 

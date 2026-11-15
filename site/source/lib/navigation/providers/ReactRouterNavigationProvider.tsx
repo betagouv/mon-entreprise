@@ -74,6 +74,7 @@ export function ReactRouterNavigationProvider({ children }: Props) {
 			navigate: (to, options) => rrNavigate(to, options),
 			currentPath: location.pathname,
 			searchParams,
+			searchParamsKnown: true,
 			setSearchParams,
 			locationHash: location.hash,
 			navigationType,

@@ -21,7 +21,7 @@ import { enregistreLesRéponsesAuxQuestions } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
-import { ExplicableRule } from './conversation/Explicable'
+import { BoutonDeDocumentation } from './documentation/publicodes'
 import { Condition } from './EngineValue/Condition'
 import { WhenApplicable } from './EngineValue/WhenApplicable'
 import { SimulationGoal } from './Simulation'
@@ -198,7 +198,7 @@ function ActivitéMixte() {
 						Activité mixte
 					</Switch>
 				</Trans>
-				<ExplicableRule dottedName={rule.dottedName} />
+				<BoutonDeDocumentation dottedName={rule.dottedName} />
 			</StyledActivitéMixteContainer>
 		</div>
 	)

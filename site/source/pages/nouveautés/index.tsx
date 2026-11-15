@@ -19,8 +19,8 @@ import {
 	typography,
 } from '@/design-system'
 import { useFetchData } from '@/hooks/useFetchData'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 const { Body, H1, Link } = typography
 

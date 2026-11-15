@@ -1,9 +1,9 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Page404 } from '@/components/Page404'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import Page404 from '@/pages/404'
-import { useSitePaths } from '@/sitePaths'
 
 import ChoixDuStatut from './choix-du-statut'
 import ChargesSocialesIndépendant from './declaration-charges-sociales-independant'

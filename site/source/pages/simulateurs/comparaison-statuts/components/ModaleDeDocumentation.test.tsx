@@ -11,7 +11,7 @@ import {
 	ModèleComparable,
 	ModèleTravailleurIndépendant,
 } from '@/contextes/comparateur'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { TestProvider } from '@/test/TestProvider'
 
 import { ModaleDeDocumentation } from './ModaleDeDocumentation'

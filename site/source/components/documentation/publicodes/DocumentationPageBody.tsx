@@ -21,9 +21,9 @@ import {
 } from '@/design-system'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
-import { useSitePaths } from '@/sitePaths'
 
 import DocumentationAccordion from './DocumentationAccordion'
 import { RéférencesPublicodes } from './ReferencesPublicodes'

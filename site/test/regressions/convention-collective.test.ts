@@ -1,7 +1,7 @@
 import rules from 'modele-social'
 import { it } from 'vitest'
 
-import { configSalarié } from '@/pages/simulateurs/salarié/simulationConfig'
+import { configSalarié } from '@/simulateurs/salarié/simulationConfig'
 import { engineFactory } from '@/utils/publicodes/engineFactory'
 
 import employeeSituations from './convention-collective.yaml'

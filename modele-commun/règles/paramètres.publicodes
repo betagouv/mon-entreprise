@@ -15,7 +15,17 @@ paramètres . impôt . revenu d'activité:
     barème standard et auquel appliquer un abattement forfaitaire de 10 % pour les
     frais professionnels.
 
-    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l'IS.
+    Il est à renseigner pour les salariés, assimilés salariés et dirigeants à l’IS.
+  par défaut: 0 €/an
+paramètres . impôt . dividendes imposables:
+  description: |
+    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le revenu
+    avec le barème standard.
+    Il s’agit du montant des dividendes après abattement de 40 % et diminué de la CSG
+    déductible.
+
+    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes soumis à
+    l’impôt sur le revenu.
   par défaut: 0 €/an
 
 paramètres . impôt . taux neutre applicable:
