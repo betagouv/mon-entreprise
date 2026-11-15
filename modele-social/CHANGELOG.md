@@ -24,6 +24,7 @@
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 - Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
+- Corrige l'année d'exécution du contrat d'apprentissage (`salarié . contrat . apprentissage . ancienneté`), qui changeait un jour trop tôt (deux avec un 29 février)
 
 ## 11.1.0
 
