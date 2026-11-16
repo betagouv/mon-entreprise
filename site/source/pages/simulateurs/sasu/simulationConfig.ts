@@ -10,7 +10,7 @@ export const configSASU: PublicodesSimulationConfig = {
 	],
 	objectifs: [
 		'assimilé salarié . dividendes',
-		'assimilé salarié . rémunération . impôt',
+		'assimilé salarié . dividendes . imposition',
 		'assimilé salarié . rémunération . impôt . avec dividendes',
 		'assimilé salarié . cotisations . avec dividendes',
 	],
@@ -31,6 +31,10 @@ export const configSASU: PublicodesSimulationConfig = {
 			{
 				label: 'Impôt sur le revenu',
 				dottedName: 'impôt . méthode de calcul',
+			},
+			{
+				label: 'Imposition des dividendes',
+				dottedName: 'assimilé salarié . dividendes . imposition',
 			},
 		],
 		'non prioritaires': [
