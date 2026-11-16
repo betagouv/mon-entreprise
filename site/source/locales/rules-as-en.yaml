@@ -1684,23 +1684,35 @@ assimilé salarié . rémunération . salaire brut:
   titre.fr: salaire brut
 assimilé salarié . rémunération . totale:
   description.en: >
-    [automatic] This is how much the company spends on executive remuneration.
+    [automatic] This is the total amount the company spends on the executive’s
+    compensation and
 
-    This "super-gross" remuneration includes all social security contributions
-    payable.
+    the dividends paid to them.
 
-    It can also be considered as the monetary value of the executive's work.
+    This “super-gross” compensation includes all social security contributions
+    due.
+
+    It can also be viewed as the monetary value of the executive’s work.
   description.fr: >
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant
+    et
+
+    les dividendes qui lui sont versés.
 
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à
     payer.
 
     On peut aussi considérer que c’est la valeur monétaire du travail du
     dirigeant.
-  résumé.en: "[automatic] Total paid by the company for the executive's
-    remuneration, including contributions"
-  résumé.fr: Total payé par l'entreprise pour la rémunération du dirigeant,
+  résumé.en: >
+    [automatic] Total amount paid by the company for the executive's
+    compensation and dividends,
+
+    including contributions and other payments
+  résumé.fr: >
+    Total payé par l'entreprise pour la rémunération du dirigeant et ses
+    dividendes,
+
     cotisations et contributions incluses
   titre.en: '[automatic] Total compensation'
   titre.fr: Rémunération totale

@@ -26,7 +26,10 @@ indépendant . rémunération . brute:
           - cotisations et contributions . avec dividendes
         par défaut:
           variations:
-            - si: dividendes > 0 €/an
+            - si:
+                toutes ces conditions:
+                  - dividendes > 0 €/an
+                  - est non défini: entreprise . chiffre d'affaires
               alors: 0 €/an
             - sinon: entreprise . chiffre d'affaires - entreprise . charges
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
