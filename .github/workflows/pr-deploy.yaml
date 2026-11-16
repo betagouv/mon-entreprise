@@ -105,17 +105,29 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - langue: fr
+            site: mon-entreprise
+          - langue: en
+            site: mycompanyinfrance
     concurrency:
-      group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}
+      group: review-app-clevercloud-${{ needs.deploy-context.outputs.pr_number }}-${{ matrix.langue }}
       queue: max
       cancel-in-progress: false
     outputs:
-      url: ${{ steps.deploy.outputs.url }}
+      url_fr: ${{ steps.deploy.outputs.url_fr }}
+      url_en: ${{ steps.deploy.outputs.url_en }}
     env:
       CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
       CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
       CLEVER_ORGA_ID: ${{ secrets.CLEVER_ORGA_ID }}
-      APP_NAME: mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}
+      LANGUE: ${{ matrix.langue }}
+      APP_NAME: ${{ matrix.site }}-pr-${{ needs.deploy-context.outputs.pr_number }}
+      FR_URL: https://mon-entreprise-pr-${{ needs.deploy-context.outputs.pr_number }}.cleverapps.io
+      EN_URL: https://mycompanyinfrance-pr-${{ needs.deploy-context.outputs.pr_number }}.cleverapps.io
     steps:
       # Cette vérification doit rester un step de ce job : c'est lui qui porte le groupe de
       # concurrence, donc elle lit l'état de la PR après l'attente dans la file. Remontée dans un
@@ -170,11 +182,11 @@ jobs:
         working-directory: pr
         run: |
           git switch -c "$APP_NAME"
-          clever env import < "$GITHUB_WORKSPACE/clevercloud/next-fr.env"
-          clever env set NEXT_PUBLIC_FR_BASE_URL "https://$APP_NAME.cleverapps.io"
-          clever env rm NEXT_PUBLIC_EN_BASE_URL
+          clever env import < "$GITHUB_WORKSPACE/clevercloud/next-$LANGUE.env"
+          clever env set NEXT_PUBLIC_FR_BASE_URL "$FR_URL"
+          clever env set NEXT_PUBLIC_EN_BASE_URL "$EN_URL"
           clever deploy --force --same-commit-policy rebuild
-          echo "url=https://$APP_NAME.cleverapps.io" >> "$GITHUB_OUTPUT"
+          echo "url_$LANGUE=https://$APP_NAME.cleverapps.io" >> "$GITHUB_OUTPUT"
 
   post-comment:
     needs: [deploy-preview, deploy-context, review-app-clevercloud]
@@ -201,4 +213,5 @@ jobs:
             - mycompanyinfrance : ${{ needs.deploy-context.outputs.en_url }}
             - storybook : ${{ needs.deploy-context.outputs.fr_url }}/dev/storybook/ ([version EN](${{ needs.deploy-context.outputs.en_url }}/dev/storybook/))
             - API : ${{ needs.deploy-context.outputs.fr_url }}/api/v1/doc/
-            ${{ needs.review-app-clevercloud.outputs.url && format('- Next.js sur Clever Cloud : {0}', needs.review-app-clevercloud.outputs.url) || '' }}
+            ${{ needs.review-app-clevercloud.outputs.url_fr && format('- Next.js sur Clever Cloud, en français : {0}', needs.review-app-clevercloud.outputs.url_fr) || '' }}
+            ${{ needs.review-app-clevercloud.outputs.url_en && format('- Next.js sur Clever Cloud, en anglais : {0}', needs.review-app-clevercloud.outputs.url_en) || '' }}
