@@ -1,7 +1,21 @@
 impôt . revenu:
 
+impôt . revenu . imposable:
+  titre: Revenu imposable
+  description: |
+    À ne pas confondre avec le revenu net imposable qui inclut des abattements,
+    le **revenu imposable** est la somme des revenus soumis à l’impôt :
+    - salaires imposables (avant l’abattement de 10 % pour frais professionnels),
+    - bénéfices imposables,
+    - dividendes imposables.
+  applicable si: méthode de calcul . taux personnalisé
+  somme:
+    - paramètres . impôt . revenu d'activité
+    - paramètres . impôt . bénéfices imposables
+    - dividendes . imposables
+
 impôt . revenu . d'activité abattu:
-  titre: Revenu d’activité après abattement 10%
+  titre: Revenu d’activité après abattement 10 %
   description: |
     Dans le cas général, l’impôt est calculé après l’application d’un abattement
     forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
