@@ -646,6 +646,7 @@ assimilé salarié . cotisations . prévoyances . santé:
   titre: complémentaire garanties frais de santé obligatoire
   cotisation:
     branche: maladie
+  non applicable si: rémunération . brute = 0 €/an
   avec:
     employeur: montant * taux employeur
 

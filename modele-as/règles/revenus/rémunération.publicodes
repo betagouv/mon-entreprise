@@ -3,16 +3,19 @@ assimilé salarié . rémunération:
 
 assimilé salarié . rémunération . totale:
   titre: Rémunération totale
-  résumé: Total payé par l'entreprise pour la rémunération du dirigeant, cotisations et contributions incluses
+  résumé: |
+    Total payé par l'entreprise pour la rémunération du dirigeant et ses dividendes,
+    cotisations et contributions incluses
   description: |
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant.
+    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant et
+    les dividendes qui lui sont versés.
     Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
     On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
   somme:
     - rémunération . brute
-    - dividendes
     - cotisations . employeur
     - régimes spécifiques . taxe sur les salaires
+    - dividendes
   unité: €/an
   plancher: 0€/an
 
@@ -24,9 +27,16 @@ assimilé salarié . rémunération . brute:
     à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
     au remboursement de la dette sociale (CRDS).
   unité: €/mois
-  somme:
-    - salaire brut
-    - avantages en nature . montant
+  variations:
+    - si:
+        toutes ces conditions:
+          - dividendes > 0 €/an
+          - est non défini: salaire brut
+      alors: 0 €/an
+    - sinon:
+        somme:
+          - salaire brut
+          - avantages en nature . montant
 
 assimilé salarié . rémunération . salaire brut:
   unité: €/mois
