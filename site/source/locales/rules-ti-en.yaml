@@ -1541,7 +1541,7 @@ impôt . revenu . d'activité abattu:
     forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
     *frais réels*, qui viendront remplacer ce forfait par défaut.
   titre.en: '[automatic] Income from employment after a 10% deduction'
-  titre.fr: Revenu d’activité après abattement 10%
+  titre.fr: Revenu d’activité après abattement 10 %
 impôt . revenu . fiscal de référence:
   description.en: |
     [automatic] The **taxable income base** is the net taxable income to which
@@ -1553,6 +1553,31 @@ impôt . revenu . fiscal de référence:
     40 % sur les dividendes.
   titre.en: '[automatic] Taxable Income'
   titre.fr: Revenu fiscal de référence
+impôt . revenu . imposable:
+  description.en: >
+    [automatic] Not to be confused with net taxable income, which includes
+    deductions,
+
+    **taxable income** is the sum of all income subject to tax:
+
+    - taxable wages (before the 10% deduction for business expenses),
+
+    - taxable profits,
+
+    - taxable dividends.
+  description.fr: >
+    À ne pas confondre avec le revenu net imposable qui inclut des abattements,
+
+    le **revenu imposable** est la somme des revenus soumis à l’impôt :
+
+    - salaires imposables (avant l’abattement de 10 % pour frais
+    professionnels),
+
+    - bénéfices imposables,
+
+    - dividendes imposables.
+  titre.en: '[automatic] Taxable income'
+  titre.fr: Revenu imposable
 impôt . revenu . net global:
   description.en: >
     [automatic] **Total net income** is total gross income after deducting
