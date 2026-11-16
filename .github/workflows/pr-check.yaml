@@ -71,6 +71,8 @@ jobs:
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install
+        env:
+          GITHUB_API_SECRET: ${{ secrets.GITHUB_TOKEN }}
       - name: Build app
         run: yarn workspace site build
         env:
