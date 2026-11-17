@@ -143,13 +143,13 @@ export const configSalarié: PublicodesSimulationConfig = {
 			'entreprise . TVA',
 			// ## Association
 			'entreprise . association non lucrative',
-			// ## JEI
-			'salarié . cotisations . exonérations . JEI',
 			// ## Lodeom (si DROM)
 			"salarié . cotisations . exonérations . lodeom . secteurs d'activité éligibles",
 			'salarié . cotisations . exonérations . lodeom . zone un . barème innovation et croissance',
 			'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité renforcée',
 			'salarié . cotisations . exonérations . lodeom . zone deux . barème renforcé',
+			// ## JEI
+			'salarié . cotisations . exonérations . JEI',
 			// ## RGDU
 			'salarié . cotisations . exonérations . RGDU . caisse de congés payés',
 			// ## Dispositif d’exonération (si plusieurs sont éligibles)

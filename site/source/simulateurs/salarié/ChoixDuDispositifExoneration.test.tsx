@@ -181,16 +181,69 @@ const optionsDuDispositif = async (utilisateur: Utilisateur) => {
 	return options
 }
 
+const SUIVANT_OU_PASSER = { name: /^(Suivant|Passer),/ }
+
+const zoneDeLaQuestion = () =>
+	screen
+		.queryAllByRole('status')
+		.find((zone) => zone.textContent && !/^Étape/.test(zone.textContent))
+
+const répondreAuxQuestionsDansLOrdre = async (
+	utilisateur: Utilisateur,
+	réponses: Array<[RegExp, string]>
+) => {
+	const questionsPosées: string[] = []
+	let zone = zoneDeLaQuestion()
+	while (zone && screen.queryAllByRole('button', SUIVANT_OU_PASSER).length) {
+		const question = zone.textContent ?? ''
+		questionsPosées.push(question)
+		const réponse = réponses.find(([intitulé]) => intitulé.test(question))
+		if (réponse) {
+			await utilisateur.click(
+				within(zone).getByRole('radio', { name: réponse[1] })
+			)
+		}
+		await utilisateur.click(screen.getAllByRole('button', SUIVANT_OU_PASSER)[0])
+		await waitFor(
+			() => expect(zoneDeLaQuestion()?.textContent).not.toBe(question),
+			DÉLAI
+		)
+		zone = zoneDeLaQuestion()
+	}
+
+	return questionsPosées
+}
+
+const QUESTION_JEI = /Jeune Entreprise Innovante/
+const QUESTION_DU_CHOIX = /Quel dispositif d’exonération/
+const QUESTION_DU_LODEOM =
+	/^Êtes-vous éligible au barème|secteurs éligibles Lodeom/
+
+const rangDe = (questions: string[], intitulé: RegExp) =>
+	questions.findIndex((question) => intitulé.test(question))
+
 describe('Choix du dispositif d’exonération dans le simulateur salarié', () => {
 	beforeEach(() => {
 		vi.useFakeTimers({ toFake: ['Date'] })
 		vi.setSystemTime(new Date(2026, 10, 9))
+		vi.stubGlobal(
+			'Worker',
+			class {
+				postMessage() {}
+				terminate() {}
+				addEventListener() {}
+				removeEventListener() {}
+			}
+		)
 		const vraiFetch = globalThis.fetch
 		vi.stubGlobal('fetch', (adresse: string, options?: RequestInit) => {
 			if (String(adresse).startsWith('https://geo.api.gouv.fr/communes')) {
 				return Promise.resolve(apiDesCommunes(String(adresse)))
 			}
-			if (String(adresse).includes('versement-mobilit')) {
+			if (
+				String(adresse).includes('versement-mobilit') ||
+				String(adresse).includes('taux-collectifs')
+			) {
 				return Promise.resolve(Response.json({}))
 			}
 
@@ -259,6 +312,50 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 				await attendreLeCoûtTotal('10 035 €')
 
 				expect(mention()).toBeUndefined()
+			},
+			DURÉE_MAXIMALE
+		)
+	})
+
+	describe('Quand l’usager répond aux questions dans l’ordre', () => {
+		it(
+			'pose les questions du Lodeom avant celle de la JEI, puis demande quel dispositif appliquer',
+			async () => {
+				const utilisateur = await simuler('2000', 'Pointe-à-Pitre')
+
+				const questions = await répondreAuxQuestionsDansLOrdre(utilisateur, [
+					[QUESTION_JEI, 'Oui'],
+				])
+
+				const rangDeLaJEI = rangDe(questions, QUESTION_JEI)
+				expect(
+					rangDe(questions, /barème d’innovation et croissance/)
+				).toBeGreaterThan(-1)
+				expect(
+					questions
+						.slice(rangDeLaJEI + 1)
+						.filter((question) => QUESTION_DU_LODEOM.test(question))
+				).toStrictEqual([])
+				expect(rangDe(questions, QUESTION_DU_CHOIX)).toBeGreaterThan(
+					rangDeLaJEI
+				)
+			},
+			DURÉE_MAXIMALE
+		)
+
+		it(
+			'demande si l’entreprise relève d’un secteur éligible au Lodeom avant de demander la JEI, quand l’effectif dépasse 10 salariés',
+			async () => {
+				const utilisateur = await simuler('2000', 'Pointe-à-Pitre')
+
+				const questions = await répondreAuxQuestionsDansLOrdre(utilisateur, [
+					[/effectif/, 'Entre 11 et 19'],
+					[QUESTION_JEI, 'Oui'],
+				])
+
+				const rangDuSecteur = rangDe(questions, /secteurs éligibles Lodeom/)
+				expect(rangDuSecteur).toBeGreaterThan(-1)
+				expect(rangDuSecteur).toBeLessThan(rangDe(questions, QUESTION_JEI))
 			},
 			DURÉE_MAXIMALE
 		)
