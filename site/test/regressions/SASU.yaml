@@ -33,3 +33,28 @@ Acre:
 JEI:
   - assimilé salarié . rémunération . totale: 4000 €/mois
     assimilé salarié . exonérations . JEI: oui
+
+Dividendes:
+  - assimilé salarié . rémunération . totale: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+  - assimilé salarié . rémunération . totale: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+    assimilé salarié . dividendes . imposition: "'barème progressif'"
+  - assimilé salarié . rémunération . brute: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+  - assimilé salarié . rémunération . brute: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+    assimilé salarié . dividendes . imposition: "'barème progressif'"
+  - assimilé salarié . rémunération . nette . avec dividendes: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+  - assimilé salarié . rémunération . nette . avec dividendes: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+    assimilé salarié . dividendes . imposition: "'barème progressif'"
+  - assimilé salarié . rémunération . nette . après impôt . avec dividendes: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+  - assimilé salarié . rémunération . nette . après impôt . avec dividendes: 50000 €/an
+    assimilé salarié . dividendes: 10000 €/an
+    assimilé salarié . dividendes . imposition: "'barème progressif'"
+  - assimilé salarié . dividendes: 10000 €/an
+  - assimilé salarié . dividendes: 10000 €/an
+    assimilé salarié . dividendes . imposition: "'barème progressif'"
