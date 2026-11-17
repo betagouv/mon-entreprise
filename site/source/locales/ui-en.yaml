@@ -2516,7 +2516,7 @@ pages:
       alt-image1: Net salary (received by the employee) is equal to Gross salary
         (stated in the employment contract) minus employee contributions
         (pension, social security contributions, etc.).
-      dispositif-exoneration: "including {{dispositif}} scheme: − <montant></montant>"
+      dispositif-exoneration: "Including {{dispositif}} scheme: − <montant></montant>"
       explications:
         répartition:
           cotisations: Contributions

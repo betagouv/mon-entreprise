@@ -39,7 +39,7 @@ export const DispositifExoneration = () => {
 					<Trans
 						i18nKey="pages.simulateurs.salarié.dispositif-exoneration"
 						defaults={
-							'dont dispositif {{dispositif}}\u00a0: −\u00a0<montant></montant>'
+							'Dont dispositif {{dispositif}}\u00a0: −\u00a0<montant></montant>'
 						}
 						values={{ dispositif: LIBELLÉS[dispositif] ?? dispositif }}
 						components={{
