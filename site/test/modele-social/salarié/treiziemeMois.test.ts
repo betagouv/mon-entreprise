@@ -36,22 +36,15 @@ describe('Prime de fin d’année ou de treizième mois', () => {
 		expect(montantMensuel() * 12).toBeCloseTo(2000)
 	})
 
-	it('est proportionnel à la durée du travail par rapport au salaire équivalent temps plein', () => {
+	it('vaut un mois de salaire brut et de primes d’activité à temps partiel, sans appliquer une seconde fois la quotité', () => {
 		engine.setSituation({
 			...situationAvecTreizièmeMois,
 			'salarié . contrat . temps de travail . temps partiel': 'oui',
 			'salarié . contrat . temps de travail . temps partiel . heures par semaine':
 				'28 heure/semaine',
+			'salarié . rémunération . primes . activité . base': '200 €/mois',
 		})
-		const salaireÉquivalentTempsPlein = engine.evaluate(
-			'salarié . contrat . salaire brut . équivalent temps plein'
-		).nodeValue as number
-		const quotité = engine.evaluate(
-			'salarié . contrat . temps de travail . quotité'
-		).nodeValue as number
 
-		expect(montantMensuel() * 12).toBeCloseTo(
-			(salaireÉquivalentTempsPlein * quotité) / 100
-		)
+		expect(montantMensuel() * 12).toBeCloseTo(2200)
 	})
 })
