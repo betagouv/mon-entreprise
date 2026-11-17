@@ -291,7 +291,7 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 				expect(texteDeLaMention()).toBe('Dont dispositif Lodéom : − 796 €')
 
 				expect(await optionsDuDispositif(utilisateur)).toStrictEqual([
-					'Exonération Lodeom',
+					'Exonération Lodéom',
 					'Réduction générale dégressive unique (RGDU)',
 				])
 
