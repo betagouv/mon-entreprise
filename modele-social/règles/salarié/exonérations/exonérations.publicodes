@@ -33,13 +33,13 @@ salarié . cotisations . exonérations:
 salarié . dispositif d'exonération:
   titre: dispositif d’exonération appliqué
   description: |
-    La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
+    La JEI, le Lodéom et la réduction générale dégressive unique (RGDU) ne se
     cumulent pas : un seul dispositif s’applique. Quand l’employeur est
     éligible à plusieurs, il choisit celui qu’il applique. Par défaut, c’est le
-    premier dispositif éligible dans l’ordre JEI, Lodeom, RGDU.
+    premier dispositif éligible dans l’ordre JEI, Lodéom, RGDU.
   références:
     La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
-    Exonération Lodeom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
+    Exonération Lodéom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
     Les jeunes entreprises innovantes (JEI) - Règles de non-cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-secteur-activite/jeunes-entreprises-innovantes.html#ancre-l-exoneration-jei-jeu-jec
   variations:
     - si: choix . JEI
@@ -81,7 +81,7 @@ salarié . dispositif d'exonération:
           applicable si: éligibilité . JEI
           valeur: choix = 'JEI'
         Lodeom:
-          titre: exonération Lodeom
+          titre: exonération Lodéom
           applicable si: éligibilité . Lodeom
           valeur: choix = 'Lodeom'
         RGDU:
@@ -101,7 +101,7 @@ salarié . dispositif d'exonération:
     éligibilité:
       description: |
         Les dispositifs d’exonération auxquels l’employeur a droit : la JEI s’il
-        l’a déclarée, le Lodeom si l’un de ses barèmes s’applique, et la RGDU
+        l’a déclarée, le Lodéom si l’un de ses barèmes s’applique, et la RGDU
         si la rémunération y ouvre droit.
       avec:
         JEI:
@@ -112,10 +112,13 @@ salarié . dispositif d'exonération:
           est applicable: salarié . cotisations . exonérations . RGDU
 
     JEI:
+      titre: JEI
       valeur: dispositif d'exonération = 'JEI'
     Lodeom:
+      titre: Lodéom
       valeur: dispositif d'exonération = 'Lodeom'
     RGDU:
+      titre: RGDU
       valeur: dispositif d'exonération = 'RGDU'
 
     montant:
@@ -132,7 +135,7 @@ salarié . dispositif d'exonération:
       titre: avantage du dispositif appliqué
       description: |
         Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
-        l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
+        l’exonération et, pour le Lodéom, l’économie due aux taux réduits de
         cotisations maladie et allocations familiales par rapport aux taux pleins.
 
         L’exonération comme les taux réduits sont déjà déduits du coût total

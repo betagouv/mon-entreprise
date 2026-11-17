@@ -13,8 +13,6 @@ import { MentionSousObjectif } from './MentionSousObjectif'
 const DISPOSITIF = "salarié . dispositif d'exonération" as DottedName
 const AVANTAGE = `${DISPOSITIF} . avantage` as DottedName
 
-const LIBELLÉS: Record<string, string> = { Lodeom: 'Lodéom' }
-
 export const DispositifExoneration = () => {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
@@ -41,7 +39,11 @@ export const DispositifExoneration = () => {
 						defaults={
 							'Dont dispositif {{dispositif}}\u00a0: −\u00a0<montant></montant>'
 						}
-						values={{ dispositif: LIBELLÉS[dispositif] ?? dispositif }}
+						values={{
+							dispositif: engine.getRule(
+								`${DISPOSITIF} . ${dispositif}` as DottedName
+							).title,
+						}}
 						components={{
 							montant: (
 								<Value
