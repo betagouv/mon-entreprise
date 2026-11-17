@@ -12,7 +12,7 @@ salarié . cotisations . exonérations:
       titre: part employeur
       description: >-
         À l'exception de la déduction heure supplémentaire, les dispositifs de
-        réduction de cotisations patronales sont mutuellement exclusif : seul
+        réduction de cotisations patronales sont mutuellement exclusifs : seul
         le dispositif appliqué est retenu.
       somme:
         - heures supplémentaires . employeur
@@ -34,9 +34,9 @@ salarié . dispositif d'exonération:
   titre: dispositif d’exonération appliqué
   description: |
     La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
-    cumulent pas : un seul s’applique. Quand l’employeur est éligible à
-    plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
-    dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
+    cumulent pas : un seul dispositif s’applique. Quand l’employeur est
+    éligible à plusieurs, il choisit celui qu’il applique. Par défaut, c’est le
+    premier dispositif éligible dans l’ordre JEI, Lodeom, RGDU.
   références:
     La réduction générale dégressive unique - Les règles de cumul: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-regles-de-cumul-
     Exonération Lodeom - Cumul avec d'autres dispositifs d'exonération: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/exonerations-zonees/exoneration-lodeom.html#ancre-cumul
@@ -135,9 +135,9 @@ salarié . dispositif d'exonération:
         l’exonération et, pour le Lodeom, l’économie due aux taux réduits de
         cotisations maladie et allocations familiales par rapport aux taux pleins.
 
-        Les taux réduits sont déjà pris en compte dans le calcul des cotisations :
-        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
-        seconde fois.
+        L’exonération comme les taux réduits sont déjà déduits du coût total
+        employeur : cet avantage sert à comparer les dispositifs, il ne s’en
+        déduit pas une seconde fois.
       somme:
         - montant
         - taux réduits
