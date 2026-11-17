@@ -11535,7 +11535,7 @@ salarié . cotisations . exonérations:
         account.
       description.fr: "À l'exception de la déduction heure supplémentaire, les
         dispositifs de réduction de cotisations patronales sont mutuellement
-        exclusif : seul le dispositif appliqué est retenu."
+        exclusifs : seul le dispositif appliqué est retenu."
       titre.en: "[automatic] employer's share"
       titre.fr: part employeur
     salarié:
@@ -13637,9 +13637,9 @@ salarié . dispositif d'exonération:
         and, for the Lodeom, the savings from the reduced health insurance and
         family allowance contribution rates compared with the full rates.
 
-        The reduced rates are already included in the contribution calculation:
-        this benefit is used to compare the schemes and is not deducted a second
-        time.
+        The exemption and the reduced rates are already deducted from the total
+        employer cost: this benefit is used to compare the schemes and is not
+        deducted a second time.
       description.fr: >
         Ce que le dispositif appliqué fait gagner à l’employeur : le montant de
 
@@ -13649,12 +13649,11 @@ salarié . dispositif d'exonération:
         pleins.
 
 
-        Les taux réduits sont déjà pris en compte dans le calcul des cotisations
-        :
+        L’exonération comme les taux réduits sont déjà déduits du coût total
 
-        cet avantage sert à comparer les dispositifs, il ne s’en déduit pas une
+        employeur : cet avantage sert à comparer les dispositifs, il ne s’en
 
-        seconde fois.
+        déduit pas une seconde fois.
       titre.en: benefit of the applied scheme
       titre.fr: avantage du dispositif appliqué
     choix:
@@ -13711,14 +13710,14 @@ salarié . dispositif d'exonération:
       titre.fr: éligibilité
   description.en: |
     The JEI, the Lodeom and the single general degressive reduction (RGDU)
-    cannot be combined: only one applies. When the employer is eligible for
-    several, they choose the one they apply. Otherwise, the first eligible
+    cannot be combined: only one scheme applies. When the employer is eligible
+    for several, they choose the one they apply. By default, the first eligible
     scheme applies, in the order JEI, Lodeom, RGDU.
   description.fr: |
     La JEI, le Lodeom et la réduction générale dégressive unique (RGDU) ne se
-    cumulent pas : un seul s’applique. Quand l’employeur est éligible à
-    plusieurs, il choisit celui qu’il applique. À défaut, c’est le premier
-    dispositif éligible, dans l’ordre JEI, Lodeom, RGDU.
+    cumulent pas : un seul dispositif s’applique. Quand l’employeur est
+    éligible à plusieurs, il choisit celui qu’il applique. Par défaut, c’est le
+    premier dispositif éligible dans l’ordre JEI, Lodeom, RGDU.
   titre.en: exemption scheme applied
   titre.fr: dispositif d’exonération appliqué
 salarié . mois incomplet:
