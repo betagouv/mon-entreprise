@@ -114,8 +114,9 @@ describe('BoutonDeDocumentation', () => {
 		const button = screen.getByRole('button')
 		await user.click(button)
 
-		await waitFor(() => {
-			expect(screen.queryByRole('link')).not.toBeInTheDocument()
-		})
+		expect(
+			await screen.findByText('Description de la règle')
+		).toBeInTheDocument()
+		expect(screen.queryByRole('link')).not.toBeInTheDocument()
 	})
 })
