@@ -13,6 +13,8 @@ import { MentionSousObjectif } from './MentionSousObjectif'
 const DISPOSITIF = "salarié . dispositif d'exonération" as DottedName
 const AVANTAGE = `${DISPOSITIF} . avantage` as DottedName
 
+const LIBELLÉS: Record<string, string> = { Lodeom: 'Lodéom' }
+
 export const DispositifExoneration = () => {
 	const engine = useEngine()
 	const targetUnit = useSelector(targetUnitSelector)
@@ -37,9 +39,9 @@ export const DispositifExoneration = () => {
 					<Trans
 						i18nKey="pages.simulateurs.salarié.dispositif-exoneration"
 						defaults={
-							'Ce montant prend en compte l’économie réalisée grâce au dispositif {{dispositif}}\u00a0: <montant></montant>'
+							'dont dispositif {{dispositif}}\u00a0: −\u00a0<montant></montant>'
 						}
-						values={{ dispositif }}
+						values={{ dispositif: LIBELLÉS[dispositif] ?? dispositif }}
 						components={{
 							montant: (
 								<Value
