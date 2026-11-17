@@ -5,15 +5,17 @@ entreprise . salariés:
 entreprise . salariés . effectif:
   unité: employé
   variations:
-    - si: seuil = 'moins de 5'
-      alors: 4 employé
-    - si: seuil = 'moins de 50'
+    - si: seuil = 'moins de 11'
+      alors: 10 employé
+    - si: seuil = 'entre 11 et 19'
+      alors: 19 employé
+    - si: seuil = 'entre 20 et 49'
       alors: 49 employé
-    - si: seuil = 'moins de 250'
+    - si: seuil = 'entre 50 et 249'
       alors: 249 employé
-    - si: seuil = 'moins de 2000'
-      alors: 251 employé
-    - si: seuil = '2000 ou plus'
+    - si: seuil = 'entre 250 et 1999'
+      alors: 1999 employé
+    - si: seuil = 'plus de 2000'
       alors: 2000 employé
 
   avec:
@@ -24,24 +26,18 @@ entreprise . salariés . effectif:
         De nombreuses cotisations patronales varient selon l’effectif de
         l’entreprise.
 
-        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il est atteint ou dépassé pendant 5 années civiles consécutives.
+        Le franchissement d’un seuil à la hausse n’est pris en compte que s’il
+        est atteint ou dépassé pendant 5 années civiles consécutives.
       une possibilité:
-        - moins de 5
-        - moins de 50
-        - moins de 250
-        - moins de 2000
-        - plus de 2000
-      par défaut: "'moins de 5'"
-      avec:
-        moins de 5:
-        moins de 50:
-          titre: entre 20 et 49
-        moins de 250:
-          titre: entre 150 et 249
-        moins de 2000:
-          titre: entre 250 et 1 999
-        plus de 2000:
-          titre: 2 000 et plus
+        - moins de 11:
+        - entre 11 et 19:
+        - entre 20 et 49:
+        - entre 50 et 249:
+        - entre 250 et 1999:
+            titre: entre 250 et 1 999
+        - plus de 2000:
+            titre: 2 000 ou plus
+      par défaut: "'moins de 11'"
 
 entreprise . salariés . ratio alternants:
   question:
