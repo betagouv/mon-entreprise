@@ -188,13 +188,27 @@ const zoneDeLaQuestion = () =>
 		.queryAllByRole('status')
 		.find((zone) => zone.textContent && !/^Étape/.test(zone.textContent))
 
+const simulationTerminée = () =>
+	screen.queryByRole('heading', { name: /Vous avez complété cette simulation/ })
+
+const questionSuivante = async (questionPrécédente?: string) => {
+	await waitFor(() => {
+		const zone = zoneDeLaQuestion()
+		expect(
+			simulationTerminée() || (zone && zone.textContent !== questionPrécédente)
+		).toBeTruthy()
+	}, DÉLAI)
+
+	return simulationTerminée() ? undefined : zoneDeLaQuestion()
+}
+
 const répondreAuxQuestionsDansLOrdre = async (
 	utilisateur: Utilisateur,
 	réponses: Array<[RegExp, string]>
 ) => {
 	const questionsPosées: string[] = []
-	let zone = zoneDeLaQuestion()
-	while (zone && screen.queryAllByRole('button', SUIVANT_OU_PASSER).length) {
+	let zone = await questionSuivante()
+	while (zone) {
 		const question = zone.textContent ?? ''
 		questionsPosées.push(question)
 		const réponse = réponses.find(([intitulé]) => intitulé.test(question))
@@ -203,12 +217,10 @@ const répondreAuxQuestionsDansLOrdre = async (
 				within(zone).getByRole('radio', { name: réponse[1] })
 			)
 		}
-		await utilisateur.click(screen.getAllByRole('button', SUIVANT_OU_PASSER)[0])
-		await waitFor(
-			() => expect(zoneDeLaQuestion()?.textContent).not.toBe(question),
-			DÉLAI
+		await utilisateur.click(
+			(await screen.findAllByRole('button', SUIVANT_OU_PASSER, DÉLAI))[0]
 		)
-		zone = zoneDeLaQuestion()
+		zone = await questionSuivante(question)
 	}
 
 	return questionsPosées
@@ -327,17 +339,19 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 					[QUESTION_JEI, 'Oui'],
 				])
 
-				const rangDeLaJEI = rangDe(questions, QUESTION_JEI)
+				const questionsAprèsLaJEI = questions.slice(
+					rangDe(questions, QUESTION_JEI) + 1
+				)
 				expect(
 					rangDe(questions, /barème d’innovation et croissance/)
 				).toBeGreaterThan(-1)
 				expect(
-					questions
-						.slice(rangDeLaJEI + 1)
-						.filter((question) => QUESTION_DU_LODEOM.test(question))
+					questionsAprèsLaJEI.filter((question) =>
+						QUESTION_DU_LODEOM.test(question)
+					)
 				).toStrictEqual([])
-				expect(rangDe(questions, QUESTION_DU_CHOIX)).toBeGreaterThan(
-					rangDeLaJEI
+				expect(questionsAprèsLaJEI).toContainEqual(
+					expect.stringMatching(QUESTION_DU_CHOIX)
 				)
 			},
 			DURÉE_MAXIMALE
