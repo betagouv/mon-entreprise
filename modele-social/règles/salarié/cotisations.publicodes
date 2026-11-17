@@ -803,8 +803,7 @@ salarié . cotisations . maladie:
       titre: part employeur
 
       avec:
-        assiette:
-          valeur: cotisations . assiette
+        assiette: cotisations . assiette
 
         taux:
           variations:
