@@ -43,6 +43,7 @@
 		"build",
 		"test/**/*.ts",
 		"vite.config.ts",
+		"next.config.ts",
 		"cypress.config.ts",
 		"vite-iframe-script.config.ts",
 		"build/vite-build-simulation-data.config.ts",
