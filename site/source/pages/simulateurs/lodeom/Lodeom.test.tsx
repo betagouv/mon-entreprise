@@ -131,4 +131,26 @@ describe('Simulateur Lodeom', () => {
 			within(réponses).queryByRole('button', { name: 'Modifier JEI' })
 		).not.toBeInTheDocument()
 	}, 120000)
+
+	it.each([
+		/^Quelle est votre localisation\s\?/,
+		/^Quel barème envisagez-vous\s\?/,
+		/^Quel type de régularisation souhaitez-vous\s\?/,
+		/^Quel est l’effectif de votre entreprise\s\?/,
+	])(
+		'regroupe les choix de la question « %s » dans un fieldset nommé par sa legend',
+		async (question) => {
+			await afficheLeSimulateurEnZoneUn()
+
+			const groupe = await screen.findByRole(
+				'group',
+				{ name: question },
+				{ timeout: 30000 }
+			)
+
+			expect(groupe.tagName).toBe('FIELDSET')
+			expect(within(groupe).getAllByRole('radio').length).toBeGreaterThan(1)
+		},
+		120000
+	)
 })
