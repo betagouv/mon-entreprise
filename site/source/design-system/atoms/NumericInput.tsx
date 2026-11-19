@@ -159,7 +159,7 @@ export const NumericInput = (props: NumericInputProps) => {
 }
 
 const StyledNumericInputContainer = styled(StyledContainer)`
-	max-width: 300px;
+	max-width: ${({ theme }) => theme.fieldMaxWidth};
 `
 
 const StyledNumberInput = styled(StyledInput)`
