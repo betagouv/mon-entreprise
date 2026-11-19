@@ -4,95 +4,9 @@ impôt . barème standard:
     Impôt sur le revenu - Calcul de l'impôt: https://www.service-public.fr/particuliers/vosdroits/F34328
     Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot
 
-impôt . barème standard . revenu d'activité abattu:
-  description: |
-    Dans le cas général, l’impôt est calculé après l’application d’un abattement
-    forfaitaire fixe. Chacun peut néanmoins opter pour la déclaration de ses
-    *frais réels*, qui viendront remplacer ce forfait par défaut.
-  valeur: paramètres . impôt . revenu d'activité
-  abattement:
-    valeur: 10% * paramètres . impôt . revenu d'activité
-    plafond:
-      variations:
-        - si: date >= 01/2026
-          alors: 14555 €/an
-        - si: date >= 01/2025
-          alors: 14426 €/an
-        - si: date >= 01/2024
-          alors: 14171 €/an
-        - si: date >= 01/2023
-          alors: 13522 €/an
-        - sinon: 12829 €/an
-    plancher:
-      variations:
-        - si: date >= 01/2026
-          alors: 509 €/an
-        - si: date >= 01/2025
-          alors: 504 €/an
-        - si: date >= 01/2024
-          alors: 495 €/an
-        - si: date >= 01/2023
-          alors: 472 €/an
-        - sinon: 448 €/an
-  références:
-    Frais professionnels - forfait ou frais réels: https://www.service-public.fr/particuliers/vosdroits/F1989
-    Code des impôts - Article 83: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000037985819/
-
-impôt . barème standard . revenu brut global:
-  description: |
-    Le **revenu brut global** est la somme de tous les revenus, après leur abattement :
-    - salaire net imposable,
-    - bénéfices (BIC et BNC),
-    - dividendes.
-
-    Nos simulateurs n’intègrent pas encore tous les revenus à intégrer :
-    - pensions et retraites,
-    - bénéfices agricoles (BA),
-    - revenus fonciers,
-    - autres revenus mobiliers et plus-values sur valeurs mobilières,
-    - plus-values immobilières.
-  somme:
-    - variations:
-        - si:
-            une de ces conditions:
-              - paramètres . impôt . revenu d'activité
-              - paramètres . impôt . dividendes imposables
-          alors:
-            somme:
-              - revenu d'activité abattu
-              - paramètres . impôt . dividendes imposables
-        - sinon: paramètres . impôt . revenu imposable
-    - foyer fiscal . autres revenus imposables
-
-impôt . barème standard . revenu net global:
-  description: |
-    Le **revenu net global** est le revenu brut global après déduction de certaines
-    charges comme :
-    - les pensions alimentaires versées,
-    - les cotisations d’épargne-retraite,
-    - une partie de la CSG afférente aux revenus du patrimoine et aux produits de
-      placement.
-
-    Comme nos simulateurs n’intégrent pas ces charges, le revenu net global est ici
-    directement égal au revenu brut global.
-  valeur: revenu brut global
-
-impôt . barème standard . revenu net imposable:
-  description: |
-    Le **revenu net imposable** est le revenu net global après abattements spéciaux.
-
-    Vous pouvez bénéficier d’un abattement spécial si vous êtes dans l’une des 
-    conditions suivantes :
-    - vous avez 65 ans ou plus,
-    - vous êtes invalide,
-    - vous rattachez votre enfant marié, pacsé ou chargé de famille.
-
-    Ces abattements ne sont pas encore implémentés dans nos simulateurs.
-  valeur: revenu net global
-
 impôt . barème standard . quotient familial:
   unité: €/part/an
-  valeur: revenu net imposable / foyer fiscal . nombre de parts
+  valeur: revenu . net imposable / foyer fiscal . nombre de parts
   références:
     'Quotient familial et impôt sur le revenu : comment ça marche ?': https://www.economie.gouv.fr/particuliers/gerer-mon-impot-sur-le-revenu/quotient-familial-et-impot-sur-le-revenu-comment-ca#
 
@@ -229,7 +143,7 @@ impôt . barème standard . impôt brut . par part:
 
 impôt . barème standard . impôt brut . sans parts rattachées:
   barème:
-    assiette: revenu net imposable / foyer fiscal . nombre de parts . principales
+    assiette: revenu . net imposable / foyer fiscal . nombre de parts . principales
     tranches: *tranches
 
 impôt . barème standard . impôt net:
@@ -296,7 +210,7 @@ impôt . barème standard . CEHR:
       - si: foyer fiscal . situation de famille = 'couple'
         alors:
           barème:
-            assiette: paramètres . impôt . revenu imposable
+            assiette: revenu . fiscal de référence
             tranches:
               - taux: 0%
                 plafond: 500000 €/an
@@ -305,7 +219,7 @@ impôt . barème standard . CEHR:
               - taux: 4%
       - sinon:
           barème:
-            assiette: paramètres . impôt . revenu imposable
+            assiette: revenu . fiscal de référence
             tranches:
               - taux: 0%
                 plafond: 250000 €/an
@@ -316,10 +230,3 @@ impôt . barème standard . CEHR:
     contribution exceptionnelle sur les hauts revenus: https://www.service-public.fr/particuliers/vosdroits/F31130
     Article 223 sexies du Code général des impôts: https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000025049019&cidTexte=LEGITEXT000006069577
     Bofip.impots.gouv.fr: http://bofip.impots.gouv.fr/bofip/7804-PGP
-
-impôt . barème standard . taux effectif:
-  unité: '%'
-  variations:
-    - si: revenu net imposable = 0
-      alors: 0%
-    - sinon: impôt net / revenu net imposable

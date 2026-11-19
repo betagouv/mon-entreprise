@@ -69,17 +69,22 @@ export function SASUSimulation() {
 							dottedName="assimilé salarié . rémunération . brute"
 						/>
 						<SimulationGoal
+							editable
+							small
+							dottedName="assimilé salarié . dividendes"
+						/>
+						<SimulationGoal
 							editable={false}
 							small
-							dottedName="assimilé salarié . cotisations"
+							dottedName="assimilé salarié . cotisations . avec dividendes"
 						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . à payer avant impôt" />
+						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . avec dividendes" />
 						<SimulationGoal
 							small
 							editable={false}
-							dottedName="assimilé salarié . rémunération . impôt"
+							dottedName="assimilé salarié . rémunération . impôt . avec dividendes"
 						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt" />
+						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt . avec dividendes" />
 					</SimulationGoals>
 				</Simulation>
 			</SimulateurPageLayout>

@@ -9,18 +9,16 @@ impôt . montant:
   variations:
     - si: méthode de calcul . barème standard
       alors: barème standard . impôt net
-    - sinon:
+    - si: méthode de calcul . taux neutre
+      alors:
         produit:
-          - paramètres . impôt . revenu imposable
-          - taux d'imposition
-
-impôt . taux d'imposition:
-  formule:
-    variations:
-      - si: méthode de calcul . taux neutre
-        alors: taux neutre
-      - si: méthode de calcul . taux personnalisé
-        alors: taux personnalisé
+          - paramètres . impôt . revenu d'activité
+          - taux neutre
+    - si: méthode de calcul . taux personnalisé
+      alors:
+        produit:
+          - revenu . imposable
+          - taux personnalisé
 
 impôt . méthode de calcul:
   description: |

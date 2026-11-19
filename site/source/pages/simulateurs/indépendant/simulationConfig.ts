@@ -14,6 +14,7 @@ export const configIndépendant: PublicodesSimulationConfig = {
 		'indépendant . cotisations et contributions . avec dividendes',
 		'indépendant . cotisations et contributions . début activité',
 		'indépendant . rémunération . impôt',
+		'indépendant . dividendes . imposition',
 		'indépendant . rémunération . impôt . avec dividendes',
 		'protection sociale . retraite . base . trimestres',
 		'protection sociale . retraite . base . revenu cotisé',

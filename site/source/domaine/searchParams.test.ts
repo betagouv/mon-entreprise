@@ -187,7 +187,7 @@ describe('searchParams', () => {
 			expect(result['salarié . contrat . CDD . durée']).toEqual(undefined)
 		})
 
-		it('n’inclue pas les search params qui ne sont pas dans les règles fournies', () => {
+		it('n’inclut pas les search params qui ne sont pas dans les règles fournies', () => {
 			const rules = ['salarié . contrat'] as Names[]
 
 			const result = getSituationFromSearchParams(

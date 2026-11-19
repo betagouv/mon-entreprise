@@ -3,6 +3,9 @@
 ## next
 
 ### Breaking changes
+- Réorganise le calcul de l'impôt sur le revenu
+- Déplace le calcul des prélèvements sociaux et du PFU des dividendes dans des règles propres `dividendes . [...]` (les règles `indépendant . dividendes . [...]` existent toujours mais pas les règles enfants)
+- Supprime la règle `indépendant . dividendes . imposables` (elle devient superflue car le calcul de l'impôt intègre automatiquement les dividendes)
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
 - Renomme `indépendant . cotisations et contributions . cotisations . exonérations . Mayotte` en `indépendant . cotisations et contributions . Mayotte`
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
@@ -14,6 +17,7 @@
 - Crée la règle `plafond sécurité sociale . mayotte`
 
 ### Corrections
+- Corrige le calcul de la CEHR
 - Corrige l'abattement des revenus dans le calcul de l'assiette sociale à Mayotte
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 - Corrige la règle `protection sociale . retraite . complémentaire . points acquis` (inversion entre RCI et Cipav)

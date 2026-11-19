@@ -44,7 +44,7 @@ indépendant . revenu brut:
 
     Le revenu brut correspond à la **rémunération brute** et la part des dividendes
     supérieure à 10 % du capital social. La rémunération brute prise en compte
-    n’inclue pas la déduction des frais professionnels, ni des contributions et
+    n’inclut pas la déduction des frais professionnels, ni des contributions et
     cotisations sociales.
   variations:
     - si: entreprise . imposition . IR
