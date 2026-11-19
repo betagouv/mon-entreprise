@@ -2,7 +2,9 @@ import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
-import RuleInput from '@/components/conversation/RuleInput'
+import RuleInput, {
+	estUnGroupeDeChoix,
+} from '@/components/conversation/RuleInput'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
@@ -66,40 +68,73 @@ export function SimpleField({
 
 	const required = fromOuiNon(meta.requis)
 
+	const estUnGroupe = estUnGroupeDeChoix(dottedName, engine)
+
+	const libellé = (
+		<>
+			<Markdown
+				as={estUnGroupe ? 'span' : 'label'}
+				id={labelId}
+				htmlFor={estUnGroupe ? undefined : normalizeRuleName.Input(dottedName)}
+				components={markdownComponents}
+			>
+				{displayedLabel}
+			</Markdown>
+			{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
+			<BoutonDeDocumentation dottedName={dottedName} />
+		</>
+	)
+
+	const champ = (
+		<RuleInput
+			dottedName={dottedName}
+			displayedUnit={
+				evaluation.unit?.numerators.includes(targetUnit)
+					? targetUnit
+					: undefined
+			}
+			aria-labelledby={labelId}
+			required={required}
+			missing={
+				evaluation.nodeValue === undefined ||
+				Object.keys(evaluation.missingVariables).length > 0
+			}
+			onChange={dispatchValue}
+			errorMessage={errorMessage}
+			validation={validation}
+		/>
+	)
+
 	return (
 		<FadeIn>
-			<div>
-				<Markdown
-					as="label"
-					id={labelId}
-					htmlFor={normalizeRuleName.Input(dottedName)}
-					components={markdownComponents}
-				>
-					{displayedLabel}
-				</Markdown>
-				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
-				<BoutonDeDocumentation dottedName={dottedName} />
-			</div>
-			<RuleInput
-				dottedName={dottedName}
-				displayedUnit={
-					evaluation.unit?.numerators.includes(targetUnit)
-						? targetUnit
-						: undefined
-				}
-				aria-labelledby={labelId}
-				required={required}
-				missing={
-					evaluation.nodeValue === undefined ||
-					Object.keys(evaluation.missingVariables).length > 0
-				}
-				onChange={dispatchValue}
-				errorMessage={errorMessage}
-				validation={validation}
-			/>
+			{estUnGroupe ? (
+				<FieldsetSansStyle>
+					<LegendSansStyle>{libellé}</LegendSansStyle>
+					{champ}
+				</FieldsetSansStyle>
+			) : (
+				<>
+					<div>{libellé}</div>
+					{champ}
+				</>
+			)}
 		</FadeIn>
 	)
 }
+
+// `display: contents` et les remises à zéro gardent le rendu de la version
+// avec `label` : le `fieldset` et la `legend` n'ajoutent aucune boîte ni marge.
+const FieldsetSansStyle = styled.fieldset`
+	display: contents;
+
+	padding: 0;
+	margin: 0;
+	border: none;
+`
+
+const LegendSansStyle = styled.legend`
+	padding: 0;
+`
 
 const RedIntro = styled(Intro)`
 	color: ${({ theme }) =>
