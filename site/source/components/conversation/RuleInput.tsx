@@ -124,6 +124,28 @@ export function getRuleInputNature(
 }
 
 /**
+ * Indique si la question est rendue par un groupe de boutons radio ou de cases
+ * à cocher, qui doit alors être nommé par un `fieldset` et sa `legend`.
+ */
+export const estUnGroupeDeChoix = (
+	dottedName: DottedName,
+	engine: Engine<DottedName>
+): boolean => {
+	const nature = getRuleInputNature(dottedName, engine, {}, false, false)
+
+	if (nature === UNE_POSSIBILITE) {
+		const meta = getMeta<{ affichage?: string }>(
+			engine.getRule(dottedName).rawNode,
+			{}
+		)
+
+		return meta.affichage !== 'select'
+	}
+
+	return nature === PLUSIEURS_POSSIBILITES || nature === OUI_NON_INPUT
+}
+
+/**
  * RuleInput - Composant de routage d'une question Publicodes
  *
  * Ce composant analyse une règle Publicodes et détermine le composant d'entrée approprié
