@@ -1,0 +1,18 @@
+{
+  "url": "https://geo.api.gouv.fr/communes/29019?fields=nom,code,departement,region,codesPostaux",
+  "body": {
+    "nom": "Brest",
+    "code": "29019",
+    "codesPostaux": [
+      "29200"
+    ],
+    "departement": {
+      "code": "29",
+      "nom": "Finistère"
+    },
+    "region": {
+      "code": "53",
+      "nom": "Bretagne"
+    }
+  }
+}
