@@ -232,6 +232,89 @@ describe('En contrat d’apprentissage', () => {
 		})
 	})
 
+	describe('l’année d’exécution du contrat', () => {
+		const tauxSelonLaDate = (dateEmbauche: string, date: string) => {
+			const e = engine.setSituation({
+				date,
+				'salarié . contrat': "'apprentissage'",
+				"salarié . contrat . date d'embauche": dateEmbauche,
+				'salarié . contrat . apprentissage . âge': "'de 18 à 20'",
+			})
+			const SmicÀLaDate = e.evaluate('SMIC').nodeValue as number
+			const rémunération = e.evaluate(
+				'salarié . contrat . apprentissage . rémunération minimale'
+			).nodeValue as number
+
+			return Math.round((rémunération / SmicÀLaDate) * 100) / 100
+		}
+
+		it.each([
+			['01/09/2025', '30/08/2026', 0.43],
+			['01/09/2025', '31/08/2026', 0.43],
+			['01/09/2025', '01/09/2026', 0.51],
+			['01/09/2025', '31/08/2027', 0.51],
+			['01/09/2025', '01/09/2027', 0.67],
+			['01/03/2027', '28/02/2028', 0.43],
+			['01/03/2027', '29/02/2028', 0.43],
+			['01/03/2027', '01/03/2028', 0.51],
+			['01/03/2027', '28/02/2029', 0.51],
+			['01/03/2027', '01/03/2029', 0.67],
+			['15/01/2031', '14/01/2032', 0.43],
+			['15/01/2031', '15/01/2032', 0.51],
+			['15/01/2032', '14/01/2033', 0.43],
+			['15/01/2032', '15/01/2033', 0.51],
+		])(
+			'pour un contrat débuté le %s, au %s, la rémunération minimale est de %s du Smic',
+			(dateEmbauche, date, taux) => {
+				expect(tauxSelonLaDate(dateEmbauche, date)).toBe(taux)
+			}
+		)
+
+		it('est encore la 1re année le dernier jour avant la date anniversaire (803 €)', () => {
+			const e = engine.setSituation({
+				date: '31/08/2026',
+				'salarié . contrat': "'apprentissage'",
+				"salarié . contrat . date d'embauche": '01/09/2025',
+				'salarié . contrat . apprentissage . âge': "'de 18 à 20'",
+			})
+
+			expect(e).toEvaluate(
+				'salarié . contrat . apprentissage . rémunération minimale',
+				803
+			)
+		})
+	})
+
+	describe('l’avertissement de durée maximale du contrat', () => {
+		const notificationAffichée = (handicap: 'oui' | 'non', date: string) => {
+			const e = engine.setSituation({
+				date,
+				'salarié . contrat': "'apprentissage'",
+				"salarié . contrat . date d'embauche": '01/09/2025',
+				'salarié . régimes spécifiques . apprentissage . handicap': handicap,
+			})
+			const notification =
+				handicap === 'non'
+					? 'salarié . contrat . apprentissage . ancienneté . durée maximale avec RQTH'
+					: 'salarié . contrat . apprentissage . ancienneté . durée maximale sans RQTH'
+
+			return e.evaluate(notification).nodeValue === true
+		}
+
+		it.each([
+			['non', '31/08/2028', false],
+			['non', '01/09/2028', true],
+			['oui', '01/09/2028', false],
+			['oui', '31/08/2029', false],
+			['oui', '01/09/2029', true],
+		] as const)(
+			'pour un contrat débuté le 01/09/2025, handicap %s, au %s : affiché %s',
+			(handicap, date, affichée) => {
+				expect(notificationAffichée(handicap, date)).toBe(affichée)
+			}
+		)
+	})
+
 	describe('l’aide à l’embauche', () => {
 		describe('pour les entreprises de moins de 250 salarié⋅es', () => {
 			const situation = {
