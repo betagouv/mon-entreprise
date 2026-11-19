@@ -25,6 +25,7 @@ import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
 import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
+export { MentionSousObjectif } from './MentionSousObjectif'
 export { SimulationGoal } from './SimulationGoal'
 export { SimulationGoals } from './SimulationGoals'
 
