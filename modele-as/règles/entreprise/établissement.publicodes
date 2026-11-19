@@ -15,26 +15,6 @@
     code postal:
 
     département:
-      avec:
-        outre-mer:
-          par défaut: non
-          une de ces conditions:
-            - département = 'Guadeloupe'
-            - département = 'Martinique'
-            - département = 'Guyane'
-            - département = 'La Réunion'
-            - département . outre-mer . Mayotte
-
-          avec:
-            Guadeloupe Réunion Martinique:
-              icônes: 🇬🇵 🇷🇪 🇲🇶
-              une de ces conditions:
-                - département = 'Guadeloupe'
-                - département = 'Martinique'
-                - département = 'La Réunion'
-            Mayotte:
-              valeur: département = 'Mayotte'
-              icônes: 🇾🇹
 
     nom:
       titre: Commune

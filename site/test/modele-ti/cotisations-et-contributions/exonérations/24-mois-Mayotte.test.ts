@@ -3,7 +3,7 @@ import Engine from 'publicodes'
 import { beforeEach, describe, expect, it } from 'vitest'
 
 const defaultSituation = {
-	'établissement . commune . département': "'Mayotte'",
+	'établissement . zone': "'mayotte'",
 	'entreprise . imposition': "'IS'",
 	'indépendant . rémunération . brute': '50000 €/an',
 }
@@ -17,7 +17,7 @@ describe('l’exonération 24 mois Mayotte', () => {
 	it('est applicable pour les établissements mahorais créés il y a moins de 2 ans', () => {
 		const e = engine.setSituation({
 			date: '01/01/2026',
-			'établissement . commune . département': "'Mayotte'",
+			'établissement . zone': "'mayotte'",
 			'entreprise . date de création': '01/02/2024',
 		})
 

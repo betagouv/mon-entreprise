@@ -125,7 +125,7 @@ describe('Cotisation indemnités journalières', () => {
 
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)
@@ -260,7 +260,7 @@ describe('Cotisation indemnités journalières', () => {
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)

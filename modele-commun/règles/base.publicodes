@@ -3,7 +3,7 @@ plafond sécurité sociale:
     rémunérations à prendre en compte pour le calcul de certaines cotisations.
   acronyme: PSS
   variations:
-    - si: établissement . commune . département . outre-mer . Mayotte
+    - si: établissement . domiciliation . outre-mer . mayotte
       alors: mayotte
     - sinon: cas général
   références:
@@ -77,7 +77,7 @@ SMIC:
 SMIC . horaire:
   titre global: SMIC horaire
   variations:
-    - si: établissement . commune . département . outre-mer . Mayotte
+    - si: établissement . domiciliation . outre-mer . mayotte
       alors:
         variations:
           - si: date < 01/2023

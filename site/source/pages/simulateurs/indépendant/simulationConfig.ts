@@ -84,6 +84,7 @@ export const configIndépendant: PublicodesSimulationConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		'entreprise . imposition': "'IR'",
+		'paramètres . domiciliation . distinction alsace-moselle': 'non',
 	},
 	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
 }

@@ -63,13 +63,15 @@ indépendant . rémunération . nette . après impôt: 528785"
 exports[`calculate simulations-indépendant > DROM 1`] = `
 "entreprise . charges: 0
 entreprise . chiffre d'affaires: 20000
-indépendant . cotisations et contributions . cotisations: 4252
+indépendant . cotisations et contributions . cotisations: 5849
 indépendant . cotisations et contributions . début activité: null
-indépendant . revenu professionnel: 14622
+indépendant . revenu professionnel: 13025
 indépendant . rémunération . brute: 20000
 indépendant . rémunération . impôt: 0
-indépendant . rémunération . nette: 14193
-indépendant . rémunération . nette . après impôt: 14193"
+indépendant . rémunération . nette: 12596
+indépendant . rémunération . nette . après impôt: 12596
+
+Notifications affichées : indépendant . cotisations et contributions . cotisations . exonérations . DROM"
 `;
 
 exports[`calculate simulations-indépendant > acre 1`] = `

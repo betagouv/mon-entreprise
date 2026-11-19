@@ -6,7 +6,7 @@ const COTISATION =
 	'indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie'
 
 const defaultSituation = {
-	'établissement . commune . département': "'Mayotte'",
+	'établissement . zone': "'mayotte'",
 	'indépendant . cotisations et contributions . assiette sociale': '60000 €/an',
 }
 

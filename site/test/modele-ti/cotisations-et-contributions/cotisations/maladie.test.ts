@@ -296,7 +296,7 @@ describe('Cotisation maladie', () => {
 		describe('pour les DROM', () => {
 			it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS', () => {
 				const e = engine.setSituation({
-					'établissement . commune . département': "'La Réunion'",
+					'établissement . zone': "'drom hors mayotte'",
 					'indépendant . cotisations et contributions . assiette sociale':
 						'60000 €/an',
 				})
@@ -323,7 +323,7 @@ describe('Cotisation maladie', () => {
 
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)
@@ -561,7 +561,7 @@ describe('Cotisation maladie', () => {
 
 		it('applique un taux fixe de 8,5% en cas d’assiette sociale inférieure à 3 PASS pour les DROM', () => {
 			const e = engine.setSituation({
-				'établissement . commune . département': "'La Réunion'",
+				'établissement . zone': "'drom hors mayotte'",
 				'indépendant . cotisations et contributions . assiette sociale':
 					'60000 €/an',
 			})
@@ -576,7 +576,7 @@ describe('Cotisation maladie', () => {
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)

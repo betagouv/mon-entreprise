@@ -21,8 +21,8 @@ export const configSASU: PublicodesSimulationConfig = {
 				dottedName: 'assimilé salarié . exonérations . Acre',
 			},
 			{
-				label: 'Commune',
-				dottedName: 'établissement . commune',
+				label: 'Zone géographique',
+				dottedName: 'établissement . zone',
 			},
 			{
 				label: 'Avantages en nature',

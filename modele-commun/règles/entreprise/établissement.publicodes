@@ -5,3 +5,71 @@
 établissement . SIRET:
   type: texte
   applicable si: entreprise . SIREN
+
+# On souhaite mettre en visibilité l'outre-mer pour les TI (pour lesquels la
+# distinction "Alsace-Moselle" est inutile), alors on utilise 2 questions
+# différentes car il n'est pas possible d'utiliser le mécanisme "variations"
+# sur la propriété "titre"
+établissement . domiciliation:
+  variations:
+    - si: paramètres . domiciliation . distinction alsace-moselle
+      alors: zone
+    - sinon: outre-mer
+
+établissement . domiciliation . outre-mer:
+  une de ces conditions:
+    - établissement . zone = 'mayotte'
+    - établissement . zone = 'drom hors mayotte'
+    - établissement . outre-mer = 'mayotte'
+    - établissement . outre-mer = 'drom hors mayotte'
+
+  avec:
+    hors mayotte:
+      titre: DROM hors Mayotte
+      une de ces conditions:
+        - établissement . zone = 'drom hors mayotte'
+        - établissement . outre-mer = 'drom hors mayotte'
+
+    mayotte:
+      une de ces conditions:
+        - établissement . zone = 'mayotte'
+        - établissement . outre-mer = 'mayotte'
+
+établissement . zone:
+  description: |
+    La localisation de votre entreprise (DROM, Alsace-Moselle…) a un impact
+    sur le calcul des cotisations sociales et des exonérations applicables.
+  question: Où votre entreprise est-elle domiciliée ?
+  applicable si: paramètres . domiciliation . distinction alsace-moselle
+  par défaut: "'autre'"
+  une possibilité:
+    - mayotte:
+        titre: Mayotte
+        valeur: zone = 'mayotte'
+    - drom hors mayotte:
+        titre: Guadeloupe, Guyane, Martinique ou La Réunion
+        valeur: zone = 'drom hors mayotte'
+    - alsace-moselle:
+        titre: Alsace-Moselle
+        valeur: zone = 'alsace-moselle'
+    - autre:
+        titre: Autre
+        valeur: zone = 'autre'
+
+établissement . outre-mer:
+  description: |
+    Si votre entreprise est domiciliée en outre-mer, le calcul des
+    cotisations sociales et les exonérations applicables sont différentes.
+  question: Votre entreprise est-elle domiciliée en outre-mer (DROM) ?
+  non applicable si: paramètres . domiciliation . distinction alsace-moselle
+  par défaut: "'métropole'"
+  une possibilité:
+    - mayotte:
+        titre: Oui, à Mayotte
+        valeur: outre-mer = 'mayotte'
+    - drom hors mayotte:
+        titre: Oui, en Guadeloupe, en Guyane, en Martinique ou à La Réunion
+        valeur: outre-mer = 'drom hors mayotte'
+    - métropole:
+        titre: Non
+        valeur: outre-mer = 'métropole'

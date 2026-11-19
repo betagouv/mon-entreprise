@@ -91,7 +91,7 @@ describe('PAMC', () => {
 		it('n’est pas applicable à Mayotte', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(ASSIETTE_CPAM)
@@ -235,7 +235,7 @@ describe('PAMC', () => {
 				...defaultSituation,
 				'indépendant . cotisations et contributions . assiette sociale':
 					'30000 €/an',
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			}
 			it('applique un taux de 0,5% pour les médecins', () => {
 				const e = engine.setSituation(situation)

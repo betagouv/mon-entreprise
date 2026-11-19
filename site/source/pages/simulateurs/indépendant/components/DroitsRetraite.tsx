@@ -89,7 +89,7 @@ export default function DroitsRetraite() {
 						<Condition
 							expression={{
 								'une de ces conditions': [
-									'établissement . commune . département . outre-mer . Mayotte != oui',
+									'établissement . domiciliation . outre-mer . mayotte != oui',
 									'indépendant . profession libérale . CNAVPL',
 								],
 							}}

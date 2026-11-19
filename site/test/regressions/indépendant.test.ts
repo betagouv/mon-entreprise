@@ -55,8 +55,7 @@ it('calculate simulations-indépendant', { timeout: 120_000 }, () => {
 		  "indépendant . rémunération . nette . après impôt",
 		  "situation personnelle . RSA",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
-		  "établissement . commune . département",
-		  "établissement . commune . département . outre-mer",
+		  "établissement . outre-mer",
 		]
 	`)
 })

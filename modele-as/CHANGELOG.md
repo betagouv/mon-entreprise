@@ -3,6 +3,7 @@
 ## next
 
 ### Breaking changes
+- Utilise la règle `établissement . zone` pour déterminer les règles de calculs spécifiques (la commune ne sert plus que pour le taux versement mobilité)
 - Réorganise le calcul de l'impôt sur le revenu
 - Supprime le calcul de l'impôt avec le taux neutre
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
@@ -15,6 +16,7 @@
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
 - Ajoute les dividendes
+- Ajoute une question sur la zone géographique
 
 ### Mises à jour
 - Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)

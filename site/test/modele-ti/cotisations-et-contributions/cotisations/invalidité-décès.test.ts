@@ -147,7 +147,7 @@ describe('Cotisation invalidité et décès', () => {
 
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)
@@ -414,7 +414,7 @@ describe('Cotisation invalidité et décès', () => {
 			describe('à Mayotte', () => {
 				const situation = {
 					...defaultSituation,
-					'établissement . commune . département': "'Mayotte'",
+					'établissement . zone': "'mayotte'",
 				}
 
 				it('applique une assiette minimale égale à 37% du PASS métropole', () => {

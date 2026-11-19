@@ -156,7 +156,7 @@ describe('Cotisation retraite complémentaire', () => {
 
 		it('n’est pas redevable par les mahorais⋅es', () => {
 			const e = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).not.toBeApplicable(COTISATION)
@@ -367,7 +367,7 @@ describe('Cotisation retraite complémentaire', () => {
 			describe('à Mayotte', () => {
 				const situation = {
 					...defaultSituation,
-					'établissement . commune . département': "'Mayotte'",
+					'établissement . zone': "'mayotte'",
 				}
 
 				it('applique le taux tranche 1 de 11% en cas d’assiette sociale inférieure au PASS métropole', () => {

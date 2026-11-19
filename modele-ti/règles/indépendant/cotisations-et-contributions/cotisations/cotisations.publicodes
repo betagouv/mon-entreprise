@@ -25,7 +25,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
     - une assurance maternité complète en cas de grossesse ou d’adoption ;
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
     souscrire une assurance maladie complémentaire.
-  non applicable si: établissement . commune . département . outre-mer . Mayotte
+  non applicable si: établissement . domiciliation . outre-mer . mayotte
   variations:
     - si:
         toutes ces conditions:
@@ -47,7 +47,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité:
 
 indépendant . cotisations et contributions . cotisations . maladie-maternité . avant exonérations:
   titre: maladie-maternité (avant exonérations)
-  non applicable si: établissement . commune . département . outre-mer . Mayotte
+  non applicable si: établissement . domiciliation . outre-mer . mayotte
   variations:
     - si:
         est applicable: maladie-maternité . domiciliation fiscale étranger
@@ -79,7 +79,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
         - si: après réforme
           alors:
             variations:
-              - si: établissement . commune . département . outre-mer
+              - si: établissement . domiciliation . outre-mer
                 alors: 8.50%
               - sinon:
                   taux progressif:
@@ -130,7 +130,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     - une assurance maternité complète en cas de grossesse ou d’adoption ;
     - une complémentaire santé solidaire en cas de revenus faibles ou une aide pour
     souscrire une assurance maladie complémentaire.
-  non applicable si: établissement . commune . département . outre-mer . Mayotte
+  non applicable si: établissement . domiciliation . outre-mer . mayotte
   valeur: maladie-maternité . avant exonérations
   abattement:
     variations:
@@ -164,7 +164,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité .
     ils ne bénéficient pas de la réduction du taux de la cotisation maladie en
     fonction du revenu déclaré.
   applicable si: situation personnelle . domiciliation fiscale à l'étranger
-  non applicable si: établissement . commune . département . outre-mer . Mayotte
+  non applicable si: établissement . domiciliation . outre-mer . mayotte
   produit:
     - assiette sociale
     - taux
@@ -187,7 +187,7 @@ indépendant . cotisations et contributions . cotisations . indemnités journali
   non applicable si:
     une de ces conditions:
       - profession libérale . réglementée . CNBF
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
   produit:
     - assiette
     - taux
@@ -259,7 +259,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
       abattement:
         applicable si:
           toutes ces conditions:
-            - établissement . commune . département . outre-mer . Mayotte
+            - établissement . domiciliation . outre-mer . mayotte
             - entreprise . durée d'activité >= 25 mois
         valeur: 50%
       arrondi: oui
@@ -269,12 +269,12 @@ indépendant . cotisations et contributions . cotisations . allocations familial
     assiette non abattue:
       valeur: assiette sociale
       plafond:
-        applicable si: établissement . commune . département . outre-mer . Mayotte
+        applicable si: établissement . domiciliation . outre-mer . mayotte
         valeur: PASS proratisé
 
     taux:
       variations:
-        - si: établissement . commune . département . outre-mer . Mayotte
+        - si: établissement . domiciliation . outre-mer . mayotte
           alors:
             variations:
               - si: date < 01/2026
@@ -300,7 +300,7 @@ indépendant . cotisations et contributions . cotisations . allocations familial
               - si: date < 01/2036
                 alors: 2.95%
               - sinon: 3.10%
-        - si: établissement . commune . département . outre-mer
+        - si: établissement . domiciliation . outre-mer
           alors: 3.10%
         - sinon:
             taux progressif:
@@ -377,7 +377,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
       alors: profession libérale . réglementée . CNBF . retraite de base
     - si: profession libérale . CNAVPL
       alors: profession libérale . CNAVPL . retraite de base
-    - si: établissement . commune . département . outre-mer . Mayotte
+    - si: établissement . domiciliation . outre-mer . mayotte
       alors:
         produit:
           - assiette
@@ -423,7 +423,7 @@ indépendant . cotisations et contributions . cotisations . retraite de base:
       valeur: assiette retraite et invalidité-décès
       plancher: assiette minimale . retraite
       plafond:
-        applicable si: établissement . commune . département . outre-mer . Mayotte
+        applicable si: établissement . domiciliation . outre-mer . mayotte
         valeur: PASS proratisé
       références:
         Cotisations minimales: https://www.secu-independants.fr/cotisations/calcul-des-cotisations/cotisations-minimales/
@@ -485,7 +485,7 @@ indépendant . cotisations et contributions . cotisations . retraite complément
     complémentaire des salariés.
   non applicable si:
     toutes ces conditions:
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
       - profession libérale . CNAVPL = non
   variations:
     - si: profession libérale . CNAVPL
@@ -581,7 +581,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
     que soit le statut de l’assuré décédé : assuré cotisant ou assuré retraité.
   non applicable si:
     toutes ces conditions:
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
       - profession libérale . CNAVPL = non
   variations:
     - si: profession libérale . CNAVPL
@@ -616,7 +616,7 @@ indépendant . cotisations et contributions . cotisations . invalidité et déc�
 indépendant . cotisations et contributions . cotisations . maladie-maternité-invalidité-décès-autonomie:
   titre: Contribution maladie, maternité, invalidité, décès et autonomie
   description: Contribution spécifique à Mayotte.
-  applicable si: établissement . commune . département . outre-mer . Mayotte
+  applicable si: établissement . domiciliation . outre-mer . mayotte
   produit:
     - assiette sociale
     - variations:
@@ -654,7 +654,7 @@ indépendant . cotisations et contributions . cotisations . maladie-maternité-i
 indépendant . cotisations et contributions . cotisations . maladie-maternité et autonomie:
   titre: Cotisation additionnelle d’assurance maladie-maternité et autonomie
   description: Cotisation spécifique à Mayotte.
-  applicable si: établissement . commune . département . outre-mer . Mayotte
+  applicable si: établissement . domiciliation . outre-mer . mayotte
   produit:
     - assiette
     - variations:

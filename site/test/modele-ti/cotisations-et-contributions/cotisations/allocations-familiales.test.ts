@@ -110,7 +110,7 @@ describe('Cotisation allocations familiales', () => {
 
 		it('applique un taux fixe de 3,1% pour les DROM (hors Mayotte)', () => {
 			const situation = {
-				'établissement . commune . département': "'La Réunion'",
+				'établissement . zone': "'drom hors mayotte'",
 			}
 
 			const e1 = engine.setSituation({
@@ -154,7 +154,7 @@ describe('Cotisation allocations familiales', () => {
 			const TAUX = 1.6 / 100
 
 			const situation = {
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			}
 
 			it('applique un taux fixe de 1,60%', () => {
@@ -251,7 +251,7 @@ describe('Cotisation allocations familiales', () => {
 		it('applique un taux fixe de 3,1% pour les DROM (hors Mayotte)', () => {
 			const situation = {
 				...defaultSituation,
-				'établissement . commune . département': "'La Réunion'",
+				'établissement . zone': "'drom hors mayotte'",
 			}
 
 			const e1 = engine.setSituation({
@@ -296,7 +296,7 @@ describe('Cotisation allocations familiales', () => {
 
 			const situation = {
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			}
 
 			it('applique un taux fixe de 1,60%', () => {

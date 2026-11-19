@@ -1,8 +1,5 @@
 indépendant . cotisations et contributions . cotisations . exonérations . DROM:
-  applicable si:
-    toutes ces conditions:
-      - établissement . commune . département . outre-mer
-      - établissement . commune . département . outre-mer . Mayotte = non
+  applicable si: établissement . domiciliation . outre-mer . hors mayotte
   valeur: oui
   rend non applicable: exonérations . Acre
   type: notification

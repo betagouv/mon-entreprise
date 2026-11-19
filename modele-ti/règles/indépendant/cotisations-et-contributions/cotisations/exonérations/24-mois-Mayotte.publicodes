@@ -9,5 +9,5 @@ indépendant . cotisations et contributions . cotisations . exonérations . Mayo
     Article 28-8 de l'ordonnance n°96-1122: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025023112
   valeur:
     toutes ces conditions:
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
       - entreprise . durée d'activité < 2 an
