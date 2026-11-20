@@ -86,13 +86,12 @@ const simuler = async (salaireBrut: string, commune: NomDeCommune) => {
 }
 
 const fermerLesFenêtres = async (utilisateur: Utilisateur) => {
-	for (let essai = 0; essai < 5; essai++) {
-		if (!screen.queryAllByRole('dialog').length) {
-			return
-		}
-		await utilisateur.keyboard('{Escape}')
+	for (const fenêtre of screen.queryAllByRole('dialog').reverse()) {
+		await utilisateur.click(
+			within(fenêtre).getByRole('button', { name: /^Fermer/ })
+		)
+		await waitFor(() => expect(fenêtre).not.toBeInTheDocument(), DÉLAI)
 	}
-	expect(screen.queryAllByRole('dialog')).toHaveLength(0)
 }
 
 const ouvrirMesRéponses = async (utilisateur: Utilisateur) => {
@@ -123,10 +122,17 @@ const ouvrirLaQuestion = async (utilisateur: Utilisateur, titre: string) => {
 	return screen.findByRole('dialog', { name: `Modifier ${titre}` }, DÉLAI)
 }
 
+const réponseAffichée = (titre: string) =>
+	within(screen.getByRole('dialog', { name: 'Modifier mes réponses' }))
+		.getAllByRole('listitem')
+		.find((ligne) =>
+			within(ligne).queryByRole('button', { name: `Modifier ${titre}` })
+		)
+
 const répondre = async (
 	utilisateur: Utilisateur,
 	titre: string,
-	réponse: string | RegExp
+	réponse: RegExp
 ) => {
 	const question = await ouvrirLaQuestion(utilisateur, titre)
 	await utilisateur.click(
@@ -134,6 +140,10 @@ const répondre = async (
 	)
 	await utilisateur.click(
 		within(question).getByRole('button', { name: 'Continuer' })
+	)
+	await waitFor(
+		() => expect(réponseAffichée(titre)).toHaveTextContent(réponse),
+		DÉLAI
 	)
 	await fermerLesFenêtres(utilisateur)
 }
