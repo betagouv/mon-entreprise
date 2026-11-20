@@ -181,6 +181,7 @@ const optionsDuDispositif = async (utilisateur: Utilisateur) => {
 	return options
 }
 
+const SUIVANT = { name: /^Suivant,/ }
 const SUIVANT_OU_PASSER = { name: /^(Suivant|Passer),/ }
 
 const zoneDeLaQuestion = () =>
@@ -192,14 +193,19 @@ const simulationTerminée = () =>
 	screen.queryByRole('heading', { name: /Vous avez complété cette simulation/ })
 
 const questionSuivante = async (questionPrécédente?: string) => {
-	await waitFor(() => {
+	const zoneAffichée = await waitFor(() => {
+		if (simulationTerminée()) {
+			return undefined
+		}
 		const zone = zoneDeLaQuestion()
-		expect(
-			simulationTerminée() || (zone && zone.textContent !== questionPrécédente)
-		).toBeTruthy()
+		const uneNouvelleQuestionEstAffichée =
+			zone !== undefined && zone.textContent !== questionPrécédente
+		expect(uneNouvelleQuestionEstAffichée).toBe(true)
+
+		return zone
 	}, DÉLAI)
 
-	return simulationTerminée() ? undefined : zoneDeLaQuestion()
+	return zoneAffichée
 }
 
 const répondreAuxQuestionsDansLOrdre = async (
@@ -217,8 +223,9 @@ const répondreAuxQuestionsDansLOrdre = async (
 				within(zone).getByRole('radio', { name: réponse[1] })
 			)
 		}
+		const boutonPourAvancer = réponse ? SUIVANT : SUIVANT_OU_PASSER
 		await utilisateur.click(
-			(await screen.findAllByRole('button', SUIVANT_OU_PASSER, DÉLAI))[0]
+			(await screen.findAllByRole('button', boutonPourAvancer, DÉLAI))[0]
 		)
 		zone = await questionSuivante(question)
 	}
