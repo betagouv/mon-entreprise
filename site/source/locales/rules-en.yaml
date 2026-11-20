@@ -15654,9 +15654,9 @@ salarié . rémunération . primes:
 
             Part-time employees are entitled to the year-end bonus under the
             same conditions as other employees, in proportion to their working
-            hours. Since their gross salary already reflects those hours, the
-            bonus is calculated on that salary, without applying the
-            working-time ratio a second time.
+            hours. Since their pay already reflects those hours, the bonus is
+            calculated on the pay used to check the minimum wage (SMIC), without
+            applying the working-time ratio a second time.
           description.fr: >
             Cette prime est le plus souvent versée en une seule fois à la fin de
 
@@ -15669,13 +15669,11 @@ salarié . rémunération . primes:
             mêmes conditions que les autres salariés en proportion de leur durée
             du
 
-            travail. Leur salaire brut tenant déjà compte de cette durée, la
-            prime
+            travail. Leur rémunération tenant déjà compte de cette durée, la
 
-            est calculée sur ce salaire, sans appliquer une seconde fois la
-            quotité
+            prime est calculée sur l’assiette de vérification du SMIC, sans
 
-            de temps de travail.
+            appliquer une seconde fois la quotité de temps de travail.
           titre.en: '[automatic] Year-end or thirteenth month bonus'
           titre.fr: Prime de fin d'année ou de treizième mois
       description.en: >
