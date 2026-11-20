@@ -3,10 +3,10 @@
 exports[`calculate simulations-salarié > CCN HCR 1`] = `
 "salarié . contrat . salaire brut: 2500
 salarié . contrat . salaire brut . équivalent temps plein: null
-salarié . coût total employeur: 3331
+salarié . coût total employeur: 3315
 salarié . rémunération . contrôle minimum: null
-salarié . rémunération . net . payé après impôt: 1912
-salarié . rémunération . net . à payer avant impôt: 1985
+salarié . rémunération . net . payé après impôt: 1914
+salarié . rémunération . net . à payer avant impôt: 1986
 
 Notifications affichées : salarié . convention collective . avertissement convention collective"
 `;
