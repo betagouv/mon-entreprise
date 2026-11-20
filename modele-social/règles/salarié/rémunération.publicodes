@@ -283,9 +283,9 @@ salarié . rémunération . primes:
 
             Les salariés à temps partiel ont droit à la prime de fin d'année dans les
             mêmes conditions que les autres salariés en proportion de leur durée du
-            travail. Leur salaire brut tenant déjà compte de cette durée, la prime
-            est calculée sur ce salaire, sans appliquer une seconde fois la quotité
-            de temps de travail.
+            travail. Leur rémunération tenant déjà compte de cette durée, la
+            prime est calculée sur l’assiette de vérification du SMIC, sans
+            appliquer une seconde fois la quotité de temps de travail.
           références:
             Article L3123-5 du Code du travail: https://code.travail.gouv.fr/code-du-travail/l3123-5
           produit:

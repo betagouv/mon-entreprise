@@ -13,16 +13,16 @@ describe('Prime de fin d’année ou de treizième mois', () => {
 		engine = new Engine(rules)
 	})
 
-	const montantMensuel = () =>
+	const montantAnnuel = () =>
 		engine.evaluate({
 			valeur: "salarié . rémunération . primes . fin d'année . montant",
-			unité: '€/mois',
+			unité: '€/an',
 		}).nodeValue as number
 
 	it('vaut un mois de salaire brut à temps plein', () => {
 		engine.setSituation(situationAvecTreizièmeMois)
 
-		expect(montantMensuel() * 12).toBeCloseTo(2000)
+		expect(montantAnnuel()).toBeCloseTo(2000)
 	})
 
 	it('vaut un mois de salaire brut à temps partiel, sans appliquer une seconde fois la quotité', () => {
@@ -33,7 +33,7 @@ describe('Prime de fin d’année ou de treizième mois', () => {
 				'28 heure/semaine',
 		})
 
-		expect(montantMensuel() * 12).toBeCloseTo(2000)
+		expect(montantAnnuel()).toBeCloseTo(2000)
 	})
 
 	it('vaut un mois de salaire brut et de primes d’activité à temps partiel, sans appliquer une seconde fois la quotité', () => {
@@ -45,6 +45,6 @@ describe('Prime de fin d’année ou de treizième mois', () => {
 			'salarié . rémunération . primes . activité . base': '200 €/mois',
 		})
 
-		expect(montantMensuel() * 12).toBeCloseTo(2200)
+		expect(montantAnnuel()).toBeCloseTo(2200)
 	})
 })
