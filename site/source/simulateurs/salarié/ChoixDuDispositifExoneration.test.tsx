@@ -304,8 +304,6 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 			'applique le Lodeom par défaut et laisse l’usager choisir la RGDU à la place',
 			async () => {
 				const utilisateur = await simuler('2000', 'Pointe-à-Pitre')
-				await répondre(utilisateur, 'Barème de compétitivité renforcée', 'Non')
-				await répondre(utilisateur, 'Barème d’innovation et croissance', 'Non')
 				await attendreLeCoûtTotal('2 082 €')
 				expect(texteDeLaMention()).toBe('Dont dispositif Lodéom : − 796 €')
 
@@ -325,9 +323,7 @@ describe('Choix du dispositif d’exonération dans le simulateur salarié', () 
 		it(
 			'ne mentionne aucun dispositif quand le Lodeom n’apporte aucun avantage',
 			async () => {
-				const utilisateur = await simuler('7000', 'Pointe-à-Pitre')
-				await répondre(utilisateur, 'Barème de compétitivité renforcée', 'Non')
-				await répondre(utilisateur, 'Barème d’innovation et croissance', 'Non')
+				await simuler('7000', 'Pointe-à-Pitre')
 				await attendreLeCoûtTotal('10 035 €')
 
 				expect(mention()).toBeUndefined()
