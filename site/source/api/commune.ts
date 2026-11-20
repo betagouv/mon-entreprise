@@ -7,10 +7,6 @@ export type ApiCommuneJson = {
 		nom: string
 	}
 	nom: string
-	region: {
-		code: string
-		nom: string
-	}
 }
 
 export type SearchCommune = {
@@ -30,7 +26,7 @@ export async function searchCommunes(
 	const number = /[\d]+/.exec(input)?.join('') ?? ''
 	const text = /[^\d]+/.exec(input)?.join(' ') ?? ''
 	const response = await fetch(
-		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,region,codesPostaux${
+		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,codesPostaux${
 			text ? `&nom=${text}` : ''
 		}${/[\d]{5}/.exec(number) ? `&codePostal=${number}` : ''}&boost=population`
 	)
@@ -61,7 +57,7 @@ export async function fetchCommuneDetails(
 	codePostal?: string
 ): Promise<Commune | null> {
 	const response = await fetch(
-		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=nom,code,departement,region,codesPostaux`
+		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=nom,code,departement,codesPostaux`
 	)
 	if (!response.ok) {
 		return null

@@ -17,14 +17,12 @@ const COMMUNES = {
 		nom: 'Lyon',
 		codesPostaux: ['69001'],
 		departement: { code: '69', nom: 'Rhône' },
-		region: { code: '84', nom: 'Auvergne-Rhône-Alpes' },
 	},
 	'Pointe-à-Pitre': {
 		code: '97120',
 		nom: 'Pointe-à-Pitre',
 		codesPostaux: ['97110'],
 		departement: { code: '971', nom: 'Guadeloupe' },
-		region: { code: '01', nom: 'Guadeloupe' },
 	},
 }
 
