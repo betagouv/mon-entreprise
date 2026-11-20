@@ -17,7 +17,7 @@ import { CessationActivitéSimulation } from './cessation-activité/CessationAct
 import { ChirurgienDentiste } from './chirurgien-dentiste/ChirurgienDentiste'
 import { Cipav } from './cipav/Cipav'
 import { Commerçant } from './commercant/Commercant'
-import { ComparateurDeStatuts } from './comparaison-statuts/ComparateurDeStatuts'
+import { ComparateurDeStatutsDifféré } from './comparaison-statuts/ComparateurDeStatutsDiffere'
 import CotisationMaladieFrontalierSuisse from './cotisation-maladie-frontalier-suisse/CotisationMaladieFrontalierSuisse'
 import CoutCreationEntreprise from './cout-creation-entreprise'
 import DividendesSimulation from './dividendes/Dividendes'
@@ -88,7 +88,7 @@ export default function Simulateurs() {
 				/>
 				<Route
 					path={simulateurs.comparaison + '/*'}
-					element={<ComparateurDeStatuts />}
+					element={<ComparateurDeStatutsDifféré />}
 				/>
 				<Route path={simulateurs.pamc + '/*'} element={<PAMCHome />} />
 				<Route
