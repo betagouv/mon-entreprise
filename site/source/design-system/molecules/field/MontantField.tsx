@@ -103,10 +103,9 @@ export const MontantField = <U extends UnitéMonétaire>({
 
 const Container = styled.div<{ $noPadding: boolean }>`
 	display: flex;
-	width: fit-content;
 	flex: 1;
 	flex-direction: column;
-	max-width: 300px;
+	max-width: ${({ theme }) => theme.fieldMaxWidth};
 	width: 100%;
 	align-items: flex-end;
 	${({ $noPadding }) =>

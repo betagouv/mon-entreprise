@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux'
 
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
+import { MentionSousObjectif } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 import { useEngine } from '@/utils/publicodes/EngineContext'
-
-import { MentionSousObjectif } from './MentionSousObjectif'
 
 const DISPOSITIF = "salarié . dispositif d'exonération" as DottedName
 const AVANTAGE = `${DISPOSITIF} . avantage` as DottedName

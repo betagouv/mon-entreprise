@@ -37,4 +37,24 @@ describe('ObjectifDeSimulation', () => {
 			'Estimation d’après vos revenus 2026'
 		)
 	})
+
+	it('affiche ses mentions sous la valeur', () => {
+		render(
+			<TestProvider>
+				<ObjectifDeSimulation
+					id="objectif"
+					titre="Cotisation maladie annuelle"
+					valeur={Option.some(eurosParAn(1800))}
+					mentions={<p>Dont réduction : − 200 €</p>}
+				/>
+			</TestProvider>
+		)
+
+		const valeur = screen.getByText(/1\s*800\s*€\/an/)
+		const mention = screen.getByText('Dont réduction : − 200 €')
+
+		expect(
+			valeur.compareDocumentPosition(mention) & Node.DOCUMENT_POSITION_FOLLOWING
+		).toBeTruthy()
+	})
 })

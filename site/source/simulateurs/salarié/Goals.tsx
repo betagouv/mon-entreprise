@@ -9,17 +9,25 @@ export default function SalariéSimulationGoals() {
 	return (
 		<SimulationGoals>
 			<PeriodSwitch />
-			<SimulationGoal dottedName="salarié . coût total employeur" />
-			<DispositifExoneration />
-			<Aides />
+			<SimulationGoal
+				dottedName="salarié . coût total employeur"
+				mentions={
+					<>
+						<DispositifExoneration />
+						<Aides />
+					</>
+				}
+			/>
 
 			<SimulationGoal dottedName="salarié . contrat . salaire brut" />
 			<SimulationGoal
 				small
 				dottedName="salarié . contrat . salaire brut . équivalent temps plein"
 			/>
-			<SimulationGoal dottedName="salarié . rémunération . net . à payer avant impôt" />
-			<TitresRestaurant />
+			<SimulationGoal
+				dottedName="salarié . rémunération . net . à payer avant impôt"
+				mentions={<TitresRestaurant />}
+			/>
 			<SimulationGoal dottedName="salarié . rémunération . net . payé après impôt" />
 		</SimulationGoals>
 	)

@@ -21,6 +21,7 @@ export type ObjectifDeSimulationProps = {
 	sousTitre?: React.ReactNode
 	description?: React.ReactNode
 	valeur: Option.Option<Montant> | string
+	mentions?: React.ReactNode
 	small?: boolean
 	appear?: boolean
 	isInfoMode?: boolean
@@ -33,6 +34,7 @@ export function ObjectifDeSimulation({
 	sousTitre,
 	description,
 	valeur,
+	mentions,
 	displayedUnit,
 	small = false,
 	appear = true,
@@ -64,13 +66,16 @@ export function ObjectifDeSimulation({
 						{!small && typeof valeur !== 'string' && Option.isSome(valeur) && (
 							<AnimatedTargetValue value={valeur.value} />
 						)}
-						<StyledValue
-							id={`${id}-value`}
-							aria-labelledby={`${id}-label`}
-							aria-describedby={sousTitre ? `${id}-description` : undefined}
-						>
-							{valeurAffichee}
-						</StyledValue>
+						<ValeurEtMentions>
+							<StyledValue
+								id={`${id}-value`}
+								aria-labelledby={`${id}-label`}
+								aria-describedby={sousTitre ? `${id}-description` : undefined}
+							>
+								{valeurAffichee}
+							</StyledValue>
+							{mentions}
+						</ValeurEtMentions>
 					</Grid>
 				</GridCentered>
 			</StyledGoal>
@@ -116,9 +121,13 @@ const SousTitre = styled(SmallBody)`
 	white-space: pre-line;
 `
 
-const StyledValue = styled(Body)`
+const ValeurEtMentions = styled.div`
 	margin: 1.2rem 0;
-	font-size: ${({ theme }) => theme.fontSizes.lg};
-	text-align: right;
 	padding-right: ${({ theme }) => theme.spacings.sm};
+	text-align: right;
+`
+
+const StyledValue = styled(Body)`
+	margin: 0;
+	font-size: ${({ theme }) => theme.fontSizes.lg};
 `
