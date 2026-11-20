@@ -23,7 +23,7 @@ import { CessationActivitéSimulation } from '@/pages/simulateurs/cessation-acti
 import { ChirurgienDentiste } from '@/pages/simulateurs/chirurgien-dentiste/ChirurgienDentiste'
 import { Cipav } from '@/pages/simulateurs/cipav/Cipav'
 import { Commerçant } from '@/pages/simulateurs/commercant/Commercant'
-import { ComparateurDeStatuts } from '@/pages/simulateurs/comparaison-statuts/ComparateurDeStatuts'
+import { ComparateurDeStatutsDifféré } from '@/pages/simulateurs/comparaison-statuts/ComparateurDeStatutsDiffere'
 import CotisationMaladieFrontalierSuisse from '@/pages/simulateurs/cotisation-maladie-frontalier-suisse/CotisationMaladieFrontalierSuisse'
 import CoutCreationEntreprise from '@/pages/simulateurs/cout-creation-entreprise'
 import DividendesSimulation from '@/pages/simulateurs/dividendes/Dividendes'
@@ -108,7 +108,7 @@ export default function Iframes() {
 					)}
 					{routeIframe(
 						simulateurs['comparaison-statuts'],
-						<ComparateurDeStatuts />
+						<ComparateurDeStatutsDifféré />
 					)}
 					{routeIframe(simulateurs.pamc, <PAMCHome />)}
 					{routeIframe(simulateurs.médecin, <Médecin />)}
