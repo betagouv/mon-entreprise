@@ -59,7 +59,7 @@ salarié . contrat . apprentissage . ancienneté:
     jusqu'à: date
     unité: an
   références:
-    Code du travail - Article D6222-26: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238
+    Article D6222-26 du Code du travail: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000038033238
     Contrat d'apprentissage: https://www.service-public.gouv.fr/particuliers/vosdroits/F2918
     Questions-réponses | La formation en alternance: https://travail-emploi.gouv.fr/questions-reponses-la-formation-en-alternance
 
@@ -68,7 +68,7 @@ salarié . contrat . apprentissage . ancienneté:
       type: notification
       sévérité: avertissement
       toutes ces conditions:
-        - ancienneté >= 3
+        - ancienneté >= 3 ans
         - régimes spécifiques . apprentissage . handicap = non
       description: |
         La durée maximale du contrat d’apprentissage est de 3 ans, sauf si
@@ -78,7 +78,7 @@ salarié . contrat . apprentissage . ancienneté:
       type: notification
       sévérité: avertissement
       toutes ces conditions:
-        - ancienneté >= 4
+        - ancienneté >= 4 ans
         - régimes spécifiques . apprentissage . handicap
       description: |
         La durée maximale du contrat d’apprentissage est de 4 ans pour un ou une

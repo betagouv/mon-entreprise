@@ -269,19 +269,41 @@ describe('En contrat d’apprentissage', () => {
 				expect(tauxSelonLaDate(dateEmbauche, date)).toBe(taux)
 			}
 		)
+	})
 
-		it('est encore la 1re année le dernier jour avant la date anniversaire (803 €)', () => {
-			const e = engine.setSituation({
-				date: '31/08/2026',
-				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": '01/09/2025',
-				'salarié . contrat . apprentissage . âge': "'de 18 à 20'",
-			})
+	describe('l’ancienneté du contrat', () => {
+		const ancienneté = (dateEmbauche: string, date: string) =>
+			engine
+				.setSituation({
+					date,
+					'salarié . contrat': "'apprentissage'",
+					"salarié . contrat . date d'embauche": dateEmbauche,
+				})
+				.evaluate('salarié . contrat . apprentissage . ancienneté')
+				.nodeValue as number
 
-			expect(e).toEvaluate(
-				'salarié . contrat . apprentissage . rémunération minimale',
-				803
-			)
+		it('est inférieure à 1 an la veille de la date anniversaire, sur une année bissextile', () => {
+			expect(ancienneté('01/03/2027', '29/02/2028')).toBeLessThan(1)
+		})
+
+		it('est inférieure à 1 an la veille de la date anniversaire, sur une année commune', () => {
+			expect(ancienneté('01/09/2025', '31/08/2026')).toBeLessThan(1)
+		})
+
+		it('est de 1 an à la date anniversaire, sur une année bissextile', () => {
+			expect(ancienneté('01/03/2027', '01/03/2028')).toBe(1)
+		})
+
+		it('est de 1 an à la date anniversaire, sur une année commune', () => {
+			expect(ancienneté('01/09/2025', '01/09/2026')).toBe(1)
+		})
+
+		it('est inférieure à 2 ans la veille de la 2e date anniversaire', () => {
+			expect(ancienneté('01/03/2027', '28/02/2029')).toBeLessThan(2)
+		})
+
+		it('est de 2 ans à la 2e date anniversaire', () => {
+			expect(ancienneté('01/03/2027', '01/03/2029')).toBe(2)
 		})
 	})
 
@@ -301,18 +323,25 @@ describe('En contrat d’apprentissage', () => {
 			return e.evaluate(notification).nodeValue === true
 		}
 
-		it.each([
-			['non', '31/08/2028', false],
-			['non', '01/09/2028', true],
-			['oui', '01/09/2028', false],
-			['oui', '31/08/2029', false],
-			['oui', '01/09/2029', true],
-		] as const)(
-			'pour un contrat débuté le 01/09/2025, handicap %s, au %s : affiché %s',
-			(handicap, date, affichée) => {
-				expect(notificationAffichée(handicap, date)).toBe(affichée)
-			}
-		)
+		it('ne s’affiche pas avant 3 ans pour un⋅e apprenti⋅e sans situation de handicap', () => {
+			expect(notificationAffichée('non', '31/08/2028')).toBe(false)
+		})
+
+		it('s’affiche au bout de 3 ans pour un⋅e apprenti⋅e sans situation de handicap', () => {
+			expect(notificationAffichée('non', '01/09/2028')).toBe(true)
+		})
+
+		it('ne s’affiche pas au bout de 3 ans pour un⋅e apprenti⋅e en situation de handicap', () => {
+			expect(notificationAffichée('oui', '01/09/2028')).toBe(false)
+		})
+
+		it('ne s’affiche pas avant 4 ans pour un⋅e apprenti⋅e en situation de handicap', () => {
+			expect(notificationAffichée('oui', '31/08/2029')).toBe(false)
+		})
+
+		it('s’affiche au bout de 4 ans pour un⋅e apprenti⋅e en situation de handicap', () => {
+			expect(notificationAffichée('oui', '01/09/2029')).toBe(true)
+		})
 	})
 
 	describe('l’aide à l’embauche', () => {
