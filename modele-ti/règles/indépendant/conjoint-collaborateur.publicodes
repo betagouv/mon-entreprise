@@ -114,7 +114,7 @@ indépendant . conjoint collaborateur . assiette retraite et invalidité-décès
     - si: choix assiette . forfaitaire
       alors:
         produit:
-          - plafond sécurité sociale . métropole
+          - plafond sécurité sociale . cas général
           - variations:
               - si: profession libérale . CNAVPL
                 alors: 1 / 2

@@ -35,8 +35,8 @@ indépendant . profession libérale . réglementée . CARPIMKO . retraite compl�
     - sinon:
         produit:
           - valeur: cotisations et contributions . assiette sociale
-            plancher: 0.5 * plafond sécurité sociale . métropole
-            plafond: 3 * plafond sécurité sociale . métropole
+            plancher: 0.5 * plafond sécurité sociale . cas général
+            plafond: 3 * plafond sécurité sociale . cas général
           - 8.70%
         arrondi: oui
   références:

@@ -57,7 +57,7 @@ indépendant . assiette minimale . retraite:
           - 450 heure/an
           - variations:
               - si: profession libérale . CNAVPL
-                alors: SMIC . horaire . métropole . début d'année
+                alors: SMIC . horaire . cas général . début d'année
               - sinon: SMIC . horaire . début d'année
   arrondi: oui
   unité: €/an

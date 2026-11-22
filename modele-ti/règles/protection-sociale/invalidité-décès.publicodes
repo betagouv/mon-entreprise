@@ -39,7 +39,7 @@ protection sociale . invalidité et décès . capital décès:
 
 protection sociale . invalidité et décès . capital décès . orphelin:
   description: |
-    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
+    Un capital « orphelin » est versé aux enfants des travailleurs indépendants
     décédés. Il concerne :
 
     - les enfants âgés de moins de 16 ans au jour du décès de l’assuré et à sa
@@ -48,7 +48,8 @@ protection sociale . invalidité et décès . capital décès . orphelin:
     poursuivant leurs études ou leur apprentissage ;
     - les enfants, quel que soit leur âge, bénéficiaires des allocations
     instituées en faveur des personnes handicapées.
-  valeur: 5% * plafond sécurité sociale * 1 an / 1 enfant
+  valeur: 5% * plafond sécurité sociale * 1 an
+  unité: €
   références:
     Le capital orphelin pour les enfants des travailleurs indépendants: https://www.ameli.fr/tarn/assure/remboursements/pensions-allocations-rentes/deces-proche-capital-deces#text_76987
 
