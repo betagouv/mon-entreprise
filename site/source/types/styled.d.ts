@@ -108,6 +108,8 @@ export interface Theme {
 		xl: Metric
 	}
 
+	fieldMaxWidth: Metric
+
 	darkMode: boolean
 	isInIframe?: boolean
 

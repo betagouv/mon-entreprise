@@ -24,6 +24,7 @@ export type ObjectifSaisissableDeSimulationProps = {
 	explication?: React.ReactNode
 	valeur: O.Option<Montant>
 	rendreChampSaisie: (props: ChampSaisieProps) => React.ReactNode
+	mentions?: React.ReactNode
 	appear?: boolean
 	isInfoMode?: boolean
 	onFocus?: () => void
@@ -36,6 +37,7 @@ export function ObjectifSaisissableDeSimulation({
 	description,
 	valeur,
 	rendreChampSaisie,
+	mentions,
 	appear = true,
 	onFocus,
 	onBlur,
@@ -74,14 +76,17 @@ export function ObjectifSaisissableDeSimulation({
 						{!isFocused && montantAnimation !== undefined && (
 							<AnimatedTargetValue value={montantAnimation} />
 						)}
-						<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
-							{rendreChampSaisie({
-								id: `${id}-input`,
-								aria: {
-									labelledby: `${id}-label`,
-								},
-							})}
-						</LargeInputContainer>
+						<ChampEtMentions>
+							<LargeInputContainer onFocus={handleFocus} onBlur={handleBlur}>
+								{rendreChampSaisie({
+									id: `${id}-input`,
+									aria: {
+										labelledby: `${id}-label`,
+									},
+								})}
+							</LargeInputContainer>
+							{mentions}
+						</ChampEtMentions>
 					</Grid>
 				</GridCentered>
 			</StyledGoal>
@@ -139,6 +144,11 @@ const StyledGoal = styled.div`
 	@media print {
 		padding: 0;
 	}
+`
+
+const ChampEtMentions = styled.div`
+	width: 100%;
+	max-width: ${({ theme }) => theme.fieldMaxWidth};
 `
 
 const LargeInputContainer = styled.div`

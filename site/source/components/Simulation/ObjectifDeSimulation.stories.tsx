@@ -4,6 +4,7 @@ import { Option } from 'effect'
 import { BlocMontants } from '@/components/Simulateur/BlocMontants'
 import { eurosParAn } from '@/domaine/MontantRecurrent'
 
+import { MentionSousObjectif } from './MentionSousObjectif'
 import { ObjectifDeSimulation } from './ObjectifDeSimulation'
 
 const meta: Meta<typeof ObjectifDeSimulation> = {
@@ -37,5 +38,21 @@ export const AvecSousTitre: Story = {
 		sousTitre:
 			'Estimation d’après vos revenus 2026,\napplicable à votre cotisation 2028.',
 		valeur: Option.some(eurosParAn(1800)),
+	},
+}
+
+export const AvecMentions: Story = {
+	args: {
+		id: 'objectif-mentions',
+		titre: 'Cotisation maladie annuelle',
+		valeur: Option.some(eurosParAn(1800)),
+		mentions: (
+			<>
+				<MentionSousObjectif>Dont réduction : − 200 €</MentionSousObjectif>
+				<MentionSousObjectif>
+					Une mention plus longue qui passe sur plusieurs lignes en mobile
+				</MentionSousObjectif>
+			</>
+		),
 	},
 }

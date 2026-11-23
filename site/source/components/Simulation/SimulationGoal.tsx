@@ -32,6 +32,7 @@ type SimulationGoalProps = {
 	displayedUnit?: string
 	isInfoMode?: boolean
 	round?: boolean
+	mentions?: React.ReactNode
 	onUpdateSituation?: (name: DottedName, value?: ValeurPublicodes) => void
 }
 
@@ -46,6 +47,7 @@ export function SimulationGoal({
 	editable = true,
 	isTypeBoolean = false,
 	isInfoMode = false,
+	mentions,
 }: SimulationGoalProps) {
 	const dispatch = useDispatch()
 	const engine = useEngine()
@@ -160,6 +162,7 @@ export function SimulationGoal({
 				description={small ? undefined : description}
 				valeur={valeurMontant}
 				rendreChampSaisie={RuleInputWrapper}
+				mentions={mentions}
 				isInfoMode={isInfoMode}
 				appear={appear}
 			/>
@@ -172,6 +175,7 @@ export function SimulationGoal({
 			titre={titre}
 			description={description}
 			valeur={valeur}
+			mentions={mentions}
 			displayedUnit={displayedUnit}
 			isInfoMode={isInfoMode}
 			small={small}

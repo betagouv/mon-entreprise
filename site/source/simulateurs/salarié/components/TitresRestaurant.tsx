@@ -1,12 +1,12 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { styled } from 'styled-components'
 
 import { Condition } from '@/components/EngineValue/Condition'
 import Value from '@/components/EngineValue/Value'
 import RuleLink from '@/components/RuleLink'
+import { MentionSousObjectif } from '@/components/Simulation'
 import { FromTop } from '@/components/ui/animate'
-import { Emoji, SmallBody } from '@/design-system'
+import { Emoji } from '@/design-system'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 
 export default function TitresRestaurant() {
@@ -18,7 +18,7 @@ export default function TitresRestaurant() {
 	return (
 		<Condition expression={`${dottedName} > 0`}>
 			<FromTop>
-				<StyledInfo>
+				<MentionSousObjectif>
 					<RuleLink dottedName={dottedName}>
 						+{' '}
 						<Value
@@ -33,17 +33,8 @@ export default function TitresRestaurant() {
 						)}{' '}
 						<Emoji emoji=" 🍽" />
 					</RuleLink>
-				</StyledInfo>
+				</MentionSousObjectif>
 			</FromTop>
 		</Condition>
 	)
 }
-
-const StyledInfo = styled(SmallBody)`
-	position: relative;
-	text-align: right;
-	margin-top: -1.5rem;
-	margin-bottom: 1.5rem;
-	right: 0;
-	z-index: 3;
-`
