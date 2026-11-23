@@ -4,6 +4,7 @@
 
 ### Breaking changes
 - Réorganise le calcul de l'impôt sur le revenu
+- Supprime le calcul de l'impôt avec le taux neutre
 - Déplace le calcul des prélèvements sociaux et du PFU des dividendes dans des règles propres `dividendes . [...]` (les règles `indépendant . dividendes . [...]` existent toujours mais pas les règles enfants)
 - Supprime la règle `indépendant . dividendes . imposables` (elle devient superflue car le calcul de l'impôt intègre automatiquement les dividendes)
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`

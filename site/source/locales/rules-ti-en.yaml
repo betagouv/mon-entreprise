@@ -1421,61 +1421,23 @@ impôt . montant:
   titre.en: '[automatic] Income tax'
   titre.fr: Impôt sur le revenu
 impôt . méthode de calcul:
-  avec:
-    par défaut:
-      titre.en: '[automatic] by default'
-      titre.fr: par défaut
   description.en: >
-    [automatic] We've implemented three ways of calculating income tax:
+    [automatic] We've implemented two ways of calculating income tax:
 
-    - the personalized rate*: indicated on your tax notice
-
-    - the neutral rate*: for a single person with no children
+    - *The personalized rate*: indicated on your tax notice
 
     - *The standard rate scale*: the "official" formula used by the tax
 
     tax authorities to obtain the tax rate
-
-
-    By filling in your personalized rate, you'll be as close as possible to your
-
-    situation. The neutral rate can be useful if you haven't
-
-    you have not sent your personalized rate to your employer, and you wish to
-
-    compare the simulator results with your pay slip. The standard scale
-
-    gives you a more accurate result than the neutral rate for a single person
-    with no
-
-    child.
   description.fr: >
     Nous avons implémenté trois façon de calculer l’impôt sur le revenu :
 
     - *Le taux personnalisé* : indiqué sur votre avis d’imposition
 
-    - *Le taux neutre* : pour un célibataire sans enfant
-
     - *Le barème standard * : la formule "officielle" utilisée par
     l’administration
 
     fiscale pour obtenir le taux d’imposition
-
-
-    En remplissant votre taux personnalisé, vous serez au plus proche de votre
-
-    situation réelle. Le taux neutre peut être intéressant dans le cas où vous
-
-    n’avez pas transmis votre taux personnalisé à l’employeur et que vous
-    souhaitez
-
-    comparer les résultats du simulateur à votre fiche de paie. Le barème
-    standard
-
-    vous donne un résultat plus précis que le taux neutre pour un célibataire
-    sans
-
-    enfant.
   question.en: '[automatic] How would you like to calculate your income tax?'
   question.fr: Comment souhaitez-vous calculer l’impôt sur le revenu ?
   titre.en: '[automatic] calculation method'
@@ -1649,36 +1611,6 @@ impôt . revenu . net imposable:
     Ces abattements ne sont pas encore implémentés dans nos simulateurs.
   titre.en: '[automatic] Net taxable income'
   titre.fr: Revenu net imposable
-impôt . taux neutre:
-  description.en: >
-    [automatic] This is the scale to be applied to the monthly taxable salary to
-    obtain the tax to be paid monthly for employees who do not wish to reveal
-    their tax rate to their company (this rate may reveal, for example,
-    substantial income from assets).
-  description.fr: >
-    C’est le barème à appliquer sur le salaire mensuel imposable pour obtenir
-    l’impôt à payer mensuellement pour les salariés qui ne veulent pas révéler à
-    leur entreprise leur taux d’imposition (ce taux peut révéler par exemple des
-    revenus du patrimoine importants).
-  note.en:
-    '[automatic] Please note that the 10% allowance is implicitly included
-    in this scale. The tax base is therefore the taxable salary, not the taxable
-    salary with allowance.'
-  note.fr:
-    Attention, l’abattement de 10% est inclus implicitement dans ce barème.
-    L’assiette est donc bien le salaire imposable, et non le salaire imposable
-    abattu.
-  titre.en: '[automatic] neutral rate'
-  titre.fr: taux neutre
-impôt . taux neutre . barème Guadeloupe Réunion Martinique:
-  titre.en: '[automatic] scale Guadeloupe Reunion Martinique'
-  titre.fr: barème Guadeloupe Réunion Martinique
-impôt . taux neutre . barème Guyane Mayotte:
-  titre.en: '[automatic] scale Guiana Mayotte'
-  titre.fr: barème Guyane Mayotte
-impôt . taux neutre . barème métropole:
-  titre.en: '[automatic] metropolitan France'
-  titre.fr: barème métropole
 impôt . taux personnalisé:
   description.en: |
     [automatic] Your personalized average tax rate, which you can find on :
@@ -5869,9 +5801,6 @@ paramètres . impôt . revenu d'activité:
     l’IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
-paramètres . impôt . taux neutre applicable:
-  titre.en: '[automatic] applicable neutral rate'
-  titre.fr: taux neutre applicable
 plafond sécurité sociale:
   avec:
     annuel:
