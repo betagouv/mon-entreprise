@@ -208,9 +208,8 @@ const questionSuivante = async (questionPrécédente?: string) => {
 			return undefined
 		}
 		const zone = zoneDeLaQuestion()
-		const uneNouvelleQuestionEstAffichée =
-			zone !== undefined && zone.textContent !== questionPrécédente
-		expect(uneNouvelleQuestionEstAffichée).toBe(true)
+		const affichagesSansNouvelleQuestion = [undefined, questionPrécédente]
+		expect(affichagesSansNouvelleQuestion).not.toContain(zone?.textContent)
 
 		return zone
 	}, DÉLAI)
