@@ -53,6 +53,7 @@ it('calculate simulations-professions-libérales', { timeout: 120_000 }, () => {
 		  "indépendant . rémunération . nette . après impôt",
 		  "situation personnelle . RSA",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
+		  "établissement . commune . département",
 		  "établissement . outre-mer",
 		]
 	`)

@@ -17,23 +17,79 @@
     - sinon: outre-mer
 
 établissement . domiciliation . outre-mer:
-  une de ces conditions:
-    - établissement . zone = 'mayotte'
-    - établissement . zone = 'drom hors mayotte'
-    - établissement . outre-mer = 'mayotte'
-    - établissement . outre-mer = 'drom hors mayotte'
+  variations:
+    - si:
+        est défini: établissement . commune . département
+      alors:
+        une de ces conditions:
+          - établissement . commune . département = 'Guadeloupe'
+          - établissement . commune . département = 'Guyane'
+          - établissement . commune . département = 'La Réunion'
+          - établissement . commune . département = 'Martinique'
+          - établissement . commune . département = 'Mayotte'
+    - sinon:
+        une de ces conditions:
+          - établissement . zone = 'mayotte'
+          - établissement . zone = 'drom hors mayotte'
+          - établissement . outre-mer = 'mayotte'
+          - établissement . outre-mer = 'drom hors mayotte'
 
   avec:
     hors mayotte:
       titre: DROM hors Mayotte
-      une de ces conditions:
-        - établissement . zone = 'drom hors mayotte'
-        - établissement . outre-mer = 'drom hors mayotte'
+      variations:
+        - si:
+            est défini: établissement . commune . département
+          alors:
+            une de ces conditions:
+              - établissement . commune . département = 'Guadeloupe'
+              - établissement . commune . département = 'Guyane'
+              - établissement . commune . département = 'La Réunion'
+              - établissement . commune . département = 'Martinique'
+        - sinon:
+            une de ces conditions:
+              - établissement . zone = 'drom hors mayotte'
+              - établissement . outre-mer = 'drom hors mayotte'
 
     mayotte:
-      une de ces conditions:
-        - établissement . zone = 'mayotte'
-        - établissement . outre-mer = 'mayotte'
+      variations:
+        - si:
+            est défini: établissement . commune . département
+          alors: établissement . commune . département = 'Mayotte'
+        - sinon:
+            une de ces conditions:
+              - établissement . zone = 'mayotte'
+              - établissement . outre-mer = 'mayotte'
+
+établissement . domiciliation . alsace-moselle:
+  variations:
+    - si:
+        est défini: établissement . commune . département
+      alors:
+        une de ces conditions:
+          - établissement . commune . département = 'Bas-Rhin'
+          - établissement . commune . département = 'Haut-Rhin'
+          - établissement . commune . département = 'Moselle'
+    - sinon: établissement . zone . alsace-moselle
+
+établissement . commune:
+  icônes: 📍
+  question: Dans quelle commune votre entreprise est-elle domiciliée ?
+  API: commune
+  variations:
+    - si:
+        est défini: nom
+      alors:
+        texte: '{{ nom }} ({{ code postal }})'
+    - sinon: nom
+
+  avec:
+    code postal:
+
+    département:
+
+    nom:
+      titre: Commune
 
 établissement . zone:
   description: |

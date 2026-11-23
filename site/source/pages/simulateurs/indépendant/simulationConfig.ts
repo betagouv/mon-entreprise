@@ -66,6 +66,7 @@ export const configIndépendant: PublicodesSimulationConfig = {
 			'indépendant . rémunération . nette . avec dividendes',
 			'indépendant . rémunération . nette . après impôt',
 			'indépendant . dividendes',
+			'établissement . commune',
 		],
 		'non prioritaires': [
 			'entreprise . activité . commerciale . débit de tabac',
