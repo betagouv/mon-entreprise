@@ -13,64 +13,24 @@
 établissement . domiciliation:
   variations:
     - si: paramètres . domiciliation . distinction alsace-moselle
-      alors: zone
-    - sinon: outre-mer
+      alors: établissement . zone
+    - sinon: établissement . outre-mer
 
 établissement . domiciliation . outre-mer:
-  variations:
-    - si:
-        est défini: établissement . commune . département
-      alors:
-        une de ces conditions:
-          - établissement . commune . département = 'Guadeloupe'
-          - établissement . commune . département = 'Guyane'
-          - établissement . commune . département = 'La Réunion'
-          - établissement . commune . département = 'Martinique'
-          - établissement . commune . département = 'Mayotte'
-    - sinon:
-        une de ces conditions:
-          - établissement . zone = 'mayotte'
-          - établissement . zone = 'drom hors mayotte'
-          - établissement . outre-mer = 'mayotte'
-          - établissement . outre-mer = 'drom hors mayotte'
+  une de ces conditions:
+    - domiciliation = 'mayotte'
+    - domiciliation = 'drom hors mayotte'
 
   avec:
     hors mayotte:
       titre: DROM hors Mayotte
-      variations:
-        - si:
-            est défini: établissement . commune . département
-          alors:
-            une de ces conditions:
-              - établissement . commune . département = 'Guadeloupe'
-              - établissement . commune . département = 'Guyane'
-              - établissement . commune . département = 'La Réunion'
-              - établissement . commune . département = 'Martinique'
-        - sinon:
-            une de ces conditions:
-              - établissement . zone = 'drom hors mayotte'
-              - établissement . outre-mer = 'drom hors mayotte'
+      valeur: domiciliation = 'drom hors mayotte'
 
     mayotte:
-      variations:
-        - si:
-            est défini: établissement . commune . département
-          alors: établissement . commune . département = 'Mayotte'
-        - sinon:
-            une de ces conditions:
-              - établissement . zone = 'mayotte'
-              - établissement . outre-mer = 'mayotte'
+      valeur: domiciliation = 'mayotte'
 
 établissement . domiciliation . alsace-moselle:
-  variations:
-    - si:
-        est défini: établissement . commune . département
-      alors:
-        une de ces conditions:
-          - établissement . commune . département = 'Bas-Rhin'
-          - établissement . commune . département = 'Haut-Rhin'
-          - établissement . commune . département = 'Moselle'
-    - sinon: établissement . zone . alsace-moselle
+  valeur: domiciliation = 'alsace-moselle'
 
 établissement . commune:
   icônes: 📍
@@ -97,7 +57,6 @@
     sur le calcul des cotisations sociales et des exonérations applicables.
   question: Où votre entreprise est-elle domiciliée ?
   applicable si: paramètres . domiciliation . distinction alsace-moselle
-  par défaut: "'autre'"
   une possibilité:
     - mayotte:
         titre: Mayotte
@@ -111,6 +70,29 @@
     - autre:
         titre: Autre
         valeur: zone = 'autre'
+  par défaut:
+    variations:
+      - si:
+          est défini: établissement . commune . département
+        alors:
+          variations:
+            - si: établissement . commune . département = 'Mayotte'
+              alors: "'mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Guadeloupe'
+                  - établissement . commune . département = 'Guyane'
+                  - établissement . commune . département = 'La Réunion'
+                  - établissement . commune . département = 'Martinique'
+              alors: "'drom hors mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Bas-Rhin'
+                  - établissement . commune . département = 'Haut-Rhin'
+                  - établissement . commune . département = 'Moselle'
+              alors: "'alsace-moselle'"
+            - sinon: "'autre'"
+      - sinon: "'autre'"
 
 établissement . outre-mer:
   description: |
@@ -118,7 +100,6 @@
     cotisations sociales et les exonérations applicables sont différentes.
   question: Votre entreprise est-elle domiciliée en outre-mer (DROM) ?
   non applicable si: paramètres . domiciliation . distinction alsace-moselle
-  par défaut: "'métropole'"
   une possibilité:
     - mayotte:
         titre: Oui, à Mayotte
@@ -129,3 +110,20 @@
     - métropole:
         titre: Non
         valeur: outre-mer = 'métropole'
+  par défaut:
+    variations:
+      - si:
+          est défini: établissement . commune . département
+        alors:
+          variations:
+            - si: établissement . commune . département = 'Mayotte'
+              alors: "'mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Guadeloupe'
+                  - établissement . commune . département = 'Guyane'
+                  - établissement . commune . département = 'La Réunion'
+                  - établissement . commune . département = 'Martinique'
+              alors: "'drom hors mayotte'"
+            - sinon: "'métropole'"
+      - sinon: "'métropole'"

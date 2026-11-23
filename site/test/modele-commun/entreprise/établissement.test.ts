@@ -209,3 +209,130 @@ describe('Domiciliation', () => {
 		})
 	})
 })
+
+describe('Zone', () => {
+	let engine: Engine
+	beforeEach(() => {
+		engine = new Engine(rules)
+	})
+
+	const RULE = 'établissement . zone'
+
+	it('est non applicable sans la distinction Alsace-Moselle', () => {
+		const e = engine.setSituation({
+			'paramètres . domiciliation . distinction alsace-moselle': 'non',
+		})
+
+		expect(e).not.toBeApplicable(RULE)
+	})
+
+	it('vaut "autre" par défaut', () => {
+		expect(engine).toEvaluate(RULE, 'autre')
+	})
+
+	describe('en répondant à la question sur la commune', () => {
+		it('vaut "mayotte" en sélectionnant une commune de Mayotte', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Mayotte'",
+			})
+
+			expect(e).toEvaluate(RULE, 'mayotte')
+		})
+
+		it.each([['Guadeloupe'], ['Guyane'], ['La Réunion'], ['Martinique']])(
+			'vaut "drom hors mayotte" en sélectionnant une commune de %s',
+			(réponse) => {
+				const e = engine.setSituation({
+					'établissement . commune . département': `"${réponse}"`,
+				})
+
+				expect(e).toEvaluate(RULE, 'drom hors mayotte')
+			}
+		)
+
+		it.each([['Bas-Rhin'], ['Haut-Rhin'], ['Moselle']])(
+			'vaut "alsace-moselle" en sélectionnant une commune de %s',
+			(réponse) => {
+				const e = engine.setSituation({
+					'établissement . commune . département': `"${réponse}"`,
+				})
+
+				expect(e).toEvaluate(RULE, 'alsace-moselle')
+			}
+		)
+
+		it.each([['Ardèche'], ['Rhône'], ['Seine-Saint-Denis'], ['Tarn']])(
+			'vaut "autre" en sélectionnant une commune de %s',
+			(réponse) => {
+				const e = engine.setSituation({
+					'établissement . commune . département': `"${réponse}"`,
+				})
+
+				expect(e).toEvaluate(RULE, 'autre')
+			}
+		)
+	})
+})
+
+describe('Outre-mer', () => {
+	let engine: Engine
+	beforeEach(() => {
+		engine = new Engine(rules)
+	})
+
+	const RULE = 'établissement . outre-mer'
+
+	it('est non applicable par défaut', () => {
+		expect(engine).not.toBeApplicable(RULE)
+	})
+
+	describe('sans la distinction Alsace-Moselle', () => {
+		it('vaut "métropole" par défaut', () => {
+			const e = engine.setSituation({
+				'paramètres . domiciliation . distinction alsace-moselle': 'non',
+			})
+
+			expect(e).toEvaluate(RULE, 'métropole')
+		})
+
+		describe('en répondant à la question sur la commune', () => {
+			it('vaut "mayotte" en sélectionnant une commune de Mayotte', () => {
+				const e = engine.setSituation({
+					'paramètres . domiciliation . distinction alsace-moselle': 'non',
+					'établissement . commune . département': "'Mayotte'",
+				})
+
+				expect(e).toEvaluate(RULE, 'mayotte')
+			})
+
+			it.each([['Guadeloupe'], ['Guyane'], ['La Réunion'], ['Martinique']])(
+				'vaut "drom hors mayotte" en sélectionnant une commune de %s',
+				(réponse) => {
+					const e = engine.setSituation({
+						'paramètres . domiciliation . distinction alsace-moselle': 'non',
+						'établissement . commune . département': `"${réponse}"`,
+					})
+
+					expect(e).toEvaluate(RULE, 'drom hors mayotte')
+				}
+			)
+
+			it.each([
+				['Bas-Rhin'],
+				['Haut-Rhin'],
+				['Moselle'],
+				['Ardèche'],
+				['Rhône'],
+				['Seine-Saint-Denis'],
+				['Tarn'],
+			])('vaut "métropole" en sélectionnant une commune de %s', (réponse) => {
+				const e = engine.setSituation({
+					'paramètres . domiciliation . distinction alsace-moselle': 'non',
+					'établissement . commune . département': `"${réponse}"`,
+				})
+
+				expect(e).toEvaluate(RULE, 'métropole')
+			})
+		})
+	})
+})
