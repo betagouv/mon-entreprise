@@ -190,6 +190,8 @@ export const baseTheme = {
 		xl: '1200px',
 	},
 
+	fieldMaxWidth: '300px',
+
 	darkMode: false,
 	isInIframe: false,
 

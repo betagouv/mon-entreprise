@@ -134,10 +134,9 @@ export const QuantitéField = <U extends UnitéQuantité>({
 
 const Container = styled.div`
 	display: flex;
-	width: fit-content;
 	flex: 1;
 	flex-direction: column;
-	max-width: 300px;
+	max-width: ${({ theme }) => theme.fieldMaxWidth};
 	width: 100%;
 	align-items: flex-end;
 	/* Ajuster le padding de l'input à l'intérieur */
