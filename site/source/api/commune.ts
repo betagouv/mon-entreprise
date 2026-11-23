@@ -1,3 +1,5 @@
+import { estDansLaZone, Zone } from '@/domaine/publicodes/Zone'
+
 export type ApiCommuneJson = {
 	_score: number
 	code: string
@@ -21,7 +23,8 @@ export type Commune = Omit<SearchCommune, 'code commune'> & {
 }
 
 export async function searchCommunes(
-	input: string
+	input: string,
+	zone?: Zone
 ): Promise<Array<SearchCommune> | null> {
 	const number = /[\d]+/.exec(input)?.join('') ?? ''
 	const text = /[^\d]+/.exec(input)?.join(' ') ?? ''
@@ -48,6 +51,7 @@ export async function searchCommunes(
 				.filter(({ 'code postal': codePostal }) =>
 					codePostal.startsWith(number)
 				)
+				.filter(({ département }) => estDansLaZone(département, zone))
 		)
 		.slice(0, 10)
 }
