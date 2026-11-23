@@ -6,7 +6,7 @@ import SearchButton from '@/components/SearchButton'
 import { Container, Emoji, Link, Switch } from '@/design-system'
 import { useDarkMode } from '@/hooks/useDarkMode'
 import { useGetFullURL } from '@/hooks/useGetFullURL'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import { Appear } from '../ui/animate'
 import BrowserOnly from '../utils/BrowserOnly'

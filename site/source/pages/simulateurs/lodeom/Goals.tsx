@@ -1,12 +1,12 @@
 import { Option, pipe } from 'effect'
-import { sumAll } from 'effect/Number'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { styled } from 'styled-components'
 
 import { WhenApplicable } from '@/components/EngineValue/WhenApplicable'
 import { SimulationGoals } from '@/components/Simulation'
+import { Lodeom } from '@/contextes/salarié'
 import { Body, Message } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { QuantitéAdapter } from '@/domaine/engine/QuantitéAdapter'
@@ -22,20 +22,6 @@ import {
 import EffectifSwitch from '@/pages/simulateurs/lodeom/components/EffectifSwitch'
 import RéductionMoisParMois from '@/pages/simulateurs/lodeom/components/RéductionMoisParMois'
 import RégularisationSwitch from '@/pages/simulateurs/lodeom/components/RégularisationSwitch'
-import {
-	getDataAfterGlobalOptionsChange,
-	getDataAfterOptionsChange,
-	getDataAfterRémunérationChange,
-	getDataAfterSituationChange,
-	heuresComplémentairesDottedName,
-	heuresSupplémentairesDottedName,
-	initialRéductionMoisParMois,
-	lodeomDottedName,
-	MonthState,
-	Options,
-	RégularisationMethod,
-	rémunérationBruteDottedName,
-} from '@/pages/simulateurs/lodeom/utils'
 import {
 	ajusteLaSituation,
 	supprimeLaRègleDeLaSituation,
@@ -59,11 +45,22 @@ export default function LodeomSimulationGoals() {
 	const withRépartitionAndRégularisation =
 		zoneAvecRépartitionEtRégularisation(currentZone)
 
-	const [lodeomMoisParMoisData, setData] = useState<MonthState[]>(
-		initialRéductionMoisParMois
+	const [lodeomMoisParMoisData, setData] = useState<Lodeom.MonthState[]>(
+		Lodeom.initialRéductionMoisParMois
 	)
 	const [régularisationMethod, setRégularisationMethod] =
-		useState<RégularisationMethod>('progressive')
+		useState<Lodeom.RégularisationMethod>('progressive')
+
+	const paramètresDeCalcul: Lodeom.ParamètresDeCalcul = useMemo(
+		() => ({
+			année: year,
+			moteur: engine,
+			régularisation: withRépartitionAndRégularisation
+				? régularisationMethod
+				: 'sans',
+		}),
+		[year, engine, régularisationMethod, withRépartitionAndRégularisation]
+	)
 
 	const { t } = useTranslation()
 
@@ -75,8 +72,8 @@ export default function LodeomSimulationGoals() {
 	).nodeValue as string
 
 	useEffect(() => {
-		setData(initialRéductionMoisParMois)
-		dispatch(supprimeLaRègleDeLaSituation(rémunérationBruteDottedName))
+		setData(Lodeom.initialRéductionMoisParMois)
+		dispatch(supprimeLaRègleDeLaSituation(Lodeom.rémunérationBruteDottedName))
 	}, [currentZone, dispatch])
 
 	const getNumberFromQuantitéPublicodes = (dottedName: DottedName) =>
@@ -87,42 +84,27 @@ export default function LodeomSimulationGoals() {
 			Option.getOrElse(() => 0)
 		)
 	const heuresSupplémentairesGlobales = getNumberFromQuantitéPublicodes(
-		heuresSupplémentairesDottedName
+		Lodeom.heuresSupplémentairesDottedName
 	)
 	const heuresComplémentairesGlobales = getNumberFromQuantitéPublicodes(
-		heuresComplémentairesDottedName
+		Lodeom.heuresComplémentairesDottedName
 	)
 
 	useEffect(() => {
 		setData((previousData) =>
-			getDataAfterSituationChange(
-				previousData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
-			)
+			Lodeom.getDataAfterSituationChange(previousData, paramètresDeCalcul)
 		)
-	}, [
-		engine,
-		régularisationMethod,
-		year,
-		withRépartitionAndRégularisation,
-		situation,
-	])
+	}, [paramètresDeCalcul, situation])
 
 	useEffect(() => {
 		setData((previousData) =>
-			getDataAfterGlobalOptionsChange(
+			Lodeom.getDataAfterGlobalOptionsChange(
 				{
 					heuresSupplémentaires: heuresSupplémentairesGlobales,
 					heuresComplémentaires: heuresComplémentairesGlobales,
 				},
 				previousData,
-				year,
-				engine,
-				régularisationMethod,
-				withRépartitionAndRégularisation
+				paramètresDeCalcul
 			)
 		)
 		// Seules les heures supplémentaires/complémentaires globales doivent réétaler
@@ -133,55 +115,41 @@ export default function LodeomSimulationGoals() {
 
 	const onRémunérationChange = useCallback(
 		(monthIndex: number, rémunérationBrute: number) => {
-			const rémunérationBruteAnnuelle =
-				sumAll(
-					lodeomMoisParMoisData.map((monthData, index) =>
-						index === monthIndex ? 0 : monthData.rémunérationBrute
-					)
-				) + rémunérationBrute
+			const brutAnnuel =
+				Lodeom.rémunérationBruteAnnuelle(lodeomMoisParMoisData) -
+				lodeomMoisParMoisData[monthIndex].rémunérationBrute +
+				rémunérationBrute
+
 			dispatch(
 				ajusteLaSituation({
-					[rémunérationBruteDottedName]: eurosParAn(rémunérationBruteAnnuelle),
+					[Lodeom.rémunérationBruteDottedName]: eurosParAn(brutAnnuel),
 				} as Record<DottedName, ValeurPublicodes>)
 			)
 
 			setData((previousData) =>
-				getDataAfterRémunérationChange(
+				Lodeom.getDataAfterRémunérationChange(
 					monthIndex,
 					rémunérationBrute,
 					previousData,
-					year,
-					engine,
-					régularisationMethod,
-					withRépartitionAndRégularisation
+					paramètresDeCalcul
 				)
 			)
 		},
-		[
-			dispatch,
-			engine,
-			lodeomMoisParMoisData,
-			régularisationMethod,
-			withRépartitionAndRégularisation,
-			year,
-		]
+		[dispatch, lodeomMoisParMoisData, paramètresDeCalcul]
 	)
 
 	const onOptionsChange = useCallback(
-		(monthIndex: number, options: Options) => {
+		(monthIndex: number, options: Lodeom.Options) => {
 			setData((previousData) =>
-				getDataAfterOptionsChange(
+				Lodeom.getDataAfterOptionsChange(
 					monthIndex,
 					options,
 					previousData,
-					year,
-					engine,
-					régularisationMethod,
-					withRépartitionAndRégularisation
+					paramètresDeCalcul
 				)
 			)
 		},
-		[engine, régularisationMethod, withRépartitionAndRégularisation, year]
+		[paramètresDeCalcul]
 	)
 
 	return (
@@ -224,7 +192,7 @@ export default function LodeomSimulationGoals() {
 						'pages.simulateurs.lodeom.month-by-month.caption',
 						'Exonération Lodeom mois par mois :'
 					)}
-					warningCondition={`${lodeomDottedName} = 0`}
+					warningCondition={`${Lodeom.lodeomDottedName} = 0`}
 					warningTooltip={<WarningSalaireTrans />}
 					codeRéduction={
 						codeRéduction &&

@@ -1,5 +1,11 @@
-export type IRouIS = 'IR' | 'IS'
+export const Impositions = ['IR', 'IS'] as const
+export type IRouIS = (typeof Impositions)[number]
 
-export type MéthodeImposition = 'barème standard' | 'taux personnalisé'
+export const MéthodesImposition = [
+	'barème standard',
+	'taux personnalisé',
+] as const
+export type MéthodeImposition = (typeof MéthodesImposition)[number]
 
-export type SituationFamiliale = 'célibataire' | 'couple' | 'veuf'
+export const SituationsFamiliales = ['célibataire', 'couple', 'veuf'] as const
+export type SituationFamiliale = (typeof SituationsFamiliales)[number]

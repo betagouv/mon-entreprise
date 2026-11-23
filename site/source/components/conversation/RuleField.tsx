@@ -2,7 +2,7 @@ import * as O from 'effect/Option'
 import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { H3, H3Style } from '@/design-system'
 import {
 	PublicodesAdapter,
@@ -107,7 +107,7 @@ export function RuleField({
 				<StyledLegend>
 					{labelOrLegend}
 
-					<ExplicableRule dottedName={dottedName} />
+					<BoutonDeDocumentation dottedName={dottedName} />
 				</StyledLegend>
 
 				<RuleInput
@@ -126,7 +126,7 @@ export function RuleField({
 			<LabelWithMargin as="label" htmlFor={htmlForId}>
 				{labelOrLegend}
 
-				<ExplicableRule dottedName={dottedName} />
+				<BoutonDeDocumentation dottedName={dottedName} />
 			</LabelWithMargin>
 
 			<RuleInput

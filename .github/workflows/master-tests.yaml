@@ -41,6 +41,9 @@ jobs:
       fail-fast: false
       matrix:
         langue: [fr, en]
+    env:
+      NEXT_PUBLIC_FR_BASE_URL: https://mon-entreprise.urssaf.fr
+      NEXT_PUBLIC_EN_BASE_URL: https://mycompanyinfrance.urssaf.fr
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - uses: ./.github/actions/install

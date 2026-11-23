@@ -4,14 +4,22 @@
 
 ### Breaking changes
 - Renomme `plafond sécurité sociale . N-1` en `plafond sécurité sociale . cas général . N-1`
+- Déplace `salarié . cotisations . exonérations . Tmin` et `salarié . cotisations . exonérations . Tdelta` sous `salarié . cotisations . exonérations . RGDU`
+- La JEI ne rend plus non applicables la RGDU, le Lodeom et ses taux réduits, et le Lodeom ne rend plus la RGDU non applicable : leur exclusion passe par `salarié . dispositif d'exonération`
+- Les taux réduits de maladie et d’allocations familiales s’appliquent quand le Lodeom est le dispositif appliqué, et non plus dès que l’employeur y est éligible
+- Le stage rend non applicables les règles d’exonération une à une, et non plus `salarié . cotisations . exonérations` dans son ensemble
 
 ### Nouveautés
-- Calcul de la Lodeom à Mayotte
+- Choix du dispositif d’exonération de cotisations patronales (`salarié . dispositif d'exonération . choix`) parmi ceux auxquels l’employeur est éligible ; à défaut, le premier éligible dans l’ordre JEI, Lodeom, RGDU
+- Avantage du dispositif d’exonération appliqué (`salarié . dispositif d'exonération . avantage`) : le montant de l’exonération et, pour le Lodeom, l’économie due aux taux réduits de maladie et d’allocations familiales
 - Plafond de sécurité sociale mahorais
 - Cotisations patronales et salariales pour Mayotte
+- Calcul de la Lodeom à Mayotte
+- Calcul de la RGDU à Mayotte
 
 ### Mises à jour
 - Taux minimum pour la cotisation ATMP applicable depuis le 1er janvier 2026
+- Taux 2026 de la cotisation congés payés des caisses CIBTP du bâtiment (`salarié . convention collective . BTP . congés intempéries`), datés selon leur entrée en vigueur au 1er janvier, au 1er avril ou au 1er novembre 2026 ; les taux antérieurs des caisses Île-de-France, Nord-Ouest, Grand Ouest, Centre, Grand Est et Sud-Ouest sont corrigés
 
 ### Corrections
 - Corrige les taux de cotisation réduits pour la maladie-maternité-invalidité-décès et les allocations familiales à Mayotte
@@ -20,6 +28,8 @@
 - Corrige le taux de la cotisation vieillesse à Mayotte
 - Utilisation du Smic au 1er janvier 2026 dans les calculs de la RGDU et de la Lodeom
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
+- Corrige le calcul des exonérations en zone un Lodeom lorsqu'aucun barème n'est applicable
+- Corrige les taux de la prévoyance conventionnelle HCR (`salarié . convention collective . HCR . prévoyance conventionnelle`) : 0,43 % pour l'employeur et 0,43 % pour le salarié, au lieu de 0,90 % et 0,47 %
 
 ## 11.1.0
 

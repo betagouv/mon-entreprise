@@ -1,3 +1,5 @@
+'use client'
+
 export { Item } from 'react-stately'
 
 // Core
@@ -24,6 +26,7 @@ export * from './layout'
 export * from './buttons'
 export { InfoBulle } from './molecules/InfoBulle'
 export { InfoButton } from './molecules/InfoButton'
+export { HelpButton } from './molecules/HelpButton'
 export * from './card'
 export * from './accordion'
 export { AnswerGroup } from './answer-group'

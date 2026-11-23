@@ -9,7 +9,7 @@ import { hideNotification } from '@/store/actions/actions'
 import { RootState } from '@/store/reducers/rootReducer'
 import { useOptionalEngine } from '@/utils/publicodes/EngineContext'
 
-import { ExplicableRule } from './conversation/Explicable'
+import { BoutonDeDocumentation } from './documentation/publicodes'
 import { Appear } from './ui/animate'
 
 const { Body, Strong, SmallBody } = typography
@@ -71,7 +71,7 @@ export default function Notifications() {
 							<Markdown>{résumé ?? description ?? ''}</Markdown>
 						</StyledBody>
 						<Absolute $isMultiline={isMultiline(résumé ?? description ?? '')}>
-							<ExplicableRule dottedName={dottedName} />
+							<BoutonDeDocumentation dottedName={dottedName} />
 						</Absolute>
 					</Message>
 				))}

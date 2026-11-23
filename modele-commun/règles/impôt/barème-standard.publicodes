@@ -53,8 +53,14 @@ impôt . barème standard . revenu brut global:
     - plus-values immobilières.
   somme:
     - variations:
-        - si: paramètres . impôt . revenu d'activité
-          alors: revenu d'activité abattu
+        - si:
+            une de ces conditions:
+              - paramètres . impôt . revenu d'activité
+              - paramètres . impôt . dividendes imposables
+          alors:
+            somme:
+              - revenu d'activité abattu
+              - paramètres . impôt . dividendes imposables
         - sinon: paramètres . impôt . revenu imposable
     - foyer fiscal . autres revenus imposables
 

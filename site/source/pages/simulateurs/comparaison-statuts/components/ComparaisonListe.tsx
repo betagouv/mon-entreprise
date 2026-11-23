@@ -41,6 +41,8 @@ export const Comparaison = () => {
 	const { t } = useTranslation()
 	const { situation } = useComparateur()
 	// TODO: découper en composant par Catégorie (retraite, maladie...)
+	// avec un seul get.retraite() par Catégorie qui donne les valeurs
+	// à ComparaisonElement
 
 	return (
 		<Container

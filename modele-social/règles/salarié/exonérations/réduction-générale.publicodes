@@ -13,6 +13,10 @@ salarié . cotisations . exonérations . RGDU:
     Malgré l’augmentation du Smic au 1er juin 2026, l’éligibilité à la RGDU et
     le calcul de son coefficient continuent de se baser sur la valeur du Smic au
     1er janvier 2026.
+
+    **À Mayotte**, la RGDU suit la même formule mais un barème propre : elle
+    s’éteint dès **1,6 Smic**, et le Smic de référence est le Smic mahorais de
+    la période, revalorisations comprises.
   références:
     La réduction générale dégressive unique: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
     Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
@@ -25,8 +29,7 @@ salarié . cotisations . exonérations . RGDU:
   non applicable si:
     une de ces conditions:
       - cotisations . assiette = 0
-      - cotisations . assiette >= 3 * SMIC
-      - établissement . commune . département . outre-mer . Mayotte
+      - cotisations . assiette >= A * SMIC
 
   avec:
     coefficient:
@@ -35,7 +38,7 @@ salarié . cotisations . exonérations . RGDU:
             - Tmin
             - produit:
                 - Tdelta
-                - (0.5 * (3 * SMIC / cotisations . assiette - 1)) ** P
+                - ((1 / (A - 1)) * (A * SMIC / cotisations . assiette - 1)) ** P
         - coefficient de majoration
       plafond: Tmin + Tdelta
       unité: ''
@@ -43,8 +46,78 @@ salarié . cotisations . exonérations . RGDU:
       références:
         Réforme des allègements généraux de cotisations patronales de sécurité sociale: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2025/septembre/reforme-des-allegements-generaux.html
         Article D241-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048852497
-        La réduction générale des cotisations: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html
+        Le calcul de la réduction générale en 3 étapes: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
         Bulletin Officiel de la Sécurité Sociale: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-1--la-reduction-general-section-2---determination-du-mon-ii-calcul-du-montant-de-la-reduc-a-formule-de-calcul-de-la-reduct
+
+    A:
+      titre: multiple du Smic de sortie
+      description: |
+        Multiple du Smic à partir duquel la réduction ne s’applique plus.
+
+        Il fixe aussi la pente de la dégressivité, par le facteur 1 / (A - 1)
+        du cœfficient.
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 1.6
+        - sinon: 3
+      références:
+        Le calcul de la réduction générale en 3 étapes: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
+        Réduction générale dégressive unique (RGDU) de cotisations patronales: https://entreprendre.service-public.gouv.fr/vosdroits/F24542
+
+    Tmin:
+      titre: plancher du cœfficient
+      description: |
+        Plancher du cœfficient de la RGDU, atteint juste avant la sortie du
+        dispositif. Il est nul à Mayotte.
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 0
+        - sinon: 0.0200
+      références:
+        Le calcul de la réduction générale en 3 étapes: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
+
+    Tdelta:
+      titre: amplitude de la dégressivité
+      description: |
+        Amplitude de la dégressivité du cœfficient de la RGDU : somme des taux
+        des cotisations exonérées par la réduction, diminuée de Tmin.
+
+        Les cotisations exonérées sont :
+        - maladie-maternité-invalidité-décès,
+        - vieillesse,
+        - allocations familiales,
+        - accidents du travail et maladies professionnelles (AT-MP),
+        - fonds national d’aide au logement (Fnal)
+        - assurance chômage
+        Et en métropole et Drom hors Mayotte :
+        - retraite complémentaire obligatoire (Agirc-Arrco)
+        - contribution solidarité pour l’autonomie (CSA)
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors:
+            variations:
+              - si: entreprise . salariés . effectif < 50
+                alors: 0.2449
+              - sinon: 0.2489
+        - sinon:
+            variations:
+              - si: entreprise . salariés . effectif < 50
+                alors: 0.3781
+              - sinon: 0.3821
+      références:
+        Les cotisations exonérées: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-cotisations-exonerees
+
+    P:
+      titre: exposant de dégressivité
+      description: |
+        Exposant appliqué au terme dégressif du cœfficient. Il vaut 1 à
+        Mayotte, où la dégressivité est donc sans courbure.
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 1
+        - sinon: 1.75
+      références:
+        Le calcul de la réduction générale en 3 étapes: https://www.urssaf.fr/accueil/employeur/beneficier-exonerations/reduction-generale-cotisation.html#ancre-les-trois-etapes-de-calcul
 
     SMIC:
       description: |
@@ -55,15 +128,18 @@ salarié . cotisations . exonérations . RGDU:
         partiel ou d’heures supplémentaires.
 
         Malgré l’augmentation du Smic au 1er juin, la valeur utilisée est toujours
-        celle du 1er janvier 2026.
-      valeur: temps de travail . SMIC
-      contexte:
-        date: 01/01/2026
+        celle du 1er janvier 2026, sauf à Mayotte où les revalorisations du Smic
+        mahorais sont prises en compte.
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: temps de travail . SMIC
+        - sinon:
+            valeur: temps de travail . SMIC
+            contexte:
+              date: 01/01/2026
       références:
         Revalorisation du SMIC à compter du 1er juin 2026 - Évolutions réglementaires prévues de la réduction générale dégressive unique: https://boss.gouv.fr/portail/accueil/actualites-boss-et-rescrits/actualites-boss/2026/juin/revalorisation-du-smic-a-compter.html
         Détermination de la valeur du salaire minimum à retenir: https://boss.gouv.fr/portail/accueil/exonerations/allegements-generaux.html#titre-chapitre-3--calcul-de-la-reducti-section-2--determination-du-coef-iv--determination-de-la-valeur-d-a--regles-applicables-dans-tous
-
-    P: 1.75
 
     plafond avec application de la DFS:
       privé: oui

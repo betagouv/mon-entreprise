@@ -52,7 +52,7 @@ impôt . méthode de calcul:
         titre: avec un taux personnalisé
         description: Vous pouvez utiliser directement le taux personnalisé communiqué
           par l’administration fiscale pour calculer votre impôt. Pour le connaître,
-          vous pouvez-vous rendre sur votre [espace fiscal
+          vous pouvez vous rendre sur votre [espace fiscal
           personnel](https://impots.gouv.fr).
         valeur: impôt . méthode de calcul = 'taux personnalisé'
     - barème standard:
@@ -63,7 +63,7 @@ impôt . méthode de calcul:
         valeur: impôt . méthode de calcul = 'barème standard'
   références:
     Différence taux neutre / personnalisé: https://www.impots.gouv.fr/particulier/questions/comment-gerer-mon-prelevement-la-source
-    Calcul du taux d’imposition: https://www.economie.gouv.fr/files/files/ESPACE-EVENEMENTIEL/PAS/Fiche_de_calcul_taux_simplifiee.pdf
+    Comment calculer votre impôt d'après le barème de l'impôt sur le revenu ?: https://www.economie.gouv.fr/particuliers/impots-et-fiscalite/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot-sur-le-revenu
 
   avec:
     par défaut: "'barème standard'"

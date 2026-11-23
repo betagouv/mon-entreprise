@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 
 import { Body, Link } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export const AvertissementEIRL = () => {
 	const { absoluteSitePaths } = useSitePaths()

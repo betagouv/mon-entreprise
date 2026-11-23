@@ -1,13 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
-import {
-	createMDXDocumentationFromGlob,
-	DocumentationRouter,
-	MDXDocumentationIndex,
-} from '@/components/documentation'
+import { MDXDoc } from '@/components/documentation'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
 import { parseLangue } from '@/locales/langue'
-import { useSitePaths } from '@/sitePaths'
 
 const mdxModules = import.meta.glob('./*.mdx', { eager: true })
 
@@ -21,14 +17,14 @@ export const DocumentationHub = () => {
 		absoluteSitePaths.simulateurs['cotisation-maladie-frontalier-suisse']
 	const docUrl = baseUrl + '/documentation'
 
-	const { documentations, indexComponent } = createMDXDocumentationFromGlob(
+	const { documentations, indexComponent } = MDXDoc.createDocumentationFromGlob(
 		mdxModules,
 		parseLangue(i18n.language)
 	)
 
 	if (!isIndex) {
 		return (
-			<DocumentationRouter
+			<MDXDoc.DocumentationRouter
 				documentations={documentations}
 				baseUrl={baseUrl}
 				docUrl={docUrl}
@@ -37,7 +33,7 @@ export const DocumentationHub = () => {
 	}
 
 	return (
-		<MDXDocumentationIndex
+		<MDXDoc.DocumentationIndex
 			documentations={documentations}
 			baseUrl={baseUrl}
 			docUrl={docUrl}

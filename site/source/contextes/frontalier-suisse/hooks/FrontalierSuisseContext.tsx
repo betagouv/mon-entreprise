@@ -7,7 +7,7 @@ import React, {
 	useState,
 } from 'react'
 
-import { PARAMÈTRE_SITUATION } from '@/domaine/parametre-situation'
+import { PARAMÈTRE_SITUATION } from '@/domaine/parametresUrl'
 import { useNavigation } from '@/lib/navigation'
 
 import {

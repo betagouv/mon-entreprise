@@ -2,8 +2,8 @@ import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
-import { ExplicableRule } from '@/components/conversation/Explicable'
 import RuleInput from '@/components/conversation/RuleInput'
+import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
 import { Intro, Markdown, type DateFieldProps } from '@/design-system'
@@ -78,7 +78,7 @@ export function SimpleField({
 					{displayedLabel}
 				</Markdown>
 				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
-				<ExplicableRule dottedName={dottedName} />
+				<BoutonDeDocumentation dottedName={dottedName} />
 			</div>
 			<RuleInput
 				dottedName={dottedName}

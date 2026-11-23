@@ -54,9 +54,7 @@ indépendant . rémunération . nette . avec dividendes:
 
 indépendant . rémunération . nette . imposable:
   titre: Revenu imposable
-  somme:
-    - revenu professionnel
-    - dividendes . imposables
+  valeur: revenu professionnel
   abattement: cotisations et contributions . cotisations facultatives . déductibles
   arrondi: oui
   unité: €/an
@@ -69,10 +67,16 @@ indépendant . rémunération . impôt:
     - les bénéfices des entreprises individuelles à l’impôt sur le revenu.
   valeur: impôt . montant
   contexte:
-    paramètres . impôt . revenu imposable: rémunération . nette . imposable
+    paramètres . impôt . revenu imposable:
+      somme:
+        - rémunération . nette . imposable
+        - dividendes . imposables
     paramètres . impôt . revenu d'activité:
       applicable si: entreprise . imposition . IS
       valeur: rémunération . nette . imposable
+    paramètres . impôt . dividendes imposables:
+      applicable si: entreprise . imposition . IS
+      valeur: dividendes . imposables
     paramètres . impôt . foyer fiscal . situation de famille:
       applicable si: conjoint collaborateur
       valeur: "'couple'"

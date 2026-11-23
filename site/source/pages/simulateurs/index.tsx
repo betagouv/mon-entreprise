@@ -2,14 +2,15 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Page404 } from '@/components/Page404'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
-import { Link } from '@/design-system'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
 import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
+import { LienDeRetour } from '@/simulateurs'
+import { Salarié } from '@/simulateurs/salarié'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
 import { Artisan } from './artisan/Artisan'
@@ -39,7 +40,6 @@ import { Pharmacien } from './pharmacien/Pharmacien'
 import { ProfessionLibérale } from './profession-libérale/ProfessionLibérale'
 import { RéductionGénérale } from './reduction-generale'
 import { SageFemme } from './sage-femme/SageFemme'
-import SalariéSimulation from './salarié/Salarié'
 import { SASUSimulation } from './sasu/SASU'
 
 export default function Simulateurs() {
@@ -90,10 +90,7 @@ export default function Simulateurs() {
 					element={<RéductionGénérale />}
 				/>
 
-				<Route
-					path={simulateurs.salarié + '/*'}
-					element={<SalariéSimulation />}
-				/>
+				<Route path={simulateurs.salarié + '/*'} element={<Salarié />} />
 				<Route
 					path={simulateurs['entreprise-individuelle'] + '/*'}
 					element={<EntrepriseIndividuelle />}
@@ -186,3 +183,5 @@ export default function Simulateurs() {
 		</>
 	)
 }
+
+

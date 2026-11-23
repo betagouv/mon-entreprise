@@ -1,5 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from 'react'
 
+import { environnement } from '@/services/environnement'
+
 // https://github.com/juliencrn/usehooks-ts/blob/master/packages/usehooks-ts/src/useIsomorphicLayoutEffect/useIsomorphicLayoutEffect.ts
 
 /**
@@ -15,8 +17,9 @@ import { useEffect, useLayoutEffect, useState } from 'react'
  * }, [dependency1, dependency2]);
  * ```
  */
-export const useIsomorphicLayoutEffect =
-	typeof window !== 'undefined' ? useLayoutEffect : useEffect
+export const useIsomorphicLayoutEffect = environnement.isServerSide
+	? useEffect
+	: useLayoutEffect
 
 // https://github.com/juliencrn/usehooks-ts/blob/master/packages/usehooks-ts/src/useMediaQuery/useMediaQuery.ts
 
@@ -34,7 +37,7 @@ type UseMediaQueryOptions = {
 	initializeWithValue?: boolean
 }
 
-const IS_SERVER = typeof window === 'undefined'
+const IS_SERVER = environnement.isServerSide
 
 /**
  * Custom hook that tracks the state of a media query using the [`Match Media API`](https://developer.mozilla.org/en-US/docs/Web/API/Window/matchMedia).

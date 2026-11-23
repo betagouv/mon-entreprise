@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+import { PageMetadata } from '@/domaine/PageMetadata'
 import {
 	NomModèle,
 	PublicodesSimulationConfig,
 	QuestionsÉditorialisées,
 } from '@/domaine/PublicodesSimulationConfig'
-import { PageMetadata } from '@/pages/simulateurs/_configs/types'
 import { réinitialiseLaSimulation } from '@/store/actions/actions'
 import { simulationKeySelector } from '@/store/selectors/simulation/simulationKey.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'

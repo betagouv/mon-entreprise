@@ -275,25 +275,30 @@ salarié . cotisations . allocations familiales:
     dû par: employeur
     branche: divers
   produit:
-    - valeur: cotisations . assiette
-      plafond:
-        applicable si: établissement . commune . département . outre-mer . Mayotte
-        valeur: temps de travail . plafond sécurité sociale
+    - assiette
     - taux
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/cotisation-allocation-familiale.html
     Cas particuliers: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/taux-reduits-cas-particuliers.html
 
   avec:
+    assiette:
+      valeur: cotisations . assiette
+      plafond:
+        applicable si: établissement . commune . département . outre-mer . Mayotte
+        valeur: temps de travail . plafond sécurité sociale
+
     taux:
       variations:
         - si: éligible taux réduit
           alors: taux réduit
-        - sinon:
-            variations:
-              - si: établissement . commune . département . outre-mer . Mayotte
-                alors: 5.40%
-              - sinon: 5.25%
+        - sinon: taux plein
+
+    taux plein:
+      variations:
+        - si: établissement . commune . département . outre-mer . Mayotte
+          alors: 5.40%
+        - sinon: 5.25%
 
     taux réduit:
       variations:
@@ -309,7 +314,7 @@ salarié . cotisations . allocations familiales:
 
         Dans ce cas, la réduction du taux s'applique si la rémunération est
         inférieure ou égale à **3,5 fois le Smic en vigueur au 31 décembre 2023**.
-      applicable si: exonérations . lodeom
+      applicable si: salarié . dispositif d'exonération . Lodeom
       valeur: cotisations . assiette < plafond
       avec:
         plafond:
@@ -793,20 +798,24 @@ salarié . cotisations . maladie:
   avec:
     employeur:
       produit:
-        - cotisations . assiette
+        - assiette
         - taux
       titre: part employeur
 
       avec:
+        assiette: cotisations . assiette
+
         taux:
           variations:
             - si: éligible taux réduit
               alors: taux réduit
-            - sinon:
-                variations:
-                  - si: établissement . commune . département . outre-mer . Mayotte
-                    alors: 5.80%
-                  - sinon: 13%
+            - sinon: taux plein
+
+        taux plein:
+          variations:
+            - si: établissement . commune . département . outre-mer . Mayotte
+              alors: 5.80%
+            - sinon: 13%
 
         taux réduit:
           variations:
@@ -822,7 +831,7 @@ salarié . cotisations . maladie:
 
             Dans ce cas, la réduction du taux s'applique si la rémunération est
             inférieure ou égale à **2,5 fois le Smic en vigueur au 31 décembre 2023**.
-          applicable si: exonérations . lodeom
+          applicable si: salarié . dispositif d'exonération . Lodeom
           valeur: cotisations . assiette < plafond
           avec:
             plafond:
@@ -1339,17 +1348,12 @@ salarié . cotisations . Mayotte:
   sévérité: avertissement
   titre: Cotisations Mayotte
   résumé: |
-    Ce simulateur applique bien les **taux de cotisations sociales** et
-    l’exonération **Lodeom** en vigueur à Mayotte depuis le 1er juillet 2026.
-
-    En revanche, le calcul de la **RGDU** n’est pas encore disponible.
+    Ce simulateur applique bien les **taux de cotisations sociales**, la **RGDU**
+    et l’exonération **Lodeom** en vigueur à Mayotte.
   description: |
     Les **taux de cotisations sociales** patronales et salariales ainsi que
-    l’exonération **Lodeom** en vigueur à Mayotte sont bien intégrés dans ce
-    simulateur.
-
-    En revanche, le calcul de la **RGDU** (Réduction Générale Dégressive
-    Unique) spécifique à Mayotte n’est **pas encore disponible**.
+    l’exonération **Lodeom** et la **Réduction Générale Dégressive Unique**
+    (RGDU) en vigueur à Mayotte sont bien intégrés dans ce simulateur.
 
     > L’exonération Lodeom ne s’applique à Mayotte qu’à partir du 1er juillet 2026.
   références:

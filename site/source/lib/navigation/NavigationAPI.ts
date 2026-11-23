@@ -50,6 +50,7 @@ export interface NavigationAPI {
 	navigate: (to: string, options?: { replace?: boolean }) => void
 	currentPath: string
 	searchParams: URLSearchParams
+	searchParamsKnown: boolean
 	setSearchParams: (
 		params:
 			| URLSearchParams

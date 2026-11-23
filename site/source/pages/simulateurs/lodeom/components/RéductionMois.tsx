@@ -3,32 +3,31 @@ import { ReactNode, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
 import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
+import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
+import { Lodeom } from '@/contextes/salarié'
 import {
 	Body,
 	Button,
 	Grid,
 	RotatingChevronIcon,
 	Spacing,
+	Strong,
 } from '@/design-system'
 import Montant from '@/pages/simulateurs/lodeom/components/Montant'
 import MonthOptions from '@/pages/simulateurs/lodeom/components/MonthOptions'
-import {
-	lodeomDottedName,
-	MonthState,
-	Options,
-} from '@/pages/simulateurs/lodeom/utils'
 
 import { MobileContainer } from './MobileContainer'
 import RémunérationInput from './RémunérationInput'
 
+const idPrefix = normalizeRuleName(Lodeom.lodeomDottedName)
+
 type Props = {
 	monthName: string
-	data: MonthState
+	data: Lodeom.MonthState
 	index: number
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
 	withRépartitionAndRégularisation?: boolean
@@ -75,7 +74,7 @@ export default function RéductionMois({
 	const MontantRéduction = () => {
 		return (
 			<Montant
-				id={`${lodeomDottedName.replace(/\s|\./g, '_')}-${monthName}`}
+				id={`${idPrefix}-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.réduction.value}
 				répartition={data.réduction.répartition}
@@ -91,10 +90,7 @@ export default function RéductionMois({
 	const MontantRégularisation = () => {
 		return (
 			<Montant
-				id={`${lodeomDottedName.replace(
-					/\s|\./g,
-					'_'
-				)}__régularisation-${monthName}`}
+				id={`${idPrefix}__régularisation-${monthName}`}
 				rémunérationBrute={data.rémunérationBrute}
 				réduction={data.régularisation.value}
 				répartition={data.régularisation.répartition}
@@ -110,7 +106,14 @@ export default function RéductionMois({
 			<StyledMonth>{monthName}</StyledMonth>
 			<GridContainer container spacing={2}>
 				<Grid item xs={7} sm={4}>
-					<RuleLink dottedName="salarié . rémunération . brut" />
+					<StyledBody>
+						<Strong>
+							{t(
+								'pages.simulateurs.lodeom.en-tête.rémunération',
+								'Rémunération brute'
+							)}
+						</Strong>
+					</StyledBody>
 				</Grid>
 				<Grid item xs={5} sm={5}>
 					<RémunérationInput
@@ -126,7 +129,14 @@ export default function RéductionMois({
 
 			<GridContainer container spacing={2}>
 				<Grid item>
-					<RuleLink dottedName={lodeomDottedName} />
+					<StyledBody>
+						<Strong>
+							{t(
+								'pages.simulateurs.lodeom.en-tête.exonération',
+								'Montant de l’exonération'
+							)}
+						</Strong>
+					</StyledBody>
 				</Grid>
 				<Grid item>
 					<StyledBody>
@@ -137,9 +147,16 @@ export default function RéductionMois({
 
 			{withRépartitionAndRégularisation && (
 				<GridContainer container spacing={2}>
-					<StyledGrid item>
-						<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
-					</StyledGrid>
+					<Grid item>
+						<StyledBody>
+							<Strong>
+								{t(
+									'pages.simulateurs.lodeom.en-tête.régularisation',
+									'Régularisation'
+								)}
+							</Strong>
+						</StyledBody>
+					</Grid>
 					<Grid item>
 						<StyledBody>
 							<MontantRégularisation />
@@ -218,9 +235,6 @@ const StyledMonth = styled(Body)`
 const GridContainer = styled(Grid)`
 	align-items: baseline;
 	justify-content: space-between;
-`
-const StyledGrid = styled(Grid)`
-	margin-bottom: ${({ theme }) => theme.spacings.md};
 `
 const StyledBody = styled(Body)`
 	margin-top: 0;

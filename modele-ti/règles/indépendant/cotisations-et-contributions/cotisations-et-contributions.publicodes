@@ -82,7 +82,7 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
     - abattu d’un taux forfaitaire de 26 %.
 
     Le montant de l’abattement de 26 % est encadré par un plancher et
-    un plafond (sauf à Mayotte).
+    un plafond.
 
   variations:
     - si: après réforme
@@ -104,16 +104,17 @@ indépendant . cotisations et contributions . assiette CSG-CRDS:
             - revenus étrangers . montant
             - revenus de remplacement . imposables
           plancher: 0 €/an
+  unité: €/an
 
   avec:
     abattement:
       valeur: 26% * revenu brut
       plancher:
-        non applicable si: établissement . commune . département . outre-mer . Mayotte
-        valeur: 1.76% * plafond sécurité sociale . annuel
+        valeur: 1.76% * plafond sécurité sociale . cas général
+        unité: €/an
       plafond:
-        non applicable si: établissement . commune . département . outre-mer . Mayotte
-        valeur: 130% * plafond sécurité sociale . annuel
+        valeur: 130% * plafond sécurité sociale . cas général
+        unité: €/an
       arrondi: oui
 
   références:

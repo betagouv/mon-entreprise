@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 
 import { DocumentationBasePathProvider } from '@/components/documentation'
@@ -13,9 +12,9 @@ import {
 } from '@/contextes/comparateur'
 import { Body, Emoji, Intro, Link, Message, Strong } from '@/design-system'
 import { usePageMetadata } from '@/hooks/usePageMetadata'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
+import { SimulateurPageLayout } from '@/simulateurs'
 
-import SimulateurPageLayout from '../SimulateurPageLayout'
 import { DétailSimulation } from './components/DetailSimulation'
 import { ModaleDeDocumentation } from './components/ModaleDeDocumentation'
 import { comparaisonStatutsMetadata } from './metadata'
@@ -40,11 +39,6 @@ const PageComparateur = () => {
 	const { absoluteSitePaths } = useSitePaths()
 
 	const { situation, set } = useComparateur()
-
-	useEffect(() => {
-		set.reset()
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
 
 	return (
 		<SimulateurPageLayout metadata={metadata} showDate={false}>

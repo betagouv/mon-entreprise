@@ -1,6 +1,7 @@
 import { Key, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { MDXDoc } from '@/components/documentation'
 import { ComposantQuestionFournie } from '@/components/Simulateur/Questions/ComposantQuestionFournie'
 import {
 	MéthodeImposition,
@@ -64,3 +65,12 @@ MéthodeImpôtQuestion.libellé = (t) =>
 MéthodeImpôtQuestion.typeRadioGroup = true
 MéthodeImpôtQuestion.applicable = () => true
 MéthodeImpôtQuestion.Valeur = MéthodeImpôtValeur
+MéthodeImpôtQuestion.documentation = {
+	Documentation: MDXDoc.documentation(
+		(langue) => import(`./MethodeImpotDocumentation.${langue}.mdx`)
+	),
+	références: {
+		'Comment calculer votre impôt d’après le barème de l’impôt sur le revenu ?':
+			'https://www.economie.gouv.fr/particuliers/impots-et-fiscalite/gerer-mon-impot-sur-le-revenu/comment-calculer-votre-impot-dapres-le-bareme-de-limpot-sur-le-revenu',
+	},
+}

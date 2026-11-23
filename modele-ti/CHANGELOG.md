@@ -14,6 +14,7 @@
 - Crée la règle `plafond sécurité sociale . mayotte`
 
 ### Corrections
+- Corrige l'abattement des revenus dans le calcul de l'assiette sociale à Mayotte
 - Corrige l'unité de `protection sociale . invalidité et décès . capital décès . orphelin`
 - Corrige la règle `protection sociale . retraite . complémentaire . points acquis` (inversion entre RCI et Cipav)
 

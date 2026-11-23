@@ -1,11 +1,8 @@
 import { useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import {
-	ChoixPériodeDeCalcul,
-	isPériodeDeCalcul,
-	PériodeDeCalcul,
-} from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { ChoixPériodeDeCalcul } from '@/components/Simulateur/ChoixPeriodeDeCalcul'
+import { isPériodeDeCalcul, PériodeDeCalcul } from '@/domaine/Unites'
 import { updateUnit } from '@/store/actions/actions'
 import { targetUnitSelector } from '@/store/selectors/simulation/targetUnit.selector'
 

@@ -3,25 +3,19 @@ import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
-import RuleLink from '@/components/RuleLink'
+import { Lodeom } from '@/contextes/salarié'
 import { baseTheme, H3, Spacing } from '@/design-system'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import useYear from '@/hooks/useYear'
 import { useZoneLodeom } from '@/hooks/useZoneLodeom'
-import {
-	lodeomDottedName,
-	MonthState,
-	Options,
-	rémunérationBruteDottedName,
-} from '@/pages/simulateurs/lodeom/utils'
 
 import RécapitulatifTrimestre from './RécapitulatifTrimestre'
 import RéductionMois from './RéductionMois'
 
 type Props = {
-	data: MonthState[]
+	data: Lodeom.MonthState[]
 	onRémunérationChange: (monthIndex: number, rémunérationBrute: number) => void
-	onOptionsChange: (monthIndex: number, options: Options) => void
+	onOptionsChange: (monthIndex: number, options: Lodeom.Options) => void
 	caption: string
 	warningCondition: PublicodesExpression
 	warningTooltip: ReactNode
@@ -104,16 +98,25 @@ export default function RéductionMoisParMois({
 						<caption className="sr-only">{caption}</caption>
 						<thead>
 							<tr>
-								<th scope="col">{t('Mois')}</th>
+								<th scope="col">{t('global.mois.label', 'Mois')}</th>
 								<th scope="col">
-									<RuleLink dottedName={rémunérationBruteDottedName} />
+									{t(
+										'pages.simulateurs.lodeom.en-tête.rémunération',
+										'Rémunération brute'
+									)}
 								</th>
 								<th scope="col">
-									<RuleLink dottedName={lodeomDottedName} />
+									{t(
+										'pages.simulateurs.lodeom.en-tête.exonération',
+										'Montant de l’exonération'
+									)}
 								</th>
 								{withRépartitionAndRégularisation && (
 									<th scope="col">
-										<RuleLink dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
+										{t(
+											'pages.simulateurs.lodeom.en-tête.régularisation',
+											'Régularisation'
+										)}
 									</th>
 								)}
 							</tr>

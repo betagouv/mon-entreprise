@@ -11,9 +11,9 @@ import {
 	Spacing,
 	Strong,
 } from '@/design-system'
+import { useSitePaths } from '@/hooks/useSitePaths'
 import { useTracking } from '@/hooks/useTracking'
 import { useNavigation } from '@/lib/navigation'
-import { useSitePaths } from '@/sitePaths'
 
 import { JeDonneMonAvis } from '../JeDonneMonAvis'
 import FeedbackForm from './FeedbackForm'

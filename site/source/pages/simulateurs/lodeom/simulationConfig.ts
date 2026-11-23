@@ -1,3 +1,4 @@
+import { situationSalarié } from '@/contextes/salarié'
 import { PublicodesSimulationConfig } from '@/domaine/PublicodesSimulationConfig'
 
 export const configLodeom: PublicodesSimulationConfig = {
@@ -20,10 +21,6 @@ export const configLodeom: PublicodesSimulationConfig = {
 			{
 				label: 'DFS',
 				dottedName: 'salarié . régimes spécifiques . DFS',
-			},
-			{
-				label: 'JEI',
-				dottedName: 'salarié . cotisations . exonérations . JEI',
 			},
 		],
 		'liste noire': [
@@ -48,9 +45,8 @@ export const configLodeom: PublicodesSimulationConfig = {
 	},
 	'unité par défaut': '€',
 	situation: {
-		dirigeant: 'non',
-		'entreprise . catégorie juridique': "''",
-		'entreprise . imposition': 'non',
+		...situationSalarié,
+		"salarié . dispositif d'exonération": "'Lodeom'",
 	},
 	'règles à ignorer pour déclencher les questions': [
 		'entreprise . salariés . effectif',

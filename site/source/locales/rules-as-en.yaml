@@ -127,10 +127,8 @@ assimilé salarié . cotisations . ATMP:
         - la gestion financière ;
 
         - les ressources humaines.
-      question.en:
-        '[automatic] Does the employee perform an administrative support
-        function?'
-      question.fr: Le salarié occupe-t-il une fonction support de nature administrative ?
+      question.en: '[automatic] Do you hold an administrative support function?'
+      question.fr: Occupez-vous une fonction support de nature administrative ?
       titre.en: '[automatic] support function rate'
       titre.fr: taux fonctions support
     taux minimum:
@@ -575,15 +573,6 @@ assimilé salarié . cotisations . maladie:
   titre.fr: Sécurité Sociale Maladie Maternité Invalidité Décès
 assimilé salarié . cotisations . prévoyances:
   avec:
-    conventionnelle:
-      titre.en: '[automatic] conventional'
-      titre.fr: conventionnelle
-    conventionnelle . employeur:
-      titre.en: "[automatic] employer's share"
-      titre.fr: part employeur
-    conventionnelle . salarié:
-      titre.en: '[automatic] employee share'
-      titre.fr: part salarié
     employeur:
       avec:
         non déductible socialement:
@@ -604,13 +593,6 @@ assimilé salarié . cotisations . prévoyances:
       titre.en: '[automatic] frames'
       titre.fr: cadres
     incapacité invalidité décès:
-      avec:
-        employeur:
-          titre.en: '[automatic] employer'
-          titre.fr: employeur
-        salarié:
-          titre.en: '[automatic] employee'
-          titre.fr: salarié
       titre.en: '[automatic] Pensions, Incapacity, Disability, Death, Other'
       titre.fr: Prévoyance, Incapacité, Invalidité, Décès, Autres
     salarié:
@@ -644,11 +626,11 @@ assimilé salarié . cotisations . prévoyances . santé:
         négocie le contrat et assure son suivi auprès de l'organisme assureur.
         La complémentaire santé d'entreprise doit prendre en charge un minimum
         de garanties.
-      question.en: "[automatic] What is the total monthly amount (employee and
-        employer) of the company's complementary health insurance (mutuelle)?"
-      question.fr:
-        Quel est le montant mensuel total (salarié et employeur) de la
-        complémentaire santé de l'entreprise (mutuelle) ?
+      question.en: '[automatic] What is the total monthly amount (employee and
+        employer shares) of your company supplementary health insurance
+        (mutuelle)?'
+      question.fr: Quel est le montant mensuel total (part salariale et part
+        patronale) de votre complémentaire santé d'entreprise (mutuelle) ?
       suggestions.alsace moselle basique.en: '[automatic] alsace moselle basique'
       suggestions.alsace moselle basique.fr: alsace moselle basique
       suggestions.basique.en: '[automatic] basic'
@@ -677,9 +659,9 @@ assimilé salarié . cotisations . prévoyances . santé:
         Part de la complémentaire santé payée par l'employeur. Doit être
         de 50% minimum
       question.en:
-        '[automatic] How much of the supplementary health insurance is paid
-        for by the employer?'
-      question.fr: Quelle est la part de la complémentaire santé payée par l'employeur ?
+        '[automatic] What share of your supplementary health insurance is
+        paid by the company?'
+      question.fr: Quelle est la part de votre complémentaire santé payée par l'entreprise ?
       suggestions.100%.en: '[automatic] 100%'
       suggestions.100%.fr: 100%
       suggestions.50%.en: '[automatic] 50%'
@@ -991,8 +973,8 @@ assimilé salarié . exonérations . JEI:
     - employees for whom the employer is subject to the obligation to provide
     unemployment insurance
 
-    - corporate officers who participate, as their primary occupation, in the
-    company’s research and development project
+    - corporate officers who are primarily involved in the company’s research
+    and development project
 
 
     For simplicity’s sake, an employee will be deemed eligible for the exemption
@@ -1078,8 +1060,8 @@ assimilé salarié . régimes spécifiques . taux réduits:
     - les mannequins,
     - les journalistes professionnels et les pigistes,
     - les professions médicales salariées.
-  question.en: '[automatic] Does the employee benefit from reduced contribution rates?'
-  question.fr: Le salarié bénéficie-t-il de taux de cotisations réduits ?
+  question.en: '[automatic] Does your profession benefit from reduced contribution rates?'
+  question.fr: Votre profession bénéficie-t-elle de taux de cotisations réduits ?
   titre.en: '[automatic] reduced rates special cases'
   titre.fr: taux réduits cas particuliers
 assimilé salarié . régimes spécifiques . taux réduits . profession:
@@ -1151,11 +1133,8 @@ assimilé salarié . régimes spécifiques . taux réduits . profession:
         plusieurs employeurs relevant du régime général.
       titre.en: '[automatic] medical profession'
       titre.fr: profession médicale
-  question.en:
-    "[automatic] What is the employee's occupation for the application
-    of reduced contribution rates?"
-  question.fr: Quelle est la profession du salarié pour l'application de taux de
-    cotisations réduits ?
+  question.en: '[automatic] Which profession with reduced contribution rates do you practice?'
+  question.fr: Quelle profession bénéficiant de taux de cotisations réduits exercez-vous ?
   titre.en: '[automatic] profession'
   titre.fr: profession
 assimilé salarié . régimes spécifiques . taux réduits . réduction de taux:
@@ -1286,21 +1265,20 @@ assimilé salarié . rémunération . avantages en nature:
         les
 
         cas un avantage en nature.
-      question.en: |
-        [automatic] Does the company provide free meals?
+      question.en: '[automatic] Does the company provide you with free meals?'
       question.fr: |
-        L'entreprise fournit-elle gratuitement des repas ?
+        L'entreprise vous fournit-elle gratuitement des repas ?
       titre.en: '[automatic] food'
       titre.fr: nourriture
     ntic:
       avec:
         abonnements:
           question.en:
-            '[automatic] What is the cost of the subscription (mobile package,
-            etc.) covered by the employer?'
+            '[automatic] What is the cost of the subscription (mobile plan,
+            etc.) paid by the company?'
           question.fr:
             Quel est le coût de l'abonnement (forfait mobile, etc.) pris en
-            charge par l'employeur ?
+            charge par l'entreprise ?
           suggestions.aucun.en: '[automatic] no'
           suggestions.aucun.fr: aucun
           suggestions.international.en: '[automatic] international'
@@ -1421,11 +1399,11 @@ assimilé salarié . rémunération . avantages en nature:
         outils), soit de l’existence de factures détaillées permettant d’établir
 
         une utilisation privée.
-      question.en: >
-        [automatic] Does the company provide a free NICT tool (computer,
-        telephone, tablet, etc.)?
+      question.en:
+        '[automatic] Does the company provide you with a free ICT device
+        (computer, phone, tablet, etc.)?'
       question.fr: >
-        L'entreprise fournit-elle gratuitement un outil issus des NTIC
+        L'entreprise vous fournit-elle gratuitement un outil issu des NTIC
         (ordinateur, téléphone, tablette, etc.) ?
       titre.en: '[automatic] ntic'
       titre.fr: ntic
@@ -1461,11 +1439,10 @@ assimilé salarié . rémunération . avantages en nature:
     du
 
     salaire net imposable, il sera déduit du salaire net à verser.
-  question.en: '[automatic] Does the company provide benefits in kind (meals,
-    vehicle, telephone, discounts, accommodation, etc.)?'
-  question.fr:
-    L'entreprise fournit-elle des avantages en nature (repas, véhicule,
-    téléphone, réductions, logement…) ?
+  question.en: '[automatic] Does the company provide you with benefits in kind
+    (meals, vehicle, telephone, discounts, housing…)?'
+  question.fr: L'entreprise vous fournit-elle des avantages en nature (repas,
+    véhicule, téléphone, réductions, logement…) ?
   titre.en: '[automatic] Benefits in kind'
   titre.fr: Avantages en nature
 assimilé salarié . rémunération . brute:
@@ -1637,26 +1614,28 @@ entreprise . SIREN:
   titre.fr: SIREN
 entreprise . TVA:
   description.en: >
-    [automatic] Certain types of company are not subject to VAT.
+    [automatic] Certain types of businesses are not subject to VAT.
 
-    These companies pay payroll tax in return.
-
-
-    Examples include banking, financial and insurance establishments. This is
-    also the case for teaching activities.
+    Instead, they pay payroll tax.
 
 
-    **Note**: don't confuse VAT exemption (which depends on your activity) with
-    the basic tax-free regime (which depends on your sales).
-  description.fr: >
+    This applies, for example, to banking, financial, and
+
+    insurance institutions. It also applies to educational activities.
+
+
+    **Note**: Do not confuse the VAT exemption (which depends on
+
+    your business activity) with the basic exemption threshold (which depends on
+    your
+
+    revenue).
+  description.fr: |
     Certains types d’entreprises ne sont pas assujetties à la TVA.
-
     Ces dernières payent la taxe sur les salaires en contrepartie.
-
 
     C’est le cas par exemple des établissements bancaires, financiers ou
     d’assurance. C’est aussi le cas des activités d’enseignement.
-
 
     **À noter** : il ne faut pas confondre l’exonération de TVA (qui dépend de
     votre activité) et le régime en franchise de base (qui dépend de votre
@@ -1931,22 +1910,6 @@ entreprise . salariés:
 entreprise . salariés . effectif:
   avec:
     seuil:
-      avec:
-        moins de 2000:
-          titre.en: '[automatic] between 250 and 1 999'
-          titre.fr: entre 250 et 1 999
-        moins de 250:
-          titre.en: '[automatic] between 150 and 249'
-          titre.fr: entre 150 et 249
-        moins de 5:
-          titre.en: '[automatic] less than 5'
-          titre.fr: moins de 5
-        moins de 50:
-          titre.en: '[automatic] between 20 and 49'
-          titre.fr: entre 20 et 49
-        plus de 2000:
-          titre.en: '[automatic] 2,000 and over'
-          titre.fr: 2 000 et plus
       description.en: >
         [automatic] Many employer contributions vary according to the size of
         the company's workforce.
@@ -2438,6 +2401,41 @@ paramètres:
 paramètres . impôt:
   titre.en: '[automatic] tax'
   titre.fr: impôt
+paramètres . impôt . dividendes imposables:
+  description.en: >
+    [automatic] This amount is added to the income from employment, after the
+    standard deduction, to calculate income tax
+
+    using the standard tax schedule.
+
+    This is the amount of dividends after a 40% deduction and minus the
+    deductible CSG
+
+    .
+
+
+    It must be reported by corporate income tax-liable executives who pay
+    themselves dividends subject to
+
+    income tax.
+  description.fr: >
+    Ce montant s’ajoute au revenu d’activité abattu pour calculer l’impôt sur le
+    revenu
+
+    avec le barème standard.
+
+    Il s’agit du montant des dividendes après abattement de 40 % et diminué de
+    la CSG
+
+    déductible.
+
+
+    Il est à renseigner pour les dirigeants à l’IS qui se versent des dividendes
+    soumis à
+
+    l’impôt sur le revenu.
+  titre.en: '[automatic] taxable dividends'
+  titre.fr: dividendes imposables
 paramètres . impôt . foyer fiscal:
   titre.en: '[automatic] taxable household'
   titre.fr: foyer fiscal
@@ -2451,16 +2449,15 @@ paramètres . impôt . foyer fiscal . situation de famille:
 paramètres . impôt . revenu d'activité:
   description.en: >
     [automatic] This is the income to be used in calculating income tax using
-    the standard
+    the
 
-    standard tax scale, and to which a flat-rate deduction of 10% for
-    professional
+    standard tax schedule, to which a flat-rate deduction of 10% for
 
-    business expenses.
+    business expenses is applied.
 
 
-    It must be entered for salaried employees, assimilated employees and
-    directors subject to corporation tax.
+    This information must be provided by employees, individuals treated as
+    employees, and executives subject to corporate income tax.
   description.fr: >
     C’est le revenu à utiliser dans le calcul de l’impôt sur le revenu avec le
 
@@ -2471,7 +2468,7 @@ paramètres . impôt . revenu d'activité:
 
 
     Il est à renseigner pour les salariés, assimilés salariés et dirigeants à
-    l'IS.
+    l’IS.
   titre.en: '[automatic] business income'
   titre.fr: revenu d'activité
 paramètres . impôt . revenu imposable:

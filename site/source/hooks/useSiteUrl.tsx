@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 export const useSiteUrl = () => {
 	const language = useTranslation().i18n.language

@@ -4,6 +4,8 @@ import { TrackPage } from '@/components/PianoAnalytics'
 import Meta from '@/components/utils/Meta'
 import { Link, MDXWrapper } from '@/design-system'
 
+import { MDXPageContainer } from './MDXWrapper'
+
 export interface DocumentationPageProps {
 	title: string
 	children: React.ReactNode
@@ -38,7 +40,9 @@ export const DocumentationPage = ({
 				</NavigationContainer>
 			)}
 
-			<MDXWrapper>{children}</MDXWrapper>
+			<MDXPageContainer>
+				<MDXWrapper>{children}</MDXWrapper>
+			</MDXPageContainer>
 		</>
 	)
 }

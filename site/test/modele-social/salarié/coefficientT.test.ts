@@ -133,5 +133,23 @@ describe('Coefficient T', () => {
 				expect(e).toEvaluate('salarié . cotisations . exonérations . T', 0.2111)
 			}
 		)
+
+		it.each([
+			['moins de 11 salariés', 5_000],
+			['sectoriel', 5_000],
+			['renforcé', 5_000],
+			['renforcé', 6_500],
+		])(
+			'ne varie pas avec la rémunération (barème %s, %d €/mois)',
+			(barème, rémunération) => {
+				const e = engine.setSituation({
+					...situationZone2,
+					'salarié . cotisations . exonérations . lodeom . zone deux . barèmes': `"${barème}"`,
+					'salarié . rémunération . brut': `${rémunération} €/mois`,
+				})
+
+				expect(e).toEvaluate('salarié . cotisations . exonérations . T', 0.2111)
+			}
+		)
 	})
 })

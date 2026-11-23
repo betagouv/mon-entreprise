@@ -40,7 +40,9 @@ Déclencheurs : la fin en succès du workflow « Tests sur Master », et `workfl
 
 Job `review-app-clevercloud` de [`.github/workflows/pr-deploy.yaml`](../.github/workflows/pr-deploy.yaml), aux côtés des previews Netlify — déployer les previews d'une PR est une seule et même responsabilité.
 
-Chaque PR obtient une application éphémère, en français seulement, servie sur `mon-entreprise-pr-<numéro>.cleverapps.io`. Elle est créée au premier déploiement, redéployée à chaque push, et supprimée à la fermeture de la PR par un job de [`pr-cleanup.yaml`](../.github/workflows/pr-cleanup.yaml).
+Chaque PR obtient deux applications éphémères, une par langue, servies sur `mon-entreprise-pr-<numéro>.cleverapps.io` et `mycompanyinfrance-pr-<numéro>.cleverapps.io`. Elles sont créées au premier déploiement, redéployées à chaque push, et supprimées à la fermeture de la PR par un job de [`pr-cleanup.yaml`](../.github/workflows/pr-cleanup.yaml).
+
+Après l'import de la configuration, le déploiement remplace `NEXT_PUBLIC_FR_BASE_URL` et `NEXT_PUBLIC_EN_BASE_URL` par les domaines des deux previews : le lien de bascule de langue du pied de page mène à la preview de l'autre langue, plutôt qu'au site de production.
 
 Le déclencheur est `workflow_run` sur « Vérification PR », et non `pull_request_target`. C'est ce qui rend les review apps sûres pour les contributions externes : une PR de fork n'exécute « Vérification PR » qu'après approbation d'un mainteneur, donc aucune application n'est créée tant que personne n'a regardé le code. Un workflow `pull_request_target` s'exécuterait au contraire sans approbation, puisqu'il tourne dans le contexte de la branche de base — n'importe qui pourrait alors faire construire et exécuter son code sur l'organisation Clever Cloud.
 
@@ -48,7 +50,7 @@ C'est le commit de fusion (`refs/pull/<n>/merge`) qui est déployé, comme pour 
 
 Le runner n'exécute rien du code de la PR : il ne lance que des commandes `clever` et un `git push`. Le code de la PR est checkouté dans `pr/`, tandis que la racine du workspace porte la branche par défaut — d'où proviennent la configuration injectée dans l'application et l'action composite qui installe le CLI. Une PR ne peut donc influencer ni les variables de son application, ni ce que le runner exécute.
 
-Le lien est ajouté au commentaire de PR, à côté des previews Netlify. Le job qui écrit ce commentaire dépend du déploiement : le lien n'apparaît qu'une fois l'application en ligne, et pas du tout si le déploiement a échoué.
+Les deux liens sont ajoutés au commentaire de PR, à côté des previews Netlify. Le job qui écrit ce commentaire dépend du déploiement : le lien d'une langue n'apparaît qu'une fois son application en ligne, et pas du tout si son déploiement a échoué.
 
 ## Configuration des applications
 
@@ -64,6 +66,10 @@ La configuration est versionnée dans `clevercloud/next-fr.env` et `clevercloud/
 | `CC_POST_BUILD_HOOK`        | Build Next.js, après l'installation des dépendances                  |
 | `CC_RUN_COMMAND`            | Démarrage du serveur Next.js                                          |
 | `NEXT_PUBLIC_ENVIRONNEMENT` | Environnement exposé au client (`site/source/services/environnement`) |
+| `NEXT_PUBLIC_FR_BASE_URL`   | URL absolue du site français                                         |
+| `NEXT_PUBLIC_EN_BASE_URL`   | URL absolue du site anglais                                          |
+
+Chaque application lit les deux URL : celle de sa propre langue sert de `metadataBase` et son absence fait échouer le build ; celle de l'autre langue est la cible du lien de bascule du pied de page, et son absence fait simplement disparaître ce lien. Sur une review app, les deux URL sont remplacées par les domaines des previews.
 
 ### Pourquoi `CC_NODE_DEV_DEPENDENCIES=install`
 

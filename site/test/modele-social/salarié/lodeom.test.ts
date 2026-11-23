@@ -109,6 +109,27 @@ describe('Lodeom', () => {
 				true
 			)
 		})
+
+		it('le barème de compétitivité se décide sans réponse sur le barème envisagé', () => {
+			const e = engine.setSituation({
+				'établissement . commune . département': "'Guadeloupe'",
+				'entreprise . salariés . effectif': '20',
+				'salarié . contrat . salaire brut': '1600 €/mois',
+			})
+
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un . barèmes',
+				undefined
+			)
+			expect(e).toEvaluate(
+				'salarié . cotisations . exonérations . lodeom . zone un . barème compétitivité',
+				false
+			)
+			expect(e).not.toEvaluate(
+				'salarié . cotisations . exonérations . employeur',
+				undefined
+			)
+		})
 	})
 
 	describe('Calcul de la réduction et de sa répartition', () => {

@@ -1,7 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 
 import { Body, H2, Link, PopoverWithTrigger, StyledLink } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 export default function LegalNotice() {
 	const { absoluteSitePaths } = useSitePaths()

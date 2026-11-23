@@ -5,9 +5,11 @@ import { eurosParAn } from '@/domaine/MontantRecurrent'
 import { pourcentage, quantité } from '@/domaine/Quantite'
 
 import {
+	champModifié,
 	estSituationValide,
 	initialSituationComparée,
 	simulationEstCommencée,
+	SituationComparée,
 } from './situation'
 
 const avec = (champs: Partial<typeof initialSituationComparée>) => ({
@@ -54,7 +56,7 @@ describe('simulationEstCommencée', () => {
 		['situationFamiliale', 'couple'],
 		['enfants', quantité(1, 'enfant')],
 		['parentIsolé', true],
-		['enfants', eurosParAn(10_000)],
+		['autresRevenus', eurosParAn(10_000)],
 	])(
 		'est vraie si %s est différent de la situation initialie',
 		(élément, valeur) => {
@@ -68,5 +70,39 @@ describe('simulationEstCommencée', () => {
 
 	it('est fausse pour la situation initiale', () => {
 		expect(simulationEstCommencée(initialSituationComparée)).toBe(false)
+	})
+})
+
+describe('champModifié', () => {
+	it('couvre tous les champs de la situation', () => {
+		const situation: SituationComparée = {
+			_tag: 'Situation',
+			_type: 'comparaison-statuts',
+			chiffreDAffaires: O.some(eurosParAn(48_000)),
+			charges: O.some(eurosParAn(18_000)),
+			IRouIS: 'IS',
+			versementLibératoire: true,
+			natureActivité: 'artisanale',
+			typeActivité: 'service',
+			activitéLibéraleRéglementée: true,
+			acre: true,
+			tva: false,
+			méthodeImposition: 'taux personnalisé',
+			tauxImposition: O.some(pourcentage(18)),
+			situationFamiliale: 'couple',
+			enfants: quantité(1, 'enfant'),
+			parentIsolé: true,
+			autresRevenus: eurosParAn(77_000),
+		}
+
+		Object.keys(situation).forEach((champ) => {
+			if (champ === '_tag' || champ === '_type') {
+				return
+			}
+
+			expect(champModifié(situation, champ as keyof SituationComparée)).toBe(
+				true
+			)
+		})
 	})
 })

@@ -7,9 +7,13 @@
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 - Supprime les règles vides `assimilé salarié . cotisations . prévoyances . conventionnelle`
 - Supprime les règles enfants de `assimilé salarié . cotisations . prévoyances . incapacité invalidité décès`
+- Corrige les possibilités de `entreprise . salariés . effectif . seuil`
 
 ### Nouveautés
 - Crée la règle `plafond sécurité sociale . mayotte`
+
+### Mises à jour
+- Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
 
 ## 0.1.0
 

@@ -12,7 +12,7 @@ import {
 	useNavigationType,
 } from 'react-router-dom'
 
-import { environnement } from '@/services/environnement/environnement'
+import { environnement } from '@/services/environnement'
 
 if (environnement.branche && environnement.déployé === 'staging') {
 	// eslint-disable-next-line no-console

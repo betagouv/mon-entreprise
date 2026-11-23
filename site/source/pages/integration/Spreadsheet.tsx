@@ -2,7 +2,7 @@ import { Trans, useTranslation } from 'react-i18next'
 
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { Body, H1, H2, Link } from '@/design-system'
-import { useSitePaths } from '@/sitePaths'
+import { useSitePaths } from '@/hooks/useSitePaths'
 
 import Meta from '../../components/utils/Meta'
 
