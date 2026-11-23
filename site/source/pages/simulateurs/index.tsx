@@ -6,8 +6,9 @@ import { Page404 } from '@/components/Page404'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { useSitePaths } from '@/hooks/useSitePaths'
 import { useNavigation } from '@/lib/navigation'
-import Page404 from '@/pages/404'
-import { useSitePaths } from '@/sitePaths'
+import { Link } from '@/design-system'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
+import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 import { LienDeRetour } from '@/simulateurs'
 import { Salarié } from '@/simulateurs/salarié'
@@ -183,5 +184,6 @@ export default function Simulateurs() {
 		</>
 	)
 }
+
 
 
