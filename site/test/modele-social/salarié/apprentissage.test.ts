@@ -315,6 +315,8 @@ describe('En contrat d’apprentissage', () => {
 				"salarié . contrat . date d'embauche": '01/09/2025',
 				'salarié . régimes spécifiques . apprentissage . handicap': handicap,
 			})
+			// Les noms des deux notifications sont inversés par rapport à leurs conditions : « avec RQTH »
+			// s’affiche sans situation de handicap, et inversement. Leur renommage (breaking change) relève d’une PR à part.
 			const notification =
 				handicap === 'non'
 					? 'salarié . contrat . apprentissage . ancienneté . durée maximale avec RQTH'
