@@ -2,9 +2,8 @@ import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
-import RuleInput, {
-	estUnGroupeDeChoix,
-} from '@/components/conversation/RuleInput'
+import { estUnGroupeDeChoix } from '@/components/conversation/RuleField'
+import RuleInput from '@/components/conversation/RuleInput'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
@@ -68,7 +67,11 @@ export function SimpleField({
 
 	const required = fromOuiNon(meta.requis)
 
-	const estUnGroupe = estUnGroupeDeChoix(dottedName, engine)
+	const estUnGroupe = estUnGroupeDeChoix(
+		rule,
+		evaluation.unit,
+		evaluation.nodeValue as string | null
+	)
 
 	const libellé = (
 		<>
