@@ -813,9 +813,25 @@ salarié . rémunération . avantages en nature:
         montant:
           titre: nourriture
           unité: €/mois
-          produit:
-            - repas par mois
-            - repas forfaitaire
+          variations:
+            - si: participation >= 50% * repas forfaitaire
+              alors: 0 €/mois
+            - sinon:
+                produit:
+                  - repas par mois
+                  - repas forfaitaire - participation
+
+        participation:
+          question: >
+            De quel montant le salarié participe-t-il au repas ?
+          par défaut: 0 €/repas
+          plancher: 0 €/repas
+          description: >
+            Si la participation financière du salarié est inférieure à 50 % du
+            montant forfaitaire pour un repas, la différence est soumise à
+            cotisations. Si la participation est supérieure à 50 % du montant
+            forfaitaire, l'avantage en nature est négligé et ne sera pas intégré
+            dans l'assiette des cotisations.
 
         repas par mois:
           question: >
