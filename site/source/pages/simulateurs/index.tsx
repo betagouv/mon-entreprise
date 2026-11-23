@@ -1,4 +1,5 @@
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
@@ -8,6 +9,7 @@ import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { useNavigation } from '@/lib/navigation'
 import Page404 from '@/pages/404'
 import { useSitePaths } from '@/sitePaths'
+import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
 import { Artisan } from './artisan/Artisan'
@@ -42,11 +44,18 @@ import { SASUSimulation } from './sasu/SASU'
 
 export default function Simulateurs() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
-	const { currentPath } = useNavigation()
+	const { currentPath, generatePath } = useNavigation()
 	const [lastState] = useNavigationOrigin()
 	const isEmbedded = useIsEmbedded()
 	const simulateurs = relativeSitePaths.simulateurs
 	const professionLibérale = simulateurs['profession-libérale']
+	const siren = useSelector(companySirenSelector)
+	const retourÀMonActivité = siren
+		? generatePath(
+				absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise,
+				{ entreprise: siren }
+			)
+		: absoluteSitePaths.assistants['pour-mon-entreprise'].index
 
 	return (
 		<>
@@ -54,10 +63,7 @@ export default function Simulateurs() {
 
 			{currentPath !== absoluteSitePaths.simulateurs.index &&
 				(lastState?.fromGérer ? (
-					<Link
-						to={absoluteSitePaths.assistants['pour-mon-entreprise'].index}
-						noUnderline
-					>
+					<Link to={retourÀMonActivité} noUnderline>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
 				) : !isEmbedded ? (
