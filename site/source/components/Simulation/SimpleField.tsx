@@ -2,7 +2,12 @@ import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
-import RuleInput from '@/components/conversation/RuleInput'
+import RuleInput, {
+	getRuleInputNature,
+	OUI_NON_INPUT,
+	PLUSIEURS_POSSIBILITES,
+	UNE_POSSIBILITE,
+} from '@/components/conversation/RuleInput'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
@@ -66,6 +71,46 @@ export function SimpleField({
 
 	const required = fromOuiNon(meta.requis)
 
+	const displayedUnit = evaluation.unit?.numerators.includes(targetUnit)
+		? targetUnit
+		: undefined
+	const missing =
+		evaluation.nodeValue === undefined ||
+		Object.keys(evaluation.missingVariables).length > 0
+
+	// Les montants et les quantités n'interviennent qu'après les choix dans la
+	// détection de la nature du champ : inutile de les calculer ici.
+	const estUnChoix = [
+		PLUSIEURS_POSSIBILITES,
+		UNE_POSSIBILITE,
+		OUI_NON_INPUT,
+	].includes(getRuleInputNature(dottedName, engine, {}, false, false))
+
+	if (estUnChoix) {
+		return (
+			<FadeIn>
+				<StyledFieldset>
+					<StyledLegend>
+						<Markdown as="span" components={markdownComponents}>
+							{displayedLabel}
+						</Markdown>
+						{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
+						<BoutonDeDocumentation dottedName={dottedName} />
+					</StyledLegend>
+					<RuleInput
+						dottedName={dottedName}
+						displayedUnit={displayedUnit}
+						required={required}
+						missing={missing}
+						onChange={dispatchValue}
+						errorMessage={errorMessage}
+						validation={validation}
+					/>
+				</StyledFieldset>
+			</FadeIn>
+		)
+	}
+
 	return (
 		<FadeIn>
 			<div>
@@ -82,17 +127,10 @@ export function SimpleField({
 			</div>
 			<RuleInput
 				dottedName={dottedName}
-				displayedUnit={
-					evaluation.unit?.numerators.includes(targetUnit)
-						? targetUnit
-						: undefined
-				}
+				displayedUnit={displayedUnit}
 				aria-labelledby={labelId}
 				required={required}
-				missing={
-					evaluation.nodeValue === undefined ||
-					Object.keys(evaluation.missingVariables).length > 0
-				}
+				missing={missing}
 				onChange={dispatchValue}
 				errorMessage={errorMessage}
 				validation={validation}
@@ -100,6 +138,20 @@ export function SimpleField({
 		</FadeIn>
 	)
 }
+
+// Style nécessaire pour un affichage des marges et paddings uniformes dans les
+// différents navigateurs
+const StyledFieldset = styled.fieldset`
+	display: contents;
+
+	padding: 0;
+	margin: 0;
+	border: none;
+`
+
+const StyledLegend = styled.legend`
+	padding: 0;
+`
 
 const RedIntro = styled(Intro)`
 	color: ${({ theme }) =>

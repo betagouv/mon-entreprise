@@ -25,3 +25,17 @@ export const SwitchLabel = styled(Body).withConfig({
 export const RuleSwitchLabel = styled(SwitchLabel).attrs({
 	isRule: true,
 })``
+
+// Style nécessaire pour un affichage des marges et paddings uniformes dans les
+// différents navigateurs
+export const SwitchFieldset = styled.fieldset`
+	display: contents;
+
+	padding: 0;
+	margin: 0;
+	border: none;
+
+	& > legend {
+		padding: 0;
+	}
+`

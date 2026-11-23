@@ -50,6 +50,28 @@ const exonérationDu = (mois: string) => {
 }
 
 describe('Simulateur Lodeom', () => {
+	it('regroupe chaque question préliminaire dans un fieldset nommé par sa légende', async () => {
+		await afficheLeSimulateurEnZoneUn()
+
+		const questions = [
+			/^Quelle est votre localisation ?/,
+			/^Quel barème envisagez-vous ?/,
+			/^Quel type de régularisation souhaitez-vous ?/,
+			/^Quel est l’effectif de votre entreprise ?/,
+		]
+
+		for (const question of questions) {
+			const groupe = await screen.findByRole(
+				'group',
+				{ name: question },
+				{ timeout: 30000 }
+			)
+
+			expect(groupe.tagName).toBe('FIELDSET')
+			expect(within(groupe).getAllByRole('radio').length).toBeGreaterThan(1)
+		}
+	}, 120000)
+
 	it('présente les douze mois dans l’ordre', async () => {
 		await afficheLeSimulateurEnZoneUn()
 		await champDeRémunérationDe('janvier')
