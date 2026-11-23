@@ -5,12 +5,10 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import { Page404 } from '@/components/Page404'
 import ScrollToTop from '@/components/utils/Scroll/ScrollToTop'
 import { useSitePaths } from '@/hooks/useSitePaths'
+import { useIsEmbedded } from '@/hooks/useIsEmbedded'
 import { useNavigation } from '@/lib/navigation'
 import { Link } from '@/design-system'
-import { useIsEmbedded } from '@/hooks/useIsEmbedded'
-import { useNavigationOrigin } from '@/hooks/useNavigationOrigin'
 import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
-import { LienDeRetour } from '@/simulateurs'
 import { Salarié } from '@/simulateurs/salarié'
 
 import { ActivitéPartielle } from './activité-partielle/ActivitéPartielle'
@@ -45,16 +43,15 @@ import { SASUSimulation } from './sasu/SASU'
 
 export default function Simulateurs() {
 	const { absoluteSitePaths, relativeSitePaths } = useSitePaths()
-	const { currentPath, generatePath } = useNavigation()
-	const [lastState] = useNavigationOrigin()
+	const { currentPath } = useNavigation()
 	const isEmbedded = useIsEmbedded()
 	const simulateurs = relativeSitePaths.simulateurs
 	const professionLibérale = simulateurs['profession-libérale']
 	const siren = useSelector(companySirenSelector)
 	const retourÀMonActivité = siren
-		? generatePath(
-				absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise,
-				{ entreprise: siren }
+		? absoluteSitePaths.assistants['pour-mon-entreprise'].entreprise.replace(
+				':entreprise',
+				String(siren)
 			)
 		: absoluteSitePaths.assistants['pour-mon-entreprise'].index
 
@@ -63,21 +60,10 @@ export default function Simulateurs() {
 			<ScrollToTop key={currentPath} />
 
 			{currentPath !== absoluteSitePaths.simulateurs.index &&
-				(lastState?.fromGérer ? (
+				(!isEmbedded ? (
 					<Link to={retourÀMonActivité} noUnderline>
 						<span aria-hidden>←</span> <Trans>Retour à mon activité</Trans>
 					</Link>
-				) : !isEmbedded ? (
-					(!lastState || lastState?.fromSimulateurs) && (
-						<Link
-							className="print-hidden"
-							to={absoluteSitePaths.simulateurs.index}
-							noUnderline
-						>
-							<span aria-hidden>←</span>{' '}
-							<Trans>Voir les autres simulateurs</Trans>
-						</Link>
-					)
 				) : null)}
 			<Routes>
 				<Route
@@ -184,6 +170,3 @@ export default function Simulateurs() {
 		</>
 	)
 }
-
-
-
