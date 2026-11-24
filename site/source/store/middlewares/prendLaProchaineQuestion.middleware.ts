@@ -26,100 +26,104 @@ import { completeSituationsSelonContextesSelector } from '@/store/selectors/comp
 import { complement } from '@/utils/complement'
 import { safeSetSituation } from '@/utils/publicodes/safeSetSituation'
 
-let lastSimulation: Simulation | null = null
-let lastConfig: PublicodesSimulationConfig | null = null
-let lastSituationsAvecContextes: NonEmptyArray<SituationPublicodes> | null =
-	null
-let engines: NonEmptyArray<Engine> | null = null
-
 export const prendLaProchaineQuestionMiddleware: Middleware<
 	object,
 	RootState,
 	Dispatch<Action>
-> = (store) => (next) => async (action: Action) => {
-	const result = next(action)
+> = (store) => {
+	// État propre à chaque store : partagé entre plusieurs stores (un par test),
+	// il fait se relancer indéfiniment leurs mises à jour quand elles se croisent.
+	let lastSimulation: Simulation | null = null
+	let lastConfig: PublicodesSimulationConfig | null = null
+	let lastSituationsAvecContextes: NonEmptyArray<SituationPublicodes> | null =
+		null
+	let engines: NonEmptyArray<Engine> | null = null
 
-	const newState = store.getState()
+	return (next) => async (action: Action) => {
+		const result = next(action)
 
-	const simulation = newState.simulation
-	const situation = completeSituationSelector(newState)
-	const questionsRépondues = simulation?.questionsRépondues
-	const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
+		const newState = store.getState()
 
-	const config = simulation?.config
+		const simulation = newState.simulation
+		const situation = completeSituationSelector(newState)
+		const questionsRépondues = simulation?.questionsRépondues
+		const questionsSuivantesActuelles = simulation?.questionsSuivantes || []
 
-	if (!config) {
-		return result
-	}
+		const config = simulation?.config
 
-	const engine = await getOrCreateEnginePromise(config.nomModèle!)
-	const configHasChanged = lastConfig !== config
+		if (!config) {
+			return result
+		}
 
-	if (config && configHasChanged) {
-		engines = isComparateurConfig(config)
-			? (config.contextes.map(() =>
-					engine.shallowCopy()
-				) as NonEmptyArray<Engine>)
-			: [engine]
-		lastSituationsAvecContextes = null
-	}
+		const engine = await getOrCreateEnginePromise(config.nomModèle!)
+		const configHasChanged = lastConfig !== config
 
-	if (action.type === 'CONFIGURE_LA_SIMULATION') {
-		lastConfig = null
-		lastSituationsAvecContextes = null
-		lastSimulation = null
-	}
+		if (config && configHasChanged) {
+			engines = isComparateurConfig(config)
+				? (config.contextes.map(() =>
+						engine.shallowCopy()
+					) as NonEmptyArray<Engine>)
+				: [engine]
+			lastSituationsAvecContextes = null
+		}
 
-	if (situation && config && engines && simulation !== lastSimulation) {
-		const situationsAvecContextes =
-			completeSituationsSelonContextesSelector(newState)
+		if (action.type === 'CONFIGURE_LA_SIMULATION') {
+			lastConfig = null
+			lastSituationsAvecContextes = null
+			lastSimulation = null
+		}
 
-		const situationAChangé =
-			!!lastSituationsAvecContextes &&
-			!deepEql<
-				NonEmptyArray<SituationPublicodes>,
-				NonEmptyArray<SituationPublicodes>
-			>(situationsAvecContextes, lastSituationsAvecContextes)
+		if (situation && config && engines && simulation !== lastSimulation) {
+			const situationsAvecContextes =
+				completeSituationsSelonContextesSelector(newState)
 
-		if (!lastSituationsAvecContextes || situationAChangé) {
-			lastSituationsAvecContextes = situationsAvecContextes
+			const situationAChangé =
+				!!lastSituationsAvecContextes &&
+				!deepEql<
+					NonEmptyArray<SituationPublicodes>,
+					NonEmptyArray<SituationPublicodes>
+				>(situationsAvecContextes, lastSituationsAvecContextes)
 
-			engines.forEach((engine, index) => {
-				safeSetSituation(
-					(s) => engine.setSituation(s),
-					situationsAvecContextes[index]
+			if (!lastSituationsAvecContextes || situationAChangé) {
+				lastSituationsAvecContextes = situationsAvecContextes
+
+				engines.forEach((engine, index) => {
+					safeSetSituation(
+						(s) => engine.setSituation(s),
+						situationsAvecContextes[index]
+					)
+				})
+
+				lastSimulation = simulation
+				lastConfig = config
+
+				store.dispatch(
+					applicabilitéDesQuestionsRépondues(
+						(questionsRépondues || []).map((question) => ({
+							...question,
+							applicable:
+								engine.evaluate({ 'est applicable': question.règle })
+									.nodeValue === true,
+						}))
+					)
 				)
-			})
 
-			lastSimulation = simulation
-			lastConfig = config
-
-			store.dispatch(
-				applicabilitéDesQuestionsRépondues(
-					(questionsRépondues || []).map((question) => ({
-						...question,
-						applicable:
-							engine.evaluate({ 'est applicable': question.règle })
-								.nodeValue === true,
-					}))
+				const prochainesQuestions = détermineLesProchainesQuestions(
+					engines,
+					config,
+					questionsRépondues
 				)
-			)
 
-			const prochainesQuestions = détermineLesProchainesQuestions(
-				engines,
-				config,
-				questionsRépondues
-			)
-
-			if (
-				arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
-			) {
-				store.dispatch(metÀJourLesQuestionsSuivantes(prochainesQuestions))
+				if (
+					arraysAreDifferent(prochainesQuestions, questionsSuivantesActuelles)
+				) {
+					store.dispatch(metÀJourLesQuestionsSuivantes(prochainesQuestions))
+				}
 			}
 		}
-	}
 
-	return result
+		return result
+	}
 }
 
 const arraysAreDifferent = complement(Array.getEquivalence(String.Equivalence))
