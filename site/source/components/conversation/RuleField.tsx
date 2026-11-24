@@ -13,6 +13,7 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { isQuantité } from '@/domaine/Quantite'
 import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unites'
 import { useEngine } from '@/utils/publicodes/EngineContext'
+import { getMeta } from '@/utils/publicodes/publicodes'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import RuleInput from './RuleInput'
@@ -20,7 +21,7 @@ import RuleInput from './RuleInput'
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'
 const RADIO_GROUP = '<RadioGroup />'
-const SELECT_ATMP = '<SelectAtmp />'
+const SEARCH_FIELD = '<SearchField />'
 const SELECT_COMMUNE = '<SelectCommune />'
 const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
@@ -30,10 +31,11 @@ function getRuleFieldNature(
 	evaluationType: string | null | undefined,
 	value: ValeurPublicodes | undefined
 ): string {
-	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
+	if (rule.possibilities?.nodeKind === 'une possibilité') {
+		const { affichage } = getMeta<{ affichage?: string }>(rule.rawNode, {})
 
-	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
-		return SELECT_ATMP
+		return affichage === 'search' ? SEARCH_FIELD : RADIO_GROUP
+	}
 
 	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
