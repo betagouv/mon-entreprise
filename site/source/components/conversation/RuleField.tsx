@@ -1,4 +1,4 @@
-import Engine from 'publicodes'
+import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
@@ -8,33 +8,30 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
-import RuleInput, {
-	getRuleInputNature,
-	OUI_NON_INPUT,
-	PLUSIEURS_POSSIBILITES,
-	UNE_POSSIBILITE,
-} from './RuleInput'
+import RuleInput from './RuleInput'
 
 /**
- * Indique si la question est rendue par un groupe de choix (boutons radio,
- * cases à cocher ou oui/non), qui doit alors être nommé par un `fieldset` et
- * sa `legend`.
- *
- * La nature du champ vient de `getRuleInputNature`, celle qu'utilise
- * `RuleInput` pour choisir le composant à afficher. `estUnMontant` et
- * `estUneQuantité` ne sont consultés qu'après les natures de choix, d'où
- * `false, false`.
+ * Indique si la question est rendue par un groupe de choix (boutons radio ou
+ * oui/non), qui doit alors être nommé par un `fieldset` et sa `legend`.
  */
 export function estUnGroupeDeChoix(
-	dottedName: DottedName,
-	engine: Engine<DottedName>
+	rule: RuleNode,
+	evaluationUnit: Unit | undefined,
+	evaluationType: string | null | undefined
 ): boolean {
-	const nature = getRuleInputNature(dottedName, engine, {}, false, false)
+	if (rule.possibilities?.nodeKind === 'une possibilité') return true
+
+	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
+		return false
+
+	if (rule.rawNode.API === 'commune') return false
 
 	return (
-		nature === UNE_POSSIBILITE ||
-		nature === PLUSIEURS_POSSIBILITES ||
-		nature === OUI_NON_INPUT
+		evaluationUnit == null &&
+		['booléen', 'notification', undefined].includes(
+			rule.rawNode.type as string
+		) &&
+		evaluationType !== 'number'
 	)
 }
 
@@ -64,8 +61,13 @@ export function RuleField({
 	onSubmit,
 }: RuleFieldProps) {
 	const engine = useEngine()
+	const rule = engine.getRule(dottedName)
 
-	if (estUnGroupeDeChoix(dottedName, engine)) {
+	const evaluation = engine.evaluate(dottedName)
+	const evaluationUnit = evaluation?.unit
+	const evaluationType = evaluation?.nodeValue as string | null
+
+	if (estUnGroupeDeChoix(rule, evaluationUnit, evaluationType)) {
 		return (
 			<Fieldset>
 				<StyledLegend>

@@ -18,7 +18,6 @@ export const SwitchLabel = styled(Body).withConfig({
 })<{ isRule?: boolean }>`
 	display: inline-block;
 	margin: 0;
-	padding: 0;
 	margin-bottom: ${({ isRule, theme }) =>
 		theme.spacings[isRule ? 'xxs' : 'sm']};
 	font-weight: 700;

@@ -67,7 +67,11 @@ export function SimpleField({
 
 	const required = fromOuiNon(meta.requis)
 
-	const estUnGroupe = estUnGroupeDeChoix(dottedName, engine)
+	const estUnGroupe = estUnGroupeDeChoix(
+		rule,
+		evaluation.unit,
+		evaluation.nodeValue as string | null
+	)
 
 	const libellé = (
 		<>

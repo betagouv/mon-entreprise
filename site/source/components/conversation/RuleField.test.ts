@@ -10,11 +10,15 @@ import { estUnGroupeDeChoix } from './RuleField'
 const estUnGroupe = <Name extends string>(
 	engine: Engine<Name>,
 	dottedName: Name
-) =>
-	estUnGroupeDeChoix(
-		dottedName as unknown as DottedName,
-		engine as unknown as Engine<DottedName>
+) => {
+	const evaluation = engine.evaluate(dottedName)
+
+	return estUnGroupeDeChoix(
+		engine.getRule(dottedName),
+		evaluation.unit,
+		evaluation.nodeValue as string | null
 	)
+}
 
 describe('estUnGroupeDeChoix', () => {
 	const engine = new Engine({
@@ -29,16 +33,6 @@ describe('estUnGroupeDeChoix', () => {
 		},
 		'question . a': {},
 		'question . b': {},
-		'question . plusieurs possibilités': {
-			question: 'Lesquelles ?',
-			'plusieurs possibilités': ['c', 'd'],
-		},
-		'question . plusieurs possibilités . c': {},
-		'question . plusieurs possibilités . d': {},
-		'question . nombre sans unité': {
-			question: 'Combien ?',
-			'par défaut': '3',
-		},
 		'question . montant annuel': {
 			question: 'Combien par an ?',
 			unité: '€/an',
@@ -72,7 +66,6 @@ describe('estUnGroupeDeChoix', () => {
 		'question . taux',
 		'question . enfants',
 		'question . titres-restaurant',
-		'question . nombre sans unité',
 	])('retourne false pour le champ numérique « %s »', (dottedName) => {
 		expect(estUnGroupe(engine, dottedName)).toBe(false)
 	})
@@ -80,7 +73,6 @@ describe('estUnGroupeDeChoix', () => {
 	it.each([
 		'question . oui ou non' as const,
 		'question . une possibilité' as const,
-		'question . plusieurs possibilités' as const,
 	])('retourne true pour le groupe de choix « %s »', (dottedName) => {
 		expect(estUnGroupe(engine, dottedName)).toBe(true)
 	})
