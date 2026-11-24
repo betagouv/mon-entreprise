@@ -83,12 +83,3 @@ export interface ModèleComparable {
 		}
 	}
 }
-
-export type CatégorieComparée = keyof Omit<
-	ModèleComparable['get'],
-	'statut' | 'warning'
->
-export type ÉlémentComparé<K extends CatégorieComparée> = Exclude<
-	keyof ReturnType<ModèleComparable['get'][K]>,
-	'documentation'
->
