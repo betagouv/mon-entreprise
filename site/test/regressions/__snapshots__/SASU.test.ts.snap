@@ -56,24 +56,24 @@ assimilé salarié . rémunération . totale: 25000"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 1`] = `
-"assimilé salarié . cotisations . avec dividendes: 1643
+"assimilé salarié . cotisations . avec dividendes: 2007
 assimilé salarié . dividendes: 10000
 assimilé salarié . dividendes . imposition: "PFU"
-assimilé salarié . rémunération . brute: 2364
-assimilé salarié . rémunération . impôt . avec dividendes: 1928
-assimilé salarié . rémunération . nette . après impôt . avec dividendes: 2363
-assimilé salarié . rémunération . nette . avec dividendes: 2524
+assimilé salarié . rémunération . brute: 2958
+assimilé salarié . rémunération . impôt . avec dividendes: 2784
+assimilé salarié . rémunération . nette . après impôt . avec dividendes: 2761
+assimilé salarié . rémunération . nette . avec dividendes: 2993
 assimilé salarié . rémunération . totale: 50000"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 2`] = `
-"assimilé salarié . cotisations . avec dividendes: 1643
+"assimilé salarié . cotisations . avec dividendes: 2007
 assimilé salarié . dividendes: 10000
 assimilé salarié . dividendes . imposition: "barème progressif"
-assimilé salarié . rémunération . brute: 2364
-assimilé salarié . rémunération . impôt . avec dividendes: 1498
-assimilé salarié . rémunération . nette . après impôt . avec dividendes: 2399
-assimilé salarié . rémunération . nette . avec dividendes: 2524
+assimilé salarié . rémunération . brute: 2958
+assimilé salarié . rémunération . impôt . avec dividendes: 2688
+assimilé salarié . rémunération . nette . après impôt . avec dividendes: 2769
+assimilé salarié . rémunération . nette . avec dividendes: 2993
 assimilé salarié . rémunération . totale: 50000"
 `;
 
@@ -85,7 +85,7 @@ assimilé salarié . rémunération . brute: 4167
 assimilé salarié . rémunération . impôt . avec dividendes: 5616
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 3476
 assimilé salarié . rémunération . nette . avec dividendes: 3944
-assimilé salarié . rémunération . totale: 80397"
+assimilé salarié . rémunération . totale: 70397"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 4`] = `
@@ -96,7 +96,7 @@ assimilé salarié . rémunération . brute: 4167
 assimilé salarié . rémunération . impôt . avec dividendes: 5932
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 3450
 assimilé salarié . rémunération . nette . avec dividendes: 3944
-assimilé salarié . rémunération . totale: 80397"
+assimilé salarié . rémunération . totale: 70397"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 5`] = `
@@ -107,7 +107,7 @@ assimilé salarié . rémunération . brute: 4444
 assimilé salarié . rémunération . impôt . avec dividendes: 6363
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 3636
 assimilé salarié . rémunération . nette . avec dividendes: 4167
-assimilé salarié . rémunération . totale: 85022"
+assimilé salarié . rémunération . totale: 75022"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 6`] = `
@@ -118,7 +118,7 @@ assimilé salarié . rémunération . brute: 4444
 assimilé salarié . rémunération . impôt . avec dividendes: 6679
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 3610
 assimilé salarié . rémunération . nette . avec dividendes: 4167
-assimilé salarié . rémunération . totale: 85022"
+assimilé salarié . rémunération . totale: 75022"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 7`] = `
@@ -129,7 +129,7 @@ assimilé salarié . rémunération . brute: 5362
 assimilé salarié . rémunération . impôt . avec dividendes: 8833
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 4167
 assimilé salarié . rémunération . nette . avec dividendes: 4903
-assimilé salarié . rémunération . totale: 100311"
+assimilé salarié . rémunération . totale: 90311"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 8`] = `
@@ -140,7 +140,7 @@ assimilé salarié . rémunération . brute: 5408
 assimilé salarié . rémunération . impôt . avec dividendes: 9272
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 4167
 assimilé salarié . rémunération . nette . avec dividendes: 4939
-assimilé salarié . rémunération . totale: 101070"
+assimilé salarié . rémunération . totale: 91070"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 9`] = `
@@ -151,7 +151,7 @@ assimilé salarié . rémunération . brute: 0
 assimilé salarié . rémunération . impôt . avec dividendes: 1280
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 572
 assimilé salarié . rémunération . nette . avec dividendes: 678
-assimilé salarié . rémunération . totale: 10000"
+assimilé salarié . rémunération . totale: 0"
 `;
 
 exports[`calculate assimilé salarié > Dividendes 10`] = `
@@ -162,7 +162,7 @@ assimilé salarié . rémunération . brute: 0
 assimilé salarié . rémunération . impôt . avec dividendes: 0
 assimilé salarié . rémunération . nette . après impôt . avec dividendes: 678
 assimilé salarié . rémunération . nette . avec dividendes: 678
-assimilé salarié . rémunération . totale: 10000"
+assimilé salarié . rémunération . totale: 0"
 `;
 
 exports[`calculate assimilé salarié > JEI 1`] = `

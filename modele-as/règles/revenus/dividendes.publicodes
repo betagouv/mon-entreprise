@@ -1,4 +1,5 @@
 assimilé salarié . dividendes:
+  résumé: Montant brut des dividendes versés au dirigeant, avant tout prélèvement
   description: |
     Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
     libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes

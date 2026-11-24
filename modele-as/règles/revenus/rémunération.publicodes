@@ -4,28 +4,29 @@ assimilé salarié . rémunération:
 assimilé salarié . rémunération . totale:
   titre: Rémunération totale
   résumé: |
-    Total payé par l'entreprise pour la rémunération du dirigeant et ses dividendes,
-    cotisations et contributions incluses
+    Total payé par l’entreprise pour la rémunération de la ou du dirigeant (hors
+    dividendes), cotisations et contributions incluses
   description: |
-    C’est ce que l’entreprise dépense en tout pour la rémunération du dirigeant et
-    les dividendes qui lui sont versés.
-    Cette rémunération "super-brute" inclut toutes les cotisations sociales à payer.
-    On peut aussi considérer que c’est la valeur monétaire du travail du dirigeant.
+    C’est ce que l’entreprise dépense en tout pour la rémunération de la ou du
+    dirigeant assimilé salarié. Cette rémunération "super-brute" inclut toutes les
+    cotisations sociales à payer. On peut aussi considérer que c’est la valeur
+    monétaire du travail de la ou du dirigeant.
+
+    > Ce montant n’inclut pas les dividendes qui sont comptés à part.
   somme:
     - rémunération . brute
     - cotisations . employeur
     - régimes spécifiques . taxe sur les salaires
-    - dividendes
   unité: €/an
   plancher: 0€/an
 
 assimilé salarié . rémunération . brute:
   titre: Rémunération brute
   description: |
-    La rémunération brute correspond à l'intégralité des sommes perçues par le
-    dirigeant assimilé salarié avant déduction des cotisations de sécurité sociale
-    à sa charge, de la contribution sociale généralisée (CSG) et de la contribution
-    au remboursement de la dette sociale (CRDS).
+    La rémunération brute correspond à l’intégralité des sommes perçues par la ou
+    le dirigeant assimilé salarié avant déduction des cotisations de sécurité
+    sociale à sa charge, de la contribution sociale généralisée (CSG) et de la
+    contribution au remboursement de la dette sociale (CRDS).
   unité: €/mois
   variations:
     - si:
@@ -62,17 +63,18 @@ assimilé salarié . rémunération . nette . à payer avant impôt:
   unité: €/mois
   résumé: Salaire net avant impôt
   description: >-
-    C'est le montant que le dirigeant assimilé salarié touche à la fin du mois
-    avant de payer l'impôt sur le revenu.
-
-    Aussi appelé salaire net à payer avant impôt.
+    Aussi appelé salaire net à payer avant impôt, c'est le montant que la ou le
+    dirigeant assimilé salarié touche à la fin du mois avant de payer l'impôt sur
+    le revenu.
   somme:
     - rémunération . nette
     - (- avantages en nature . montant)
 
 assimilé salarié . rémunération . nette . avec dividendes:
-  titre: Rémunération nette
-  résumé: Après déduction des prélèvements sociaux, cotisations, contributions et charges
+  titre: Revenu net
+  résumé: |
+    Après déduction des cotisations, contributions et charges sur la rémunération
+    et des prélèvements sociaux sur les dividendes
   somme:
     - rémunération . nette . à payer avant impôt
     - dividendes . nets
@@ -81,7 +83,8 @@ assimilé salarié . rémunération . nette . avec dividendes:
 assimilé salarié . rémunération . nette . imposable:
   titre: Salaire net imposable
   description: |
-    C'est la base utilisée pour calculer l'impôt sur le revenu.
+    C'est la base utilisée pour calculer l’impôt sur la rémunération (hors
+    dividendes) de la ou du dirigeant assimilé salarié.
   somme:
     - rémunération . nette
     - cotisations . CSG-CRDS . non déductible
@@ -91,10 +94,9 @@ assimilé salarié . rémunération . nette . imposable:
 assimilé salarié . rémunération . impôt:
   titre: Impôt sur le revenu
   description: |
-    Montant de l’impôt sur le revenu sur la rémunération du dirigeant assimilé
-    salarié d’une entreprise soumise à l’impôt sur les sociétés (IS) et, dans le
-    cas du calcul avec le barème standard, des autres revenus imposables du
-    foyer fiscal.
+    Montant de l’impôt sur le revenu sur la rémunération de la ou du dirigeant
+    assimilé salarié, dans le cas du calcul avec le barème standard, des autres
+    revenus imposables du foyer fiscal.
 
     Ce montant n’inclut pas l’imposition des dividendes, qu’ils soient soumis au
     PFU ou au barème progressif.
@@ -110,10 +112,9 @@ assimilé salarié . rémunération . impôt . avec dividendes au barème progre
   titre: Impôt sur le revenu
   description: |
     Montant de l’impôt sur le revenu sur :
-    - la rémunération de la ou du dirigeant assimilé salarié d’une entreprise soumise à
-    l’impôt sur les sociétés (IS) ;
+    - la rémunération de la ou du dirigeant assimilé salarié ;
     - dans le cas d’une imposition des dividendes au barème progressif, des
-    dividendes perçus par la ou le dirigeant assimilé salarié ;
+    dividendes perçus par la ou le dirigeant ;
     - dans le cas du calcul avec le barème standard, des autres revenus imposables
     du foyer fiscal.
   valeur: impôt . montant
@@ -137,8 +138,10 @@ assimilé salarié . rémunération . nette . après impôt:
   type: salaire
   unité: €/mois
   description: |
-    C'est le salaire versé sur le compte bancaire du salarié, une fois les
-    cotisations et l'impôt prélevés.
+    C'est le salaire versé sur le compte bancaire de la ou du dirigeant assimilé
+    salarié, une fois les cotisations et l’impôt prélevés.
+
+    Ce montant n’inclut pas les dividendes.
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
   somme:
@@ -146,9 +149,12 @@ assimilé salarié . rémunération . nette . après impôt:
     - (- rémunération . impôt)
 
 assimilé salarié . rémunération . nette . après impôt . avec dividendes:
-  titre: Rémunération nette après impôt
+  titre: Revenu net après impôt
+  résumé: Total net reçu par la ou le dirigeant après cotisations et impôt
   description: |
-    C'est le salaire versé sur le compte bancaire du salarié, une fois les cotisations et l'impôt prélevés.
+    C’est ce que reçoit la ou le dirigeant assimilé salarié sur son compte
+    bancaire pour sa rémunération et ses dividendes, une fois les cotisations et
+    l’impôt prélevés.
   références:
     Explication de l'impôt à la source: https://www.economie.gouv.fr/prelevement-a-la-source
   somme:
