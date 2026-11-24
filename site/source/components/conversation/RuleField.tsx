@@ -1,37 +1,40 @@
-import { RuleNode, Unit } from 'publicodes'
+import Engine from 'publicodes'
 import { styled } from 'styled-components'
 
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
-import { H3, H3Style } from '@/design-system'
+import { Fieldset, H3, H3Style } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
-import RuleInput from './RuleInput'
+import RuleInput, {
+	getRuleInputNature,
+	OUI_NON_INPUT,
+	PLUSIEURS_POSSIBILITES,
+	UNE_POSSIBILITE,
+} from './RuleInput'
 
 /**
- * Indique si la question est rendue par un groupe de choix (boutons radio ou
- * oui/non), qui doit alors être nommé par un `fieldset` et sa `legend`.
+ * Indique si la question est rendue par un groupe de choix (boutons radio,
+ * cases à cocher ou oui/non), qui doit alors être nommé par un `fieldset` et
+ * sa `legend`.
+ *
+ * La nature du champ vient de `getRuleInputNature`, celle qu'utilise
+ * `RuleInput` pour choisir le composant à afficher. `estUnMontant` et
+ * `estUneQuantité` ne sont consultés qu'après les natures de choix, d'où
+ * `false, false`.
  */
 export function estUnGroupeDeChoix(
-	rule: RuleNode,
-	evaluationUnit: Unit | undefined,
-	evaluationType: string | null | undefined
+	dottedName: DottedName,
+	engine: Engine<DottedName>
 ): boolean {
-	if (rule.possibilities?.nodeKind === 'une possibilité') return true
-
-	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
-		return false
-
-	if (rule.rawNode.API === 'commune') return false
+	const nature = getRuleInputNature(dottedName, engine, {}, false, false)
 
 	return (
-		evaluationUnit == null &&
-		['booléen', 'notification', undefined].includes(
-			rule.rawNode.type as string
-		) &&
-		evaluationType !== 'number'
+		nature === UNE_POSSIBILITE ||
+		nature === PLUSIEURS_POSSIBILITES ||
+		nature === OUI_NON_INPUT
 	)
 }
 
@@ -62,15 +65,9 @@ export function RuleField({
 }: RuleFieldProps) {
 	const engine = useEngine()
 
-	const rule = engine.getRule(dottedName)
-
-	const evaluation = engine.evaluate(dottedName)
-	const evaluationUnit = evaluation?.unit
-	const evaluationType = evaluation?.nodeValue as string | null
-
-	if (estUnGroupeDeChoix(rule, evaluationUnit, evaluationType)) {
+	if (estUnGroupeDeChoix(dottedName, engine)) {
 		return (
-			<StyledFieldset>
+			<Fieldset>
 				<StyledLegend>
 					{labelOrLegend}
 
@@ -82,7 +79,7 @@ export function RuleField({
 					onChange={onChange}
 					onSubmit={onSubmit}
 				/>
-			</StyledFieldset>
+			</Fieldset>
 		)
 	}
 
@@ -105,16 +102,6 @@ export function RuleField({
 		</>
 	)
 }
-
-// Style nécessaire pour un affichage des marges et paddings uniformes dans les
-// différents navigateurs
-const StyledFieldset = styled.fieldset`
-	display: contents;
-
-	padding: 0;
-	margin: 0;
-	border: none;
-`
 
 const StyledLegend = styled.legend`
 	${H3Style}
