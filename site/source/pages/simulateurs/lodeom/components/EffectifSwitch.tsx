@@ -2,12 +2,8 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 
-import {
-	SwitchContainer,
-	SwitchFieldset,
-	SwitchLabel,
-} from '@/components/Switch'
-import { ChoixUnique } from '@/design-system'
+import { SwitchContainer, SwitchLabel } from '@/components/Switch'
+import { ChoixUnique, Fieldset } from '@/design-system'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
@@ -43,7 +39,7 @@ export default function EffectifSwitch() {
 
 	return (
 		<SwitchContainer>
-			<SwitchFieldset>
+			<Fieldset>
 				<SwitchLabel id="effectif-switch-label" as="legend">
 					{t('Quel est l’effectif de votre entreprise ?')}
 				</SwitchLabel>
@@ -58,7 +54,7 @@ export default function EffectifSwitch() {
 					}}
 					aria={{ labelledby: 'effectif-switch-label' }}
 				/>
-			</SwitchFieldset>
+			</Fieldset>
 		</SwitchContainer>
 	)
 }

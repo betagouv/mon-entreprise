@@ -1,13 +1,9 @@
 import { useTranslation } from 'react-i18next'
 
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
-import {
-	SwitchContainer,
-	SwitchFieldset,
-	SwitchLabel,
-} from '@/components/Switch'
+import { SwitchContainer, SwitchLabel } from '@/components/Switch'
 import { Lodeom } from '@/contextes/salarié'
-import { ChoixUnique } from '@/design-system'
+import { ChoixUnique, Fieldset } from '@/design-system'
 
 type Props = {
 	régularisationMethod: Lodeom.RégularisationMethod
@@ -39,7 +35,7 @@ export default function RégularisationSwitch({
 
 	return (
 		<SwitchContainer>
-			<SwitchFieldset>
+			<Fieldset>
 				<SwitchLabel id="régularisation-switch-label" as="legend">
 					{t(
 						'pages.simulateurs.lodeom.régularisation.type',
@@ -57,7 +53,7 @@ export default function RégularisationSwitch({
 					}}
 					aria={{ labelledby: 'régularisation-switch-label' }}
 				/>
-			</SwitchFieldset>
+			</Fieldset>
 		</SwitchContainer>
 	)
 }
