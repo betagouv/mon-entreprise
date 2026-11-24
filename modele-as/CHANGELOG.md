@@ -14,6 +14,7 @@
 
 ### Mises à jour
 - Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
+- `assimilé salarié . rémunération . avantages en nature . ntic` vaut `non` par défaut : l'avantage NTIC n'est plus compté s'il n'a pas été déclaré
 
 ## 0.1.0
 
