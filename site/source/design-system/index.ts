@@ -20,6 +20,9 @@ export { TitreObjectifRadio } from './typography/TitreObjectifRadio'
 export { TitreObjectifSaisissable } from './typography/TitreObjectifSaisissable'
 export { ValeurDate } from './typography/ValeurDate'
 
+// Atoms
+export { Fieldset } from './atoms/Fieldset'
+
 // Layout components (dépend du thème)
 export * from './layout'
 

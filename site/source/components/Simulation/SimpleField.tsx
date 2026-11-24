@@ -7,7 +7,7 @@ import RuleInput from '@/components/conversation/RuleInput'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { Intro, Markdown, type DateFieldProps } from '@/design-system'
+import { Fieldset, Intro, Markdown, type DateFieldProps } from '@/design-system'
 import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
 import { fromOuiNon, OuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
@@ -111,10 +111,10 @@ export function SimpleField({
 	return (
 		<FadeIn>
 			{estUnGroupe ? (
-				<FieldsetSansStyle>
-					<LegendSansStyle>{libellé}</LegendSansStyle>
+				<Fieldset>
+					<legend>{libellé}</legend>
 					{champ}
-				</FieldsetSansStyle>
+				</Fieldset>
 			) : (
 				<>
 					<div>{libellé}</div>
@@ -124,20 +124,6 @@ export function SimpleField({
 		</FadeIn>
 	)
 }
-
-// `display: contents` et les remises à zéro gardent le rendu de la version
-// avec `label` : le `fieldset` et la `legend` n'ajoutent aucune boîte ni marge.
-const FieldsetSansStyle = styled.fieldset`
-	display: contents;
-
-	padding: 0;
-	margin: 0;
-	border: none;
-`
-
-const LegendSansStyle = styled.legend`
-	padding: 0;
-`
 
 const RedIntro = styled(Intro)`
 	color: ${({ theme }) =>
