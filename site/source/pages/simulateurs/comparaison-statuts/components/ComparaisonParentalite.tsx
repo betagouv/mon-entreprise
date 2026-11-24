@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { useComparateur } from '@/contextes/comparateur'
 import { Body, H4, Strong } from '@/design-system'
 import { toEurosParJour } from '@/domaine/MontantRecurrent'
 
@@ -8,6 +9,32 @@ import { ComparaisonÉlément } from './ComparaisonElement'
 
 export const ComparaisonParentalité = () => {
 	const { t } = useTranslation()
+	const { comparaison } = useComparateur()
+
+	const comparaisonParentalité = comparaison.map((résultatModèle) => ({
+		statut: résultatModèle.statut.étiquette,
+		parentalité: résultatModèle.parentalité(),
+	}))
+
+	const comparaisonIndemnitésMaternitéPaternitéAdoption =
+		comparaisonParentalité.map(({ parentalité, statut }) => ({
+			statut,
+			valeur: parentalité.indemnitésMaternitéPaternitéAdoption,
+		}))
+
+	const comparaisonAllocationNaissance = comparaisonParentalité.map(
+		({ parentalité, statut }) => ({
+			statut,
+			valeur: parentalité.allocationNaissance,
+		})
+	)
+
+	const comparaisonAllocationAdoption = comparaisonParentalité.map(
+		({ parentalité, statut }) => ({
+			statut,
+			valeur: parentalité.allocationAdoption,
+		})
+	)
 
 	return (
 		<>
@@ -24,8 +51,7 @@ export const ComparaisonParentalité = () => {
 			</Trans>
 
 			<ComparaisonÉlément
-				catégorieComparée="parentalité"
-				élémentComparé="indemnitésMaternitéPaternitéAdoption"
+				comparaison={comparaisonIndemnitésMaternitéPaternitéAdoption}
 				convertisseur={toEurosParJour}
 			/>
 
@@ -47,8 +73,7 @@ export const ComparaisonParentalité = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="parentalité"
-				élémentComparé="allocationNaissance"
+				comparaison={comparaisonAllocationNaissance}
 				libellé={t(
 					'pages.simulateurs.comparaison-statuts.items.parentalité.maternité.label',
 					'versés en deux fois'
@@ -73,8 +98,7 @@ export const ComparaisonParentalité = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="parentalité"
-				élémentComparé="allocationAdoption"
+				comparaison={comparaisonAllocationAdoption}
 				libellé={t(
 					'pages.simulateurs.comparaison-statuts.items.parentalité.adoption.label',
 					'versés en une fois'

@@ -9,8 +9,51 @@ import { toEurosParAn } from '@/domaine/MontantRecurrent'
 import { ComparaisonÉlément } from './ComparaisonElement'
 
 export const ComparaisonRetraite = () => {
-	const { situation } = useComparateur()
 	const { t } = useTranslation()
+	const { comparaison, situation } = useComparateur()
+
+	const comparaisonRetraite = comparaison.map((résultatModèle) => ({
+		statut: résultatModèle.statut.étiquette,
+		retraite: résultatModèle.retraite(),
+	}))
+
+	const comparaisonTrimestres = comparaisonRetraite.map(
+		({ retraite, statut }) => ({
+			statut,
+			valeur: retraite.trimestres,
+		})
+	)
+
+	const comparaisonRevenuCotisé = comparaisonRetraite.map(
+		({ retraite, statut }) => ({
+			statut,
+			valeur: retraite.revenuCotisé,
+		})
+	)
+
+	const comparaisonPointsComplémentaires = comparaisonRetraite.map(
+		({ retraite, statut }) => {
+			const valeurPointComplémentaire = montantToString(
+				retraite.valeurPointComplémentaire
+			)
+
+			return {
+				statut,
+				valeur: retraite.pointsComplémentaire,
+				footer: (
+					<BodyNoMargin>
+						<Trans
+							i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point"
+							shouldUnescape
+						>
+							Valeur du point&nbsp;:{' '}
+							<Strong>{{ valeurPointComplémentaire }}</Strong>
+						</Trans>
+					</BodyNoMargin>
+				),
+			}
+		}
+	)
 
 	return (
 		<>
@@ -31,8 +74,7 @@ export const ComparaisonRetraite = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="retraite"
-				élémentComparé="trimestres"
+				comparaison={comparaisonTrimestres}
 				displayedUnit={t(
 					'pages.simulateurs.comparaison-statuts.items.retraite.base.unit',
 					'trimestre(s) acquis par an'
@@ -50,8 +92,7 @@ export const ComparaisonRetraite = () => {
 					</Body>
 
 					<ComparaisonÉlément
-						catégorieComparée="retraite"
-						élémentComparé="revenuCotisé"
+						comparaison={comparaisonRevenuCotisé}
 						convertisseur={toEurosParAn}
 						displayedUnit={t(
 							'pages.simulateurs.comparaison-statuts.items.retraite.base.unité',
@@ -78,29 +119,11 @@ export const ComparaisonRetraite = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="retraite"
-				élémentComparé="pointsComplémentaire"
+				comparaison={comparaisonPointsComplémentaires}
 				displayedUnit={t(
 					'pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.unité',
 					'point(s) acquis par an'
 				)}
-				footer={(résultatModèle) => {
-					const valeurPointComplémentaire = montantToString(
-						résultatModèle.retraite().valeurPointComplémentaire
-					)
-
-					return (
-						<BodyNoMargin>
-							<Trans
-								i18nKey="pages.simulateurs.comparaison-statuts.items.retraite.complémentaire.valeur-du-point"
-								shouldUnescape
-							>
-								Valeur du point&nbsp;:{' '}
-								<Strong>{{ valeurPointComplémentaire }}</Strong>
-							</Trans>
-						</BodyNoMargin>
-					)
-				}}
 			/>
 
 			<Message type="info" border={false}>

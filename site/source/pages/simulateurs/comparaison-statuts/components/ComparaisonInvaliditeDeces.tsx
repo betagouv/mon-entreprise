@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { useComparateur } from '@/contextes/comparateur'
 import { Body, ExternalLinkIcon, H4, Strong, StyledLink } from '@/design-system'
 import { toEurosParMois } from '@/domaine/MontantRecurrent'
 
@@ -8,6 +9,54 @@ import { ComparaisonÉlément } from './ComparaisonElement'
 
 export const ComparaisonInvaliditéDécès = () => {
 	const { t } = useTranslation()
+	const { comparaison } = useComparateur()
+
+	const comparaisonInvalidité = comparaison.map((résultatModèle) => ({
+		statut: résultatModèle.statut.étiquette,
+		invalidité: résultatModèle.invalidité(),
+	}))
+
+	const comparaisonPensionInvalidité = comparaisonInvalidité.map(
+		({ invalidité, statut }) => ({
+			statut,
+			valeur: invalidité.pensionInvaliditéPartielle,
+			valeurSecondaire: invalidité.pensionInvaliditéTotale,
+		})
+	)
+	const comparaisonRenteIncapacitéATMP = comparaisonInvalidité.map(
+		({ invalidité, statut }) => ({
+			statut,
+			valeur: invalidité.renteIncapacitéATMP,
+		})
+	)
+
+	const comparaisonDécès = comparaison.map((résultatModèle) => ({
+		statut: résultatModèle.statut.étiquette,
+		décès: résultatModèle.décès(),
+	}))
+
+	const comparaisonCapitalDécès = comparaisonDécès.map(({ décès, statut }) => ({
+		statut,
+		valeur: décès.capitalDécès,
+	}))
+	const comparaisonPensionDeRéversion = comparaisonDécès.map(
+		({ décès, statut }) => ({
+			statut,
+			valeur: décès.pensionDeRéversion,
+		})
+	)
+	const comparaisonRenteDécèsATMP = comparaisonDécès.map(
+		({ décès, statut }) => ({
+			statut,
+			valeur: décès.renteDécèsATMP,
+		})
+	)
+	const comparaisonCapitalOrphelin = comparaisonDécès.map(
+		({ décès, statut }) => ({
+			statut,
+			valeur: décès.capitalOrphelin,
+		})
+	)
 
 	return (
 		<>
@@ -48,8 +97,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Trans>
 
 			<ComparaisonÉlément
-				catégorieComparée="invalidité"
-				élémentComparé="pensionInvaliditéPartielle"
+				comparaison={comparaisonPensionInvalidité}
 				convertisseur={toEurosParMois}
 				libellé={
 					<SmallSpan>
@@ -59,7 +107,6 @@ export const ComparaisonInvaliditéDécès = () => {
 						)}
 					</SmallSpan>
 				}
-				élémentComparéSecondaire="pensionInvaliditéTotale"
 				libelléSecondaire={
 					<SmallerSpan>
 						{t(
@@ -79,8 +126,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="invalidité"
-				élémentComparé="renteIncapacitéATMP"
+				comparaison={comparaisonRenteIncapacitéATMP}
 				convertisseur={toEurosParMois}
 			/>
 
@@ -100,8 +146,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="décès"
-				élémentComparé="capitalDécès"
+				comparaison={comparaisonCapitalDécès}
 				libellé={t(
 					'pages.simulateurs.comparaison-statuts.items.prévoyance.décès.capital-décès.label',
 					'pour vos proches'
@@ -118,8 +163,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="décès"
-				élémentComparé="pensionDeRéversion"
+				comparaison={comparaisonPensionDeRéversion}
 				convertisseur={toEurosParMois}
 				libellé={t(
 					'pages.simulateurs.comparaison-statuts.items.prévoyance.pension-réversion.label',
@@ -136,8 +180,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="décès"
-				élémentComparé="renteDécèsATMP"
+				comparaison={comparaisonRenteDécèsATMP}
 				convertisseur={toEurosParMois}
 				libellé={t(
 					'pages.simulateurs.comparaison-statuts.items.prévoyance.rente-décès.label',
@@ -153,8 +196,7 @@ export const ComparaisonInvaliditéDécès = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="décès"
-				élémentComparé="capitalOrphelin"
+				comparaison={comparaisonCapitalOrphelin}
 				displayedUnit={t(
 					'pages.simulateurs.comparaison-statuts.items.prévoyance.capital-orphelin.unit',
 					'€/enfant'

@@ -1,6 +1,7 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { useComparateur } from '@/contextes/comparateur'
 import { Body, CircledPlusIcon, H4, Strong } from '@/design-system'
 import { toEurosParJour } from '@/domaine/MontantRecurrent'
 import { quantitéToString } from '@/domaine/Quantite'
@@ -10,6 +11,58 @@ import WarningTooltip from './WarningTooltip'
 
 export const ComparaisonSanté = () => {
 	const { t } = useTranslation()
+	const { comparaison } = useComparateur()
+
+	const comparaisonMaladie = comparaison.map((résultatModèle) => ({
+		statut: résultatModèle.statut.étiquette,
+		maladie: résultatModèle.maladie(),
+	}))
+
+	const comparaisonIndemnitésArrêtMaladie = comparaisonMaladie.map(
+		({ maladie, statut }) => {
+			const délaiAttente = quantitéToString(maladie.délaiAttente)
+
+			return {
+				statut,
+				valeur: maladie.indemnitésArrêtMaladie,
+				warning: !maladie.indemnitésArrêtMaladie.valeur && (
+					<WarningTooltip
+						tooltip={
+							<span
+								style={{
+									fontWeight: 'normal',
+								}}
+							>
+								<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.warning">
+									Votre <Strong>rémunération</Strong> est{' '}
+									<Strong>trop faible</Strong> pour bénéficier d’arrêt maladie.
+								</Trans>
+							</span>
+						}
+					/>
+				),
+				footer: maladie.indemnitésArrêtMaladie.valeur && (
+					<StyledDiv>
+						<CircledPlusIcon />
+						<BodyNoMargin>
+							<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.footer">
+								Pour y prétendre, vous devez avoir cotisé au moins{' '}
+								<Strong>{{ délaiAttente }}</Strong>
+							</Trans>
+						</BodyNoMargin>
+					</StyledDiv>
+				),
+			}
+		}
+	)
+
+	const comparaisonIndemnitésATMP = comparaisonMaladie.map(
+		({ maladie, statut }) => ({
+			statut,
+			valeur: maladie.indemnitésATMP,
+			valeurSecondaire: maladie.indemnitésATMPLongTerme,
+		})
+	)
 
 	return (
 		<>
@@ -41,47 +94,8 @@ export const ComparaisonSanté = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="maladie"
-				élémentComparé="indemnitésArrêtMaladie"
+				comparaison={comparaisonIndemnitésArrêtMaladie}
 				convertisseur={toEurosParJour}
-				warning={(résultatModèle) =>
-					!résultatModèle.maladie().indemnitésArrêtMaladie.valeur && (
-						<WarningTooltip
-							tooltip={
-								<span
-									style={{
-										fontWeight: 'normal',
-									}}
-								>
-									<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.warning">
-										Votre <Strong>rémunération</Strong> est{' '}
-										<Strong>trop faible</Strong> pour bénéficier d’arrêt
-										maladie.
-									</Trans>
-								</span>
-							}
-						/>
-					)
-				}
-				footer={(résultatModèle) => {
-					const délaiAttente = quantitéToString(
-						résultatModèle.maladie().délaiAttente
-					)
-
-					return (
-						résultatModèle.maladie().indemnitésArrêtMaladie.valeur && (
-							<StyledDiv>
-								<CircledPlusIcon />
-								<BodyNoMargin>
-									<Trans i18nKey="pages.simulateurs.comparaison-statuts.items.santé.arrêt.footer">
-										Pour y prétendre, vous devez avoir cotisé au moins{' '}
-										<Strong>{{ délaiAttente }}</Strong>
-									</Trans>
-								</BodyNoMargin>
-							</StyledDiv>
-						)
-					)
-				}}
 			/>
 
 			<H4>
@@ -101,9 +115,7 @@ export const ComparaisonSanté = () => {
 			</Body>
 
 			<ComparaisonÉlément
-				catégorieComparée="maladie"
-				élémentComparé="indemnitésATMP"
-				élémentComparéSecondaire="indemnitésATMPLongTerme"
+				comparaison={comparaisonIndemnitésATMP}
 				convertisseur={toEurosParJour}
 				libelléSecondaire={t(
 					'pages.simulateurs.comparaison-statuts.items.santé.atmp.secondary-label',
