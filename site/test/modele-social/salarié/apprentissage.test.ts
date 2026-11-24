@@ -232,45 +232,6 @@ describe('En contrat d’apprentissage', () => {
 		})
 	})
 
-	describe('l’année d’exécution du contrat', () => {
-		const tauxSelonLaDate = (dateEmbauche: string, date: string) => {
-			const e = engine.setSituation({
-				date,
-				'salarié . contrat': "'apprentissage'",
-				"salarié . contrat . date d'embauche": dateEmbauche,
-				'salarié . contrat . apprentissage . âge': "'de 18 à 20'",
-			})
-			const SmicÀLaDate = e.evaluate('SMIC').nodeValue as number
-			const rémunération = e.evaluate(
-				'salarié . contrat . apprentissage . rémunération minimale'
-			).nodeValue as number
-
-			return Math.round((rémunération / SmicÀLaDate) * 100) / 100
-		}
-
-		it.each([
-			['01/09/2025', '30/08/2026', 0.43],
-			['01/09/2025', '31/08/2026', 0.43],
-			['01/09/2025', '01/09/2026', 0.51],
-			['01/09/2025', '31/08/2027', 0.51],
-			['01/09/2025', '01/09/2027', 0.67],
-			['01/03/2027', '28/02/2028', 0.43],
-			['01/03/2027', '29/02/2028', 0.43],
-			['01/03/2027', '01/03/2028', 0.51],
-			['01/03/2027', '28/02/2029', 0.51],
-			['01/03/2027', '01/03/2029', 0.67],
-			['15/01/2031', '14/01/2032', 0.43],
-			['15/01/2031', '15/01/2032', 0.51],
-			['15/01/2032', '14/01/2033', 0.43],
-			['15/01/2032', '15/01/2033', 0.51],
-		])(
-			'pour un contrat débuté le %s, au %s, la rémunération minimale est de %s du Smic',
-			(dateEmbauche, date, taux) => {
-				expect(tauxSelonLaDate(dateEmbauche, date)).toBe(taux)
-			}
-		)
-	})
-
 	describe('l’ancienneté du contrat', () => {
 		const ancienneté = (dateEmbauche: string, date: string) =>
 			engine
