@@ -63,16 +63,7 @@ export function SASUSimulation() {
 					<SimulationGoals>
 						<PeriodSwitch />
 						<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
-						<SimulationGoal
-							editable
-							small
-							dottedName="assimilé salarié . rémunération . brute"
-						/>
-						<SimulationGoal
-							editable
-							small
-							dottedName="assimilé salarié . dividendes"
-						/>
+						<SimulationGoal dottedName="assimilé salarié . dividendes" />
 						<SimulationGoal
 							editable={false}
 							small
