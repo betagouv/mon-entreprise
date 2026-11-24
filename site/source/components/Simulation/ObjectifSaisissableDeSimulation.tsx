@@ -137,9 +137,15 @@ const GridCentered = styled(Grid)`
 `
 
 const StyledGoal = styled.div`
-	position: relative;
 	padding: ${({ theme }) => theme.spacings.xs} 0;
+	position: relative;
 	z-index: 1;
+
+	&:hover,
+	&:focus-within {
+		/* Corrige l'empilement de la tooltip d'aide */
+		z-index: 2;
+	}
 
 	@media print {
 		padding: 0;

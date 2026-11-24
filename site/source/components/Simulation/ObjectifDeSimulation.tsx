@@ -107,9 +107,15 @@ const GridCentered = styled(Grid)`
 `
 
 const StyledGoal = styled.div<{ $small: boolean }>`
+	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;
 	position: relative;
 	z-index: 1;
-	padding: ${({ theme, $small }) => theme.spacings[$small ? 'xxs' : 'sm']} 0;
+
+	&:hover,
+	&:focus-within {
+		/* Corrige l'empilement de la tooltip d'aide */
+		z-index: 2;
+	}
 
 	@media print {
 		padding: 0;
