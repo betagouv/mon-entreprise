@@ -4,14 +4,8 @@ import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
 import { DocumentationLink } from '@/components/documentation'
-import { StatutTag } from '@/components/StatutTag'
-import {
-	CatégorieComparée,
-	ÉlémentComparé,
-	MontantDocumenté,
-	QuantitéDocumentée,
-	useComparateur,
-} from '@/contextes/comparateur'
+import { StatutTag, StatutType } from '@/components/StatutTag'
+import { MontantDocumenté, QuantitéDocumentée } from '@/contextes/comparateur'
 import { Grid, InfoIcon, StatusCard, Ul } from '@/design-system'
 import { arrondirÀLEuro, isMontant, montantToString } from '@/domaine/Montant'
 import {
@@ -32,34 +26,27 @@ export const getGridSizes = (numberOptions: number, total: number) => {
 	}
 }
 
-type Props<K extends CatégorieComparée> = {
-	catégorieComparée: K
-	élémentComparé: ÉlémentComparé<K>
+type Props = {
+	comparaison: Array<{
+		statut: StatutType
+		valeur?: MontantDocumenté | QuantitéDocumentée
+		valeurSecondaire?: MontantDocumenté | QuantitéDocumentée
+		warning?: ReactNode
+		footer?: ReactNode
+	}>
 	convertisseur?: (m: MontantRécurrent) => MontantRécurrent
 	displayedUnit?: string
 	libellé?: ReactNode | string
-	élémentComparéSecondaire?: ÉlémentComparé<K>
 	libelléSecondaire?: ReactNode | string
-	warning?: (
-		résultatModèle: ReturnType<typeof useComparateur>['comparaison'][number]
-	) => ReactNode
-	footer?: (
-		résultatModèle: ReturnType<typeof useComparateur>['comparaison'][number]
-	) => ReactNode
 }
 
-export const ComparaisonÉlément = <K extends CatégorieComparée>({
-	catégorieComparée,
-	élémentComparé,
+export const ComparaisonÉlément = ({
+	comparaison,
 	convertisseur = (x) => x,
 	displayedUnit,
 	libellé,
-	élémentComparéSecondaire,
 	libelléSecondaire,
-	warning,
-	footer,
-}: Props<K>) => {
-	const { comparaison } = useComparateur()
+}: Props) => {
 	const { t } = useTranslation()
 
 	const formattedValue = <
@@ -87,28 +74,16 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 
 	return (
 		<Grid container spacing={4} as={Ul}>
-			{comparaison.map((résultatModèle, index) => {
-				const statut = résultatModèle.statut.étiquette
+			{comparaison.map(
+				({ statut, valeur, valeurSecondaire, warning, footer }, index) => {
+					const isApplicable = !!valeur
 
-				const catégorie = résultatModèle[catégorieComparée]()
-				const valeur = catégorie[élémentComparé as keyof typeof catégorie] as
-					| MontantDocumenté
-					| QuantitéDocumentée
-				const valeurSecondaire = élémentComparéSecondaire
-					? (catégorie[élémentComparéSecondaire as keyof typeof catégorie] as
-							| MontantDocumenté
-							| QuantitéDocumentée)
-					: undefined
-
-				const isApplicable = !!valeur
-
-				return (
-					<Grid key={index} item as="li" xs={12} lg={12 / comparaison.length}>
-						<StatusCard>
-							<StatusCard.Étiquette>
-								<StatutTag statut={statut} />
-							</StatusCard.Étiquette>
-							{élémentComparé && (
+					return (
+						<Grid key={index} item as="li" xs={12} lg={12 / comparaison.length}>
+							<StatusCard>
+								<StatusCard.Étiquette>
+									<StatutTag statut={statut} />
+								</StatusCard.Étiquette>
 								<StatusCard.Titre>
 									{!isApplicable && (
 										<StyledDiv>
@@ -128,27 +103,23 @@ export const ComparaisonÉlément = <K extends CatégorieComparée>({
 													<InfoIcon />
 												</DocumentationLink>
 											</DocumentationLinkContainer>
-											{warning?.(résultatModèle)}
+											{warning}
 										</StyledDiv>
 									)}
 								</StatusCard.Titre>
-							)}
-							{isApplicable && valeurSecondaire && (
-								<StatusCard.ValeurSecondaire>
-									{formattedValue(valeurSecondaire)}
-									{libelléSecondaire && ' '}
-									{libelléSecondaire}
-								</StatusCard.ValeurSecondaire>
-							)}
-							{footer?.(résultatModèle) && (
-								<StatusCard.Action>
-									{footer?.(résultatModèle)}
-								</StatusCard.Action>
-							)}
-						</StatusCard>
-					</Grid>
-				)
-			})}
+								{isApplicable && valeurSecondaire && (
+									<StatusCard.ValeurSecondaire>
+										{formattedValue(valeurSecondaire)}
+										{libelléSecondaire && ' '}
+										{libelléSecondaire}
+									</StatusCard.ValeurSecondaire>
+								)}
+								{footer && <StatusCard.Action>{footer}</StatusCard.Action>}
+							</StatusCard>
+						</Grid>
+					)
+				}
+			)}
 		</Grid>
 	)
 }
