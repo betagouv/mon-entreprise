@@ -132,16 +132,17 @@ describe('Simulateur Lodeom', () => {
 		).not.toBeInTheDocument()
 	}, 120000)
 
-	it.each([
-		/^Quelle est votre localisation\s\?/,
-		/^Quel barème envisagez-vous\s\?/,
-		/^Quel type de régularisation souhaitez-vous\s\?/,
-		/^Quel est l’effectif de votre entreprise\s\?/,
-	])(
-		'regroupe les choix de la question « %s » dans un fieldset nommé par sa legend',
-		async (question) => {
-			await afficheLeSimulateurEnZoneUn()
+	it('regroupe les choix de chaque question préliminaire dans un fieldset nommé par sa legend', async () => {
+		await afficheLeSimulateurEnZoneUn()
 
+		const questions = [
+			/^Quelle est votre localisation\s\?/,
+			/^Quel barème envisagez-vous\s\?/,
+			/^Quel type de régularisation souhaitez-vous\s\?/,
+			/^Quel est l’effectif de votre entreprise\s\?/,
+		]
+
+		for (const question of questions) {
 			const groupe = await screen.findByRole(
 				'group',
 				{ name: question },
@@ -150,7 +151,6 @@ describe('Simulateur Lodeom', () => {
 
 			expect(groupe.tagName).toBe('FIELDSET')
 			expect(within(groupe).getAllByRole('radio').length).toBeGreaterThan(1)
-		},
-		120000
-	)
+		}
+	}, 120000)
 })
