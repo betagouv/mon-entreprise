@@ -1,38 +1,61 @@
+import * as O from 'effect/Option'
 import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { Fieldset, H3, H3Style } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
+import { isMontant } from '@/domaine/Montant'
 import { DottedName } from '@/domaine/publicodes/DottedName'
+import { isQuantité } from '@/domaine/Quantite'
+import { isUnitéMonétaire, isUnitéQuantité } from '@/domaine/Unites'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 
 import { normalizeRuleName } from '../utils/normalizeRuleName'
 import RuleInput from './RuleInput'
 
-/**
- * Indique si la question est rendue par un groupe de choix (boutons radio ou
- * oui/non), qui doit alors être nommé par un `fieldset` et sa `legend`.
- */
-export function estUnGroupeDeChoix(
+const AMOUNT_FIELD = '<AmountField />'
+const QUANTITY_FIELD = '<QuantityField />'
+const SELECT_ATMP = '<SelectAtmp />'
+const SELECT_COMMUNE = '<SelectCommune />'
+
+export const RADIO_GROUP = '<RadioGroup />'
+export const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
+
+export function getRuleFieldNature(
 	rule: RuleNode,
 	evaluationUnit: Unit | undefined,
-	evaluationType: string | null | undefined
-): boolean {
-	if (rule.possibilities?.nodeKind === 'une possibilité') return true
+	evaluationType: string | null | undefined,
+	value: ValeurPublicodes | undefined
+): string {
+	if (rule.possibilities?.nodeKind === 'une possibilité') return RADIO_GROUP
 
 	if (rule.dottedName === 'établissement . taux ATMP . taux collectif')
-		return false
+		return SELECT_ATMP
 
-	if (rule.rawNode.API === 'commune') return false
+	if (rule.rawNode.API === 'commune') return SELECT_COMMUNE
 
-	return (
+	if (
 		evaluationUnit == null &&
 		['booléen', 'notification', undefined].includes(
 			rule.rawNode.type as string
 		) &&
 		evaluationType !== 'number'
 	)
+		return YES_OR_NO_TOGGLE_GROUP
+
+	const unitéPublicodes = rule.rawNode.unité
+
+	if ((value && isMontant(value)) || isUnitéMonétaire(unitéPublicodes))
+		return AMOUNT_FIELD
+
+	if ((value && isQuantité(value)) || isUnitéQuantité(unitéPublicodes))
+		return QUANTITY_FIELD
+
+	return 'Nature non déterminée'
 }
 
 type RuleFieldProps = {
@@ -61,13 +84,25 @@ export function RuleField({
 	onSubmit,
 }: RuleFieldProps) {
 	const engine = useEngine()
+
 	const rule = engine.getRule(dottedName)
 
 	const evaluation = engine.evaluate(dottedName)
 	const evaluationUnit = evaluation?.unit
 	const evaluationType = evaluation?.nodeValue as string | null
+	const decodedEvaluation: O.Option<ValeurPublicodes> =
+		PublicodesAdapter.decode(evaluation)
 
-	if (estUnGroupeDeChoix(rule, evaluationUnit, evaluationType)) {
+	const value = O.getOrUndefined(decodedEvaluation)
+
+	const ruleFieldNature = getRuleFieldNature(
+		rule,
+		evaluationUnit,
+		evaluationType,
+		value
+	)
+
+	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
 		return (
 			<Fieldset>
 				<StyledLegend>
