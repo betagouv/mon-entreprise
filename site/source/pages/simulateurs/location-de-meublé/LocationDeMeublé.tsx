@@ -67,7 +67,6 @@ const LocationDeMeublé = () => {
 			showDate={false}
 		>
 			<Simulation<SituationÉconomieCollaborative>
-				entrepriseSelection={false}
 				situation={situation}
 				questions={[
 					TypeDuréeQuestion,

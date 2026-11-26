@@ -11,12 +11,9 @@ API REST de simulation: Simulation REST API
 API REST, en savoir plus sur l'API REST: API REST, more about API REST
 Accessibilité: Accessibility
 Accéder au site mon-entreprise, nouvelle fenêtre: Go to mon-entreprise, new window
-Afficher le détail: Show details
 "Afficher les données par :": "Display data by:"
-Afficher les détails de l'entreprise, la modifier ou la supprimer.: View company details, modify or delete.
 Annuler: Cancel
 Attention: Warning
-Attention, vos données sauvegardées seront supprimées de manière définitive.: Please note that your saved data will be permanently deleted.
 Aucun: No
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.: No results matching your search. Try other keywords.
 Aucune donnée disponible.: No data available.
@@ -36,7 +33,6 @@ Communes et code postaux correspondants: Corresponding towns and postcodes
 Confirmer: Confirm
 Contactez-nous: Contact us
 Cotisations: Contributions
-"Crée le :": "Created on:"
 Documentation: Documentation
 Documentation des simulateurs: Simulator documentation
 Donner votre avis: Give your opinion
@@ -46,11 +42,6 @@ En savoir plus: Read more
 "En savoir plus sur ": "Find out more about "
 Enregistrer et continuer: Save and continue
 Enregistrer et voir le résultat: Save and view results
-EntrepriseSearchField:
-  description: "The Siret number is a 14-digit number unique to each company.
-    Example: 40123778000127"
-  label: Company name, SIREN or SIRET
-  placeholder: "Example: Café de la gare or 40123778000127"
 ExportSimulation:
   Banner: Print or save as PDF
 Fiche de paie: Pay slip
@@ -75,11 +66,9 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   will be displayed below the form and updated when you modify it.</2>
 Lire la page sur {{ site }}, nouvelle fenêtre.: Read the page on {{ site }}, new window.
 Ma situation: My situation
-Masquer les détails de l'entreprise.: Hide company details.
 Message à caractère informatif: Informative message
 "Mettre la valeur :": "Set value to:"
 Modifier mes réponses: Modify my answers
-Mon entreprise: My company
 Mots-clés définissants l'activité: Keywords defining the activity
 Nombres: Numbers
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: New content available, click reload to update page.
@@ -100,10 +89,8 @@ Prévisualisation: Preview
 Quel est l’effectif de votre entreprise ?: How many employees does your company have?
 Quelle est votre activité ?: What's your business?
 Recharger: Reload
-Rechercher: Search
 Rechercher un simulateur ou une règle: Search for a simulator or a rule
 Rechercher une règle dans la documentation: Search for a rule in the documentation
-Rechercher, afficher le champ de recherche d'entreprise.: Search, display the company search field.
 Replier: Fold
 Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
@@ -111,8 +98,6 @@ Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
 Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
-Simulation en cours: Simulation in progress
-"Siège :": "Headquarters:"
 Statistiques: Statistics
 Suivant: Next
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
@@ -122,7 +107,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Table showing the number
 Tableau présentant le nombre de visites par simulateur et par mois.: Table showing the number of visits per simulator per month.
 Tout déplier: Unfold all
 Tout plier: Fold everything
-Tout réinitialiser: Reset all
 Trimestre: Quarter
 URL de votre simulation: URL of your simulation
 Un avis sur cette page ?: What do you think of this page?
@@ -135,7 +119,6 @@ Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Votre avis nous intéresse: We value your opinion
 Votre chiffre d'affaires estimé: Your estimated sales
-Votre entreprise: Your company
 Votre message (requis): Your message (required)
 Votre rémunération totale estimée: Your estimated total remuneration
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.: We're sorry you weren't satisfied with your experience.
@@ -195,18 +178,6 @@ components:
       aria-label: "Documentation: {{ titre }}"
   engine-value:
     voir-la-documentation: See the documentation for the calculation of {{valeur}}
-  entreprise-search-results:
-    aria-label:
-      annuaire: the business directory, new window
-      card: "{{nom}}, select this company"
-    no-result:
-      "1": We couldn't find any results for this company.
-      "2": You can try again using your SIREN or SIRET number for better results.
-      "3": If your business does not appear when you search using your SIREN/SIRET
-        number, you may have chosen to <2>keep your business information
-        private</2>, in which case it will not appear in the search results. You
-        can check this in <5>the business directory</5>.<7>If this is the case,
-        don’t worry—you can still view and use our simulators.</7>
   feedback:
     form:
       email:
@@ -349,8 +320,6 @@ design-system:
     open-selector: Open date selector
     prev-month: Previous month
     year: Year
-entreprise:
-  détails: Company created on <1> </1> and domiciled at <3></3>.
 error:
   back: Back to home page
   body0: <0>If you would like to help us correct this problem, please describe the
@@ -415,11 +384,6 @@ global:
   non: No
   oui: Yes
   retour: Back
-gérer:
-  ressources:
-    annuaire-entreprises:
-      aria-label: Company directory, new window
-      body: Find all public information about your company at
 header:
   dark-mode-switch:
     activate-dark-mode: Activate dark mode
@@ -667,14 +631,6 @@ pages:
         intro: The first step in setting up your own business is to <2>choose the legal
           status best suited to your activity</2>. The administrative procedures
           vary according to the legal status chosen.
-        warning-entreprise-existante:
-          popover:
-            bouton:
-              aria-label: Reset registered situation
-              texte: Reset
-            titre: Are you sure you want to reset the registered situation?
-          titre: <0>A company has already been entered</0><1>To access the wizard, you
-            need to reset the data.</1>
       items:
         gestion:
           conjoint:
@@ -906,11 +862,6 @@ pages:
       therefore decided to remove it from the site. It was too difficult to keep
       the information and calculations up to date.
     pour-mon-entreprise:
-      annuaire-entreprises:
-        aria-label: Annuaire-entreprise, Visit the site
-        body: Find all public information about your company at
-        cta: Visit the site
-        title: View your public data
       avertissement-entreprise-non-traitée: <0>There is no income simulator for your
         type of business on this site yet.</0><1>If you would like us to develop
         a new simulator, please let us know by clicking on the "<1></1>" button
@@ -2621,9 +2572,6 @@ payslip:
   repartition: Breakdown of total expenses
 points: points
 pourcentage: percentage
-recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
-  search launched automatically after entering characters, results will be
-  displayed after this element.
 salarié, accéder au simulateur salarié: employee, access the employee simulator
 select:
   value:
@@ -2705,13 +2653,6 @@ simulationChargéeBanner:
   lienPartagé: This simulation was loaded from a shared link.
   règlesDéfaillantes: Some parameters could not be applied due to an evolution of the simulator.
   sauvegarde: Your previous simulation has been restored.
-simulationPréremplieBanner:
-  aria-label: View my situation, access my company management page
-  button: See my situation
-  info: This simulator has been pre-filled with your company's situation.
-  warning:
-    "1": Your legal category is
-    "2": "but you are on the simulator for "
 site:
   defaultTitle: My company
   meta:
@@ -2806,7 +2747,6 @@ update-rule: Update {{title}}
 vos retours, accéder aux statistiques d'utilisation: your feedback, access to usage statistics
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
-"Établissement recherché :": "Establishment sought:"
 Étape complétée: Step completed
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}

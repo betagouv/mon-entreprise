@@ -5,7 +5,6 @@ import { décideActionRègleInvalide } from '@/utils/publicodes/décideActionRè
 
 const situationsVides = {
 	situationDuSimulateur: {},
-	situationDeLEntreprise: {},
 	situationDeConfiguration: {},
 }
 
@@ -19,40 +18,6 @@ describe('décideActionRègleInvalide', () => {
 		})
 
 		expect(action).toEqual({ kind: 'omettre-et-marquer-obsolète', règle })
-	})
-
-	it("demande de réinitialiser l'entreprise si la règle fait partie de l'identité de l'entreprise", () => {
-		const règle = 'entreprise . SIREN' as DottedName
-
-		const action = décideActionRègleInvalide(règle, {
-			...situationsVides,
-			situationDeLEntreprise: { [règle]: "'TAURUS'" },
-		})
-
-		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })
-	})
-
-	it("priorise la réinitialisation de l'entreprise sur l'omission si la règle est aussi une saisie", () => {
-		const règle = 'entreprise . catégorie juridique' as DottedName
-
-		const action = décideActionRègleInvalide(règle, {
-			...situationsVides,
-			situationDuSimulateur: { [règle]: "'SAS'" },
-			situationDeLEntreprise: { [règle]: "'SAS'" },
-		})
-
-		expect(action).toEqual({ kind: 'réinitialiser-entreprise', règle })
-	})
-
-	it("demande d'omettre la règle si elle vient d'une saisie utilisateur dans la situation de l’entreprise", () => {
-		const règle = 'entreprise . activité . nature' as DottedName
-
-		const action = décideActionRègleInvalide(règle, {
-			...situationsVides,
-			situationDeLEntreprise: { [règle]: "'libérale'" },
-		})
-
-		expect(action).toEqual({ kind: 'omettre', règle })
 	})
 
 	it("demande d'omettre la règle si elle vient de la situation de configuration du simulateur", () => {

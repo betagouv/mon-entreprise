@@ -5,26 +5,22 @@ import { DottedName } from '@/domaine/publicodes/DottedName'
 import { PublicodesSimulationConfig } from '@/store/reducers/rootReducer'
 import { QuestionRépondue } from '@/store/reducers/simulation.reducer'
 
-import { CompanyActions } from './companyActions'
-
-export type Action =
-	| ReturnType<
-			| typeof configureLaSimulation
-			| typeof réinitialiseLaSimulation
-			| typeof chargeLaSimulationPrécédente
-			| typeof ajusteLaSituation
-			| typeof enregistreLaRéponseÀLaQuestion
-			| typeof ignoreLaQuestion
-			| typeof enregistreLesRéponsesÀLaQuestion
-			| typeof enregistreLesRéponsesAuxQuestions
-			| typeof supprimeLaRègleDeLaSituation
-			| typeof applicabilitéDesQuestionsRépondues
-			| typeof metÀJourLesQuestionsSuivantes
-			| typeof updateUnit
-			| typeof hideNotification
-			| typeof setActiveTarget
-	  >
-	| CompanyActions
+export type Action = ReturnType<
+	| typeof configureLaSimulation
+	| typeof réinitialiseLaSimulation
+	| typeof chargeLaSimulationPrécédente
+	| typeof ajusteLaSituation
+	| typeof enregistreLaRéponseÀLaQuestion
+	| typeof ignoreLaQuestion
+	| typeof enregistreLesRéponsesÀLaQuestion
+	| typeof enregistreLesRéponsesAuxQuestions
+	| typeof supprimeLaRègleDeLaSituation
+	| typeof applicabilitéDesQuestionsRépondues
+	| typeof metÀJourLesQuestionsSuivantes
+	| typeof updateUnit
+	| typeof hideNotification
+	| typeof setActiveTarget
+>
 
 // Configuration de la simulation
 

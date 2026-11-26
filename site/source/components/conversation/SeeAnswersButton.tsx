@@ -14,10 +14,8 @@ import { AnswersList } from './AnswersList'
 
 export default function SeeAnswersButton({
 	children,
-	label,
 }: {
 	children?: React.ReactNode
-	label?: React.ReactNode
 }) {
 	const { key: simulateur } = useCurrentSimulatorMetadata()
 
@@ -34,11 +32,7 @@ export default function SeeAnswersButton({
 							simulateur,
 						}}
 					>
-						{label ?? (
-							<>
-								<EditIcon /> <Trans>Modifier mes réponses</Trans>
-							</>
-						)}
+						<EditIcon /> <Trans>Modifier mes réponses</Trans>
 					</StyledButton>
 				)}
 				ariaLabel="Modifier mes réponses"

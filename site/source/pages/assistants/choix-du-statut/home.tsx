@@ -1,34 +1,23 @@
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { Trans } from 'react-i18next'
 
 import illustration from '@/assets/images/illustrations/créer.svg'
-import { EntrepriseDetailsCard } from '@/components/entreprise/EntrepriseDetailsCard'
 import PageHeader from '@/components/PageHeader'
 import { ACCUEIL, TrackPage } from '@/components/PianoAnalytics'
 import {
-	Body,
 	Button,
 	ClockIcon,
 	Grid,
-	H3,
 	Intro,
-	Message,
-	PopoverConfirm,
 	SmallBody,
 	Spacing,
 	Strong,
 } from '@/design-system'
-import { resetCompany } from '@/store/actions/companyActions'
-import { companySirenSelector } from '@/store/selectors/company/companySiren.selector'
 
 import { useNextStep, useStepPaths } from './_components/useSteps'
 
 export default function AccueilChoixStatut() {
 	const nextStep = useNextStep()
 	const { toStep } = useStepPaths()
-	const existingCompany = !!useSelector(companySirenSelector)
-	const dispatch = useDispatch()
-	const { t } = useTranslation()
 
 	return (
 		<>
@@ -42,72 +31,32 @@ export default function AccueilChoixStatut() {
 						. Les démarches administratives changent en fonction de ce dernier.
 					</Trans>
 				</Intro>
-				{!existingCompany ? (
-					<>
-						<Spacing md />
+				<Spacing md />
 
-						<Grid container spacing={3} style={{ alignItems: 'center' }}>
-							<Grid item xs={12} sm={'auto'}>
-								<Button size="XL" to={toStep(nextStep)}>
-									<Trans i18nKey="pages.assistants.choix-statut.home.find-statut">
-										Trouver le bon statut
-									</Trans>
-								</Button>
-							</Grid>
-
-							<Grid item>
-								<SmallBody
-									$grey
-									style={{
-										display: 'flex',
-										gap: '0.5rem',
-									}}
-								>
-									<ClockIcon />
-									<Trans i18nKey="pages.assistants.choix-statut.home.estimated-duration">
-										Durée estimée : 10 minutes.
-									</Trans>
-								</SmallBody>
-							</Grid>
-						</Grid>
-					</>
-				) : (
-					<>
-						<Message type="info" border={false}>
-							<Trans i18nKey="pages.assistants.choix-statut.home.warning-entreprise-existante.titre">
-								<H3>Une entreprise est déjà renseignée</H3>
-								<Body>
-									Pour accéder à l'assistant, il vous faut réinitialiser les
-									données.
-								</Body>
+				<Grid container spacing={3} style={{ alignItems: 'center' }}>
+					<Grid item xs={12} sm={'auto'}>
+						<Button size="XL" to={toStep(nextStep)}>
+							<Trans i18nKey="pages.assistants.choix-statut.home.find-statut">
+								Trouver le bon statut
 							</Trans>
-						</Message>
-						<EntrepriseDetailsCard />
-						<PopoverConfirm
-							trigger={(buttonProps) => (
-								<Button
-									light
-									aria-label={t(
-										'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.bouton.aria-label',
-										'Réinitialiser la situation enregistrée'
-									)}
-									{...buttonProps}
-								>
-									{t(
-										'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.bouton.texte',
-										'Réinitialiser'
-									)}
-								</Button>
-							)}
-							onConfirm={() => dispatch(resetCompany())}
-							small
-							title={t(
-								'pages.assistants.choix-statut.home.warning-entreprise-existante.popover.titre',
-								'Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?'
-							)}
-						/>
-					</>
-				)}
+						</Button>
+					</Grid>
+
+					<Grid item>
+						<SmallBody
+							$grey
+							style={{
+								display: 'flex',
+								gap: '0.5rem',
+							}}
+						>
+							<ClockIcon />
+							<Trans i18nKey="pages.assistants.choix-statut.home.estimated-duration">
+								Durée estimée : 10 minutes.
+							</Trans>
+						</SmallBody>
+					</Grid>
+				</Grid>
 			</PageHeader>
 			<Spacing xxl />
 		</>

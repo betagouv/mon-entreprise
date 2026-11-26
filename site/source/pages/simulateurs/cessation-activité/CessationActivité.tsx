@@ -12,7 +12,6 @@ import { useUrl } from '@/hooks/useUrl'
 import { CessationActivitéGoals } from '@/pages/simulateurs/cessation-activité/Goals'
 import { indépendantMetadata } from '@/pages/simulateurs/indépendant/metadata'
 import { SimulateurPageLayout } from '@/simulateurs'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { omit } from '@/utils'
 import { URSSAF } from '@/utils/logos'
@@ -53,10 +52,7 @@ export const CessationActivitéSimulation = () => {
 		},
 	]
 
-	const situation = {
-		...useSelector(situationSelector),
-		...useSelector(companySituationSelector),
-	}
+	const situation = useSelector(situationSelector)
 
 	const filteredSituation = omit(situation, 'entreprise . date de cessation')
 	const basePath = usePageMetadata(indépendantMetadata).path

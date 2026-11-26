@@ -8,7 +8,6 @@ import Engine, {
 } from 'publicodes'
 
 import { DottedName } from '@/domaine/publicodes/DottedName'
-import { SituationPublicodes } from '@/store/reducers/rootReducer'
 
 import { getValueFrom } from '..'
 
@@ -36,20 +35,6 @@ export function evaluateQuestion(
 	}
 
 	return question
-}
-
-export function buildSituationFromObject<Names extends string = DottedName>(
-	contextDottedName: Names,
-	situationObject: Record<string, PublicodesExpression>
-): SituationPublicodes {
-	return Object.fromEntries(
-		Object.entries(situationObject).map(
-			([key, value]: [string, PublicodesExpression]) => [
-				`${contextDottedName} . ${key}` as Names,
-				typeof value === 'string' ? `'${value}'` : value,
-			]
-		)
-	)
 }
 
 export const catchDivideByZeroError = <T>(func: () => T) => {
