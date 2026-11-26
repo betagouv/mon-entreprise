@@ -468,7 +468,6 @@ library:
   title: Calculation library
 main-menu: Main menu
 messages:
-  loading: Loading in progress...
   masquer-message: Hide message
 metadata:
   description: "The official assistant for entrepreneurs in France: contribution
@@ -916,20 +915,6 @@ pages:
         type of business on this site yet.</0><1>If you would like us to develop
         a new simulator, please let us know by clicking on the "<1></1>" button
         on the right of your screen.</1>
-      description: Do you want to earn an income or hire someone? You'll have to pay
-        contributions and taxes. Use our simulators to find out how much you'll
-        have to pay.
-      embauche: Employees and hiring
-      meta:
-        description: Simulators and wizards for your business
-      questions: "Answer the following questions to find out which simulators and
-        wizards are right for you:"
-      simulateurs: Simulators for your business
-      situation-overwrite:
-        annuler: Cancel
-        question: We've detected an old situation. Are you sure you want to squash it?
-        écraser: Crush
-      title: Assistants for my business
     recherche-code-ape:
       alternative: You can try "{{proposal}}" instead of "{{match}}".
       cant-find-my-activity: I can't find my activity
@@ -2819,9 +2804,6 @@ termsOfUse:
 trimestres acquis: quarters acquired
 update-rule: Update {{title}}
 vos retours, accéder aux statistiques d'utilisation: your feedback, access to usage statistics
-warning:
-  overwrite:
-    situation: Do you want to crush your situation?
 À quoi servent mes cotisations ?: What are my contributions used for?
 Échanger avec un conseiller: Talk to an advisor
 "Établissement recherché :": "Establishment sought:"

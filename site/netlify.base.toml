@@ -99,6 +99,26 @@ from = ":SITE_FR/simulateurs/%C3%A9conomie-collaborative/*"
 to = ":SITE_FR/assistants/%C3%A9conomie-collaborative/:splat"
 status = 301
 
+[[redirects]]
+from = ":SITE_FR/assistants/pour-mon-entreprise"
+to = ":SITE_FR/"
+status = 301
+
+[[redirects]]
+from = ":SITE_FR/assistants/pour-mon-entreprise/*"
+to = ":SITE_FR/"
+status = 301
+
+[[redirects]]
+from = ":SITE_EN/assistants/for-my-business"
+to = ":SITE_EN/"
+status = 301
+
+[[redirects]]
+from = ":SITE_EN/assistants/for-my-business/*"
+to = ":SITE_EN/"
+status = 301
+
 ## Older changes
 
 # FR | coronavirus -> simulateurs/chômage-partiel

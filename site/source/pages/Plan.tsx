@@ -74,7 +74,6 @@ export const PlanContent = () => {
 						.filter(
 							([, simulator]) =>
 								simulator.pathId.startsWith('assistants') &&
-								simulator.pathId !== 'assistants.pour-mon-entreprise.index' &&
 								!('hidden' in simulator && simulator.hidden)
 						)
 						.map(([simulateurKey, { path, title }]) => {

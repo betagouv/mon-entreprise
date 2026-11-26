@@ -11,7 +11,6 @@ import AideDéclarationIndépendant from './declaration-revenu-independants'
 import DéclarationRevenusPAMC from './declaration-revenus-pamc'
 import DemandeMobilité from './demande-mobilité'
 import ÉconomieCollaborative from './économie-collaborative'
-import PourMonEntreprise from './pour-mon-entreprise'
 import SearchCodeApePage from './recherche-code-ape'
 
 export default function Assistants() {
@@ -54,10 +53,6 @@ export default function Assistants() {
 				<Route
 					path={assistants['choix-du-statut'].index + '/*'}
 					element={<ChoixDuStatut />}
-				/>
-				<Route
-					path={assistants['pour-mon-entreprise'].index + '/*'}
-					element={<PourMonEntreprise />}
 				/>
 				<Route
 					path={assistants['recherche-code-ape'] + '/*'}
