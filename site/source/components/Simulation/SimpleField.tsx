@@ -1,13 +1,22 @@
+import * as O from 'effect/Option'
 import { useCallback, useId } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { IStyledComponent, styled } from 'styled-components'
 
+import {
+	getRuleFieldNature,
+	RADIO_GROUP,
+	YES_OR_NO_TOGGLE_GROUP,
+} from '@/components/conversation/RuleField'
 import RuleInput from '@/components/conversation/RuleInput'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { FadeIn } from '@/components/ui/animate'
 import { normalizeRuleName } from '@/components/utils/normalizeRuleName'
-import { Intro, Markdown, type DateFieldProps } from '@/design-system'
-import { ValeurPublicodes } from '@/domaine/engine/PublicodesAdapter'
+import { Fieldset, Intro, Markdown, type DateFieldProps } from '@/design-system'
+import {
+	PublicodesAdapter,
+	ValeurPublicodes,
+} from '@/domaine/engine/PublicodesAdapter'
 import { fromOuiNon, OuiNon } from '@/domaine/OuiNon'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { enregistreLaRéponseÀLaQuestion } from '@/store/actions/actions'
@@ -66,40 +75,71 @@ export function SimpleField({
 
 	const required = fromOuiNon(meta.requis)
 
+	const ruleFieldNature = getRuleFieldNature(
+		rule,
+		evaluation.unit,
+		evaluation.nodeValue as string | null,
+		O.getOrUndefined(PublicodesAdapter.decode(evaluation))
+	)
+	const estUnGroupe = [RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(
+		ruleFieldNature
+	)
+
+	const libellé = (
+		<>
+			<Markdown
+				as={estUnGroupe ? 'span' : 'label'}
+				id={labelId}
+				htmlFor={estUnGroupe ? undefined : normalizeRuleName.Input(dottedName)}
+				components={markdownComponents}
+			>
+				{displayedLabel}
+			</Markdown>
+			{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
+			<BoutonDeDocumentation dottedName={dottedName} />
+		</>
+	)
+
+	const champ = (
+		<RuleInput
+			dottedName={dottedName}
+			displayedUnit={
+				evaluation.unit?.numerators.includes(targetUnit)
+					? targetUnit
+					: undefined
+			}
+			aria-labelledby={labelId}
+			required={required}
+			missing={
+				evaluation.nodeValue === undefined ||
+				Object.keys(evaluation.missingVariables).length > 0
+			}
+			onChange={dispatchValue}
+			errorMessage={errorMessage}
+			validation={validation}
+		/>
+	)
+
 	return (
 		<FadeIn>
-			<div>
-				<Markdown
-					as="label"
-					id={labelId}
-					htmlFor={normalizeRuleName.Input(dottedName)}
-					components={markdownComponents}
-				>
-					{displayedLabel}
-				</Markdown>
-				{required && <RedIntro aria-hidden>&nbsp;*</RedIntro>}
-				<BoutonDeDocumentation dottedName={dottedName} />
-			</div>
-			<RuleInput
-				dottedName={dottedName}
-				displayedUnit={
-					evaluation.unit?.numerators.includes(targetUnit)
-						? targetUnit
-						: undefined
-				}
-				aria-labelledby={labelId}
-				required={required}
-				missing={
-					evaluation.nodeValue === undefined ||
-					Object.keys(evaluation.missingVariables).length > 0
-				}
-				onChange={dispatchValue}
-				errorMessage={errorMessage}
-				validation={validation}
-			/>
+			{estUnGroupe ? (
+				<Fieldset>
+					<StyledLegend>{libellé}</StyledLegend>
+					{champ}
+				</Fieldset>
+			) : (
+				<>
+					<div>{libellé}</div>
+					{champ}
+				</>
+			)}
 		</FadeIn>
 	)
 }
+
+const StyledLegend = styled.legend`
+	padding: 0;
+`
 
 const RedIntro = styled(Intro)`
 	color: ${({ theme }) =>

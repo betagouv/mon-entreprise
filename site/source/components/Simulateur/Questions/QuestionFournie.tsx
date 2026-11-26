@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
 
 import { DocumentationHelpButton } from '@/components/documentation'
-import { H3, H3Style } from '@/design-system'
+import { Fieldset, H3, H3Style } from '@/design-system'
 import { Situation } from '@/domaine/Situation'
 
 import { ComposantQuestionFournie } from './ComposantQuestionFournie'
@@ -20,7 +20,7 @@ export const QuestionFournie = <S extends Situation>({
 
 	if (Question.typeRadioGroup) {
 		return (
-			<StyledFieldset>
+			<Fieldset>
 				<StyledLegend>
 					{libellé}
 					{Question.documentation && (
@@ -32,7 +32,7 @@ export const QuestionFournie = <S extends Situation>({
 				</StyledLegend>
 
 				<Question />
-			</StyledFieldset>
+			</Fieldset>
 		)
 	}
 
@@ -56,16 +56,6 @@ export const QuestionFournie = <S extends Situation>({
 		</>
 	)
 }
-
-// Style nécessaire pour un affichage des marges et paddings uniformes dans les
-// différents navigateurs
-const StyledFieldset = styled.fieldset`
-	display: contents;
-
-	padding: 0;
-	margin: 0;
-	border: none;
-`
 
 const LibelléStyle = css`
 	display: flex;

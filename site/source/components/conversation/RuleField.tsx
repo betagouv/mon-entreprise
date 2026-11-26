@@ -3,7 +3,7 @@ import { RuleNode, Unit } from 'publicodes'
 import { styled } from 'styled-components'
 
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
-import { H3, H3Style } from '@/design-system'
+import { Fieldset, H3, H3Style } from '@/design-system'
 import {
 	PublicodesAdapter,
 	ValeurPublicodes,
@@ -19,12 +19,13 @@ import RuleInput from './RuleInput'
 
 const AMOUNT_FIELD = '<AmountField />'
 const QUANTITY_FIELD = '<QuantityField />'
-const RADIO_GROUP = '<RadioGroup />'
 const SELECT_ATMP = '<SelectAtmp />'
 const SELECT_COMMUNE = '<SelectCommune />'
-const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
 
-function getRuleFieldNature(
+export const RADIO_GROUP = '<RadioGroup />'
+export const YES_OR_NO_TOGGLE_GROUP = '<YesOrNoToggleGroup />'
+
+export function getRuleFieldNature(
 	rule: RuleNode,
 	evaluationUnit: Unit | undefined,
 	evaluationType: string | null | undefined,
@@ -103,7 +104,7 @@ export function RuleField({
 
 	if ([RADIO_GROUP, YES_OR_NO_TOGGLE_GROUP].includes(ruleFieldNature)) {
 		return (
-			<StyledFieldset>
+			<Fieldset>
 				<StyledLegend>
 					{labelOrLegend}
 
@@ -115,7 +116,7 @@ export function RuleField({
 					onChange={onChange}
 					onSubmit={onSubmit}
 				/>
-			</StyledFieldset>
+			</Fieldset>
 		)
 	}
 
@@ -138,16 +139,6 @@ export function RuleField({
 		</>
 	)
 }
-
-// Style nécessaire pour un affichage des marges et paddings uniformes dans les
-// différents navigateurs
-const StyledFieldset = styled.fieldset`
-	display: contents;
-
-	padding: 0;
-	margin: 0;
-	border: none;
-`
 
 const StyledLegend = styled.legend`
 	${H3Style}

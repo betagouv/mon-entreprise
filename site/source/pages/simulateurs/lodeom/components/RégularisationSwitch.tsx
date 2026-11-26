@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { BoutonDeDocumentation } from '@/components/documentation/publicodes'
 import { SwitchContainer, SwitchLabel } from '@/components/Switch'
 import { Lodeom } from '@/contextes/salarié'
-import { ChoixUnique } from '@/design-system'
+import { ChoixUnique, Fieldset } from '@/design-system'
 
 type Props = {
 	régularisationMethod: Lodeom.RégularisationMethod
@@ -35,23 +35,25 @@ export default function RégularisationSwitch({
 
 	return (
 		<SwitchContainer>
-			<SwitchLabel id="régularisation-switch-label" as="label">
-				{t(
-					'pages.simulateurs.lodeom.régularisation.type',
-					'Quel type de régularisation souhaitez-vous ?'
-				)}
-				<BoutonDeDocumentation dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
-			</SwitchLabel>
+			<Fieldset>
+				<SwitchLabel id="régularisation-switch-label" as="legend">
+					{t(
+						'pages.simulateurs.lodeom.régularisation.type',
+						'Quel type de régularisation souhaitez-vous ?'
+					)}
+					<BoutonDeDocumentation dottedName="salarié . cotisations . exonérations . lodeom . régularisation" />
+				</SwitchLabel>
 
-			<ChoixUnique
-				variant="toggle"
-				options={options}
-				value={régularisationMethod}
-				onChange={(value) => {
-					setRégularisationMethod(value as Lodeom.RégularisationMethod)
-				}}
-				aria={{ labelledby: 'régularisation-switch-label' }}
-			/>
+				<ChoixUnique
+					variant="toggle"
+					options={options}
+					value={régularisationMethod}
+					onChange={(value) => {
+						setRégularisationMethod(value as Lodeom.RégularisationMethod)
+					}}
+					aria={{ labelledby: 'régularisation-switch-label' }}
+				/>
+			</Fieldset>
 		</SwitchContainer>
 	)
 }
