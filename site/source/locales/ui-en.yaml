@@ -173,6 +173,11 @@ components:
       appropriate advisor for your request from among all our public and
       semi-public partners. He or she will contact you by telephone within 5
       days, and will provide you with assistance tailored to your situation.
+  current-simulator-card:
+    entreprise-non-traitée: <0>There is no income simulator for your type of
+      business on this site yet.</0><1>If you would like us to develop a new
+      simulator, please let us know by clicking on the "<1></1>" button on the
+      right of your screen.</1>
   documentation:
     lien:
       aria-label: "Documentation: {{ titre }}"
@@ -861,11 +866,6 @@ pages:
     déclaration-indépendant: The latter was not as successful as we'd hoped. We
       therefore decided to remove it from the site. It was too difficult to keep
       the information and calculations up to date.
-    pour-mon-entreprise:
-      avertissement-entreprise-non-traitée: <0>There is no income simulator for your
-        type of business on this site yet.</0><1>If you would like us to develop
-        a new simulator, please let us know by clicking on the "<1></1>" button
-        on the right of your screen.</1>
     recherche-code-ape:
       alternative: You can try "{{proposal}}" instead of "{{match}}".
       cant-find-my-activity: I can't find my activity
