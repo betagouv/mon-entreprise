@@ -15,7 +15,7 @@ for = "/*"
 Content-Security-Policy = """\
   default-src 'self' mon-entreprise.fr; \
   style-src 'self' 'unsafe-inline'; \
-  connect-src 'self' *.incubateur.net raw.githubusercontent.com tag.aticdn.net tm.urssaf.fr recherche-entreprises.api.gouv.fr api.recherche-entreprises.fabrique.social.gouv.fr geo.api.gouv.fr *.algolia.net *.algolianet.com plausible.io jedonnemonavis.numerique.gouv.fr; \
+  connect-src 'self' *.incubateur.net raw.githubusercontent.com tag.aticdn.net tm.urssaf.fr geo.api.gouv.fr *.algolia.net *.algolianet.com plausible.io jedonnemonavis.numerique.gouv.fr; \
   form-action 'self' *.sibforms.com *.incubateur.net; \
   script-src 'self' 'unsafe-inline' 'unsafe-eval' tm.urssaf.fr tag.aticdn.net *.incubateur.net stonly.com code.jquery.com; \
   img-src 'self' data: mon-entreprise.urssaf.fr tm.urssaf.fr user-images.githubusercontent.com github.com *.s3.amazonaws.com jedonnemonavis.numerique.gouv.fr; \

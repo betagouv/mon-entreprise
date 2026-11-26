@@ -141,7 +141,7 @@ Les domaines legacy et les domaines de production arrivent sur les **mêmes serv
 
 Définis dans `site/netlify.base.toml`, les Content Security Policy autorisent notamment :
 
--   API internes : `*.incubateur.net`, `recherche-entreprises.api.gouv.fr`
+-   API internes : `*.incubateur.net`
 -   Analytics : `tag.aticdn.net`, `tm.urssaf.fr`, `plausible.io`
 -   Recherche : `*.algolia.net`, `*.algolianet.com`
 -   Iframes : YouTube, CodeSandbox, Stackblitz

@@ -100,12 +100,7 @@ registerRoute(staleWhileRevalidate)
 const networkFirstAPI = new Route(
 	({ sameOrigin, url }) => {
 		return (
-			(!sameOrigin &&
-				[
-					'api.recherche-entreprises.fabrique.social.gouv.fr',
-					'recherche-entreprises.api.gouv.fr',
-					'geo.api.gouv.fr',
-				].includes(url.hostname)) ||
+			(!sameOrigin && url.hostname === 'geo.api.gouv.fr') ||
 			(sameOrigin && /data\/.*\.json$/.test(url.pathname))
 		)
 	},
