@@ -30,6 +30,8 @@ entreprise . salariés . effectif:
         est atteint ou dépassé pendant 5 années civiles consécutives.
       une possibilité:
         - moins de 11:
+            valeur: seuil = 'moins de 11'
+            rend non applicable: établissement . commune
         - entre 11 et 19:
         - entre 20 et 49:
         - entre 50 et 249:
