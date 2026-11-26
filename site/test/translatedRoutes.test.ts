@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
 	pageRoutes,
 	RouteDirectory,
+	routeHrefs,
 	translatedRoutes,
 } from '../build/translatedRoutes'
 
@@ -170,5 +171,21 @@ describe('pageRoutes', () => {
 		expect(pageRoutes([directoryWithAPage('(main)')])).toEqual([
 			{ original: '/', translated: '/' },
 		])
+	})
+})
+
+describe('routeHrefs', () => {
+	const routes = () => pageRoutes([simulateurs([salaireBrutNet()])])
+
+	it('sert les chemins d’origine quand la langue est celle de l’arborescence', () => {
+		expect(routeHrefs(routes(), false)).toEqual({
+			'/simulateurs/salaire-brut-net': '/simulateurs/salaire-brut-net',
+		})
+	})
+
+	it('sert les chemins traduits dans l’autre langue, toujours indexés par l’origine', () => {
+		expect(routeHrefs(routes(), true)).toEqual({
+			'/simulateurs/salaire-brut-net': '/calculators/salary',
+		})
 	})
 })

@@ -3,7 +3,11 @@ import { join } from 'node:path'
 import type { NextConfig } from 'next'
 
 import { readRouteTree } from './build/readRouteTree'
-import { translatedRoutes } from './build/translatedRoutes'
+import {
+	pageRoutes,
+	routeHrefs,
+	translatedRoutes,
+} from './build/translatedRoutes'
 
 const ORIGINAL_LANGUAGE = 'fr'
 
@@ -42,6 +46,9 @@ const nextConfig: NextConfig = {
 
 	env: {
 		LANGUE: langue,
+		ROUTE_HREFS: JSON.stringify(
+			routeHrefs(pageRoutes(routeTree), !servesOriginalPaths)
+		),
 	},
 
 	transpilePackages: [

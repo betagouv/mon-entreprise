@@ -1,3 +1,5 @@
+import type { RouteHrefs } from '@/services/routing'
+
 export type Route = { original: string; translated: string }
 
 export type RouteDirectory = {
@@ -103,3 +105,14 @@ export const pageRoutes = (
 
 export const translatedRoutes = (directories: RouteDirectory[]): Route[] =>
 	pageRoutes(directories).filter(hasATranslation)
+
+export const routeHrefs = (
+	routes: Route[],
+	servesTranslatedPaths: boolean
+): RouteHrefs =>
+	Object.fromEntries(
+		routes.map(({ original, translated }) => [
+			original,
+			servesTranslatedPaths ? translated : original,
+		])
+	)
