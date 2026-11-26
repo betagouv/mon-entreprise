@@ -3,8 +3,8 @@ import { ComponentType, lazy, Suspense } from 'react'
 
 import Loader from '@/components/utils/Loader'
 import { MDXWrapper } from '@/design-system'
-import i18n from '@/locales/i18n'
-import { AvailableLang, parseLangue } from '@/locales/langue'
+import { AvailableLang } from '@/locales/langue'
+import { applicationLanguage } from '@/services/applicationLanguage'
 
 const FALLBACK_LANG: AvailableLang = 'fr'
 
@@ -14,7 +14,7 @@ export const documentationMDX = (
 	importer: (langue: AvailableLang) => Promise<unknown>
 ): ComponentType => {
 	const Content = lazy(async () => {
-		const langue = parseLangue(i18n.language)
+		const langue = applicationLanguage()
 
 		try {
 			return (await importer(langue)) as ModuleMDX

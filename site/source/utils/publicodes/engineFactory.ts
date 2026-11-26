@@ -3,15 +3,12 @@ import Engine, { EngineOptions } from 'publicodes'
 import { DottedName } from '@/domaine/publicodes/DottedName'
 import { Rules } from '@/domaine/publicodes/Rules'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
-import i18next from '@/locales/i18n'
 import ruleTranslationsAS from '@/locales/rules-as-en.yaml'
-import ruleTranslations from '@/locales/rules-en.yaml'
+import ruleTranslationsSocial from '@/locales/rules-en.yaml'
 import ruleTranslationsTI from '@/locales/rules-ti-en.yaml'
 import translateRules, { Translation } from '@/locales/translateRules'
-
-const unitsTranslations = Object.entries(
-	i18next.getResourceBundle('fr', 'units') as Record<string, string>
-)
+import { getUnitKey } from '@/locales/units'
+import { applicationLanguage } from '@/services/applicationLanguage'
 
 let timeout: NodeJS.Timeout | null = null
 let logs: ['warn' | 'error' | 'log', string][] = []
@@ -47,13 +44,7 @@ const logger = {
 }
 
 const engineOptions: EngineOptions = {
-	getUnitKey(unit: string): string {
-		const key = unitsTranslations
-			.find(([, trans]) => trans === unit)?.[0]
-			.replace(/_plural$/, '')
-
-		return key || unit
-	},
+	getUnitKey,
 	warn:
 		process.env.NODE_ENV === 'production'
 			? false
@@ -66,7 +57,7 @@ const engineOptions: EngineOptions = {
 
 export function engineFactory(rules: Rules, nomModèle?: NomModèle) {
 	const translatedRules =
-		i18next.language === 'en'
+		applicationLanguage() === 'en'
 			? translateRules('en', getRuleTranslations(nomModèle), rules)
 			: rules
 
@@ -80,6 +71,6 @@ const getRuleTranslations = <Names extends string>(nomModèle?: NomModèle) => {
 		case 'modele-ti':
 			return ruleTranslationsTI as Record<Names, Translation>
 		default:
-			return ruleTranslations as Record<Names, Translation>
+			return ruleTranslationsSocial as Record<Names, Translation>
 	}
 }
