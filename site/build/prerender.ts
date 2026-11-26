@@ -13,10 +13,6 @@ const filename = new URL(
 	`./prerender-worker.${filenameExtension}`,
 	import.meta.url
 ).href
-const pool = new Tinypool({
-	filename,
-	idleTimeout: 2000,
-})
 
 const sitePathFr = absoluteSitePaths.fr
 const sitePathEn = absoluteSitePaths.en
@@ -73,29 +69,36 @@ export const pagesToPrerender: {
 	].map((val) => encodeURI(val)),
 }
 
-const redirects = await Promise.all(
-	Object.entries(pagesToPrerender).flatMap(([site, urls]) =>
-		urls.map(async (url) => {
-			const path = await (pool.run({
-				site,
-				url,
-				lang: site === 'mon-entreprise' ? 'fr' : 'en',
-			}) as Promise<string>)
+const prerenderSite = async (site: string, urls: string[]) => {
+	const lang = site === 'mon-entreprise' ? 'fr' : 'en'
+	const pool = new Tinypool({ filename, idleTimeout: 2000 })
 
-			// eslint-disable-next-line no-console
-			console.log(`prerendering ${url} done, adding redirect`)
+	try {
+		return await Promise.all(
+			urls.map(async (url) => {
+				const path = await (pool.run({ site, url, lang }) as Promise<string>)
 
-			return `
+				// eslint-disable-next-line no-console
+				console.log(`prerendering ${url} done, adding redirect`)
+
+				return `
 [[redirects]]
-	from = ":SITE_${site === 'mon-entreprise' ? 'FR' : 'EN'}${
-		dev ? decodeURI(url) : url
-	}"
+	from = ":SITE_${lang === 'fr' ? 'FR' : 'EN'}${dev ? decodeURI(url) : url}"
 	to = "/${path}"
 	status = 200
 ${dev ? '  force = true\n' : ''}`
-		})
-	)
-)
+			})
+		)
+	} finally {
+		await pool.destroy()
+	}
+}
+
+const redirects: string[] = []
+
+for (const [site, urls] of Object.entries(pagesToPrerender)) {
+	redirects.push(...(await prerenderSite(site, urls)))
+}
 
 // Replace the #[prerender]# tag in netlify.toml if --netlify-toml-path is specified
 
