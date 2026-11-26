@@ -8,10 +8,11 @@ import {
 	routeHrefs,
 	translatedRoutes,
 } from './build/translatedRoutes'
+import { parseLangue } from './source/locales/langue'
 
 const ORIGINAL_LANGUAGE = 'fr'
 
-const langue = process.env.LANGUE ?? ORIGINAL_LANGUAGE
+const langue = parseLangue(process.env.LANGUE)
 
 const servesOriginalPaths = langue === ORIGINAL_LANGUAGE
 
