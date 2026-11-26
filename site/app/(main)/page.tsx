@@ -12,7 +12,6 @@ import { ForceThemeProvider } from '@/components/utils/DarkModeContext'
 import { Body, Container, Grid, H2, H3, Intro, Strong } from '@/design-system'
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useTracking } from '@/hooks/useTracking'
-import SearchOrCreate from '@/pages/_landing/SearchOrCreate'
 
 export default function Home() {
 	const { trackPage } = useTracking()
@@ -75,8 +74,8 @@ export default function Home() {
 				</Grid>
 			</ExplorerLesStatutsContainer>
 
-			<ListeDesStatutsEtRechercheEntrepriseContainer>
-				<BlocListeDesStatuts>
+			<ListeDesOutilsContainer>
+				<ListeDesOutils>
 					<TitreDeSection>
 						{t('pages.landing.section.by-status', 'Par statut')}
 					</TitreDeSection>
@@ -233,10 +232,8 @@ export default function Home() {
 							{...simulators['location-de-logement-meublé']}
 						/>
 					</Grid>
-				</BlocListeDesStatuts>
-
-				<SearchOrCreate />
-			</ListeDesStatutsEtRechercheEntrepriseContainer>
+				</ListeDesOutils>
+			</ListeDesOutilsContainer>
 
 			<QuiSommesNous imgSrc="/images/home-about-decorative.svg" />
 		</>
@@ -255,15 +252,14 @@ const ExplorerLesStatutsContainer = styled(Container)`
 	padding-bottom: ${({ theme }) => theme.spacings.xxl};
 `
 
-const ListeDesStatutsEtRechercheEntrepriseContainer = styled(Container)`
+const ListeDesOutilsContainer = styled(Container)`
 	margin-bottom: ${({ theme }) => theme.spacings.xl};
 `
 
-const BlocListeDesStatuts = styled.div`
+const ListeDesOutils = styled.div`
 	display: flex;
 	flex-direction: column;
 	row-gap: ${({ theme }) => theme.spacings.lg};
-	margin-bottom: ${({ theme }) => theme.spacings.xxl};
 `
 
 const TitreDeSection = styled(H2)`

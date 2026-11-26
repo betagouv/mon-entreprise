@@ -109,8 +109,6 @@ Revenu après impôt: After-tax income
 Revenu avant impôt: Income before tax
 Règles de calculs: Calculation rules
 Régime d'imposition: Taxation system
-Réinitialiser: Reset
-Réinitialiser la situation enregistrée: Reset registered situation
 Simulateurs: Simulators
 Simulateurs et Assistants: Simulators and Assistants
 Simulation en cours: Simulation in progress
@@ -133,8 +131,6 @@ Utiliser les calculs des simulateurs dans votre application: Use simulator calcu
 Version bêta: Beta version
 Voir les autres simulateurs: See other simulators
 Voir les nouveautés apportées par la version {{release}}: See what's new in this version {{release}}
-Voir les simulateurs personnalisés: See customized simulators
-Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise: See customized simulators, access my company management page
 Vos attentes ne sont pas remplies: Your expectations are not met
 Vos charges estimées: Your estimated expenses
 Votre avis nous intéresse: We value your opinion
@@ -1250,8 +1246,6 @@ pages:
     meta:
       title: Home
     outils: <0>Some reference simulators</0>
-    searchcompany: <0>Search for Your Company </0><1>To access our simulators most
-      relevant to your business</1>
     section:
       by-occupation: By occupation
       by-status: By status
@@ -2835,4 +2829,3 @@ warning:
 Étape non complétée: Step not completed
 Étape {{ total }} sur {{ maxValue }}: Step {{ total }} on {{ maxValue }}
 Êtes-vous sûr de vouloir effacer vos réponses ?: Are you sure you want to delete your answers?
-Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Are you sure you want to reset the registered situation?
