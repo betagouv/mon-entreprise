@@ -2827,9 +2827,8 @@ termsOfUse:
           gestion d'entreprise.
         "2": L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent
           à date sur la Plateforme. Il peut notamment, à l'aide d'une barre de
-          recherche, renseigner le nom de l'entreprise, le SIREN ou SIRET, des
-          mots clés ou acronymes pour trouver le simulateur le plus adapté à sa
-          situation.
+          recherche, renseigner des mots clés ou acronymes pour trouver le
+          simulateur le plus adapté à sa situation.
         "3": L'Utilisateur peut également :<1><0>Intégrer l'un des simulateurs de la
           Plateforme sur son propre site ;</0><1>Utiliser les simulateurs via
           l'API REST dans ses propres services ;</1><2>Utiliser les simulateurs
