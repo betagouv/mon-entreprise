@@ -1,12 +1,9 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { styled } from 'styled-components'
 
+import { PlanDuSite } from '@/components/navigation/PlanDuSite'
 import { TrackPage } from '@/components/PianoAnalytics'
-import { H1, Li, Link, Ul } from '@/design-system'
-import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
-import { useSitePaths } from '@/hooks/useSitePaths'
-
-import Meta from '../components/utils/Meta'
+import Meta from '@/components/utils/Meta'
+import { H1 } from '@/design-system'
 
 export default function Plan() {
 	const { t } = useTranslation()
@@ -25,130 +22,7 @@ export default function Plan() {
 			/>
 			<TrackPage chapter1="navigation" name="plan-du-site" />
 
-			<Ul size="XL" $noMarker>
-				<PlanContent />
-			</Ul>
+			<PlanDuSite size="XL" />
 		</>
 	)
 }
-
-export const PlanContent = () => {
-	const { absoluteSitePaths } = useSitePaths()
-	const simulatorData = useSimulatorsMetadata()
-
-	return (
-		<>
-			<Li>
-				<Link to={absoluteSitePaths.index}>
-					<Trans>Page d'accueil</Trans>
-				</Link>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.nouveautés.index}>
-					<Trans>Nouveautés</Trans>
-				</Link>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.simulateursEtAssistants}>
-					<Trans>Simulateurs et Assistants</Trans>
-				</Link>
-
-				<StyledUl>
-					{Object.entries(simulatorData)
-						.filter(
-							([, simulator]) =>
-								simulator.pathId.startsWith('simulateurs') &&
-								!('hidden' in simulator && simulator.hidden)
-						)
-						.map(([simulateurKey, { path, title }]) => {
-							return (
-								<Li key={`list-item-${simulateurKey}`}>
-									<Link to={path}>{title}</Link>
-								</Li>
-							)
-						})}
-
-					{Object.entries(simulatorData)
-						.filter(
-							([, simulator]) =>
-								simulator.pathId.startsWith('assistants') &&
-								simulator.pathId !== 'assistants.pour-mon-entreprise.index' &&
-								!('hidden' in simulator && simulator.hidden)
-						)
-						.map(([simulateurKey, { path, title }]) => {
-							return (
-								<Li key={`list-item-${simulateurKey}`}>
-									<Link to={path}>{title}</Link>
-								</Li>
-							)
-						})
-						.reverse()}
-				</StyledUl>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.documentation.index}>
-					<Trans>Documentation</Trans>
-				</Link>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.développeur.index}>
-					<Trans>Outils pour les développeurs</Trans>
-				</Link>
-
-				<StyledUl>
-					<Li>
-						<Link to={absoluteSitePaths.développeur.iframe}>
-							<Trans>Intégrer le module Web</Trans>
-						</Link>
-					</Li>
-
-					<Li>
-						<Link to={absoluteSitePaths.développeur.api}>
-							<Trans>API REST de simulation</Trans>
-						</Link>
-					</Li>
-
-					<Li>
-						<Link to={absoluteSitePaths.développeur.spreadsheet}>
-							<Trans>Utiliser avec un tableur</Trans>
-						</Link>
-					</Li>
-
-					<Li>
-						<Link to={absoluteSitePaths.développeur.library}>
-							<Trans>
-								Utiliser les calculs des simulateurs dans votre application
-							</Trans>
-						</Link>
-					</Li>
-				</StyledUl>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.accessibilité}>
-					<Trans>Accessibilité</Trans>
-				</Link>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.stats}>
-					<Trans>Statistiques</Trans>
-				</Link>
-			</Li>
-
-			<Li>
-				<Link to={absoluteSitePaths.budget}>
-					<Trans>Budget</Trans>
-				</Link>
-			</Li>
-		</>
-	)
-}
-
-const StyledUl = styled(Ul)`
-	margin-top: ${({ theme }) => theme.spacings.xs};
-`

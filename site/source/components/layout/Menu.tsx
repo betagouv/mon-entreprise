@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { styled } from 'styled-components'
 
+import { PlanDuSite } from '@/components/navigation/PlanDuSite'
 import { Button, Drawer, Li, Ul } from '@/design-system'
-import { PlanContent } from '@/pages/Plan'
 
 export const Menu = () => {
 	const { t } = useTranslation()
@@ -41,9 +41,7 @@ export const Menu = () => {
 			)}
 		>
 			<Nav className="print-hidden">
-				<StyledUl $noMarker>
-					<PlanContent />
-				</StyledUl>
+				<StyledPlanDuSite />
 			</Nav>
 		</Drawer>
 	)
@@ -69,7 +67,7 @@ const Nav = styled.nav`
 	margin: 0 -${({ theme }) => theme.spacings.xxl};
 `
 
-const StyledUl = styled(Ul)`
+const StyledPlanDuSite = styled(PlanDuSite)`
 	${Li} {
 		padding: 0 ${({ theme }) => theme.spacings.sm};
 		margin-bottom: ${({ theme }) => theme.spacings.md};

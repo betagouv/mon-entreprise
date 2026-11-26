@@ -1,0 +1,11 @@
+- path: /
+  fr: Page d'accueil
+  en: Home page
+
+- path: /simulateurs/salaire-brut-net
+  fr: Simulateur de revenus pour salarié
+  en: Income simulator for employees
+
+- path: /documentation
+  fr: Documentation
+  en: Documentation
