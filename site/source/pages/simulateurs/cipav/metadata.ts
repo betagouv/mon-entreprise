@@ -28,6 +28,5 @@ export function cipavMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour professions libérales rattachées à la Cipav.'
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410', '5499'],
 	} as const
 }

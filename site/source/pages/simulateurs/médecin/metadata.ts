@@ -28,6 +28,5 @@ export function médecinMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calcul du revenu net après déduction des cotisations à partir du total des recettes. Secteur 1, secteur 2, dépassements d’honoraires et revenus non conventionnés pris en compte.'
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410'],
 	} as const
 }

@@ -27,6 +27,5 @@ export function avocatMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calcul du revenu net après cotisations à partir du total des recettes.'
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410', '5499'],
 	} as const
 }

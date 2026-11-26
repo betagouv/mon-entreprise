@@ -27,24 +27,5 @@ export function eurlMetadata({ t, sitePaths }: PageMetadataParams) {
 				"Calcul du revenu à partir du chiffre d'affaires, après déduction des cotisations et des impôts."
 			),
 		},
-		codesCatégorieJuridique: [
-			'5410',
-			'5415',
-			'5422',
-			'5426',
-			'5430',
-			'5431',
-			'5432',
-			'5442',
-			'5443',
-			'5451',
-			'5453',
-			'5454',
-			'5455',
-			'5458',
-			'5459',
-			'5460',
-			'5499',
-		],
 	} as const
 }

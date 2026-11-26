@@ -28,6 +28,5 @@ export function sageFemmeMetadata({ t, sitePaths }: PageMetadataParams) {
 				"Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des dépassements d'honoraires et des revenus non conventionnés."
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410'],
 	} as const
 }

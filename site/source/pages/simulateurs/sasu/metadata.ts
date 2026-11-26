@@ -27,6 +27,5 @@ export function sasuMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calcul du salaire net à partir du total alloué à la rémunération et inversement.'
 			),
 		},
-		codesCatégorieJuridique: ['5710'],
 	} as const
 }

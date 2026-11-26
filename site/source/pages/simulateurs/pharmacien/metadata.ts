@@ -27,6 +27,5 @@ export function pharmacienMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calcul du revenu net après déduction des cotisations à partir du total des recettes pour pharmacien en libéral.'
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410', '5499'],
 	} as const
 }

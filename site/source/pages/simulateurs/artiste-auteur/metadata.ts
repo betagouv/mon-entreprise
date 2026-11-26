@@ -29,6 +29,5 @@ export function artisteAuteurMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Estimez les cotisations sociales sur les droits d’auteur et sur le revenu BNC.'
 			),
 		},
-		codesCatégorieJuridique: ['1000'],
 	} as const
 }
