@@ -1,21 +1,13 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import unitsTranslations from './units.yaml'
-
-interface Units {
-	fr: Record<string, string>
-	en: Record<string, string>
-}
+import { unitsResources } from './units'
 
 i18next
 	.use(initReactI18next)
 	.init({
 		returnNull: false,
-		resources: {
-			fr: { units: (unitsTranslations as Units).fr },
-			en: { units: (unitsTranslations as Units).en },
-		},
+		resources: unitsResources(),
 		react: {
 			useSuspense: false,
 		},
