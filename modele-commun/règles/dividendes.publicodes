@@ -1,0 +1,85 @@
+dividendes:
+
+dividendes . prélèvements sociaux:
+  titre: Prélèvements sociaux sur les dividendes
+  description: |
+    En tant que revenus du patrimoine, les dividendes sont soumis à prélèvements
+    sociaux. Ces prélèvements sont :
+    - contribution sociale généralisée (CSG),
+    - contribution au remboursement de la dette sociale (CRDS),
+    - prélèvement de solidarité.
+  note: |
+    La CSG sur les dividendes soumis au PFU (prélèvement forfaitaire unique) n’est
+    pas déductible.
+  applicable si: paramètres . dividendes . soumis à prélèvements sociaux > 0 €/an
+  somme:
+    - CSG non déductible
+    - CSG déductible
+    - CRDS
+    - prélèvement de solidarité
+  références:
+    Prélèvements sociaux (CSG, CRDS…) sur les revenus du patrimoine: https://www.service-public.gouv.fr/particuliers/vosdroits/F2329
+    Article L136-6 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173130/
+    Article L136-7 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006173129/
+    Article L136-8 du Code de la sécurité sociale: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051287395
+
+  avec:
+    CRDS:
+      produit:
+        - paramètres . dividendes . soumis à prélèvements sociaux
+        - 0.5%
+
+    CSG déductible:
+      produit:
+        - paramètres . dividendes . soumis à prélèvements sociaux
+        - variations:
+            - si: paramètres . dividendes . imposition au barème progressif
+              alors: 6.8%
+            - sinon: 0%
+
+    CSG non déductible:
+      produit:
+        - paramètres . dividendes . soumis à prélèvements sociaux
+        - variations:
+            - si: paramètres . dividendes . imposition au barème progressif
+              alors:
+                variations:
+                  - si: date < 01/2026
+                    alors: 2.4%
+                  - sinon: 3.8%
+            - sinon:
+                variations:
+                  - si: date < 01/2026
+                    alors: 9.2%
+                  - sinon: 10.6%
+
+    prélèvement de solidarité:
+      produit:
+        - paramètres . dividendes . soumis à prélèvements sociaux
+        - 7.5%
+
+dividendes . PFU:
+  titre: Prélèvement forfaitaire unique (PFU) sur les dividendes
+  description: |
+    La part du PFU (prélèvement forfaitaire unique) correspondant à l’impôt sur le
+    revenu est égale à **12,8 %**.
+  non applicable si: paramètres . dividendes . imposition au barème progressif
+  produit:
+    - paramètres . dividendes . bruts
+    - 12.8%
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+
+dividendes . imposables:
+  titre: Dividendes imposables
+  description: |
+    Lors que les dividendes sont soumis au barème progressif de l’impôt sur le
+    revenu, un **abattement de 40%** leur est d’abord appliqué.
+  applicable si: paramètres . dividendes . imposition au barème progressif
+  valeur: paramètres . dividendes . bruts
+  abattement: 40%
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+    Article 158 du Code général des impôts: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000051765203

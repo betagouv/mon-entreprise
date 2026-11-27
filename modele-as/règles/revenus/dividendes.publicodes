@@ -1,0 +1,67 @@
+assimilé salarié . dividendes:
+  résumé: Montant brut des dividendes versés au dirigeant, avant tout prélèvement
+  description: |
+    Il s’agit du montant brut, **avant le PFNL** (prélèvement forfaitaire non
+    libératoire) de 12,8 % et avant l’abattement fiscal de 40 %, des dividendes
+    perçus.
+
+    Les dividendes sont soumis aux **prélèvements sociaux** en tant que revenus
+    du patrimoine.
+  références:
+    Prélèvements sociaux (CSG, CRDS…) sur les revenus du patrimoine: https://www.service-public.gouv.fr/particuliers/vosdroits/F2329
+  applicable si: entreprise . imposition . IS
+  par défaut: 0 €/an
+
+assimilé salarié . dividendes . prélèvements sociaux:
+  titre: Prélèvements sociaux
+  valeur: dividendes . prélèvements sociaux
+  contexte:
+    paramètres . dividendes . bruts: assimilé salarié . dividendes
+    paramètres . dividendes . imposition au barème progressif: dividendes . imposition = 'barème progressif'
+
+assimilé salarié . dividendes . nets:
+  titre: Dividendes nets
+  description: |
+    Il s’agit du montant **après prélèvements sociaux** des dividendes perçus.
+  valeur: assimilé salarié . dividendes
+  abattement: assimilé salarié . dividendes . prélèvements sociaux
+
+assimilé salarié . dividendes . imposition:
+  titre: Imposition des dividendes
+  question: Quel est le mode d’imposition de vos dividendes ?
+  applicable si: dividendes > 0 €/an
+  une possibilité:
+    - PFU:
+        valeur: imposition = 'PFU'
+        titre: prélèvement forfaitaire unique (PFU)
+        description: |
+          Il s’agit du mode d’imposition **par défaut**. Il s’applique tant que
+          vous ne faites pas de demande pour y renoncer.
+
+          Le prélèvement forfaitaire unique (PFU) est égal à 31,4 % :
+          - **12,8 %** correspondant à l’impôt sur le revenu ;
+          - 18,6 % correspondant aux prélèvements sociaux.
+    - barème progressif:
+        valeur: imposition = 'barème progressif'
+        titre: barème progressif de l’impôt sur le revenu
+        description: |
+          Pour que les dividendes soient imposés selon le barème progressif de
+          l’impôt sur le revenu, vous devez renoncer à l’imposition des dividendes
+          au titre du PFU (prélèvement forfaitaire unique) en en faisant la demande
+          au moment de votre déclaration de revenus.
+
+          Le montant imposable des dividendes est alors leur montant brut après
+          **abattement de 40 %** puis déduction d’une partie de la CSG. Ce montant
+          imposable est ensuite ajouté à la rémunération imposable (après son
+          abattement de 10 % pour frais professionnels).
+  par défaut: "'PFU'"
+  références:
+    Fiscalité des dividendes perçus par les associés: https://entreprendre.service-public.gouv.fr/vosdroits/F32963
+    Les revenus mobiliers: https://www.impots.gouv.fr/particulier/les-revenus-mobiliers
+
+assimilé salarié . dividendes . PFU:
+  titre: Prélèvement forfaitaire unique (PFU) sur les dividendes
+  valeur: dividendes . PFU
+  contexte:
+    paramètres . dividendes . bruts: assimilé salarié . dividendes
+    paramètres . dividendes . imposition au barème progressif: dividendes . imposition = 'barème progressif'

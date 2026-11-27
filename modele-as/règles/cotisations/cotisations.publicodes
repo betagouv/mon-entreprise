@@ -1,5 +1,6 @@
 assimilé salarié . cotisations:
-  description: Total des cotisations et contributions à la sécurité sociales
+  titre: Cotisations et contributions
+  description: Total des cotisations et contributions à la sécurité sociale
     versées pour ce salarié. Il comprends une part employeur et une part
     employé.
   somme:
@@ -635,6 +636,7 @@ assimilé salarié . cotisations . prévoyances . santé:
   titre: complémentaire garanties frais de santé obligatoire
   cotisation:
     branche: maladie
+  non applicable si: rémunération . brute = 0 €/an
   avec:
     employeur: montant * taux employeur
 

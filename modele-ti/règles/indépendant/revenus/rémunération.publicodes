@@ -26,7 +26,10 @@ indépendant . rémunération . brute:
           - cotisations et contributions . avec dividendes
         par défaut:
           variations:
-            - si: dividendes > 0 €/an
+            - si:
+                toutes ces conditions:
+                  - dividendes > 0 €/an
+                  - est non défini: entreprise . chiffre d'affaires
               alors: 0 €/an
             - sinon: entreprise . chiffre d'affaires - entreprise . charges
     - sinon: entreprise . chiffre d'affaires - entreprise . charges
@@ -67,16 +70,15 @@ indépendant . rémunération . impôt:
     - les bénéfices des entreprises individuelles à l’impôt sur le revenu.
   valeur: impôt . montant
   contexte:
-    paramètres . impôt . revenu imposable:
-      somme:
-        - rémunération . nette . imposable
-        - dividendes . imposables
+    paramètres . impôt . bénéfices imposables:
+      applicable si: entreprise . imposition . IR
+      valeur: rémunération . nette . imposable
     paramètres . impôt . revenu d'activité:
       applicable si: entreprise . imposition . IS
       valeur: rémunération . nette . imposable
-    paramètres . impôt . dividendes imposables:
-      applicable si: entreprise . imposition . IS
-      valeur: dividendes . imposables
+    paramètres . dividendes . bruts: dividendes
+    paramètres . dividendes . soumis à prélèvements sociaux: dividendes . soumis à prélèvements sociaux
+    paramètres . dividendes . imposition au barème progressif: dividendes . imposition = 'barème progressif'
     paramètres . impôt . foyer fiscal . situation de famille:
       applicable si: conjoint collaborateur
       valeur: "'couple'"
@@ -85,7 +87,7 @@ indépendant . rémunération . impôt:
 
 indépendant . rémunération . impôt . avec dividendes:
   titre: Impôt sur le revenu
-  résumé: Inclue l'impôt sur les dividendes
+  résumé: Inclut l'impôt sur les dividendes
   somme:
     - rémunération . impôt
     - dividendes . PFU

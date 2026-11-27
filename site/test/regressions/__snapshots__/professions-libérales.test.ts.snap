@@ -5,6 +5,7 @@ exports[`calculate simulations-professions-libérales > CIPAV Acre 1`] = `
 indépendant . cotisations et contributions: 1164
 indépendant . cotisations et contributions . avec dividendes: 1164
 indépendant . cotisations et contributions . début activité: 2165
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 6164
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -21,6 +22,7 @@ exports[`calculate simulations-professions-libérales > CIPAV Acre 2`] = `
 indépendant . cotisations et contributions: 4133
 indépendant . cotisations et contributions . avec dividendes: 4133
 indépendant . cotisations et contributions . début activité: 2165
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 24133
 indépendant . rémunération . impôt: 528
 indépendant . rémunération . impôt . avec dividendes: 528
@@ -37,6 +39,7 @@ exports[`calculate simulations-professions-libérales > CIPAV Acre 3`] = `
 indépendant . cotisations et contributions: 20159
 indépendant . cotisations et contributions . avec dividendes: 20159
 indépendant . cotisations et contributions . début activité: 2165
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 70159
 indépendant . rémunération . impôt: 8556
 indépendant . rémunération . impôt . avec dividendes: 8556
@@ -53,6 +56,7 @@ exports[`calculate simulations-professions-libérales > CIPAV année incomplète
 indépendant . cotisations et contributions: 1354
 indépendant . cotisations et contributions . avec dividendes: 1354
 indépendant . cotisations et contributions . début activité: 3125
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 3354
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -69,6 +73,7 @@ exports[`calculate simulations-professions-libérales > CIPAV année incomplète
 indépendant . cotisations et contributions: 1896
 indépendant . cotisations et contributions . avec dividendes: 1896
 indépendant . cotisations et contributions . début activité: 3125
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 6896
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -85,6 +90,7 @@ exports[`calculate simulations-professions-libérales > CIPAV année incomplète
 indépendant . cotisations et contributions: 3368
 indépendant . cotisations et contributions . avec dividendes: 3368
 indépendant . cotisations et contributions . début activité: 3125
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 13368
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -101,6 +107,7 @@ exports[`calculate simulations-professions-libérales > CIPAV année incomplète
 indépendant . cotisations et contributions: 48036
 indépendant . cotisations et contributions . avec dividendes: 48036
 indépendant . cotisations et contributions . début activité: 3125
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 148036
 indépendant . rémunération . impôt: 26103
 indépendant . rémunération . impôt . avec dividendes: 26103
@@ -117,6 +124,7 @@ exports[`calculate simulations-professions-libérales > CIPAV année incomplète
 indépendant . cotisations et contributions: 283863
 indépendant . cotisations et contributions . avec dividendes: 283863
 indépendant . cotisations et contributions . début activité: 3125
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 1283863
 indépendant . rémunération . impôt: 471380
 indépendant . rémunération . impôt . avec dividendes: 471380
@@ -133,6 +141,7 @@ exports[`calculate simulations-professions-libérales > CIPAV années précéden
 indépendant . cotisations et contributions: 27337
 indépendant . cotisations et contributions . avec dividendes: 27337
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 87337
 indépendant . rémunération . impôt: 11728
 indépendant . rémunération . impôt . avec dividendes: 11728
@@ -149,6 +158,7 @@ exports[`calculate simulations-professions-libérales > CIPAV années précéden
 indépendant . cotisations et contributions: 20591
 indépendant . cotisations et contributions . avec dividendes: 20591
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 70591
 indépendant . rémunération . impôt: 8860
 indépendant . rémunération . impôt . avec dividendes: 8860
@@ -165,6 +175,7 @@ exports[`calculate simulations-professions-libérales > CIPAV années précéden
 indépendant . cotisations et contributions: 15803
 indépendant . cotisations et contributions . avec dividendes: 15803
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 55804
 indépendant . rémunération . impôt: 6047
 indépendant . rémunération . impôt . avec dividendes: 6047
@@ -181,6 +192,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 35450
 indépendant . cotisations et contributions . avec dividendes: 35450
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 95450
 indépendant . rémunération . impôt: 4822
 indépendant . rémunération . impôt . avec dividendes: 4822
@@ -197,6 +209,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 34336
 indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 94336
 indépendant . rémunération . impôt: 4815
 indépendant . rémunération . impôt . avec dividendes: 4815
@@ -213,6 +226,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 33803
 indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 93803
 indépendant . rémunération . impôt: 4812
 indépendant . rémunération . impôt . avec dividendes: 4812
@@ -229,6 +243,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 34336
 indépendant . cotisations et contributions . avec dividendes: 34336
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 94336
 indépendant . rémunération . impôt: 4815
 indépendant . rémunération . impôt . avec dividendes: 4815
@@ -245,6 +260,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 33803
 indépendant . cotisations et contributions . avec dividendes: 33803
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 93803
 indépendant . rémunération . impôt: 4812
 indépendant . rémunération . impôt . avec dividendes: 4812
@@ -261,6 +277,7 @@ exports[`calculate simulations-professions-libérales > CIPAV conjoint collabora
 indépendant . cotisations et contributions: 2054
 indépendant . cotisations et contributions . avec dividendes: 2054
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 3054
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -277,6 +294,7 @@ exports[`calculate simulations-professions-libérales > CIPAV exonération incap
 indépendant . cotisations et contributions: 5117
 indépendant . cotisations et contributions . avec dividendes: 5117
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 45117
 indépendant . rémunération . impôt: 5394
 indépendant . rémunération . impôt . avec dividendes: 5394
@@ -293,6 +311,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 969
 indépendant . cotisations et contributions . avec dividendes: 969
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 1469
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -309,6 +328,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 1099
 indépendant . cotisations et contributions . avec dividendes: 1099
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 2099
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -325,6 +345,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 1230
 indépendant . cotisations et contributions . avec dividendes: 1230
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 2730
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -341,6 +362,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 1354
 indépendant . cotisations et contributions . avec dividendes: 1354
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 3354
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -357,6 +379,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 1896
 indépendant . cotisations et contributions . avec dividendes: 1896
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 6896
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -373,6 +396,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 3368
 indépendant . cotisations et contributions . avec dividendes: 3368
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 13368
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -389,6 +413,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 48036
 indépendant . cotisations et contributions . avec dividendes: 48036
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 148036
 indépendant . rémunération . impôt: 26103
 indépendant . rémunération . impôt . avec dividendes: 26103
@@ -405,6 +430,7 @@ exports[`calculate simulations-professions-libérales > CIPAV échelle de revenu
 indépendant . cotisations et contributions: 283863
 indépendant . cotisations et contributions . avec dividendes: 283863
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 1283863
 indépendant . rémunération . impôt: 471380
 indépendant . rémunération . impôt . avec dividendes: 471380
@@ -421,6 +447,7 @@ exports[`calculate simulations-professions-libérales > auxiliaire médical 1`] 
 indépendant . cotisations et contributions: 8108
 indépendant . cotisations et contributions . avec dividendes: 8108
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 30000
 indépendant . rémunération . impôt: 490
 indépendant . rémunération . impôt . avec dividendes: 490
@@ -437,6 +464,7 @@ exports[`calculate simulations-professions-libérales > auxiliaire médical 2`] 
 indépendant . cotisations et contributions: 8692
 indépendant . cotisations et contributions . avec dividendes: 8692
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 30000
 indépendant . rémunération . impôt: 406
 indépendant . rémunération . impôt . avec dividendes: 406
@@ -453,6 +481,7 @@ exports[`calculate simulations-professions-libérales > auxiliaire médical 3`] 
 indépendant . cotisations et contributions: 79659
 indépendant . cotisations et contributions . avec dividendes: 79659
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 300000
 indépendant . rémunération . impôt: 72227
 indépendant . rémunération . impôt . avec dividendes: 72227
@@ -469,6 +498,7 @@ exports[`calculate simulations-professions-libérales > avocat 1`] = `
 indépendant . cotisations et contributions: 11436
 indépendant . cotisations et contributions . avec dividendes: 11436
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 3806
 indépendant . rémunération . impôt . avec dividendes: 3806
@@ -485,6 +515,7 @@ exports[`calculate simulations-professions-libérales > avocat 2`] = `
 indépendant . cotisations et contributions: 11436
 indépendant . cotisations et contributions . avec dividendes: 11436
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 3806
 indépendant . rémunération . impôt . avec dividendes: 3806
@@ -501,6 +532,7 @@ exports[`calculate simulations-professions-libérales > expert-comptable 1`] = `
 indépendant . cotisations et contributions: 4488
 indépendant . cotisations et contributions . avec dividendes: 4488
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 20000
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -517,6 +549,7 @@ exports[`calculate simulations-professions-libérales > expert-comptable 2`] = `
 indépendant . cotisations et contributions: 15487
 indépendant . cotisations et contributions . avec dividendes: 15487
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 2712
 indépendant . rémunération . impôt . avec dividendes: 2712
@@ -533,6 +566,7 @@ exports[`calculate simulations-professions-libérales > médecin 1`] = `
 indépendant . cotisations et contributions: 14571
 indépendant . cotisations et contributions . avec dividendes: 14571
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 2960
 indépendant . rémunération . impôt . avec dividendes: 2960
@@ -549,6 +583,7 @@ exports[`calculate simulations-professions-libérales > médecin 2`] = `
 indépendant . cotisations et contributions: 22186
 indépendant . cotisations et contributions . avec dividendes: 22186
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 1403
 indépendant . rémunération . impôt . avec dividendes: 1403
@@ -565,6 +600,7 @@ exports[`calculate simulations-professions-libérales > médecin 3`] = `
 indépendant . cotisations et contributions: 98127
 indépendant . cotisations et contributions . avec dividendes: 98127
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 300000
 indépendant . rémunération . impôt: 63917
 indépendant . rémunération . impôt . avec dividendes: 63917
@@ -581,11 +617,12 @@ exports[`calculate simulations-professions-libérales > médecin 4`] = `
 indépendant . cotisations et contributions: 118294
 indépendant . cotisations et contributions . avec dividendes: 118294
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 400000
-indépendant . rémunération . impôt: 102391
-indépendant . rémunération . impôt . avec dividendes: 102391
+indépendant . rémunération . impôt: 101955
+indépendant . rémunération . impôt . avec dividendes: 101955
 indépendant . rémunération . nette: 281706
-indépendant . rémunération . nette . après impôt: 179315
+indépendant . rémunération . nette . après impôt: 179751
 indépendant . rémunération . nette . avec dividendes: 281706
 protection sociale . retraite . base . revenu cotisé: 4005
 protection sociale . retraite . base . trimestres: 4
@@ -597,6 +634,7 @@ exports[`calculate simulations-professions-libérales > médecin 5`] = `
 indépendant . cotisations et contributions: 35536
 indépendant . cotisations et contributions . avec dividendes: 35536
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 120000
 indépendant . rémunération . impôt: 16605
 indépendant . rémunération . impôt . avec dividendes: 16605
@@ -613,6 +651,7 @@ exports[`calculate simulations-professions-libérales > médecin 6`] = `
 indépendant . cotisations et contributions: 14571
 indépendant . cotisations et contributions . avec dividendes: 14571
 indépendant . cotisations et contributions . début activité: 5624
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 2960
 indépendant . rémunération . impôt . avec dividendes: 2960
@@ -629,6 +668,7 @@ exports[`calculate simulations-professions-libérales > sage-femme 1`] = `
 indépendant . cotisations et contributions: 12022
 indépendant . cotisations et contributions . avec dividendes: 12022
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 50000
 indépendant . rémunération . impôt: 3648
 indépendant . rémunération . impôt . avec dividendes: 3648
@@ -647,6 +687,7 @@ exports[`calculate simulations-professions-libérales > sage-femme 2`] = `
 indépendant . cotisations et contributions: 5019
 indépendant . cotisations et contributions . avec dividendes: 5019
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 20000
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
@@ -665,6 +706,7 @@ exports[`calculate simulations-professions-libérales > sage-femme 3`] = `
 indépendant . cotisations et contributions: 1658
 indépendant . cotisations et contributions . avec dividendes: 1658
 indépendant . cotisations et contributions . début activité: null
+indépendant . dividendes . imposition: null
 indépendant . rémunération . brute: 4000
 indépendant . rémunération . impôt: 0
 indépendant . rémunération . impôt . avec dividendes: 0
