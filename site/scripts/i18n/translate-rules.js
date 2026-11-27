@@ -3,6 +3,7 @@ import { writeFileSync } from 'fs'
 import prettier from 'prettier'
 import yaml from 'yaml'
 
+import { AUTOMATIC_MARK } from '../../source/locales/automaticTranslationMark.js'
 import {
 	fetchTranslation,
 	getRulesMissingTranslations,
@@ -23,7 +24,7 @@ await Promise.all(
 
 					if (typeof value === 'string') {
 						const translation = await fetchTranslation(value)
-						resolved[dottedName][attr] = '[automatic] ' + translation
+						resolved[dottedName][attr] = AUTOMATIC_MARK + translation
 					} else {
 						console.warn(
 							"Warning: ⚠️ Can't translate anything other than a string",

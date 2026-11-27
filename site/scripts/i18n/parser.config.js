@@ -80,6 +80,8 @@ export default {
 		'../../source/**/*.{jsx,tsx,js,ts}',
 		'../../app/**/*.{jsx,tsx,js,ts}',
 		'!../../source/components/ATInternetTracking/piano-analytics.js',
+		'!../../source/**/*.test.{jsx,tsx,js,ts}',
+		'!../../app/**/*.test.{jsx,tsx,js,ts}',
 	],
 	// An array of globs that describe where to look for source files
 	// relative to the location of the configuration file

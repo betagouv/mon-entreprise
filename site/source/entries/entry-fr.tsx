@@ -1,12 +1,13 @@
 import { withProfiler } from '@sentry/react'
 import { I18nProvider } from 'react-aria'
 import { createRoot } from 'react-dom/client'
+import { initReactI18next } from 'react-i18next'
 
 import App from '../components/App'
 
 import '../design-system/fonts.css'
 
-import i18next from '../locales/i18n'
+import { setAppLanguage } from '../locales/i18n'
 
 import '../api/sentry'
 
@@ -19,10 +20,7 @@ export const AppFr = () => (
 const AppFrWithProfiler = withProfiler(AppFr)
 
 if (!import.meta.env.SSR) {
-	i18next.changeLanguage('fr').catch((err) =>
-		// eslint-disable-next-line no-console
-		console.error(err)
-	)
+	setAppLanguage('fr', { plugins: [initReactI18next] })
 	const container = document.querySelector('#js') as Element
 	const root = createRoot(container)
 	root.render(<AppFrWithProfiler />)

@@ -13,7 +13,7 @@ import {
 } from '@/design-system'
 import { EmbeddedContextProvider } from '@/hooks/useIsEmbedded'
 import { NextJsNavigationProvider } from '@/lib/navigation/providers/NextJsNavigationProvider'
-import { createI18nClient } from '@/locales/i18n-client'
+import { useClientI18n } from '@/locales/i18n-client'
 import { AvailableLang } from '@/locales/langue'
 import { makeStore } from '@/store/store'
 
@@ -24,7 +24,7 @@ export function ClientProviders({
 	children: ReactNode
 	langueParDéfaut: AvailableLang
 }) {
-	const [i18n] = useState(() => createI18nClient(langueParDéfaut))
+	const i18n = useClientI18n(langueParDéfaut)
 	const [store] = useState(() =>
 		makeStore({ traceActions: !!process.env.NEXT_PUBLIC_REDUX_TRACE })
 	)

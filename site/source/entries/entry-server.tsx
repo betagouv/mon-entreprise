@@ -4,13 +4,15 @@ import ReactDomServerType from 'react-dom/server'
 // @ts-ignore
 import ReactDomServer from 'react-dom/server.browser'
 import { FilledContext, HelmetProvider } from 'react-helmet-async'
+import { initReactI18next } from 'react-i18next'
 import { StaticRouter } from 'react-router-dom/server'
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components'
 
 import { ReactRouterNavigationProvider } from '@/lib/navigation/providers/ReactRouterNavigationProvider'
 import { AvailableLang } from '@/locales/langue'
 
-import i18next from '../locales/i18n'
+import { englishCatalog } from '../locales/englishCatalog'
+import { setAppLanguage } from '../locales/i18n'
 import { AppEn } from './entry-en'
 import { AppFr } from './entry-fr'
 
@@ -42,10 +44,10 @@ export async function render(
 
 	const sheet = new ServerStyleSheet()
 	const helmetContext = {} as FilledContext
-	i18next.changeLanguage(lang).catch((err) =>
-		// eslint-disable-next-line no-console
-		console.error('Error', err)
-	)
+	setAppLanguage(lang, {
+		catalog: lang === 'en' ? englishCatalog : undefined,
+		plugins: [initReactI18next],
+	})
 
 	const element = (
 		<HelmetProvider context={helmetContext}>

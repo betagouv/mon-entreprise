@@ -1,5 +1,7 @@
 import { Rule } from 'publicodes'
 
+import { AUTOMATIC_MARK } from './automaticTranslationMark'
+
 export type Translation = Record<string, string> & {
 	avec?: Record<string, Translation>
 }
@@ -11,7 +13,11 @@ type translateAttribute = (
 	lang: string
 ) => Rule
 
-/* Traduction */
+const withoutAutomaticMark = (translation?: string) =>
+	translation?.startsWith(AUTOMATIC_MARK)
+		? translation.slice(AUTOMATIC_MARK.length)
+		: translation
+
 const translateSuggestion: translateAttribute = (
 	prop,
 	rule,
@@ -22,7 +28,7 @@ const translateSuggestion: translateAttribute = (
 	suggestions: Object.entries(rule.suggestions!).reduce(
 		(acc, [name, value]) => ({
 			...acc,
-			[translation[`${prop}.${name}.${lang}`]]: value,
+			[withoutAutomaticMark(translation[`${prop}.${name}.${lang}`])!]: value,
 		}),
 		{}
 	),
@@ -44,7 +50,7 @@ const translateProp =
 		if (prop === 'suggestions' && rule?.suggestions) {
 			return translateSuggestion(prop, rule, translation, lang)
 		}
-		const propTrans = translation[prop + '.' + lang]
+		const propTrans = withoutAutomaticMark(translation[prop + '.' + lang])
 
 		let avec
 		if (

@@ -1,21 +1,21 @@
-import { AvailableLang } from './langue'
-import enTranslationsRaw from './ui-en.yaml'
-import unitsTranslationsRaw from './units.yaml'
+import type { AvailableLang } from './langue'
+import { unitsResources } from './units'
 
-interface Units {
-	fr: Record<string, string>
-	en: Record<string, string>
+export type TranslationCatalog = Record<string, string>
+
+export const baseI18nConfig = (
+	langue: AvailableLang,
+	catalog?: TranslationCatalog
+) => {
+	const units = unitsResources()
+
+	return {
+		lng: langue,
+		fallbackLng: 'fr' as const,
+		returnNull: false as const,
+		resources: {
+			fr: units.fr,
+			en: catalog ? { ...units.en, translation: catalog } : units.en,
+		},
+	}
 }
-
-const enTranslations = enTranslationsRaw as Record<string, string>
-const unitsTranslations = unitsTranslationsRaw as Units
-
-export const baseI18nConfig = (langue: AvailableLang) => ({
-	lng: langue,
-	fallbackLng: 'fr' as const,
-	returnNull: false as const,
-	resources: {
-		fr: { units: unitsTranslations.fr },
-		en: { translation: enTranslations, units: unitsTranslations.en },
-	},
-})

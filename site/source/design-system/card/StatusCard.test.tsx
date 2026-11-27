@@ -3,10 +3,12 @@ import { ReactElement } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { describe, expect, it } from 'vitest'
 
-import i18n from '@/locales/i18n'
+import { createIsolatedI18n } from '@/locales/i18n'
 
 import { DesignSystemThemeProvider } from '../root'
 import { StatusCard } from './StatusCard'
+
+const i18n = createIsolatedI18n('fr')
 
 const renderWithTheme = (component: ReactElement) => {
 	return render(

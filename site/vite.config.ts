@@ -5,7 +5,7 @@ import path from 'path'
 
 import mdx from '@mdx-js/rollup'
 import replace from '@rollup/plugin-replace'
-import yaml, { ValidYamlType } from '@rollup/plugin-yaml'
+import yaml from '@rollup/plugin-yaml'
 import { sentryVitePlugin } from '@sentry/vite-plugin'
 import legacy from '@vitejs/plugin-legacy'
 import react from '@vitejs/plugin-react-swc'
@@ -102,13 +102,7 @@ export default defineConfig(({ command, mode }) => ({
 		}),
 		react(),
 
-		yaml({
-			transform(data, filePath) {
-				return /\/rules(?:-(?:\S){2})?-en.yaml$/.test(filePath)
-					? cleanAutomaticTag(data)
-					: data
-			},
-		}),
+		yaml(),
 
 		multipleSPA({
 			defaultSite: 'mon-entreprise',
@@ -261,22 +255,4 @@ const environnementDéployé = (mode: string) => {
 	if (mode !== 'production') return 'développement'
 
 	return isProductionBranch(mode) ? 'production' : 'staging'
-}
-
-const cleanAutomaticTag = (data: ValidYamlType): ValidYamlType => {
-	if (typeof data === 'string' && data.startsWith('[automatic] ')) {
-		return data.replace('[automatic] ', '')
-	}
-
-	if (Array.isArray(data)) {
-		return data.map((val) => cleanAutomaticTag(val))
-	}
-
-	if (data && typeof data === 'object') {
-		return Object.fromEntries<ValidYamlType>(
-			Object.entries(data).map(([key, val]) => [key, cleanAutomaticTag(val)])
-		)
-	}
-
-	return data
 }

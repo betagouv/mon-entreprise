@@ -5,10 +5,12 @@ import { I18nextProvider } from 'react-i18next'
 import { Item } from 'react-stately'
 import { describe, expect, it } from 'vitest'
 
-import i18n from '@/locales/i18n'
+import { createIsolatedI18n } from '@/locales/i18n'
 
 import { DesignSystemThemeProvider } from '../root'
 import { Accordion } from './'
+
+const i18n = createIsolatedI18n('fr')
 
 const renderWithTheme = (component: ReactElement) => {
 	return render(

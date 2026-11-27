@@ -1,4 +1,4 @@
-import { ReactNode, useMemo, useState } from 'react'
+import { ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { HelmetProvider } from 'react-helmet-async'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
@@ -6,8 +6,13 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { DesignSystemThemeProvider } from '@/design-system'
 import { ReactRouterNavigationProvider } from '@/lib/navigation/providers/ReactRouterNavigationProvider'
-import { createI18nClient } from '@/locales/i18n-client'
+import { englishCatalog } from '@/locales/englishCatalog'
+import { createIsolatedI18n } from '@/locales/i18n'
 import { AvailableLang } from '@/locales/langue'
+import {
+	applicationLanguage,
+	declareLanguage,
+} from '@/services/applicationLanguage'
 import { makeStore } from '@/store/store'
 
 export const TestProvider = ({
@@ -17,8 +22,17 @@ export const TestProvider = ({
 	children: ReactNode
 	langue?: AvailableLang
 }) => {
-	const i18n = useMemo(() => createI18nClient(langue), [langue])
+	const languageBefore = useRef(applicationLanguage())
+	const i18n = useMemo(() => {
+		declareLanguage(langue)
+
+		return createIsolatedI18n(langue, {
+			catalog: langue === 'en' ? englishCatalog : undefined,
+		})
+	}, [langue])
 	const [store] = useState(() => makeStore())
+
+	useEffect(() => () => declareLanguage(languageBefore.current), [])
 
 	return (
 		<HelmetProvider>

@@ -7,6 +7,8 @@ import rules from 'modele-social'
 import rulesTI from 'modele-ti'
 import yaml from 'yaml'
 
+import { AUTOMATIC_MARK } from '../../source/locales/automaticTranslationMark.js'
+
 dotenv.config()
 
 export const localesPath = new URL('../../source/locales/', import.meta.url)
@@ -242,7 +244,7 @@ export const translateObject = (resolved, paths, arr) =>
 			if (typeof v === 'string') {
 				const trad = await fetchTranslation(v)
 				const res = paths.reduce((obj, key) => obj[key], resolved)
-				res[dot][k] = '[automatic] ' + trad
+				res[dot][k] = AUTOMATIC_MARK + trad
 			} else {
 				return await translateObject(resolved, [...paths, dot, k], v)
 			}
