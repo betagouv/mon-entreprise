@@ -9,10 +9,13 @@ export const configSASU: PublicodesSimulationConfig = {
 		'assimilé salarié . rémunération . nette . après impôt . avec dividendes',
 	],
 	objectifs: [
+		'assimilé salarié . cotisations',
+		'assimilé salarié . rémunération . nette',
 		'assimilé salarié . dividendes',
+		'assimilé salarié . dividendes . prélèvements sociaux',
+		'assimilé salarié . dividendes . nets',
 		'assimilé salarié . dividendes . imposition',
 		'assimilé salarié . rémunération . impôt . avec dividendes',
-		'assimilé salarié . cotisations . avec dividendes',
 	],
 	questions: {
 		raccourcis: [

@@ -18,7 +18,7 @@ assimilé salarié . rémunération . totale:
     - cotisations . employeur
     - régimes spécifiques . taxe sur les salaires
   unité: €/an
-  plancher: 0€/an
+  plancher: 0 €/an
 
 assimilé salarié . rémunération . brute:
   titre: Rémunération brute
@@ -27,17 +27,10 @@ assimilé salarié . rémunération . brute:
     le dirigeant assimilé salarié avant déduction des cotisations de sécurité
     sociale à sa charge, de la contribution sociale généralisée (CSG) et de la
     contribution au remboursement de la dette sociale (CRDS).
+  somme:
+    - salaire brut
+    - avantages en nature . montant
   unité: €/mois
-  variations:
-    - si:
-        toutes ces conditions:
-          - dividendes > 0 €/an
-          - est non défini: salaire brut
-      alors: 0 €/an
-    - sinon:
-        somme:
-          - salaire brut
-          - avantages en nature . montant
 
 assimilé salarié . rémunération . salaire brut:
   unité: €/mois
@@ -60,7 +53,6 @@ assimilé salarié . rémunération . nette:
 
 assimilé salarié . rémunération . nette . à payer avant impôt:
   titre: Salaire net
-  unité: €/mois
   résumé: Salaire net avant impôt
   description: >-
     Aussi appelé salaire net à payer avant impôt, c'est le montant que la ou le
@@ -69,14 +61,18 @@ assimilé salarié . rémunération . nette . à payer avant impôt:
   somme:
     - rémunération . nette
     - (- avantages en nature . montant)
+  unité: €/mois
 
 assimilé salarié . rémunération . nette . avec dividendes:
   titre: Revenu net
   résumé: |
-    Après déduction des cotisations, contributions et charges sur la rémunération
-    et des prélèvements sociaux sur les dividendes
+    Salaire net + dividendes nets
   somme:
-    - rémunération . nette . à payer avant impôt
+    - variations:
+        - si:
+            est défini: rémunération . nette . à payer avant impôt
+          alors: rémunération . nette . à payer avant impôt
+        - sinon: 0 €/mois
     - dividendes . nets
   unité: €/mois
 
@@ -136,7 +132,6 @@ assimilé salarié . rémunération . nette . après impôt:
   titre: Salaire net après impôt
   résumé: Le salaire net payé
   type: salaire
-  unité: €/mois
   description: |
     C'est le salaire versé sur le compte bancaire de la ou du dirigeant assimilé
     salarié, une fois les cotisations et l’impôt prélevés.
@@ -147,6 +142,7 @@ assimilé salarié . rémunération . nette . après impôt:
   somme:
     - rémunération . nette . à payer avant impôt
     - (- rémunération . impôt)
+  unité: €/mois
 
 assimilé salarié . rémunération . nette . après impôt . avec dividendes:
   titre: Revenu net après impôt
@@ -325,12 +321,12 @@ assimilé salarié . rémunération . montant net social:
 
     Le résultat affiché est une estimation qui ne tient pas compte de tous les
     éléments de votre situation.
-  unité: €/mois
+  références :
+    Le montant net social: https://solidarites.gouv.fr/le-montant-net-social
+    Calcul du montant net social: https://boss.gouv.fr/portail/accueil/bulletin-de-paie/montant-net-social.html#titre-iicalcul-du-montant-net-social
   somme:
     - rémunération . brute
     - avantages en nature . montant
     - cotisations . exonérations . Acre
   abattement: cotisations . salarié
-  références :
-    Le montant net social: https://solidarites.gouv.fr/le-montant-net-social
-    Calcul du montant net social: https://boss.gouv.fr/portail/accueil/bulletin-de-paie/montant-net-social.html#titre-iicalcul-du-montant-net-social
+  unité: €/mois

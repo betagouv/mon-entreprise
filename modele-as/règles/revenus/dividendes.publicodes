@@ -13,15 +13,14 @@ assimilé salarié . dividendes:
   par défaut: 0 €/an
 
 assimilé salarié . dividendes . prélèvements sociaux:
-  titre: Prélèvements sociaux sur les dividendes
+  titre: Prélèvements sociaux
   valeur: dividendes . prélèvements sociaux
   contexte:
     paramètres . dividendes . bruts: assimilé salarié . dividendes
     paramètres . dividendes . imposition au barème progressif: dividendes . imposition = 'barème progressif'
 
 assimilé salarié . dividendes . nets:
-  titre: Dividendes nets de prélèvements sociaux
-  applicable si: dividendes > 0 €/an
+  titre: Dividendes nets
   description: |
     Il s’agit du montant **après prélèvements sociaux** des dividendes perçus.
   valeur: assimilé salarié . dividendes
