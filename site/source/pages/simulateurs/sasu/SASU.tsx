@@ -1,12 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 
-import PeriodSwitch from '@/components/PeriodSwitch'
 import RuleLink from '@/components/RuleLink'
 import SimulateurWarning from '@/components/SimulateurWarning'
-import Simulation, {
-	SimulationGoal,
-	SimulationGoals,
-} from '@/components/Simulation'
+import Simulation from '@/components/Simulation'
 import { YearSelectionBanner } from '@/components/Simulation/YearSelectionBanner'
 import { Body, H2 } from '@/design-system'
 import { useDocumentationPath } from '@/hooks/useDocumentationIndexPath'
@@ -18,6 +14,7 @@ import { SimulateurPageLayout } from '@/simulateurs'
 import { EngineProvider } from '@/utils/publicodes/EngineContext'
 
 import ExplicationsSalaire from './components/Explications'
+import { Objectifs } from './components/Objectifs'
 import { sasuMetadata } from './metadata'
 import { sasuOpenGraph } from './opengraph'
 import { configSASU } from './simulationConfig'
@@ -60,23 +57,7 @@ export function SASUSimulation() {
 							</Body>
 						}
 					/>
-					<SimulationGoals>
-						<PeriodSwitch />
-						<SimulationGoal dottedName="assimilé salarié . rémunération . totale" />
-						<SimulationGoal dottedName="assimilé salarié . dividendes" />
-						<SimulationGoal
-							editable={false}
-							small
-							dottedName="assimilé salarié . cotisations . avec dividendes"
-						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . avec dividendes" />
-						<SimulationGoal
-							small
-							editable={false}
-							dottedName="assimilé salarié . rémunération . impôt . avec dividendes"
-						/>
-						<SimulationGoal dottedName="assimilé salarié . rémunération . nette . après impôt . avec dividendes" />
-					</SimulationGoals>
+					<Objectifs />
 				</Simulation>
 			</SimulateurPageLayout>
 		</EngineProvider>
