@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setEngineSituation } from '@/domaine/engine/engineCache'
 import { NomModèle } from '@/domaine/PublicodesSimulationConfig'
 import { supprimeLaRègleDeLaSituation } from '@/store/actions/actions'
-import { resetCompany } from '@/store/actions/companyActions'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { completeSituationSelector } from '@/store/selectors/completeSituation.selector'
 import { configSituationSelector } from '@/store/selectors/simulation/config/configSituation.selector'
 import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
@@ -17,7 +15,6 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 	const completeSituation = useSelector(completeSituationSelector)
 	const simulatorSituation = useSelector(situationSelector)
 	const configSituation = useSelector(configSituationSelector)
-	const companySituation = useSelector(companySituationSelector)
 
 	if (!nomModèle) {
 		return
@@ -34,14 +31,10 @@ export const useSetupSafeSituation = (nomModèle?: NomModèle) => {
 
 				const action = décideActionRègleInvalide(faultyDottedName, {
 					situationDuSimulateur: simulatorSituation,
-					situationDeLEntreprise: companySituation,
 					situationDeConfiguration: configSituation,
 				})
 
 				switch (action.kind) {
-					case 'réinitialiser-entreprise':
-						dispatch(resetCompany())
-						break
 					case 'omettre-et-marquer-obsolète':
 						dispatch(supprimeLaRègleDeLaSituation(action.règle))
 						dispatch(règleObsolèteDétectée(action.règle))

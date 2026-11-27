@@ -29,6 +29,5 @@ export function autoEntrepreneurMetadata({ t, sitePaths }: PageMetadataParams) {
 				'Calculez votre revenu net après cotisations et impôts en tenant compte de toutes les options, y compris Acre et versement libératoire.'
 			),
 		},
-		codesCatégorieJuridique: ['1000'],
 	} as const
 }

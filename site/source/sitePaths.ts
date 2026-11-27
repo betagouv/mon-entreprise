@@ -13,10 +13,6 @@ const rawSitePathsFr = {
 		économieCollaborative: {
 			index: 'économie-collaborative',
 		},
-		'pour-mon-entreprise': {
-			index: 'pour-mon-entreprise',
-			entreprise: ':entreprise',
-		},
 		déclarationIndépendant: {
 			index: 'aide-declaration-independants-v2',
 		},
@@ -114,10 +110,6 @@ const rawSitePathsEn = {
 		économieCollaborative: {
 			index: 'sharing-economy',
 			votreSituation: 'your-situation',
-		},
-		'pour-mon-entreprise': {
-			index: 'for-my-business',
-			entreprise: ':entreprise',
 		},
 		déclarationIndépendant: {
 			index: 'declaration-aid-independent-v2',

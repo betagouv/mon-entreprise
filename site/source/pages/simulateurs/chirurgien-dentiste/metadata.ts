@@ -34,6 +34,5 @@ export function chirurgienDentisteMetadata({
 				'Calcul du revenu net après cotisations à partir du total des recettes. Prise en compte des revenus non conventionnés.'
 			),
 		},
-		codesCatégorieJuridique: ['1000', '5410'],
 	} as const
 }

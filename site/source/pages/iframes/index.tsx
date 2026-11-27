@@ -11,7 +11,6 @@ import {
 	useSimulatorsMetadata,
 } from '@/hooks/useSimulatorsMetadata'
 import ChoixDuStatut from '@/pages/assistants/choix-du-statut'
-import PourMonEntreprise from '@/pages/assistants/pour-mon-entreprise'
 import SearchCodeApePage from '@/pages/assistants/recherche-code-ape'
 import { ActivitéPartielle } from '@/pages/simulateurs/activité-partielle/ActivitéPartielle'
 import { Artisan } from '@/pages/simulateurs/artisan/Artisan'
@@ -152,10 +151,6 @@ export default function Iframes() {
 
 				<Route element={<RouteAvecChromeIframe avecAvis avecLogo />}>
 					{routeIframe(simulateurs['choix-statut'], <ChoixDuStatut />)}
-					{routeIframe(
-						simulateurs['pour-mon-entreprise'],
-						<PourMonEntreprise />
-					)}
 					{routeIframe(
 						simulateurs['recherche-code-ape'],
 						<SearchCodeApePage />

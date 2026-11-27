@@ -12,7 +12,6 @@ import {
 	Button,
 	Emoji,
 	Grid,
-	Message,
 	PopoverConfirm,
 	PopoverWithTrigger,
 	Spacing,
@@ -28,17 +27,13 @@ import {
 	enregistreLaRéponseÀLaQuestion,
 	réinitialiseLaSimulation,
 } from '@/store/actions/actions'
-import { resetCompany } from '@/store/actions/companyActions'
-import { isCompanyDottedName } from '@/store/reducers/companySituationReducer'
-import { companySituationSelector } from '@/store/selectors/company/companySituation.selector'
 import { listeNoireSelector } from '@/store/selectors/simulation/config/listeNoire.selector'
 import { questionsRéponduesEncoreApplicablesNomsSelector } from '@/store/selectors/simulation/questions/questionsRéponduesEncoreApplicablesNoms.selector'
-import { situationSelector } from '@/store/selectors/simulation/situation/situation.selector'
 import { NoOp } from '@/utils/NoOp'
 import { useEngine } from '@/utils/publicodes/EngineContext'
 import { evaluateQuestion } from '@/utils/publicodes/publicodes'
 
-const { Body, H2, H3, Intro, Link, Strong, Ul } = typography
+const { H2, Intro, Link, Ul } = typography
 
 type AnswersListProps = {
 	onClose?: () => void
@@ -50,8 +45,6 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 	const { currentSimulatorMetadata } = useCurrentSimulatorMetadata()
 	const dispatch = useDispatch()
 	const engine = useEngine()
-	const situation = useSelector(situationSelector)
-	const companySituation = useSelector(companySituationSelector)
 	const passedQuestions = useSelector(
 		questionsRéponduesEncoreApplicablesNomsSelector
 	)
@@ -72,40 +65,6 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 		engine.evaluate(engine.getRule(dottedName))
 	) as Array<EvaluatedRule>
 
-	const situationQuestions = useMemo(
-		() =>
-			answeredAndPassedQuestions.filter(
-				({ dottedName }) => !isCompanyDottedName(dottedName)
-			),
-		[answeredAndPassedQuestions]
-	)
-
-	const companyQuestions = useMemo(
-		() =>
-			Array.from(
-				new Set(
-					(
-						[
-							...answeredAndPassedQuestions.map(({ dottedName }) => dottedName),
-							...Object.keys(situation),
-							...Object.keys(companySituation),
-						] as Array<DottedName>
-					)
-						.filter(isCompanyDottedName)
-						.filter(estPasQuestionEnListeNoire(questionsListeNoire))
-				)
-			).map((dottedName) => engine.getRule(dottedName)),
-		[
-			answeredAndPassedQuestions,
-			companySituation,
-			engine,
-			questionsListeNoire,
-			situation,
-		]
-	)
-
-	const siret = engine.evaluate('établissement . SIRET').nodeValue as string
-
 	return (
 		<div className="answer-list">
 			<H2>
@@ -113,13 +72,9 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 				<Trans>Ma situation</Trans>
 			</H2>
 
-			{!!situationQuestions.length && (
+			{!!answeredAndPassedQuestions.length && (
 				<>
-					<H3>
-						<Trans>Simulation en cours</Trans>
-					</H3>
-
-					<StepsTable {...{ rules: situationQuestions, onClose }} />
+					<StepsTable {...{ rules: answeredAndPassedQuestions, onClose }} />
 					{children}
 					<div
 						className="print-hidden"
@@ -157,90 +112,6 @@ export function AnswersList({ onClose = NoOp, children }: AnswersListProps) {
 					<Spacing md />
 					<JeDonneMonAvis />
 				</div>
-			)}
-
-			{companyQuestions.length > 0 && (
-				<>
-					<H3>
-						<Trans>Mon entreprise</Trans>
-					</H3>
-					<div className="print-hidden">
-						<Message type="secondary" border={false} icon>
-							<Body>
-								<span
-									style={{
-										display: 'flex',
-										alignItems: 'center',
-									}}
-								>
-									<span
-										style={{
-											flexShrink: '1',
-										}}
-									>
-										Les réponses liées à l'entreprise sont{' '}
-										<Strong>automatiquement sauvegardées</Strong> entre les
-										simulations.
-									</span>
-									<span
-										style={{
-											flex: '1',
-											minWidth: 'fit-content',
-											textAlign: 'right',
-										}}
-									>
-										<PopoverConfirm
-											small
-											trigger={(buttonProps) => (
-												<Button
-													light
-													color="secondary"
-													size="XS"
-													{...buttonProps}
-												>
-													<Trans>Tout réinitialiser</Trans>{' '}
-												</Button>
-											)}
-											onConfirm={() => {
-												dispatch(réinitialiseLaSimulation())
-												dispatch(resetCompany())
-											}}
-											title={t(
-												'Attention, vos données sauvegardées seront supprimées de manière définitive.'
-											)}
-										></PopoverConfirm>
-									</span>
-								</span>
-							</Body>
-						</Message>
-						<Spacing xs />
-					</div>
-					<div
-						className="print-hidden"
-						style={{
-							textAlign: 'center',
-						}}
-					/>
-					<StepsTable {...{ rules: companyQuestions, onClose }} />
-					<Spacing md />
-					<div className="print-hidden">
-						<Body style={{ marginTop: 0 }}>
-							{t(
-								'gérer.ressources.annuaire-entreprises.body',
-								'Retrouvez toutes les informations publiques concernant votre entreprise sur'
-							)}{' '}
-							<Link
-								aria-label={t(
-									'gérer.ressources.annuaire-entreprises.aria-label',
-									'Annuaire des Entreprises, nouvelle fenêtre'
-								)}
-								href={`https://annuaire-entreprises.data.gouv.fr/entreprise/${siret}`}
-							>
-								Annuaire des Entreprises.
-							</Link>
-						</Body>
-					</div>
-				</>
 			)}
 
 			{!!nextSteps.length && (

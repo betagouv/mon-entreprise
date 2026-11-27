@@ -32,15 +32,5 @@ export function professionLibéraleMetadata({
 				'Calcul du revenu net pour les indépendants en libéral.'
 			),
 		},
-		codesCatégorieJuridique: [
-			'1000',
-			'5410',
-			'5415',
-			'5422',
-			'5458',
-			'5459',
-			'5460',
-			'5499',
-		],
 	} as const
 }

@@ -73,7 +73,7 @@ export default function TermsOfUse() {
 			<Body>
 				{t(
 					'termsOfUse.article.4.content.2',
-					"L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent à date sur la Plateforme. Il peut notamment, à l'aide d'une barre de recherche, renseigner le nom de l'entreprise, le SIREN ou SIRET, des mots clés ou acronymes pour trouver le simulateur le plus adapté à sa situation."
+					"L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent à date sur la Plateforme. Il peut notamment, à l'aide d'une barre de recherche, renseigner des mots clés ou acronymes pour trouver le simulateur le plus adapté à sa situation."
 				)}
 			</Body>
 			<Body>

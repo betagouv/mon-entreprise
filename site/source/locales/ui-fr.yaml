@@ -11,12 +11,9 @@ API REST de simulation: API REST de simulation
 API REST, en savoir plus sur l'API REST: API REST, en savoir plus sur l'API REST
 Accessibilité: Accessibilité
 Accéder au site mon-entreprise, nouvelle fenêtre: Accéder au site mon-entreprise, nouvelle fenêtre
-Afficher le détail: Afficher le détail
 "Afficher les données par :": "Afficher les données par :"
-Afficher les détails de l'entreprise, la modifier ou la supprimer.: Afficher les détails de l'entreprise, la modifier ou la supprimer.
 Annuler: Annuler
 Attention: Attention
-Attention, vos données sauvegardées seront supprimées de manière définitive.: Attention, vos données sauvegardées seront supprimées de manière définitive.
 Aucun: Aucun
 Aucun résultat ne correspond à votre recherche. Essayez avec d'autres mots-clés.:
   Aucun résultat ne correspond à votre recherche. Essayez avec d'autres
@@ -38,7 +35,6 @@ Communes et code postaux correspondants: Communes et code postaux correspondants
 Confirmer: Confirmer
 Contactez-nous: Contactez-nous
 Cotisations: Cotisations
-"Crée le :": "Crée le :"
 Documentation: Documentation
 Documentation des simulateurs: Documentation des simulateurs
 Donner votre avis: Donner votre avis
@@ -48,11 +44,6 @@ En savoir plus: En savoir plus
 "En savoir plus sur ": "En savoir plus sur "
 Enregistrer et continuer: Enregistrer et continuer
 Enregistrer et voir le résultat: Enregistrer et voir le résultat
-EntrepriseSearchField:
-  description: "Le numéro Siret est un numéro de 14 chiffres unique pour chaque
-    entreprise. Exemple : 40123778000127"
-  label: Nom de l'entreprise, SIREN ou SIRET
-  placeholder: "Exemple : Café de la gare ou 40123778000127"
 ExportSimulation:
   Banner: Imprimer ou sauvegarder en PDF
 Fiche de paie: Fiche de paie
@@ -79,11 +70,9 @@ Les données de simulations se mettront automatiquement à jour après la modifi
   modifierez ce dernier.</2>
 Lire la page sur {{ site }}, nouvelle fenêtre.: Lire la page sur {{ site }}, nouvelle fenêtre.
 Ma situation: Ma situation
-Masquer les détails de l'entreprise.: Masquer les détails de l'entreprise.
 Message à caractère informatif: Message à caractère informatif
 "Mettre la valeur :": "Mettre la valeur :"
 Modifier mes réponses: Modifier mes réponses
-Mon entreprise: Mon entreprise
 Mots-clés définissants l'activité: Mots-clés définissants l'activité
 Nombres: Nombres
 Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.: Nouveau contenu disponible, cliquez sur recharger pour mettre à jour la page.
@@ -104,21 +93,15 @@ Prévisualisation: Prévisualisation
 Quel est l’effectif de votre entreprise ?: Quel est l’effectif de votre entreprise ?
 Quelle est votre activité ?: Quelle est votre activité ?
 Recharger: Recharger
-Rechercher: Rechercher
 Rechercher un simulateur ou une règle: Rechercher un simulateur ou une règle
 Rechercher une règle dans la documentation: Rechercher une règle dans la documentation
-Rechercher, afficher le champ de recherche d'entreprise.: Rechercher, afficher le champ de recherche d'entreprise.
 Replier: Replier
 Revenu après impôt: Revenu après impôt
 Revenu avant impôt: Revenu avant impôt
 Règles de calculs: Règles de calculs
 Régime d'imposition: Régime d'imposition
-Réinitialiser: Réinitialiser
-Réinitialiser la situation enregistrée: Réinitialiser la situation enregistrée
 Simulateurs: Simulateurs
 Simulateurs et Assistants: Simulateurs et Assistants
-Simulation en cours: Simulation en cours
-"Siège :": "Siège :"
 Statistiques: Statistiques
 Suivant: Suivant
 Tableau indiquant la satisfaction des utilisateurs en {{percentOrVotes}} sur le site mon-entreprise par mois.:
@@ -128,7 +111,6 @@ Tableau indiquant le nombre de visites par {{period}}.: Tableau indiquant le nom
 Tableau présentant le nombre de visites par simulateur et par mois.: Tableau présentant le nombre de visites par simulateur et par mois.
 Tout déplier: Tout déplier
 Tout plier: Tout plier
-Tout réinitialiser: Tout réinitialiser
 Trimestre: Trimestre
 URL de votre simulation: URL de votre simulation
 Un avis sur cette page ?: Un avis sur cette page ?
@@ -137,15 +119,10 @@ Utiliser les calculs des simulateurs dans votre application: Utiliser les calcul
 Version bêta: Version bêta
 Voir les autres simulateurs: Voir les autres simulateurs
 Voir les nouveautés apportées par la version {{release}}: Voir les nouveautés apportées par la version {{release}}
-Voir les simulateurs personnalisés: Voir les simulateurs personnalisés
-Voir les simulateurs personnalisés, accéder à la page de gestion de mon entreprise:
-  Voir les simulateurs personnalisés, accéder à la page de gestion de mon
-  entreprise
 Vos attentes ne sont pas remplies: Vos attentes ne sont pas remplies
 Vos charges estimées: Vos charges estimées
 Votre avis nous intéresse: Votre avis nous intéresse
 Votre chiffre d'affaires estimé: Votre chiffre d'affaires estimé
-Votre entreprise: Votre entreprise
 Votre message (requis): Votre message (requis)
 Votre rémunération totale estimée: Votre rémunération totale estimée
 Vous n’avez pas été satisfait(e) de votre expérience, nous en sommes désolé(e)s.:
@@ -203,26 +180,16 @@ components:
       parmi l'ensemble des partenaires publics et parapublics, le conseiller
       compétent pour votre demande. Celui-ci vous contactera par téléphone sous
       5 jours et vous accompagnera en fonction de votre situation.
+  current-simulator-card:
+    entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de revenu pour
+      votre type d'entreprise sur ce site.</0><1>Si vous souhaitez que nous
+      développions un nouveau simulateur, laissez-nous message en cliquant sur
+      le bouton "<1></1>" à droite de votre écran.</1>
   documentation:
     lien:
       aria-label: "Documentation : {{ titre }}"
   engine-value:
     voir-la-documentation: Voir la documentation du calcul de {{valeur}}
-  entreprise-search-results:
-    aria-label:
-      annuaire: l'annuaire des entreprises, nouvelle fenêtre
-      card: "{{nom}}, sélectionner cette entreprise"
-    no-result:
-      "1": Nous n’avons pas trouvé de résultat pour cette entreprise.
-      "2": Vous pouvez réessayer avec votre SIREN ou votre SIRET pour un meilleur
-        résultat.
-      "3": Si votre entreprise n'apparait pas en utilisant votre SIREN/SIRET, il se
-        peut que vous ayez opté pour que <2>les informations de votre entreprise
-        ne soient pas rendues publiques</2>, auquel cas elle n'apparaitra pas
-        dans les résultats de recherche. Vous pouvez le vérifier sur
-        <5>l'annuaire des entreprises</5>.<7>Si tel est le cas, pas
-        d'inquiétude, vous pouvez tout de même consulter et utiliser nos
-        simulateurs.</7>
   feedback:
     form:
       email:
@@ -370,8 +337,6 @@ design-system:
     open-selector: Ouvrir le sélecteur de date
     prev-month: Mois précédent
     year: Année
-entreprise:
-  détails: Entreprise créée le <1></1> et domiciliée à <3></3>.
 error:
   back: Retourner à la page d'accueil
   body0: "<0>Si vous souhaitez nous aider à corriger ce problème, vous pouvez
@@ -437,12 +402,6 @@ global:
   non: Non
   oui: Oui
   retour: Retour
-gérer:
-  ressources:
-    annuaire-entreprises:
-      aria-label: Annuaire des Entreprises, nouvelle fenêtre
-      body: Retrouvez toutes les informations publiques concernant votre entreprise
-        sur
 header:
   dark-mode-switch:
     activate-dark-mode: Activer le mode sombre
@@ -492,7 +451,6 @@ library:
   title: Librairie de calcul
 main-menu: Menu principal
 messages:
-  loading: Chargement en cours…
   masquer-message: Cacher le message
 metadata:
   description: "L'assistant officiel de l'entrepreneur : simulateurs de
@@ -708,14 +666,6 @@ pages:
         intro: La première étape pour créer votre entreprise consiste à <2>choisir un
           statut juridique adapté à votre activité</2>. Les démarches
           administratives changent en fonction de ce dernier.
-        warning-entreprise-existante:
-          popover:
-            bouton:
-              aria-label: Réinitialiser la situation enregistrée
-              texte: Réinitialiser
-            titre: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?
-          titre: <0>Une entreprise est déjà renseignée</0><1>Pour accéder à l'assistant,
-            il vous faut réinitialiser les données.</1>
       items:
         gestion:
           conjoint:
@@ -951,32 +901,6 @@ pages:
     déclaration-indépendant: Ce dernier n’a pas rencontré le succès escompté. Nous
       avons donc décidé de le retirer du site. En effet, il était trop difficile
       de maintenir à jour les informations et les calculs.
-    pour-mon-entreprise:
-      annuaire-entreprises:
-        aria-label: Annuaire-entreprise, Visiter le site
-        body: Retrouvez toutes les informations publiques concernant votre entreprise
-          sur
-        cta: Visiter le site
-        title: Voir vos données publiques
-      avertissement-entreprise-non-traitée: <0>Il n'existe pas encore de simulateur de
-        revenu pour votre type d'entreprise sur ce site.</0><1>Si vous souhaitez
-        que nous développions un nouveau simulateur, laissez-nous message en
-        cliquant sur le bouton "<1></1>" à droite de votre écran.</1>
-      description: Vous souhaitez vous verser un revenu ou embaucher ? Vous aurez à
-        payer des cotisations et des impôts. Anticipez leurs montants grâce aux
-        simulateurs adaptés à votre situation.
-      embauche: Salariés et embauche
-      meta:
-        description: Simulateurs et assistants adaptés à votre entreprise
-      questions: "Répondez aux questions suivantes pour découvrir les simulateurs et
-        assistants adaptés à votre situation :"
-      simulateurs: Simulateurs pour votre entreprise
-      situation-overwrite:
-        annuler: Annuler
-        question: Nous avons détecté une ancienne situation, êtes-vous sûr de vouloir
-          l’écraser ?
-        écraser: Écraser
-      title: Assistants pour mon activité
     recherche-code-ape:
       alternative: Vous pouvez essayer "{{proposal}}" au lieu de "{{match}}"
       cant-find-my-activity: Je ne trouve pas mon activité
@@ -1309,8 +1233,6 @@ pages:
     meta:
       title: Accueil
     outils: <0>Quelques simulateurs de référence</0>
-    searchcompany: <0>Rechercher votre entreprise </0><1>Pour accéder à nos
-      simulateurs les plus pertinents pour votre activité</1>
     section:
       by-occupation: Par profession
       by-status: Par statut
@@ -2764,9 +2686,6 @@ payslip:
   repartition: Répartition du total chargé
 points: points
 pourcentage: pourcentage
-recherche lancée automatiquement après l'entrée de caractères, les résultats s'afficheront à la suite de cet élément.:
-  recherche lancée automatiquement après l'entrée de caractères, les résultats
-  s'afficheront à la suite de cet élément.
 salarié, accéder au simulateur salarié: salarié, accéder au simulateur salarié
 select:
   value:
@@ -2853,13 +2772,6 @@ simulationChargéeBanner:
   règlesDéfaillantes: Certains paramètres n'ont pas pu être appliqués suite à une
     évolution du simulateur.
   sauvegarde: Votre simulation précédente a été restaurée.
-simulationPréremplieBanner:
-  aria-label: Voir ma situation, accéder à la page de gestion de mon entreprise
-  button: Voir ma situation
-  info: Ce simulateur a été prérempli avec la situation de votre entreprise.
-  warning:
-    "1": Votre catégorie juridique est
-    "2": "mais vous êtes sur le simulateur pour "
 site:
   defaultTitle: Mon-entreprise
   meta:
@@ -2915,9 +2827,8 @@ termsOfUse:
           gestion d'entreprise.
         "2": L'Utilisateur peut découvrir la liste de tous les simulateurs qui existent
           à date sur la Plateforme. Il peut notamment, à l'aide d'une barre de
-          recherche, renseigner le nom de l'entreprise, le SIREN ou SIRET, des
-          mots clés ou acronymes pour trouver le simulateur le plus adapté à sa
-          situation.
+          recherche, renseigner des mots clés ou acronymes pour trouver le
+          simulateur le plus adapté à sa situation.
         "3": L'Utilisateur peut également :<1><0>Intégrer l'un des simulateurs de la
           Plateforme sur son propre site ;</0><1>Utiliser les simulateurs via
           l'API REST dans ses propres services ;</1><2>Utiliser les simulateurs
@@ -2961,14 +2872,9 @@ termsOfUse:
 trimestres acquis: trimestres acquis
 update-rule: Modifier {{title}}
 vos retours, accéder aux statistiques d'utilisation: vos retours, accéder aux statistiques d'utilisation
-warning:
-  overwrite:
-    situation: Voulez-vous écraser votre situation ?
 À quoi servent mes cotisations ?: À quoi servent mes cotisations ?
 Échanger avec un conseiller: Échanger avec un conseiller
-"Établissement recherché :": "Établissement recherché :"
 Étape complétée: Étape complétée
 Étape non complétée: Étape non complétée
 Étape {{ total }} sur {{ maxValue }}: Étape {{ total }} sur {{ maxValue }}
 Êtes-vous sûr de vouloir effacer vos réponses ?: Êtes-vous sûr de vouloir effacer vos réponses ?
-Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?: Êtes-vous sûr de vouloir réinitialiser la situation enregistrée ?

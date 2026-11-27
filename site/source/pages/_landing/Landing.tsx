@@ -20,8 +20,6 @@ import {
 import { useSimulatorsMetadata } from '@/hooks/useSimulatorsMetadata'
 import { useSitePaths } from '@/hooks/useSitePaths'
 
-import SearchOrCreate from './SearchOrCreate'
-
 export default function Landing() {
 	const simulators = useSimulatorsMetadata()
 	const { absoluteSitePaths } = useSitePaths()
@@ -96,10 +94,6 @@ export default function Landing() {
 					</ForceThemeProvider>
 				</Grid>
 				<Spacing xxl />
-			</Container>
-			<Container>
-				<SearchOrCreate />
-				<Spacing xl />
 			</Container>
 			<QuiSommesNous imgSrc={illustration2Svg} />
 		</>

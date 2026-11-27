@@ -20,10 +20,8 @@ import { shouldAskFeedback } from '../Feedback/utils'
 import { ACCUEIL, SIMULATION_COMMENCEE, TrackPage } from '../PianoAnalytics'
 import PrintExportRecover from '../simulationExplanation/PrintExportRecover'
 import { FromTop } from './../ui/animate'
-import EntrepriseSelection from './EntrepriseSelection'
 import PreviousSimulationBanner from './PreviousSimulationBanner'
 import { Questions } from './Questions'
-import SimulationPréremplieBanner from './SimulationPréremplieBanner'
 
 export { MentionSousObjectif } from './MentionSousObjectif'
 export { SimulationGoal } from './SimulationGoal'
@@ -73,7 +71,6 @@ type SimulationProps<S extends Situation = Situation> = {
 	customEndMessages?: ReactNode
 	fullWidth?: boolean
 	id?: string
-	entrepriseSelection?: boolean
 	simulationEstCommencée?: (situation?: S) => boolean
 	conseillersEntreprisesVariant?: ConseillersEntreprisesVariant
 
@@ -96,7 +93,6 @@ export default function Simulation<S extends Situation = Situation>({
 	hideDetails = false,
 	fullWidth,
 	id,
-	entrepriseSelection = true,
 	simulationEstCommencée,
 	conseillersEntreprisesVariant,
 	situation,
@@ -126,7 +122,6 @@ export default function Simulation<S extends Situation = Situation>({
 							<div className="print-hidden">
 								<FromTop>{results}</FromTop>
 							</div>
-							{entrepriseSelection && <EntrepriseSelection />}
 
 							<Questions
 								situation={situation}
@@ -139,10 +134,6 @@ export default function Simulation<S extends Situation = Situation>({
 						</>
 					)}
 					<Spacing md />
-
-					{!entrepriseSelection && !!questionsPublicodes?.length && (
-						<SimulationPréremplieBanner />
-					)}
 
 					{avecSimulationPrécédente &&
 						!showQuestions &&

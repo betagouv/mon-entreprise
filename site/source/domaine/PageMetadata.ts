@@ -85,12 +85,6 @@ export interface PageMetadata {
 
 	/** Texte d'information */
 	tooltip?: string
-
-	/**
-	 * Indique les catégories d'entreprise concernées par le simulateur.
-	 * Un tableau vide indique que le simulateur concerne toutes les catégories d'entreprise.
-	 */
-	codesCatégorieJuridique?: string[]
 }
 
 export type ExternalLink = {

@@ -11,7 +11,6 @@ import { PreviousSimulation } from '@/store/selectors/simulation/currentSimulati
 import situationReducer from '@/store/slices/simulateursSlice'
 import { simulationSourceReducer } from '@/store/slices/simulationSource.slice'
 
-import { companySituation } from './companySituationReducer'
 import previousSimulationRootReducer from './previousSimulationRootReducer'
 
 export type { PublicodesSimulationConfig, SituationPublicodes }
@@ -47,7 +46,6 @@ function batchUpdateSituationReducer(state: RootState, action: Action) {
 
 const mainReducer = combineReducers({
 	simulation: simulationReducer,
-	companySituation,
 	previousSimulation: ((p) => p ?? null) as Reducer<PreviousSimulation | null>,
 	activeTargetInput,
 	situation: situationReducer,

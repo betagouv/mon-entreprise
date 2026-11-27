@@ -25,7 +25,7 @@ export function CurrentSimulatorCard() {
 			}}
 		>
 			<Message border={false} type="info">
-				<Trans i18nKey="pages.assistants.pour-mon-entreprise.avertissement-entreprise-non-traitée">
+				<Trans i18nKey="components.current-simulator-card.entreprise-non-traitée">
 					<Intro>
 						Il n'existe pas encore de simulateur de revenu pour votre type
 						d'entreprise sur ce site.
