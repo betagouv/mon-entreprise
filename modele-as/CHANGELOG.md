@@ -4,6 +4,7 @@
 
 ### Breaking changes
 - Réorganise le calcul de l'impôt sur le revenu
+- Supprime le calcul de l'impôt avec le taux neutre
 - Renomme `plafond sécurité sociale . métropole` en `plafond sécurité sociale . cas général`
 - Renomme `durée légale du travail . mensuelle` en `durée légale du travail`
 - Supprime les règles vides `assimilé salarié . cotisations . prévoyances . conventionnelle`

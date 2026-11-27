@@ -100,9 +100,6 @@ assimilé salarié . rémunération . impôt:
   unité: €/an
   contexte:
     paramètres . impôt . revenu d'activité: rémunération . nette . imposable
-    # TODO : l'option "taux neutre" n'est plus proposée malgré ce paramètre,
-    # sûrement parce que la question est évaluée en-dehors de ce contexte
-    paramètres . impôt . taux neutre applicable: oui
 
 assimilé salarié . rémunération . impôt . avec dividendes au barème progressif:
   titre: Impôt sur le revenu
