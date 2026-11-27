@@ -13,11 +13,7 @@ assimilé salarié . régimes spécifiques . alsace moselle:
     Nous considérons qu'un salarié est affilié au régime Alsace-Moselle quand l'établissement dans lequel il travaille est situé dans ces départements.
 
     Attention : c'est une **simplification** : l'affiliation est plus compliquée que celà, voir les conditions exactes [sur le site du régime](https://regime-local.fr/affiliation/).
-  par défaut: non
-  une de ces conditions:
-    - établissement . commune . département = 'Bas-Rhin'
-    - établissement . commune . département = 'Haut-Rhin'
-    - établissement . commune . département = 'Moselle'
+  valeur: établissement . domiciliation . alsace-moselle
 
 assimilé salarié . régimes spécifiques . alsace moselle . ATMP:
   avec:

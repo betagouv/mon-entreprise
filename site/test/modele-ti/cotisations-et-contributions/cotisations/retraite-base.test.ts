@@ -168,7 +168,7 @@ describe('Cotisation retraite de base', () => {
 			const TAUX = 10.75 / 100
 
 			const situation = {
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			}
 
 			it('applique un taux fixe de 10,75%', () => {
@@ -388,7 +388,7 @@ describe('Cotisation retraite de base', () => {
 		describe('pour Mayotte', () => {
 			const situation = {
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			}
 
 			it('applique une assiette minimale égale à 450 heures rémunérées au SMIC métropole', () => {

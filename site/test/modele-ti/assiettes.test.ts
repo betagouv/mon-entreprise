@@ -68,7 +68,7 @@ describe('Indépendant', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '250000 €/an',
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).toEvaluate(
@@ -81,7 +81,7 @@ describe('Indépendant', () => {
 			const e = engine.setSituation({
 				'entreprise . imposition': "'IS'",
 				'indépendant . rémunération . brute': '1000 €/an',
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			expect(e).toEvaluate(

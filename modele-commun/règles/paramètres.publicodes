@@ -46,3 +46,9 @@ paramètres . dividendes . soumis à prélèvements sociaux:
 
 paramètres . dividendes . imposition au barème progressif:
   par défaut: non
+
+
+paramètres . domiciliation:
+
+paramètres . domiciliation . distinction alsace-moselle:
+  par défaut: oui

@@ -1,7 +1,7 @@
 indépendant . cotisations et contributions . CSG-CRDS:
   non applicable si:
     une de ces conditions:
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
       - situation personnelle . domiciliation fiscale à l'étranger
   formule:
     somme:

@@ -148,7 +148,7 @@ exonération âge:
 DROM:
   - entreprise . imposition: "'IS'"
     indépendant . rémunération . brute: 20000 €/an
-    établissement . commune . département: oui
+    établissement . outre-mer: "'drom hors mayotte'"
 
 cotisations forfaitaires début d'activité:
   - entreprise . imposition: "'IS'"

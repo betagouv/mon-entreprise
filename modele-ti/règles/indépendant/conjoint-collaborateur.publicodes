@@ -52,7 +52,7 @@ indépendant . conjoint collaborateur . choix assiette:
   question: Sur quelle base le conjoint cotise-t-il ?
   non applicable si:
     toutes ces conditions:
-      - établissement . commune . département . outre-mer . Mayotte
+      - établissement . domiciliation . outre-mer . mayotte
       - profession libérale . CNAVPL = non
   une possibilité:
     - forfaitaire:
@@ -108,7 +108,7 @@ indépendant . conjoint collaborateur . assiette retraite et invalidité-décès
   variations:
     - si:
         toutes ces conditions:
-          - établissement . commune . département . outre-mer . Mayotte
+          - établissement . domiciliation . outre-mer . mayotte
           - profession libérale . CNAVPL = non
       alors: 450 heure/an * SMIC . horaire . début d'année
     - si: choix assiette . forfaitaire

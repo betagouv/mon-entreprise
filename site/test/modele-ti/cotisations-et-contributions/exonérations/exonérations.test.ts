@@ -269,7 +269,7 @@ describe('L’exonération appliquée', () => {
 					engine.setSituation({
 						...defaultSituation,
 						...exonérations,
-						'établissement . commune . département': "'Mayotte'",
+						'établissement . zone': "'mayotte'",
 					})
 				).toEvaluate(`${COTISATIONS} . retraite de base`, enMétropole)
 			}
@@ -337,7 +337,7 @@ describe('L’exonération appliquée', () => {
 					engine.setSituation({
 						...defaultSituation,
 						...exonérations,
-						'établissement . commune . département': "'Mayotte'",
+						'établissement . zone': "'mayotte'",
 					})
 				).toEvaluate(`${COTISATIONS} . retraite complémentaire`, enMétropole)
 			}
@@ -401,7 +401,7 @@ describe('L’exonération appliquée', () => {
 					engine.setSituation({
 						...defaultSituation,
 						...exonérations,
-						'établissement . commune . département': "'Mayotte'",
+						'établissement . zone': "'mayotte'",
 					})
 				).toEvaluate(`${COTISATIONS} . invalidité et décès`, enMétropole)
 			}

@@ -54,7 +54,7 @@ it('calculate simulations-professions-libérales', { timeout: 120_000 }, () => {
 		  "situation personnelle . RSA",
 		  "situation personnelle . domiciliation fiscale à l'étranger",
 		  "établissement . commune . département",
-		  "établissement . commune . département . outre-mer",
+		  "établissement . outre-mer",
 		]
 	`)
 })

@@ -165,7 +165,7 @@ indépendant . cotisations et contributions . assiette sociale après déduction
     valeur: déduction tabac
 
 indépendant . cotisations et contributions . Mayotte:
-  applicable si: établissement . commune . département . outre-mer . Mayotte
+  applicable si: établissement . domiciliation . outre-mer . mayotte
   valeur: oui
   type: notification
   sévérité: avertissement

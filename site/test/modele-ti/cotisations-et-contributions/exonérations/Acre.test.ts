@@ -28,7 +28,7 @@ describe('L’exonération Acre', () => {
 			'entreprise . activité . libérale . réglementée': 'oui',
 			'indépendant . profession libérale . réglementée . métier':
 				"'santé . médecin'",
-			'établissement . commune . département . outre-mer': 'oui',
+			'établissement . domiciliation . outre-mer': 'oui',
 		})
 
 		expect(e).not.toBeApplicable(

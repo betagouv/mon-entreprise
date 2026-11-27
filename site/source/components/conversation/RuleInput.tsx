@@ -295,9 +295,7 @@ export default function RuleInput({
 	}
 
 	if (inputNature === NON_EXISTING_API) {
-		throw new Error(
-			"Les seules API implémentées sont 'commune' et 'pays détachement'"
-		)
+		throw new Error("La seule API implémentée est 'commune'")
 	}
 
 	// Cas spécifique pour ATMP

@@ -362,7 +362,7 @@ describe('Cotisations de début d’activité', () => {
 		it('applique une assiette forfaitaire égale à 19% du PASS mahorais', () => {
 			const e = engine.setSituation({
 				"entreprise . chiffre d'affaires": '10000 €/an',
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 				'entreprise . date de création': '01/01/2026',
 			})
 

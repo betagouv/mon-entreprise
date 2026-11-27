@@ -1,52 +1,5 @@
 # La règle parente "établissement" est dans modele-commun
 
-établissement . commune:
-  icônes: 📍
-  question: Dans quelle commune l'établissement est-il implanté ?
-  API: commune
-  variations:
-    - si:
-        est défini: nom
-      alors:
-        texte: '{{ nom }} ({{ code postal }})'
-    - sinon: nom
-
-  avec:
-    code postal:
-
-    département:
-      avec:
-        outre-mer:
-          par défaut: non
-          une de ces conditions:
-            - département = 'Guadeloupe'
-            - département = 'Martinique'
-            - département = 'Guyane'
-            - département = 'La Réunion'
-            - département . outre-mer . Mayotte
-
-          avec:
-            Guadeloupe Réunion Martinique:
-              icônes: 🇬🇵 🇷🇪 🇲🇶
-              une de ces conditions:
-                - département = 'Guadeloupe'
-                - département = 'Martinique'
-                - département = 'La Réunion'
-            Mayotte:
-              valeur: département = 'Mayotte'
-              icônes: 🇾🇹
-
-    nom:
-      titre: Commune
-
-    taux versement mobilité:
-      par défaut: 0
-      unité: '%'
-      références:
-        Moteur de recherche versement mobilité: https://www.urssaf.fr/portail/home/taux-et-baremes/versement-mobilite.html
-        Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/cotisations/liste-cotisations/versement-mobilite.html
-        'Versement mobilité : êtes-vous concerné ?': https://www.economie.gouv.fr/entreprises/versement-mobilite-tr
-
 établissement . ZFU:
   experimental: oui
   applicable si: entreprise . date de création < 01/2015

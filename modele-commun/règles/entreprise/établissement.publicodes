@@ -5,3 +5,125 @@
 établissement . SIRET:
   type: texte
   applicable si: entreprise . SIREN
+
+# On souhaite mettre en visibilité l'outre-mer pour les TI (pour lesquels la
+# distinction "Alsace-Moselle" est inutile), alors on utilise 2 questions
+# différentes car il n'est pas possible d'utiliser le mécanisme "variations"
+# sur la propriété "titre"
+établissement . domiciliation:
+  variations:
+    - si: paramètres . domiciliation . distinction alsace-moselle
+      alors: établissement . zone
+    - sinon: établissement . outre-mer
+
+établissement . domiciliation . outre-mer:
+  une de ces conditions:
+    - domiciliation = 'mayotte'
+    - domiciliation = 'drom hors mayotte'
+
+  avec:
+    hors mayotte:
+      titre: DROM hors Mayotte
+      valeur: domiciliation = 'drom hors mayotte'
+
+    mayotte:
+      valeur: domiciliation = 'mayotte'
+
+établissement . domiciliation . alsace-moselle:
+  valeur: domiciliation = 'alsace-moselle'
+
+établissement . commune:
+  icônes: 📍
+  question: Dans quelle commune votre entreprise est-elle domiciliée ?
+  API: commune
+  variations:
+    - si:
+        est défini: nom
+      alors:
+        texte: '{{ nom }} ({{ code postal }})'
+    - sinon: nom
+
+  avec:
+    code postal:
+
+    département:
+
+    nom:
+      titre: Commune
+
+établissement . zone:
+  description: |
+    La localisation de votre entreprise (DROM, Alsace-Moselle…) a un impact
+    sur le calcul des cotisations sociales et des exonérations applicables.
+  question: Où votre entreprise est-elle domiciliée ?
+  applicable si: paramètres . domiciliation . distinction alsace-moselle
+  une possibilité:
+    - mayotte:
+        titre: Mayotte
+        valeur: zone = 'mayotte'
+    - drom hors mayotte:
+        titre: Guadeloupe, Guyane, Martinique ou La Réunion
+        valeur: zone = 'drom hors mayotte'
+    - alsace-moselle:
+        titre: Alsace-Moselle
+        valeur: zone = 'alsace-moselle'
+    - autre:
+        titre: Autre
+        valeur: zone = 'autre'
+  par défaut:
+    variations:
+      - si:
+          est défini: établissement . commune . département
+        alors:
+          variations:
+            - si: établissement . commune . département = 'Mayotte'
+              alors: "'mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Guadeloupe'
+                  - établissement . commune . département = 'Guyane'
+                  - établissement . commune . département = 'La Réunion'
+                  - établissement . commune . département = 'Martinique'
+              alors: "'drom hors mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Bas-Rhin'
+                  - établissement . commune . département = 'Haut-Rhin'
+                  - établissement . commune . département = 'Moselle'
+              alors: "'alsace-moselle'"
+            - sinon: "'autre'"
+      - sinon: "'autre'"
+
+établissement . outre-mer:
+  description: |
+    Si votre entreprise est domiciliée en outre-mer, le calcul des
+    cotisations sociales et les exonérations applicables sont différentes.
+  question: Votre entreprise est-elle domiciliée en outre-mer (DROM) ?
+  non applicable si: paramètres . domiciliation . distinction alsace-moselle
+  une possibilité:
+    - mayotte:
+        titre: Oui, à Mayotte
+        valeur: outre-mer = 'mayotte'
+    - drom hors mayotte:
+        titre: Oui, en Guadeloupe, en Guyane, en Martinique ou à La Réunion
+        valeur: outre-mer = 'drom hors mayotte'
+    - métropole:
+        titre: Non
+        valeur: outre-mer = 'métropole'
+  par défaut:
+    variations:
+      - si:
+          est défini: établissement . commune . département
+        alors:
+          variations:
+            - si: établissement . commune . département = 'Mayotte'
+              alors: "'mayotte'"
+            - si:
+                une de ces conditions:
+                  - établissement . commune . département = 'Guadeloupe'
+                  - établissement . commune . département = 'Guyane'
+                  - établissement . commune . département = 'La Réunion'
+                  - établissement . commune . département = 'Martinique'
+              alors: "'drom hors mayotte'"
+            - sinon: "'métropole'"
+      - sinon: "'métropole'"

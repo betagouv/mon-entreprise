@@ -1,3 +1,4 @@
+import * as O from 'effect/Option'
 import { KeyboardEvent, useCallback, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { css, styled } from 'styled-components'
@@ -9,6 +10,8 @@ import {
 	searchCommunes,
 } from '@/api/commune'
 import { Body, TextField } from '@/design-system'
+import { Zone } from '@/domaine/publicodes/Zone'
+import { usePublicodes } from '@/hooks/usePublicodes'
 import { debounce } from '@/utils'
 
 function formatCommune(value: SearchCommune) {
@@ -27,15 +30,22 @@ export default function Select({ onChange, value, id }: SelectCommuneProps) {
 		useState<null | Array<SearchCommune>>(null)
 	const { t } = useTranslation()
 	const [isLoading, setLoadingState] = useState(false)
+	const { contientLaRègle, évalue } = usePublicodes()
+
+	let zone: Zone | undefined
+	if (contientLaRègle('établissement . zone')) {
+		const { valeur, parDéfaut } = évalue<Zone>('établissement . zone')
+		zone = parDéfaut ? undefined : O.getOrUndefined(valeur)
+	}
 
 	const handleSearch = useCallback(
 		function (value: string) {
-			void searchCommunes(value).then((results) => {
+			void searchCommunes(value, zone).then((results) => {
 				setLoadingState(false)
 				setSearchResults(results)
 			})
 		},
-		[setSearchResults, setLoadingState]
+		[setSearchResults, setLoadingState, zone]
 	)
 	const debouncedHandleSearch = useMemo(
 		() => debounce(300, handleSearch),
@@ -144,7 +154,11 @@ export default function Select({ onChange, value, id }: SelectCommuneProps) {
 				onBlur={submitFocusedElem}
 				onKeyDown={handleKeyDown}
 				onChange={handleChange}
-				errorMessage={noResult ? t('Cette commune n’existe pas') : ''}
+				errorMessage={
+					noResult
+						? t('components.select-commune.no-result', 'Commune introuvable')
+						: ''
+				}
 			/>
 
 			{!!searchResults && (

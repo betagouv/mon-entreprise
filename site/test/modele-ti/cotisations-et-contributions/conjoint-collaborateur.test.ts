@@ -122,7 +122,7 @@ describe('Conjoint collaborateur', () => {
 			it('est égale à 450 Smic horaire mahorais à Mayotte', () => {
 				const e = engine.setSituation({
 					...defaultSituation,
-					'établissement . commune . département': "'Mayotte'",
+					'établissement . zone': "'mayotte'",
 				})
 
 				const Smic = e.evaluate("SMIC . horaire . début d'année")

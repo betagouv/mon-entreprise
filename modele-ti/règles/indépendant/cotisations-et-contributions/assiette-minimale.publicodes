@@ -8,7 +8,7 @@ indépendant . assiette minimale:
           - profession libérale . CNAVPL
           - toutes ces conditions:
               - profession libérale . CNAVPL = non
-              - établissement . commune . département . outre-mer . Mayotte = non
+              - établissement . domiciliation . outre-mer . mayotte = non
   valeur: oui
   description: |
     Si le revenu du chef d’entreprise est déficitaire ou inférieur aux bases de

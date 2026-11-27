@@ -1,3 +1,5 @@
+import { estDansLaZone, Zone } from '@/domaine/publicodes/Zone'
+
 export type ApiCommuneJson = {
 	_score: number
 	code: string
@@ -7,10 +9,6 @@ export type ApiCommuneJson = {
 		nom: string
 	}
 	nom: string
-	region: {
-		code: string
-		nom: string
-	}
 }
 
 export type SearchCommune = {
@@ -25,12 +23,13 @@ export type Commune = Omit<SearchCommune, 'code commune'> & {
 }
 
 export async function searchCommunes(
-	input: string
+	input: string,
+	zone?: Zone
 ): Promise<Array<SearchCommune> | null> {
 	const number = /[\d]+/.exec(input)?.join('') ?? ''
 	const text = /[^\d]+/.exec(input)?.join(' ') ?? ''
 	const response = await fetch(
-		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,region,codesPostaux${
+		`https://geo.api.gouv.fr/communes?fields=nom,code,departement,codesPostaux${
 			text ? `&nom=${text}` : ''
 		}${/[\d]{5}/.exec(number) ? `&codePostal=${number}` : ''}&boost=population`
 	)
@@ -52,6 +51,7 @@ export async function searchCommunes(
 				.filter(({ 'code postal': codePostal }) =>
 					codePostal.startsWith(number)
 				)
+				.filter(({ département }) => estDansLaZone(département, zone))
 		)
 		.slice(0, 10)
 }
@@ -61,7 +61,7 @@ export async function fetchCommuneDetails(
 	codePostal?: string
 ): Promise<Commune | null> {
 	const response = await fetch(
-		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=nom,code,departement,region,codesPostaux`
+		`https://geo.api.gouv.fr/communes/${codeCommune}?fields=nom,code,departement,codesPostaux`
 	)
 	if (!response.ok) {
 		return null

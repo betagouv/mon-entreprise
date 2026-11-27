@@ -51,7 +51,7 @@ describe('Contribution à la formation professionnelle', () => {
 
 		it('se base sur le PASS mahorais à Mayotte', () => {
 			const e1 = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			const PASSMahorais = e1.evaluate('plafond sécurité sociale . annuel')
@@ -62,7 +62,7 @@ describe('Contribution à la formation professionnelle', () => {
 			expect(e1).toEvaluate(COTISATION, Math.round((PASSMahorais * 0.25) / 100))
 
 			const e2 = engine.setSituation({
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 				'entreprise . activité': "'artisanale'",
 			})
 
@@ -96,7 +96,7 @@ describe('Contribution à la formation professionnelle', () => {
 		it('se base sur le PASS mahorais à Mayotte', () => {
 			const e = engine.setSituation({
 				...defaultSituation,
-				'établissement . commune . département': "'Mayotte'",
+				'établissement . zone': "'mayotte'",
 			})
 
 			const PASSMahorais = e.evaluate('plafond sécurité sociale . annuel')

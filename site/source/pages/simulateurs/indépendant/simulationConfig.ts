@@ -66,6 +66,7 @@ export const configIndépendant: PublicodesSimulationConfig = {
 			'indépendant . rémunération . nette . avec dividendes',
 			'indépendant . rémunération . nette . après impôt',
 			'indépendant . dividendes',
+			'établissement . commune',
 		],
 		'non prioritaires': [
 			'entreprise . activité . commerciale . débit de tabac',
@@ -84,6 +85,7 @@ export const configIndépendant: PublicodesSimulationConfig = {
 	'unité par défaut': '€/an',
 	situation: {
 		'entreprise . imposition': "'IR'",
+		'paramètres . domiciliation . distinction alsace-moselle': 'non',
 	},
 	'règles à ignorer pour déclencher les questions': ['entreprise . imposition'],
 }

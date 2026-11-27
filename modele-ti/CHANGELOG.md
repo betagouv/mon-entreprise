@@ -3,6 +3,7 @@
 ## next
 
 ### Breaking changes
+- Remplace la question sur la commune par une question sur la domiciliation en outre-mer (`établissement . outre-mer`)
 - Réorganise le calcul de l'impôt sur le revenu
 - Supprime le calcul de l'impôt avec le taux neutre
 - Déplace le calcul des prélèvements sociaux et du PFU des dividendes dans des règles propres `dividendes . [...]` (les règles `indépendant . dividendes . [...]` existent toujours mais pas les règles enfants)
