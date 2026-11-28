@@ -15,6 +15,10 @@
 ### Mises à jour
 - Reformule les questions qui s'adressaient à un salarié pour s'adresser au dirigeant (taux réduits, profession, fonction support AT/MP, complémentaire santé, avantages en nature)
 
+### Corrections
+- Borne à 0 l'inversion de `assimilé salarié . rémunération . salaire brut`, qui renvoyait -1 000 000 €/an lorsque la rémunération totale valait 0 €
+- Rend `assimilé salarié . cotisations . prévoyances` non applicable en l'absence de rémunération brute
+
 ## 0.1.0
 
 ### Mises à jour
