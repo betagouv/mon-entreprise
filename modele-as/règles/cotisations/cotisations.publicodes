@@ -571,6 +571,7 @@ assimilé salarié . cotisations . PEEC:
 assimilé salarié . cotisations . prévoyances:
   titre: prévoyances complémentaires
   possiblement non applicable: oui
+  non applicable si: rémunération . brute = 0
   références:
     Fiche Urssaf: https://www.urssaf.fr/accueil/employeur/embaucher-gerer-salaries/embaucher/prevoyance-complementaire.html
   somme:
